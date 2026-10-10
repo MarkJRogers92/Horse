@@ -8,8 +8,8 @@
   "triangles": {
     "Body": 26000,
     "Eyes": 1440,
-    "Mane": 1090,
-    "Tail": 560
+    "Mane": 1770,
+    "Tail": 840
   },
   "bones": [
     "root",
@@ -232,5 +232,5 @@
       1.003
     ]
   },
-  "buildSeconds": 70.1
+  "buildSeconds": 72.8
 }
