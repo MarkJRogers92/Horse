@@ -1,29 +1,28 @@
 # Project status / checkpoint
 
 **Last updated:** 2026-10-10 by GPT.
-**Phase:** P1-07 forecasts verified; fixing the closure/conception CI gate before P1-09.
+**Phase:** P1-07 verified; P1-09 snapshot/integrity/idempotence submitted to CI.
 **Branch:** `claude/great-euler-hq83x3`
 
 ## Task state
 | Task | State |
 | --- | --- |
-| P0-02a / P0-03 / P1-04 / P1-05 | Complete headless slices |
-| P1-06 | Complete headless slice; 79/79 tests and descriptor export verified |
-| P1-07 forecasts | Verified: 87/87 tests and validator passed |
-| P1-07 closure/conception | Implemented; compile-name collision fixed in this checkpoint; inspect CI |
-| P1-09 | Next: atomic persistence, integrity and idempotence |
+| P0-02a / P0-03 / P1-04 / P1-05 / P1-06 | Complete headless slices |
+| P1-07 | Complete scoped headless forecast/closure/conception API; 93/93 tests verified |
+| P1-09 state transition | Implemented; inspect this revision's CI |
+| P1-09 disk codec/store | Next; no actual disk save yet |
 
 ## Coordination / decisions
-Mark leads integration. GPT owns this domain continuation. Fetch before edits; use expected-head non-forced pushes. D-001 parallel genetics/art accepted; D-002 licensed horse trial accepted (owner chooses/purchases); D-003 Godot 4 .NET, not Unity. Approved Actions provides execution; local SDK/network unavailable. C# 9/netstandard2.1, net8.0 tests. No external AI transfer, purchase, deployment or main merge. Frozen handoff and real matrix statuses are unchanged.
+Mark leads integration. GPT owns this domain continuation; fetch before edits and use expected-head non-forced pushes. D-001 accepted; D-002 licensed horse trial accepted (owner chooses/purchases); D-003 Godot 4 .NET, not Unity. Actions approved for execution; no local SDK/network. C# 9/netstandard2.1; net8.0 xUnit. Frozen handoff and real coat-matrix statuses unchanged. No outside AI transfer, purchase, deployment, main merge or real art release.
 
 ## Next step
-1. Inspect this commit's Actions log. Run 38092570042 / job 114331845156 for 3090d47a passed the validator but stopped compilation at CS0119: the guard's Check method shadowed the Check helper. The helper is now fully qualified. No tests ran in that failed revision.
-2. After closure/conception tests pass, implement P1-09 using PreparedConception and the existing horse/genome/header/commit records. One snapshot/codec and production filesystem adapter.
-3. Required tests: inherited identity/phase/markings/pedigree/versions round-trip, atomic interruption/recovery, corrupt payloads, unsupported future schema, stale writers, identical and conflicting retries. A receipt alone is not a durable transaction.
-4. Keep the real live catalog disabled pending approved art. No engine scene or mesh exists.
+1. Inspect this revision's Actions output and fix failures.
+2. Finish P1-09 with one bounded explicit codec, version/migration handling, atomic same-directory replace, backup recovery and durable conception command.
+3. Exercise round-trip inheritance/phase/markings/pedigree/versions; failed writes; corrupt/future saves; optimistic conflicts and retry after interruption. Do not call the in-memory transition durable.
+4. No live catalog or actual horse visual is enabled. Art uses the existing 26 descriptor specimens independently.
 
 ## Verified CI evidence
-All successful runs below executed the spec validator (OK) and Release dotnet test.
+Successful jobs ran the spec validator (OK) and Release dotnet test.
 | Checkpoint | Commit | Run / job | Passed | TRX |
 | --- | --- | --- | --- | --- |
 | P0-02a | ec178ee6 / 6e96338 | 38089219015 / 114322012360 | 2/2 | 11683782133 |
@@ -34,11 +33,11 @@ All successful runs below executed the spec validator (OK) and Release dotnet te
 | P1-06 resolver | b125167a | 38091474449 / 114328620063 | 65/65 | 11684750668 |
 | P1-06 export | e54b26c7 | 38091748382 / 114329407287 | 79/79 | 11684063483 |
 | P1-07 forecasts | fb328c7e | 38092285736 / 114331006946 | 87/87 | 11684382756 |
-Latest verified descriptor artifact: 11684317758.
+| P1-07 closure/conception | 211154d0 | 38092969914 / 114333004779 | 93/93 | 11684154261 |
+P1-07 initially failed compilation in 3090d47a (run 38092570042); the Check helper-name collision was fixed and the full follow-up log verified. Latest descriptor artifact 11684124446.
 
-## Completion handoff — P1-07 implementation
-- Exact conditional forecasts without hidden-genome authority or invented priors are verified.
-- Closure covers every nonzero-probability recombinant and conservative biological diplotype combination across arbitrary generations. Bounded limits fail closed.
-- Conception preparation validates authoritative revisions, ownership, funds, pedigree and capacity before sampling; outcomes use saved stream position, not request IDs. Original parent/provenance snapshots are retained.
-- Closure/conception tests remain unverified until this compile fix's run passes. Preparation still performs no durable write or debit.
-- No frozen JSON, matrix status, artwork or main-branch changes.
+## Completion handoff — P1-09 state sub-step (CI pending)
+- Added one immutable StableSnapshot using existing records and a typed coin ledger. Cross-record validation checks pregnancy/child/debit links, historical inheritance, retained versions and stream sequence.
+- Added a pure all-or-nothing conception transition: exact retries return the original receipt; conflicting reuse is rejected; no state is mutated on rejection.
+- Seven added tests cover full effect application, retry safety, missing/duplicate state, rejection and historical parents after a current rename.
+- Documented the minimal trusted capacity/economy boundary. Disk encoding, atomic publication, recovery and migration tests remain next.
