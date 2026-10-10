@@ -1,6 +1,6 @@
 # Project status / checkpoint
 
-**Last updated:** 2026-10-10 by GPT (domain implementation session)
+**Last updated:** 2026-10-10 by Claude (recorded owner decisions, added CI). The previous update was by GPT (domain scaffold).
 **Phase:** P0-02a scaffold pushed; .NET validation blocked.
 **Branch:** `claude/great-euler-hq83x3`
 
@@ -29,7 +29,7 @@
 - CI: **GitHub Actions approved.** `.github/workflows/domain.yml` runs `dotnet test` on every push.
 
 ## Next step — exact resume point
-1. Use an environment with the .NET 8 SDK and NuGet restore access.
+1. Use an environment with the .NET 8 SDK, **or** push and read the `domain` GitHub Actions run (that run is the accepted evidence).
 2. Read `AGENTS.md`, then this file. Keep working on this branch; do not re-review the spec.
 3. Run `dotnet test Cloverbrook.sln --configuration Release` from the repository root.
    Fix any restore/build/test failures. Run `python3 tools/validate_handoff.py`.
