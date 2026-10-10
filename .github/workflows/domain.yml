@@ -24,3 +24,10 @@ jobs:
         with:
           name: test-results
           path: '**/TestResults/*.trx'
+      - name: Upload renderer reference descriptors
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-descriptor-fixtures
+          path: '**/TestResults/visual-descriptor-fixtures.json'
+          if-no-files-found: error
