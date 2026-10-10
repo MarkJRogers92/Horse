@@ -20,13 +20,6 @@ its output directory. Tests read those copies relative to AppContext.BaseDirecto
 so running from an IDE or another working directory uses the same source data.
 Do not regenerate or weaken the fixtures to make implementation results pass.
 
-No GitHub Actions workflow is installed: owner decision B5 is still pending.
-The other five owner questions also remain pending; the request contained the
-placeholder rather than answers. This does not block the requested headless work.
-The domain work does not mark D-001 accepted or any visual class released.
-
-Validation in the current ChatGPT container is blocked: no `dotnet` executable,
-no installed SDK found, DNS failure cloning GitHub, and an official installer
-download failed. Authenticated GitHub API writes provide repository checkpoints;
-they are not evidence of a successful build. Run the command above before treating
-this checkpoint as accepted or consuming these contracts in production.
+CI: `.github/workflows/domain.yml` runs the validator and `dotnet test` on every push
+(owner-approved 2026-10-10). Its run is the accepted evidence when a local environment
+has no .NET SDK. Check the Actions tab, or the commit's check status, for the result.

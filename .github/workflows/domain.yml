@@ -1,0 +1,26 @@
+name: domain
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Validate spec files
+        run: python3 tools/validate_handoff.py
+      - name: Test domain
+        run: dotnet test Cloverbrook.sln --configuration Release --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal"
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: '**/TestResults/*.trx'

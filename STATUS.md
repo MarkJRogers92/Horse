@@ -20,12 +20,13 @@
 - `AGENTS.md` / `CLAUDE.md` and the existing validator are unchanged.
 - No Unity project, CI workflow, purchase, deployment, external model transfer or merge was made.
 
-## Owner decisions
-All six answers in review section B remain pending. The latest request contained
-`[paste answers to the 6 questions, or "D-001 accepted; others pending"]`, not actual
-answers. Do not infer D-001 acceptance, a horse budget, an engine/hardware choice,
-CI approval or external role assignments. These do not prevent the authorized
-headless sequence once a .NET execution environment is available.
+## Owner decisions (all answered 2026-10-10; see docs/decisions/)
+- **Integration lead:** the owner (Mark). Claude and GPT share the implementation and review each other's work. Coordinate through this file. Pull before you start and push after every sub-step, because both models push to this branch.
+- D-001 parallel genetics and visuals + coat matrix: **accepted**.
+- D-002 licensed rigged base horse: **accepted (trial)**. Owner buys after seeing a shortlist and sets the budget.
+- D-003 engine: **Godot 4 (.NET)**, revised from Unity because the owner has no Mac or PC. See `docs/decisions/D-003-engine-godot.md`.
+- Hardware: the owner has **no Mac or PC**. All builds, renders and tests run in **GitHub Actions** (approved).
+- CI: **GitHub Actions approved.** `.github/workflows/domain.yml` runs `dotnet test` on every push.
 
 ## Next step — exact resume point
 1. Use an environment with the .NET 8 SDK and NuGet restore access.
@@ -41,7 +42,7 @@ headless sequence once a .NET execution environment is available.
 7. Update this file, commit and push after every sub-step. Do not call a task complete
    or promote matrix genetics status until its actual tests pass.
 
-No GitHub Actions workflow should be created or run until CI is explicitly approved.
+CI is approved: the domain workflow runs `dotnet test` on push. Use its result as the validation evidence when the local environment has no .NET.
 The remaining work needs implementation and execution, not another design review.
 
 ## Completion handoff — P0-02a source checkpoint

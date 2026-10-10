@@ -4,7 +4,7 @@
 | --- | --- |
 | Decision ID | D-001 |
 | Date | 2026-10-10 |
-| Status | **Proposed**, waiting for the owner to accept |
+| Status | **Accepted** by owner, 2026-10-10 |
 | Owner | integration_lead |
 
 ## Question
