@@ -27,6 +27,7 @@ namespace Cloverbrook.Domain
         public const int MaxPayloadBytes = 32 * 1024 * 1024;
         public const int MaxCollectionCount = 4096;
         public const int MaxTextBytes = 16384;
+        public const int MaxRationalTextBytes = 512;
         private static readonly byte[] magic = Encoding.ASCII.GetBytes("CLVRSAVE");
         private static readonly UTF8Encoding utf8 = new UTF8Encoding(false, true);
         private readonly IReadOnlyDictionary<int, ISavePayloadMigration> migrations;
@@ -125,8 +126,17 @@ namespace Cloverbrook.Domain
         { var value = r.ReadInt32(); if (!Enum.IsDefined(typeof(T), value)) throw new SaveIntegrityException("Unknown enum value in current schema."); return (T)Enum.ToObject(typeof(T), value); }
         private static void Seed(BinaryWriter w, Seed128 s) { w.Write(s.High); w.Write(s.Low); }
         private static Seed128 Seed(BinaryReader r) => new Seed128(r.ReadUInt64(), r.ReadUInt64());
-        private static void Fraction(BinaryWriter w, Rational value) { Text(w, value.Numerator.ToString(CultureInfo.InvariantCulture)); Text(w, value.Denominator.ToString(CultureInfo.InvariantCulture)); }
-        private static Rational Fraction(BinaryReader r) => new Rational(BigInteger.Parse(Text(r, 512), CultureInfo.InvariantCulture), BigInteger.Parse(Text(r, 512), CultureInfo.InvariantCulture));
+        private static void Fraction(BinaryWriter w, Rational value)
+        {
+            var numerator = value.Numerator.ToString(CultureInfo.InvariantCulture);
+            var denominator = value.Denominator.ToString(CultureInfo.InvariantCulture);
+            // Match the reader's tighter numeric bound; never return an encoded
+            // frame that this same codec cannot read. Invariant decimals are ASCII.
+            if (numerator.Length > MaxRationalTextBytes || denominator.Length > MaxRationalTextBytes)
+                throw new SaveIntegrityException("A rational component exceeds the bounded save format.");
+            Text(w, numerator); Text(w, denominator);
+        }
+        private static Rational Fraction(BinaryReader r) => new Rational(BigInteger.Parse(Text(r, MaxRationalTextBytes), CultureInfo.InvariantCulture), BigInteger.Parse(Text(r, MaxRationalTextBytes), CultureInfo.InvariantCulture));
         private static void StreamState(BinaryWriter w, RngStreamState state) { Seed(w, state.Seed); Text(w, state.Purpose); w.Write(state.EventCounter); Text(w, state.AlgorithmVersion); }
         private static RngStreamState StreamState(BinaryReader r) => new RngStreamState(Seed(r), Text(r), r.ReadUInt64(), Text(r));
         private static void Header(BinaryWriter w, SaveHeader h)
