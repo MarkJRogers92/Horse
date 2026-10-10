@@ -1,38 +1,35 @@
 # Project status / checkpoint
 
 **Last updated:** 2026-10-10 by GPT (domain continuation).
-**Phase:** P0-03 Phase-1 records submitted to CI.
+**Phase:** P0-03 verified; P1-04 inheritance submitted to CI.
 **Branch:** `claude/great-euler-hq83x3`
 
 ## Task state
 | Task | State |
 | --- | --- |
-| P0-02a | Complete; Actions 38089219015, 2/2 tests and validator passed |
-| P0-03 (narrowed) | Foundations verified (10/10); six-record subset authored, verify this commit's CI |
-| P1-04 | Next after P0-03 verification |
-| P1-05 | Not started |
-| P1-06 | Not started |
+| P0-02a | Complete; Actions 38089219015, 2/2 tests |
+| P0-03 (narrowed) | Complete; Actions 38090145782, 19/19 tests and validator OK |
+| P1-04 | Implemented; inspect this commit's CI before declaring complete |
+| P1-05 | Next after P1-04 verification |
+| P1-06 | Not started; must finish the coat-phenotype fixture assertions |
 
-## Coordination / owner decisions
-Mark leads integration. Claude and GPT implement/review and fetch before editing; GPT is taking the domain sequence. Push each sub-step with STATUS. D-001 parallel genetics/visuals and matrix accepted; D-002 licensed horse trial accepted (owner sets budget/buys after shortlist); D-003 selects Godot 4 .NET, not Unity. Owner has no Mac/PC; GitHub Actions builds, renders and tests are approved. `handoff/` stays frozen. Domain: C# 9, nullable, netstandard2.1, net8.0 xUnit. Path mapping: `docs/contracts/PHASE1_DOMAIN.md`. No purchase, deployment, external-model transfer or default-branch merge.
+## Coordination / decisions
+Mark leads integration; Claude and GPT implement/review. GPT is taking the domain sequence; fetch before edits and use non-forced expected-head pushes. D-001 accepted; no approved/released art. D-002 licensed horse trial accepted (owner buys after shortlist/budget). D-003 selects Godot 4 .NET, not Unity. No owner desktop; approved GitHub Actions supplies builds/renders/tests. `handoff/` is frozen. Domain remains C# 9 / netstandard2.1, no engine refs; tests net8.0 xUnit. No purchase, deployment, external-model transfer or main merge.
 
 ## Next step
-1. Inspect this commit's domain CI. Fix build/tests before calling P0-03 complete.
-2. P1-04: one phased meiosis service, explicit versioned allele/linkage validation, exact distributions and seeded sampling. Do not use independent rolls for linked markers.
-3. P1-05: complete pedigree recurrence, unknown ancestry, cycles, eligibility and capacity reservations.
-4. P1-06: pure resolver -> descriptor with D-001 explicit Unsupported gates. Exercise all frozen genetics/pedigree cases plus review A6 tests outside `handoff/`.
-5. Update STATUS, commit, push and inspect CI after every sub-step. No genetics pass authorizes visual approval or live release.
+1. Read this commit's domain Actions logs. Fix any failure before marking P1-04 complete.
+2. P1-05: implement exact pedigree recurrence, explicit unknown ancestry, cycle/self-parent validation, eligibility and capacity planning checks.
+3. P1-06: one phenotype resolver and visual descriptor, complete all frozen coat fixtures and review A6 cases. Preserve explicit Unsupported and matrix release gating.
+4. Update STATUS, commit, push and inspect CI after every sub-step. No art approval or live release follows from a genetics pass. Real commit transactions/saves and knowledge-limited forecasts remain later tasks.
 
-## Evidence / completion handoffs
-### P0-02a complete
-- Skeleton `4a8d2a8` retained at revision `ec178ee6cf7f190d14def20bee2d8257bb59f1da`.
-- Actions https://github.com/MarkJRogers92/Horse/actions/runs/38089219015 , job 114322012360: validator OK; Release build; 2/2 tests. TRX 11683782133. Checkpoint `6e96338`.
-### P0-03 foundations complete
-- Commit `b5481897284e805f19ff1bcafaf0b070ceb19890`.
-- Actions https://github.com/MarkJRogers92/Horse/actions/runs/38089752903 , job 114323591679: validator OK; Release build; 10/10 tests; TRX 11683906664.
-- Typed identity, exact fractions, defensive snapshots, canonical hashing, versioned/purpose-isolated RNG, independent golden vectors, restore/overflow/culture tests.
-### P0-03 record subset (CI pending)
-- Added `Contracts/Genome.cs`, `HorseRecord.cs`, `VariantCatalogRecord.cs`, `AppearanceRecords.cs`, `BreedingAndSave.cs`, nine record-contract tests and `docs/contracts/PHASE1_RECORDS.md`.
-- Records are immutable defensive snapshots; one phased genome, one horse identity, separate player knowledge and training, renderer-only descriptors, structurally checked conception result, version-retaining save header.
-- No transaction execution, atomic save, forecast UI or renderer is claimed. Management-only fields and race/lease contracts remain deferred.
-- Local .NET is absent; no local test pass claimed. C# validation is this revision's approved CI. No JSON specification changed; frozen fixture hashes remain unchanged.
+## Verified checkpoints
+- P0-02a `ec178ee6` / checkpoint `6e96338`: https://github.com/MarkJRogers92/Horse/actions/runs/38089219015 , job 114322012360; validator OK, 2/2, TRX 11683782133.
+- P0-03 foundations `b5481897`: https://github.com/MarkJRogers92/Horse/actions/runs/38089752903 , job 114323591679; validator OK, 10/10, TRX 11683906664.
+- P0-03 records `1f88e2a1`: https://github.com/MarkJRogers92/Horse/actions/runs/38090145782 , job 114324735041; validator OK, Release build, 19/19, TRX 11683772363. Covers immutable six-record subset, phased genome, defensive snapshots and renderer/knowledge boundary. See `docs/contracts/PHASE1_RECORDS.md` for staged scope.
+
+## Completion handoff — P1-04 (CI pending)
+- Files: `Genetics/Loci/InheritanceModel.cs`, `CoreGeneticsCatalog.cs`, `Genetics/Meiosis/MeiosisService.cs`, shared frozen-fixture adapter and meiosis tests; `docs/genetics/inheritance.md`.
+- Implemented: one phased inheritance service, exact rational gamete/offspring distributions, deterministic sampling, recorded parental homolog/crossover provenance, 32 explicitly fictional game markers, catalogue/version checks and fail-closed unsupported recombinants.
+- Frozen linked-block and cream/pearl genotype fixtures are wired to real algorithms; full coat-label fixtures await P1-06. Additional tests cover distribution sampling, allele provenance, preview-isolated draft bytes and limits.
+- `ConceptionDraft` is a pure deterministic draft, not a persisted/debited pregnancy; actual commit/save transaction semantics are not claimed.
+- No JSON specs changed. Local .NET remains unavailable; this revision's CI is the C# validation gate. Previous 19 tests are verified, new tests are not yet claimed passed.
