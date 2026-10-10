@@ -1,37 +1,72 @@
 # Project status / checkpoint
 
 **Last updated:** 2026-10-10 by GPT (domain implementation session)
-**Phase:** P0-02a scaffold authored; .NET execution blocked, not accepted.
+**Phase:** P0-02a scaffold pushed; .NET validation blocked.
 **Branch:** `claude/great-euler-hq83x3`
 
-## Done / preserved
-- Frozen original package remains unchanged in `handoff/`.
-- Existing review, D-001 proposal and coat support matrix remain unchanged.
-- P0-02a source scaffold: `Cloverbrook.sln`, pure netstandard2.1/C# 9 nullable domain,
-  net8.0 xUnit project, fixture-loading and engine-boundary tests, setup instructions.
-- CI remains disabled. No purchases, deployment, model-provider transfers or merge.
+## Task state
+| Task | State |
+| --- | --- |
+| P0-02a | Source scaffold authored and pushed in `4a8d2a8865e57703bf21d59063eba2812da8c60c`; restore/build/test NOT verified |
+| P0-03 (narrowed) | Not started; resume after the scaffold passes `dotnet test` |
+| P1-04 | Not started |
+| P1-05 | Not started |
+| P1-06 | Not started |
+
+## Preserved baseline
+- Original handoff package remains unchanged in `handoff/`.
+- The review is finished; do not re-review it.
+- Existing D-001 proposal and coat support matrix are unchanged. No class was promoted or released.
+- `AGENTS.md` / `CLAUDE.md` and the existing validator are unchanged.
+- No Unity project, CI workflow, purchase, deployment, external model transfer or merge was made.
 
 ## Owner decisions
-All six answers in review section B remain pending. The latest request included
-`[paste answers ...]`, not actual answers. Do not mark D-001 accepted, assume a
-horse budget, pin Unity, assume hardware, enable CI, or assign external workers.
-The owner explicitly authorized the headless task sequence and this branch's pushes.
+All six answers in review section B remain pending. The latest request contained
+`[paste answers to the 6 questions, or "D-001 accepted; others pending"]`, not actual
+answers. Do not infer D-001 acceptance, a horse budget, an engine/hardware choice,
+CI approval or external role assignments. These do not prevent the authorized
+headless sequence once a .NET execution environment is available.
 
-## Next step
-Execute `dotnet test Cloverbrook.sln --configuration Release` in a .NET 8 environment.
-In this session, continue authoring the requested narrowed P0-03 then P1-04/05/06
-checkpoints; every task remains **partial/unverified** until its tests actually run.
-Do not advance release gates, rewrite the reviewed spec or alter frozen fixtures.
+## Next step — exact resume point
+1. Use an environment with the .NET 8 SDK and NuGet restore access.
+2. Read `AGENTS.md`, then this file. Keep working on this branch; do not re-review the spec.
+3. Run `dotnet test Cloverbrook.sln --configuration Release` from the repository root.
+   Fix any restore/build/test failures. Run `python3 tools/validate_handoff.py`.
+4. Record the actual output, update this file, commit and push the P0-02a validation checkpoint.
+5. Implement narrowed P0-03 (HorseRecord, VariantCatalogRecord, Phenotype,
+   HorseVisualDescriptor, BreedingCommit, SaveHeader, typed identity and purpose-labeled RNG).
+   Use C# 9 / netstandard2.1 and defensive snapshots, not aliased read-only collections.
+6. Then implement P1-04, P1-05 and P1-06 in order. Run the frozen fixtures through xUnit,
+   adding the slice cases identified in review A6 without modifying `handoff/`.
+7. Update this file, commit and push after every sub-step. Do not call a task complete
+   or promote matrix genetics status until its actual tests pass.
 
-## Completion handoff — P0-02a
-- **Status:** partial (source authored; execution blocked).
-- **Base:** `806334250a7df14cb17bc7c68af930b5fde5e961`; output = this checkpoint commit.
-- **Changed:** solution, `.gitignore`, `src/Cloverbrook.Domain/`,
-  `tests/Cloverbrook.Domain.Tests/`, `docs/setup/DOMAIN.md`, `STATUS.md`.
-- **Validation:** locally inspected project XML and fixture structure; original task,
-  contract, workflow and genetics file Git blob hashes match the remote branch.
-  `dotnet test` cannot run: SDK/executable absent; network download failed.
-- **Player-visible result:** none yet; this is a headless testable source scaffold.
-- **Remaining:** restore/build/run on .NET 8. No test pass is claimed.
-- **Checkpoint:** code and status stored together through the GitHub API; local
-  cloning/pushing over Git transport is unavailable in this container.
+No GitHub Actions workflow should be created or run until CI is explicitly approved.
+The remaining work needs implementation and execution, not another design review.
+
+## Completion handoff — P0-02a source checkpoint
+- **Status:** partial; source authored, execution blocked before restore/compilation.
+- **Base:** `806334250a7df14cb17bc7c68af930b5fde5e961`.
+- **Source commit:** `4a8d2a8865e57703bf21d59063eba2812da8c60c`, pushed to this branch.
+- **Files:** `Cloverbrook.sln`, `.gitignore`,
+  `src/Cloverbrook.Domain/Cloverbrook.Domain.csproj`, `DomainAssembly.cs`,
+  `tests/Cloverbrook.Domain.Tests/Cloverbrook.Domain.Tests.csproj`,
+  `FixtureFiles.cs`, `FixtureLoadingTests.cs`, `docs/setup/DOMAIN.md`, `STATUS.md`.
+- **Result:** pure nullable netstandard2.1/C# 9 library and a net8.0 xUnit harness.
+  MSBuild copies the actual fixture JSON and coat matrix into the test output;
+  tests load them relative to AppContext.BaseDirectory rather than the working directory.
+  Two tests are authored: fixture-file loading/structure and engine-dependency exclusion.
+  They are NOT the future genetics acceptance suite.
+- **Checks actually run:** both project XML files parsed successfully in Python.
+  Local copies of TASK_BOARD.json, CONTRACT_CATALOG.json, GENETICS_FIXTURES.json and
+  CLOVERBROOK_WORKFLOW.txt have Git blob hashes identical to the inspected remote tree.
+- **Command attempted:** `dotnet test Cloverbrook.sln --configuration Release`.
+- **Observed result:** exit 127, `dotnet: command not found`; zero tests executed.
+  No SDK was found. Local Git cloning failed with DNS resolution errors, and an
+  official dotnet installer download also failed. This is not a C# test failure or pass.
+- **Not run:** C# compilation, NuGet restore, xUnit, or the repository Python validator.
+  No JSON specification was changed in this checkpoint.
+- **Player-visible result:** none yet; this is source infrastructure only.
+- **Checkpoint:** source and this status are committed via the authenticated GitHub API.
+  No background build, remote worker or pending process is running. No downstream
+  contracts or genetics implementation exists yet. Resume with step 1 above.
