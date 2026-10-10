@@ -16,5 +16,14 @@ Small scenarios are exact rational arithmetic. A single fully specified scenario
 
 Example descriptors use only purpose-derived forecast seeds. They pass through the unchanged release matrix and return Unsupported while no real art is released. They are never the committed foal. Cache keys include public evidence/scope, algorithm, options and full matrix support content, not just a caller-supplied version string.
 
+## Unified forecast / Godot interface
+`BreedingForecastService` composes the existing coat service with marginal inherited-call ranges, fictional body/athletic/temperament potential, and optional public-pedigree kinship. `ForKnownParents` still accepts only public knowledge, a disclosed allele scope, and optionally a public pedigree. Missing ancestry returns unknown. `Hypothetical` accepts assumed phased genomes and never authorizes conception.
+
+Variant probabilities include masked alleles such as pearl and agouti. They use the production block meiosis, with exact rational lower/upper probabilities across public call possibilities. They are marginal results, not a joint distribution. Coat observations may narrow coat scenarios; variant ranges conservatively ignore those observations rather than inferring hidden tests.
+
+Hypothetical trait distributions retain linked inheritance by enumerating each synthetic block with production meiosis and resolving its contribution through `GameTraitResolver`. Exact marginal convolutions combine independent blocks under the pinned additive `game.traits.v1` model, including its speed/turning and power/endurance tradeoffs. They do not enumerate or truncate the exponentially larger joint genome distribution. A different trait model requires a new implementation of this factorization.
+
+Actual trait forecasts union every gamete admitted by revealed unphased calls, then return conservative potential ranges. They assign no probability to unknown calls or phase; singleton inherited potential is exact. Fixed development has the declared -200..200 support; training, performance in an event, and environment are outside this forecast. All values are fictional tuning units. No forecast samples development or advances authoritative RNG.
+
 ## Scope / integration
-P1-07 files map the frozen Runtime/Breeding/Forecasts and Tests/Domain/Forecasts paths into the accepted headless src/tests layout. Full multi-generation catalog closure and the minimal conception API are the next sub-step. P1-09 owns durable atomic saving; P2 owns the complete gameplay transaction, market and lifecycle UI. The frozen handoff is unchanged.
+P1-07 files map the frozen Runtime/Breeding/Forecasts and Tests/Domain/Forecasts paths into the accepted headless src/tests layout. Full multi-generation catalog closure and conception preparation are implemented and verified in run 38092969914 (93 tests). P1-09 owns durable atomic saving; P2 owns the full market and lifecycle UI. The frozen handoff is unchanged.
