@@ -1,0 +1,1273 @@
+{
+  "schema_version": "1.0.0",
+  "project": "Cloverbrook Stables",
+  "document_kind": "proposed_production_task_board",
+  "task_state_notice": "Every task is proposed. No implementation, validation, publication, license clearance, successful build, or finished horse asset is claimed by this board.",
+  "repository_paths_notice": "Allowed paths are suggested ownership boundaries for the future repository, not assertions that these files already exist.",
+  "scope": {
+    "required_release": "v1 desktop",
+    "initial_platforms": [
+      "Windows PC",
+      "macOS"
+    ],
+    "engine": "Unity 6 supported LTS with URP; verify and pin the exact supported release at setup",
+    "domain": "Pure C# without Unity dependencies",
+    "adult_body_families": 2,
+    "breed_inspired_starting_presets": 4,
+    "marketplace": "NPC marketplace in required v1",
+    "online_features": "deferred"
+  },
+  "production_rules": [
+    "Keep project prompts, source code, files, assets, saves, and user context within ChatGPT and the approved local workspace by default. This board authorizes no transmission to an external model, provider, service, remote repository, analytics collector, or publishing target. Honor an existing specific authorization; otherwise obtain Mark's explicit instruction identifying the destination and permitted content before transmitting project context. Reading public documentation or obtaining public dependencies does not authorize uploading project data.",
+    "One schema owner controls shared contracts and save migrations.",
+    "One assigned owner edits an individual binary source asset at a time.",
+    "Forecasting and committed births use the same production meiosis and phenotype services.",
+    "All horse views use the same deterministic visual descriptor and presenter.",
+    "Minimum gait, deformation, and tack-fit checks precede scaling the asset catalog.",
+    "Competition modes share versioned adjudication rules and fixed-seed replay fixtures.",
+    "Proposed geometry and scene budgets are profiling targets, not guarantees.",
+    "Actual PC and Mac builds must be run; editor-only validation is insufficient.",
+    "Required tasks never depend on deferred tasks.",
+    "Asset provenance, provider permissions, and paid-service choices are verified when applicable; placeholder records do not clear an asset for shipping."
+  ],
+  "phases": [
+    {
+      "id": 0,
+      "name": "Foundations"
+    },
+    {
+      "id": 1,
+      "name": "Hero horse, genetics, committed mating, and saved-foal proof"
+    },
+    {
+      "id": 2,
+      "name": "Complete early stable session with elementary market, buildings, and activities"
+    },
+    {
+      "id": 3,
+      "name": "Complete NPC marketplace and management depth"
+    },
+    {
+      "id": 4,
+      "name": "Polished manual flat racing and barrel racing"
+    },
+    {
+      "id": 5,
+      "name": "V1 content, polish, and reviewable candidate"
+    },
+    {
+      "id": 6,
+      "name": "Optional online and expansion work"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "P0-01",
+      "phase": 0,
+      "title": "Freeze v1 scope and system ownership",
+      "owner_role": "integration_lead",
+      "depends_on": [],
+      "allowed_paths": [
+        "docs/design/**",
+        "docs/architecture/**",
+        "docs/production/**"
+      ],
+      "outputs": [
+        "A v1 scope covering breeding, stable management, adoption, NPC trade, building, flat racing, and barrels.",
+        "Named schema owner, integration owner, and binary-art ownership rules."
+      ],
+      "acceptance": [
+        "Breeding and stable management remain the central progression loop.",
+        "The initial art scope is two validated adult body families and four breed-inspired presets; exact labels can change.",
+        "Online trade, real-money transactions, multiplayer, and extra platforms are explicitly outside required v1 scope."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P0-02",
+      "phase": 0,
+      "title": "Create and pin the Unity and Blender toolchain",
+      "owner_role": "integration_lead",
+      "depends_on": [
+        "P0-01"
+      ],
+      "allowed_paths": [
+        "ProjectSettings/**",
+        "Packages/**",
+        ".gitignore",
+        ".gitattributes",
+        "tools/build/**",
+        "docs/setup/**"
+      ],
+      "outputs": [
+        "Unity 6 supported LTS project with URP and pinned editor/package versions.",
+        "Pinned Blender/export configuration and repeatable local build instructions."
+      ],
+      "acceptance": [
+        "Verify the supported release and exact patch at project setup; this task board promises no current patch number.",
+        "A fresh checkout imports without unresolved package errors.",
+        "Large binary assets have one-owner editing and an agreed version-control policy.",
+        "Tool setup must not enable integrations that upload project context without the specific destination/content authorization required by this board."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P0-03",
+      "phase": 0,
+      "title": "Define shared domain, identity, RNG, and save contracts",
+      "owner_role": "schema_owner",
+      "depends_on": [
+        "P0-01",
+        "P0-02"
+      ],
+      "allowed_paths": [
+        "Packages/com.cloverbrook.domain/Runtime/Contracts/**",
+        "Packages/com.cloverbrook.domain/Runtime/Identity/**",
+        "Packages/com.cloverbrook.domain/Runtime/Randomness/**",
+        "Tests/Domain/Architecture/**",
+        "docs/contracts/**"
+      ],
+      "outputs": [
+        "Versioned Horse, genome, phased haplotype, pedigree, phenotype descriptor, breeding event, economy, and competition contracts.",
+        "Versioned random-stream, save-schema, migration, and transaction-ID policies."
+      ],
+      "acceptance": [
+        "Domain source has no Unity types, Unity assembly references, or scene dependencies.",
+        "Persistent horse identity, appearance seed, ruleset version, and committed breeding outcomes have defined ownership.",
+        "Other workers propose shared-contract changes to the schema owner instead of modifying the contracts independently.",
+        "Competition entries and replays define an immutable complete starting snapshot: inherited traits, developed/learned state, readiness, equipment effects, event configuration, and rules/AI policy versions; replay cannot reread mutable live horse records."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P0-04",
+      "phase": 0,
+      "title": "Specify the horse asset contract and provenance workflow",
+      "owner_role": "technical_art_lead",
+      "depends_on": [
+        "P0-01",
+        "P0-02",
+        "P0-03"
+      ],
+      "allowed_paths": [
+        "docs/art/**",
+        "art/manifests/**",
+        "tools/art/validation/**"
+      ],
+      "outputs": [
+        "Versioned scale, orientation, skeleton, UV, morph, material, attachment, LOD, and export conventions.",
+        "Reference scene plan, asset registry, and one-owner policy for each editable binary asset."
+      ],
+      "acceptance": [
+        "The style emphasizes relatively realistic horses within a colorful, cute environment.",
+        "Geometry and texture budgets are labeled proposed profiling targets, not performance guarantees.",
+        "Source permissions and license fields remain unverified until supported by a real record."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P0-05",
+      "phase": 0,
+      "title": "Run an actual PC and Mac skeleton-build smoke test",
+      "owner_role": "build_engineer",
+      "depends_on": [
+        "P0-02",
+        "P0-03"
+      ],
+      "allowed_paths": [
+        "Assets/Cloverbrook/Scenes/Bootstrap/**",
+        "Assets/Cloverbrook/Runtime/Bootstrap/**",
+        "tools/build/**",
+        "docs/qa/builds/**"
+      ],
+      "outputs": [
+        "Launchable Windows and macOS bootstrap builds.",
+        "Recorded device, operating system, renderer, build configuration, and launch results."
+      ],
+      "acceptance": [
+        "Launch the produced executable or app on an actual intended PC and Mac; editor play mode is insufficient.",
+        "Exercise basic input, scene load, and application exit without unhandled errors.",
+        "Record any unavailable target hardware as an unpassed gate, without inventing performance or successful launch results."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P1-01",
+      "phase": 1,
+      "title": "Create the first adult horse mesh and inspection scene",
+      "owner_role": "horse_artist",
+      "depends_on": [
+        "P0-04",
+        "P0-05"
+      ],
+      "allowed_paths": [
+        "art/source/horses/family_a/**",
+        "Assets/Cloverbrook/Art/Horses/FamilyA/**",
+        "Assets/Cloverbrook/Scenes/ArtReview/**",
+        "art/manifests/**"
+      ],
+      "outputs": [
+        "Editable adult horse source with approved proportions, stable topology, and documented UV layout.",
+        "Real in-engine model and neutral-light turntable captures."
+      ],
+      "acceptance": [
+        "Front, side, rear, and three-quarter views pass anatomy and silhouette review at gameplay camera distances.",
+        "The face, hooves, legs, eyes, mane, and tail are resolved in the actual mesh.",
+        "A rendered concept image alone does not count as a delivered 3D asset."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P1-02",
+      "phase": 1,
+      "title": "Validate the adult rig, bounded morphs, tack fit, and minimum gaits",
+      "owner_role": "technical_artist",
+      "depends_on": [
+        "P1-01"
+      ],
+      "allowed_paths": [
+        "art/source/horses/family_a/**",
+        "Assets/Cloverbrook/Art/Horses/FamilyA/**",
+        "Assets/Cloverbrook/Art/Tack/Prototype/**",
+        "Assets/Cloverbrook/Scenes/ArtReview/**",
+        "Tests/Visual/HorseDeformation/**"
+      ],
+      "outputs": [
+        "Versioned Generic horse rig, body-morph map, and attachment/socket definitions.",
+        "Idle, walk, trot, and initial racing-gait clips with movement and contact metadata."
+      ],
+      "acceptance": [
+        "Minimum and maximum supported morph combinations deform without collapsed joints or broken silhouettes.",
+        "Saddle, blanket, bridle, and prototype rider anchors have verified fit in supported poses.",
+        "Minimum gait and deformation review passes before mass production of body or breed variants.",
+        "Ground speed and stride timing are checked on a flat track; obvious hoof skating is reported and corrected."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P1-03",
+      "phase": 1,
+      "title": "Build the engine coat material and visual fixture harness",
+      "owner_role": "shader_artist",
+      "depends_on": [
+        "P1-01",
+        "P0-03"
+      ],
+      "allowed_paths": [
+        "Assets/Cloverbrook/Art/Materials/Horses/**",
+        "Assets/Cloverbrook/Runtime/Presentation/HorseMaterials/**",
+        "Tests/Visual/CoatFixtures/**"
+      ],
+      "outputs": [
+        "Layered coat material using documented phenotype parameters.",
+        "Neutral, stable, and outdoor lighting fixtures with deterministic appearance seeds."
+      ],
+      "acceptance": [
+        "Coat patterns support intended asymmetry and do not mirror unique markings unintentionally.",
+        "Dirt, grooming sheen, and decorative cosmetics remain separate from inherited appearance.",
+        "Material and texture use is measured, and the implementation avoids an unbounded collection of unique large textures."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P1-04",
+      "phase": 1,
+      "title": "Implement phased inheritance and a single meiosis service",
+      "owner_role": "genetics_engineer",
+      "depends_on": [
+        "P0-03"
+      ],
+      "allowed_paths": [
+        "Packages/com.cloverbrook.domain/Runtime/Genetics/Meiosis/**",
+        "Packages/com.cloverbrook.domain/Runtime/Genetics/Loci/**",
+        "Tests/Domain/Genetics/**",
+        "docs/genetics/**"
+      ],
+      "outputs": [
+        "Pure C# inheritance service with versioned random streams and documented locus/linkage rules.",
+        "Source-backed genetic fixtures and explicitly labeled game-model assumptions."
+      ],
+      "acceptance": [
+        "Every child allele originates from a permitted parental gamete under the supported model.",
+        "Phased linked loci, independent loci, and unsupported variants have explicit behavior.",
+        "Seeded reproduction fixtures are reproducible and meaningful distribution tests pass within documented tolerances.",
+        "No hidden averaging shortcut replaces the inheritance model."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P1-05",
+      "phase": 1,
+      "title": "Implement pedigree, relatedness, and breeding eligibility",
+      "owner_role": "genetics_engineer",
+      "depends_on": [
+        "P0-03"
+      ],
+      "allowed_paths": [
+        "Packages/com.cloverbrook.domain/Runtime/Pedigree/**",
+        "Packages/com.cloverbrook.domain/Runtime/Breeding/Eligibility/**",
+        "Tests/Domain/Pedigree/**"
+      ],
+      "outputs": [
+        "Pedigree graph and documented relatedness calculation.",
+        "Breeding eligibility and capacity checks with readable rejection reasons."
+      ],
+      "acceptance": [
+        "Known pedigree fixtures distinguish unrelated, parent-child, sibling, and more distant relationships correctly under the documented model.",
+        "Missing ancestry has an explicit unknown state rather than a fabricated unrelated score.",
+        "Eligibility checks include age, reproductive state, relationship policy, and reserved foaling capacity."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P1-06",
+      "phase": 1,
+      "title": "Resolve inherited traits into stable phenotype and visual descriptors",
+      "owner_role": "genetics_engineer",
+      "depends_on": [
+        "P1-04"
+      ],
+      "allowed_paths": [
+        "Packages/com.cloverbrook.domain/Runtime/Appearance/**",
+        "Packages/com.cloverbrook.domain/Runtime/Traits/**",
+        "Tests/Domain/Phenotype/**",
+        "docs/genetics/phenotype_mapping.md"
+      ],
+      "outputs": [
+        "One pure C# phenotype resolver with explicit precedence, age expression, and bounded body parameters.",
+        "HorseVisualDescriptor fixtures for the renderer and portraits."
+      ],
+      "acceptance": [
+        "The resolver is deterministic for the same genome, appearance seed, age, and ruleset version.",
+        "Display labels, model family, coat layers, and body parameters derive from the same resolved state.",
+        "Known unsupported combinations are surfaced explicitly rather than silently converted into a different phenotype."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P1-07",
+      "phase": 1,
+      "title": "Build forecasts from the production meiosis and phenotype services",
+      "owner_role": "genetics_engineer",
+      "depends_on": [
+        "P1-04",
+        "P1-05",
+        "P1-06"
+      ],
+      "allowed_paths": [
+        "Packages/com.cloverbrook.domain/Runtime/Breeding/Forecasts/**",
+        "Tests/Domain/Forecasts/**",
+        "docs/genetics/forecast_contract.md"
+      ],
+      "outputs": [
+        "Pairing forecasts that call the same inheritance and phenotype logic used for committed births.",
+        "Exact-versus-sampled output metadata and example-outcome descriptors."
+      ],
+      "acceptance": [
+        "Forecast distributions match production-birth sampling within documented tolerances.",
+        "Forecasting uses isolated random streams and does not consume or alter a committed conception seed.",
+        "Example foals are labeled possible outcomes until conception commits the actual result.",
+        "Hidden or untested genotype information is handled consistently with the chosen discovery rules."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P1-08",
+      "phase": 1,
+      "title": "Create the foal shape, rig, and growth presentation",
+      "owner_role": "horse_artist",
+      "depends_on": [
+        "P1-02",
+        "P1-03",
+        "P1-06"
+      ],
+      "allowed_paths": [
+        "art/source/horses/foal_a/**",
+        "Assets/Cloverbrook/Art/Horses/FoalA/**",
+        "Assets/Cloverbrook/Runtime/Presentation/HorseGrowth/**",
+        "Tests/Visual/Foals/**"
+      ],
+      "outputs": [
+        "Editable foal asset with authored juvenile proportions and adjusted movement.",
+        "Documented age-stage presentation mapping that preserves identity."
+      ],
+      "acceptance": [
+        "The foal is not a uniformly reduced adult mesh.",
+        "Juvenile poses and gaits are validated independently even when logical bone names are shared.",
+        "Coat and marking identity remain consistent across the supported age stages, subject only to documented age-expression rules."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P1-09",
+      "phase": 1,
+      "title": "Implement production save/load primitives and initial migration tests",
+      "owner_role": "schema_owner",
+      "depends_on": [
+        "P0-03",
+        "P1-04",
+        "P1-05",
+        "P1-06"
+      ],
+      "allowed_paths": [
+        "Packages/com.cloverbrook.domain/Runtime/Persistence/**",
+        "Assets/Cloverbrook/Runtime/Adapters/Persistence/**",
+        "Tests/Domain/Persistence/**",
+        "Tests/Integration/SaveLoad/**"
+      ],
+      "outputs": [
+        "Versioned pure-data save records, a production save/load adapter, atomic writes, and a last-known-good backup.",
+        "Persistent identity, appearance, pedigree, committed-conception, and migration fixtures usable by the Phase 1 proof and later gameplay."
+      ],
+      "acceptance": [
+        "Save/load preserves genome, appearance seed, pedigree, ruleset versions, and a committed conception result before the early proof gate.",
+        "Interrupted writes and corrupt-save recovery are exercised without silent data loss.",
+        "The persistence layer accepts later inventory, economy, and calendar records through reviewed schema migrations rather than a second save implementation.",
+        "Reopening a screen or loading a save does not reroll appearance or a committed conception."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P1-10",
+      "phase": 1,
+      "title": "Pass the integrated adult, foal, committed-mating, and save/load proof",
+      "owner_role": "integration_lead",
+      "depends_on": [
+        "P1-02",
+        "P1-03",
+        "P1-06",
+        "P1-07",
+        "P1-08",
+        "P1-09"
+      ],
+      "allowed_paths": [
+        "Assets/Cloverbrook/Runtime/Presentation/HorsePresenter/**",
+        "Assets/Cloverbrook/Scenes/ArtReview/**",
+        "Tests/Visual/GoldenHorses/**",
+        "docs/qa/hero_horse/**",
+        "Packages/com.cloverbrook.domain/Runtime/Breeding/Commit/**",
+        "Assets/Cloverbrook/Runtime/ArtReview/BreedingProof/**",
+        "Tests/Integration/BreedingProof/**"
+      ],
+      "outputs": [
+        "One reusable horse presenter and portrait-render path with an adult/foal fixture gallery.",
+        "A minimal production conception command that creates an identified committed result through the shared meiosis service; the proof viewer uses the production save/load adapter.",
+        "A measured initial rendering baseline and an actual mating-to-rendered-foal proof."
+      ],
+      "acceptance": [
+        "Commit one mating from known production fixtures, render its actual foal, close the application, reload the save, and verify identical offspring genotype, pedigree, and appearance.",
+        "The proof conception command is reused by the later breeding transaction; no throwaway alternative genetics or save path is introduced.",
+        "The same descriptor preserves horse identity in the viewer, portrait, stable mock-up, and race-camera mock-up.",
+        "Representative genotypes match their labels and approved visual fixtures.",
+        "The first foal may use a simple authored juvenile shape and small motion set; no completed catalog or fully polished animation is required at this proof.",
+        "Hero appearance, minimum movement, deformation, and tack-fit gates pass before catalog expansion.",
+        "Record measured hardware and scene conditions; do not convert tentative budgets into claimed frame rates."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P2-01",
+      "phase": 2,
+      "title": "Build horse roster, inspection, adoption, and basic care",
+      "owner_role": "stable_ui_engineer",
+      "depends_on": [
+        "P1-10",
+        "P1-09"
+      ],
+      "allowed_paths": [
+        "Assets/Cloverbrook/UI/Horses/**",
+        "Assets/Cloverbrook/UI/Adoption/**",
+        "Assets/Cloverbrook/Runtime/Stable/Roster/**",
+        "Packages/com.cloverbrook.domain/Runtime/Adoption/**",
+        "Tests/Integration/Adoption/**"
+      ],
+      "outputs": [
+        "Readable horse cards, inspection panels, adoption flow, and care interactions.",
+        "Capacity-aware horse roster with favorite/protection flags."
+      ],
+      "acceptance": [
+        "The player can inspect identity, traits, pedigree, needs, and appearance without losing navigation context.",
+        "Adoption checks cost and housing capacity before committing one transaction.",
+        "Care feedback is readable and the bunny guidance can be dismissed or revisited."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P2-02",
+      "phase": 2,
+      "title": "Implement the stable calendar, needs, and daily operating model",
+      "owner_role": "stable_simulation_engineer",
+      "depends_on": [
+        "P1-09"
+      ],
+      "allowed_paths": [
+        "Packages/com.cloverbrook.domain/Runtime/Stable/Calendar/**",
+        "Packages/com.cloverbrook.domain/Runtime/Stable/Care/**",
+        "Packages/com.cloverbrook.domain/Runtime/Stable/Costs/**",
+        "Assets/Cloverbrook/UI/StableSchedule/**",
+        "Tests/Domain/Stable/**"
+      ],
+      "outputs": [
+        "Game-time calendar, care scheduling, feed consumption, operating costs, and bounded recovery rules.",
+        "Clear UI for what advances time and which actions are pending."
+      ],
+      "acceptance": [
+        "Time progression, costs, and care outcomes are deterministic for recorded actions.",
+        "Pausing or closing the game follows the documented cozy-play policy and does not introduce unplanned real-time punishment.",
+        "Skipped days cannot duplicate scheduled rewards, consume reserved capacity twice, or bypass reproductive states."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P2-03",
+      "phase": 2,
+      "title": "Implement elementary NPC offers, income, and shared valuation primitives",
+      "owner_role": "economy_engineer",
+      "depends_on": [
+        "P1-09",
+        "P2-01",
+        "P2-02"
+      ],
+      "allowed_paths": [
+        "Packages/com.cloverbrook.domain/Runtime/Economy/NpcMarket/**",
+        "Packages/com.cloverbrook.domain/Runtime/Economy/Valuation/**",
+        "Assets/Cloverbrook/Data/Economy/**",
+        "Tests/Domain/Economy/**",
+        "Packages/com.cloverbrook.domain/Runtime/Economy/Transactions/Core/**",
+        "Packages/com.cloverbrook.domain/Runtime/Stable/Services/Core/**",
+        "Assets/Cloverbrook/UI/StableSchedule/**",
+        "Assets/Cloverbrook/Data/Services/Core/**"
+      ],
+      "outputs": [
+        "Seeded identifiable NPC horses, direct-sale offers, external-stud offers, and a bounded refresh policy.",
+        "Shared valuation and transaction primitives for early purchases and the later complete marketplace.",
+        "A simple club/visitor income activity and clear daily cash forecast sufficient to test a management-led starter stable."
+      ],
+      "acceptance": [
+        "All offers refer to stable real horse records; refresh does not reroll a horse already created or viewed.",
+        "Starter purchases and stud quotes show price, eligibility, public information, and capacity effects.",
+        "The slice supports an ordinary-care income route that does not require selling horses or winning a manual event.",
+        "Prices and demand assumptions are documented and deterministic; later marketplace channels reuse the same primitives."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P2-04",
+      "phase": 2,
+      "title": "Build the first barn upgrade, useful hay plot, and basic estate tools",
+      "owner_role": "building_engineer",
+      "depends_on": [
+        "P2-02",
+        "P0-04",
+        "P2-03"
+      ],
+      "allowed_paths": [
+        "Packages/com.cloverbrook.domain/Runtime/Building/Placement/**",
+        "Assets/Cloverbrook/Runtime/Building/**",
+        "Assets/Cloverbrook/UI/Building/**",
+        "Assets/Cloverbrook/Art/Buildings/Prototype/**",
+        "Tests/Integration/BuildingPlacement/**",
+        "Packages/com.cloverbrook.domain/Runtime/Building/Production/Core/**",
+        "Assets/Cloverbrook/Data/Buildings/Core/**",
+        "Assets/Cloverbrook/UI/Facilities/Core/**"
+      ],
+      "outputs": [
+        "Basic placement, rotation, move/cancel, and construction-preview controls for the initial estate.",
+        "One persistent barn-capacity upgrade and one hay/feed plot with a measured game-time production or feed-saving benefit.",
+        "Footprints, access checks, currency costs, production timing, and storage limits for those initial facilities."
+      ],
+      "acceptance": [
+        "The Phase 2 player can obtain a visible barn improvement and useful food-production benefit during the intended slice progression.",
+        "Preview shows the cost, footprint, time, capacity effect, and benefit before committing.",
+        "Placement cannot strand required access or silently remove occupied housing.",
+        "Construction, refunds, harvesting, and daily benefits cannot duplicate currency or feed after cancellation or reload.",
+        "The initial facilities use production building/production records that later staff and farm depth extend."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P2-05",
+      "phase": 2,
+      "title": "Create shared competition rules and elementary playable/watchable activities",
+      "owner_role": "competition_engineer",
+      "depends_on": [
+        "P0-03",
+        "P1-04",
+        "P2-02",
+        "P2-03",
+        "P1-10",
+        "P1-09"
+      ],
+      "allowed_paths": [
+        "Packages/com.cloverbrook.domain/Runtime/Competition/Rules/**",
+        "Packages/com.cloverbrook.domain/Runtime/Competition/Replay/**",
+        "Tests/Domain/Competition/**",
+        "docs/contracts/competition_rules.md",
+        "Packages/com.cloverbrook.domain/Runtime/Competition/Transactions/**",
+        "Assets/Cloverbrook/Runtime/Competitions/FlatRacing/Core/**",
+        "Assets/Cloverbrook/Runtime/Competitions/Barrels/Core/**",
+        "Assets/Cloverbrook/Scenes/Competitions/Proof/**",
+        "Assets/Cloverbrook/UI/Competitions/Core/**",
+        "Tests/Integration/ActivityProofs/**"
+      ],
+      "outputs": [
+        "Versioned flat-race and barrel kernels, immutable complete starting snapshots, entry rules, scoring, and result/settlement records. Snapshots include traits, learned/developed state, readiness, equipment effects, event configuration, and rules/AI policy versions.",
+        "A small manually playable barrel exercise and a basic watchable race using the real horse presenter.",
+        "Fixed-seed simulations, recorded input fixtures, and an idempotent event settlement that persists through production saves."
+      ],
+      "acceptance": [
+        "The barrel proof has steering, valid route order, start/finish, an elapsed-time result, and essential penalties; the watchable race runs from entry to a visible result.",
+        "The same seed, ruleset, state snapshot, and input trace reproduce adjudicated outcomes in domain tests.",
+        "All modes use shared eligibility, scoring, penalty, and reward rules; the full manual flat race and polished barrels extend these cores in Phase 4.",
+        "Saving or restarting between entry, finish, and settlement does not pay an event twice.",
+        "Presentation frame rate does not control authoritative RNG or payouts; numeric tolerances are documented.",
+        "The proof scope uses simple scenes, limited animation, and readable controls; it does not claim finished competition content.",
+        "Freeze the complete start snapshot at entry and use it throughout play, simulation, replay, and settlement; later care, training, equipment changes, catalog updates, or edits to a live horse record cannot silently alter that recorded event."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P2-06",
+      "phase": 2,
+      "title": "Build the breeding planner, external-stud booking, and core purchase flow",
+      "owner_role": "breeding_transaction_engineer",
+      "depends_on": [
+        "P1-07",
+        "P2-01",
+        "P2-02",
+        "P1-10",
+        "P2-03"
+      ],
+      "allowed_paths": [
+        "Assets/Cloverbrook/UI/Breeding/**",
+        "Assets/Cloverbrook/Runtime/Breeding/**",
+        "Packages/com.cloverbrook.domain/Runtime/Breeding/Transactions/**",
+        "Tests/Integration/BreedingPlanner/**",
+        "Packages/com.cloverbrook.domain/Runtime/Economy/Transactions/Core/**",
+        "Assets/Cloverbrook/UI/Marketplace/Core/**",
+        "Assets/Cloverbrook/Runtime/Marketplace/Core/**",
+        "Tests/Integration/CorePurchases/**"
+      ],
+      "outputs": [
+        "Pair comparison, pedigree warnings, test information, outcome forecasts, and a confirmed pairing flow.",
+        "Elementary direct purchase and external-stud booking using the shared NPC offers and real horse records.",
+        "An atomic breeding transaction that reuses the Phase 1 committed-conception command and reserves currency, capacity through adulthood, and reproductive state."
+      ],
+      "acceptance": [
+        "The player can inspect and buy an elementary NPC listing, compare an external sire, book that stud, and commit an eligible pairing in the slice.",
+        "Price, testing information, forecast uncertainty, recovery, and reserved capacity remain visible and consistent.",
+        "Retrying purchase, stud booking, or conception cannot double-charge, duplicate ownership, or create a second pregnancy.",
+        "The committed child uses the production meiosis service and persisted conception result."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P2-07",
+      "phase": 2,
+      "title": "Complete pregnancy, foaling, naming, and growth",
+      "owner_role": "breeding_gameplay_engineer",
+      "depends_on": [
+        "P2-06",
+        "P1-08",
+        "P2-02"
+      ],
+      "allowed_paths": [
+        "Packages/com.cloverbrook.domain/Runtime/Breeding/Lifecycle/**",
+        "Assets/Cloverbrook/Runtime/Breeding/Lifecycle/**",
+        "Assets/Cloverbrook/UI/Foaling/**",
+        "Tests/Integration/Foaling/**"
+      ],
+      "outputs": [
+        "A complete pregnancy-to-foal lifecycle using the chosen game-time pacing.",
+        "Foal reveal, naming, growth, and pedigree registration."
+      ],
+      "acceptance": [
+        "The reveal uses the already committed offspring and preserves parent links.",
+        "Capacity and ownership remain valid across birth and growth.",
+        "Naming, save/load, scene changes, and repeated reveal attempts do not mutate the inherited result."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P2-08",
+      "phase": 2,
+      "title": "Build the first-session tutorial and intuitive stable navigation",
+      "owner_role": "ux_engineer",
+      "depends_on": [
+        "P2-01",
+        "P2-02",
+        "P2-06",
+        "P2-07",
+        "P2-03",
+        "P2-04",
+        "P2-05"
+      ],
+      "allowed_paths": [
+        "Assets/Cloverbrook/UI/Navigation/**",
+        "Assets/Cloverbrook/UI/Tutorial/**",
+        "Assets/Cloverbrook/Data/Narrative/Onboarding/**",
+        "Tests/Integration/Onboarding/**"
+      ],
+      "outputs": [
+        "Short bunny-led onboarding for adoption, inspection, care, first breeding, a simple activity, and one useful estate improvement.",
+        "Consistent navigation, contextual help, daily forecast, and input prompts."
+      ],
+      "acceptance": [
+        "A new player can locate the next action without knowing genetics terminology.",
+        "Detailed information is progressively disclosed without hiding core decisions.",
+        "Narration is skippable, text remains readable, and returning players can bypass onboarding.",
+        "The tutorial connects the elementary purchase/stud, activity, and building controls without claiming their later full catalogs are already finished."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P2-09",
+      "phase": 2,
+      "title": "Validate the full early stable-session slice on actual PC and Mac builds",
+      "owner_role": "qa_lead",
+      "depends_on": [
+        "P1-09",
+        "P2-01",
+        "P2-02",
+        "P2-06",
+        "P2-07",
+        "P2-08",
+        "P2-03",
+        "P2-04",
+        "P2-05"
+      ],
+      "allowed_paths": [
+        "Tests/Integration/VerticalSlice/**",
+        "tools/build/**",
+        "docs/qa/vertical_slice/**"
+      ],
+      "outputs": [
+        "Reviewable PC and Mac builds supporting a four-to-six-active-horse estate, adoption, core purchase, outside stud, breeding, foaling, care, daily forecast, and save/load.",
+        "A playable barrel exercise, watchable race, simple earned-income route, useful hay improvement, and barn upgrade in the same integrated slice.",
+        "A concise unfamiliar-player playtest report covering the proposed 15-to-25-minute session."
+      ],
+      "acceptance": [
+        "Run the whole loop in produced PC and Mac builds; editor-only evidence is insufficient.",
+        "Complete adoption/inspection, a purchase or external stud booking, a committed conception, foal arrival, an activity, income, and a visible estate improvement.",
+        "Exercise interrupted saves at purchase, conception, birth, event finish, and settlement; every result and transfer applies once.",
+        "A management-led starter stable can fund ordinary care, and the UI explains active/adult capacity and the next milestone.",
+        "No missing horse, identity mismatch, duplicate transaction, or slice-blocking issue remains; later market and sport polish may remain explicitly pending."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P3-01",
+      "phase": 3,
+      "title": "Complete NPC listings, bounded auctions, commissions, stud services, and simple leases",
+      "owner_role": "marketplace_engineer",
+      "depends_on": [
+        "P2-03",
+        "P2-06",
+        "P2-09"
+      ],
+      "allowed_paths": [
+        "Packages/com.cloverbrook.domain/Runtime/Economy/Transactions/**",
+        "Assets/Cloverbrook/UI/Marketplace/**",
+        "Assets/Cloverbrook/Runtime/Marketplace/**",
+        "Tests/Integration/Marketplace/**",
+        "Packages/com.cloverbrook.domain/Runtime/Economy/Auctions/**",
+        "Packages/com.cloverbrook.domain/Runtime/Economy/Commissions/**",
+        "Packages/com.cloverbrook.domain/Runtime/Economy/Leases/**",
+        "Assets/Cloverbrook/Data/Marketplace/**"
+      ],
+      "outputs": [
+        "The complete NPC market: direct listings, adoption/rehoming, stud directory, bounded auctions, buyer commissions, and simple institutional leases.",
+        "Shared horse inspection, information testing, bookmarks, transaction summaries, and recognizable persistent NPC owners.",
+        "A narrow v1 NPC lease for nonpregnant adults, with a default seven-game-day term, locked daily fee, no breeding or subleasing, lessee ordinary care, recall, and guaranteed home/cooperative return."
+      ],
+      "acceptance": [
+        "Each channel is usable end to end and transfers currency, horse state, rights, and capacity exactly once.",
+        "NPC auction budgets, timing, optional automatic bids, and the player maximum are bounded; a bid cannot exceed the disclosed limit.",
+        "Commissions disclose acceptable outcomes, payment, expiry/rolling window, and fair cancellation; demand cannot be refreshed into unlimited guaranteed buyers.",
+        "All listings use the actual horse record/presenter and valid public knowledge; protected favorites have explicit disposal safeguards.",
+        "All participants are clearly NPCs; this task introduces no online marketplace or external service.",
+        "V1 leasing accepts only nonpregnant adult horses and grants no breeding or subleasing rights; ownership and identity remain with the player.",
+        "The default term is seven game days. The daily fee is locked at booking and paid once per completed service day at End Day; reload, retry, accelerated time, or simultaneous settlement cannot duplicate payment.",
+        "The lessee provides ordinary care during the lease. A leased horse cannot simultaneously fulfill incompatible home work, competition, or stud duties.",
+        "Recall takes effect at the next End Day, with payment only for completed service days. Normal expiry and recall guarantee return to a valid home slot or cooperative care, with the return route preserved when capacity changes."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P3-02",
+      "phase": 3,
+      "title": "Expand farm, staffing, facilities, and explicit paid-work/care contracts",
+      "owner_role": "stable_simulation_engineer",
+      "depends_on": [
+        "P2-04",
+        "P2-03",
+        "P2-02",
+        "P2-09"
+      ],
+      "allowed_paths": [
+        "Packages/com.cloverbrook.domain/Runtime/Building/Production/**",
+        "Packages/com.cloverbrook.domain/Runtime/Stable/Staff/**",
+        "Assets/Cloverbrook/Data/Buildings/**",
+        "Assets/Cloverbrook/UI/Facilities/**",
+        "Tests/Domain/Production/**",
+        "Packages/com.cloverbrook.domain/Runtime/Stable/Services/**",
+        "Packages/com.cloverbrook.domain/Runtime/Stable/CompanionCare/**",
+        "Assets/Cloverbrook/Data/Services/**",
+        "Assets/Cloverbrook/UI/Services/**"
+      ],
+      "outputs": [
+        "Expanded feed growing/storage, staff schedules, barns, and practice facilities extending the slice foundations.",
+        "Club support, visitor/lesson services, delegated work, and permanent companion cooperative care.",
+        "Readable contract records for participation, bookings, workload, payment timing, care, capacity, return/renewal, and cancellation."
+      ],
+      "acceptance": [
+        "Food savings account for space, labor, time, maintenance, and storage; upgrades show their actual benefits.",
+        "A horse or worker cannot fulfill incompatible simultaneous paid jobs, leases, competitions, or stud duties.",
+        "Support and service payments correspond to disclosed participation and booking limits and cannot be collected twice after time advance or reload.",
+        "Cooperative companion care preserves horse identity and ownership, explains any active-capacity change, and provides a clear return path.",
+        "The care and paid-work UI shows when a larger active herd exceeds the selected contract/workload support."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P3-03",
+      "phase": 3,
+      "title": "Review economy balance, capacity pressure, and transaction exploits",
+      "owner_role": "economy_qa_reviewer",
+      "depends_on": [
+        "P3-01",
+        "P3-02"
+      ],
+      "allowed_paths": [
+        "Tests/Domain/EconomyScenarios/**",
+        "Tests/Integration/Economy/**",
+        "docs/qa/economy/**",
+        "Assets/Cloverbrook/Data/Economy/**"
+      ],
+      "outputs": [
+        "Scenario tests for no-sale, adoption-first, breeding-business, market, delegated-work, and service-focused stable play.",
+        "Balance and integrity report covering auctions, commissions, leases, stud demand, companion care, and estate production."
+      ],
+      "acceptance": [
+        "Refresh, bidding, buy-sell, refund, harvest, stud, commission, lease, and save/load loops cannot duplicate currency, horses, contracts, or awards.",
+        "Contract participation, horse workload, care obligations, payments, returns, and capacity are consistent across the market and stable scheduler.",
+        "Several stable sizes have readable sustainable management routes without forced favorite-horse sales.",
+        "Finite NPC budgets and demand constrain volume without hidden arbitrary price crashes.",
+        "No required progression depends on online services or real-money purchases.",
+        "Test the narrow adult/nonpregnant lease at normal expiry, recall, full home capacity, concurrent bookings, save/reload, and repeated End Day: locked-fee payment occurs once for completed service days and home/cooperative return always succeeds."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P4-01",
+      "phase": 4,
+      "title": "Implement playable manual flat racing",
+      "owner_role": "racing_gameplay_engineer",
+      "depends_on": [
+        "P2-05",
+        "P1-10"
+      ],
+      "allowed_paths": [
+        "Assets/Cloverbrook/Runtime/Competitions/FlatRacing/**",
+        "Assets/Cloverbrook/Scenes/Competitions/FlatRacing/**",
+        "Assets/Cloverbrook/UI/Competitions/FlatRacing/**",
+        "Tests/Integration/FlatRacing/**"
+      ],
+      "outputs": [
+        "A complete manually playable flat-racing course with rivals, steering/lane control, pacing/stamina, and finish feedback.",
+        "Polished camera, input, rival policy, and animation adapters extending the Phase 2 race core."
+      ],
+      "acceptance": [
+        "The player can complete, restart, and exit a race using the supported inputs.",
+        "Horse speed and stride behavior remain plausible at supported gait transitions.",
+        "Result and payout records come from the shared competition service, not a separate UI calculation.",
+        "Reuse the early production rule and settlement kernels; do not add a second result or reward calculation."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P4-02",
+      "phase": 4,
+      "title": "Implement playable manual barrel racing",
+      "owner_role": "racing_gameplay_engineer",
+      "depends_on": [
+        "P2-05",
+        "P1-10",
+        "P3-02"
+      ],
+      "allowed_paths": [
+        "Assets/Cloverbrook/Runtime/Competitions/Barrels/**",
+        "Assets/Cloverbrook/Scenes/Competitions/Barrels/**",
+        "Assets/Cloverbrook/UI/Competitions/Barrels/**",
+        "Tests/Integration/Barrels/**"
+      ],
+      "outputs": [
+        "A complete polished barrel course with route guidance, turning, timing, penalties, and progression-ready presentation.",
+        "Practice integration extending the Phase 2 manual barrel controller and shared rule core."
+      ],
+      "acceptance": [
+        "Correct route order, missed turns, knocked barrels, start, finish, and restart are evaluated by shared rules.",
+        "Turning is controllable at normal camera settings and difficulty assistance is explained.",
+        "Visual effects never obscure the next barrel or essential timing feedback.",
+        "Preserve the early proof fixtures while expanding handling, rivals/ghosts where scoped, camera comfort, and course content."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P4-03",
+      "phase": 4,
+      "title": "Connect competition calendars, classes, awards, and assisted participation",
+      "owner_role": "competition_ui_engineer",
+      "depends_on": [
+        "P4-01",
+        "P4-02",
+        "P3-01"
+      ],
+      "allowed_paths": [
+        "Packages/com.cloverbrook.domain/Runtime/Competition/Calendar/**",
+        "Assets/Cloverbrook/UI/Competitions/Calendar/**",
+        "Assets/Cloverbrook/UI/Competitions/Results/**",
+        "Assets/Cloverbrook/Data/Competitions/**",
+        "Tests/Integration/CompetitionProgression/**"
+      ],
+      "outputs": [
+        "Entries, classes, local leagues, awards, result histories, and progression connections.",
+        "Clearly labeled spectated or assisted options for management-focused players."
+      ],
+      "acceptance": [
+        "Entry fees, eligibility, rewards, fatigue, and calendar advancement apply once per result.",
+        "Management-focused players have a documented progression route without compulsory high-skill manual racing.",
+        "Competition history feeds breeding and marketplace decisions through the same horse record."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P4-04",
+      "phase": 4,
+      "title": "Validate race feel, replay rules, and actual PC/Mac performance",
+      "owner_role": "qa_lead",
+      "depends_on": [
+        "P4-03"
+      ],
+      "allowed_paths": [
+        "Tests/Integration/CompetitionBuilds/**",
+        "Tests/Visual/Competition/**",
+        "tools/build/**",
+        "docs/qa/competitions/**"
+      ],
+      "outputs": [
+        "PC and Mac race-build results for the declared representative field and decorated stable scenes.",
+        "Measured frame-time, memory, controls, replay, and animation findings."
+      ],
+      "acceptance": [
+        "Run both disciplines in actual produced PC and Mac builds.",
+        "Measure targets on stated hardware before choosing final field size and quality presets.",
+        "Resolve input, result, obvious sliding, camera, and major tack-clipping defects before content scaling.",
+        "Store the replay/ruleset fixture used for cross-platform result checks.",
+        "After saving an entry, mutate the live horse readiness, learned state, and equipment and change the active event/AI configuration; replay still uses the saved complete snapshot and recorded versions and reproduces its adjudicated result."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P5-01",
+      "phase": 5,
+      "title": "Expand to two validated body families and four breed-inspired presets",
+      "owner_role": "technical_art_lead",
+      "depends_on": [
+        "P1-10",
+        "P4-04"
+      ],
+      "allowed_paths": [
+        "art/source/horses/**",
+        "Assets/Cloverbrook/Art/Horses/**",
+        "Assets/Cloverbrook/Art/Tack/**",
+        "Assets/Cloverbrook/Data/HorsePresets/**",
+        "Tests/Visual/HorseFamilies/**",
+        "art/manifests/**"
+      ],
+      "outputs": [
+        "A second validated adult body family and four distinct starting presets across the supported families.",
+        "Corresponding foal presentation, tack-fit mappings, LODs, and preview fixtures."
+      ],
+      "acceptance": [
+        "Each new family passes the existing proportion, gait, deformation, coat, tack, and runtime checks.",
+        "Preset labels do not imply undocumented breed-specific genetics.",
+        "No worker changes the approved common skeleton/UV contracts without a reviewed version change."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P5-02",
+      "phase": 5,
+      "title": "Author the v1 content catalog and varied progression goals",
+      "owner_role": "content_designer",
+      "depends_on": [
+        "P5-01",
+        "P1-07",
+        "P3-03",
+        "P4-03"
+      ],
+      "allowed_paths": [
+        "Assets/Cloverbrook/Data/Horses/**",
+        "Assets/Cloverbrook/Data/Adoption/**",
+        "Assets/Cloverbrook/Data/Quests/**",
+        "Assets/Cloverbrook/Data/Competitions/**",
+        "Assets/Cloverbrook/Data/Decorations/**",
+        "Tests/Domain/ContentValidation/**"
+      ],
+      "outputs": [
+        "V1 horse populations, adoption stories, NPCs, buildings, competitions, goals, and decorations.",
+        "Schema validation and progression data checks."
+      ],
+      "acceptance": [
+        "The catalog offers distinct appearance, breeding, care, management, and competition goals.",
+        "Every referenced asset and definition resolves in a clean build.",
+        "New genetic behavior is implemented and tested in domain code rather than invented in flavor text."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P5-03",
+      "phase": 5,
+      "title": "Polish cute audio, action effects, narration, and accessibility settings",
+      "owner_role": "presentation_lead",
+      "depends_on": [
+        "P2-08",
+        "P4-01",
+        "P4-02",
+        "P0-04"
+      ],
+      "allowed_paths": [
+        "Assets/Cloverbrook/Audio/**",
+        "Assets/Cloverbrook/Art/Effects/**",
+        "Assets/Cloverbrook/UI/Settings/**",
+        "Assets/Cloverbrook/Data/Narrative/**",
+        "Tests/Integration/Accessibility/**",
+        "art/manifests/**"
+      ],
+      "outputs": [
+        "Relaxing music, contextual sounds, bunny lines, and restrained rewarding effects.",
+        "Volume controls, text-size options, reduced-motion/effect options, and clear input prompts."
+      ],
+      "acceptance": [
+        "Audio and effects support the cute tone while preserving essential horse, race, and genetics readability.",
+        "Narration can be skipped and essential information is available as text.",
+        "Important status differences are not communicated by color alone.",
+        "Every shipped audio and visual item has a completed provenance review."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P5-04",
+      "phase": 5,
+      "title": "Run full v1 regression, migration, usability, and performance gates",
+      "owner_role": "qa_lead",
+      "depends_on": [
+        "P5-01",
+        "P5-02",
+        "P5-03",
+        "P4-04",
+        "P3-03",
+        "P2-09"
+      ],
+      "allowed_paths": [
+        "Tests/**",
+        "tools/build/**",
+        "docs/qa/release_candidate/**"
+      ],
+      "outputs": [
+        "A complete defect ledger and regression results from actual PC and Mac release-candidate builds.",
+        "Save migrations, long-running stable scenarios, and measured graphics-quality presets."
+      ],
+      "acceptance": [
+        "Complete adoption, breeding, foaling, growth, trade, building, flat racing, barrels, and restart flows.",
+        "Verify that genome, phenotype, portraits, ownership, and results remain consistent across systems.",
+        "No unresolved data-loss, duplicate-transaction, release-blocking crash, or major inaccessible flow remains.",
+        "Any remaining limitations are stated plainly with affected hardware or scenarios."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P5-05",
+      "phase": 5,
+      "title": "Package a reviewable v1 candidate and maintenance handoff",
+      "owner_role": "integration_lead",
+      "depends_on": [
+        "P5-04"
+      ],
+      "allowed_paths": [
+        "tools/build/**",
+        "docs/release/**",
+        "docs/setup/**",
+        "docs/maintenance/**",
+        "art/manifests/**"
+      ],
+      "outputs": [
+        "Reviewable PC and Mac build packages, release notes, credits, and known limitations.",
+        "Reproduction instructions, pinned toolchain, architecture map, asset provenance, and maintenance checklist."
+      ],
+      "acceptance": [
+        "Build packages are traceable to a specific source commit and ruleset version.",
+        "The documented launch and save locations match the produced builds.",
+        "Signing, notarization, store submission, and public publication requirements are documented separately when applicable.",
+        "Packaging does not imply that the game has been published or externally distributed."
+      ],
+      "priority": "required",
+      "status": "proposed"
+    },
+    {
+      "id": "P6-01",
+      "phase": 6,
+      "title": "Design an optional trusted online economy boundary",
+      "owner_role": "online_architect",
+      "depends_on": [
+        "P5-05"
+      ],
+      "allowed_paths": [
+        "docs/architecture/online/**",
+        "docs/contracts/online/**",
+        "server/contracts/**"
+      ],
+      "outputs": [
+        "A server-authority and transaction design for verified horses, listings, ownership, and competitions.",
+        "Migration and separation rules for offline saves and verified online records."
+      ],
+      "acceptance": [
+        "Online scope remains optional and is not a dependency of required v1 tasks.",
+        "Locally edited horses and local currency cannot enter a verified economy without an explicit policy.",
+        "No account, paid service, or external deployment is created merely to complete the design."
+      ],
+      "priority": "deferred",
+      "status": "proposed"
+    },
+    {
+      "id": "P6-02",
+      "phase": 6,
+      "title": "Implement optional asynchronous online trade and competitions",
+      "owner_role": "online_engineer",
+      "depends_on": [
+        "P6-01"
+      ],
+      "allowed_paths": [
+        "server/**",
+        "Assets/Cloverbrook/Runtime/Adapters/Online/**",
+        "Tests/Online/**",
+        "docs/qa/online/**"
+      ],
+      "outputs": [
+        "An optional verified listing, transaction, and asynchronous competition service.",
+        "Client recovery, idempotency, conflict, and offline-availability behavior."
+      ],
+      "acceptance": [
+        "Authoritative ownership, currency, genomes, and results are validated on the service boundary.",
+        "Retries and concurrent transactions cannot duplicate horses or funds.",
+        "Provider choice, operating costs, privacy, deployment, and authorization are resolved before external operation.",
+        "This deferred task is not permission to transmit project files or data; external operation needs the specific destination/content authorization stated in the board policy."
+      ],
+      "priority": "deferred",
+      "status": "proposed"
+    },
+    {
+      "id": "P6-03",
+      "phase": 6,
+      "title": "Expand regions, body families, breeding depth, and horse activities",
+      "owner_role": "expansion_lead",
+      "depends_on": [
+        "P5-05"
+      ],
+      "allowed_paths": [
+        "docs/design/expansions/**",
+        "Packages/com.cloverbrook.domain/Runtime/**",
+        "Assets/Cloverbrook/Data/**",
+        "art/source/**",
+        "Assets/Cloverbrook/Art/**",
+        "Tests/**"
+      ],
+      "outputs": [
+        "A separately scoped expansion proposal and modular content implementation.",
+        "New genetics or activity rules with evidence, fixtures, and migration plans."
+      ],
+      "acceptance": [
+        "Expansion preserves the v1 breeding and stable-management focus.",
+        "Every new body family and phenotype passes the established asset and identity gates.",
+        "Unsupported real-world genetic claims remain labeled assumptions until researched and implemented."
+      ],
+      "priority": "deferred",
+      "status": "proposed"
+    },
+    {
+      "id": "P6-04",
+      "phase": 6,
+      "title": "Evaluate optional mobile, console, or real-time multiplayer versions",
+      "owner_role": "platform_architect",
+      "depends_on": [
+        "P5-05"
+      ],
+      "allowed_paths": [
+        "docs/platforms/**",
+        "tools/build/platforms/**",
+        "Assets/Cloverbrook/Runtime/Adapters/Platform/**",
+        "Tests/Platform/**"
+      ],
+      "outputs": [
+        "Measured platform feasibility studies and separately scoped production plans.",
+        "Input, UI, rendering, service, and distribution requirements for the selected extension."
+      ],
+      "acceptance": [
+        "No additional platform or live multiplayer is presented as included in v1.",
+        "Feasibility is measured on real target devices with representative horses and scenes.",
+        "Platform-specific costs, services, agreements, and deployment steps are reviewed before commitment."
+      ],
+      "priority": "deferred",
+      "status": "proposed"
+    }
+  ],
+  "external_data_policy": {
+    "default": "ChatGPT and the approved local workspace only",
+    "external_transmission_authorized_by_this_board": false,
+    "required_authorization": "An existing or new explicit user instruction identifying both the destination and the permitted project content.",
+    "deferred_online_work": "A design or implementation task does not itself authorize external deployment or data transmission."
+  },
+  "milestone_gates": {
+    "phase_1_saved_mating_and_foal": "P1-10",
+    "phase_2_complete_early_session": "P2-09",
+    "phase_3_complete_market_management": "P3-03",
+    "phase_4_complete_sports": "P4-04",
+    "v1_release_candidate": "P5-05"
+  }
+}

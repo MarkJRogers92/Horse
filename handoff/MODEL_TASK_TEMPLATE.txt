@@ -1,0 +1,25 @@
+MODEL TASK PACKET
+
+Task ID and title:
+Current task status:
+Assigned role:
+Player-visible objective:
+Repository and base commit:
+Working branch or worktree:
+Prerequisite tasks and their evidence:
+Allowed paths and exclusive assets:
+Contracts to consume:
+Approved visual references:
+Inputs and current implementation state:
+Required outputs:
+Invariants to preserve:
+Exact acceptance cases:
+Build/run/test or in-engine inspection commands:
+What is explicitly deferred:
+Known risks and unresolved decisions:
+Required completion evidence:
+
+WORKER INSTRUCTIONS
+Read relevant existing code and instructions before editing. Implement the bounded task, preserving shared contracts. Report a genuine missing capability instead of claiming files or tests exist. Treat the task board as a plan, not evidence of completion. Use the complete workflow if a local task is ambiguous; ask the integration owner to resolve cross-system conflicts rather than inventing a second implementation. Preserve source assets and record versions. Provide a checkpoint if work stops.
+
+No sending project content or assets to an outside provider without a specific destination/content instruction from the owner. No silent API spending, publishing, deployment, asset purchases or unrelated changes.

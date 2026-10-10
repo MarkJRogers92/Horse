@@ -1,0 +1,1260 @@
+{
+  "status": "proposed declarative contract specification not implementation",
+  "formatVersion": "0.1.0-proposal",
+  "formatNotice": "This catalog documents proposed records, field types and invariants. It is not executable JSON Schema, generated C# code, a serialization contract already in service, or proof of implementation.",
+  "domainBoundary": {
+    "language": "Pure C# domain types",
+    "engineIndependence": "No Unity, Godot, renderer, scene-tree, asset-loader or UI object references in domain records.",
+    "idPolicy": "Use distinct Guid-backed readonly record structs such as HorseId, BreedingCommitId, SaveId and OwnerId; never substitute a display name for an identity.",
+    "catalogIdPolicy": "Use distinct stable string-backed IDs for variants, loci, regions, synthetic markers, traits, materials and mesh families. Versions are explicit value objects.",
+    "collectionPolicy": "Use immutable collections or defensive snapshots. IReadOnlyList alone does not guarantee immutability if mutable storage remains aliased.",
+    "numericPolicy": "Use exact rational probabilities for enumerated outcomes. Use a documented estimate type for sampled results. Prefer quantized domain values for replay-sensitive trait calculations; the implementation must define rounding and overflow behavior.",
+    "hashPolicy": "ContentHash means a hash of a future documented canonical representation, not a hash of incidental JSON property order or a mutable object reference.",
+    "proposedSyntheticMarkerCount": {
+      "minimum": 24,
+      "maximum": 48,
+      "suggestedInitial": 32
+    },
+    "syntheticMarkerNotice": "All synthetic marker identities, effect sizes, dominance terms, tradeoffs and aptitude predictions are game parameters, not established equine genes or real-world performance tests."
+  },
+  "mutabilityVocabulary": {
+    "immutableAtCreation": "Set when the authoritative record is created; only an explicit versioned migration can replace it.",
+    "immutableAtConception": "Set as part of a committed reproduction event and never rerolled.",
+    "appendOnce": "Absent until the relevant event; recorded once and preserved.",
+    "appendOnly": "New historical events may be appended; existing events cannot be rewritten by routine play.",
+    "mutable": "May change through an authorized domain command without changing horse identity or ancestry.",
+    "derivedSnapshot": "A pure, reproducible value derived from identified inputs and versioned rules.",
+    "mutableValidated": "May change only through a validated domain command that preserves the record invariants and legal state transitions."
+  },
+  "referencedValueTypes": {
+    "parentage": {
+      "cSharpType": "Parentage",
+      "fields": [
+        {
+          "name": "parentAId",
+          "type": "HorseId?",
+          "mutability": "immutableAtCreation",
+          "purpose": "Actual modeled parent identity when known to the simulation, independent of player knowledge."
+        },
+        {
+          "name": "parentBId",
+          "type": "HorseId?",
+          "mutability": "immutableAtCreation",
+          "purpose": "Other actual modeled parent identity."
+        },
+        {
+          "name": "founderBackground",
+          "type": "FounderBackground?",
+          "mutability": "immutableAtCreation",
+          "purpose": "Declared founder-relatedness assumptions or defined background when the modeled pedigree begins here."
+        }
+      ]
+    },
+    "genomeSnapshot": {
+      "cSharpType": "GenomeSnapshot",
+      "fields": [
+        {
+          "name": "biologicalChromosomes",
+          "type": "ImmutableArray<ChromosomePair>",
+          "mutability": "immutableAtCreation",
+          "purpose": "Sparse phase-aware biological chromosomes containing the supported equine variants."
+        },
+        {
+          "name": "syntheticBlocks",
+          "type": "ImmutableArray<SyntheticBlockPair>",
+          "mutability": "immutableAtCreation",
+          "purpose": "Separate inherited blocks for the fictional game markers."
+        },
+        {
+          "name": "variantCatalogVersion",
+          "type": "CatalogVersion",
+          "mutability": "immutableAtCreation",
+          "purpose": "Catalog defining the exact supported biological calls."
+        },
+        {
+          "name": "syntheticModelVersion",
+          "type": "ModelVersion",
+          "mutability": "immutableAtCreation",
+          "purpose": "Fixed fictional marker definitions and effects for this genome."
+        },
+        {
+          "name": "genomeHash",
+          "type": "ContentHash",
+          "mutability": "derivedSnapshot",
+          "purpose": "Canonical hash of this genome and its defining versions."
+        }
+      ]
+    },
+    "chromosomePair": {
+      "cSharpType": "ChromosomePair",
+      "fields": [
+        {
+          "name": "chromosomeId",
+          "type": "ChromosomeId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Supported real chromosome identity; do not assign synthetic blocks real gene identities."
+        },
+        {
+          "name": "homologA",
+          "type": "PhasedHomolog",
+          "mutability": "immutableAtCreation",
+          "purpose": "One inherited homolog with source-parent and crossover provenance."
+        },
+        {
+          "name": "homologB",
+          "type": "PhasedHomolog",
+          "mutability": "immutableAtCreation",
+          "purpose": "The second inherited homolog."
+        }
+      ],
+      "invariants": [
+        "Supported variants in cis remain together unless the declared recombination model generates a supported crossover.",
+        "Cream and pearl use supported SLC45A2 haplotypes; do not independently roll their presence.",
+        "KIT-associated variants and the tobiano region must not be treated as unrelated independent switches."
+      ]
+    },
+    "phasedHomolog": {
+      "cSharpType": "PhasedHomolog",
+      "fields": [
+        {
+          "name": "segments",
+          "type": "ImmutableArray<InheritedSegment>",
+          "mutability": "immutableAtCreation",
+          "purpose": "Ordered sparse segments with stable region IDs and supported haplotype/variant calls."
+        },
+        {
+          "name": "sourceParentId",
+          "type": "HorseId?",
+          "mutability": "immutableAtCreation",
+          "purpose": "Originating modeled parent, or a declared founder origin."
+        },
+        {
+          "name": "inheritanceProvenance",
+          "type": "InheritanceProvenance",
+          "mutability": "immutableAtCreation",
+          "purpose": "Source homolog identities, crossover decisions and versioned map reference."
+        }
+      ],
+      "invariants": [
+        "A haplotype may contain several supported variants; a visible pattern name is not an exclusive chromosome allele.",
+        "Unknown or unsupported recombinant combinations are not silently invented."
+      ]
+    },
+    "syntheticBlockPair": {
+      "cSharpType": "SyntheticBlockPair",
+      "fields": [
+        {
+          "name": "blockId",
+          "type": "SyntheticBlockId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Stable game-only block identity."
+        },
+        {
+          "name": "homologA",
+          "type": "ImmutableArray<SyntheticAlleleCall>",
+          "mutability": "immutableAtCreation",
+          "purpose": "One inherited sequence of virtual marker calls."
+        },
+        {
+          "name": "homologB",
+          "type": "ImmutableArray<SyntheticAlleleCall>",
+          "mutability": "immutableAtCreation",
+          "purpose": "Other inherited sequence of virtual marker calls."
+        }
+      ],
+      "invariants": [
+        "Each marker explicitly has evidenceStatus = fictionalGameTrait.",
+        "The chosen 24\u201348 marker configuration is versioned and fixed for an existing genome."
+      ]
+    },
+    "playerKnowledgeRecord": {
+      "cSharpType": "PlayerKnowledgeRecord",
+      "fields": [
+        {
+          "name": "observedTraits",
+          "type": "ImmutableArray<TraitObservation>",
+          "mutability": "appendOnly",
+          "purpose": "Observations with dates, provenance and stated uncertainty."
+        },
+        {
+          "name": "geneticTestReports",
+          "type": "ImmutableArray<GeneticTestReport>",
+          "mutability": "appendOnly",
+          "purpose": "Revealed calls from the existing genotype; tests never generate a new genotype."
+        },
+        {
+          "name": "knownPedigree",
+          "type": "KnownPedigreeSnapshot",
+          "mutability": "mutable",
+          "purpose": "Player-visible pedigree facts and missing information, without editing actual Parentage."
+        },
+        {
+          "name": "aptitudeEstimates",
+          "type": "ImmutableArray<AptitudeEstimate>",
+          "mutability": "appendOnly",
+          "purpose": "Evidence-based estimates of simulated potential, not a real biological guarantee."
+        },
+        {
+          "name": "knowledgeHash",
+          "type": "ContentHash",
+          "mutability": "derivedSnapshot",
+          "purpose": "Cache key for forecasts that use the currently revealed information."
+        }
+      ],
+      "invariants": [
+        "Normal UI projections receive this record rather than unrestricted authoritative genome data.",
+        "An unknown player record does not imply a genetically empty or unrelated horse."
+      ]
+    },
+    "probabilityValue": {
+      "cSharpType": "ProbabilityValue",
+      "alternatives": {
+        "exact": "Reduced Rational with numerator >= 0, denominator > 0 and value <= 1.",
+        "estimate": "Point estimate plus sampleCount, interval, intervalMethod and samplerVersion.",
+        "conditionalRange": "Lower/upper bound plus explicit genotype assumptions or uncertainty basis."
+      }
+    },
+    "rngStreamState": {
+      "cSharpType": "RngStreamState",
+      "fields": [
+        {
+          "name": "algorithmVersion",
+          "type": "RngAlgorithmVersion",
+          "mutability": "mutable",
+          "purpose": "Algorithm/version used to interpret this persisted stream."
+        },
+        {
+          "name": "state",
+          "type": "ImmutableArray<byte>",
+          "mutability": "mutable",
+          "purpose": "Serialized stream state or a documented counter-based equivalent."
+        },
+        {
+          "name": "eventCounter",
+          "type": "ulong",
+          "mutability": "mutable",
+          "purpose": "Monotonic domain event index."
+        }
+      ],
+      "invariants": [
+        "State changes and the consuming domain event must commit atomically.",
+        "Changing unrelated RNG streams cannot change a committed foal."
+      ]
+    }
+  },
+  "contracts": {
+    "horseRecord": {
+      "cSharpType": "HorseRecord",
+      "purpose": "Authoritative enduring horse identity and current life state, with actual genome separated from player-visible knowledge.",
+      "fields": [
+        {
+          "name": "horseId",
+          "type": "HorseId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Stable identity across renaming, transfer, retirement and save migration."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "mutability": "mutable",
+          "purpose": "Player-visible name; never a foreign key."
+        },
+        {
+          "name": "parentage",
+          "type": "Parentage",
+          "mutability": "immutableAtCreation",
+          "purpose": "Actual modeled pedigree."
+        },
+        {
+          "name": "originRecord",
+          "type": "OriginRecord",
+          "mutability": "immutableAtCreation",
+          "purpose": "Founder, modeled birth or external-to-modeled-pedigree origin; adoption and purchase do not manufacture a new identity."
+        },
+        {
+          "name": "birthRecord",
+          "type": "BirthRecord?",
+          "mutability": "appendOnce",
+          "purpose": "Actual birth event; scheduled birth remains in the reproduction plan until it occurs."
+        },
+        {
+          "name": "genome",
+          "type": "GenomeSnapshot",
+          "mutability": "immutableAtCreation",
+          "purpose": "Authoritative sparse phased genotype and separate synthetic inherited blocks."
+        },
+        {
+          "name": "resolverVersion",
+          "type": "ResolverVersion",
+          "mutability": "immutableAtCreation",
+          "purpose": "Per-horse phenotype and appearance rule version selected for this identity."
+        },
+        {
+          "name": "developmentalFactors",
+          "type": "DevelopmentalFactors",
+          "mutability": "immutableAtCreation",
+          "purpose": "Fixed game developmental variation; not mutable training or invented biological mutation."
+        },
+        {
+          "name": "appearanceSeed",
+          "type": "Seed128",
+          "mutability": "immutableAtCreation",
+          "purpose": "Persistent individual marking and appearance variation."
+        },
+        {
+          "name": "inheritedGamePotential",
+          "type": "GeneticPotentialVector",
+          "mutability": "immutableAtCreation",
+          "purpose": "Bounded fictional aptitude potential resolved from inherited synthetic markers and declared fixed factors."
+        },
+        {
+          "name": "lifeState",
+          "type": "LifeState",
+          "mutability": "mutable",
+          "purpose": "Life stage, stage progress and supported visual age, separate from real-world time."
+        },
+        {
+          "name": "trainingState",
+          "type": "TrainingState",
+          "mutability": "mutable",
+          "purpose": "Learned skills and development, not inheritable alleles."
+        },
+        {
+          "name": "bondState",
+          "type": "BondState",
+          "mutability": "mutable",
+          "purpose": "Relationship and handling consistency."
+        },
+        {
+          "name": "careState",
+          "type": "CareState",
+          "mutability": "mutable",
+          "purpose": "Current workload, rest, nutrition and enabled care needs."
+        },
+        {
+          "name": "temperamentExpression",
+          "type": "TemperamentExpression",
+          "mutability": "derivedSnapshot",
+          "purpose": "Inherited game predispositions expressed through training, bond, condition and context."
+        },
+        {
+          "name": "cosmeticState",
+          "type": "CosmeticState",
+          "mutability": "mutable",
+          "purpose": "Tack, braids, decorations and other non-inherited presentation choices."
+        },
+        {
+          "name": "ownerId",
+          "type": "OwnerId",
+          "mutability": "mutable",
+          "purpose": "Current owner; changing owner does not change lineage."
+        },
+        {
+          "name": "homeAssignment",
+          "type": "HomeAssignment",
+          "mutability": "mutable",
+          "purpose": "Active stable, companion pasture, lease or other disclosed placement."
+        },
+        {
+          "name": "reproductionState",
+          "type": "ReproductionState",
+          "mutability": "mutable",
+          "purpose": "References pending/complete reproduction events and recovery timing without editing their committed outcomes."
+        },
+        {
+          "name": "competitionHistory",
+          "type": "ImmutableArray<CompetitionRecord>",
+          "mutability": "appendOnly",
+          "purpose": "Results and participation history, not inherited bonuses."
+        },
+        {
+          "name": "albumReferences",
+          "type": "ImmutableArray<AlbumItemId>",
+          "mutability": "appendOnly",
+          "purpose": "Photos and milestone records."
+        },
+        {
+          "name": "playerKnowledge",
+          "type": "PlayerKnowledgeRecord",
+          "mutability": "mutable",
+          "purpose": "Revealed information distinct from authoritative genotype."
+        },
+        {
+          "name": "revision",
+          "type": "ulong",
+          "mutability": "mutable",
+          "purpose": "Optimistic-concurrency and stale-command check."
+        }
+      ],
+      "invariants": [
+        "The genome, parentage, appearanceSeed, developmentalFactors and resolverVersion are fixed at conception for bred horses and at creation for founders.",
+        "Training, naming, cosmetics, ownership and life-state changes cannot edit inherited alleles.",
+        "An explicit migration is the only route to replacing immutable versioned fields; it must preserve provenance and define treatment of existing appearance.",
+        "Color rarity, generation count, trophies and purchased status confer no automatic inherited performance bonus.",
+        "A complete pedigree graph is retained independently of how many generations the UI displays.",
+        "Care or health mode changes cannot silently alter genotype or Mendelian outcome probabilities."
+      ]
+    },
+    "variantCatalogRecord": {
+      "cSharpType": "VariantCatalogRecord",
+      "purpose": "Versioned scientific provenance and supported game behavior for one biological variant or explicitly fictional marker.",
+      "fields": [
+        {
+          "name": "variantId",
+          "type": "VariantId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Stable catalog identity, distinct from a display label."
+        },
+        {
+          "name": "catalogVersion",
+          "type": "CatalogVersion",
+          "mutability": "immutableAtCreation",
+          "purpose": "Version containing this record."
+        },
+        {
+          "name": "displayName",
+          "type": "string",
+          "mutability": "immutableAtCreation",
+          "purpose": "Readable variant or marker name."
+        },
+        {
+          "name": "evidenceStatus",
+          "type": "EvidenceStatus",
+          "mutability": "immutableAtCreation",
+          "purpose": "establishedBiological, associatedBiological, uncertainBiological or fictionalGameTrait."
+        },
+        {
+          "name": "geneSymbol",
+          "type": "string?",
+          "mutability": "immutableAtCreation",
+          "purpose": "Verified gene symbol when established; absent for fictional game markers."
+        },
+        {
+          "name": "chromosomeId",
+          "type": "ChromosomeId?",
+          "mutability": "immutableAtCreation",
+          "purpose": "Supported real chromosome when known."
+        },
+        {
+          "name": "regionId",
+          "type": "RegionId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Phase-aware biological region or clearly labeled synthetic block."
+        },
+        {
+          "name": "supportedAlleleIds",
+          "type": "ImmutableArray<AlleleId>",
+          "mutability": "immutableAtCreation",
+          "purpose": "Supported allele calls without claiming complete biological coverage."
+        },
+        {
+          "name": "supportedHaplotypeIds",
+          "type": "ImmutableArray<HaplotypeId>",
+          "mutability": "immutableAtCreation",
+          "purpose": "Supported combinations in cis and their region context."
+        },
+        {
+          "name": "inheritanceRuleId",
+          "type": "InheritanceRuleId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Reviewed segregation and recombination interpretation."
+        },
+        {
+          "name": "expressionRuleId",
+          "type": "ExpressionRuleId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Phenotype interaction rule, including masking and dosage."
+        },
+        {
+          "name": "compatibilityRuleId",
+          "type": "CompatibilityRuleId?",
+          "mutability": "immutableAtCreation",
+          "purpose": "Variant-specific gameplay eligibility and evidence status where relevant."
+        },
+        {
+          "name": "sourceReferences",
+          "type": "ImmutableArray<SourceReference>",
+          "mutability": "immutableAtCreation",
+          "purpose": "Public primary URLs and the narrow facts they support."
+        },
+        {
+          "name": "reviewedOn",
+          "type": "DateOnly?",
+          "mutability": "immutableAtCreation",
+          "purpose": "Last scientific review date for the record."
+        },
+        {
+          "name": "releaseStatus",
+          "type": "ReleaseStatus",
+          "mutability": "immutableAtCreation",
+          "purpose": "proposed, supported or deferred."
+        },
+        {
+          "name": "gameAbstractionNotice",
+          "type": "string?",
+          "mutability": "immutableAtCreation",
+          "purpose": "What is simplified, invented or outside biological knowledge."
+        }
+      ],
+      "invariants": [
+        "Updating research creates a new record/catalog version rather than silently reinterpreting saved genomes.",
+        "All fictional game markers have no real-gene claim and carry a gameAbstractionNotice.",
+        "Unknown associations and recombination rates are never promoted to established facts by code convenience.",
+        "The catalog distinguishes a variant, a haplotype, a phenotype name and a breed identity.",
+        "Unsupported combinations remain deferred instead of being assigned improvised viability or visual rules."
+      ]
+    },
+    "phenotype": {
+      "cSharpType": "Phenotype",
+      "purpose": "Pure derived biological/stylized appearance interpretation consumed consistently by all horse presentation.",
+      "fields": [
+        {
+          "name": "horseId",
+          "type": "HorseId",
+          "mutability": "derivedSnapshot",
+          "purpose": "Identity of the resolved horse."
+        },
+        {
+          "name": "genomeHash",
+          "type": "ContentHash",
+          "mutability": "derivedSnapshot",
+          "purpose": "Exact authoritative genome input."
+        },
+        {
+          "name": "resolverVersion",
+          "type": "ResolverVersion",
+          "mutability": "derivedSnapshot",
+          "purpose": "Must equal the horse-specific resolverVersion."
+        },
+        {
+          "name": "visualAge",
+          "type": "VisualAge",
+          "mutability": "derivedSnapshot",
+          "purpose": "Supported age input, with no dependency on wall-clock time."
+        },
+        {
+          "name": "baseCoatClass",
+          "type": "BaseCoatClass",
+          "mutability": "derivedSnapshot",
+          "purpose": "Underlying chestnut, bay or black classification in the supported model."
+        },
+        {
+          "name": "dilutionExpression",
+          "type": "DilutionExpression",
+          "mutability": "derivedSnapshot",
+          "purpose": "Dose-aware interacting dilution effects."
+        },
+        {
+          "name": "patternExpression",
+          "type": "PatternExpression",
+          "mutability": "derivedSnapshot",
+          "purpose": "Supported pattern families, coverage ranges and fixed individual realization."
+        },
+        {
+          "name": "grayExpression",
+          "type": "GrayExpression",
+          "mutability": "derivedSnapshot",
+          "purpose": "Age-dependent gray presentation retaining underlying base genotype."
+        },
+        {
+          "name": "skinExpression",
+          "type": "SkinExpression",
+          "mutability": "derivedSnapshot",
+          "purpose": "Supported pigment and pattern-dependent skin presentation."
+        },
+        {
+          "name": "eyeExpression",
+          "type": "EyeExpression",
+          "mutability": "derivedSnapshot",
+          "purpose": "Supported eye pigment and pattern interaction."
+        },
+        {
+          "name": "hairExpression",
+          "type": "HairExpression",
+          "mutability": "derivedSnapshot",
+          "purpose": "Mane and tail pigment and supported inherited hair presentation."
+        },
+        {
+          "name": "morphology",
+          "type": "MorphologyParameters",
+          "mutability": "derivedSnapshot",
+          "purpose": "Bounded game morphology, with all invented inheritance effects identified."
+        },
+        {
+          "name": "biologicalAssociationNotes",
+          "type": "ImmutableArray<AssociationNote>",
+          "mutability": "derivedSnapshot",
+          "purpose": "Relevant real biological associations that gameplay may deliberately not simulate."
+        },
+        {
+          "name": "inputHash",
+          "type": "ContentHash",
+          "mutability": "derivedSnapshot",
+          "purpose": "Canonical hash of all resolver inputs, including fixed seeds/factors and visual age."
+        }
+      ],
+      "invariants": [
+        "Same complete inputs and resolverVersion produce the same output.",
+        "Silver does not recolor red-only chestnut pigment; PATN1 alone does not create an LP pattern.",
+        "Gray changes presentation with visual age without erasing base genotype.",
+        "White patterning masks visible pigment without deleting obscured alleles.",
+        "The phenotype never includes training XP or player cosmetics as biological inheritance.",
+        "The resolver has no global RNG consumption, engine object access, external model call or network dependency."
+      ]
+    },
+    "horseVisualDescriptor": {
+      "cSharpType": "HorseVisualDescriptor",
+      "purpose": "Engine-independent recipe derived from Phenotype and an explicit optional cosmetic snapshot.",
+      "fields": [
+        {
+          "name": "horseId",
+          "type": "HorseId",
+          "mutability": "derivedSnapshot",
+          "purpose": "Resolved identity."
+        },
+        {
+          "name": "phenotypeInputHash",
+          "type": "ContentHash",
+          "mutability": "derivedSnapshot",
+          "purpose": "Traceability to the exact phenotype input."
+        },
+        {
+          "name": "resolverVersion",
+          "type": "ResolverVersion",
+          "mutability": "derivedSnapshot",
+          "purpose": "The same per-horse resolver version."
+        },
+        {
+          "name": "visualAssetCatalogVersion",
+          "type": "CatalogVersion",
+          "mutability": "derivedSnapshot",
+          "purpose": "Compatible assets and anatomy/mask conventions."
+        },
+        {
+          "name": "meshFamilyId",
+          "type": "MeshFamilyId",
+          "mutability": "derivedSnapshot",
+          "purpose": "Stable horse/foal mesh family identity, not an engine mesh object."
+        },
+        {
+          "name": "morphWeights",
+          "type": "ImmutableDictionary<MorphId, QuantizedValue>",
+          "mutability": "derivedSnapshot",
+          "purpose": "Supported anatomical variation."
+        },
+        {
+          "name": "anatomicalMaskSetId",
+          "type": "MaskSetId",
+          "mutability": "derivedSnapshot",
+          "purpose": "Canonical body regions shared across LODs and compatible mesh families."
+        },
+        {
+          "name": "coatRecipe",
+          "type": "CoatMaterialRecipe",
+          "mutability": "derivedSnapshot",
+          "purpose": "Pigment, dilution, gray and white-mask layering in deliberate semantic order."
+        },
+        {
+          "name": "skinRecipe",
+          "type": "MaterialRecipe",
+          "mutability": "derivedSnapshot",
+          "purpose": "Skin pigment and pattern rendering parameters."
+        },
+        {
+          "name": "eyeRecipe",
+          "type": "EyeMaterialRecipe",
+          "mutability": "derivedSnapshot",
+          "purpose": "Eye presentation."
+        },
+        {
+          "name": "hairRecipe",
+          "type": "HairMaterialRecipe",
+          "mutability": "derivedSnapshot",
+          "purpose": "Mane/tail geometry family and pigment."
+        },
+        {
+          "name": "markingRealizationKey",
+          "type": "ContentHash",
+          "mutability": "derivedSnapshot",
+          "purpose": "Fixed individual pattern realization in canonical body coordinates."
+        },
+        {
+          "name": "cosmeticLayer",
+          "type": "CosmeticVisualLayer?",
+          "mutability": "derivedSnapshot",
+          "purpose": "Separate optional non-inherited presentation layer."
+        },
+        {
+          "name": "cacheKey",
+          "type": "ContentHash",
+          "mutability": "derivedSnapshot",
+          "purpose": "Includes all actual render-recipe inputs; cosmetic changes may change this key without changing genotype."
+        }
+      ],
+      "invariants": [
+        "Stable view, foal reveal, racing, marketplace thumbnails and horse cards use this shared recipe.",
+        "LOD changes, mesh morphs, camera changes and scene reloads do not randomize markings.",
+        "The core inherited recipe is independent of cosmetic RNG and cosmetic state.",
+        "Visual asset migration preserves approved identity or provides an explicit documented migration policy.",
+        "No scene code independently chooses a coat class from a breed name or color label."
+      ]
+    },
+    "breedingForecast": {
+      "cSharpType": "BreedingForecast",
+      "purpose": "An honest, noncommitting forecast based on identified knowledge and clearly separated hypothetical assumptions.",
+      "fields": [
+        {
+          "name": "forecastId",
+          "type": "ForecastId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Identity of this reviewable forecast."
+        },
+        {
+          "name": "forecastMode",
+          "type": "ForecastMode",
+          "mutability": "immutableAtCreation",
+          "purpose": "candidatePair, hypotheticalScenario or omniscientSandbox."
+        },
+        {
+          "name": "candidateParentIds",
+          "type": "ParentPair?",
+          "mutability": "immutableAtCreation",
+          "purpose": "Actual candidate IDs for candidatePair; optional references only for a hypothetical scenario."
+        },
+        {
+          "name": "parentKnowledgeHashes",
+          "type": "ImmutableArray<ContentHash>",
+          "mutability": "immutableAtCreation",
+          "purpose": "Revealed inputs used by a normal candidate forecast."
+        },
+        {
+          "name": "scenarioAssumptions",
+          "type": "ImmutableArray<GenotypeAssumption>",
+          "mutability": "immutableAtCreation",
+          "purpose": "Explicit hypothetical allele choices or documented priors, never mutations of actual parents."
+        },
+        {
+          "name": "knowledgeBasis",
+          "type": "KnowledgeBasis",
+          "mutability": "immutableAtCreation",
+          "purpose": "testedGenotypes, observedTraits, pedigreeInference, declaredPriors or sandboxActualData."
+        },
+        {
+          "name": "inheritanceModelVersion",
+          "type": "ModelVersion",
+          "mutability": "immutableAtCreation",
+          "purpose": "Model generating gametes and probabilities."
+        },
+        {
+          "name": "offspringResolverVersion",
+          "type": "ResolverVersion",
+          "mutability": "immutableAtCreation",
+          "purpose": "Proposed version for offspring if the candidate pairing is actually committed."
+        },
+        {
+          "name": "coatOutcomes",
+          "type": "ImmutableArray<CoatOutcomeForecast>",
+          "mutability": "immutableAtCreation",
+          "purpose": "ProbabilityValue plus representative appearance range for each class."
+        },
+        {
+          "name": "gamePotentialForecast",
+          "type": "PotentialForecast",
+          "mutability": "immutableAtCreation",
+          "purpose": "Estimated inherited game aptitude distribution, not guaranteed developed skill or a real-world DNA test."
+        },
+        {
+          "name": "diversityReport",
+          "type": "DiversityReport",
+          "mutability": "immutableAtCreation",
+          "purpose": "Pedigree kinship, shared ancestors, completeness and founder assumptions."
+        },
+        {
+          "name": "compatibilityReport",
+          "type": "CompatibilityReport",
+          "mutability": "immutableAtCreation",
+          "purpose": "Disclosed eligibility, required tests and policy decisions."
+        },
+        {
+          "name": "careCommitment",
+          "type": "CareCommitmentForecast",
+          "mutability": "immutableAtCreation",
+          "purpose": "Proposed funds, feed, recovery schedule and capacity reservation requirements."
+        },
+        {
+          "name": "probabilityMethod",
+          "type": "ProbabilityMethod",
+          "mutability": "immutableAtCreation",
+          "purpose": "exactEnumeration, sampledEstimate or conditionalBounds."
+        },
+        {
+          "name": "forecastSamplerVersion",
+          "type": "SamplerVersion?",
+          "mutability": "immutableAtCreation",
+          "purpose": "Deterministic local estimator version if sampling is used."
+        },
+        {
+          "name": "sampleCount",
+          "type": "int?",
+          "mutability": "immutableAtCreation",
+          "purpose": "Required for sampled estimates."
+        },
+        {
+          "name": "inputHash",
+          "type": "ContentHash",
+          "mutability": "immutableAtCreation",
+          "purpose": "All inputs, assumptions and versions used to detect stale forecasts."
+        },
+        {
+          "name": "commitEligibility",
+          "type": "CommitEligibility",
+          "mutability": "immutableAtCreation",
+          "purpose": "reviewableCandidate, requiresMoreInformation or scenarioOnly."
+        }
+      ],
+      "invariants": [
+        "Forecasting never consumes or advances the authoritative breeding RNG stream.",
+        "Known-genotype simple crosses use exact probabilities; sampled results disclose their uncertainty.",
+        "A normal knowledge-limited forecast cannot silently read hidden actual alleles.",
+        "A hypothetical scenario is labeled scenarioOnly and cannot be passed directly into a breeding commit.",
+        "Possible visible coats are not a promise of an exact future individual marking layout.",
+        "Mode changes do not bias Mendelian results toward desirable foals.",
+        "Eligibility and resource state are revalidated when a candidate command is committed.",
+        "If health compatibility requires genotype information, request or perform the designed disclosed test; do not accidentally reveal hidden genotype through an unexplained verdict."
+      ]
+    },
+    "breedingCommit": {
+      "cSharpType": "BreedingCommit",
+      "purpose": "Immutable authoritative reproduction event committed atomically with costs, eligibility, capacity reservation and breeding RNG state.",
+      "fields": [
+        {
+          "name": "breedingCommitId",
+          "type": "BreedingCommitId",
+          "mutability": "immutableAtConception",
+          "purpose": "Unique reproduction event identity."
+        },
+        {
+          "name": "parentIds",
+          "type": "ParentPair",
+          "mutability": "immutableAtConception",
+          "purpose": "Actual authoritative modeled parents."
+        },
+        {
+          "name": "parentGenomeHashes",
+          "type": "ParentGenomeHashPair",
+          "mutability": "immutableAtConception",
+          "purpose": "Exact genetic parents used for this outcome."
+        },
+        {
+          "name": "parentRevisions",
+          "type": "ParentRevisionPair",
+          "mutability": "immutableAtConception",
+          "purpose": "Revision check for reproductive eligibility and state."
+        },
+        {
+          "name": "conceptionDay",
+          "type": "StableDay",
+          "mutability": "immutableAtConception",
+          "purpose": "Player-controlled simulation day."
+        },
+        {
+          "name": "plannedBirthDay",
+          "type": "StableDay",
+          "mutability": "immutableAtConception",
+          "purpose": "Schedule under the explicitly selected game calendar profile."
+        },
+        {
+          "name": "calendarProfileVersion",
+          "type": "CalendarProfileVersion",
+          "mutability": "immutableAtConception",
+          "purpose": "Proposed game pacing data, not real gestation duration."
+        },
+        {
+          "name": "inheritanceModelVersion",
+          "type": "ModelVersion",
+          "mutability": "immutableAtConception",
+          "purpose": "Gamete generation and recombination interpretation."
+        },
+        {
+          "name": "offspringResolverVersion",
+          "type": "ResolverVersion",
+          "mutability": "immutableAtConception",
+          "purpose": "Version assigned to the new horse."
+        },
+        {
+          "name": "breedingEventIndex",
+          "type": "ulong",
+          "mutability": "immutableAtConception",
+          "purpose": "Authoritative breeding stream event index consumed by this commit."
+        },
+        {
+          "name": "breedingSeed",
+          "type": "Seed128",
+          "mutability": "immutableAtConception",
+          "purpose": "Single committed event seed derived from the authoritative breeding stream."
+        },
+        {
+          "name": "gameteA",
+          "type": "GameteSnapshot",
+          "mutability": "immutableAtConception",
+          "purpose": "Selected phased contribution and crossover provenance from parentA."
+        },
+        {
+          "name": "gameteB",
+          "type": "GameteSnapshot",
+          "mutability": "immutableAtConception",
+          "purpose": "Selected phased contribution and crossover provenance from parentB."
+        },
+        {
+          "name": "offspringHorseId",
+          "type": "HorseId",
+          "mutability": "immutableAtConception",
+          "purpose": "Permanent identity created before the birth reveal."
+        },
+        {
+          "name": "offspringGenome",
+          "type": "GenomeSnapshot",
+          "mutability": "immutableAtConception",
+          "purpose": "Fixed combined genotype; no reroll at foaling."
+        },
+        {
+          "name": "offspringDevelopmentalFactors",
+          "type": "DevelopmentalFactors",
+          "mutability": "immutableAtConception",
+          "purpose": "Fixed game variation, derived reproducibly without cosmetic/world RNG."
+        },
+        {
+          "name": "offspringAppearanceSeed",
+          "type": "Seed128",
+          "mutability": "immutableAtConception",
+          "purpose": "Fixed appearance realization derived with a documented purpose label from the committed event seed."
+        },
+        {
+          "name": "reservationIds",
+          "type": "ImmutableArray<CapacityReservationId>",
+          "mutability": "immutableAtConception",
+          "purpose": "Reservation records created by the same transaction; their later lifecycle is separate state."
+        },
+        {
+          "name": "costTransactionId",
+          "type": "TransactionId",
+          "mutability": "immutableAtConception",
+          "purpose": "Single debited ledger event for the committed pairing."
+        },
+        {
+          "name": "compatibilityDecision",
+          "type": "CompatibilityDecision",
+          "mutability": "immutableAtConception",
+          "purpose": "Versioned decision and disclosed test basis."
+        },
+        {
+          "name": "forecastReference",
+          "type": "ForecastId?",
+          "mutability": "immutableAtConception",
+          "purpose": "Optional review history; forecast assumptions never replace actual parent genotypes."
+        },
+        {
+          "name": "commitHash",
+          "type": "ContentHash",
+          "mutability": "derivedSnapshot",
+          "purpose": "Tamper/corruption consistency hash, not a claim of online anti-cheat security."
+        }
+      ],
+      "invariants": [
+        "One authoritative breeding stream supplies the reproduction event seed; other game systems cannot consume that stream.",
+        "Costs, parent eligibility, reservations, new horse record, reproduction event and RNG advancement succeed or fail together.",
+        "A failed command does not debit funds, reserve space or consume a breeding result.",
+        "Birth animation, naming, save/reload, menus and later cosmetic choices cannot change this event.",
+        "Every offspring allele traces to its recorded parent gamete unless a separately supported and explicitly recorded mutation feature exists.",
+        "Known nonviable pairings included in the game are handled before commitment; never filter or secretly reroll an already sampled offspring while retaining unconditioned odds.",
+        "Replicating the record replays an existing horse; it does not create a second horse or a second debit.",
+        "Hypothetical-scenario or omniscient-sandbox records cannot enter a normal save as ordinary committed outcomes."
+      ]
+    },
+    "saveHeader": {
+      "cSharpType": "SaveHeader",
+      "purpose": "Version, integrity, mode and random-stream metadata needed to preserve horse identity and reproduce committed events.",
+      "fields": [
+        {
+          "name": "saveId",
+          "type": "SaveId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Stable identity for one local save."
+        },
+        {
+          "name": "saveMode",
+          "type": "SaveMode",
+          "mutability": "immutableAtCreation",
+          "purpose": "standard, relaxed or sandbox; sandbox experiments remain in a separate save."
+        },
+        {
+          "name": "schemaVersion",
+          "type": "SchemaVersion",
+          "mutability": "mutable",
+          "purpose": "Current serialized format version after explicit migrations."
+        },
+        {
+          "name": "gameBuildVersion",
+          "type": "BuildVersion",
+          "mutability": "mutable",
+          "purpose": "Build that last wrote the save."
+        },
+        {
+          "name": "saveRevision",
+          "type": "ulong",
+          "mutability": "mutable",
+          "purpose": "Monotonic snapshot/revision number."
+        },
+        {
+          "name": "calendarDay",
+          "type": "StableDay",
+          "mutability": "mutable",
+          "purpose": "Player-controlled calendar preview."
+        },
+        {
+          "name": "calendarProfileVersion",
+          "type": "CalendarProfileVersion",
+          "mutability": "mutable",
+          "purpose": "Configured pacing/economy profile with migration rules for pending events."
+        },
+        {
+          "name": "careMode",
+          "type": "CareMode",
+          "mutability": "mutable",
+          "purpose": "Declared cozy care scope; cannot modify genotype or covertly condition genetic outcomes."
+        },
+        {
+          "name": "activeVariantCatalogVersion",
+          "type": "CatalogVersion",
+          "mutability": "mutable",
+          "purpose": "Default for future founders and breeding; existing horse versions remain explicit."
+        },
+        {
+          "name": "activeInheritanceModelVersion",
+          "type": "ModelVersion",
+          "mutability": "mutable",
+          "purpose": "Default for future commits, with old model support retained for replay."
+        },
+        {
+          "name": "defaultOffspringResolverVersion",
+          "type": "ResolverVersion",
+          "mutability": "mutable",
+          "purpose": "Default assigned to future horses, not a global override of existing horses."
+        },
+        {
+          "name": "retainedResolverVersions",
+          "type": "ImmutableArray<ResolverVersion>",
+          "mutability": "derivedSnapshot",
+          "purpose": "All per-horse versions needed to load the collection correctly."
+        },
+        {
+          "name": "rngStreams",
+          "type": "RngStreams",
+          "mutability": "mutable",
+          "purpose": "Separate persisted breeding, cosmetic, world and competition streams."
+        },
+        {
+          "name": "lastCommittedBreedingEventIndex",
+          "type": "ulong",
+          "mutability": "mutable",
+          "purpose": "Consistency cross-check with immutable reproduction records."
+        },
+        {
+          "name": "migrationHistory",
+          "type": "ImmutableArray<MigrationRecord>",
+          "mutability": "appendOnly",
+          "purpose": "Explicit version transitions, decisions and provenance."
+        },
+        {
+          "name": "payloadHash",
+          "type": "ContentHash",
+          "mutability": "derivedSnapshot",
+          "purpose": "Corruption/integrity check for the canonical saved payload."
+        }
+      ],
+      "rngStreamContract": {
+        "breeding": "Consumed only by successful BreedingCommit transactions; each event derives its gametes and fixed foal factors with documented purpose labels.",
+        "cosmetic": "Non-inherited randomized presentation choices only.",
+        "world": "NPC/world generation and events; newly generated horse records are fixed once created.",
+        "competition": "Event conditions and permitted performance variation; never reproduction.",
+        "forecast": "Not a persisted authoritative stream; use exact enumeration or a deterministic local sampler keyed by forecast inputs and samplerVersion."
+      },
+      "invariants": [
+        "Loading a save never globally upgrades every existing horse to the newest resolver.",
+        "Missing legacy rules/assets produce an explicit migration or load decision, not a silent recolor.",
+        "Save writing preserves a recoverable prior snapshot and validates cross-record references before replacing it.",
+        "Pending pregnancies keep their committed genotype, seeds and original scheduled timing unless an explicit calendar migration documents a different schedule.",
+        "Sandbox knowledge, money or generated genotypes are not silently imported into Standard or Relaxed progression."
+      ]
+    },
+    "raceEntrySnapshot": {
+      "cSharpType": "RaceEntrySnapshot",
+      "purpose": "Immutable authoritative starting inputs for one competition entry, replayed without reading mutable current horses.",
+      "fields": [
+        {
+          "name": "entryId",
+          "type": "CompetitionEntryId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Idempotent entry identity."
+        },
+        {
+          "name": "eventSnapshot",
+          "type": "EventConfigurationSnapshot",
+          "mutability": "immutableAtCreation",
+          "purpose": "Course geometry, surface, distance, weather, eligibility, penalties and reward table relevant to this running."
+        },
+        {
+          "name": "participants",
+          "type": "ParticipantStartSnapshot[]",
+          "mutability": "immutableAtCreation",
+          "purpose": "Horse IDs plus complete applicable traits, developed skills, readiness, equipment effects and assigned controller modes."
+        },
+        {
+          "name": "competitionSeed",
+          "type": "Seed",
+          "mutability": "immutableAtCreation",
+          "purpose": "Authoritative event random seed, separate from breeding."
+        },
+        {
+          "name": "rulesVersion",
+          "type": "VersionId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Retained competition rules implementation/version."
+        },
+        {
+          "name": "controllerVersion",
+          "type": "VersionId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Retained AI/controller and input interpretation version."
+        },
+        {
+          "name": "tickConfiguration",
+          "type": "TickConfiguration",
+          "mutability": "immutableAtCreation",
+          "purpose": "Fixed-step frequency, numeric units, rounding and replay compatibility."
+        },
+        {
+          "name": "controlTrace",
+          "type": "RecordedControlCommand[]",
+          "mutability": "appendOnly",
+          "purpose": "Actual time-indexed player or AI inputs."
+        },
+        {
+          "name": "result",
+          "type": "CompetitionResult?",
+          "mutability": "appendOnce",
+          "purpose": "Authoritative completed result and settlement identifier."
+        }
+      ],
+      "invariants": [
+        "Manual inputs affect the event; no hidden preselected winner.",
+        "Ride, watched AI and delegated modes use shared course, horse, eligibility and reward rules.",
+        "A replay consumes frozen participant/event state and recorded controls, never current mutable HorseRecord values.",
+        "Training, recovery, cosmetic edits or later content changes cannot rewrite a historical result.",
+        "Results settle once by entry/result identity; accelerated resolution must match the agreed authoritative tick model.",
+        "Snapshot formation and entry-cost/workload reservation are atomic."
+      ]
+    },
+    "institutionalLease": {
+      "cSharpType": "InstitutionalLease",
+      "purpose": "Narrow first-release NPC service agreement that retains ownership and never creates remote pregnancies.",
+      "fields": [
+        {
+          "name": "leaseId",
+          "type": "LeaseId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Unique contract and payment identity."
+        },
+        {
+          "name": "horseId",
+          "type": "HorseId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Existing nonpregnant adult, with compatible workload and no conflicting booking."
+        },
+        {
+          "name": "ownerId",
+          "type": "OwnerId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Player retains ownership."
+        },
+        {
+          "name": "lesseeId",
+          "type": "NpcInstitutionId",
+          "mutability": "immutableAtCreation",
+          "purpose": "Trusted NPC institution covers ordinary care."
+        },
+        {
+          "name": "startDay",
+          "type": "GameDay",
+          "mutability": "immutableAtCreation",
+          "purpose": "Commitment date."
+        },
+        {
+          "name": "scheduledReturnDay",
+          "type": "GameDay",
+          "mutability": "immutableAtCreation",
+          "purpose": "Default seven-day contract, shown before acceptance."
+        },
+        {
+          "name": "dailyFeeCoins",
+          "type": "NonNegativeIntegerCoins",
+          "mutability": "immutableAtCreation",
+          "purpose": "Locked fee for a completed service day."
+        },
+        {
+          "name": "paidServiceDays",
+          "type": "GameDay[]",
+          "mutability": "appendOnly",
+          "purpose": "Once-only End Day payments, each linked to a transaction ID."
+        },
+        {
+          "name": "recallEffectiveDay",
+          "type": "GameDay?",
+          "mutability": "appendOnce",
+          "purpose": "Player recall takes effect at the next End Day; charge/pay completed service only."
+        },
+        {
+          "name": "returnRoute",
+          "type": "HomeOrCooperativeReturnPlan",
+          "mutability": "mutableValidated",
+          "purpose": "Forecast home capacity or guarantee cooperative companion care."
+        },
+        {
+          "name": "status",
+          "type": "LeaseState",
+          "mutability": "mutableValidated",
+          "purpose": "Proposed, active, recalling, completed or cancelled; legal transitions only."
+        }
+      ],
+      "invariants": [
+        "No breeding or subleasing rights; player remains owner.",
+        "No simultaneous player competitions, local service income, training or stud service.",
+        "Ordinary lessee care does not duplicate home feed charges; ordinary home fixed overhead remains unless independently changed.",
+        "Default duration is seven game days, never real-time waiting.",
+        "Once-only payment occurs at End Day for completed service days, including the recall boundary according to a documented day-boundary convention.",
+        "Return never forces sale or deletes a horse; cooperative care is a guaranteed fallback.",
+        "Contract start, horse availability and return-capacity forecasting are validated atomically."
+      ]
+    }
+  },
+  "modeScenariosAndPotential": {
+    "status": "Proposed behavior requiring implementation and playtesting",
+    "standardAndRelaxed": "Calendar speed and economic pressure may differ. Supported biological inheritance, actual parent genotype, and committed offspring genotype do not gain favorable odds.",
+    "hypotheticalScenario": "Players may propose alleles and compare possible outcomes without editing actual horses. The UI labels every assumption and the result is not commit eligible.",
+    "omniscientSandbox": "A separate sandbox save may reveal the actual simulated genotype and inherited game potential for experimentation. This is not evidence of a real horse genetic test or a normal progression forecast.",
+    "candidatePairForecast": "Uses currently revealed knowledge and explicit priors/bounds. The actual commit uses authoritative parent genomes after disclosed eligibility checks.",
+    "actualSimulatedPotential": "The engine may know a fixed bounded game-potential vector. Normal play estimates it through tests designed for the game, observations or development; no real-world predictive precision is claimed.",
+    "developedAbility": "Training, bond, condition, facilities and player/NPC riding express potential in activities. Parents do not transmit their accumulated training.",
+    "potentialTradeoffs": "Specialization, bounded effects and discipline demand are designed game mechanics. Color, generation and purchase/adoption route do not add power."
+  },
+  "reviewGates": [
+    "Agree exact supported biological haplotypes and evidence before implementing their inheritance rules.",
+    "Select the final synthetic marker count/effects and mark every coefficient as fictional game data.",
+    "Implement pure core functions and meaningful fixtures before connecting the rendering engine.",
+    "Prove knowledge-limited forecasts cannot accidentally leak actual hidden parent genomes.",
+    "Prove save/reload, failed transactions and cosmetic/world actions cannot reroll a committed foal.",
+    "Verify every UI and venue renders the same horse from the shared phenotype and visual descriptor.",
+    "Review explicit version migrations against a preserved collection of old horse records and render recipes."
+  ],
+  "relatedFixtureFile": "GENETICS_FIXTURES.json"
+}

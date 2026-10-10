@@ -1,0 +1,593 @@
+{
+  "status": "proposed acceptance fixtures not implementation",
+  "formatVersion": "0.1.0-proposal",
+  "purpose": "Reviewable acceptance data for a future pure C# genetics domain. This is not executable test code or evidence that a game engine passes these cases.",
+  "fixtureNotation": {
+    "genotypeOverrides": "Concise per-locus fixture shorthand only; merge with sharedDefaults. This shorthand must not become an assumption of independent segregation in the save schema.",
+    "probabilityRepresentation": "Exact rational probabilities; compare by cross multiplication or reduced fractions.",
+    "expressionAssumptions": [
+      "All compared horses use the same appearanceSeed and supported visualAge unless a fixture explicitly changes them.",
+      "All unlisted dilution and white-pattern variants are absent.",
+      "No new mutation events occur.",
+      "No genotype is conditioned on viability by hidden rerolling.",
+      "Biological inheritance is identical in Standard and Relaxed modes.",
+      "Results describe coat classes, not an exact shade or marking texture."
+    ],
+    "defaultAppearanceSeed": "fixtureAppearance01",
+    "defaultVisualAge": "adultReference",
+    "sharedDefaults": {
+      "mc1r": [
+        "E",
+        "E"
+      ],
+      "asip": [
+        "A",
+        "A"
+      ],
+      "slc45a2": [
+        "N",
+        "N"
+      ],
+      "tbx3": [
+        "nd2",
+        "nd2"
+      ],
+      "pmel": [
+        "N",
+        "N"
+      ],
+      "slc36a1": [
+        "N",
+        "N"
+      ],
+      "stx17": [
+        "N",
+        "N"
+      ],
+      "trpm1": [
+        "N",
+        "N"
+      ],
+      "patn1": [
+        "N",
+        "N"
+      ],
+      "patternRegionHaplotypes": {
+        "eca3": [
+          "baseline",
+          "baseline"
+        ],
+        "mitf": [
+          "baseline",
+          "baseline"
+        ],
+        "pax3": [
+          "baseline",
+          "baseline"
+        ],
+        "ednrb": [
+          "baseline",
+          "baseline"
+        ]
+      }
+    }
+  },
+  "geneticsFixtures": [
+    {
+      "id": "baseEpistasis934",
+      "kind": "crossDistribution",
+      "parents": [
+        {
+          "role": "parentA",
+          "genotypeOverrides": {
+            "mc1r": [
+              "E",
+              "e"
+            ],
+            "asip": [
+              "A",
+              "a"
+            ]
+          }
+        },
+        {
+          "role": "parentB",
+          "genotypeOverrides": {
+            "mc1r": [
+              "E",
+              "e"
+            ],
+            "asip": [
+              "A",
+              "a"
+            ]
+          }
+        }
+      ],
+      "segregationAssumption": "For this supported fixture, MC1R and ASIP assort independently; all other supported regions are fixed at their defaults.",
+      "expectedPhenotypes": [
+        {
+          "coatClass": "bay",
+          "probability": {
+            "numerator": 9,
+            "denominator": 16
+          }
+        },
+        {
+          "coatClass": "black",
+          "probability": {
+            "numerator": 3,
+            "denominator": 16
+          }
+        },
+        {
+          "coatClass": "chestnut",
+          "probability": {
+            "numerator": 4,
+            "denominator": 16
+          }
+        }
+      ],
+      "invariants": [
+        "Chestnut offspring retain their inherited ASIP alleles despite masked visible expression.",
+        "Reversing parent order leaves the autosomal outcome distribution unchanged."
+      ]
+    },
+    {
+      "id": "palominoPair",
+      "kind": "crossDistribution",
+      "parents": [
+        {
+          "role": "parentA",
+          "genotypeOverrides": {
+            "mc1r": [
+              "e",
+              "e"
+            ],
+            "slc45a2": [
+              "Cr",
+              "N"
+            ]
+          }
+        },
+        {
+          "role": "parentB",
+          "genotypeOverrides": {
+            "mc1r": [
+              "e",
+              "e"
+            ],
+            "slc45a2": [
+              "Cr",
+              "N"
+            ]
+          }
+        }
+      ],
+      "expectedPhenotypes": [
+        {
+          "coatClass": "chestnut",
+          "probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        {
+          "coatClass": "palomino",
+          "probability": {
+            "numerator": 1,
+            "denominator": 2
+          }
+        },
+        {
+          "coatClass": "cremello",
+          "probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        }
+      ],
+      "invariants": [
+        "Every offspring is e/e at MC1R.",
+        "A palomino pair does not guarantee palomino offspring."
+      ]
+    },
+    {
+      "id": "sharedCreamPearlLocus",
+      "kind": "crossDistribution",
+      "parents": [
+        {
+          "role": "parentA",
+          "genotypeOverrides": {
+            "mc1r": [
+              "e",
+              "e"
+            ],
+            "slc45a2": [
+              "Cr",
+              "Prl"
+            ]
+          }
+        },
+        {
+          "role": "parentB",
+          "genotypeOverrides": {
+            "mc1r": [
+              "e",
+              "e"
+            ],
+            "slc45a2": [
+              "N",
+              "Prl"
+            ]
+          }
+        }
+      ],
+      "expectedOutcomes": [
+        {
+          "slc45a2": [
+            "Cr",
+            "N"
+          ],
+          "coatClass": "palomino",
+          "probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        {
+          "slc45a2": [
+            "Cr",
+            "Prl"
+          ],
+          "coatClass": "creamPearlOnChestnut",
+          "probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        {
+          "slc45a2": [
+            "N",
+            "Prl"
+          ],
+          "coatClass": "chestnutCarryingPearl",
+          "probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        },
+        {
+          "slc45a2": [
+            "Prl",
+            "Prl"
+          ],
+          "coatClass": "pearlOnChestnut",
+          "probability": {
+            "numerator": 1,
+            "denominator": 4
+          }
+        }
+      ],
+      "invariants": [
+        "Each offspring has two supported SLC45A2 haplotypes, one from each parent.",
+        "Cream and pearl are not rolled as independent loci.",
+        "No unsupported recombinant haplotype is introduced."
+      ]
+    },
+    {
+      "id": "silverHiddenOnChestnut",
+      "kind": "phenotypeInvariance",
+      "genotypeA": {
+        "mc1r": [
+          "e",
+          "e"
+        ],
+        "pmel": [
+          "N",
+          "N"
+        ]
+      },
+      "genotypeB": {
+        "mc1r": [
+          "e",
+          "e"
+        ],
+        "pmel": [
+          "Z",
+          "N"
+        ]
+      },
+      "expectedEqualOutputs": [
+        "baseCoatClass",
+        "basePigmentRecipe"
+      ],
+      "expectedDifferentState": [
+        "genotypeHash",
+        "pmelInheritancePossibilities"
+      ],
+      "expected": "Silver does not change the chestnut pigment output, while genotypeB retains its inheritable Z allele. Biological health-association metadata may differ.",
+      "comparisonScope": "Compare pigment outputs before cosmetics and medical gameplay policy; do not require all Phenotype metadata to be identical."
+    },
+    {
+      "id": "patn1NeedsLp",
+      "kind": "phenotypeInvariance",
+      "genotypeA": {
+        "trpm1": [
+          "N",
+          "N"
+        ],
+        "patn1": [
+          "N",
+          "N"
+        ]
+      },
+      "genotypeB": {
+        "trpm1": [
+          "N",
+          "N"
+        ],
+        "patn1": [
+          "PATN1",
+          "PATN1"
+        ]
+      },
+      "expected": "Neither genotype acquires an LP spotting pattern solely from PATN1.",
+      "expectedLpPatternPresent": false,
+      "invariants": [
+        "PATN1 remains inheritable even when its relevant coat effect is not expressed.",
+        "This fixture does not assert absence of unrelated white patterns when other variants are supplied."
+      ]
+    },
+    {
+      "id": "syntheticLinkedBlock",
+      "kind": "gameteDistribution",
+      "biologicalStatus": "Synthetic algorithm fixture, not a real equine recombination estimate",
+      "homologs": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "recombinationFraction": {
+        "numerator": 1,
+        "denominator": 10
+      },
+      "expectedGametes": [
+        {
+          "alleles": [
+            "A",
+            "B"
+          ],
+          "probability": {
+            "numerator": 9,
+            "denominator": 20
+          }
+        },
+        {
+          "alleles": [
+            "a",
+            "b"
+          ],
+          "probability": {
+            "numerator": 9,
+            "denominator": 20
+          }
+        },
+        {
+          "alleles": [
+            "A",
+            "b"
+          ],
+          "probability": {
+            "numerator": 1,
+            "denominator": 20
+          }
+        },
+        {
+          "alleles": [
+            "a",
+            "B"
+          ],
+          "probability": {
+            "numerator": 1,
+            "denominator": 20
+          }
+        }
+      ],
+      "invariants": [
+        "A 25/25/25/25 result fails this fixture.",
+        "The 10 percent fraction is a declared synthetic parameter and cannot be imported as a researched horse map distance."
+      ]
+    }
+  ],
+  "pedigreeFixtures": {
+    "scope": "Mathematical kinship cases only; a mathematically evaluable pair is not necessarily eligible for breeding under game policy.",
+    "assumptions": [
+      "All founders listed in sharedPedigree are mutually unrelated and non-inbred unless a case explicitly overrides founder data.",
+      "The sharedPedigree is complete for these synthetic cases.",
+      "Parent order and sex are irrelevant to these autosomal pedigree calculations.",
+      "The requested value is the proposed offspring inbreeding coefficient F, equal to kinship phi between its parents, not their coefficient of relationship.",
+      "An unknown real ancestry record does not establish zero kinship."
+    ],
+    "recurrence": {
+      "offspringInbreeding": "F(child) = phi(parentA, parentB)",
+      "selfKinship": "phi(i, i) = (1 + F(i)) / 2",
+      "newChildToOlderIndividual": "phi(child, j) = (phi(parentA, j) + phi(parentB, j)) / 2"
+    },
+    "sharedPedigree": [
+      {
+        "horseId": "founderA",
+        "parentIds": []
+      },
+      {
+        "horseId": "founderB",
+        "parentIds": []
+      },
+      {
+        "horseId": "founderC",
+        "parentIds": []
+      },
+      {
+        "horseId": "founderD",
+        "parentIds": []
+      },
+      {
+        "horseId": "founderE",
+        "parentIds": []
+      },
+      {
+        "horseId": "fullSibling1",
+        "parentIds": [
+          "founderA",
+          "founderB"
+        ]
+      },
+      {
+        "horseId": "fullSibling2",
+        "parentIds": [
+          "founderA",
+          "founderB"
+        ]
+      },
+      {
+        "horseId": "halfSibling",
+        "parentIds": [
+          "founderA",
+          "founderC"
+        ]
+      },
+      {
+        "horseId": "cousin1",
+        "parentIds": [
+          "fullSibling1",
+          "founderD"
+        ]
+      },
+      {
+        "horseId": "cousin2",
+        "parentIds": [
+          "fullSibling2",
+          "founderE"
+        ]
+      }
+    ],
+    "cases": [
+      {
+        "id": "unrelatedFounders",
+        "parentIds": [
+          "founderA",
+          "founderB"
+        ],
+        "expectedOffspringInbreeding": {
+          "numerator": 0,
+          "denominator": 1
+        }
+      },
+      {
+        "id": "fullSiblings",
+        "parentIds": [
+          "fullSibling1",
+          "fullSibling2"
+        ],
+        "expectedOffspringInbreeding": {
+          "numerator": 1,
+          "denominator": 4
+        }
+      },
+      {
+        "id": "parentOffspring",
+        "parentIds": [
+          "founderA",
+          "fullSibling1"
+        ],
+        "expectedOffspringInbreeding": {
+          "numerator": 1,
+          "denominator": 4
+        }
+      },
+      {
+        "id": "halfSiblings",
+        "parentIds": [
+          "fullSibling1",
+          "halfSibling"
+        ],
+        "expectedOffspringInbreeding": {
+          "numerator": 1,
+          "denominator": 8
+        }
+      },
+      {
+        "id": "firstCousins",
+        "parentIds": [
+          "cousin1",
+          "cousin2"
+        ],
+        "expectedOffspringInbreeding": {
+          "numerator": 1,
+          "denominator": 16
+        }
+      },
+      {
+        "id": "inbredFounderParentOffspring",
+        "parentIds": [
+          "founderA",
+          "fullSibling1"
+        ],
+        "founderInbreedingOverrides": {
+          "founderA": {
+            "numerator": 1,
+            "denominator": 8
+          }
+        },
+        "expectedOffspringInbreeding": {
+          "numerator": 9,
+          "denominator": 32
+        },
+        "additionalAssumption": "FounderA has declared background inbreeding of 1/8 but remains unrelated to all other declared founders."
+      }
+    ],
+    "validationCases": [
+      {
+        "id": "pedigreeCycle",
+        "inputCondition": "A horse appears among its own ancestors.",
+        "expected": "Reject invalid pedigree data."
+      },
+      {
+        "id": "selfParent",
+        "inputCondition": "A horse lists its own horseId as a parent.",
+        "expected": "Reject invalid pedigree data."
+      },
+      {
+        "id": "unknownBackground",
+        "inputCondition": "One or both parent histories are unknown and no founder-relatedness assumption is provided.",
+        "expected": "Return an incomplete-data qualification; do not advertise zero inbreeding as established."
+      }
+    ]
+  },
+  "crossSystemAcceptanceProposals": [
+    "A committed conception survives save/reload with identical parents, offspring genome and appearance seed.",
+    "Opening a forecast or changing cosmetics does not advance the authoritative breeding RNG stream.",
+    "Actual parent genotype and player knowledge are distinct; a knowledge-limited forecast cannot read hidden genotype through an unintended code path.",
+    "A hypothetical scenario cannot be committed as if its assumed alleles were actual parent alleles.",
+    "Gray changes the supported appearance with visualAge but never the underlying base genotype.",
+    "Supported classic-roan homozygotes are not classified as lethal.",
+    "Marketplace ownership changes preserve horseId, parents, genotype, resolverVersion and conception history.",
+    "Genetic marker effect sizes for aptitude are labeled fictional game data; generation number and color rarity add no performance bonus."
+  ],
+  "sourceUrls": [
+    "https://vgl.ucdavis.edu/test/red-factor-horse",
+    "https://vgl.ucdavis.edu/test/agouti-horse",
+    "https://vgl.ucdavis.edu/test/cream",
+    "https://vgl.ucdavis.edu/test/pearl",
+    "https://vgl.ucdavis.edu/test/silver",
+    "https://vgl.ucdavis.edu/test/leopard-complex",
+    "https://vgl.ucdavis.edu/test/appaloosa-pattern-1",
+    "https://vgl.ucdavis.edu/test/roan",
+    "https://arxiv.org/abs/1602.04368"
+  ]
+}

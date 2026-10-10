@@ -1,0 +1,30 @@
+COMPLETION HANDOFF
+
+Task ID:
+Status: complete / partial / blocked
+Base commit and output commit:
+Branch/worktree:
+
+PLAYER-VISIBLE RESULT
+Describe what now works and why it matters.
+
+FILES AND ASSETS
+List changed paths. Include source and engine export versions. Identify any shared contract changes explicitly.
+
+HOW TO RUN
+Give exact build/run/test instructions and prerequisites.
+
+VALIDATION
+State checks actually run and their observed results. Include meaningful scenario coverage. For art, provide real engine views, deformation examples, import warnings, counts, UV/skeleton/morph versions and known limitations. For genetics, give relevant exact fixtures. For races, give replay/start snapshot evidence. Never describe planned tests as passed.
+
+DECISIONS
+Record deviations or conflicts and the decision that resolved them.
+
+REMAINING WORK
+Distinguish incomplete behavior, placeholder content, known bugs and optional suggestions. Provide reproducible steps and severity for material defects.
+
+NEXT TASK
+Name the next ready task and inputs it can reuse. Avoid asking the next model to restart completed work.
+
+CHECKPOINT IF INTERRUPTED
+Current files, uncommitted changes, last successful command, pending process, exact failure, safe next step, and any unverified assumption.

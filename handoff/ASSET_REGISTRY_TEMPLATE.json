@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "document_kind": "asset_registry_template",
+  "template_notice": "Duplicate the asset object for a real asset. Null means unknown or unreviewed. This template asserts no author, source, license, permission, successful validation, or shipping clearance.",
+  "asset": {
+    "asset_id": null,
+    "display_name": null,
+    "category": null,
+    "asset_version": null,
+    "status": "unreviewed",
+    "ownership": {
+      "primary_editor": null,
+      "binary_lock_owner": null,
+      "reviewer": null,
+      "contract_owner": null
+    },
+    "files": {
+      "editable_source_path": null,
+      "runtime_export_paths": [],
+      "texture_paths": [],
+      "dependency_asset_ids": [],
+      "checksum_records": [],
+      "source_commit": null
+    },
+    "provenance": {
+      "source_type": null,
+      "creator_name": null,
+      "source_url": null,
+      "acquired_on": null,
+      "permission_record_path": null,
+      "license": {
+        "name": null,
+        "version": null,
+        "url": null,
+        "terms_snapshot_path": null,
+        "commercial_use_permitted": null,
+        "modification_permitted": null,
+        "embedded_game_distribution_permitted": null,
+        "standalone_asset_redistribution_permitted": null,
+        "attribution_required": null,
+        "attribution_text": null,
+        "restrictions": [],
+        "reviewed_by": null,
+        "reviewed_on": null
+      },
+      "ai_generation": {
+        "used": null,
+        "provider": null,
+        "model": null,
+        "model_version": null,
+        "generated_on": null,
+        "prompt_record_path": null,
+        "reference_asset_ids": [],
+        "reference_permission_record_paths": [],
+        "provider_terms_record_path": null,
+        "terms_reviewed_on": null
+      }
+    },
+    "horse_contract": {
+      "applies": null,
+      "contract_version": null,
+      "body_family_id": null,
+      "life_stage": null,
+      "meters_per_runtime_unit": null,
+      "runtime_forward_axis": null,
+      "runtime_up_axis": null,
+      "skeleton_version": null,
+      "bone_map_path": null,
+      "skeleton_hash": null,
+      "uv_layout_version": null,
+      "morph_map_path": null,
+      "clip_metadata_path": null,
+      "attachment_map_path": null,
+      "supported_tack_profile_ids": [],
+      "material_slot_names": [],
+      "lod_records": []
+    },
+    "runtime": {
+      "engine": null,
+      "engine_version": null,
+      "renderer": null,
+      "export_profile_version": null,
+      "import_settings_record_path": null,
+      "phenotype_ruleset_versions": [],
+      "platforms_verified": []
+    },
+    "validation": {
+      "status": "not_run",
+      "report_path": null,
+      "in_engine_capture_paths": [],
+      "anatomy_review": null,
+      "deformation_review": null,
+      "minimum_gait_review": null,
+      "tack_fit_review": null,
+      "phenotype_parity_review": null,
+      "lod_review": null,
+      "measured_triangle_count": null,
+      "measured_material_count": null,
+      "measured_bone_count": null,
+      "maximum_vertex_influences": null,
+      "measured_texture_memory_bytes": null,
+      "measurement_conditions": null,
+      "known_issues": [],
+      "reviewed_by": null,
+      "reviewed_on": null
+    },
+    "shipping_review": {
+      "status": "not_reviewed",
+      "provenance_complete": null,
+      "license_review_complete": null,
+      "technical_review_complete": null,
+      "approved_version": null,
+      "reviewer": null,
+      "reviewed_on": null,
+      "notes": null
+    }
+  }
+}

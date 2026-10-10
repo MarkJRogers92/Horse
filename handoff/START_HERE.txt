@@ -1,0 +1,27 @@
+CLOVERBROOK STABLES IMPLEMENTATION HANDOFF
+Version 1 | October 10 2026
+
+PURPOSE
+This is a proposed game design and production package, not a playable game or a completed 3D asset library. Build the game from this shared specification. Breeding and stable management are the center. The required first release also includes actual manual flat racing, actual manual barrel racing, an NPC marketplace, adoption, customization and useful estate building.
+
+READING ORDER
+1. DECISIONS_AND_CONSTRAINTS.txt
+2. CLOVERBROOK_WORKFLOW.txt for the complete design and production sequence
+3. CONTRACT_CATALOG.json for the proposed interfaces and invariants
+4. TASK_BOARD.json for owners, dependencies, deliverables and acceptance gates
+5. GENETICS_FIXTURES.json for independently checkable expected outcomes
+6. ASSET_REGISTRY_TEMPLATE.json and MODEL_TASK_TEMPLATE.txt
+
+FIRST ASSIGNMENT
+Inspect the actual repository and its instructions. Establish the supported pinned engine project and pure domain assembly, then implement the foundation and horse/genetics proof phases. Use one integration owner and separate bounded workers for the horse visual proof and genetics. Both consume the same horse and visual descriptor contracts. End the proof with one attractive runtime horse, one committed mating, one correct visible foal and a save that preserves them. The lead then integrates the stable-session slice according to the dependency board.
+
+Do not build several independent games or ask each worker to design its own horse record. Do not begin by generating a large catalog of assets. A generated concept image is a visual reference; the art gate requires a real mesh, UVs, skin weights, rig, materials, source files and in-engine evidence.
+
+SCOPE AND AUTHORITY
+All tasks are proposed/pending, and the JSON catalog is a declarative specification, not executable schema validation or implemented production code. Use existing authorization to complete scoped work; record unresolved design decisions for the integration owner. Do not publish, deploy, purchase services, or send project prompts/files/code/assets to any outside provider without the owner's specific instruction covering destination and content. Never forward private chats, credentials, personal information, client material or unrelated repositories.
+
+MODEL CONTINUITY
+Assign models by demonstrated task ability and current availability. Keep the task, contracts and checkpoint in the repository so a model change does not restart the project. One owner controls shared schema/migrations. One editor owns each binary art source at a time. Do not silently fall back to a paid service.
+
+DEFINITION OF DONE
+A task needs the required files, a working integration or stated dependency, meaningful tests/inspection, and a completion handoff. A screenshot alone does not prove gameplay; a passing algorithm test alone does not prove the horse looks correct. Report incomplete work explicitly.

@@ -1,0 +1,67 @@
+{
+  "package": "Cloverbrook Stables Handoff",
+  "version": "1",
+  "created": "2026-10-10",
+  "status": "Proposed design and production specification; no game implementation is included.",
+  "contents": [
+    {
+      "file": "ASSET_REGISTRY_TEMPLATE.json",
+      "bytes": 3535,
+      "sha256": "55fc69afdcb9c217c61c636554baa2d8a9643a50c87145b06d39a7fd522402d4"
+    },
+    {
+      "file": "CLOVERBROOK_WORKFLOW.txt",
+      "bytes": 90556,
+      "sha256": "56853689888b4c1c4b03c3fd4f8fc3a4834a01970a7060667882bb3027c4542b"
+    },
+    {
+      "file": "COMPLETION_HANDOFF_TEMPLATE.txt",
+      "bytes": 1281,
+      "sha256": "282ca10310f97fabca269ff6efde245583c8d9840763b62dfb18b5362c6a9eb5"
+    },
+    {
+      "file": "CONTRACT_CATALOG.json",
+      "bytes": 54031,
+      "sha256": "2b5e66721d92e18bb433f3d3d7c4b93d2cfc196b959519c626166e020378061a"
+    },
+    {
+      "file": "DECISIONS_AND_CONSTRAINTS.txt",
+      "bytes": 4984,
+      "sha256": "c55725da6d61180332ca8dce324a61e5aa21ee1e00aa6500dedf1c123acc9d81"
+    },
+    {
+      "file": "GENETICS_FIXTURES.json",
+      "bytes": 15318,
+      "sha256": "be3eb5ea7994e40a4b1041f0564ca29232f5ccc3fb0aea098e7072679429ebce"
+    },
+    {
+      "file": "MODEL_TASK_TEMPLATE.txt",
+      "bytes": 1268,
+      "sha256": "3f88f63ee952cfed3fca81b3b1ebbd99e6d543fe886af6c8d521c2007223aa4c"
+    },
+    {
+      "file": "SOURCES.txt",
+      "bytes": 4047,
+      "sha256": "5574a6d35c4619454debb4b5faef012f03c0225bdc6625cc65120006f3ff1040"
+    },
+    {
+      "file": "START_HERE.txt",
+      "bytes": 2941,
+      "sha256": "934b92cdc8bd5c8b03383716ba80f283f06d86a5f3de97b25b9e0f87d47d8834"
+    },
+    {
+      "file": "TASK_BOARD.json",
+      "bytes": 57665,
+      "sha256": "6d436e71cdd85298d285988eb49b1a03510125342898276ade545a2554da412e"
+    }
+  ],
+  "dataValidation": {
+    "jsonFilesParse": true,
+    "taskCount": 40,
+    "requiredTaskCount": 36,
+    "deferredTaskCount": 4,
+    "dependencyGraphAcyclic": true,
+    "contractCount": 9
+  },
+  "validationScope": "Package structure and proposed data only. No game code, runtime model, playable competition or production implementation was tested."
+}

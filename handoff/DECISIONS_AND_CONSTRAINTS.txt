@@ -1,0 +1,37 @@
+CLOVERBROOK STABLES CANONICAL STARTING DECISIONS
+These are defaults for the proposed project and can change through an explicit decision record.
+
+Product: colorful, feminine, cute 3D stable and horse breeding game; believable horse anatomy and natural coat colors. Mallow is the proposed bunny assistant. Working title is provisional.
+Priority: attractive real runtime horses; explainable deep genetics; attachment; management; two robust competition disciplines; approachable UI and cozy sound/effects.
+Platform: single-player PC/Mac first. Default supported Unity 6 LTS + URP + C# + Blender. Verify/pin exact supported versions at setup. Make one engine choice after a limited asset proof.
+Runtime: deterministic code and authored content; no cloud model needed for routine foals, prices, ownership, events or narration.
+Launch economy: substantial NPC market, adoption club, stud directory, bounded auctions, buyer requests and limited institutional leases. Online trading and synchronous multiplayer are deferred.
+Core sports: actual manual flat racing and barrel racing, plus shared-rule watch/delegate options. Show jumping is a later candidate after those pass.
+Time: player-advanced days; no offline deterioration or bills. Initial season 28 days. Pregnancy 4 days; foal 3; youngster 3; adult at day 10 from conception; breeding eligible at day 12. Mare recovery 2 days after birth. These are game pacing values.
+Care: early automation; optional tactile interactions. Unranked control practice has no persistent growth/reward or readiness penalty.
+Attachment: no compulsory old-age death or retirement, no auto-sales; permanent cooperative companion care preserves ownership. Inactive cooperative horses do not train, breed, compete or generate income. Recall requires a home slot and one disclosed preparation day.
+Capacity: validate pregnancy, foal, youngster, adult transition and lease return. Never delete a horse because capacity changed.
+Biology: selected documented coat genetics; phase-aware supported regions; source/evidence metadata. Performance/body/temperament markers are explicitly fictional game parameters.
+Genetics: cream and pearl share SLC45A2 state; hidden genotype differs from current appearance; grey ages through a resolver; no unsupported independent KIT switches. No generation-level power bonus, inherited training, or rare-color speed bonus.
+Commitment: one authoritative breeding event seed; purpose-derived gametes/development/appearance. Commit immutable horse identity and outcome at conception. Birth activates the existing record once. Forecast/world/competition/cosmetic RNG cannot consume the breeding stream.
+Forecasts: knowledge-limited actual-parent forecasts differ from hypothetical scenarios. Exact probabilities for supported small crosses; estimated complex distributions disclose uncertainty. Example images are not guaranteed foals.
+Visuals: one phenotype resolver and horse presenter for stable, birth, market, portraits and events. Keep actual markings across age/morph/LOD. Foals have authored juvenile proportions.
+Initial bodies: two validated adult body families and four breed-inspired presets; no promise that one skeleton fits every horse type.
+Animation: small convincing gait set first; validate deformation early. More complex animation follows an accepted horse asset and first playable loop.
+Health tone: no fatal births, surprise clinical crises or coercive culling. Acknowledge relevant biological associations in the codex. Exclude complex medical variants initially; any later nonviable pairing rule is evaluated before commitment, never hidden by rerolling.
+Currency: integer earned coins. Six-horse example expenses 420/week; delegated recurring income 490/week. Numbers are illustrative. Starter hay plot 280 cost, 10/day net savings, 28-day simple payback.
+Lease default: nonpregnant adults, seven game days, no breeding/subleasing, locked daily service fee paid once at End Day, lessee ordinary care, next-End-Day recall, guaranteed home/cooperative return.
+Replays: freeze complete horse start states, event configuration, rules/AI versions, seed and controls. Never resolve historical runs against mutable current horses.
+Persistence: atomic saves and transactions, backups, idempotent commands, versioned migrations, retained resolver behavior. A content update cannot silently change a prized horse.
+Privacy: no project context or assets go to any outside provider without a specific owner instruction covering destination/content. No private chats, credentials, personal/client data or unrelated repositories are transferred.
+Production: one integration lead; one shared schema/migration owner; one editor per binary asset; bounded branches and tasks; independent review; concrete evidence.
+
+DECISION RECORD FORMAT
+Decision ID:
+Date:
+Question:
+Chosen result:
+Reason and alternatives considered:
+Affected contracts/assets/tasks/saves:
+Migration or compatibility action:
+Owner and acceptance evidence:

@@ -1,0 +1,802 @@
+# Cloverbrook Stables
+## Game Design and Production Workflow
+
+Working title | Version 1 | October 10 2026
+
+Build a colorful 3D horse breeding and stable management game in which every horse has an identity, an explainable inheritance record, and a useful life beyond winning races. Breeding is the main long-term pursuit; a welcoming stable, farm, marketplace, and competition circuit give that pursuit purpose. Prioritize beautiful, believable horses and dependable genetics before a large world or elaborate animation.
+
+The proposed first release is a downloadable single-player PC and Mac game with an extensive NPC economy. This manual defines the complete design, the minimum shippable scope, the architecture, and the work sequence for several development models. All costs, timing, capacities, balance weights, and performance budgets below are proposed game parameters. The biological facts and software capabilities cited in the text have separate source notes at the end.
+
+# 1 Product direction
+
+## The promise to the player
+
+Create a beloved stable, discover what makes each horse special, plan thoughtful pairings, raise recognizable foals, and develop a bloodline that reflects your taste. A successful session can mean producing a hoped-for coat, understanding a hidden allele, improving a barrel time, finding a suitable adopter, or finally building the lavender foaling barn.
+
+The emotional center is anticipation followed by attachment. The player should recognize a foal as the offspring of its parents while still enjoying a surprise. A horse with ordinary coloring can become the stable's best teacher; a strikingly patterned horse may excel in a different discipline than the one originally planned. The game must support both the meticulous breeder and the player who adopts one scruffy favorite and refuses to part with it.
+
+## Design pillars
+
+1. Breeding has depth. Coat inheritance, body variation, aptitude, temperament, ancestry, pedigree, and diversity create meaningful decisions across generations.
+2. Individual horses matter. Names, photographs, habits, relationships, training histories, and family trees persist through changes of role or home.
+3. Management creates choices. Space, staff, facilities, forage, schedules, and cash shape a stable without turning basic care into repetitive clicking.
+4. Competitions demonstrate the breeding program. Flat racing and barrel racing are substantial playable systems, with management-led participation available throughout.
+5. The world is sweet and playful. Pastel buildings, gardens, ribbons, a bunny assistant, and gentle music surround horses with convincing anatomy and natural coats.
+6. The game respects time. The player advances the calendar. There are no real-time pregnancy timers, login streaks, offline neglect, paid breeding rolls, or mandatory horse sales.
+
+Suggested attention target during ordinary play is roughly 40 percent breeding and horse development, 25 percent stable and farm decisions, 20 percent competitions and activities, and 15 percent trading, decorating, and town relationships. These are playtest targets, not quotas imposed on the player.
+
+## How the references inform the design
+
+| Reference | Contribution to this game's direction |
+| --- | --- |
+| Let's Ride Corral Club | Accessible barrel practice, rider and horse presentation, and a friendly competition ladder. Its distributor describes barrel practice and customization. [S1] |
+| My Horse Farm | The farm ownership and stable management emphasis requested in the brief, developed here into facilities, staffing, breeding programs, and a local economy. |
+| Rival Stars Horse Racing | The visual ambition for believable 3D horses, foal appeal, presentation of a pedigree, and the excitement of riding and racing. The desktop listing includes breeding, riding, photography, and homestead improvement. [S2] |
+| Original contribution | A breeding planner with honest probabilities, inherited appearance rendered consistently everywhere, several viable horse careers, a forgiving management calendar, and an expressive buildable stable. |
+
+Use the references to discuss qualities, not to reproduce their assets, interface layouts, characters, progression, or economy. Cloverbrook Stables is a working name, not a final branding decision.
+
+## First release boundaries
+
+Ship a complete local game: one expandable stable estate, a compact village, two fully playable competition disciplines, an NPC marketplace, stud services, adoption, genetics, farm production, staff, customization, and a seasonal objective structure. Use instanced competition venues and a modest explorable trail area. Keep the estate editable and the town primarily authored, with a few upgrade projects.
+
+Defer a seamless open world, fully simulated city population, synchronous multiplayer, player auctions, advanced dressage, and a huge breed catalog. Those features require their own production plans and must not weaken the first horse, first foal, or first competition.
+
+# 2 The calendar and core loops
+
+## Three connected loops
+
+The immediate loop is to inspect a horse, do an enjoyable interaction, and make one useful decision. Brushing reveals the coat, practicing gives feedback, and feeding or turnout can be assigned in a few clicks.
+
+The session loop is to review the stable, pursue a breeding or training goal, complete an activity or commission, make a purchase or improvement, and advance the day. A satisfying 20-minute session should contain a tangible achievement without requiring every system.
+
+The long loop is to develop a family line, establish a discipline or breeding reputation, expand the estate, and enter a regional showcase. Seasonal achievements reward different stable identities: careful outcrossing, rescue and rehabilitation, racing, barrels, teaching, or presentation.
+
+## A player-controlled day
+
+Planning, decorating, reading pedigrees, taking photographs, and practicing in an unranked arena do not run down a real-time clock. The player chooses End Day after reviewing the forecast. The review states tomorrow's feed use, staff costs, scheduled competitions, construction, crop progress, and expected births.
+
+Horses receive a limited daily workload budget. A demanding race, paid training assignment, or serious conditioning session uses that budget. Unranked control practice can continue without generating additional prizes or growth and without reducing persistent readiness or care state. This separates learning the controls from farming unlimited rewards or creating recovery chores.
+
+Use a 28-day season initially, with recurring events rather than permanently missable ones. Autumn scenery and a winter festival can change the mood without introducing food catastrophes. Provide a short advance-to-next-event option that stops before a birth, insufficient care resources, or a decision requiring the player's attention.
+
+## Compressed development schedule
+
+| Event | Initial game timing |
+| --- | --- |
+| Breeding commitment | Day 0; validate parents, funds, care, and reserved capacity |
+| Foal arrives | Day 4 |
+| Mare recovery completes | Two days after birth, earliest day 6 |
+| Foal stage | Three days after birth |
+| Youngster stage | The following three days |
+| Adult stage | Day 10 from conception |
+| New adult may breed | Day 12, subject to the usual eligibility checks |
+
+These are deliberately compressed game clocks, not real gestation or maturation claims. The underlying data keeps life stage and its progress separate from calendar date. Visual aging is also a supported phenotype input, so grey progression need not be tied to a real-world calendar. Normal play preserves a horse's adult usefulness; later-life looks and retirement are elective features rather than compulsory losses.
+
+Provide Relaxed and Standard calendar presets. Presets change progression pace and economic pressure, while the actual Mendelian inheritance rules remain the same. Sandbox offers unrestricted experimentation in a separate save. No difficulty option quietly improves foal genetics.
+
+## A sample session
+
+Open the stable board and find the new foal's arrival waiting. Inspect its markings, choose a name, photograph it beside the mare, and compare the result with the saved breeding forecast. Give an adult horse a short grooming interaction, then enter a barrel event or assign a competent NPC rider. Review an offer from a riding-school customer, choose whether to lease the horse, and use the income to begin a hay plot. Pin the next breeding goal and advance a day.
+
+Another player can spend the same session studying pedigree, testing two horses, and designing a breeding plan without racing. A third can concentrate on competitions while an existing care schedule maintains the stable. Each path must remain economically viable.
+
+## First hour onboarding
+
+Start with a small working stable, adequate supplies, a friendly adult horse, and an adoption choice. Let players rename the stable, choose a palette, and select a beginner horse by personality and appearance. Do not ask them to design every building before meeting a horse.
+
+The tutorial proceeds through a horse interaction, the care board, a short practice activity, an adoption, and a guided breeding forecast. Supply an introductory NPC stud voucher when needed. Explain one simple inheritance question first, such as whether two palominos always produce a palomino. Show the probability before the player commits.
+
+Introduce ordinary calendar advancement through several meaningful small activities. A clearly explained introductory time skip may bring the first foal sooner; it advances the same simulation rather than bypassing the rules. Target a first foal reveal within 30 to 45 minutes of a new player's first session. That is a usability goal to measure, not a promise about the current design.
+
+# 3 Horses adoption and lasting attachment
+
+## Every horse has a durable identity
+
+Store a permanent identifier, name, birth record, parent identifiers, ancestry, phased genome, appearance seed, biological rule version, life stage, inherited aptitudes, training, bond, temperament expression, care state, competition record, photographs, and current home. Names and cosmetics can change. The genome and parentage cannot change through routine editing or loading a save.
+
+Keep genetic potential, learned skill, temporary fitness, and relationship separate. A parent does not transmit its trophies, training levels, or bond with a human. A foal may inherit tendencies without inheriting a finished champion's performance.
+
+## Ways to acquire a horse
+
+Adoption offers adult horses, youngsters, companions, and occasional special cases. Not every adopted horse has a tragic history or a hidden prize. Some owners are relocating; some riding schools need a quieter home; some horses are ready for a different role. Give each a concise story, known care requirements, and a suitability report.
+
+The marketplace offers purchases from NPC breeders and owners. Auctions create occasional excitement, while ordinary listings remain available for a predictable alternative. The stud directory expands breeding possibilities without forcing the player to keep a resident stallion. Breeding produces a new individual within the player's program. Later, limited foster and boarding contracts can introduce horses temporarily.
+
+Do not make adoption animals uniformly weaker or give purchased horses an inherent bonus. Unknown ancestry is uncertainty, not a defect. A rescue with excellent training or a common coat with an unusual useful allele can be a rewarding discovery, but care costs and temperament should be disclosed through the appropriate inspection.
+
+## Useful roles across a lifetime
+
+| Role | Why the player might choose it |
+| --- | --- |
+| Flat racer | Speed, stamina, pacing, and track suitability |
+| Barrel specialist | Acceleration, balance, responsiveness, and consistent turns |
+| Breeding prospect | A useful combination of traits, ancestry, and compatibility |
+| Lesson horse | Calm handling, trust, reliability, and manageable workload |
+| Trail or companion horse | Bond, character, collection, photography, and relaxed play |
+| Leased horse | Earn income or gain outside experience while retaining ownership |
+| Community placement | A suitable new home, a continuing story, and preserved pedigree |
+
+Favorable breeding is not a universal ranking. A spectacular sprinter may be less suited to novice lessons. A calm, ordinary-looking horse can support the whole business. Show these strengths in plain language rather than only displaying one overall star score.
+
+## Space without forced disposal
+
+Separate active stable capacity from lower-cost companion and turnout capacity. Start with a small number of service stalls and an expandable pasture. A horse in companion care remains owned, visible in the album, and returnable to active work. Returning takes an available slot and a disclosed preparation interval, not a payment that effectively holds it hostage.
+
+A breeding command reserves appropriate foaling and later youngster capacity, and forecasts the transition to adult space on day 10. A mare and nursing foal use a designed family space rather than each unexpectedly consuming a full adult slot. Warn before construction, adoption, or scheduling would conflict with those reservations. If an exceptional event creates a capacity problem, provide temporary cooperative boarding instead of deleting a horse or forcing a sale.
+
+Home pasture capacity is finite, while an early permanent cooperative companion pasture provides a guaranteed keep-the-horse option when home expansion is full. Its basic care is covered by the club arrangement. Horses there retain identity, ownership, pedigree, appearance, bond, and records, but do not breed, train, compete, or generate income. They remain visitable and returnable. Recall requires an available home slot; the single disclosed preparation day restores work readiness without erasing learned skill. Distant horses are lightweight records rather than continuously rendered characters. Show aggregate upkeep and care assignments before expanding the active herd.
+
+## Personality and bonding
+
+Use inherited predispositions such as energy, confidence, sensitivity, and sociability alongside learned behavior and context. A sensitive horse can become trustworthy with suitable training. A confident horse can still dislike a particular activity. These are game abstractions, not diagnoses.
+
+Give individual horses a few observable habits: stealing a brush, splashing in the water trough, insisting on inspecting every cone, or politely following the bunny with suspicious interest. Cosmetic quirks should be varied, inexpensive to animate, and not always stat modifiers. Bond unlocks comfort, interaction responses, and handling consistency; it cannot change coat alleles or erase all performance differences.
+
+# 4 The genetics model
+
+## Depth with clear boundaries
+
+Implement a selected, well-documented subset of equine coat genetics alongside an explicitly fictional model for inherited body characteristics, athletic potential, and temperament. The goal is scientifically grounded coat inheritance and strategically rich horse development. Do not describe a few dozen game markers as a complete equine genome.
+
+The simulation has four distinct layers. Genotype is the inherited information. Phenotype is its expressed appearance and supported inherited tendencies. Development contains training, bond, handling experience, and current condition. Cosmetics contain equipment, braids, ribbons, and temporary dirt. Only the first layer is passed through the inheritance engine; the other layers contribute to presentation or play according to their own rules.
+
+## Coat systems and release order
+
+| System | What it contributes | Implementation rule |
+| --- | --- | --- |
+| Extension and Agouti | Chestnut, bay, and black base coats | Start with E/e and A/a. Chestnut can hide Agouti; E/E alone does not guarantee black. [S3] |
+| Cream and Pearl | Dilutions including palomino, buckskin, double cream, and compound cream-pearl | One SLC45A2 state on each homolog. Start N/Cr; add Prl in the first full release. [S4, S5] |
+| Dun | Dilution and primitive markings | Support D, nd1, and nd2 distinctly; a dorsal stripe alone does not prove dun. [S6] |
+| Tobiano | A recognizable white-pattern family | Preserve the supported linked chromosome context and a documented recombination treatment. [S10] |
+| Silver | Lightening of black pigment, including mane and tail | Retain the allele when chestnut masks its coat effect. [S7] |
+| Champagne | Coat dilution plus skin and eye changes | Resolve body, skin, and eyes together. [S8] |
+| Grey | Progressive age-related depigmentation | Preserve base coat; represent the supported N, G2, and G3 states and a versioned age curve. [S9] |
+| Leopard complex and PATN1 | Spotting families and white coverage | Model the interaction; PATN1 alone is not an independent leopard pattern. [S12, S13] |
+| Sabino 1 | One documented route to sabino-like white patterning | Use variant-specific dosage and phased KIT data. Not every sabino-looking horse has SB1. [S14] |
+| Classic roan | White hairs intermingled with the base coat | Label the supported haplotype abstraction accurately; do not invent a universal causal mutation or lethal Rn/Rn rule. [S11] |
+
+The playable slice needs base coats, cream, dun, and a limited inherited shape/aptitude model. Add tobiano when the phase-aware implementation is ready. The first full release should deliver the remaining listed families with tested combinations and actual visual support. A field in a save file does not count as a shipped genetic feature if the horse does not display it correctly.
+
+Additional splash and white variants belong in a later expansion. Splash variants involve more than one gene, so a single universal independent Splash switch would be misleading. [S15] Do not populate the live catalog with unreviewed combinations simply because the shader can draw them.
+
+## Sparse phased chromosomes
+
+Each modeled region stores two inherited chromosome copies, including which supported variants arrived together. Meiosis creates one gamete from each parent, with recombination operating on reviewed blocks. The result is a foal with one maternal and one paternal copy of each supported region.
+
+The variant catalog records the gene or associated region, supported states, evidence status, source, last review date, expression rule, compatibility rule, and release status. Evidence status distinguishes established findings, associated haplotypes, uncertain biology, and fictional game traits. Chromosome phase is part of the data contract from the first prototype even when early examples use simple independent loci.
+
+Never roll cream and pearl independently. Never treat every KIT-associated pattern as an unrelated yes/no trait. If a real recombination rate is not established for the intended model, use an explicitly documented game approximation or a conservatively supported haplotype set. A synthetic block is suitable for testing the algorithm; it is not evidence about horses.
+
+For details whose inheritance is incompletely understood, such as some shading, dappling, fine markings, or mane variation, use labeled artistic modifiers. They may be heritable within the game without being advertised as identified real-world genes. Individual pattern boundaries can vary through a fixed expression seed while the supported pattern family remains recognizable.
+
+## Three exact teaching examples
+
+All examples below assume the specified parents have confirmed genotypes and every unlisted dilution, white-pattern modifier, and grey allele is absent. The results concern phenotype classes, not an exact shade or exact patch outline.
+
+| Pairing | Expected offspring |
+| --- | --- |
+| Two bays, each E/e and A/a | 9/16 bay, 3/16 black, and 4/16 chestnut |
+| Two palominos, each e/e and Cr/N | 25 percent chestnut, 50 percent palomino, and 25 percent cremello |
+| Chestnut-base Cr/Prl paired with chestnut-base N/Prl | 25 percent Cr/N palomino, 25 percent Cr/Prl cream-pearl, 25 percent N/Prl chestnut carrying pearl, and 25 percent Prl/Prl pearl dilute |
+
+These are applications of the supported inheritance rules, not promises based only on what the parents look like. [S3, S4, S5] The first example is especially useful for teaching that two bay horses can produce a chestnut. The second makes breeding immediately interesting without requiring a long genetics lecture.
+
+## Athletic and temperament inheritance
+
+Begin with 24 to 48 virtual inherited markers in a modest number of recombining blocks. Prefix fictional markers clearly in the data, such as game_stamina_01. Their numerical effects are game design, not identified real equine gene effects.
+
+Resolve them into a bounded set of traits: acceleration, sustained speed, endurance, balance, turn response, power, sensitivity, composure, and sociability. Body features such as height, chest breadth, body length, neck profile, and musculature also need plausible ranges. Keep the shapes supported by the actual horse asset; arbitrary morph combinations must not produce broken anatomy.
+
+Use several effects per marker and some tradeoffs rather than one recessive super-speed allele. Finite allele contributions, trait ceilings, course differences, and training specialization prevent endless inflation. Recombination can produce a foal whose latent suitability exceeds either parent's observed performance, without granting a generation bonus.
+
+Genetic potential is fixed at conception. Training develops usable ability and consistency. Current care and fitness affect readiness. Rider decisions affect execution. A prototype weighting can give inherited suitability and developed skill comparable importance, with handling and current state accounting for the remaining influence; tune these per discipline after tests. Do not substitute one opaque weighted score for the actual race controller.
+
+## Breed ancestry and individuality
+
+Maintain breed ancestry separately from coat, body preset, and pedigree. Founder ancestry records define game lineage percentages; those percentages are not a real genetic breed test. Crosses inherit supported body characteristics rather than abruptly becoming whichever parent's breed has the higher tier.
+
+Start with two compatible adult body families and four visibly distinct breed-inspired presets, such as refined racing, compact stock-horse, refined endurance, and cob-influenced types. Exact real breed names and conformational standards can be added after the visual review. Do not promise miniature ponies, heavy drafts, and every warmblood variation through one untested skeleton.
+
+## Diversity and relatedness
+
+Store the whole pedigree graph even when the screen displays only five generations. Calculate kinship from the recorded parents and founder assumptions. The offspring's pedigree inbreeding coefficient is the kinship of its parents. A child's kinship with an earlier individual is the average of the two parents' kinships with that individual. Self-kinship is one half of one plus that individual's inbreeding coefficient. [S16]
+
+With unrelated, non-inbred founders, the fixture values are zero for unrelated parents, 0.25 for full siblings or parent-offspring, 0.125 for half siblings, and 0.0625 for first cousins. These synthetic examples test the graph calculation. They do not justify calling a horse a percentage defective.
+
+Distinguish pedigree inbreeding, diversity at the limited modeled markers, and unknown records. An unknown pedigree is not proof of zero relatedness. Show shared ancestors and confidence in the records, recommend compatible outcrosses, and keep diverse NPC founder stock available throughout progression. Do not add arbitrary deformities or a blanket quality penalty.
+
+## Health treatment and cozy tone
+
+Default play excludes fatal births, pregnancy loss, surprise disease, and compulsory euthanasia. The biological catalog can acknowledge associations the game does not simulate, including those documented for silver, grey, and leopard complex, without turning the main loop into a veterinary survival game. [S7, S9, S12]
+
+If a later supported variant has a known serious nonviable combination, check the pairing before charging and suggest a compatible alternative. Provide any required screening within that feature's service flow. Do not secretly reroll affected offspring while showing the original probability distribution. Keep complex clinical variants out of the first release until the rules, explanation, and presentation have been reviewed together.
+
+# 5 Breeding as the central activity
+
+## The breeding planner
+
+Open the planner from any eligible horse and choose a goal: a preferred appearance, a barrel prospect, a distance racer, a calmer family horse, a line-preservation project, or an outcross. Allow two goals with adjustable emphasis. The planner ranks compatible mates against those goals, without declaring one universal best horse.
+
+Show four primary panels: possible appearances, likely aptitude profile, ancestry compatibility, and the stable commitment. Keep both parents visible as actual rendered horses. The player can compare two or three mates, pin a favorite, inspect known offspring, and revisit the plan later.
+
+The simple view uses plain descriptions such as Can produce palomino or Strong turning prospects. The detailed view shows genotypes, distributions, parent-origin blocks, pedigree, and the reason a result is possible. Advanced detail should reward curiosity without being a prerequisite for a first breeding.
+
+## Honest forecasts
+
+DNA testing reveals an already-existing genotype. It never rerolls an animal or upgrades its genes. If an adoption candidate has unknown alleles, display conditional possibilities or a labeled probability range. Do not assume every hidden genotype is equally likely. Any population prior used for an estimate must be explicit and versioned.
+
+For simple confirmed crosses, enumerate outcomes exactly. For complex linked or polygenic cases, use the same gamete and expression code with an isolated forecast random stream, then report the estimated distribution and its uncertainty. A displayed zero must mean impossible under the model, not merely absent from a small sample. Report very rare unsampled outcomes as unresolved or below the estimate's reliable range.
+
+Preview cards are representative possibilities. Label them Example foal and show a separate adult-appearance estimate. The exact future animal is committed only when breeding is confirmed. A grey foal's later appearance can be demonstrated with an age slider without implying its base coat disappears from inheritance.
+
+## Commit once and preserve the result
+
+Confirmation validates reproductive eligibility, recovery, compatible services, available funds, and capacity through the adult transition. Record parent identifiers and genotype hashes, chosen gametes, offspring genome, appearance seed, fixed developmental factors, conception date, expected birth, rule versions, and the reservation in one transaction.
+
+The pregnancy now contains the future horse and its permanent identity. Opening menus, changing a name, loading a save, visiting the market, or altering a hairstyle cannot change its genome. Birth activates and displays that already committed horse exactly once. It does not create a second identity, generate new genetics, or sample new markings. A late content patch must not silently replace the result with a newly generated foal.
+
+## Anticipation and the reveal
+
+Offer brief optional preparations: choose a blanket, decorate the foaling space, create a family name list, and invite a stable friend. These provide ownership and anticipation without changing genetic odds. The reveal should be warm and concise, with the mare and foal in the actual game world.
+
+Allow the player to orbit the camera, inspect both sides, name the foal, see inherited features, and save a photo with its parents. A short explanation can read: Her coat expresses one cream allele; the family tree shows where it came from. Only display statements actually supported by this foal's resolver output.
+
+The journal preserves the plan, the possible outcomes, and what happened. Multi-generation projects can show progress toward a chosen combination without demanding that the player discard an imperfect result. A family scrapbook, coat collection, breeding-program trophies, and lineage showcases provide goals independent of top racing performance.
+
+# 6 Care staff and training
+
+## Care should become a good routine
+
+Maintain a few understandable management states: nutrition plan, turnout and social needs, cleanliness, fatigue, and comfort. Avoid a wall of rapidly decaying meters. The stable board assigns feeding, bedding, turnout, and ordinary grooming in batches. An early stablehand handles the schedule, with costs included in the operating forecast.
+
+Manual feeding, brushing, washing, mane styling, and paddock visits add tactile pleasure and bond. A player who prefers breeding analysis can delegate routine care and remain successful. Hand interaction should provide a modest relationship benefit or a pleasant reaction, not a huge hidden genetic or competition advantage.
+
+Daily plans use workload limits and compatibility rules. A recovering mare is not entered in a strenuous event. A lesson horse needs an appropriate temperament and a rest allocation. Staff capacity and facilities determine how many simultaneous assignments the estate can support. The UI explains each conflict in terms of the actual horse and schedule.
+
+## Training develops the horse you have
+
+Separate permanent learned skill from temporary fitness. Use training focuses such as sprint starts, sustained pace, turning balance, handling confidence, and responsiveness. Early sessions reveal aptitude and give visible progress. Later sessions improve consistency and discipline technique with diminishing returns.
+
+Allow an automated training plan after the player understands the first example. Practice facilities improve available exercises, scheduling, or reliability. They do not create new alleles or raise every horse's latent ceiling. A trainer can suggest a different discipline when the horse's development indicates a better fit.
+
+Use a small number of staff specialties: care, training, breeding assistance, and visitor services. Skills improve through work or hiring; staff do not need separate hunger, housing, or family simulations. A single person can cover several duties in a small stable. Later staffing makes a larger operation easier to manage.
+
+# 7 Building the stable farm and village
+
+## An editable estate and a compact town
+
+Build the property as a manageable 3D estate with expansion plots, walkable paths, fences, paddocks, barns, and decorative zones. The camera offers a comfortable build overview and a closer horse-level view. The town is a small authored hub or map with identifiable destinations, not a second city simulator competing with horse care.
+
+Use building footprints and functional attachment points. Placement previews show entrances, paths, occupied space, operating cost, and the change in capacity or production. Allow rotation, move mode, undo, and a clear refund policy. Validate access when the player confirms a change, rather than forcing players to discover stranded staff later.
+
+| Building | Main benefit | Constraint or tradeoff |
+| --- | --- | --- |
+| Barn extension | More active service stalls | Land, daily operating cost, and staff coverage |
+| Foaling suite | Dedicated family space and better planning tools | Limits simultaneous breeding throughput |
+| Paddock | Turnout and social grouping | Space and convenient gate access |
+| Hay plot | Replaces some purchased forage | Seasonal yield, area, handling, and own-herd demand |
+| Feed storage | Holds more forage and buffers supply | Capital cost and footprint |
+| Practice arena | Turning and handling exercises | Scheduling and space |
+| Training lane | Race conditioning choices | Footprint and maintenance |
+| Tack studio | Styling, equipment organization, and cosmetics | Primarily discretionary spending |
+| Visitor pavilion | Lessons and stable-visit services | Suitable horses, staff, and limited bookings |
+| Photo garden | Attractive pictures and social objectives | Decoration and collection value |
+
+The starter hay plot should be useful early. As a tuning example, a 280-coin plot that replaces 12 coins of purchased feed per day and costs 2 per day to maintain saves 10 daily, paying back in 28 game days before construction delay or seasonal variation. This differs deliberately from a late-game agricultural business: its main role is supporting the herd. Limit automatic surplus exports so farming does not eclipse breeding and horses.
+
+Add a few town projects with visible benefits: repair the club practice ring, expand the adoption center, improve the fairground, or sponsor a community showcase. These unlock services, destinations, and cosmetic themes. Offer western, cottage-garden, pastel sport, and rustic floral decoration sets that remain visually compatible.
+
+## Construction and care continuity
+
+Preview a building's daily effect before purchase. Construction uses game days, not real waiting. A move should not invalidate an existing breeding reservation or strand a horse. Keep affected care assignments active through a safe temporary arrangement, or explain the alternative before the placement is committed.
+
+Use seasonal crops and simple processing only where they improve a horse decision. Hay, oats, and a small treat garden are sufficient initially. Do not add a deep manufacturing chain, dozens of fertilizer types, or permanent crop failures before the stable loop works.
+
+# 8 The marketplace and economy
+
+## Five useful market channels
+
+The adoption club provides approachable horses with histories, trial visits, and a transparent rehoming route. Private listings support direct purchases from recognizable owners. A stud directory supplies genetic diversity and service bookings. Auctions add occasional excitement. Commissions give the breeding program concrete requests from lesson barns, competitors, collectors, and trail operators.
+
+Every listing uses the actual horse record and presenter. Show price, owner, life stage, public pedigree, disclosed DNA results, learned skills, current readiness, temperament observations, and relevant restrictions. Players can inspect a listing, compare it with an owned horse, bookmark it, or commission a test. Market refreshes change inventory intentionally; they do not quietly reroll a viewed animal.
+
+Auctions include a preview period, a spending limit, optional automatic bidding, a visible transaction total, and a straightforward win/loss report. NPC bidders have budgets and interests. Auction theatre must not make the player exceed a stated maximum or buy through an ambiguous button.
+
+Stud listings show the sire's actual record, previous offspring examples, availability, fees, and compatible breeding forecasts. The owner keeps the mare. A service purchases a booking under disclosed rules, not a guaranteed coat or race winner. Later player trading can reuse these contracts only after authoritative online ownership is designed.
+
+## Why a buyer wants a horse
+
+NPC buyers evaluate suitability, not just rarity. A beginner school values reliable handling; a barrel rider values turns and responsiveness; a racing stable values its intended event profile; a collector may prefer a coat and family story. Training, verified information, results, appearance preference, and fit can affect offers. Generation number is never a price multiplier.
+
+Buyer budgets and demand are finite per game week. Show active demand and an estimated price range before the player breeds for a commission. No harsh deadline should make a low-probability color objective feel like a breeding slot machine. Contracts may accept a range of suitable horses, have rolling windows, or allow a fair cancellation before work begins.
+
+Leasing offers another income path. The first-release contract accepts nonpregnant adult horses and grants no breeding or subleasing rights. Use a seven-day default with a locked, disclosed daily fee paid once at End Day for completed service. The NPC institution covers ordinary care during the lease. The player may recall the horse at the next End Day and receives payment for completed service days. Ownership remains with the player, and return goes to an available home slot or guaranteed cooperative companion care. Forecast that return before accepting the contract. A leased horse cannot simultaneously earn local lesson income, compete for the owner, or fulfill a conflicting stud booking.
+
+## One earned currency and clear books
+
+Use integer coins and a visible ledger. Reliable club work and visitor services cover an appropriately sized stable's ordinary care. Competitions, trained-horse sales, leases, and suitable stud requests fund expansion. Decorations and elective facilities provide lasting uses for money without requiring breeding consumables purchased with real money.
+
+The following example uses six active owned horses. It demonstrates a viable keep-your-horses route; it is not a final balance sheet.
+
+| Seven-day item | Calculation | Coins |
+| --- | --- | --- |
+| Feed | 6 horses x 6 per day x 7 days | -252 |
+| Shared operations | 24 per day x 7 days | -168 |
+| Basic expenses | Feed plus operations | -420 |
+| Club support arrangement | One recurring service contract | +350 |
+| Two player-led visitor activities | 100 each | +200 |
+| Surplus before optional activities | 550 income less 420 expenses | +130 |
+
+If those two activities are delegated at 70 each, income is 490 and the surplus is 70. Two optional competitions with 25-coin entry fees and gross prizes of 80 and 130 add 160 net, bringing the player-led example to a 290-coin surplus. Poor event results reduce optional income, not the fundamental ability to care for the starter herd.
+
+Recurring club support has a disclosed participation arrangement and booking limit. Additional active horses increase costs; the interface must show when the selected contract and workload no longer support the larger roster. Companion cooperative care remains available so the player can reduce active overhead without losing ownership. Fast-forwarding an efficiently managed stable is allowed, but reputation milestones still require actual achievements rather than elapsed time alone.
+
+## Breeding can be a business without becoming a money printer
+
+An illustrative external stud fee of 350, an optional 80-coin information test, 70 of foaling supplies, and 36 of incremental young-horse upkeep produce a 536-coin marginal cost through adulthood. The six upkeep days are the three foal and three youngster days; the mare's ordinary feed is already in the operating budget.
+
+An untrained adult prospect might receive offers of 380 to 520. Four further days of training costing 120 plus 24 of additional upkeep bring marginal investment to 680. A buyer who values the developed horse might offer 750 to 900, leaving 70 to 220 before allocating the mare's maintenance, infrastructure, and opportunity cost. The player can also keep that horse indefinitely.
+
+This example makes indiscriminate volume less reliable than thoughtful breeding and development. It must not become a universal penalty on every foal or a guarantee that training always produces a profitable sale. Prices come from demand, record, and suitability within understandable ranges.
+
+Prevent nominal-fee adoption followed by immediate commercial resale through a clearly disclosed club rehoming arrangement. Provide a kind return option and explain any restriction before adoption. Where breeding is permitted, mature offspring can enter the ordinary market. Do not spring hidden restrictions on the player after bonding.
+
+## Failure states and economic integrity
+
+At zero coins, basic welfare receives temporary club assistance and free recovery work remains available. Pause new discretionary purchases and unaffordable matings. Do not starve, confiscate, auto-sell, or delete horses. The purpose of the economy is to structure choices, not punish returning players.
+
+Prevent duplication and arbitrage through shared ownership, demand, and transaction services. A horse is sold once, a birth occurs once, and an event reward is paid once. Related NPC outlets do not offer an unlimited buy-low/sell-high loop. Stud and lease demand are capped by actual bookings and workload. Do not invent a hidden market crash simply to erase successful play.
+
+# 9 Racing competitions and everyday activities
+
+## Two substantial sports in the first release
+
+Flat racing and barrel racing are required first-release features. Both need playable controls, meaningful horse traits, appropriate training, readable rules, competition progression, feedback, and a management participation option. A result screen with a running animation behind it does not satisfy the racing requirement.
+
+Show jumping is the first candidate for an additional major discipline after both primary sports pass their gates. Trail obstacles, handling exercises, grooming, photography, and low-stakes club shows can provide variety by reusing existing spaces and systems. Advanced dressage and several independent riding physics models are later work.
+
+## Flat racing
+
+Begin with one oval course, eight horses, and two distance classes. Build manual steering or lateral positioning, pace control, stamina management, an acceleration decision, readable rival movement, and a real finish. Acceleration, sustained speed, endurance, current fitness, learned race skill, and route choices should all matter in explainable ways.
+
+A player who starts too quickly should risk tiring before the finish. A horse bred for endurance should gain relative value over a longer distance. Good positioning should reduce unnecessary travel or obstruction. Keep collision response forgiving and prevent pileups from dominating a cozy horse game. Use readable spatial interactions before attempting a full contact-sports physics simulation.
+
+Offer Ride, Watch and Coach, and Delegate. Ride accepts player controls. Watch and Coach uses an AI rider with occasional strategy instructions. Delegate advances the same competition model efficiently with a competent rider. All modes consume the same horse record, event conditions, rules, and reward table. No mode receives a hidden genetic multiplier or artificial statistical punishment.
+
+Manual input must change the race as it happens. A preselected winner followed by decorative steering is unacceptable. Each entry freezes the authoritative starting state of its participants, including applicable traits, developed skills, readiness, and equipment effects, plus event configuration and rules/AI versions. A replay uses those snapshots, the seed, and recorded controls rather than rereading mutable current horse records. Explain the largest contributors afterward: pacing, distance suitability, conditioning, positioning, and execution. Do not manufacture a confident causal story unrelated to the recorded simulation.
+
+## Barrel racing
+
+Use a clearly marked three-barrel cloverleaf course with introductory assistance and increasingly demanding layouts. Support responsive steering, approach speed, turn setup, balance through the arc, and acceleration on exit. The camera should show the upcoming barrel and line rather than hiding the next decision behind the horse.
+
+Measure actual travel and course completion. Validate required approach and turn gates, finish-line crossing, and penalties in the same rule engine for manual and delegated rides. Offer mirrored starting directions where the course allows them. A ghost route and turn guidance are optional learning aids.
+
+For the initial house rules, a knocked barrel adds five seconds and a skipped or incorrect pattern invalidates the competitive run. Display these as the game's event rules, not as a claim to reproduce every association's rulebook. Practice provides clear corrections and immediate retry. A toppled barrel can bounce gently with a small flower-puff effect; competition feedback remains readable.
+
+Test that acceleration, turning response, and balance affect a barrel result while a flat-racing specialist remains viable in easier classes. Course geometry should reward different lines and handling decisions, not just the highest top speed. Provide useful handling assistance without steering the horse through an invisible scripted route.
+
+## Progression and rewards
+
+Use club, county, regional, and championship divisions as an initial progression framework. Qualification can combine placings, reliability, and completed events. Offer novice, open, and specialty classes so a well-loved horse still has appropriate activities. Display eligibility before the player pays an entry fee, and preserve casual practice if a horse advances beyond a formal class.
+
+Rewards include coins, ribbons, stable displays, rosettes, decorative themes, invitations, useful service discounts, and journal milestones. Coat beauty does not add athletic speed. A presentation show may evaluate grooming and player-chosen aesthetic goals under transparent rules, but it should not imply a rare coat is biologically superior.
+
+Named NPC stables create a gentle rivalry. A rival might favor speed, another reliable turning, another unusual but well-matched pedigrees. Their needs and improvements give the market character. Use authored milestones and controlled simulation rather than dynamically generating a new unbeatable opponent every time the player improves.
+
+## Relaxed activities
+
+Provide trail rides with photo spots, treasure ribbons, harmless obstacle courses, grooming interactions, foal handling, leading practice, treat puzzles, and seasonal club events. Horse temperament can affect reactions, but activities should accommodate different horses. Show an energetic youngster learning confidence rather than treating sensitivity as permanent failure.
+
+These activities produce modest relationship, practice, or club rewards within the daily plan. Repetition beyond the reward limit remains available for enjoyment. The bunny can host a silly ribbon hunt; the horses should continue to behave and move like horses.
+
+# 10 Horse visuals and the 3D production pipeline
+
+## Visual hierarchy
+
+Make the horses believable and the world adorable. Keep equine head proportions, eyes, muzzles, ears, joints, hooves, musculature, and foal proportions plausible. Warmth can come from soft lighting, expressive ears, natural eyes, attractive coats, and relaxed poses. Avoid oversized toy eyes, rubber legs, or uniformly miniature adults used as foals.
+
+Use blush, lavender, buttercream, sage, and sky blue for buildings and accessories, with natural horse colors. Soft shadows and restrained sheen should reveal coat detail. Reserve deep plum or charcoal for readable UI text. Validate black, bay, chestnut, cream, and pale patterns in neutral lighting so the pastel environment does not erase their differences.
+
+The concept image accompanying this workflow establishes mood and relative visual priority. Production acceptance requires actual engine assets. A beautiful generated image cannot prove topology, skin weights, tack fit, UV seams, or performance.
+
+## Build the first excellent horse before the catalog
+
+First create a reference set with adult side, front, rear, and three-quarter views, a foal reference, a neutral material view, and a small stable vignette. Next produce a real adult mesh with UVs, a horse skeleton, materials, and bounded body variations. Import it into the game renderer and inspect it from every angle at the intended player camera distance.
+
+Test the face, legs, hooves, neck, mane, tail, and back under a few basic poses before locking the base. Unity treats quadrupeds as Generic rigs; do not assume its Humanoid retargeting path will animate a horse. [S17] Validate deformation early even while the full animation library remains small.
+
+Only after the base passes should workers expand coat families, body presets, tack, and decorative content. An extra hundred textures do not compensate for an unattractive head or broken hind legs. If the initial horse fails the visual gate, revise its source asset before proceeding with mass production. Check material compatibility during export, and bake unsupported procedural effects or rebuild them in the game renderer; source-authoring nodes are not automatically runtime materials. [S23]
+
+## Shared horse asset contract
+
+| Area | Initial contract |
+| --- | --- |
+| Units and orientation | One runtime unit is one meter; one tested export preset; Unity runtime +Y up and +Z forward |
+| Origin | Ground-level root placed consistently beneath the horse |
+| Skeleton | Versioned horse bone map, attachment sockets, and supported animation set |
+| Mesh | Stable topology and vertex order within each morph-compatible family |
+| UVs | Versioned layout with distinct left and right regions for asymmetric markings |
+| Morphs | Named, bounded controls for supported body proportions |
+| Coat | Engine-native layers for pigment, dilution, white masks, age expression, skin, eyes, and hair |
+| Presentation overlays | Separate dirt, sweat, grooming shine, and decorative layers |
+| Tack | Validated fit profiles and corrective shapes for supported body ranges |
+| Foal | Authored juvenile proportions with appropriate rig and movement |
+| Delivery | Editable source, engine export, textures, manifest, import setup, and in-engine proof |
+
+Blender shape keys store vertex positions, so topology stability matters when producing a family of morph-compatible horses. [S22] Preserve the agreed skeleton, UV version, shape names, and material inputs. Changing these is a versioned integration change, not a casual art cleanup.
+
+A shared logical skeleton vocabulary does not guarantee one physical rig works for every size. Use separately validated body families for large proportional differences. Start with two adult families, then four distinct presets within their supported ranges. A foal can share some conventions while still requiring age-appropriate proportions and an adjusted animation solution.
+
+## Coat generation and visual identity
+
+The phenotype resolver outputs a semantic visual descriptor: base pigments, region masks, dilution response, pattern family and parameters, grey progression, skin and eye treatment, mane/tail pigment, body family, and morph weights. The horse presenter applies it to the canonical asset. Portraits are captures of the same presenter, not separately generated paintings.
+
+Use fixed individual marking parameters in canonical body coordinates. The foal's blaze and patches grow with the horse rather than being randomly replaced at maturity. Markings must remain consistent across detail levels and morphs. Temporary mud may hide a marking, but it cannot modify the underlying genetic record.
+
+A possible material order is anatomical pigment regions, supported dilution expression, white-pattern masks and individual markings, age-related changes, then temporary presentation overlays. Actual interactions belong in reviewed rules; arbitrary color multiplication can produce incorrect results. Maintain a neutral validation scene containing representative coats and unusual combinations.
+
+## Tack and customization
+
+Offer saddle pads, saddles, bridles, halters, wraps, blankets, mane and tail styling, ribbons, decorative stall plaques, and rider outfits. Fit must survive supported morph extremes and basic movement. A saddle socket provides placement but does not solve blanket intersections or bridle fit across different heads.
+
+Use cosmetic choices freely in ordinary play. A dream-horse creator belongs in Sandbox: it can solve for a compatible supported genotype or explicitly create a non-breeding cosmetic exhibition horse. Do not let arbitrary paint automatically masquerade as inherited genetics or inject unlimited perfect horses into a progression save.
+
+## Initial technical art budgets
+
+| Item | Proposed starting budget |
+| --- | --- |
+| Highest-detail adult body | Approximately 25,000 to 40,000 triangles |
+| Mane and tail together | Approximately 4,000 to 10,000 triangles |
+| Tack | Approximately 3,000 to 8,000 triangles |
+| Mid-distance complete horse | Approximately 15,000 to 25,000 triangles |
+| Distant complete horse | Approximately 4,000 to 8,000 triangles |
+| Baseline body textures | 2K shared texture sources and masks |
+| Inspection scene | One or two featured horses at highest detail |
+| First complete race | Eight horses before testing larger fields |
+
+These are profiling starting points, not hardware promises. Share materials and texture sources; avoid storing several unique large textures for every horse in a large herd. Cache generated portraits and bounded material data where useful. Validate skinned detail levels, not just static screenshots. Unity's LODGroup supports explicit level-of-detail management. [S24]
+
+Target a stable 60 frames per second at a chosen standard quality on the agreed reference desktop, with a usable 30-frame quality mode on a lower target if profiling supports it. Record CPU time, GPU time, memory, animation cost, and worst-case scenes on real hardware. Establish actual minimum specifications after measurements.
+
+## Animation priorities
+
+The first quality gate needs an attractive idle, head/ear response, simple grazing, walk, trot, and an acceptable racing gait. Use clean transitions and coherent ground speed. Test turns and basic tack deformation before generating many variations.
+
+Then add foal interactions, starts and stops, simple grooming responses, and better canter/gallop transitions. Advanced foot placement, complex terrain adaptation, detailed reins, numerous emotes, and elaborate secondary mane motion come later.
+
+Prioritizing horse visuals over perfect animation means reducing the early animation inventory and complexity. It does not mean shipping horses that skate, hover, or bend incorrectly. Store stride/contact metadata and match visual playback to actual movement. The race model owns motion; animation presents it.
+
+# 11 Interface music effects and the bunny
+
+## An approachable interface
+
+Use five primary destinations: Stable, Breeding, Events, Village, and Build. Stable includes horse management, care, training, photographs, and the calendar. Village contains the market, adoption club, services, and town projects. Persistent shortcuts expose coins, active capacity, next milestone, and End Day without adding another full menu layer.
+
+The stable opens as a clear roster or paddock view with each horse's real portrait, name, selected role, readiness, and one useful next action. Allow sorting, favorites, tags, and search. A horse detail page begins with the animal and its everyday needs; Genetics, Pedigree, Training, Wardrobe, and Records are secondary tabs.
+
+The breeding screen keeps both parents, possible outcomes, costs, and the commitment visible together. Expand technical genetics inline, preserve the comparison when opening a pedigree, and explain disabled actions. Avoid forcing the player to remember information across six separate windows.
+
+Primary actions need concise text labels alongside icons. Use ordinary confirmations for selling, committing a breeding, and spending significant coins, showing the actual horse or item and total cost. Provide undo where an action is safely reversible. Repeated low-risk care assignments should not produce a series of modal confirmations.
+
+## Accessibility and comfort
+
+Support remappable controls, controller navigation, readable text scaling, high-contrast text, labeled status icons, color-independent genetic charts, and separate audio controls. Mouse-only management and assisted riding should be viable. Expose camera sensitivity, motion reduction, narrator frequency, subtitles, and particle density.
+
+Avoid very small pastel text, persistent flashing, rapid camera swings, and visual effects that hide a horse's coat. Keep focus visible for controller navigation. Test the first breeding, a purchase, a building placement, and an event entry with both input methods and enlarged text.
+
+## Mallow the stable assistant
+
+Mallow is a tiny, very serious bunny who believes the entire establishment depends on the clipboard. Use short contextual advice, gentle jokes, and occasional physical comedy. Give the bunny broad squash-and-stretch expressions while maintaining a different, believable movement standard for the horses.
+
+Example lines can include: I counted the horses twice. One of them was a hay bale. Or: Excellent pedigree. Questionable table manners. Or, after an ordinary but loved foal: The forecast said chestnut. My forecast said adorable. We were both correct.
+
+Advice must accurately reflect the game state. Mallow never promises an uncertain coat or misstates a hidden genotype. Limit repeats, let players dismiss advice, and use a quiet foal reveal. The assistant should make the game friendlier without becoming a compulsory narrator of every click.
+
+## Music and sound
+
+Use soft acoustic guitar, felt piano, light mallets, gentle strings, and restrained woodwinds for the stable. A starting musical direction of roughly 70 to 95 beats per minute can guide cozy pieces; race music can add light rhythmic motion without becoming aggressive. Commission or create original, loopable music with consistent instrumentation and clean endings.
+
+Deliver separate stems where practical for stable calm, market bustle, anticipation, and competition. Crossfade smoothly between states and duck music under short speech. Provide enough variation and ambient rests that a long breeding session does not expose a tiny repetitive loop. The music system must work without an online generator.
+
+Hooves change naturally with surface; brushes, soft snorts, tack movement, birds, and stable ambience make the animals feel present. Avoid constant loud whinnies. Use short optional voice barks or character sounds for Mallow, with written text carrying the complete meaning and a mute option.
+
+## Effects with purpose
+
+Small hearts can acknowledge a bonding milestone, soft sparkles can mark grooming completion, a flower puff can signal a clean practice turn, and ribbons or confetti can celebrate a placing. Foal reveals deserve warm light and a restrained musical cue. Effects should correspond to a real result and fade quickly.
+
+Provide a clean inspection mode with neutral lighting and no celebratory particles. When the player is evaluating genetics, the coat needs to be visible. Readability takes priority over making every button explode into glitter.
+
+# 12 Technical architecture and persistence
+
+## Recommended starting stack
+
+Use a supported Unity 6 LTS release, URP, C#, and Blender for the default PC/Mac plan. Verify and pin the exact supported editor, rendering packages, and build tool versions when implementation begins. Unity documents Generic rigs, imported blend shapes, and URP as the relevant building blocks. [S17, S18, S19]
+
+Godot is a credible alternative if the initial asset proof or project preferences favor it; its documentation recommends glTF for 3D import and its license is MIT. [S20, S21] Make that decision at the initial project gate. Do not maintain parallel full games in two engines. A browser prototype is justified only if it answers a specific unresolved interface or design question.
+
+No cloud language model is required during normal play. Inheritance, prices, purchases, ownership, competitions, and narration choices run through code and authored data. Development models help produce the game. Optional future generated dialogue must be unable to alter canonical horse records or transactions.
+
+## Separate simulation from presentation
+
+| Module | Owns | Does not own |
+| --- | --- | --- |
+| Domain | Horses, genetics, pedigree, calendar, training, economy, and competition rules | Unity scenes, materials, input devices, or UI widgets |
+| Application services | Commands, validation, transactions, forecasts, and orchestration | Independent alternative genetics or price truth |
+| Data | Versioned catalogs, balance, dialogue, events, and progression | Mutable player ownership hidden in content assets |
+| Infrastructure | Save storage, migrations, backups, import/export, and platform adapters | Gameplay decisions invented during file writes |
+| Presentation | Horse rendering, menus, controls, animation, audio, effects, and scene state | Rewriting inherited information to match a visual shortcut |
+
+Keep the domain in a pure C# assembly that can run tests without opening the engine. Expose explicit commands such as AdoptHorse, CommitBreeding, AdvanceDay, AssignTraining, PurchaseListing, ResolveEvent, and PlaceBuilding. Each validates its preconditions and produces named state changes for the interface to display.
+
+Use immutable identifiers for horses, conception events, market listings, competition entries, and transactions. Money is integer coins. UI availability checks are helpful, but command validation is authoritative. A second click must not create a second foal, sell the same horse twice, or award the same ribbon twice.
+
+## Core contracts
+
+HorseRecord keeps identity, pedigree, phased genome, fixed developmental factors, appearance seed, rule versions, mutable learned state, life stage, care, cosmetics, and ownership. VariantCatalogRecord documents the supported inheritance and expression rules. Phenotype describes the resolved state. HorseVisualDescriptor is the engine-facing rendering recipe.
+
+BreedingForecast distinguishes exact versus estimated results, confirmed versus unknown parental information, hypothetical scenarios, and representative images. BreedingCommit stores the actual conception result and capacity reservation. RaceEntrySnapshot freezes event inputs, and InstitutionalLease fixes the service and return terms. SaveHeader stores format, content, rules, and random-generator versions. The handoff package includes a declarative contract catalog; implementation must turn it into real validated types and migrations.
+
+Do not confuse player knowledge with world truth. An untested allele exists in the simulation even when the player cannot see it. Market estimates and genetic forecasts must use the correct knowledge scope. A hypothetical sandbox parent cannot leak into an actual mating command.
+
+## Randomness and repeatability
+
+A successful breeding commitment consumes one authoritative breeding event seed. Gametes, fixed developmental factors, and the offspring's permanent appearance seed derive reproducibly from that event using documented purpose labels. Forecast sampling, cosmetics, NPC/world generation, and competitions cannot advance the breeding stream. Name and version the generator and derivation algorithms. Persist conception outputs and important generated entities rather than depending on the order in which menus were opened.
+
+Use the same meiosis and phenotype functions for forecasting and real births. Forecast sampling gets its own stream and cannot advance the conception stream. Randomized pattern geometry is a fixed attribute of the horse. Cosmetic screen effects can use independent disposable randomness.
+
+Competitions run at a fixed simulation step, initially 60 ticks per second, with stable participant ordering and explicit input commands. Prefer a reproducible kinematic course model for the first implementation. Engine physics can support presentation, but it should not secretly decide authoritative finish order differently on each platform.
+
+For exact cross-platform replays, use appropriately bounded integer or fixed-point state where feasible, specify rounding, and test the actual target builds. Do not claim ordinary engine floating-point physics is automatically bit-identical across machines. Manual, AI, watched, and accelerated delegated races share event rules; fast resolution must either run the same ticks or prove equivalent outputs for recorded inputs.
+
+## Saves and migrations
+
+Save atomically through a temporary file and replace operation, with a last-known-good backup. Record critical commands once, retain transaction identifiers, and prevent half-saved purchases or partially committed pregnancies. Autosave at meaningful boundaries and give the player normal manual slots.
+
+Use versioned migrations and fixture saves from previous versions. Reject an unsupported future save without overwriting it. A schema change cannot silently drop unknown genes, erase pedigree, duplicate money, or create an additional pregnancy. Store a compact integrity hash for diagnosis; do not mistake a local checksum for online anti-cheat.
+
+Content and rule updates must preserve existing horses. Keep the necessary resolver version or a compatible stored descriptor to retain approved appearance. If a correction changes inheritance for future matings, make an explicit migration decision, explain it, and preserve the historical record. Do not silently recolor a player's favorite horse.
+
+The local marketplace is complete without a server. A future online economy requires authoritative server-generated identities and transactions, replay protection, moderation, recovery, and an explicit policy for local or modified horses. A safe default is separate online-certified horses and exhibition-only local imports. Networking is a later product phase, not a checkbox on the local save system.
+
+# 13 Working with several development models
+
+## One shared plan and one integration owner
+
+Choose one lead model or developer to maintain the accepted design, canonical interfaces, dependency versions, and integrated build. Assign other models bounded tasks with explicit files, inputs, outputs, and acceptance evidence. Models can be swapped as availability or quality changes; the project should not depend on one provider's memory.
+
+The first two productive parallel tracks are horse visual proof and the pure genetics simulation. Both consume an agreed horse identity and appearance contract. UI and economy work follow those interfaces. Competition prototyping can begin in a small test scene while the stable loop is assembled.
+
+Keep the project information in version control: the current design, decisions, contracts, task board, asset registry, validation instructions, and handoffs. Chat history alone is not the project specification. When two documents conflict, the integration owner resolves the conflict once and updates the canonical files.
+
+## Ownership by role
+
+| Role | Main responsibility | Acceptance evidence |
+| --- | --- | --- |
+| Integration lead | Architecture, contracts, save migrations, and merges | A coherent build and documented decisions |
+| Genetics engineer | Inheritance, expression, pedigree, and forecasts | Exact fixtures, invariants, and calibrated estimates |
+| Management engineer | Care, schedules, buildings, economy, and markets | Playable loop and transaction tests |
+| Competition engineer | Controls, race/barrel rules, AI riders, and results | Playable events and reproducible replays |
+| Technical artist | Meshes, rigs, materials, coats, tack, and import | In-engine turntable and deformation proof |
+| Interface and content workers | Specific screens, dialogue, activities, music, and effects | Usable integrated interactions and source assets |
+| Independent reviewer | Cross-system defects, exploits, usability, and visual consistency | Findings with reproduction and severity |
+
+One owner controls shared schemas and migrations. One editor owns each binary Blender source at a time. Use small integration scenes and prefabs to reduce conflicts. Workers should not independently rewrite the master horse, project settings, or currency model while solving an unrelated task.
+
+## The task packet
+
+Every assignment includes its task identifier, branch and base commit, player-visible objective, allowed paths, required contracts, relevant reference assets, constraints, acceptance examples, build/test instructions, and expected handoff. Separate required work from optional suggestions.
+
+A suitable genetics task is: Implement the accepted SLC45A2 inheritance states and phenotype outputs. Preserve phased parent origin. Use the shared meiosis function for exact forecasting and conception. Pass the cream-pearl fixtures. Do not alter horse rendering or economy behavior. Return the changed files, tests, decisions, and remaining limitations.
+
+A suitable art task is: Build the approved adult horse under Horse Asset Contract v1. Deliver editable source, runtime export, UVs, textures, rig, morphs, manifest, a neutral engine turntable, and examples at supported body extremes. Preserve agreed names and scale. Report counts, import warnings, and tack-fit limitations. Concept images alone do not complete the task.
+
+A suitable interface task is: Build the two-parent comparison screen using BreedingForecast. Display confirmed and unknown information differently. Show representative outcomes, cost, recovery, and reserved capacity through adulthood. Preserve comparisons when opening pedigree. Do not add a second genetics calculator.
+
+## Development and review cycle
+
+1. Select the next ready task from the dependency board and give it to one owner.
+2. Create an isolated branch or worktree and confirm the base revision.
+3. Read the task's contracts and relevant code before editing.
+4. Implement the smallest complete player-visible result.
+5. Run meaningful checks and provide the required engine evidence.
+6. Have a different reviewer challenge correctness and scope.
+7. Integrate through the lead, resolve shared changes, and run the affected cross-system checks.
+8. Update the task state, decision log, and handoff with the actual result.
+
+Prefer narrow review questions over asking a reviewer whether everything looks good. Examples include: Can this conception be duplicated after a reload? Does this horse retain its markings in the race scene? Does delegation use the same entry rules? Does a seventh active horse make the promised support contract insolvent?
+
+Do not let many workers edit the same scene, schema, or binary asset at once. More parallel workers help when interfaces and file ownership are clear. They can make the project slower when every worker invents a different horse representation.
+
+## Checkpoints and failure handling
+
+A worker should leave a checkpoint before switching models or ending a long session: current commit, working status, commands run, outputs created, unresolved errors, and the next concrete step. If a model becomes unavailable, reassign that bounded task with the checkpoint. Do not restart the whole game or silently switch to a paid external service.
+
+Use only project context intentionally provided in the approved development environment. Do not send project prompts, files, code, or assets to any outside provider without the owner's specific instruction covering the destination and content. Do not forward private chats, credentials, unrelated repositories, personal information, or client material. Keep secrets out of prompts, asset manifests, and logs. A difficult task does not authorize publishing, deploying, purchasing assets, or changing services.
+
+## The first implementation instruction
+
+Start with the foundation and proof phases in the task board. Inspect the repository and its existing instructions, then establish a pinned project, pure domain tests, shared horse contracts, and the smallest engine horse viewer. Run visual proof and genetics proof in parallel after the contracts are accepted. Finish with one committed mating, one correctly rendered foal, and a save that preserves it. Leave later market depth, town expansion, and full competition content for their dependent phases.
+
+Do not interpret this workflow as evidence that a game, model, or feature already exists. Every task begins proposed or pending, and becomes complete only with the required files and validation evidence.
+
+# 14 Roadmap and release gates
+
+## Phase 0 Foundations
+
+Confirm the desktop-first target, supported engine version, repository layout, source-control conventions, horse data contract, art references, and ownership of shared files. Set up actual PC and Mac build checks. Create the domain test harness, asset registry, decision log, and a small review scene. Agree which rules are biological, approximate, or fictional game rules.
+
+Exit gate: a new worker can obtain the project, build the empty application, run domain checks, and understand where the horse record and source assets live. The platform and asset-import choice is concrete. No one has begun a separate incompatible version of the game.
+
+## Phase 1 Horse and genetics proof
+
+Run two tracks after the interfaces are agreed. The visual track delivers the first adult horse, a foal shape, neutral lighting, a few coats, a small body range, and minimum deformation/movement checks. The simulation track delivers sparse phased inheritance, base coats and cream/dun, phenotype resolution, pedigree, committed conception, and save/load.
+
+Connect those tracks through the shared visual descriptor. Use exact crosses and known visual fixtures. The horse must retain its identity between the viewer, a thumbnail, and the stable test scene. A random screen effect must not alter a breeding result.
+
+Exit gate: one attractive adult and foal work in the real renderer; one mating yields a biologically supported visible outcome; loading the save preserves it; core probability and inheritance tests pass. This is the most important early viability gate.
+
+## Phase 2 A complete stable session
+
+Build a small attractive estate supporting four to six active horses, adoption, outside stud options, the breeding planner, arrival and development of a foal, basic care, a simple income activity, and a readable daily forecast. Include a small playable barrel exercise, a basic watchable race simulation, one useful farm improvement, and a barn upgrade. Add Mallow's onboarding, simple music, and local transactions.
+
+Exit gate: an unfamiliar player completes a satisfying 15 to 25 minute session containing a herd decision, an activity, and a visible longer-term consequence. A new player reaches the first foal within the onboarding target. A management-led approach can fund ordinary care, and capacity transitions are clear. The save survives interruption at a purchase, conception, birth, and event settlement.
+
+## Phase 3 Management and market depth
+
+Expand the complete NPC market: private listings, adoption, stud booking, bounded auctions, buyer requests, and a limited institutional lease. Add shared demand, transaction integrity, more useful buildings, staffing schedules, cooperative companion care, and persistent named NPC stables. Test no-sale, adoption-first, breeding-business, and service-focused paths.
+
+Exit gate: each channel has a distinct purpose; transactions preserve horse identity; increasing the active herd has understandable costs; no forced-sale dead end exists; breeding volume alone is not a guaranteed infinite-profit strategy. A feed plot provides a visible benefit within the intended early progression.
+
+## Phase 4 Complete flat racing and barrels
+
+Finish active flat-racing controls, rivals, pacing and stamina, the barrel controller and course gates, competition AI, and the common result system. Add divisions, qualification, results explanations, rewards, replay evidence, and the Ride/Watch/Delegate options. Improve locomotion and camera behavior where needed to make actual play feel convincing.
+
+Exit gate: manual inputs affect results; inherited suitability and learned skill matter in demonstrable ways; a racer and a barrel specialist perform differently on the appropriate tests; delegation remains a viable management path; saved entries cannot pay twice. The actual PC and Mac builds pass a representative race and barrel event.
+
+## Phase 5 Complete the first release
+
+Finish the accepted genetic catalog and its actual visual expressions, the second adult body family and four starting presets, appropriate foal variants, useful tack, cosmetic themes, seasonal presentation, authored NPC goals, UI accessibility, music variation, and reduced-effects options. Add migration fixtures and backups, then run long-term economy and breeding scenarios.
+
+Release requires two polished sports, a complete breeding/stable loop, all promised first-release coat families, a useful NPC marketplace, building progression, and an ending or milestone structure that leaves ongoing play available. If the team cannot meet a promised family or discipline, revise the public scope before release rather than presenting dormant fields as finished features.
+
+Use a premium complete-game format as the starting commercial assumption. Cosmetic or content expansions may follow. Paid genetic rerolls, purchasable competitive advantages, and real-time breeding skips conflict with this design. Pricing, storefront dates, and sales projections require a separate plan based on the actual game and current market evidence.
+
+## Phase 6 Optional expansion
+
+Consider show jumping, additional breed/body families, extra genetic variants, expanded trails, richer town projects, community horse shows, and asynchronous player services. Evaluate online trading separately from synchronous multiplayer riding. A market can need authoritative ownership and recovery even if players never occupy the same scene.
+
+Before online development, define server authority, the fate of local and modified horses, moderation, personal-data boundaries, exploit response, backups, transaction recovery, and operating costs. Do not import a local progression save as trusted competitive inventory. Additional platforms require their own input, performance, and asset checks.
+
+## Scheduling by evidence
+
+The main bottlenecks are horse quality, responsive competition play, and integration. Measure how long the team takes to complete the first accepted horse, the full breeding slice, and one polished event. Use that actual throughput to schedule the rest. Generating many assets or large code patches quickly does not establish that they will integrate correctly.
+
+The task board contains 40 proposed tasks, of which 36 belong to the required production plan and four are deferred. Dependencies are explicit so independent tasks can proceed together. A phase number indicates the main integration milestone; early prototype work for later systems can happen sooner in a small test scene.
+
+# 15 Validation that protects the game
+
+## Genetics and identity
+
+Pass exact simple crosses, total probability checks, parental allele tracing, shared cream/pearl state, chestnut masking, age-dependent grey expression, and the selected pattern interactions. Test synthetic linkage independently from real variant assumptions. Keep the core fixture package readable enough that a reviewer can check the expected result without trusting the implementation.
+
+Validate pedigree graphs against known synthetic families, including an already-inbred founder. Reject cycles, self-parent records, missing required identities, and impossible life-stage assignments. Unknown ancestry must produce an uncertainty state or a declared model assumption, not a false claim of proven unrelatedness.
+
+Statistical forecast tests use confidence bounds and suitable sample sizes. Do not demand that a finite sample equal an exact probability to the last decimal. Do not accept a forecasting function merely because it calls the same buggy expression code as conception; retain independent, hand-derived fixtures for the simple cases.
+
+## Persistence and transactions
+
+Test save/load before and after conception, on the birth day, at adult transition, during a listing purchase, after an auction, during a lease return, and at competition settlement. Simulate interrupted writes and repeated commands. Verify a last-known-good save can recover without duplicating a horse, payment, or reward.
+
+Opening a portrait, changing tack, renaming a horse, viewing a forecast, or rearranging menus must leave inherited data unchanged. Historical horses and pending pregnancies must remain consistent across a supported migration. Test a previous save version containing a large pedigree and unusual coat combinations.
+
+## Visual validation
+
+Keep a small approved fixture gallery: ordinary chestnut, bay and black; one and two cream copies; a chestnut carrying silver; dun versus non-dun primitive markings; grey at several stages; tobiano; roan; and the supported leopard/Sabino examples. Capture each in the neutral viewer, real stable light, market portrait, and event camera.
+
+Inspect face and hoof quality, coat labels versus appearance, both sides of markings, mane and tail, juvenile proportions, extreme supported morphs, tack fit, and each detail level. Verify the same identity in a saved screenshot after reload. A source-asset render does not replace an engine inspection.
+
+Use performance tests on a representative occupied estate and eight-horse race. Include a decorated scene, expanded UI, and long save data. Set minimum specifications from these measurements, not from the polygon budget alone.
+
+## Competition checks
+
+Use recorded input traces to demonstrate different results from sensible versus poor pacing, clean versus inefficient barrel lines, and different suitable horse builds. Verify gate penalties, finish order, ties, disqualification, delegated control, paused play, and canceled events. A reward depends on a completed authorized result.
+
+Check that animation follows motion instead of moving a horse independently of the authoritative course position. Make replay tolerances explicit and investigate discrepancies on actual PC and Mac builds. Input should remain responsive at the supported rendering frame rates.
+
+## Long-term economy scenarios
+
+Run a breeder pursuing a coat goal, a no-sale collector, an adoption-first owner, a service stable, and a competition-focused player through several seasons. Add seeded simulations over many generations and larger herds to find automatic stat growth, endless stud income, demand exploits, negative balances, duplicate identities, and unreasonable data growth.
+
+Differentiate an exploit from a strategy that is simply profitable. Rewarding a well-managed stable is intended. The tests should expose unbounded errors and contradictory rules, not force all play styles into the same income. Human playtests then decide whether restrictions feel natural and whether choices remain interesting.
+
+## Player experience gates
+
+Observe first-time players rather than explaining the interface for them. Can they find a horse, identify its needs, compare two mates, understand an uncertain outcome, see the full cost, place a building, and enter an event? Can someone who dislikes riding controls still make progress? Does a breeder want to see the foal in the next generation?
+
+Track a small internal set of playtest measures: time to first meaningful horse choice, time to first breeding, time to first foal, mistaken forecast interpretations, recurring-care time, forced-sale incidents, event-control failures, and save-related defects. Use local or opt-in testing records; these measurements do not authorize collecting player telemetry automatically.
+
+Acceptance requires an enjoyable loop as well as correct arithmetic. A perfect genotype engine with an unpleasant stable interface is incomplete. So is an adorable horse whose coat contradicts its pedigree.
+
+# 16 Risks decisions and the next handoff
+
+## Highest-priority risks
+
+| Risk | Early response |
+| --- | --- |
+| Horses are attractive only in concept art | Require the actual mesh and in-engine viewer during Phase 1 |
+| Deep genetics produces incorrect visual horses | One resolver, shared presenter, and approved visual fixtures |
+| Every generation is automatically stronger | Fixed inherited potential, finite effects, specialization, and long-run tests |
+| Players must sell favorites to continue | Adult-capacity forecasting and permanent cooperative companion care |
+| The economy rewards endless low-effort breeding | Marginal-cost visibility, finite demand, and suitability-based buyers |
+| Activities overwhelm management | Keep two main sports; provide competent management participation |
+| Several models create incompatible systems | One integration owner, versioned contracts, small owned tasks |
+| Animation becomes a long delay | Small convincing gait set first, deformation proof before expansion |
+| Online trading absorbs the project | Complete NPC economy first; separate authoritative online phase |
+| Updates change beloved horses | Per-horse versions, explicit migrations, and identity tests |
+
+## Decisions to lock before coding expands
+
+Use this workflow's defaults unless the project owner changes them: PC/Mac first, supported Unity 6 LTS with URP, a local single-player economy, player-advanced days, no compulsory old-age loss, two primary sports, two adult body families, four starting presets, and a biology-aware coat system with clearly fictional performance markers.
+
+Confirm the actual reference hardware, input priority, available 3D-authoring capability, source-asset budget, target audience, and any desired commercial distribution before scaling production. These choices can be recorded without holding up the pure genetics proof. Changes that affect saved identities or the art contract need an explicit decision record.
+
+## What the implementation team receives
+
+The readable manual contains the whole game direction. The companion handoff package contains a text copy, the 40-task dependency board, a declarative contract catalog, genetics and pedigree fixtures, an asset registry template, a task-packet template, a completion-handoff template, a decision record, source links, and a start-here instruction.
+
+Those files are specifications and acceptance inputs, not a playable build or a completed horse asset library. Begin by proving that the team can create one horse worth looking at, one breeding result worth anticipating, and one stable day worth advancing. Use those results to refine the remaining schedule while preserving the central promise.
+
+# 17 Sources and evidence notes
+
+The following sources support the factual reference-game, biological, and software statements marked in the manual. Uncited mechanics and numerical examples are original design proposals. Source review date is October 10 2026. Software versions and biological evidence should be reviewed again when their implementation tasks begin.
+
+S1 GameFools official distributor listing for Lets Ride Corral Club. Supports barrel practice and presentation/customization features. https://www.gamefools.com/pc-games/lets-ride-corral-club.html
+
+S2 PikPok Steam listing for Rival Stars Horse Racing Desktop Edition. Supports the reference to breeding, horses, riding, photography, and homestead improvement. https://store.steampowered.com/app/1166860/Rival_Stars_Horse_Racing_Desktop_Edition/
+
+S3 UC Davis Veterinary Genetics Laboratory Horse Coat Color. Supports base pigment, Extension/Agouti, dilution, and masking framework. https://vgl.ucdavis.edu/resources/horse-coat-color
+
+S4 UC Davis VGL Cream. Supports dose-dependent cream dilution and named coat outcomes. https://vgl.ucdavis.edu/test/cream
+
+S5 UC Davis VGL Pearl. Supports SLC45A2 and cream-pearl compound inheritance. https://vgl.ucdavis.edu/test/pearl
+
+S6 UC Davis VGL Dun. Supports D, nd1, nd2, and primitive marking distinctions. https://vgl.ucdavis.edu/test/dun-horse
+
+S7 UC Davis VGL Silver. Supports black-pigment effects, masking in chestnut, and ocular associations. https://vgl.ucdavis.edu/test/silver
+
+S8 UC Davis VGL Champagne. Supports pigment, skin, and eye effects. https://vgl.ucdavis.edu/test/champagne
+
+S9 UC Davis VGL Gray Copy Number. Supports grey alleles, progressive expression, and documented associated biology. https://vgl.ucdavis.edu/test/gray_copy_number
+
+S10 UC Davis VGL Tobiano. Supports the pattern and associated chromosome inversion. https://vgl.ucdavis.edu/test/tobiano
+
+S11 UC Davis VGL Roan Zygosity Test. Supports the associated-haplotype status and healthy homozygous roan horses. https://vgl.ucdavis.edu/test/roan
+
+S12 UC Davis VGL Leopard Complex. Supports LP expression and relevant documented associations. https://vgl.ucdavis.edu/test/leopard-complex
+
+S13 UC Davis VGL Appaloosa Pattern 1. Supports the PATN1 interaction with LP. https://vgl.ucdavis.edu/test/appaloosa-pattern-1
+
+S14 UC Davis VGL Sabino 1. Supports the specific SB1 variant and expression distinctions. https://vgl.ucdavis.edu/test/sabino-1
+
+S15 UC Davis VGL Splashed White. Supports multiple variants in MITF and PAX3. https://vgl.ucdavis.edu/test/splashed-white
+
+S16 Bonnie Kirkpatrick Fast Computation of the Kinship Coefficients. Primary algorithm paper supporting pedigree kinship calculations. https://arxiv.org/abs/1602.04368
+
+S17 Unity Manual Rig tab. Supports Generic rigs for quadrupeds and import/skinning settings. https://docs.unity3d.com/6000.0/Documentation/Manual/FBXImporter-Rig.html
+
+S18 Unity Manual Universal Render Pipeline. Supports the recommended renderer's role. https://docs.unity3d.com/6000.0/Documentation/Manual/universal-render-pipeline.html
+
+S19 Unity Manual Working with blend shapes. Supports imported mesh shape variation. https://docs.unity3d.com/6000.0/Documentation/Manual/BlendShapes.html
+
+S20 Godot documentation Importing 3D scenes and available formats. Supports the glTF-based alternative pipeline. https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/available_formats.html
+
+S21 Godot license page. Supports the MIT license statement. https://godotengine.org/license/
+
+S22 Blender Manual Shape Keys Introduction. Supports vertex-based shape keys and topology considerations. https://docs.blender.org/manual/en/4.5/animation/shape_keys/introduction.html
+
+S23 Blender Manual glTF 2.0. Supports review of material/export compatibility when selecting an interchange pipeline. https://docs.blender.org/manual/en/latest/addons/scene_gltf2.html
+
+S24 Unity Manual LOD Group. Supports explicit detail-level management. https://docs.unity3d.com/6000.0/Documentation/Manual/class-LODGroup.html

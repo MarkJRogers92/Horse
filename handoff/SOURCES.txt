@@ -1,0 +1,51 @@
+CLOVERBROOK STABLES SOURCES
+
+The following sources support the factual reference-game, biological, and software statements marked in the manual. Uncited mechanics and numerical examples are original design proposals. Source review date is October 10 2026. Software versions and biological evidence should be reviewed again when their implementation tasks begin.
+
+S1 GameFools official distributor listing for Lets Ride Corral Club. Supports barrel practice and presentation/customization features. https://www.gamefools.com/pc-games/lets-ride-corral-club.html
+
+S2 PikPok Steam listing for Rival Stars Horse Racing Desktop Edition. Supports the reference to breeding, horses, riding, photography, and homestead improvement. https://store.steampowered.com/app/1166860/Rival_Stars_Horse_Racing_Desktop_Edition/
+
+S3 UC Davis Veterinary Genetics Laboratory Horse Coat Color. Supports base pigment, Extension/Agouti, dilution, and masking framework. https://vgl.ucdavis.edu/resources/horse-coat-color
+
+S4 UC Davis VGL Cream. Supports dose-dependent cream dilution and named coat outcomes. https://vgl.ucdavis.edu/test/cream
+
+S5 UC Davis VGL Pearl. Supports SLC45A2 and cream-pearl compound inheritance. https://vgl.ucdavis.edu/test/pearl
+
+S6 UC Davis VGL Dun. Supports D, nd1, nd2, and primitive marking distinctions. https://vgl.ucdavis.edu/test/dun-horse
+
+S7 UC Davis VGL Silver. Supports black-pigment effects, masking in chestnut, and ocular associations. https://vgl.ucdavis.edu/test/silver
+
+S8 UC Davis VGL Champagne. Supports pigment, skin, and eye effects. https://vgl.ucdavis.edu/test/champagne
+
+S9 UC Davis VGL Gray Copy Number. Supports grey alleles, progressive expression, and documented associated biology. https://vgl.ucdavis.edu/test/gray_copy_number
+
+S10 UC Davis VGL Tobiano. Supports the pattern and associated chromosome inversion. https://vgl.ucdavis.edu/test/tobiano
+
+S11 UC Davis VGL Roan Zygosity Test. Supports the associated-haplotype status and healthy homozygous roan horses. https://vgl.ucdavis.edu/test/roan
+
+S12 UC Davis VGL Leopard Complex. Supports LP expression and relevant documented associations. https://vgl.ucdavis.edu/test/leopard-complex
+
+S13 UC Davis VGL Appaloosa Pattern 1. Supports the PATN1 interaction with LP. https://vgl.ucdavis.edu/test/appaloosa-pattern-1
+
+S14 UC Davis VGL Sabino 1. Supports the specific SB1 variant and expression distinctions. https://vgl.ucdavis.edu/test/sabino-1
+
+S15 UC Davis VGL Splashed White. Supports multiple variants in MITF and PAX3. https://vgl.ucdavis.edu/test/splashed-white
+
+S16 Bonnie Kirkpatrick Fast Computation of the Kinship Coefficients. Primary algorithm paper supporting pedigree kinship calculations. https://arxiv.org/abs/1602.04368
+
+S17 Unity Manual Rig tab. Supports Generic rigs for quadrupeds and import/skinning settings. https://docs.unity3d.com/6000.0/Documentation/Manual/FBXImporter-Rig.html
+
+S18 Unity Manual Universal Render Pipeline. Supports the recommended renderer's role. https://docs.unity3d.com/6000.0/Documentation/Manual/universal-render-pipeline.html
+
+S19 Unity Manual Working with blend shapes. Supports imported mesh shape variation. https://docs.unity3d.com/6000.0/Documentation/Manual/BlendShapes.html
+
+S20 Godot documentation Importing 3D scenes and available formats. Supports the glTF-based alternative pipeline. https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/available_formats.html
+
+S21 Godot license page. Supports the MIT license statement. https://godotengine.org/license/
+
+S22 Blender Manual Shape Keys Introduction. Supports vertex-based shape keys and topology considerations. https://docs.blender.org/manual/en/4.5/animation/shape_keys/introduction.html
+
+S23 Blender Manual glTF 2.0. Supports review of material/export compatibility when selecting an interchange pipeline. https://docs.blender.org/manual/en/latest/addons/scene_gltf2.html
+
+S24 Unity Manual LOD Group. Supports explicit detail-level management. https://docs.unity3d.com/6000.0/Documentation/Manual/class-LODGroup.html
