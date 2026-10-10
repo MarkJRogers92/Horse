@@ -1,40 +1,38 @@
 # Project status / checkpoint
 
 **Last updated:** 2026-10-10 by GPT (domain continuation).
-**Phase:** P0-02a validated; P0-03 foundations submitted to CI.
+**Phase:** P0-03 Phase-1 records submitted to CI.
 **Branch:** `claude/great-euler-hq83x3`
 
 ## Task state
 | Task | State |
 | --- | --- |
-| P0-02a | Complete: validator and 2 skeleton tests passed in Actions 38089219015 |
-| P0-03 (narrowed) | In progress: identity, exact values and RNG authored; check this commit's CI before continuing Phase-1 records |
-| P1-04 | Not started |
+| P0-02a | Complete; Actions 38089219015, 2/2 tests and validator passed |
+| P0-03 (narrowed) | Foundations verified (10/10); six-record subset authored, verify this commit's CI |
+| P1-04 | Next after P0-03 verification |
 | P1-05 | Not started |
 | P1-06 | Not started |
 
 ## Coordination / owner decisions
-- Mark leads integration. Claude and GPT implement and review; fetch the branch before edits and push after each sub-step. GPT is currently taking the domain sequence.
-- D-001 parallel genetics/visuals and coat matrix accepted; no visuals approved and no coats released.
-- D-002 licensed rigged horse trial accepted; owner sets budget and buys after a shortlist.
-- D-003 selects Godot 4 .NET/C#, not Unity; version pinning is P0-02b. Owner has no Mac/PC; builds/renders/tests use approved GitHub Actions.
-- Review is finished. `handoff/` is frozen and unchanged. Shared domain types stay pure C# 9, nullable, netstandard2.1, tested with net8.0 xUnit.
-- Mechanical task path mapping is documented in `docs/contracts/PHASE1_DOMAIN.md`. No purchase, deployment, external-model transfer or default-branch merge.
+Mark leads integration. Claude and GPT implement/review and fetch before editing; GPT is taking the domain sequence. Push each sub-step with STATUS. D-001 parallel genetics/visuals and matrix accepted; D-002 licensed horse trial accepted (owner sets budget/buys after shortlist); D-003 selects Godot 4 .NET, not Unity. Owner has no Mac/PC; GitHub Actions builds, renders and tests are approved. `handoff/` stays frozen. Domain: C# 9, nullable, netstandard2.1, net8.0 xUnit. Path mapping: `docs/contracts/PHASE1_DOMAIN.md`. No purchase, deployment, external-model transfer or default-branch merge.
 
 ## Next step
-1. Inspect the domain Actions run for this commit. Fix any validator/build/test failure; do not call new tests passed until the log confirms it.
-2. Complete narrowed P0-03 records: HorseRecord, VariantCatalogRecord, Phenotype, HorseVisualDescriptor, BreedingCommit and SaveHeader; keep defensive snapshots.
-3. Continue P1-04, P1-05 and P1-06 in order. Run all frozen genetics/pedigree fixtures and add review A6 slice tests outside `handoff/`.
-4. Update STATUS, commit and push each sub-step. Keep genetics implementation distinct from approved/released rendering support and future persistence/forecast tasks.
+1. Inspect this commit's domain CI. Fix build/tests before calling P0-03 complete.
+2. P1-04: one phased meiosis service, explicit versioned allele/linkage validation, exact distributions and seeded sampling. Do not use independent rolls for linked markers.
+3. P1-05: complete pedigree recurrence, unknown ancestry, cycles, eligibility and capacity reservations.
+4. P1-06: pure resolver -> descriptor with D-001 explicit Unsupported gates. Exercise all frozen genetics/pedigree cases plus review A6 tests outside `handoff/`.
+5. Update STATUS, commit, push and inspect CI after every sub-step. No genetics pass authorizes visual approval or live release.
 
-## Completion handoff — P0-02a
-- Verified code revision `ec178ee6cf7f190d14def20bee2d8257bb59f1da`, retaining skeleton `4a8d2a8`.
-- Actions https://github.com/MarkJRogers92/Horse/actions/runs/38089219015 , job `114322012360`: validator `OK`, Release restore/build succeeded, 2/2 tests passed. TRX artifact `11683782133`.
-- Validation checkpoint `6e96338`. Earlier no-SDK blocker is resolved through CI.
-
-## Completion handoff — P0-03 foundations (CI pending)
-- Files: `Identity/EntityIds.cs`, `Contracts/Values.cs`, `Randomness/SeededRandom.cs`, architecture tests and `docs/contracts/PHASE1_DOMAIN.md`.
-- Implemented: typed immutable IDs, reduced exact fractions, defensive collection helpers, canonical hashing, versioned purpose-derived seeds, restorable counter RNG and isolated stream states.
-- Authored 8 architecture tests with independent golden vectors, culture/stream isolation, large rational bounds, invalid IDs and overflow rejection. This is not yet the genetics fixture suite.
-- Local checks: golden vectors computed with Python; handoff files' Git blob hashes match the remote baseline. Local .NET remains unavailable and git clone fails DNS. C# execution evidence must come from this commit's approved CI run.
-- No JSON spec changed. No source change to the existing workflow or baseline. Player-visible result: none yet.
+## Evidence / completion handoffs
+### P0-02a complete
+- Skeleton `4a8d2a8` retained at revision `ec178ee6cf7f190d14def20bee2d8257bb59f1da`.
+- Actions https://github.com/MarkJRogers92/Horse/actions/runs/38089219015 , job 114322012360: validator OK; Release build; 2/2 tests. TRX 11683782133. Checkpoint `6e96338`.
+### P0-03 foundations complete
+- Commit `b5481897284e805f19ff1bcafaf0b070ceb19890`.
+- Actions https://github.com/MarkJRogers92/Horse/actions/runs/38089752903 , job 114323591679: validator OK; Release build; 10/10 tests; TRX 11683906664.
+- Typed identity, exact fractions, defensive snapshots, canonical hashing, versioned/purpose-isolated RNG, independent golden vectors, restore/overflow/culture tests.
+### P0-03 record subset (CI pending)
+- Added `Contracts/Genome.cs`, `HorseRecord.cs`, `VariantCatalogRecord.cs`, `AppearanceRecords.cs`, `BreedingAndSave.cs`, nine record-contract tests and `docs/contracts/PHASE1_RECORDS.md`.
+- Records are immutable defensive snapshots; one phased genome, one horse identity, separate player knowledge and training, renderer-only descriptors, structurally checked conception result, version-retaining save header.
+- No transaction execution, atomic save, forecast UI or renderer is claimed. Management-only fields and race/lease contracts remain deferred.
+- Local .NET is absent; no local test pass claimed. C# validation is this revision's approved CI. No JSON specification changed; frozen fixture hashes remain unchanged.
