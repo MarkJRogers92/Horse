@@ -1,0 +1,99 @@
+{
+  "formatVersion": "cloverbrook.visual-catalog.v1",
+  "visualAssetCatalogVersion": "reference-assets.v1",
+  "status": "pilot - renderer capability list, NOT an approval. Matrix rows stay unapproved until the owner reviews renders.",
+  "notes": "Colours are sRGB hex. They are artistic renderer recipes for descriptor strings produced by the domain resolver; the renderer never reads genotypes. Any descriptor string missing here is reported as Unsupported (never substituted).",
+
+  "implementedLayers": [
+    "base_pigment", "cream_single", "cream_double", "dun_dilution", "primitive_markings",
+    "individual_white_markings", "shading_modifiers"
+  ],
+
+  "meshFamilies": {
+    "horse.standard.adult.v1": { "scene": "res://assets/horse/placeholder/horse_adult.glb", "placeholder": true, "age": "adult" },
+    "horse.standard.foal.v1":  { "scene": "res://assets/horse/placeholder/horse_foal.glb",  "placeholder": true, "age": "foal" }
+  },
+
+  "coatRecipes": {
+    "pheomelanin_full:none": {
+      "label": "chestnut", "body": "#8a3b17", "points": "#6b2a10", "pointsAmount": 0.35, "counter": "#a65a2c",
+      "sooty": 0.15, "dapple": 0.25, "sheen": 0.55
+    },
+    "eumelanin_points_pheomelanin_body:none": {
+      "label": "bay", "body": "#71341a", "points": "#141011", "pointsAmount": 1.0, "counter": "#8f4d26",
+      "sooty": 0.25, "dapple": 0.2, "sheen": 0.55
+    },
+    "eumelanin_full:none": {
+      "label": "black", "body": "#17141a", "points": "#100d10", "pointsAmount": 0.6, "counter": "#2a2221",
+      "sooty": 0.0, "dapple": 0.1, "sheen": 0.7
+    },
+    "pheomelanin_full:cream_single": {
+      "label": "palomino", "body": "#d6a656", "points": "#c48f45", "pointsAmount": 0.3, "counter": "#e9c98f",
+      "sooty": 0.1, "dapple": 0.35, "sheen": 0.65
+    },
+    "eumelanin_points_pheomelanin_body:cream_single": {
+      "label": "buckskin", "body": "#c79957", "points": "#17120f", "pointsAmount": 1.0, "counter": "#ddb980",
+      "sooty": 0.2, "dapple": 0.25, "sheen": 0.6
+    },
+    "eumelanin_full:cream_single": {
+      "label": "smoky black", "body": "#2c231f", "points": "#1a1513", "pointsAmount": 0.5, "counter": "#3e322b",
+      "sooty": 0.0, "dapple": 0.1, "sheen": 0.55
+    },
+    "pheomelanin_full:cream_double": {
+      "label": "cremello", "body": "#efe2c8", "points": "#e8d6b6", "pointsAmount": 0.3, "counter": "#f5ecdb",
+      "sooty": 0.0, "dapple": 0.1, "sheen": 0.45
+    },
+    "eumelanin_points_pheomelanin_body:cream_double": {
+      "label": "perlino", "body": "#ecdcbf", "points": "#cfa47c", "pointsAmount": 0.8, "counter": "#f4e9d5",
+      "sooty": 0.0, "dapple": 0.1, "sheen": 0.45
+    },
+    "eumelanin_full:cream_double": {
+      "label": "smoky cream", "body": "#e8d9be", "points": "#dcc6a4", "pointsAmount": 0.6, "counter": "#f1e6d2",
+      "sooty": 0.0, "dapple": 0.1, "sheen": 0.45
+    },
+    "pheomelanin_full:none+dun": {
+      "label": "red dun", "body": "#c48a5a", "points": "#9a5631", "pointsAmount": 0.6, "counter": "#d8a77a",
+      "primitive": "#8a4423", "sooty": 0.05, "dapple": 0.05, "sheen": 0.4
+    },
+    "eumelanin_points_pheomelanin_body:none+dun": {
+      "label": "bay dun", "body": "#b88c5d", "points": "#1a1411", "pointsAmount": 1.0, "counter": "#cfa97c",
+      "primitive": "#2a1e17", "sooty": 0.05, "dapple": 0.05, "sheen": 0.4
+    },
+    "eumelanin_full:none+dun": {
+      "label": "grullo", "body": "#857d74", "points": "#1b1817", "pointsAmount": 1.0, "counter": "#9b9389",
+      "primitive": "#24201e", "sooty": 0.1, "dapple": 0.0, "sheen": 0.35
+    }
+  },
+
+  "hairRecipes": {
+    "base_chestnut":         { "color": "#5e2610", "tip": "#8a3f1d" },
+    "base_bay":              { "color": "#110d0e", "tip": "#2a1d18" },
+    "base_black":            { "color": "#0f0c0e", "tip": "#231d1f" },
+    "cream_pale_mane_tail":  { "color": "#efe2c4", "tip": "#fbf4e2" },
+    "double_cream_pale":     { "color": "#f1e7d4", "tip": "#fbf6ea" }
+  },
+
+  "skinRecipes": {
+    "pigmented": { "color": "#2d2626", "noseAmount": 0.55 },
+    "pink":      { "color": "#d99a8f", "noseAmount": 0.85 }
+  },
+
+  "eyeRecipes": {
+    "brown": { "iris": "#3b2414", "ring": "#1a0f08" },
+    "blue":  { "iris": "#7fa6c9", "ring": "#3d5a78" }
+  },
+
+  "primitiveMarkings": {
+    "defaultColorFromPoints": true,
+    "dorsalWidth": 1.0,
+    "legBarring": 0.8,
+    "note": "Dun (strength 10000) draws dorsal stripe + leg barring. nd1 (3000) draws a faint stripe only. Shoulder bars not yet implemented."
+  },
+
+  "white": { "color": "#f7f3ee", "pinkSkin": "#e6b3a8", "hoofDark": "#2a2420", "hoofPale": "#c9b79d" },
+
+  "morphSupport": {
+    "height": { "mode": "uniform_scale", "perUnit": 0.000006, "note": "placeholder: whole-horse scale; real asset needs blend shapes" },
+    "unsupported": ["body_length", "chest_width", "neck_length", "muscle", "mane_density", "tail_density"]
+  }
+}

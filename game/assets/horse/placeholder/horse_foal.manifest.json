@@ -1,0 +1,236 @@
+{
+  "assetVersion": "placeholder-horse.v1",
+  "profile": "foal",
+  "status": "TEMPORARY PLACEHOLDER - not an approved horse asset",
+  "units": "metres; glTF +Y up; horse faces +X",
+  "generator": "tools/horse/build_horse.py",
+  "blender": "5.2.2 LTS",
+  "triangles": {
+    "Body": 26000,
+    "Eyes": 1440,
+    "Mane": 1090,
+    "Tail": 560
+  },
+  "bones": [
+    "root",
+    "hips",
+    "spine",
+    "chest",
+    "neck1",
+    "neck2",
+    "head",
+    "ear_L",
+    "ear_R",
+    "tail1",
+    "tail2",
+    "tail3",
+    "tail4",
+    "scapula_FL",
+    "upper_FL",
+    "lower_FL",
+    "cannon_FL",
+    "pastern_FL",
+    "hoof_FL",
+    "scapula_FR",
+    "upper_FR",
+    "lower_FR",
+    "cannon_FR",
+    "pastern_FR",
+    "hoof_FR",
+    "upper_HL",
+    "lower_HL",
+    "cannon_HL",
+    "pastern_HL",
+    "hoof_HL",
+    "upper_HR",
+    "lower_HR",
+    "cannon_HR",
+    "pastern_HR",
+    "hoof_HR"
+  ],
+  "animations": [
+    "idle",
+    "breathe",
+    "look",
+    "walk",
+    "trot"
+  ],
+  "attributes": {
+    "COLOR_0": "r=points (lower legs/ear tips), g=soft nose/eye skin, b=midline (dorsal stripe on trunk/neck; face-front on head), a=countershade (belly/flank)",
+    "TEXCOORD_0": "placeholder side projection; left half / right half separated",
+    "TEXCOORD_1": "canonical marking coords: head=(s along face 0 poll..1 muzzle, t lateral -1..1); leg=(10+legIndex FL0 FR1 HL2 HR3, height 0 ground..1 knee/hock); other=(-10,50)"
+  },
+  "landmarks": {
+    "hoof_FL": [
+      0.412,
+      0.1095,
+      0.0
+    ],
+    "knee_FL": [
+      0.348,
+      0.1095,
+      0.416
+    ],
+    "fetlock_FL": [
+      0.344,
+      0.1095,
+      0.152
+    ],
+    "coronet_FL": [
+      0.384,
+      0.1095,
+      0.068
+    ],
+    "legtop_FL": [
+      0.356,
+      0.1095,
+      0.8
+    ],
+    "hoof_FR": [
+      0.412,
+      -0.1095,
+      0.0
+    ],
+    "knee_FR": [
+      0.348,
+      -0.1095,
+      0.416
+    ],
+    "fetlock_FR": [
+      0.344,
+      -0.1095,
+      0.152
+    ],
+    "coronet_FR": [
+      0.384,
+      -0.1095,
+      0.068
+    ],
+    "legtop_FR": [
+      0.356,
+      -0.1095,
+      0.8
+    ],
+    "hoof_HL": [
+      -0.3636,
+      0.1176,
+      0.0
+    ],
+    "knee_HL": [
+      -0.4276,
+      0.1176,
+      0.456
+    ],
+    "fetlock_HL": [
+      -0.4316,
+      0.1176,
+      0.152
+    ],
+    "coronet_HL": [
+      -0.3916,
+      0.1176,
+      0.068
+    ],
+    "legtop_HL": [
+      -0.3436,
+      0.1176,
+      0.8
+    ],
+    "hoof_HR": [
+      -0.3636,
+      -0.1176,
+      0.0
+    ],
+    "knee_HR": [
+      -0.4276,
+      -0.1176,
+      0.456
+    ],
+    "fetlock_HR": [
+      -0.4316,
+      -0.1176,
+      0.152
+    ],
+    "coronet_HR": [
+      -0.3916,
+      -0.1176,
+      0.068
+    ],
+    "legtop_HR": [
+      -0.3436,
+      -0.1176,
+      0.8
+    ],
+    "neck_base": [
+      0.3828,
+      0.0,
+      0.9914
+    ],
+    "poll": [
+      0.648,
+      0.0,
+      1.3294
+    ],
+    "neck_ctrl": [
+      0.4942,
+      0.0,
+      1.2982
+    ],
+    "eye_L": [
+      0.7123,
+      0.0569,
+      1.2085
+    ],
+    "eye_R": [
+      0.7123,
+      -0.0569,
+      1.2085
+    ],
+    "muzzle": [
+      0.8779,
+      0.0,
+      0.9923
+    ],
+    "ear_L_base": [
+      0.6745,
+      0.0345,
+      1.3357
+    ],
+    "ear_L_tip": [
+      0.6504,
+      0.0699,
+      1.4966
+    ],
+    "ear_R_base": [
+      0.6745,
+      -0.0345,
+      1.3357
+    ],
+    "ear_R_tip": [
+      0.6504,
+      -0.0699,
+      1.4966
+    ],
+    "withers": [
+      0.2668,
+      0.0,
+      1.148
+    ],
+    "tail_root": [
+      -0.5336,
+      0.0,
+      1.0784
+    ],
+    "chest": [
+      0.174,
+      0.0,
+      0.974
+    ],
+    "hips": [
+      -0.319,
+      0.0,
+      1.003
+    ]
+  },
+  "buildSeconds": 68.2
+}
