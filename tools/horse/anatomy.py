@@ -345,6 +345,10 @@ class Horse:
         rel = verts - poll
         s_face = (rel @ u) / Lh
         t_face = verts[:, 1] / (0.17 * Lh)
+        # The last neck segment overlaps the poll; anything in front of the poll plane
+        # that is close to the head surface belongs to the head (forehead, star area).
+        reclaim = (region == "neck") & (s_face > 0.04) & (gd["head"] < 0.03)
+        region = np.where(reclaim, "head", region)
         front = np.clip((normals @ (-nrm) - 0.15) / 0.5, 0, 1)
         head = region == "head"
         # Midline: dorsal stripe on trunk/neck (top surface near y=0), face front on head

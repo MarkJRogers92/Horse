@@ -27,7 +27,7 @@ uniform vec4 face_params = vec4(0.08, 0.15, 0.35, 0.07); // star, strip, blaze, 
 uniform float face_offset = 0.0;
 uniform vec4 leg_white = vec4(0.0);  // FL FR HL HR heights (0 = none)
 uniform float edge_seed = 0.0;
-uniform bool debug_masks = false;
+uniform int debug_view = 0; // 1 = COLOR masks, 2 = canonical coords
 
 float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float noise(vec2 p) {
@@ -59,7 +59,7 @@ float face_white(vec2 c, float front) {
 
 void fragment() {
 	vec4 m = COLOR;
-	vec2 c = vec2(UV2.x, 1.0 - UV2.y); // glTF V flip
+	vec2 c = vec2(UV2.x, 1.0 - UV2.y); // glTF V flip (verified on legs)
 	bool is_head = c.x > -0.5 && c.x < 1.6 && abs(c.y) < 2.0;
 	bool is_leg = c.x > 9.5 && c.x < 14.0;
 	bool is_trunk = !is_head && !is_leg;
@@ -111,7 +111,8 @@ void fragment() {
 		col = mix(col, hoof, h);
 		rough = mix(rough, 0.38, h);
 	}
-	if (debug_masks) col = m.rgb;
+	if (debug_view == 1) col = m.rgb;
+	if (debug_view == 2) col = is_head ? vec3(c.x, c.y * 0.5 + 0.5, m.b) : is_leg ? vec3(0.0, c.y, 0.0) : vec3(0.1);
 	ALBEDO = col;
 	ROUGHNESS = rough;
 	SPECULAR = 0.28;

@@ -40,7 +40,7 @@ public static class Lighting
         {
             sky.SkyMaterial = new ProceduralSkyMaterial
             {
-                SkyTopColor = new Color(0.47f, 0.70f, 0.93f), SkyHorizonColor = new Color(0.99f, 0.86f, 0.90f),
+                SkyTopColor = new Color(0.36f, 0.62f, 0.92f), SkyHorizonColor = new Color(0.98f, 0.84f, 0.89f),
                 GroundBottomColor = new Color(0.35f, 0.45f, 0.30f), GroundHorizonColor = new Color(0.86f, 0.88f, 0.78f),
                 SunAngleMax = 25f, SkyCurve = 0.12f,
             };
@@ -49,12 +49,12 @@ public static class Lighting
             env.AmbientLightSource = Godot.Environment.AmbientSource.Sky;
             env.AmbientLightEnergy = 1.0f;
             env.TonemapMode = Godot.Environment.ToneMapper.Agx;
-            env.TonemapExposure = 1.05f;
+            env.TonemapExposure = 0.95f;
             env.SsaoEnabled = true; env.SsaoRadius = 0.8f; env.SsaoIntensity = 1.4f;
             env.GlowEnabled = true; env.GlowIntensity = 0.35f; env.GlowBloom = 0.08f; env.GlowHdrThreshold = 1.1f;
-            env.FogEnabled = true; env.FogLightColor = new Color(0.98f, 0.88f, 0.92f); env.FogDensity = 0.004f;
-            env.FogSkyAffect = 0.2f;
-            env.AdjustmentEnabled = true; env.AdjustmentSaturation = 1.08f; env.AdjustmentContrast = 1.03f;
+            env.FogEnabled = true; env.FogLightColor = new Color(0.98f, 0.88f, 0.92f); env.FogDensity = 0.0015f;
+            env.FogSkyAffect = 0.0f;
+            env.AdjustmentEnabled = true; env.AdjustmentSaturation = 1.25f; env.AdjustmentContrast = 1.10f;
             AddSun(root, new Color(1f, 0.90f, 0.78f), 1.9f, new Vector3(-38, 40, 0), shadows: true);
             AddSun(root, new Color(0.80f, 0.85f, 1f), 0.30f, new Vector3(-25, -150, 0), shadows: false); // sky fill
             AddSun(root, new Color(1f, 0.85f, 0.9f), 0.45f, new Vector3(-12, 200, 0), shadows: false);  // pink rim

@@ -195,14 +195,14 @@ def tail_cards(h, bones):
     count = 110 if p.name == "adult" else 60
     for i in range(count):
         ang = 2 * math.pi * i / count + RNG.random() * 0.3
-        spread = 0.035 + 0.05 * RNG.random()
+        spread = 0.02 + 0.035 * RNG.random()
         L = 0.75 + 0.25 * RNG.random()
         pts = []
         for k in range(8):
             s = k / 7 * L
             seg = min(int(s * 4), 3); f = s * 4 - seg
             a = axis_pts[seg] + (axis_pts[seg + 1] - axis_pts[seg]) * f
-            off = np.array([math.cos(ang) * 0.35, math.sin(ang), 0]) * spread * (0.6 + 1.6 * s) * (p.s_body ** 0.5)
+            off = np.array([math.cos(ang) * 0.35, math.sin(ang), 0]) * spread * (0.35 + 1.8 * s * s) * (p.s_body ** 0.5)
             pts.append(a + off)
         pts = np.array(pts)
         side = np.array([-math.sin(ang), math.cos(ang), 0])

@@ -19,6 +19,7 @@
 **Coat matrix:** no rows were promoted. All 13 phase-1 classes are still `visualStatus: none` and await the owner's review of renders on an accepted (non-placeholder) mesh.
 
 ## Known visual problems (honest list)
+- **Face markings in the committed evidence images are misplaced.** The forehead was tagged as neck. The fix (head-region reclaim in `anatomy.py`) is committed and the horses are rebuilt, but the fix was **not visually re-verified** before the session ended. The next CI run's `markings_sheet` will show whether it worked.
 - The horse is a **procedural placeholder**. Its proportions read as a horse, but surface anatomy is soft and blobby: no real muscle and bone definition, and the joints are simplified. It is not acceptable as the final asset.
 - The mane and tail are simple hair cards. They read as hair from a distance but look thin up close. There is no hair physics.
 - Eyes have no eyelids or lashes. Ears are simple cupped shapes.
@@ -42,7 +43,7 @@ Make the glb satisfy the following. Then add a `meshFamilies` entry in `visual_c
 `tools/horse/anatomy.py` (`Horse.vertex_data`) shows how to derive the masks from anatomy. A script for an imported mesh can compute the same values from bone proximity.
 
 ## CI
-- `visual` workflow: https://github.com/MarkJRogers92/Horse/actions/workflows/visual.yml. Artifact `visual-evidence` holds PNGs, sheets, `SUMMARY.md` and `capture_report.json`.
+- `visual` workflow: https://github.com/MarkJRogers92/Horse/actions/workflows/visual.yml. Run 1 (https://github.com/MarkJRogers92/Horse/actions/runs/38095905278) passed the domain export, horse rebuild, C# build, import and **smoke test**; rendering was still running at handoff. Artifact `visual-evidence` holds PNGs, sheets, `SUMMARY.md` and `capture_report.json`.
 - `domain` workflow (GPT's tests) also runs on this branch.
 
 ## Exact next step
