@@ -1,0 +1,63 @@
+{
+  "status": "proposed",
+  "formatVersion": "0.1",
+  "owners": { "genetics": "schema_owner", "visuals": "technical_art_lead", "approval": "integration_lead" },
+  "purpose": "The single shared answer to 'which coats exist in the live game'. Genetics and rendering both read it. A coat class is playable only when BOTH genetics and visuals have reached the required status. See docs/decisions/D-001-parallel-genetics-and-visuals.md.",
+  "statusOrder": ["none", "specified", "prototype", "approved", "released"],
+  "statusMeaning": {
+    "none": "Not started.",
+    "specified": "Rules or render approach written down and reviewed.",
+    "prototype": "Genetics: implemented with passing exact fixtures. Visuals: renders in-engine in the neutral validation scene, not yet signed off.",
+    "approved": "Genetics: reviewed against sources. Visuals: signed off on adult and foal, all LODs, in neutral and stable lighting.",
+    "released": "Enabled in the live catalog; founders and NPC stock may carry it."
+  },
+  "rules": [
+    "releaseStatus <= min(geneticStatus, visualStatus). Enforced by tools/validate_handoff.py.",
+    "The genetics engine may model alleles for unreleased classes internally (tests, sandbox) but live founder/NPC generation must only produce genotypes whose resolved class is released. Enforced by a reachability test in the domain suite.",
+    "The renderer composes LAYERS, not bespoke per-class art. Visual cost grows with layers plus listed interactions, not with the number of genotype combinations.",
+    "A genotype resolving to a class with no released render must never reach a live save; the resolver returns an explicit 'unsupported' result rather than a fallback colour."
+  ],
+  "layers": [
+    { "id": "base_pigment", "drives": "Eumelanin/pheomelanin per anatomical region (body, points, mane/tail, muzzle)", "genes": ["MC1R", "ASIP"], "phase": 1 },
+    { "id": "cream_single", "drives": "Pheomelanin strongly diluted, eumelanin slightly", "genes": ["SLC45A2"], "phase": 1 },
+    { "id": "cream_double", "drives": "Both pigments strongly diluted; pink skin; blue eyes", "genes": ["SLC45A2"], "phase": 1 },
+    { "id": "pearl", "drives": "Pearl dilution and Cr/Prl compound", "genes": ["SLC45A2"], "phase": 5 },
+    { "id": "dun_dilution", "drives": "Body hair dilution with darker points", "genes": ["TBX3"], "phase": 1 },
+    { "id": "primitive_markings", "drives": "Dorsal stripe, leg barring, shoulder marks (dun and nd1)", "genes": ["TBX3"], "phase": 1 },
+    { "id": "individual_white_markings", "drives": "Face/leg white in canonical body coordinates from the marking seed (artistic modifier, labelled as such)", "genes": [], "phase": 1 },
+    { "id": "shading_modifiers", "drives": "Dapples, sooty, countershading (labelled artistic modifiers)", "genes": [], "phase": 1 },
+    { "id": "white_tobiano", "drives": "Tobiano white mask family", "genes": ["KIT"], "phase": 2 },
+    { "id": "silver", "drives": "Lightens eumelanin, especially mane/tail", "genes": ["PMEL17"], "phase": 5 },
+    { "id": "champagne", "drives": "Coat dilution plus mottled skin and amber eyes", "genes": ["SLC36A1"], "phase": 5 },
+    { "id": "grey_age", "drives": "Versioned age curve of depigmentation over the base result", "genes": ["STX17"], "phase": 5 },
+    { "id": "white_sabino1", "drives": "SB1 white mask with dosage", "genes": ["KIT"], "phase": 5 },
+    { "id": "leopard_complex", "drives": "LP mottling/varnish plus PATN1 coverage", "genes": ["TRPM1", "RFWD3"], "phase": 5 },
+    { "id": "roan", "drives": "Intermingled white body hairs, solid head/legs", "genes": ["KIT-associated haplotype"], "phase": 5 }
+  ],
+  "interactionsNeedingBespokeArt": [
+    "cream_double changes skin AND eyes, not only hair",
+    "champagne changes skin AND eyes",
+    "grey_age must compose over every other layer and age foal -> adult -> senior",
+    "white_tobiano + white_sabino1 + individual_white_markings overlap on the same masks",
+    "leopard_complex: PATN1 coverage only expresses with LP",
+    "roan over white patterns",
+    "silver only visible where eumelanin exists (masked on chestnut)"
+  ],
+  "coatClasses": [
+    { "id": "chestnut",      "layers": ["base_pigment"], "phase": 1, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none" },
+    { "id": "bay",           "layers": ["base_pigment"], "phase": 1, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none" },
+    { "id": "black",         "layers": ["base_pigment"], "phase": 1, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none" },
+    { "id": "palomino",      "layers": ["base_pigment", "cream_single"], "phase": 1, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none" },
+    { "id": "buckskin",      "layers": ["base_pigment", "cream_single"], "phase": 1, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none" },
+    { "id": "smoky_black",   "layers": ["base_pigment", "cream_single"], "phase": 1, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none" },
+    { "id": "cremello",      "layers": ["base_pigment", "cream_double"], "phase": 1, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none" },
+    { "id": "perlino",       "layers": ["base_pigment", "cream_double"], "phase": 1, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none" },
+    { "id": "smoky_cream",   "layers": ["base_pigment", "cream_double"], "phase": 1, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none" },
+    { "id": "red_dun",       "layers": ["base_pigment", "dun_dilution", "primitive_markings"], "phase": 1, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none" },
+    { "id": "bay_dun",       "layers": ["base_pigment", "dun_dilution", "primitive_markings"], "phase": 1, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none" },
+    { "id": "grullo",        "layers": ["base_pigment", "dun_dilution", "primitive_markings"], "phase": 1, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none" },
+    { "id": "non_dun1_marked", "layers": ["base_pigment", "primitive_markings"], "phase": 1, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none", "note": "nd1: faint primitive markings without dilution; applies over any base class" },
+    { "id": "dunalino_family", "layers": ["base_pigment", "cream_single", "dun_dilution", "primitive_markings"], "phase": 2, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none", "note": "dunalino / dunskin / smoky grullo; first test of layer stacking" },
+    { "id": "tobiano_overlay", "layers": ["white_tobiano"], "phase": 2, "geneticStatus": "specified", "visualStatus": "none", "releaseStatus": "none", "note": "overlay family: combines with any released base class" }
+  ]
+}
