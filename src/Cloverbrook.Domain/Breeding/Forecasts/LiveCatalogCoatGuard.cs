@@ -26,7 +26,7 @@ namespace Cloverbrook.Domain
         // their neutrality for coat expression is pinned to phenotype.v1.
         public static CatalogCoatAudit Check(IEnumerable<HorseRecord> catalog, CoatSupportMatrix matrix, int maxCoatCombinations = 65536, int maxHaplotypesPerBlock = 64)
         {
-            var horses = Snapshot.List(catalog); Check.NotNull(matrix, nameof(matrix));
+            var horses = Snapshot.List(catalog); global::Cloverbrook.Domain.Check.NotNull(matrix, nameof(matrix));
             if (maxCoatCombinations < 1 || maxCoatCombinations > 1048576 || maxHaplotypesPerBlock < 1 || maxHaplotypesPerBlock > 256) throw new ArgumentOutOfRangeException(nameof(maxCoatCombinations));
             var hash = Canonical.Hash(new[] { "live.catalog.coat.v1" }.Concat(horses.OrderBy(h => h.HorseId.ToString(), StringComparer.Ordinal)
                 .SelectMany(h => new[] { h.HorseId.ToString(), h.Genome.GenomeHash, h.ResolverVersion })));
