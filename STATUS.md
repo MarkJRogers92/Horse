@@ -1,50 +1,43 @@
 # Project status / checkpoint
 
 **Last updated:** 2026-10-10 by GPT.
-**Phase:** P0-02a/P0-03/P1-04/P1-05/P1-06 verified; continuing P1-07, then P1-09.
+**Phase:** P1-06 verified; P1-07 knowledge-limited coat forecasts submitted to CI.
 **Branch:** `claude/great-euler-hq83x3`
 
 ## Task state
 | Task | State |
 | --- | --- |
-| P0-02a | Complete; solution and CI execution verified |
-| P0-03 (narrowed) | Complete; immutable Phase-1 contract subset |
-| P1-04 | Complete; exact phased inheritance and seeded provenance |
-| P1-05 | Complete; pedigree and eligibility/capacity validation |
+| P0-02a / P0-03 / P1-04 / P1-05 | Complete headless slices; prior verified evidence below |
 | P1-06 | Complete headless slice; 79/79 tests, validator and descriptor export verified |
-| P1-07 | In progress: knowledge-limited forecasts, closure guard and conception API |
-| P1-09 | Next: production atomic persistence and replay-safe transactions |
+| P1-07 | Forecast sub-step implemented; inspect this revision's CI before completion |
+| P1-09 | Next after P1-07: atomic persistence and idempotence |
 
-## Coordination and accepted decisions
-Mark is integration lead. Claude and GPT implement/review; fetch current head before editing and use non-forced expected-head pushes after every sub-step. GPT owns this domain continuation. D-001 parallel genetics/art + matrix accepted; D-002 licensed horse trial accepted (owner chooses/buys after budget/shortlist); D-003 chooses Godot 4 .NET, not Unity. Owner has no desktop; approved GitHub Actions provides testing/builds/renders. `handoff/` stays frozen. C# 9, netstandard2.1, no engine assemblies; net8.0 xUnit. No purchases, deployments, external AI transfers or main-branch merges.
+## Coordination and decisions
+Mark leads integration. GPT owns this domain continuation; fetch before edits and use non-forced expected-head pushes. D-001 parallel genetics/art + matrix accepted; D-002 licensed horse trial accepted (owner chooses/purchases); D-003 Godot 4 .NET, not Unity. Approved Actions provides execution; this container has no SDK/network. Pure C# 9/netstandard2.1, tests net8.0. No external AI transfers, purchases, deployment or main merge. `handoff/` and matrix visual/release statuses stay unchanged.
 
 ## Next step
-1. Implement P1-07 forecasts from the production meiosis/resolver, with a knowledge-only boundary, explicit actual-vs-hypothetical authority and bounded exact/sampled metadata. No hidden genotype may leak through a forecast.
-2. Complete the multi-generation founder/NPC catalog closure guard; fail closed if exhaustive validation is unavailable. Do NOT enable a live catalog or promote visual/release statuses.
-3. Add the minimal conception command against the existing records and services. P1-09 owns durable atomic save/load and idempotent transaction persistence; later P2 tasks own marketplace, calendar and complete capacity management.
-4. Commit/push each tested sub-step and inspect that revision's Actions result. Continue P1-09 only against the resulting shared contracts.
-5. Art proceeds separately using the exported descriptors and `tests/Cloverbrook.Domain.Tests/Phenotype/README.md`. No real mesh or game scene exists yet.
+1. Inspect this revision's Actions log; fix compilation/test failures. Forecast code is not yet claimed verified.
+2. P1-07 next sub-step: full multi-generation live coat catalog closure guard and minimal conception API reusing the existing result contracts, eligibility and meiosis.
+3. P1-09: versioned production snapshot codec, atomic filesystem adapter, backup recovery, optimistic revision/idempotent command tests.
+4. Do not enable live founders or release artwork. Art proceeds independently with the 26 exported adult/foal descriptors. No actual mesh or scene has been made.
 
-## Verified CI checkpoints
-Each run executed `python3 tools/validate_handoff.py` (OK) and Release `dotnet test` with TRX output.
-| Task checkpoint | Commit | Run / job | Actual passed | TRX artifact |
+## Verified CI history
+All listed jobs ran the spec validator (OK) and Release dotnet test.
+| Checkpoint | Commit | Run / job | Passed | TRX |
 | --- | --- | --- | --- | --- |
-| P0-02a | `ec178ee6` / `6e96338` | 38089219015 / 114322012360 | 2/2 | 11683782133 |
-| P0-03 values/RNG | `b5481897` | 38089752903 / 114323591679 | 10/10 | 11683906664 |
-| P0-03 records | `1f88e2a1` | 38090145782 / 114324735041 | 19/19 | 11683772363 |
-| P1-04 meiosis | `e406fbb6` | 38090747015 / 114326483624 | 30/30 | 11684130596 |
-| P1-05 pedigree/eligibility | `f81b8862` | 38091011084 / 114327270107 | 49/49 | 11683398802 |
-| P1-06 resolver/fixtures | `b125167a` | 38091474449 / 114328620063 | 65/65 | 11684750668 |
-| P1-06 descriptor export | `e54b26c7` | 38091748382 / 114329407287 | 79/79 | 11684063483 |
-Latest verified source run: https://github.com/MarkJRogers92/Horse/actions/runs/38091748382
-Descriptor artifact: `visual-descriptor-fixtures` / 11683549483 (26 adult/foal specimens). Both artifact uploads and all tests were verified in the actual job log.
+| P0-02a | ec178ee6 / 6e96338 | 38089219015 / 114322012360 | 2/2 | 11683782133 |
+| P0-03 values/RNG | b5481897 | 38089752903 / 114323591679 | 10/10 | 11683906664 |
+| P0-03 records | 1f88e2a1 | 38090145782 / 114324735041 | 19/19 | 11683772363 |
+| P1-04 meiosis | e406fbb6 | 38090747015 / 114326483624 | 30/30 | 11684130596 |
+| P1-05 | f81b8862 | 38091011084 / 114327270107 | 49/49 | 11683398802 |
+| P1-06 resolver | b125167a | 38091474449 / 114328620063 | 65/65 | 11684750668 |
+| P1-06 export | e54b26c7 | 38091748382 / 114329407287 | 79/79 | 11684063483 |
+P1-06 descriptor artifact: `visual-descriptor-fixtures` / 11683549483. Actual job log confirms 26 exported specimens and both artifact uploads; no actual renders.
 
-## Completion handoff — implemented domain slice
-- One typed immutable horse/genome/phenotype/visual/commit/header contract family with defensive snapshots and versioned, purpose-isolated random streams. No independent duplicate horse/RNG implementation.
-- One phase-aware meiosis service: exact rational distributions, seeded samples, parental homolog/crossover provenance, shared cream/pearl state, explicit unsupported haplotypes and 32 fictional markers.
-- Every concrete frozen fixture is executed: six genetics cases, six pedigree coefficients and three pedigree validation cases. Extra tests cover dun/nd1, combined base+cream, a 128-generation pedigree, 10,000 sampled meioses, preview isolation and bounds.
-- One genotype-to-phenotype-to-descriptor pipeline. Permanent marking identity persists across age/cosmetics/asset versions. Missing visual support returns Unsupported; no silent color substitution.
-- `ConceptionDraft` is NOT a persisted/debited pregnancy. Capacity checks validate supplied confirmed snapshots, not an implemented capacity manager. Atomic saving, marketplace, knowledge-projected forecasts and cross-system proposal strings remain later work.
-- The 13 adult/foal descriptor reference tests and generated JSON export cover 26 specimens. Metadata forbids live-stock use and states no render has been produced. No baseline JSON or matrix status changed.
-- Local SDK/network access is unavailable in this continuation. Approved GitHub Actions is the execution authority; source-only work is not reported as passing tests.
-- No production horse mesh, renderer, playable scene, live catalog or save migration has been built.
+## Completion handoff — P1-07 forecast implementation (CI pending)
+- Added a knowledge-only API and separately labeled hypothetical mode. Unknown calls/phases produce exact conditional ranges without hidden-genome access or invented priors.
+- Exact rational results reuse production meiosis/phenotype logic. Bounded single-scenario sampling has count, approximate pointwise uncertainty and unseen-outcome disclosure.
+- Illustrative coat descriptors use independent forecast seeds and unchanged live-art gates. No trait/body forecast or committed foal is implied.
+- Added tests for frozen palomino probabilities, hidden-allele/cache isolation, ambiguous knowledge, limits, sampling, carrier masking and conception RNG isolation.
+- Documented input authority, public scope, uncertainty, path mapping and remaining boundaries in docs/genetics/forecast_contract.md.
+- No frozen specification JSON changed. ConceptionDraft remains a nonpersisted draft until the next commands/persistence sub-steps.
