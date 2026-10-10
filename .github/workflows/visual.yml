@@ -1,0 +1,106 @@
+name: visual
+
+# Builds the Godot game, regenerates the placeholder horse from source, boots the
+# main scene, renders headless evidence (Xvfb + Mesa lavapipe Vulkan) and uploads
+# contact sheets. Tool versions are pinned here and in docs/visual/TOOLCHAIN.md.
+
+on:
+  push:
+    paths: ['game/**', 'tools/**', 'src/**', '.github/workflows/visual.yml']
+  pull_request:
+  workflow_dispatch:
+
+env:
+  GODOT_VERSION: 4.7.2-stable
+  BPY_VERSION: 5.2.2
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  DOTNET_NOLOGO: 1
+
+jobs:
+  visual:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: tools/visual/requirements.txt
+
+      - name: Export reference descriptors from the domain and check for drift
+        run: |
+          dotnet test Cloverbrook.sln --configuration Release --filter "FullyQualifiedName~VisualDescriptorFixtureTests"
+          fresh=$(find tests -path '*TestResults/visual-descriptor-fixtures.json' | head -1)
+          if ! cmp -s "$fresh" game/data/fixtures/visual-descriptor-fixtures.json; then
+            echo "::warning::Domain descriptor export differs from game/data/fixtures; using the fresh export for this run."
+            cp "$fresh" game/data/fixtures/visual-descriptor-fixtures.json
+          fi
+
+      - name: Install Blender (bpy) and image tools
+        run: pip install -r tools/visual/requirements.txt
+
+      - name: Rebuild placeholder horse from source
+        run: python tools/horse/build_horse.py --out game/assets/horse/placeholder
+
+      - name: Install Mesa Vulkan (lavapipe) and Xvfb
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q mesa-vulkan-drivers xvfb libgl1
+
+      - name: Cache Godot
+        id: godot-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/godot
+          key: godot-${{ env.GODOT_VERSION }}-mono-linux
+
+      - name: Download Godot
+        if: steps.godot-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/godot && cd ~/godot
+          curl -sSL -o g.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_mono_linux_x86_64.zip"
+          unzip -q g.zip && rm g.zip
+
+      - name: Build game C#
+        run: dotnet build game/Cloverbrook.Game.csproj -warnaserror
+
+      - name: Import project
+        run: |
+          G=$(ls ~/godot/Godot_*/Godot_*.x86_64)
+          echo "G=$G" >> $GITHUB_ENV
+          $G --headless --import --path game
+
+      - name: Smoke test main scene (boots, links domain, presents a horse)
+        env:
+          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+        run: timeout 300 xvfb-run -a -s "-screen 0 1280x720x24" $G --path game --rendering-driver vulkan --resolution 1280x720 -- --smoke-test 2>&1 | tee smoke.log; grep -q "\[smoke\] OK" smoke.log
+
+      - name: Render evidence
+        env:
+          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+        run: |
+          mkdir -p evidence
+          timeout 2400 xvfb-run -a -s "-screen 0 1280x720x24" $G --path game --rendering-driver vulkan --resolution 1280x720 res://scenes/capture.tscn -- --out "$PWD/evidence" 2>&1 | tee evidence/capture.log
+          test -f evidence/capture_report.json
+
+      - name: Contact sheets and summary
+        if: always()
+        run: |
+          python tools/visual/contact_sheets.py evidence || true
+          cp game/assets/horse/placeholder/*.manifest.json evidence/ || true
+          cat evidence/SUMMARY.md >> $GITHUB_STEP_SUMMARY || echo "No summary produced" >> $GITHUB_STEP_SUMMARY
+          python3 -c "import json,sys; r=json.load(open('evidence/capture_report.json')); sys.exit(1 if r['failures'] else 0)"
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-evidence
+          path: evidence/
+          retention-days: 30

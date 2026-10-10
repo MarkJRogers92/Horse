@@ -28,7 +28,7 @@ public partial class CaptureRunner : Node
         var args = OS.GetCmdlineUserArgs();
         string Arg(string name, string def) { int i = Array.IndexOf(args, name); return i >= 0 && i + 1 < args.Length ? args[i + 1] : def; }
         _out = Arg("--out", _out);
-        var sets = Arg("--sets", "sheet,detail,markings,turntable,pair,stable,anim,probes").Split(',');
+        var sets = Arg("--sets", "clay,sheet,detail,markings,turntable,pair,stable,anim,probes").Split(',');
         DirAccess.MakeDirRecursiveAbsolute(_out);
         GetWindow().Size = new Vector2I(1280, 720);
 
@@ -41,6 +41,7 @@ public partial class CaptureRunner : Node
                 GD.Print($"[capture] set {set}");
                 switch (set)
                 {
+                    case "clay": await Clay(); break;
                     case "sheet": await Sheet(); break;
                     case "detail": await Detail(); break;
                     case "markings": await MarkingSet(); break;
@@ -97,6 +98,22 @@ public partial class CaptureRunner : Node
         if (!s.Supported) { GD.PushError($"[capture] expected supported: {d.FixtureId}: {s.Summary}"); _failures++; return false; }
         _stage.Presenter.Pose(anim, t); // freeze so captures are deterministic
         return true;
+    }
+
+    private async Task Clay()
+    {
+        _stage.SetMode(LightingMode.Neutral);
+        foreach (var foal in new[] { false, true })
+        {
+            var d = FixtureLibrary.Get("bay", foal);
+            foreach (var v in new[] { "q3", "side", "front", "rear", "head", "legs" })
+            {
+                if (!Show(d)) continue;
+                _stage.Presenter.ApplyClay();
+                _stage.FrameView(v);
+                await Shot($"clay/{(foal ? "foal" : "adult")}__{v}.png", "clay", d, v, "grey clay form review (no coat)");
+            }
+        }
     }
 
     private async Task Sheet()

@@ -163,9 +163,9 @@ def mane_cards(h, body_verts):
         near = mid_pts[np.abs((mid_pts - c) @ d) < 0.02]
         if len(near) == 0: continue
         crest = near[np.argmax(near[:, 2] - near[:, 0] * 0.0)]
-        for layer in range(3):
-            L = p.mane_length * (0.75 + 0.5 * RNG.random()) * (0.6 if layer == 2 else 1.0) * (0.85 + 0.3 * t)
-            side = -1.0 if layer < 2 else 1.0  # mane falls to the off (right) side, a few hairs left
+        for layer in range(5):
+            L = p.mane_length * (0.75 + 0.5 * RNG.random()) * (0.55 if layer == 4 else 1.0 - 0.08 * layer) * (0.85 + 0.3 * t)
+            side = -1.0 if layer < 4 else 1.0  # mane falls to the off (right) side, a few hairs left
             out = np.array([0, side * 0.8, 0.0]); down = np.array([0.0, 0, -1.0])
             pts = []
             start = crest + np.array([0, 0, -0.004]) - d * 0.01 * layer
@@ -173,8 +173,8 @@ def mane_cards(h, body_verts):
                 s = k / 5
                 pts.append(start + L * (s * (0.45 * out + 0.35 * down) + s * s * (0.05 * out + 0.6 * down))
                            + d * 0.012 * (RNG.random() - 0.5))
-            pts = hug_surface(h, np.array(pts), 0.006 + 0.004 * layer)
-            w0 = (0.05 if p.name == "adult" else 0.035) * (1.0 - 0.2 * layer)
+            pts = hug_surface(h, np.array(pts), 0.005 + 0.006 * layer)
+            w0 = (0.075 if p.name == "adult" else 0.05) * (1.0 - 0.1 * layer)
             widths = [w0 * (1.0 - 0.55 * k / 5) for k in range(6)]
             add(strip(pts, widths, d), "mane")
     # forelock
@@ -192,7 +192,7 @@ def tail_cards(h, bones):
     chain = [bones[f"tail{i}"] for i in range(1, 5)]
     axis_pts = [np.asarray(chain[0][0])] + [np.asarray(b[1]) for b in chain]
     V, F, U = [], [], []
-    count = 64 if p.name == "adult" else 40
+    count = 110 if p.name == "adult" else 60
     for i in range(count):
         ang = 2 * math.pi * i / count + RNG.random() * 0.3
         spread = 0.035 + 0.05 * RNG.random()
@@ -206,8 +206,8 @@ def tail_cards(h, bones):
             pts.append(a + off)
         pts = np.array(pts)
         side = np.array([-math.sin(ang), math.cos(ang), 0])
-        w0 = 0.05 if p.name == "adult" else 0.035
-        vs, fs, uvs = strip(pts, [w0 * (1 - 0.4 * k / 7) for k in range(8)], side)
+        w0 = 0.07 if p.name == "adult" else 0.045
+        vs, fs, uvs = strip(pts, [w0 * (1 - 0.3 * k / 7) for k in range(8)], side)
         o = len(V); V.extend(vs); U.extend(uvs); F.extend([tuple(j + o for j in f) for f in fs])
     return np.array(V), F, np.array(U)
 

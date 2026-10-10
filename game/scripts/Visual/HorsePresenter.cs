@@ -130,6 +130,18 @@ public partial class HorsePresenter : Node3D
         Animator.Pause();
     }
 
+    /// <summary>Form review: replace every material with matte grey clay (anatomy only, no coat).</summary>
+    public void ApplyClay()
+    {
+        if (Model == null) return;
+        var clay = new StandardMaterial3D { AlbedoColor = new Color(0.62f, 0.62f, 0.62f), Roughness = 0.85f };
+        foreach (var mesh in FindAll<MeshInstance3D>(Model))
+        {
+            var m = mesh.Name == "Mane" || mesh.Name == "Tail" ? mesh.GetSurfaceOverrideMaterial(0) : clay;
+            for (int s = 0; s < mesh.GetSurfaceOverrideMaterialCount(); s++) mesh.SetSurfaceOverrideMaterial(s, m);
+        }
+    }
+
     public float ModelHeight => Descriptor?.IsFoal == true ? 1.15f : 1.75f;
 
     private void ClearModel()
