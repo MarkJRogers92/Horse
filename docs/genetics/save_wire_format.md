@@ -1,0 +1,12 @@
+# P1-09 — explicit save wire format v1
+
+The production codec uses only BCL byte streams and the existing immutable domain constructors. It does not use BinaryFormatter, object type names, runtime reflection activation, or random draws. Wire v1 consists of the eight ASCII bytes CLVRSAVE, an Int32 little-endian wire version, an Int32 payload byte count, a 32-byte SHA-256 payload checksum, and the payload. Maximum payload size is 32 MiB. Counts, UTF-8 fields, enums, booleans, nested allele arrays and rational string lengths are bounded before allocation. Extra or truncated data fails closed.
+
+The payload writes the existing SaveHeader except its derived PayloadHash, then owner, opening balance, capacity revision, canonical horses, typed ledger, pending holds and original conception receipts. Every horse field is included: phased biological/synthetic alleles, appearance/development seeds or realized factors, parentage/founder assumptions, training, known calls, cosmetics, lifecycle and versions. Conceptions store the original immutable parent/unborn snapshots and gametes/provenance. Loading validates those original records rather than using changed current parent names/revisions. Genome, provenance, request, commit and receipt hashes are checked in addition to the full payload checksum and cross-record invariants.
+
+PayloadHash is the verified SHA-256 of the payload and is not recursively stored inside that payload. Re-encoding a decoded unmodified save yields the same bytes. These are integrity checks, not encryption, authentication, online anti-cheat or DRM.
+
+## Compatibility and migrations
+There are no real legacy save versions yet. The default registry has no migrations and refuses older/future formats it cannot understand with SaveCompatibilityException. A named, trusted ISavePayloadMigration must explicitly upgrade verified bytes along a strictly forward route. Successful IDs enter migrationHistory. Tests use a plainly TEST-ONLY envelope fixture to exercise routing without pretending an old game save exists. Actual future adapters need reviewed fixtures and versioned genotype/appearance compatibility decisions.
+
+Unknown schemas and missing conception algorithms are compatibility failures, not damaged saves eligible for silent rollback. A stored older phenotype resolver may be retained as metadata without being replaced or executed during loading. No new resolver, coat color, marking seed or foal is silently generated. Disk replacement and acknowledged backup recovery are the next P1-09 sub-step.
