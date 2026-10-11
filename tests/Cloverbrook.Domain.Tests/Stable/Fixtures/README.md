@@ -16,3 +16,24 @@ Generated from the unmodified domain source at `2e16c95b22dd5707b47e130e38c6ce04
     "wireVersion": 1
   }
 ]
+
+## Genuine daily-care v2 fixtures
+
+Generated using the unmodified domain source and original v2 codec at `b541bc470e78e1c52374096d1f158545c0d9c1ea` in an isolated scratch assembly. The existing v1 fixtures were decoded by that build and advanced with its original `AtomicSaveStore.CommitEndDay`: one ordinary day for the initial stable, three days ending immediately before birth for the committed pregnancy. The saved care values, costs, immutable receipt hashes, conception and all RNG streams are baseline evidence, not reconstructed new-format data.
+
+```json
+[
+  {
+    "file": "old_care_day_v2.clvr",
+    "sha256": "34f190d6805fd2edb4bb4cee3ca5d71c50098bc101aa0e0c2909bdabf444e8a2",
+    "bytes": 5731,
+    "wireVersion": 2
+  },
+  {
+    "file": "old_pregnancy_care_v2.clvr",
+    "sha256": "189dcc6c749ffe57cadebedfe76eef1c7e2da42222a28b150967960d81386501",
+    "bytes": 21182,
+    "wireVersion": 2
+  }
+]
+```

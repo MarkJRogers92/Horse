@@ -1,0 +1,19 @@
+# D-005 — Birth and growth belong to the saved daily transaction
+
+**Decision ID:** D-005
+**Date:** 2026-10-10
+**Owner:** GPT integration lead, implementing the owner's request to continue births and foal growth on the visual pilot branch.
+
+**Chosen result:** The bounded P2-07 package extends the existing End Day transaction. A birth activates the already committed horse, records its actual birth day, clears the mare's pregnancy and sets recovery through birth day +2. Foal and youngster stages last three days each; breeding age is birth day +8, subject to ordinary eligibility. Names are editable; identity, inherited traits, markings, parents and historical conception evidence remain fixed. The daily preview describes tomorrow's milestones and the saved completion receipt records them.
+
+**Scope and paths:** Domain lifecycle, calendar and persistence code, focused tests, and the existing text-based Godot stable screen are the Godot equivalents of P2-07's frozen task paths under D-003. Necessary eligibility corrections and save-format migration are part of this boundary. Horse models, rendering, coats, animations, real catalog release flags and `handoff/` are outside it. This does not complete P2-06's marketplace or breeding planner.
+
+**Capacity boundary:** Conception already consumed the pending capacity plan and retained its committed windows. Birth and growth must validate and use that same evidence, without another breeding debit, reservation or RNG advance. Each committed offspring represents one obligation at its current stage; family space does not count a nursing foal as an additional adult, and adulthood replaces that child's future hold with its occupancy. No facility-wide capacity ledger exists yet, so this package cannot certify later construction, purchases or lease-return availability. Missing, unsupported or conflicting capacity evidence must block visibly rather than silently invent space. Overdue births must not be backdated to a day that never completed.
+
+**Save boundary:** Lifecycle changes, daily costs, care and the calendar publish together through `AtomicSaveStore`. Exact retries return their original receipt. Generic same-day saves may rename a horse but cannot advance or rewrite lifecycle fields. The extension needs explicit old-format decoding; genuine v1 and v2 files preserve existing horses, conception, wallet, care receipts and all four random streams. No migration infers a juvenile birth date from its current age counter.
+
+**Care timing:** The reviewed care plan covers horses born at the start of the day. A newborn arrives in the completion result and receives ordinary local care charges from the following day. Existing club assistance still covers an ordinary upkeep shortfall without debt or loss of a horse.
+
+**Playable example:** A clearly labeled foaling demo uses its own save slot and a previously committed sandbox conception fixture. It never replaces a normal stable. The original conception came from headless test data; it is not a real visual-support approval or a new gameplay breeding bypass. Newborn appearance is not re-rendered by this package.
+
+**Current evidence:** Before changing the codec, two genuine v2 files were generated with the unmodified source at `b541bc470e78e1c52374096d1f158545c0d9c1ea`: one completed care day and a three-day pregnant stable ending just before birth. Their hashes and provenance are recorded in `tests/Cloverbrook.Domain.Tests/Stable/Fixtures/README.md`. Implementation, independent persistence review and runtime acceptance are pending and will be recorded in `STATUS.md`.
