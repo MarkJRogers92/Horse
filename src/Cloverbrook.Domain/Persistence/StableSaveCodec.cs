@@ -22,7 +22,7 @@ namespace Cloverbrook.Domain
     // cross-record invariants validate every rehydrated record.
     public sealed class StableSaveCodec
     {
-        public const int WireVersion = 1;
+        public const int WireVersion = 2;
         public const int FrameHeaderBytes = 48;
         public const int MaxPayloadBytes = 32 * 1024 * 1024;
         public const int MaxCollectionCount = 4096;
@@ -67,14 +67,37 @@ namespace Cloverbrook.Domain
                 if (!checksum.SequenceEqual(Digest(payload))) throw new SaveIntegrityException("Save checksum mismatch; the payload will not be guessed or repaired.");
                 if (version > WireVersion) throw new SaveCompatibilityException("This save was written by a newer wire format. Keep it intact and use a compatible build.");
                 var applied = new List<string>();
-                while (version < WireVersion)
+                while (version < WireVersion && version != 1)
                 {
                     if (!migrations.TryGetValue(version, out var migration)) throw new SaveCompatibilityException("No reviewed migration is installed from wire format " + version.ToString(CultureInfo.InvariantCulture));
                     payload = Check.NotNull(migration.Upgrade((byte[])payload.Clone()), nameof(migrations));
                     if (payload.Length > MaxPayloadBytes) throw new SaveIntegrityException("A migration produced an oversized payload.");
                     applied.Add(migration.Id); version = migration.ToWireVersion;
                 }
-                var state = DecodePayload(payload);
+                StableSnapshot state;
+                var builtInDailyMigration = false;
+                if (version == 1)
+                {
+                    // A real v1 payload is decoded with its exact old layout and
+                    // migrated without reconstructing any horse or genetics data.
+                    try
+                    {
+                        state = DecodePayloadV1(payload);
+                        builtInDailyMigration = true;
+                    }
+                    catch (SaveCompatibilityException) { throw; }
+                }
+                else state = DecodePayloadV2(payload);
+                if (builtInDailyMigration)
+                {
+                    const string migrationId = "stable.daily-care-root.v1-to-v2";
+                    if (state.Header.MigrationHistory.Contains(migrationId)) throw new SaveIntegrityException("The daily-care migration was already applied to this payload.");
+                    var migratedHeader = SaveHeaders.Copy(state.Header, schema: StableSnapshot.SchemaVersion,
+                        history: state.Header.MigrationHistory.Concat(new[] { migrationId }));
+                    var defaults = state.Horses.Select(h => new KeyValuePair<HorseId, HorseCareState>(h.HorseId, HorseCareState.Initial));
+                    state = new StableSnapshot(migratedHeader, state.PlayerOwnerId, state.Horses, state.OpeningCoinBalance, state.CapacityRevision,
+                        state.Ledger, state.PendingCapacityPlans, state.Conceptions, new StableDailyState(defaults));
+                }
                 if (applied.Count != 0)
                 {
                     if (applied.Any(id => state.Header.MigrationHistory.Contains(id))) throw new SaveIntegrityException("A migration was already applied to this payload.");
@@ -82,7 +105,7 @@ namespace Cloverbrook.Domain
                 }
                 // PayloadHash is derived from bytes and omitted from those same
                 // bytes, avoiding a recursive checksum. No game state is rerolled.
-                var currentPayload = applied.Count == 0 ? payload : EncodePayload(state);
+                var currentPayload = applied.Count == 0 && !builtInDailyMigration ? payload : EncodePayload(state);
                 return state.WithHeader(SaveHeaders.Copy(state.Header, payloadHash: Hex(Digest(currentPayload))));
             }
             catch (Exception e) when (e is EndOfStreamException || e is ArgumentException || e is FormatException || e is OverflowException || e is GeneticsSupportException)
@@ -147,10 +170,10 @@ namespace Cloverbrook.Domain
             StreamState(w, h.RngStreams.Breeding); StreamState(w, h.RngStreams.Cosmetic); StreamState(w, h.RngStreams.World); StreamState(w, h.RngStreams.Competition);
             w.Write(h.LastCommittedBreedingEventIndex); List(w, h.MigrationHistory, Text);
         }
-        private static SaveHeader Header(BinaryReader r)
+        private static SaveHeader Header(BinaryReader r, bool allowV1 = false)
         {
             var id = new SaveId(Id(r)); var mode = EnumValue<SaveMode>(r); var schema = Text(r);
-            if (schema != StableSnapshot.SchemaVersion) throw new SaveCompatibilityException("No payload reader is installed for schema " + schema);
+            if (schema != StableSnapshot.SchemaVersion && !(allowV1 && schema == "cloverbrook.save.v1")) throw new SaveCompatibilityException("No payload reader is installed for schema " + schema);
             var build = Text(r); var revision = r.ReadUInt64(); var day = r.ReadInt32(); var calendar = Text(r); var care = EnumValue<CareMode>(r);
             var catalog = Text(r); var inheritance = Text(r); var resolver = Text(r); var retained = List(r, x => Text(x));
             var streams = new RngStreams(StreamState(r), StreamState(r), StreamState(r), StreamState(r));
@@ -270,19 +293,59 @@ namespace Cloverbrook.Domain
             {
                 Header(w, state.Header); Text(w, state.PlayerOwnerId.ToString()); w.Write(state.OpeningCoinBalance); w.Write(state.CapacityRevision);
                 List(w, state.Horses, Horse); List(w, state.Ledger, (x, entry) => { Text(x, entry.Id.ToString()); x.Write(entry.DeltaCoins); Text(x, entry.Kind); OptionalText(x, entry.BreedingId?.ToString()); });
-                List(w, state.PendingCapacityPlans, Capacity); List(w, state.Conceptions, Receipt); Budget(w);
+                List(w, state.PendingCapacityPlans, Capacity); List(w, state.Conceptions, Receipt);
+                List(w, state.DailyState.HorseCare, (x, entry) => { Text(x, entry.Key.ToString()); Care(x, entry.Value); });
+                List(w, state.DailyState.Receipts, DailyReceipt); Budget(w);
             }
             return output.ToArray();
         }
-        private static StableSnapshot DecodePayload(byte[] payload)
+        private static StableSnapshot DecodePayloadV2(byte[] payload)
         {
             using var input = new MemoryStream(payload, false); using var r = new BinaryReader(input, utf8, true);
             var header = Header(r); var owner = new OwnerId(Id(r)); var opening = r.ReadInt64(); var capacityRevision = r.ReadUInt64(); var horses = List(r, Horse);
             var ledger = List(r, x => { var id = new TransactionId(Id(x)); var delta = x.ReadInt64(); var kind = Text(x); var breeding = OptionalText(x);
                 return new CoinLedgerEntry(id, delta, kind, breeding == null ? null : new BreedingCommitId(Guid.Parse(breeding))); });
             var pending = List(r, Capacity); var conceptions = List(r, Receipt);
+            var horseCare = List(r, x => new KeyValuePair<HorseId, HorseCareState>(new HorseId(Id(x)), Care(x)));
+            var dailyReceipts = List(r, DailyReceipt);
             if (input.Position != input.Length) throw new SaveIntegrityException("Unexpected trailing payload data; no fields are silently discarded.");
-            return new StableSnapshot(header, owner, horses, opening, capacityRevision, ledger, pending, conceptions);
+            return new StableSnapshot(header, owner, horses, opening, capacityRevision, ledger, pending, conceptions, new StableDailyState(horseCare, dailyReceipts));
+        }
+        private static StableSnapshot DecodePayloadV1(byte[] payload)
+        {
+            using var input = new MemoryStream(payload, false); using var r = new BinaryReader(input, utf8, true);
+            var header = Header(r, allowV1: true); if (header.SchemaVersion != "cloverbrook.save.v1") throw new SaveCompatibilityException("Wire v1 requires payload schema cloverbrook.save.v1.");
+            var owner = new OwnerId(Id(r)); var opening = r.ReadInt64(); var capacityRevision = r.ReadUInt64(); var horses = List(r, Horse);
+            var ledger = List(r, x => { var id = new TransactionId(Id(x)); var delta = x.ReadInt64(); var kind = Text(x); var breeding = OptionalText(x);
+                return new CoinLedgerEntry(id, delta, kind, breeding == null ? null : new BreedingCommitId(Guid.Parse(breeding))); });
+            var pending = List(r, Capacity); var conceptions = List(r, Receipt);
+            if (input.Position != input.Length) throw new SaveIntegrityException("Unexpected trailing payload data in wire v1.");
+            return new StableSnapshot(header, owner, horses, opening, capacityRevision, ledger, pending, conceptions, StableDailyState.Empty);
+        }
+
+        private static void Care(BinaryWriter w, HorseCareState c)
+        { w.Write(c.Nutrition); w.Write(c.Bedding); w.Write(c.Turnout); w.Write(c.Grooming); }
+        private static HorseCareState Care(BinaryReader r) => new HorseCareState(r.ReadInt32(), r.ReadInt32(), r.ReadInt32(), r.ReadInt32());
+        private static void CareOutcome(BinaryWriter w, HorseCareOutcome h)
+        { Text(w, h.HorseId.ToString()); Care(w, h.Before); Care(w, h.After); }
+        private static HorseCareOutcome CareOutcome(BinaryReader r) => new HorseCareOutcome(new HorseId(Id(r)), Care(r), Care(r));
+        private static void DailyReceipt(BinaryWriter w, DailyCareReceipt receipt)
+        {
+            var q = receipt.Request; Text(w, q.OperationId.ToString()); Text(w, q.Requester.ToString()); w.Write(q.ExpectedRevision); w.Write(q.FromDay);
+            Text(w, q.PolicyVersion); List(w, q.Plan.Assignments, (x, a) => { Text(x, a.HorseId.ToString()); x.Write(a.Feed); x.Write(a.Bedding); x.Write(a.Turnout); x.Write(a.Grooming); }); Text(w, q.RequestHash);
+            w.Write(receipt.FromDay); w.Write(receipt.ToDay); w.Write(receipt.CareCostCoins); w.Write(receipt.OperationsCostCoins); w.Write(receipt.WalletDebitCoins);
+            w.Write(receipt.AssistanceCoins); Text(w, receipt.CostTransactionId.ToString()); List(w, receipt.HorseOutcomes, CareOutcome); Text(w, receipt.ReceiptHash);
+        }
+        private static DailyCareReceipt DailyReceipt(BinaryReader r)
+        {
+            var operation = new TransactionId(Id(r)); var owner = new OwnerId(Id(r)); var revision = r.ReadUInt64(); var day = r.ReadInt32(); var policy = Text(r);
+            var assignments = List(r, x => new HorseCareAssignment(new HorseId(Id(x)), Flag(x), Flag(x), Flag(x), Flag(x)));
+            var request = new EndDayRequest(operation, owner, revision, day, new CarePlan(assignments), policy);
+            if (request.RequestHash != Text(r, 128)) throw new SaveIntegrityException("Stored EndDay command identity does not match its parameters.");
+            var from = r.ReadInt32(); var to = r.ReadInt32(); var care = r.ReadInt64(); var operations = r.ReadInt64(); var debit = r.ReadInt64(); var assistance = r.ReadInt64();
+            var costId = new TransactionId(Id(r)); var outcomes = List(r, CareOutcome); var hash = Text(r, 128);
+            var receipt = new DailyCareReceipt(request, from, to, care, operations, debit, assistance, costId, outcomes);
+            if (receipt.ReceiptHash != hash) throw new SaveIntegrityException("Stored daily-care receipt digest mismatch."); return receipt;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Cloverbrook.Domain.Tests
         internal static readonly BreedingCommitId Event = new BreedingCommitId(new Guid("bc000000-0000-0000-0000-000000000001"));
         internal static readonly CapacityReservationId Reservation = new CapacityReservationId(new Guid("bc000000-0000-0000-0000-000000000002"));
         internal static SaveHeader Header(ulong revision = 0) => new SaveHeader(new SaveId(new Guid("bc000000-0000-0000-0000-000000000003")), SaveMode.Sandbox,
-            "cloverbrook.save.v1", "headless-proof", revision, 10, "calendar.v1", CareMode.Gentle, CoreGeneticsCatalog.CatalogVersion, CoreGeneticsCatalog.InheritanceVersion,
+            StableSnapshot.SchemaVersion, "headless-proof", revision, 10, "calendar.v1", CareMode.Gentle, CoreGeneticsCatalog.CatalogVersion, CoreGeneticsCatalog.InheritanceVersion,
             CoreGeneticsCatalog.ResolverVersion, new[] { CoreGeneticsCatalog.ResolverVersion }, RngStreams.FromSeed(new Seed128(11, 22)), 0, Array.Empty<string>(), "unwritten");
         internal static HorseRecord[] Parents() => new[] { ForecastTestData.Horse(1, ForecastTestData.Genome(("slc45a2", "N", "Cr"))),
             ForecastTestData.Horse(2, ForecastTestData.Genome(("slc45a2", "N", "Cr")), ReproductiveRole.Stallion) };

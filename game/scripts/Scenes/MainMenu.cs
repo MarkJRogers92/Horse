@@ -33,6 +33,7 @@ public partial class MainMenu : Node
         box.AddChild(CozyTheme.Title("visual pilot · placeholder horse", 15));
         AddButton(box, "Horse viewer", "res://scenes/viewer.tscn");
         AddButton(box, "Visit the stable", "res://scenes/stable.tscn");
+        AddButton(box, "Manage stable", "res://scenes/stable_day.tscn");
         var quit = new Button { Text = "Quit" }; quit.Pressed += () => GetTree().Quit(); box.AddChild(quit);
 
         // CI smoke test: prove the project boots, links the domain and presents a horse.

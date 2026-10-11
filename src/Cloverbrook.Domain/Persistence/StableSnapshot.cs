@@ -33,10 +33,11 @@ namespace Cloverbrook.Domain
     // trusted adapter; this slice is not a building/calendar capacity manager.
     public sealed class StableSnapshot
     {
-        public const string SchemaVersion = "cloverbrook.save.v1";
+        public const string SchemaVersion = "cloverbrook.save.v2";
         public StableSnapshot(SaveHeader header, OwnerId playerOwnerId, IEnumerable<HorseRecord> horses,
             long openingCoinBalance, ulong capacityRevision, IEnumerable<CoinLedgerEntry>? ledger = null,
-            IEnumerable<BreedingCapacityPlan>? pendingCapacityPlans = null, IEnumerable<PreparedConception>? conceptions = null)
+            IEnumerable<BreedingCapacityPlan>? pendingCapacityPlans = null, IEnumerable<PreparedConception>? conceptions = null,
+            StableDailyState? dailyState = null)
         {
             Header = Check.NotNull(header, nameof(header)); PlayerOwnerId = Check.NotNull(playerOwnerId, nameof(playerOwnerId));
             Horses = Snapshot.List(Check.NotNull(horses, nameof(horses)).OrderBy(h => h.HorseId.ToString(), StringComparer.Ordinal));
@@ -45,6 +46,7 @@ namespace Cloverbrook.Domain
             Ledger = Snapshot.List((ledger ?? Array.Empty<CoinLedgerEntry>()).OrderBy(l => l.Id.ToString(), StringComparer.Ordinal));
             PendingCapacityPlans = Snapshot.List((pendingCapacityPlans ?? Array.Empty<BreedingCapacityPlan>()).OrderBy(p => p.ReservationId.ToString(), StringComparer.Ordinal));
             Conceptions = Snapshot.List((conceptions ?? Array.Empty<PreparedConception>()).OrderBy(c => c.Commit.BreedingEventIndex));
+            DailyState = dailyState ?? StableDailyState.Empty;
             try { Coins = Ledger.Aggregate(openingCoinBalance, (coins, entry) => checked(coins + entry.DeltaCoins)); }
             catch (OverflowException e) { throw new SaveIntegrityException("The coin ledger overflows the supported integer balance.", e); }
             Validate();
@@ -58,14 +60,23 @@ namespace Cloverbrook.Domain
         public IReadOnlyList<CoinLedgerEntry> Ledger { get; }
         public IReadOnlyList<BreedingCapacityPlan> PendingCapacityPlans { get; }
         public IReadOnlyList<PreparedConception> Conceptions { get; }
-        public StableSnapshot WithHeader(SaveHeader header) => new StableSnapshot(header, PlayerOwnerId, Horses, OpeningCoinBalance, CapacityRevision, Ledger, PendingCapacityPlans, Conceptions);
-        public StableSnapshot WithHorses(IEnumerable<HorseRecord> horses) => new StableSnapshot(Header, PlayerOwnerId, horses, OpeningCoinBalance, CapacityRevision, Ledger, PendingCapacityPlans, Conceptions);
+        public StableDailyState DailyState { get; }
+        public StableSnapshot WithHeader(SaveHeader header) => new StableSnapshot(header, PlayerOwnerId, Horses, OpeningCoinBalance, CapacityRevision, Ledger, PendingCapacityPlans, Conceptions, DailyState);
+        public StableSnapshot WithHorses(IEnumerable<HorseRecord> horses) => new StableSnapshot(Header, PlayerOwnerId, horses, OpeningCoinBalance, CapacityRevision, Ledger, PendingCapacityPlans, Conceptions, DailyState);
+        public StableSnapshot WithDailyState(StableDailyState dailyState) => new StableSnapshot(Header, PlayerOwnerId, Horses, OpeningCoinBalance, CapacityRevision, Ledger, PendingCapacityPlans, Conceptions, dailyState);
         private static void Require(bool condition, string message) { if (!condition) throw new SaveIntegrityException(message); }
         private void Validate()
         {
             Require(Coins >= 0, "Coin balance cannot be negative.");
             Require(Horses.Select(h => h.HorseId).Distinct().Count() == Horses.Count, "Duplicate horse identity in save.");
             Require(Ledger.Select(l => l.Id).Distinct().Count() == Ledger.Count, "Duplicate coin transaction identity.");
+            Require(DailyState.Receipts.Select(r => r.Request.OperationId).Distinct().Count() == DailyState.Receipts.Count
+                && DailyState.Receipts.All(r => r.ToDay <= Header.CalendarDay && r.Request.Requester.Equals(PlayerOwnerId)), "Daily-care receipt history is invalid for this owner or calendar.");
+            Require(DailyState.Receipts.All(r => !Ledger.Any(l => l.Id.Equals(r.Request.OperationId))), "Daily-care operation IDs cannot collide with wallet ledger IDs.");
+            Require(DailyState.Receipts.Select(r => r.CostTransactionId).Distinct().Count() == DailyState.Receipts.Count
+                && DailyState.Receipts.All(r => !r.Request.OperationId.Equals(r.CostTransactionId)
+                    && !DailyState.Receipts.Any(other => other.Request.OperationId.Equals(r.CostTransactionId))),
+                "Daily-care receipt transaction identities are reused.");
             Require(PendingCapacityPlans.Select(p => p.ReservationId).Distinct().Count() == PendingCapacityPlans.Count
                 && PendingCapacityPlans.Select(p => p.BreedingId).Distinct().Count() == PendingCapacityPlans.Count, "Duplicate pending capacity hold.");
             Require(Conceptions.Select(c => c.Commit.BreedingCommitId).Distinct().Count() == Conceptions.Count
@@ -77,6 +88,56 @@ namespace Cloverbrook.Domain
             Require(Header.SaveRevision >= (ulong)Conceptions.Count && CapacityRevision >= (ulong)Conceptions.Count, "Conception revisions cannot run ahead of the save.");
             var horses = Horses.ToDictionary(h => h.HorseId); var receipts = Conceptions.ToDictionary(c => c.Commit.BreedingCommitId);
             var ledger = Ledger.ToDictionary(l => l.Id);
+            foreach (var pair in DailyState.HorseCare)
+                Require(horses.ContainsKey(pair.Key), "Daily care references a horse absent from the canonical stable.");
+            foreach (var receipt in DailyState.Receipts)
+            {
+                Require(receipt.CostTransactionId.Equals(StableDayService.CostId(receipt.Request.OperationId)), "A daily-care transaction ID is not the deterministic ID for its command.");
+                if (receipt.WalletDebitCoins == 0) Require(!ledger.ContainsKey(receipt.CostTransactionId), "A zero-cost daily receipt cannot have a wallet debit.");
+                else Require(ledger.TryGetValue(receipt.CostTransactionId, out var dailyDebit) && dailyDebit.Kind == "stable-day"
+                    && dailyDebit.BreedingId == null && dailyDebit.DeltaCoins == -receipt.WalletDebitCoins,
+                    "A daily-care debit is missing or inconsistent with its receipt.");
+            }
+            foreach (var debit in Ledger.Where(l => l.Kind == "stable-day"))
+                Require(DailyState.Receipts.Any(r => r.WalletDebitCoins > 0 && r.CostTransactionId.Equals(debit.Id)
+                    && debit.DeltaCoins == -r.WalletDebitCoins), "Orphan daily-care wallet debit.");
+            var horsesById = Horses.ToDictionary(h => h.HorseId);
+            var lastCare = new Dictionary<HorseId, HorseCareState>();
+            var lastDay = (int?)null; var lastExpectedRevision = (ulong?)null;
+            foreach (var receipt in DailyState.Receipts)
+            {
+                Require(receipt.Request.ExpectedRevision < Header.SaveRevision, "A daily-care receipt is from a future save revision.");
+                Require(!lastExpectedRevision.HasValue || receipt.Request.ExpectedRevision > lastExpectedRevision.Value,
+                    "Daily-care command revisions are not strictly increasing.");
+                Require(!lastDay.HasValue || receipt.FromDay == lastDay.Value, "Daily-care receipts have a calendar gap or overlap.");
+                lastDay = receipt.ToDay; lastExpectedRevision = receipt.Request.ExpectedRevision;
+                var assigned = receipt.Request.Plan.Assignments.Select(a => a.HorseId).ToHashSet();
+                Require(receipt.HorseOutcomes.Select(o => o.HorseId).ToHashSet().SetEquals(assigned), "A daily-care receipt does not describe every assigned horse exactly once.");
+                Require(receipt.Request.Plan.Assignments.All(a => a.Feed && a.Bedding), "A daily-care receipt omitted a required basic-care assignment.");
+                var expectedCareCost = checked((long)assigned.Count * StableDailyPolicy.FeedCoinsPerHorse);
+                var expectedOperationsCost = assigned.Count == 0 ? 0 : StableDailyPolicy.OperationsCoinsPerDay;
+                Require(receipt.CareCostCoins == expectedCareCost && receipt.OperationsCostCoins == expectedOperationsCost,
+                    "A daily-care receipt does not match the supported daily costs.");
+                foreach (var outcome in receipt.HorseOutcomes)
+                {
+                    Require(horsesById.ContainsKey(outcome.HorseId), "A daily-care result references a horse absent from the canonical stable.");
+                    Require(lastCare.TryGetValue(outcome.HorseId, out var prior) ? SameCare(prior, outcome.Before) : SameCare(HorseCareState.Initial, outcome.Before),
+                        "Daily-care history is discontinuous for a horse.");
+                    lastCare[outcome.HorseId] = outcome.After;
+                }
+            }
+            if (DailyState.Receipts.Count != 0)
+            {
+                Require(lastDay == Header.CalendarDay, "The stable calendar differs from its most recent daily-care receipt.");
+                foreach (var pair in lastCare)
+                    Require(DailyState.TryGet(pair.Key, out var latest) && SameCare(latest, pair.Value), "The latest care result is missing from the saved care root.");
+                foreach (var pair in DailyState.HorseCare)
+                    Require(lastCare.TryGetValue(pair.Key, out var latest) ? SameCare(latest, pair.Value) : SameCare(HorseCareState.Initial, pair.Value),
+                        "The saved care root differs from its receipt history.");
+            }
+            else
+                Require(DailyState.HorseCare.All(pair => SameCare(pair.Value, HorseCareState.Initial)),
+                    "A daily-care value cannot change before the first recorded EndDay receipt.");
             try { _ = new PedigreeGraph(Horses.Select(h => new PedigreeNode(h.HorseId, h.Parentage))); }
             catch (ArgumentException e) { throw new SaveIntegrityException("Invalid saved pedigree.", e); }
             foreach (var plan in PendingCapacityPlans)
@@ -136,13 +197,15 @@ namespace Cloverbrook.Domain
             && a.Parentage.FounderBackground?.AssumptionId == b.Parentage.FounderBackground?.AssumptionId
             && a.Parentage.FounderBackground?.InbreedingCoefficient == b.Parentage.FounderBackground?.InbreedingCoefficient
             && a.OriginRecord == b.OriginRecord && Equals(a.OriginCommitId, b.OriginCommitId);
+        private static bool SameCare(HorseCareState a, HorseCareState b) => a.Nutrition == b.Nutrition && a.Bedding == b.Bedding
+            && a.Turnout == b.Turnout && a.Grooming == b.Grooming;
     }
 
     internal static class SaveHeaders
     {
         internal static SaveHeader Copy(SaveHeader h, ulong? revision = null, RngStreams? streams = null, ulong? eventIndex = null,
-            string? schema = null, IEnumerable<string>? history = null, string? payloadHash = null) =>
-            new SaveHeader(h.SaveId, h.SaveMode, schema ?? h.SchemaVersion, h.GameBuildVersion, revision ?? h.SaveRevision, h.CalendarDay,
+            string? schema = null, IEnumerable<string>? history = null, string? payloadHash = null, int? calendarDay = null) =>
+            new SaveHeader(h.SaveId, h.SaveMode, schema ?? h.SchemaVersion, h.GameBuildVersion, revision ?? h.SaveRevision, calendarDay ?? h.CalendarDay,
                 h.CalendarProfileVersion, h.CareMode, h.ActiveVariantCatalogVersion, h.ActiveInheritanceModelVersion, h.DefaultOffspringResolverVersion,
                 h.RetainedResolverVersions, streams ?? h.RngStreams, eventIndex ?? h.LastCommittedBreedingEventIndex, history ?? h.MigrationHistory, payloadHash ?? h.PayloadHash);
     }
@@ -178,7 +241,7 @@ namespace Cloverbrook.Domain
                 new RngStreams(prepared.AfterBreedingStream, streams.Cosmetic, streams.World, streams.Competition), prepared.Commit.BreedingEventIndex, payloadHash: "unwritten");
             var next = new StableSnapshot(header, state.PlayerOwnerId, horses, state.OpeningCoinBalance, checked(state.CapacityRevision + 1),
                 state.Ledger.Concat(new[] { new CoinLedgerEntry(prepared.Commit.CostTransactionId, -prepared.Terms.CostCoins, "breeding", prepared.Commit.BreedingCommitId) }),
-                state.PendingCapacityPlans.Where(p => !p.ReservationId.Equals(request.ReservationId)), state.Conceptions.Concat(new[] { prepared }));
+                state.PendingCapacityPlans.Where(p => !p.ReservationId.Equals(request.ReservationId)), state.Conceptions.Concat(new[] { prepared }), state.DailyState);
             return new ConceptionStateChange(next, prepared, false);
         }
     }

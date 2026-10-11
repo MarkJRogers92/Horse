@@ -19,5 +19,6 @@
   <ItemGroup>
     <None Include="../../handoff/GENETICS_FIXTURES.json" Link="Fixtures/GENETICS_FIXTURES.json" CopyToOutputDirectory="PreserveNewest" />
     <None Include="../../docs/contracts/COAT_SUPPORT_MATRIX.json" Link="Fixtures/COAT_SUPPORT_MATRIX.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Stable/Fixtures/*.clvr" Link="Stable/Fixtures/%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

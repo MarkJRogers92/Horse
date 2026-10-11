@@ -31,6 +31,14 @@ namespace Cloverbrook.Domain
         public bool Replayed { get; }
         public bool IsDurablyCommitted => true;
     }
+    public sealed class StoredEndDay
+    {
+        internal StoredEndDay(StableSnapshot state, DailyCareReceipt receipt, bool replayed) { State = state; Receipt = receipt; Replayed = replayed; }
+        public StableSnapshot State { get; }
+        public DailyCareReceipt Receipt { get; }
+        public bool Replayed { get; }
+        public bool IsDurablyCommitted => true;
+    }
 
     // All cooperating writers share one persistent lock inode. Do not delete the
     // lockfile on disposal: unlinking it can permit two independent locks.
@@ -100,19 +108,37 @@ namespace Cloverbrook.Domain
             var saved = Publish(result.State, preserveCurrentAsBackup: true);
             return new StoredConception(saved, saved.Conceptions.Single(c => c.Commit.BreedingCommitId.Equals(request.EventId)), false);
         }
-        // Trusted domain updates for naming, training, calendar and confirmed
-        // capacity projections. Cannot bypass conception or edit a coin history.
-        // Adoption/market commands will need their own validated transitions.
+        public StoredEndDay CommitEndDay(EndDayRequest request, StableDayService service)
+        {
+            Check.NotNull(request, nameof(request)); Check.NotNull(service, nameof(service)); using var held = Lock(); var state = RequirePrimary();
+            var existing = state.DailyState.Receipts.SingleOrDefault(r => r.Request.OperationId.Equals(request.OperationId));
+            if (existing != null)
+            {
+                if (existing.Request.RequestHash != request.RequestHash)
+                    throw new EndDayRejectedException("idempotency_conflict", "This command ID already belongs to a different daily-care request.");
+                return new StoredEndDay(state, existing, true);
+            }
+            var costId = StableDayService.CostId(request.OperationId);
+            if (request.OperationId.Equals(costId) || state.Ledger.Any(entry => entry.Id.Equals(request.OperationId) || entry.Id.Equals(costId)))
+                throw new EndDayRejectedException("ledger_id_conflict", "This command's transaction identity is already used in the wallet history.");
+            var result = StableDayTransaction.Apply(state, request, service);
+            var saved = Publish(result.State, preserveCurrentAsBackup: true);
+            return new StoredEndDay(saved, saved.DailyState.Receipts.Single(r => r.Request.OperationId.Equals(request.OperationId)), false);
+        }
+        // Trusted same-day updates for naming, training and confirmed capacity
+        // projections. Cannot advance the calendar or rewrite conception, wallet
+        // or daily-care history. Adoption/market commands need their own transitions.
         public StableSnapshot SaveSnapshot(StableSnapshot replacement, ulong expectedRevision)
         {
             Check.NotNull(replacement, nameof(replacement)); using var held = Lock(); var current = RequirePrimary();
             if (current.Header.SaveRevision != expectedRevision) throw new ConceptionRejectedException("stale_save", "The on-disk revision changed; reload before saving.");
             if (!current.Header.SaveId.Equals(replacement.Header.SaveId) || !current.PlayerOwnerId.Equals(replacement.PlayerOwnerId)
-                || replacement.Header.SaveRevision != checked(expectedRevision + 1) || replacement.Header.CalendarDay < current.Header.CalendarDay
+                || replacement.Header.SaveRevision != checked(expectedRevision + 1) || replacement.Header.CalendarDay != current.Header.CalendarDay
                 || replacement.CapacityRevision < current.CapacityRevision) throw new SaveIntegrityException("A replacement changed save identity or rewound a revision/calendar.");
             if (!current.Conceptions.Select(c => c.ReceiptHash).SequenceEqual(replacement.Conceptions.Select(c => c.ReceiptHash))
-                || current.OpeningCoinBalance != replacement.OpeningCoinBalance || LedgerKey(current) != LedgerKey(replacement))
-                throw new SaveIntegrityException("Generic saves cannot create/rewrite conception or wallet history.");
+                || current.OpeningCoinBalance != replacement.OpeningCoinBalance || LedgerKey(current) != LedgerKey(replacement)
+                || DailyKey(current.DailyState) != DailyKey(replacement.DailyState))
+                throw new SaveIntegrityException("Generic saves cannot create/rewrite conception, wallet or daily-care history.");
             var before = current.Header.RngStreams.Breeding; var after = replacement.Header.RngStreams.Breeding;
             if (before.Seed != after.Seed || before.EventCounter != after.EventCounter || before.AlgorithmVersion != after.AlgorithmVersion)
                 throw new SaveIntegrityException("Generic saves cannot advance or reseed breeding randomness.");
@@ -124,6 +150,10 @@ namespace Cloverbrook.Domain
         }
         private static string LedgerKey(StableSnapshot state) => Canonical.Hash(state.Ledger.Select(l => Canonical.Hash(l.Id.ToString(), l.Kind,
             l.DeltaCoins.ToString(CultureInfo.InvariantCulture), l.BreedingId?.ToString() ?? "")));
+        private static string DailyKey(StableDailyState daily) => Canonical.Hash(
+            daily.Receipts.Select(r => r.ReceiptHash).Concat(daily.HorseCare.Select(p => Canonical.Hash(p.Key.ToString(),
+                p.Value.Nutrition.ToString(CultureInfo.InvariantCulture), p.Value.Bedding.ToString(CultureInfo.InvariantCulture),
+                p.Value.Turnout.ToString(CultureInfo.InvariantCulture), p.Value.Grooming.ToString(CultureInfo.InvariantCulture)))));
 
         public SaveLoadResult RecoverFromBackup(SaveId expectedSaveId, ulong expectedBackupRevision, string expectedPayloadHash)
         {
