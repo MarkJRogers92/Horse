@@ -1,0 +1,117 @@
+{
+  "armatures": [
+    {
+      "boneCount": 58,
+      "name": "Skeleton"
+    }
+  ],
+  "blenderVersion": "5.2.1 LTS",
+  "exportOperatorProperties": {
+    "export_all_influences": {
+      "default": false,
+      "type": "BOOLEAN"
+    },
+    "export_animations": {
+      "default": true,
+      "type": "BOOLEAN"
+    },
+    "export_format": {
+      "default": "",
+      "type": "ENUM"
+    },
+    "export_influence_nb": {
+      "default": 4,
+      "type": "INT"
+    },
+    "export_skins": {
+      "default": true,
+      "type": "BOOLEAN"
+    }
+  },
+  "exportResult": [
+    "FINISHED"
+  ],
+  "meshes": [
+    {
+      "armatureModifiers": [
+        "Skeleton"
+      ],
+      "influenceHistogram": {
+        "1": 4559,
+        "2": 895,
+        "3": 831,
+        "4": 483,
+        "5": 150,
+        "6": 291,
+        "7": 612,
+        "8": 3103
+      },
+      "maxEightPlusWeightSumError": 5.122274160385132e-08,
+      "maxNonzeroInfluences": 8,
+      "object": "Body",
+      "polygonCount": 21706,
+      "vertexCount": 10924,
+      "vertexGroupCount": 54,
+      "verticesWithMoreThanFour": 4156
+    },
+    {
+      "armatureModifiers": [
+        "Skeleton"
+      ],
+      "influenceHistogram": {
+        "1": 81,
+        "2": 4,
+        "3": 332,
+        "4": 650,
+        "5": 184,
+        "6": 440,
+        "7": 182,
+        "8": 90
+      },
+      "maxEightPlusWeightSumError": 5.3085386753082275e-08,
+      "maxNonzeroInfluences": 8,
+      "object": "Mane",
+      "polygonCount": 3752,
+      "vertexCount": 1963,
+      "vertexGroupCount": 54,
+      "verticesWithMoreThanFour": 896
+    },
+    {
+      "armatureModifiers": [
+        "Skeleton"
+      ],
+      "influenceHistogram": {
+        "1": 78,
+        "2": 995,
+        "3": 1140,
+        "4": 76,
+        "5": 8
+      },
+      "maxEightPlusWeightSumError": 3.91155481338501e-08,
+      "maxNonzeroInfluences": 5,
+      "object": "Tail",
+      "polygonCount": 4542,
+      "vertexCount": 2297,
+      "vertexGroupCount": 11,
+      "verticesWithMoreThanFour": 8
+    },
+    {
+      "armatureModifiers": [
+        "Skeleton"
+      ],
+      "influenceHistogram": {
+        "3": 1476
+      },
+      "maxEightPlusWeightSumError": 0.0,
+      "maxNonzeroInfluences": 3,
+      "object": "Eyes",
+      "polygonCount": 1536,
+      "vertexCount": 1476,
+      "vertexGroupCount": 4,
+      "verticesWithMoreThanFour": 0
+    }
+  ],
+  "outputGlb": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/godot-eight-weight-probe/scratch/horse_light_float_probe_8weights.glb",
+  "sceneObjectCount": 5,
+  "sourceBlend": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/float-diagnostic8/horse_light_float_probe.blend"
+}

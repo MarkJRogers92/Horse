@@ -1,0 +1,65 @@
+{
+  "schema": "horse.skin-format.compatibility.scope.v1",
+  "status": "accepted narrow format compatibility after independent native Sol review and correction",
+  "reviewer": "motion_foundation_consult",
+  "inputFieldAnatomicallyAccepted": false,
+  "productionPromoted": false,
+  "scope": [
+    "FLOAT accessor eight-influence export data",
+    "Godot headless imported buffer widths and joint order",
+    "finite active weights/valid indices",
+    "nonempty generated LOD index buffers"
+  ],
+  "limits": [
+    "No scene render or posed deformation accuracy measured.",
+    "Imported weight-sum tolerance is aggregate-only; max sum error approximately 0.0122%.",
+    "Earlier export/import raw logs unavailable; their exits are reported.",
+    "Corrected inspector rerun has retained stdout/stderr/exit0 and passing JSON."
+  ],
+  "files": [
+    {
+      "path": "REPORT.md",
+      "sha256": "fd972fd2d58113efbbe4680f30c080e21001b42b571a5272bd5ec6eb6f79f619"
+    },
+    {
+      "path": "blender_probe_report.json",
+      "sha256": "06ee026af74c170f1a864ca96d32cbdf8aef6572fce4015e0874ce0580606ee2"
+    },
+    {
+      "path": "gltf_accessor_report.json",
+      "sha256": "940d972d865fc63c0067b7ffc97832f233169f5a0aebd06b8e5b428c0407da6e"
+    },
+    {
+      "path": "godot_inspector.exit_code.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "godot_inspector.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "godot_inspector.stdout.log",
+      "sha256": "055ab31d232c25c9f1cafd933564a2a8e07cc880a2b5ebc316fddca264d88e2b"
+    },
+    {
+      "path": "godot_probe.gd",
+      "sha256": "af50feb088962a19e5aad1ca4e99861517ece0007961e67209189ffec1b63322"
+    },
+    {
+      "path": "godot_probe_report.json",
+      "sha256": "d601443f470b444e604b769ea11a167c319a7e315171c96c6902f71ee5ea2054"
+    },
+    {
+      "path": "horse_light_float_probe_8weights.glb",
+      "sha256": "5e007c40a99fbf82fa87e7174ed43a93849ea9f782d4bfb349bc6e53224edb7a"
+    },
+    {
+      "path": "inspect_glb.py",
+      "sha256": "07e4b26519471cee2d8cd76745947b53ebe97bb44d22c7e021b8cea26064333f"
+    },
+    {
+      "path": "run_blender_probe.py",
+      "sha256": "a16ce109754f6df9f781d4aef56c8fdd5a6ceadf5891db8db1f6cb43587d3ccb"
+    }
+  ]
+}

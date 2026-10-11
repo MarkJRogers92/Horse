@@ -96,6 +96,16 @@ The builder exports only the subtle `Idle` candidate clip; Walk and Graze remain
 gated and rejected reference clips were not copied. Idle is not animation
 acceptance; rig and pose acceptance remains with the motion review.
 
+An isolated eight-weight FLOAT export probe retains eight-wide Body/Mane buffers
+in Godot 4.7.2, matching 58 joint names, finite active weights, valid bone indices
+and nonempty generated LOD index buffers. Native Sol accepted this format scope.
+The source field remains anatomically rejected. The headless inspector did not
+render the scene or establish posed accuracy; its aggregate sum tolerance is not
+an individual-weight or deformation bound. Maximum imported sum drift is about
+0.0122%. Original export/import exits are reported without retained raw logs;
+the corrected inspector rerun has archived stdout/stderr, exit 0 and passing JSON.
+See `evidence/eight-weight-format-5e007c40`. This does not promote candidate motion.
+
 ## LOD and acceptance limits
 
 The Light Body detail texture is

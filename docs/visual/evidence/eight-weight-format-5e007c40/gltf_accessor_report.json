@@ -1,0 +1,243 @@
+{
+  "primitives": [
+    {
+      "attributes": {
+        "JOINTS_0": {
+          "accessor": 6,
+          "componentType": 5121,
+          "count": 15674,
+          "max": null,
+          "min": null,
+          "normalized": false,
+          "type": "VEC4"
+        },
+        "JOINTS_1": {
+          "accessor": 7,
+          "componentType": 5121,
+          "count": 15674,
+          "max": null,
+          "min": null,
+          "normalized": false,
+          "type": "VEC4"
+        },
+        "WEIGHTS_0": {
+          "accessor": 8,
+          "componentType": 5126,
+          "count": 15674,
+          "max": null,
+          "min": null,
+          "normalized": false,
+          "type": "VEC4"
+        },
+        "WEIGHTS_1": {
+          "accessor": 9,
+          "componentType": 5126,
+          "count": 15674,
+          "max": null,
+          "min": null,
+          "normalized": false,
+          "type": "VEC4"
+        }
+      },
+      "combinedWeightSums": {
+        "finite": true,
+        "max": 1.0000001187436283,
+        "min": 0.9999998891726136
+      },
+      "mesh": "Body",
+      "nonzeroSecondSetVertices": 5643,
+      "primitive": 0,
+      "weightsFloat32": true
+    },
+    {
+      "attributes": {
+        "JOINTS_0": {
+          "accessor": 24,
+          "componentType": 5121,
+          "count": 1646,
+          "max": null,
+          "min": null,
+          "normalized": false,
+          "type": "VEC4"
+        },
+        "WEIGHTS_0": {
+          "accessor": 25,
+          "componentType": 5126,
+          "count": 1646,
+          "max": null,
+          "min": null,
+          "normalized": false,
+          "type": "VEC4"
+        }
+      },
+      "mesh": "Eyes",
+      "primitive": 0
+    },
+    {
+      "attributes": {
+        "JOINTS_0": {
+          "accessor": 38,
+          "componentType": 5121,
+          "count": 1963,
+          "max": null,
+          "min": null,
+          "normalized": false,
+          "type": "VEC4"
+        },
+        "JOINTS_1": {
+          "accessor": 39,
+          "componentType": 5121,
+          "count": 1963,
+          "max": null,
+          "min": null,
+          "normalized": false,
+          "type": "VEC4"
+        },
+        "WEIGHTS_0": {
+          "accessor": 40,
+          "componentType": 5126,
+          "count": 1963,
+          "max": null,
+          "min": null,
+          "normalized": false,
+          "type": "VEC4"
+        },
+        "WEIGHTS_1": {
+          "accessor": 41,
+          "componentType": 5126,
+          "count": 1963,
+          "max": null,
+          "min": null,
+          "normalized": false,
+          "type": "VEC4"
+        }
+      },
+      "combinedWeightSums": {
+        "finite": true,
+        "max": 1.0000000521540642,
+        "min": 0.9999999031424522
+      },
+      "mesh": "Mane",
+      "nonzeroSecondSetVertices": 896,
+      "primitive": 0,
+      "weightsFloat32": true
+    },
+    {
+      "attributes": {
+        "JOINTS_0": {
+          "accessor": 54,
+          "componentType": 5121,
+          "count": 2297,
+          "max": null,
+          "min": null,
+          "normalized": false,
+          "type": "VEC4"
+        },
+        "JOINTS_1": {
+          "accessor": 55,
+          "componentType": 5121,
+          "count": 2297,
+          "max": null,
+          "min": null,
+          "normalized": false,
+          "type": "VEC4"
+        },
+        "WEIGHTS_0": {
+          "accessor": 56,
+          "componentType": 5126,
+          "count": 2297,
+          "max": null,
+          "min": null,
+          "normalized": false,
+          "type": "VEC4"
+        },
+        "WEIGHTS_1": {
+          "accessor": 57,
+          "componentType": 5126,
+          "count": 2297,
+          "max": null,
+          "min": null,
+          "normalized": false,
+          "type": "VEC4"
+        }
+      },
+      "combinedWeightSums": {
+        "finite": true,
+        "max": 1.0000000465661287,
+        "min": 0.9999999068677425
+      },
+      "mesh": "Tail",
+      "nonzeroSecondSetVertices": 8,
+      "primitive": 0,
+      "weightsFloat32": true
+    }
+  ],
+  "skins": [
+    {
+      "jointCount": 58,
+      "jointNamesInIndexOrder": [
+        "Root",
+        "Pelvis_Root",
+        "Pelvis",
+        "Hind_L_Upper",
+        "Hind_L_Gaskin",
+        "Hind_L_Cannon",
+        "Hind_L_Pastern",
+        "Hind_L_Hoof",
+        "Hind_L_Hoof_02",
+        "Hind_R_Upper",
+        "Hind_R_Gaskin",
+        "Hind_R_Cannon",
+        "Hind_R_Pastern",
+        "Hind_R_Hoof",
+        "Hind_R_Hoof_02",
+        "Spine",
+        "Spine_Mid",
+        "Spine_Upper",
+        "Chest",
+        "Front_L_Upper",
+        "Front_L_Forearm",
+        "Front_L_Cannon",
+        "Front_L_Pastern",
+        "Front_L_Hoof",
+        "Front_L_Hoof_02",
+        "Front_L_Hoof_03",
+        "Front_R_Upper",
+        "Front_R_Forearm",
+        "Front_R_Cannon",
+        "Front_R_Pastern",
+        "Front_R_Hoof",
+        "Front_R_Hoof_02",
+        "Front_R_Hoof_03",
+        "Neck_Base",
+        "Neck",
+        "Neck_Mid",
+        "Neck_Upper",
+        "Neck_Top",
+        "Head_Base",
+        "Head",
+        "Head_Upper",
+        "Head_Nose",
+        "Ear_L",
+        "Ear_L_02",
+        "Ear_L_03",
+        "Ear_R",
+        "Ear_R_02",
+        "Ear_R_03",
+        "Jaw_Upper",
+        "Jaw_Mid",
+        "Jaw_Tip",
+        "Tail_01",
+        "Tail_02",
+        "Tail_03",
+        "Tail_04",
+        "Tail_05",
+        "Tail_06",
+        "Tail_07"
+      ],
+      "name": "Skeleton",
+      "skeleton": null
+    }
+  ],
+  "version": "2.0"
+}

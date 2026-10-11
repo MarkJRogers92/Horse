@@ -104,6 +104,12 @@ cervical support field and fitting Graze after independent review confirmed
 incompatible neck/shoulder weights. The previous Stock whole-collar Graze stretch
 was 3.660×; the 2.279× cutoff-only measurement is not a pass. No candidate Walk or
 Graze has been promoted to production.
+A separate Blender/Godot eight-weight probe passed independent native Sol review
+for imported buffers, joint order and generated LOD indices. Its headless inspector
+did not render or measure posed accuracy, and its source field is anatomically
+rejected. Imported aggregate weight-sum error is about 0.0122%; this does not bound
+individual weight or deformation error. The corrected inspector's passing rerun
+has retained logs and exit status. See `docs/visual/evidence/eight-weight-format-5e007c40`.
 See D-007, `docs/visual/MESHY_CREDIT_LEDGER.json`, and the production evidence.
 
 ---
