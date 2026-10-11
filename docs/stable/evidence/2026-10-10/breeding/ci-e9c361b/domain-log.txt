@@ -1,0 +1,412 @@
+test	Set up job	﻿2026-10-11T04:46:48.7127758Z Current runner version: '2.337.0'
+test	Set up job	2026-10-11T04:46:48.7152560Z ##[group]Runner Image Provisioner
+test	Set up job	2026-10-11T04:46:48.7153477Z Hosted Compute Agent
+test	Set up job	2026-10-11T04:46:48.7154125Z Version: 20261002.596
+test	Set up job	2026-10-11T04:46:48.7154760Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+test	Set up job	2026-10-11T04:46:48.7155529Z Build Date: 2026-10-02T22:28:27Z
+test	Set up job	2026-10-11T04:46:48.7156274Z Worker ID: {e453a03c-18fa-40f9-aade-f3f081441886}
+test	Set up job	2026-10-11T04:46:48.7156980Z Region: westcentralus
+test	Set up job	2026-10-11T04:46:48.7157527Z Cloud: Azure
+test	Set up job	2026-10-11T04:46:48.7158112Z ##[endgroup]
+test	Set up job	2026-10-11T04:46:48.7160020Z ##[group]Operating System
+test	Set up job	2026-10-11T04:46:48.7160749Z Ubuntu
+test	Set up job	2026-10-11T04:46:48.7161316Z 24.04.5
+test	Set up job	2026-10-11T04:46:48.7161800Z LTS
+test	Set up job	2026-10-11T04:46:48.7162375Z ##[endgroup]
+test	Set up job	2026-10-11T04:46:48.7162982Z ##[group]Runner Image
+test	Set up job	2026-10-11T04:46:48.7163614Z Image: ubuntu-24.04
+test	Set up job	2026-10-11T04:46:48.7164196Z Version: 20261004.327.1
+test	Set up job	2026-10-11T04:46:48.7165248Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+test	Set up job	2026-10-11T04:46:48.7167074Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+test	Set up job	2026-10-11T04:46:48.7168111Z ##[endgroup]
+test	Set up job	2026-10-11T04:46:48.7169516Z ##[group]GITHUB_TOKEN Permissions
+test	Set up job	2026-10-11T04:46:48.7171965Z Contents: read
+test	Set up job	2026-10-11T04:46:48.7172646Z Metadata: read
+test	Set up job	2026-10-11T04:46:48.7173202Z Packages: read
+test	Set up job	2026-10-11T04:46:48.7173802Z ##[endgroup]
+test	Set up job	2026-10-11T04:46:48.7175822Z Secret source: Actions
+test	Set up job	2026-10-11T04:46:48.7176858Z Cache mode: write
+test	Set up job	2026-10-11T04:46:48.7177564Z Prepare workflow directory
+test	Set up job	2026-10-11T04:46:48.7567724Z Prepare all required actions
+test	Set up job	2026-10-11T04:46:48.7615394Z Getting action download info
+test	Set up job	2026-10-11T04:46:49.0593261Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+test	Set up job	2026-10-11T04:46:49.1722848Z Download action repository 'actions/setup-dotnet@v4' (SHA:67a3573c9a986a3f9c594539f4ab511d57bb3ce9)
+test	Set up job	2026-10-11T04:46:49.8652211Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+test	Set up job	2026-10-11T04:46:50.1308031Z Complete job name: test
+test	Run actions/checkout@v4	﻿2026-10-11T04:46:50.2108400Z ##[group]Run actions/checkout@v4
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2109551Z with:
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2110018Z   repository: MarkJRogers92/Horse
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2114006Z   token: ***
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2114436Z   ssh-strict: true
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2114871Z   ssh-user: git
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2115311Z   persist-credentials: true
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2115786Z   clean: true
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2116271Z   sparse-checkout-cone-mode: true
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2116784Z   fetch-depth: 1
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2117202Z   fetch-tags: false
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2117638Z   show-progress: true
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2118082Z   lfs: false
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2118499Z   submodules: false
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2118945Z   set-safe-directory: true
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2119607Z   allow-unsafe-pr-checkout: false
+test	Run actions/checkout@v4	2026-10-11T04:46:50.2120395Z ##[endgroup]
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3148530Z Syncing repository: MarkJRogers92/Horse
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3151645Z ##[group]Getting Git version info
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3152757Z Working directory is '/home/runner/work/Horse/Horse'
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3154469Z [command]/usr/bin/git version
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3243695Z git version 2.55.0
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3269800Z ##[endgroup]
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3284833Z Temporarily overriding HOME='/home/runner/work/_temp/3f362faa-aac0-4ae5-83d8-4f13e81b3aa7' before making global git config changes
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3287468Z Adding repository directory to the temporary git global config as a safe directory
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3292859Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Horse/Horse
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3354467Z Deleting the contents of '/home/runner/work/Horse/Horse'
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3361515Z ##[group]Initializing the repository
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3366733Z [command]/usr/bin/git init /home/runner/work/Horse/Horse
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3533632Z hint: Using 'master' as the name for the initial branch. This default branch name
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3536047Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3537579Z hint: to use in all of your new repositories, which will suppress this warning,
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3538556Z hint: call:
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3539487Z hint:
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3540680Z hint: 	git config --global init.defaultBranch <name>
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3541440Z hint:
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3542068Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3543066Z hint: 'development'. The just-created branch can be renamed via this command:
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3543868Z hint:
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3544303Z hint: 	git branch -m <name>
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3544807Z hint:
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3545465Z hint: Disable this message with "git config set advice.defaultBranchName false"
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3550748Z Initialized empty Git repository in /home/runner/work/Horse/Horse/.git/
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3565641Z [command]/usr/bin/git remote add origin https://github.com/MarkJRogers92/Horse
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3620797Z ##[endgroup]
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3625202Z ##[group]Disabling automatic garbage collection
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3626021Z [command]/usr/bin/git config --local gc.auto 0
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3661483Z ##[endgroup]
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3662844Z ##[group]Setting up auth
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3669826Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test	Run actions/checkout@v4	2026-10-11T04:46:50.3711687Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test	Run actions/checkout@v4	2026-10-11T04:46:50.4144682Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test	Run actions/checkout@v4	2026-10-11T04:46:50.4181921Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test	Run actions/checkout@v4	2026-10-11T04:46:50.4407954Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test	Run actions/checkout@v4	2026-10-11T04:46:50.4444868Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test	Run actions/checkout@v4	2026-10-11T04:46:50.4675262Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+test	Run actions/checkout@v4	2026-10-11T04:46:50.4716825Z ##[endgroup]
+test	Run actions/checkout@v4	2026-10-11T04:46:50.4726790Z ##[group]Fetching the repository
+test	Run actions/checkout@v4	2026-10-11T04:46:50.4730467Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +e9c361b48eafb228d308f7a53ef8781b45c52724:refs/remotes/origin/claude/godot-horse-visual-pilot
+test	Run actions/checkout@v4	2026-10-11T04:46:52.6105632Z From https://github.com/MarkJRogers92/Horse
+test	Run actions/checkout@v4	2026-10-11T04:46:52.6108499Z  * [new ref]         e9c361b48eafb228d308f7a53ef8781b45c52724 -> origin/claude/godot-horse-visual-pilot
+test	Run actions/checkout@v4	2026-10-11T04:46:52.6118042Z ##[endgroup]
+test	Run actions/checkout@v4	2026-10-11T04:46:52.6120030Z ##[group]Determining the checkout info
+test	Run actions/checkout@v4	2026-10-11T04:46:52.6128064Z ##[endgroup]
+test	Run actions/checkout@v4	2026-10-11T04:46:52.6128910Z [command]/usr/bin/git sparse-checkout disable
+test	Run actions/checkout@v4	2026-10-11T04:46:52.6175700Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+test	Run actions/checkout@v4	2026-10-11T04:46:52.6213845Z ##[group]Checking out the ref
+test	Run actions/checkout@v4	2026-10-11T04:46:52.6216987Z [command]/usr/bin/git checkout --progress --force -B claude/godot-horse-visual-pilot refs/remotes/origin/claude/godot-horse-visual-pilot
+test	Run actions/checkout@v4	2026-10-11T04:46:52.8395899Z Switched to a new branch 'claude/godot-horse-visual-pilot'
+test	Run actions/checkout@v4	2026-10-11T04:46:52.8401463Z branch 'claude/godot-horse-visual-pilot' set up to track 'origin/claude/godot-horse-visual-pilot'.
+test	Run actions/checkout@v4	2026-10-11T04:46:52.8418169Z ##[endgroup]
+test	Run actions/checkout@v4	2026-10-11T04:46:52.8465411Z [command]/usr/bin/git log -1 --format=%H
+test	Run actions/checkout@v4	2026-10-11T04:46:52.8492168Z e9c361b48eafb228d308f7a53ef8781b45c52724
+test	Run actions/setup-dotnet@v4	﻿2026-10-11T04:46:52.8826766Z ##[group]Run actions/setup-dotnet@v4
+test	Run actions/setup-dotnet@v4	2026-10-11T04:46:52.8892282Z with:
+test	Run actions/setup-dotnet@v4	2026-10-11T04:46:52.8893650Z   dotnet-version: 8.0.x
+test	Run actions/setup-dotnet@v4	2026-10-11T04:46:52.8894631Z   cache: false
+test	Run actions/setup-dotnet@v4	2026-10-11T04:46:52.8895489Z ##[endgroup]
+test	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.0381127Z (node:2358) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.0384145Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.0413236Z [command]/home/runner/work/_actions/actions/setup-dotnet/v4/externals/install-dotnet.sh --skip-non-versioned-files --runtime dotnet --channel LTS
+test	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.5804017Z dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+test	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.5831651Z [command]/home/runner/work/_actions/actions/setup-dotnet/v4/externals/install-dotnet.sh --skip-non-versioned-files --channel 8.0
+test	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.9406613Z dotnet-install: .NET Core SDK with version '8.0.425' is already installed.
+test	Validate spec files	﻿2026-10-11T04:46:53.9562266Z ##[group]Run python3 tools/validate_handoff.py
+test	Validate spec files	2026-10-11T04:46:53.9562722Z ^[[36;1mpython3 tools/validate_handoff.py^[[0m
+test	Validate spec files	2026-10-11T04:46:53.9852975Z shell: /usr/bin/bash -e {0}
+test	Validate spec files	2026-10-11T04:46:53.9853310Z env:
+test	Validate spec files	2026-10-11T04:46:53.9853592Z   DOTNET_ROOT: /usr/share/dotnet
+test	Validate spec files	2026-10-11T04:46:53.9853931Z ##[endgroup]
+test	Validate spec files	2026-10-11T04:46:54.0233033Z note: task board: 40 tasks, statuses = proposed
+test	Validate spec files	2026-10-11T04:46:54.0233693Z note: coat matrix: 15 classes over 15 render layers
+test	Validate spec files	2026-10-11T04:46:54.0234085Z OK
+test	Test domain	﻿2026-10-11T04:46:54.0313522Z ##[group]Run dotnet test Cloverbrook.sln --configuration Release --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal"
+test	Test domain	2026-10-11T04:46:54.0314570Z ^[[36;1mdotnet test Cloverbrook.sln --configuration Release --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal"^[[0m
+test	Test domain	2026-10-11T04:46:54.0380956Z shell: /usr/bin/bash -e {0}
+test	Test domain	2026-10-11T04:46:54.0381229Z env:
+test	Test domain	2026-10-11T04:46:54.0381434Z   DOTNET_ROOT: /usr/share/dotnet
+test	Test domain	2026-10-11T04:46:54.0381692Z ##[endgroup]
+test	Test domain	2026-10-11T04:47:00.5510777Z   Determining projects to restore...
+test	Test domain	2026-10-11T04:47:02.6995359Z   Restored /home/runner/work/Horse/Horse/src/Cloverbrook.Domain/Cloverbrook.Domain.csproj (in 107 ms).
+test	Test domain	2026-10-11T04:47:04.0438577Z   Restored /home/runner/work/Horse/Horse/tests/Cloverbrook.Domain.Tests/Cloverbrook.Domain.Tests.csproj (in 1.48 sec).
+test	Test domain	2026-10-11T04:47:08.7947690Z   Cloverbrook.Domain -> /home/runner/work/Horse/Horse/src/Cloverbrook.Domain/bin/Release/netstandard2.1/Cloverbrook.Domain.dll
+test	Test domain	2026-10-11T04:47:12.4657589Z   Cloverbrook.Domain.Tests -> /home/runner/work/Horse/Horse/tests/Cloverbrook.Domain.Tests/bin/Release/net8.0/Cloverbrook.Domain.Tests.dll
+test	Test domain	2026-10-11T04:47:12.4773184Z Test run for /home/runner/work/Horse/Horse/tests/Cloverbrook.Domain.Tests/bin/Release/net8.0/Cloverbrook.Domain.Tests.dll (.NETCoreApp,Version=v8.0)
+test	Test domain	2026-10-11T04:47:13.5111186Z A total of 1 test files matched the specified pattern.
+test	Test domain	2026-10-11T04:47:15.5000722Z [xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.1+bf6400fd51 (64-bit .NET 8.0.31)
+test	Test domain	2026-10-11T04:47:15.7366810Z [xUnit.net 00:00:00.25]   Discovering: Cloverbrook.Domain.Tests
+test	Test domain	2026-10-11T04:47:15.8277612Z [xUnit.net 00:00:00.34]   Discovered:  Cloverbrook.Domain.Tests
+test	Test domain	2026-10-11T04:47:15.8850248Z [xUnit.net 00:00:00.40]   Starting:    Cloverbrook.Domain.Tests
+test	Test domain	2026-10-11T04:47:16.3671345Z   Passed Cloverbrook.Domain.Tests.StableSnapshotTests.IdenticalRetryReturnsTheSameReceiptBeforeStaleChecks [181 ms]
+test	Test domain	2026-10-11T04:47:16.3700652Z   Passed Cloverbrook.Domain.Tests.SaveIntegrationTests.LaterClientBuildPreservesPermanentVisualIdentityAndFullPedigree [193 ms]
+test	Test domain	2026-10-11T04:47:16.3710720Z   Passed Cloverbrook.Domain.Tests.StableSnapshotTests.CurrentNamesCanChangeWithoutRewritingHistoricalParentSnapshots [35 ms]
+test	Test domain	2026-10-11T04:47:16.3713228Z   Passed Cloverbrook.Domain.Tests.StableSnapshotTests.RejectionLeavesTheOriginalSnapshotUntouched [8 ms]
+test	Test domain	2026-10-11T04:47:16.3715466Z   Passed Cloverbrook.Domain.Tests.PersistenceBoundaryTests.LaterUpdatesReplaceTheBackupWithTheLatestGoodState [264 ms]
+test	Test domain	2026-10-11T04:47:16.3718143Z   Passed Cloverbrook.Domain.Tests.PersistenceBoundaryTests.TheWriterRejectsRationalsThatItsReaderCannotRepresent [7 ms]
+test	Test domain	2026-10-11T04:47:16.3724541Z   Passed Cloverbrook.Domain.Tests.PersistenceBoundaryTests.ChecksumValidZeroDenominatorsRemainRecoverableIntegrityErrors [2 ms]
+test	Test domain	2026-10-11T04:47:16.3738036Z   Passed Cloverbrook.Domain.Tests.PersistenceBoundaryTests.TheLargestSupportedRationalComponentRoundTripsExactly [10 ms]
+test	Test domain	2026-10-11T04:47:16.3741102Z   Passed Cloverbrook.Domain.Tests.StableSnapshotTests.AReceiptCannotExistWithoutItsDebitPregnancyOrUnbornHorse [59 ms]
+test	Test domain	2026-10-11T04:47:16.3743249Z   Passed Cloverbrook.Domain.Tests.ValueContractTests.UnknownAlgorithmsAndCounterWrapAreRejected [3 ms]
+test	Test domain	2026-10-11T04:47:16.3745285Z   Passed Cloverbrook.Domain.Tests.ValueContractTests.SeedDerivationMatchesAnIndependentGoldenVector [6 ms]
+test	Test domain	2026-10-11T04:47:16.3747173Z   Passed Cloverbrook.Domain.Tests.ValueContractTests.IdentityIsTypedAndNotADisplayName [6 ms]
+test	Test domain	2026-10-11T04:47:16.3749384Z   Passed Cloverbrook.Domain.Tests.ValueContractTests.CounterRngMatchesGoldenDrawsAndRestoresExactly [< 1 ms]
+test	Test domain	2026-10-11T04:47:16.3751859Z   Passed Cloverbrook.Domain.Tests.StableSnapshotTests.DuplicateTransactionsAndOrphanPregnanciesAreRejected [34 ms]
+test	Test domain	2026-10-11T04:47:16.3780412Z   Passed Cloverbrook.Domain.Tests.ValueContractTests.SamplingHandlesLargeBoundsAndChecksProbabilities [20 ms]
+test	Test domain	2026-10-11T04:47:16.4531622Z   Passed Cloverbrook.Domain.Tests.ValueContractTests.ForecastCosmeticsAndCultureCannotConsumeBreedingState [7 ms]
+test	Test domain	2026-10-11T04:47:16.4540020Z   Passed Cloverbrook.Domain.Tests.ValueContractTests.CanonicalHashHasAnIndependentGoldenVectorAndUnambiguousFields [4 ms]
+test	Test domain	2026-10-11T04:47:16.4543029Z   Passed Cloverbrook.Domain.Tests.ValueContractTests.RationalArithmeticIsExactAndDefaultIsZero [4 ms]
+test	Test domain	2026-10-11T04:47:16.4545388Z   Passed Cloverbrook.Domain.Tests.StableSnapshotTests.AllConceptionEffectsAppearInOneReplacementSnapshot [39 ms]
+test	Test domain	2026-10-11T04:47:16.4547636Z   Passed Cloverbrook.Domain.Tests.StableSnapshotTests.ReusingACommandIdForDifferentInputsIsNotAReplay [39 ms]
+test	Test domain	2026-10-11T04:47:16.4550431Z   Passed Cloverbrook.Domain.Tests.StableBreedingPlannerTests.FutureAndCurrentCapacityCountEveryPendingHoldAndCanonicalHorseOnce [108 ms]
+test	Test domain	2026-10-11T04:47:16.4552903Z   Passed Cloverbrook.Domain.Tests.SaveIntegrationTests.ChecksumValidMutationFuzzHasOnlyExplicitOutcomes [329 ms]
+test	Test domain	2026-10-11T04:47:17.1491111Z   Passed Cloverbrook.Domain.Tests.BreedingForecastTests.LinkedTraitMarginalsHaveExactRecombinationProbabilities [354 ms]
+test	Test domain	2026-10-11T04:47:17.1493470Z   Passed Cloverbrook.Domain.Tests.StableBreedingPlannerTests.ANewlyBirthedMareCannotBreedUntilHerRecordedRecoveryDay [367 ms]
+test	Test domain	2026-10-11T04:47:17.1530981Z   Passed Cloverbrook.Domain.Tests.StableBreedingPlannerTests.StarterUpgradePreservesCurrentSaveAndIsIdempotent(fixture: "old_management_initial_v3.clvr", day: 0, coins: 500) [24 ms]
+test	Test domain	2026-10-11T04:47:17.1560736Z   Passed Cloverbrook.Domain.Tests.StableBreedingPlannerTests.StarterUpgradePreservesCurrentSaveAndIsIdempotent(fixture: "old_management_care_v3.clvr", day: 1, coins: 464) [8 ms]
+test	Test domain	2026-10-11T04:47:17.1590555Z   Passed Cloverbrook.Domain.Tests.StableBreedingPlannerTests.QuoteExplainsWalletRoleAndCalendarRejectionsAndCommitRejectsStaleQuote [152 ms]
+test	Test domain	2026-10-11T04:47:17.1607274Z   Passed Cloverbrook.Domain.Tests.VisualDescriptorFixtureTests.EveryPhase1ClassHasConsistentAdultAndFoalDescriptors(classId: "chestnut", extension: "e", agouti: "A", creamA: "N", creamB: "N", dun: "nd2", visibleLabel: "Chestnut") [104 ms]
+test	Test domain	2026-10-11T04:47:17.1611220Z   Passed Cloverbrook.Domain.Tests.VisualDescriptorFixtureTests.EveryPhase1ClassHasConsistentAdultAndFoalDescriptors(classId: "red_dun", extension: "e", agouti: "A", creamA: "N", creamB: "N", dun: "D", visibleLabel: "Red dun") [17 ms]
+test	Test domain	2026-10-11T04:47:17.2099805Z   Passed Cloverbrook.Domain.Tests.VisualDescriptorFixtureTests.EveryPhase1ClassHasConsistentAdultAndFoalDescriptors(classId: "bay_dun", extension: "E", agouti: "A", creamA: "N", creamB: "N", dun: "D", visibleLabel: "Bay dun") [7 ms]
+test	Test domain	2026-10-11T04:47:17.2103642Z   Passed Cloverbrook.Domain.Tests.VisualDescriptorFixtureTests.EveryPhase1ClassHasConsistentAdultAndFoalDescriptors(classId: "buckskin", extension: "E", agouti: "A", creamA: "Cr", creamB: "N", dun: "nd2", visibleLabel: "Buckskin") [4 ms]
+test	Test domain	2026-10-11T04:47:17.2106010Z   Passed Cloverbrook.Domain.Tests.VisualDescriptorFixtureTests.EveryPhase1ClassHasConsistentAdultAndFoalDescriptors(classId: "palomino", extension: "e", agouti: "A", creamA: "Cr", creamB: "N", dun: "nd2", visibleLabel: "Palomino") [4 ms]
+test	Test domain	2026-10-11T04:47:17.2107850Z   Passed Cloverbrook.Domain.Tests.VisualDescriptorFixtureTests.EveryPhase1ClassHasConsistentAdultAndFoalDescriptors(classId: "cremello", extension: "e", agouti: "A", creamA: "Cr", creamB: "Cr", dun: "nd2", visibleLabel: "Cremello") [8 ms]
+test	Test domain	2026-10-11T04:47:17.2109930Z   Passed Cloverbrook.Domain.Tests.VisualDescriptorFixtureTests.EveryPhase1ClassHasConsistentAdultAndFoalDescriptors(classId: "bay", extension: "E", agouti: "A", creamA: "N", creamB: "N", dun: "nd2", visibleLabel: "Bay") [4 ms]
+test	Test domain	2026-10-11T04:47:17.2111743Z   Passed Cloverbrook.Domain.Tests.VisualDescriptorFixtureTests.EveryPhase1ClassHasConsistentAdultAndFoalDescriptors(classId: "smoky_black", extension: "E", agouti: "a", creamA: "Cr", creamB: "N", dun: "nd2", visibleLabel: "Smoky black") [4 ms]
+test	Test domain	2026-10-11T04:47:17.2113548Z   Passed Cloverbrook.Domain.Tests.VisualDescriptorFixtureTests.EveryPhase1ClassHasConsistentAdultAndFoalDescriptors(classId: "black", extension: "E", agouti: "a", creamA: "N", creamB: "N", dun: "nd2", visibleLabel: "Black") [4 ms]
+test	Test domain	2026-10-11T04:47:17.2116424Z   Passed Cloverbrook.Domain.Tests.VisualDescriptorFixtureTests.EveryPhase1ClassHasConsistentAdultAndFoalDescriptors(classId: "smoky_cream", extension: "E", agouti: "a", creamA: "Cr", creamB: "Cr", dun: "nd2", visibleLabel: "Smoky cream") [4 ms]
+test	Test domain	2026-10-11T04:47:17.2120306Z   Passed Cloverbrook.Domain.Tests.VisualDescriptorFixtureTests.EveryPhase1ClassHasConsistentAdultAndFoalDescriptors(classId: "non_dun1_marked", extension: "E", agouti: "A", creamA: "N", creamB: "N", dun: "nd1", visibleLabel: "Bay with primitive markings") [7 ms]
+test	Test domain	2026-10-11T04:47:18.5401619Z   Passed Cloverbrook.Domain.Tests.VisualDescriptorFixtureTests.EveryPhase1ClassHasConsistentAdultAndFoalDescriptors(classId: "grullo", extension: "E", agouti: "a", creamA: "N", creamB: "N", dun: "D", visibleLabel: "Grullo") [9 ms]
+test	Test domain	2026-10-11T04:47:18.5431362Z   Passed Cloverbrook.Domain.Tests.VisualDescriptorFixtureTests.EveryPhase1ClassHasConsistentAdultAndFoalDescriptors(classId: "perlino", extension: "E", agouti: "A", creamA: "Cr", creamB: "Cr", dun: "nd2", visibleLabel: "Perlino") [12 ms]
+test	Test domain	2026-10-11T04:47:18.5450703Z   Passed Cloverbrook.Domain.Tests.StableBreedingPlannerTests.PreviewIsPureAndCommitUsesOneDurableTransientHoldWithExactRetry [229 ms]
+test	Test domain	2026-10-11T04:47:18.5480712Z   Passed Cloverbrook.Domain.Tests.VisualDescriptorFixtureTests.ExportReferenceDescriptorsForEveryPhase1ClassWithoutChangingReleaseStatus [87 ms]
+test	Test domain	2026-10-11T04:47:18.5500617Z   Passed Cloverbrook.Domain.Tests.StableBreedingPlannerTests.FailedAtomicPublicationLeavesOnlyReplayableBeforeOrAfterState [237 ms]
+test	Test domain	2026-10-11T04:47:18.5530650Z   Passed Cloverbrook.Domain.Tests.StableBreedingPlannerTests.SupportPolicyRejectsNormalReleaseSavesAndStarterMigrationDoesNotGuess [66 ms]
+test	Test domain	2026-10-11T04:47:18.5533288Z   Passed Cloverbrook.Domain.Tests.StableBreedingPlannerTests.SecondPairingWaitsForBirthRecoveryAndCannotExceedFourHorseCapacity [986 ms]
+test	Test domain	2026-10-11T04:47:18.5560412Z   Passed Cloverbrook.Domain.Tests.EligibilityTests.UnknownAncestryCannotBeAdvertisedAsZeroEvenUnderAnAllowPolicy [10 ms]
+test	Test domain	2026-10-11T04:47:19.7130766Z   Passed Cloverbrook.Domain.Tests.EligibilityTests.MissingReservationStaleCapacityAndWrongEventAreRejected [6 ms]
+test	Test domain	2026-10-11T04:47:19.7133061Z   Passed Cloverbrook.Domain.Tests.EligibilityTests.ValidPairWithCompleteFutureReservationsIsEligible [12 ms]
+test	Test domain	2026-10-11T04:47:19.7160441Z   Passed Cloverbrook.Domain.Tests.EligibilityTests.AgeReproductiveStateHomeAndRevisionsGiveReadableReasons [36 ms]
+test	Test domain	2026-10-11T04:47:19.7190182Z   Passed Cloverbrook.Domain.Tests.EligibilityTests.UnconfirmedFoalingHoldAndOverlappingWindowsFail [15 ms]
+test	Test domain	2026-10-11T04:47:19.7220431Z   Passed Cloverbrook.Domain.Tests.EligibilityTests.UnknownAncestryWarningDoesNotPermitKnownParentChildOrHalfSiblingPairings [24 ms]
+test	Test domain	2026-10-11T04:47:19.7222489Z   Passed Cloverbrook.Domain.Tests.EligibilityTests.AdultGrowthAndLateLeaseReturnsCannotOverbookHousing [10 ms]
+test	Test domain	2026-10-11T04:47:19.7224016Z   Passed Cloverbrook.Domain.Tests.EligibilityTests.RelationshipPolicyIsSeparateFromMathematicalEvaluability [8 ms]
+test	Test domain	2026-10-11T04:47:19.7225030Z   Passed Cloverbrook.Domain.Tests.MeiosisTests.EverySampledOffspringAlleleTracesToAnActualParentalHomolog [1 s]
+test	Test domain	2026-10-11T04:47:19.7226658Z   Passed Cloverbrook.Domain.Tests.MeiosisTests.FrozenCreamPearlCrossUsesTwoAlternativeHaplotypesNotFourSwitches [46 ms]
+test	Test domain	2026-10-11T04:47:21.1815940Z   Passed Cloverbrook.Domain.Tests.MeiosisTests.PreviewWorkCannotChangeByteIdenticalConceptionDraft [57 ms]
+test	Test domain	2026-10-11T04:47:21.1880745Z   Passed Cloverbrook.Domain.Tests.MeiosisTests.UnsupportedAllelesAndVersionsFailClosed [5 ms]
+test	Test domain	2026-10-11T04:47:21.1882321Z   Passed Cloverbrook.Domain.Tests.MeiosisTests.ThirtyTwoGameMarkersHaveNoRealGeneClaim [4 ms]
+test	Test domain	2026-10-11T04:47:21.1884036Z   Passed Cloverbrook.Domain.Tests.MeiosisTests.FrozenLinkedFixtureHasExactFortyFiveFortyFiveFiveFiveDistribution [6 ms]
+test	Test domain	2026-10-11T04:47:21.1885979Z   Passed Cloverbrook.Domain.Tests.MeiosisTests.UnsupportedRecombinantsRejectTheOperationRatherThanRerolling [1 ms]
+test	Test domain	2026-10-11T04:47:21.1888169Z   Passed Cloverbrook.Domain.Tests.MeiosisTests.ExactEnumerationNeverSilentlyTruncates [48 ms]
+test	Test domain	2026-10-11T04:47:21.1890056Z   Passed Cloverbrook.Domain.Tests.MeiosisTests.BoundaryRecombinationFractionsBehaveCorrectly(n: 1, d: 2, count: 4) [1 ms]
+test	Test domain	2026-10-11T04:47:21.1891930Z   Passed Cloverbrook.Domain.Tests.MeiosisTests.BoundaryRecombinationFractionsBehaveCorrectly(n: 0, d: 1, count: 2) [1 ms]
+test	Test domain	2026-10-11T04:47:21.1893749Z   Passed Cloverbrook.Domain.Tests.MeiosisTests.SeededSampleDistributionMatchesExactRulesWithinSixSigma [1 s]
+test	Test domain	2026-10-11T04:47:21.3700164Z   Passed Cloverbrook.Domain.Tests.PhenotypeTests.BaseAndCreamLociComposeWithoutDroppingRecessiveOutcomes [37 ms]
+test	Test domain	2026-10-11T04:47:21.3702091Z   Passed Cloverbrook.Domain.Tests.PhenotypeTests.DoubleCreamAffectsSkinAndEyesWhileHiddenPearlDoesNotLeakIntoVisibleLabels [3 ms]
+test	Test domain	2026-10-11T04:47:21.3730158Z   Passed Cloverbrook.Domain.Tests.PhenotypeTests.AnUnreleasedLayerCannotSneakThroughAReleasedBaseClass [4 ms]
+test	Test domain	2026-10-11T04:47:21.3732187Z   Passed Cloverbrook.Domain.Tests.PhenotypeTests.TestOnlyReleaseFixtureMakesStableDescriptorsWithoutReleasingRealArt [2 ms]
+test	Test domain	2026-10-11T04:47:21.3734332Z   Passed Cloverbrook.Domain.Tests.PhenotypeTests.UnsupportedVersionsAllelesAndAdvancedInteractionsHaveNoFallback [3 ms]
+test	Test domain	2026-10-11T04:47:21.3737236Z   Passed Cloverbrook.Domain.Tests.PhenotypeTests.FictionalTraitsAreBoundedStableAndIndependentOfCoatAndTraining [8 ms]
+test	Test domain	2026-10-11T04:47:21.3739492Z   Passed Cloverbrook.Domain.Tests.PhenotypeTests.GreyChangesPresentationNotGenomeOrPermanentMarkings [3 ms]
+test	Test domain	2026-10-11T04:47:21.3741324Z   Passed Cloverbrook.Domain.Tests.PhenotypeTests.DunThreeToOneAndNd1PrimitiveMarksMatchTheSliceRules [31 ms]
+test	Test domain	2026-10-11T04:47:21.3743248Z   Passed Cloverbrook.Domain.Tests.PhenotypeTests.ReachabilityGuardCatchesCreamDunCombinationsBeforeAnyRoll [91 ms]
+test	Test domain	2026-10-11T04:47:21.5500980Z   Passed Cloverbrook.Domain.Tests.PhenotypeTests.RealMatrixHasNoReleasedArtAndCannotProduceLiveDescriptors [1 ms]
+test	Test domain	2026-10-11T04:47:21.5503563Z   Passed Cloverbrook.Domain.Tests.StableDayServiceTests.LifecyclePreviewExposesDueBirthAndJuvenileGrowthTransitions [40 ms]
+test	Test domain	2026-10-11T04:47:21.5505815Z   Passed Cloverbrook.Domain.Tests.StableDayServiceTests.MissingFeedOrBeddingIsBlockedAndUnknownProfilesAreNotGuessed [< 1 ms]
+test	Test domain	2026-10-11T04:47:21.5508033Z   Passed Cloverbrook.Domain.Tests.StableDayServiceTests.PreviewIsPureDeterministicAndComputesOneDayCostAndCare [2 ms]
+test	Test domain	2026-10-11T04:47:21.5510378Z   Passed Cloverbrook.Domain.Tests.StableDayServiceTests.ReceiptAmountOverflowIsRejectedInsteadOfWrapping [1 ms]
+test	Test domain	2026-10-11T04:47:21.5512803Z   Passed Cloverbrook.Domain.Tests.StableDayServiceTests.UnsupportedConceptionRulesBlockLifecycleBeforeAnyCost [17 ms]
+test	Test domain	2026-10-11T04:47:21.5514861Z   Passed Cloverbrook.Domain.Tests.StableDayServiceTests.UnreceiptedNonDefaultCareCannotBeLoadedOrPreviewedAsACommitCandidate [1 ms]
+test	Test domain	2026-10-11T04:47:21.5516944Z   Passed Cloverbrook.Domain.Tests.StableDayServiceTests.AssistanceCoversTheShortfallWithoutNegativeWalletOrMissingBasicCare [11 ms]
+test	Test domain	2026-10-11T04:47:21.5519304Z   Passed Cloverbrook.Domain.Tests.CoatForecastTests.ForecastingAndExamplesCannotChangeTheCommittedDraft [100 ms]
+test	Test domain	2026-10-11T04:47:24.0493176Z   Passed Cloverbrook.Domain.Tests.CoatForecastTests.EnumerationLimitsNeverProduceTruncatedOrUniformlyGuessedDistributions [5 ms]
+test	Test domain	2026-10-11T04:47:24.0520714Z   Passed Cloverbrook.Domain.Tests.CoatForecastTests.ScopeAndRevealedCallsMustBeExplicitAndConsistent [1 ms]
+test	Test domain	2026-10-11T04:47:24.0550412Z   Passed Cloverbrook.Domain.Tests.CoatForecastTests.UntestedCallsAreNotInferredFromTheAbsenceOfVisibleExpression [50 ms]
+test	Test domain	2026-10-11T04:47:24.0562223Z   Passed Cloverbrook.Domain.Tests.CoatForecastTests.HiddenAgoutiCannotLeakThroughActualParentForecastsOrCacheKeys [178 ms]
+test	Test domain	2026-10-11T04:47:25.5522387Z   Passed Cloverbrook.Domain.Tests.BreedingForecastTests.PublicTraitCallsDoNotInventLinkagePhaseOrUnknownProbabilities [7 s]
+test	Test domain	2026-10-11T04:47:28.2924200Z   Passed Cloverbrook.Domain.Tests.BreedingForecastTests.PublicPedigreeRelatednessUsesFullRecordedGenerations [4 s]
+test	Test domain	2026-10-11T04:47:28.7751022Z   Passed Cloverbrook.Domain.Tests.StableBreedingQueriesTests.ReadQueriesPreserveHiddenGenotypeIndependenceAndRngIsolation [11 s]
+test	Test domain	2026-10-11T04:47:28.7780833Z   Passed Cloverbrook.Domain.Tests.StableBreedingQueriesTests.ActualForecastsNeverSubstituteCurrentRulesForUnknownHistoricalVersions [13 ms]
+test	Test domain	2026-10-11T04:47:28.7783375Z   Passed Cloverbrook.Domain.Tests.StableBreedingQueriesTests.ReadinessCatchesSaleChangedCapacityFundsAndUnavailableVisuals [54 ms]
+test	Test domain	2026-10-11T04:47:28.7805695Z   Passed Cloverbrook.Domain.Tests.StableBreedingQueriesTests.PublicHorseAndPregnancyViewsCannotExposeAuthoritativeGenomes [21 ms]
+test	Test domain	2026-10-11T04:47:28.7807129Z   Passed Cloverbrook.Domain.Tests.BreedingForecastTests.TraitMarginalsAgreeWithProductionEnumerationIncludingTradeoffs [180 ms]
+test	Test domain	2026-10-11T04:47:28.7808320Z   Passed Cloverbrook.Domain.Tests.StableBreedingQueriesTests.ReadinessProtectsDuplicateIdsAndDoesNotRecheckHistoricalQuotes [154 ms]
+test	Test domain	2026-10-11T04:47:28.7809765Z   Passed Cloverbrook.Domain.Tests.FrozenGeneticsTests.EveryFrozenGeneticsFixtureRunsAgainstTheProductionAlgorithms(id: "palominoPair") [86 ms]
+test	Test domain	2026-10-11T04:47:28.7811019Z   Passed Cloverbrook.Domain.Tests.FrozenGeneticsTests.EveryFrozenGeneticsFixtureRunsAgainstTheProductionAlgorithms(id: "sharedCreamPearlLocus") [76 ms]
+test	Test domain	2026-10-11T04:47:28.9341234Z   Passed Cloverbrook.Domain.Tests.FrozenGeneticsTests.EveryFrozenGeneticsFixtureRunsAgainstTheProductionAlgorithms(id: "silverHiddenOnChestnut") [13 ms]
+test	Test domain	2026-10-11T04:47:28.9371154Z   Passed Cloverbrook.Domain.Tests.FrozenGeneticsTests.EveryFrozenGeneticsFixtureRunsAgainstTheProductionAlgorithms(id: "syntheticLinkedBlock") [< 1 ms]
+test	Test domain	2026-10-11T04:47:28.9373313Z   Passed Cloverbrook.Domain.Tests.FrozenGeneticsTests.EveryFrozenGeneticsFixtureRunsAgainstTheProductionAlgorithms(id: "patn1NeedsLp") [4 ms]
+test	Test domain	2026-10-11T04:47:28.9374840Z   Passed Cloverbrook.Domain.Tests.SaveIntegrationTests.PublicApiForecastCommitSaveRestartAndDuplicateProtectionUseOneDomainPath [12 s]
+test	Test domain	2026-10-11T04:47:28.9376951Z   Passed Cloverbrook.Domain.Tests.FrozenGeneticsTests.EveryFrozenGeneticsFixtureRunsAgainstTheProductionAlgorithms(id: "baseEpistasis934") [100 ms]
+test	Test domain	2026-10-11T04:47:28.9380230Z   Passed Cloverbrook.Domain.Tests.StableSaveV1MigrationTests.GenuineV2FixturesMigrateWithoutInventingLifecycleEvents(filename: "old_pregnancy_care_v2.clvr", day: 13, coins: 0, receipts: 3) [14 ms]
+test	Test domain	2026-10-11T04:47:28.9383473Z   Passed Cloverbrook.Domain.Tests.StableSaveV1MigrationTests.GenuineV2FixturesMigrateWithoutInventingLifecycleEvents(filename: "old_born_foal_v2.clvr", day: 14, coins: 50, receipts: 0) [20 ms]
+test	Test domain	2026-10-11T04:47:28.9385626Z   Passed Cloverbrook.Domain.Tests.StableSaveV1MigrationTests.GenuineV2FixturesMigrateWithoutInventingLifecycleEvents(filename: "old_care_day_v2.clvr", day: 11, coins: 64, receipts: 1) [1 ms]
+test	Test domain	2026-10-11T04:47:29.0850355Z   Passed Cloverbrook.Domain.Tests.StableSaveV1MigrationTests.MigratedLegacyFoalCannotRewriteItsCapturedRoleStageOrAge [5 ms]
+test	Test domain	2026-10-11T04:47:29.0881601Z   Passed Cloverbrook.Domain.Tests.StableSaveV1MigrationTests.GenuineV1FixturesMigrateCareRootWithoutChangingExistingHorseOrConceptionData(filename: "old_static_initial_v1.clvr", horseCount: 2, conceptionCount: 0) [8 ms]
+test	Test domain	2026-10-11T04:47:29.0892282Z   Passed Cloverbrook.Domain.Tests.StableSaveV1MigrationTests.GenuineV1FixturesMigrateCareRootWithoutChangingExistingHorseOrConceptionData(filename: "old_conception_v1.clvr", horseCount: 3, conceptionCount: 1) [10 ms]
+test	Test domain	2026-10-11T04:47:29.0895765Z   Passed Cloverbrook.Domain.Tests.StableSaveV1MigrationTests.MigratedBornFoalKeepsLegacyBaselineAndPublishesGrowthWithoutInventingBirth [41 ms]
+test	Test domain	2026-10-11T04:47:29.0898603Z   Passed Cloverbrook.Domain.Tests.StableSaveV1MigrationTests.MigratedConceptionSaveCanCommitAndRestartANewDayWithoutLosingItsHistory [18 ms]
+test	Test domain	2026-10-11T04:47:29.0901415Z   Passed Cloverbrook.Domain.Tests.StableSaveV1MigrationTests.GenericSameDaySaveCannotRewriteLegacyLifecycleProvenance [10 ms]
+test	Test domain	2026-10-11T04:47:29.0903984Z   Passed Cloverbrook.Domain.Tests.StableSaveV1MigrationTests.LegacyBornAgeUsesItsCapturedCounterInsteadOfInventingConceptionElapsedDays [31 ms]
+test	Test domain	2026-10-11T04:47:29.0907060Z   Passed Cloverbrook.Domain.Tests.StableSaveV1MigrationTests.UnsupportedHistoricalWireVersionStillRequiresAnExplicitMigration [< 1 ms]
+test	Test domain	2026-10-11T04:47:29.0909761Z   Passed Cloverbrook.Domain.Tests.StableSaveV1MigrationTests.PreviewAndCommitDeriveOffspringAgeFromTheConceptionAnchor [22 ms]
+test	Test domain	2026-10-11T04:47:30.5921322Z   Passed Cloverbrook.Domain.Tests.StableSaveV1MigrationTests.LegacyBornMareCanConceiveAndFoalAgainWhileKeepingBothLifecycleHistories [336 ms]
+test	Test domain	2026-10-11T04:47:30.5960545Z   Passed Cloverbrook.Domain.Tests.CatalogAndConceptionTests.RejectedRequestsConsumeNoStreamAndNeverCreateAnOutcome [18 ms]
+test	Test domain	2026-10-11T04:47:30.5980856Z   Passed Cloverbrook.Domain.Tests.CatalogAndConceptionTests.ChangingAnUncommittedRequestIdCannotRerollTheNextFoal [52 ms]
+test	Test domain	2026-10-11T04:47:30.6010594Z   Passed Cloverbrook.Domain.Tests.CatalogAndConceptionTests.EmptyUnreleasedAndOverBudgetCatalogsNeverPass [37 ms]
+test	Test domain	2026-10-11T04:47:31.2031446Z   Passed Cloverbrook.Domain.Tests.SaveIntegrationTests.ThreeThousandHorsesRoundTripAndReachabilityWithinTheDeclaredBudget [2 s]
+test	Test domain	2026-10-11T04:47:31.2037267Z   Passed Cloverbrook.Domain.Tests.RecordContractTests.FounderAssumptionsAreExplicitAndInvalidParentageFails [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.2040121Z   Passed Cloverbrook.Domain.Tests.RecordContractTests.MalformedGenomesAreRejectedRatherThanDefaulted [1 ms]
+test	Test domain	2026-10-11T04:47:31.2042615Z   Passed Cloverbrook.Domain.Tests.RecordContractTests.FictionalMarkersCannotPretendToBeRealGenes [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.2044708Z   Passed Cloverbrook.Domain.Tests.RecordContractTests.QuantizedStateAndKnowledgeDoNotAliasCallers [2 ms]
+test	Test domain	2026-10-11T04:47:31.2046521Z   Passed Cloverbrook.Domain.Tests.RecordContractTests.GenomeTakesDeepDefensiveSnapshots [1 ms]
+test	Test domain	2026-10-11T04:47:31.2048411Z   Passed Cloverbrook.Domain.Tests.RecordContractTests.RenamingCannotChangeInheritedStateOrRevealKnowledge [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.2050794Z   Passed Cloverbrook.Domain.Tests.RecordContractTests.IndependentBlockOrderIsCanonicalButPhaseIsPreserved [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.2052752Z   Passed Cloverbrook.Domain.Tests.RecordContractTests.SaveHeaderRetainsVersionsWithoutAliasing [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.3551075Z   Passed Cloverbrook.Domain.Tests.RecordContractTests.CoreContractsAreReadOnlyAndVisualDescriptorHasNoGenomeReference [3 ms]
+test	Test domain	2026-10-11T04:47:31.3553325Z   Passed Cloverbrook.Domain.Tests.CatalogAndConceptionTests.SyntheticRecombinationDoesNotCauseFalseExponentialCoatExplosion [1 s]
+test	Test domain	2026-10-11T04:47:31.3556048Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.InterruptionBeforePublicationLeavesTheOriginalSaveUntouched(stage: BeforeReplace) [58 ms]
+test	Test domain	2026-10-11T04:47:31.3558402Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.InterruptionBeforePublicationLeavesTheOriginalSaveUntouched(stage: TemporaryFlushed) [50 ms]
+test	Test domain	2026-10-11T04:47:31.3559850Z   Passed Cloverbrook.Domain.Tests.CatalogAndConceptionTests.ClosureIncludesSecondGenerationClassesNotPresentInFoundersOrF1 [63 ms]
+test	Test domain	2026-10-11T04:47:31.3561042Z   Passed Cloverbrook.Domain.Tests.CatalogAndConceptionTests.PreparationIsDeterministicAndDoesNotMutateOrDebitTheInput [34 ms]
+test	Test domain	2026-10-11T04:47:31.3562101Z   Passed Cloverbrook.Domain.Tests.PedigreeTests.EveryFrozenPedigreeValidationCaseIsEnforced(id: "unknownBackground") [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.3563102Z   Passed Cloverbrook.Domain.Tests.PedigreeTests.EveryFrozenPedigreeValidationCaseIsEnforced(id: "selfParent") [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.3689881Z   Passed Cloverbrook.Domain.Tests.PedigreeTests.EveryFrozenPedigreeValidationCaseIsEnforced(id: "pedigreeCycle") [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.3692176Z   Passed Cloverbrook.Domain.Tests.PedigreeTests.SelfKinshipIncludesFounderInbreedingAndMissingAncestorsStayUnknown [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.3697393Z   Passed Cloverbrook.Domain.Tests.PedigreeTests.DifferentUndeclaredFounderGroupsAreNotAssumedUnrelated [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.3698392Z   Passed Cloverbrook.Domain.Tests.PedigreeTests.EveryFrozenPedigreeCoefficientIsExact(caseId: "halfSiblings") [10 ms]
+test	Test domain	2026-10-11T04:47:31.3700718Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.InterruptionBeforePublicationLeavesTheOriginalSaveUntouched(stage: TemporaryPartWritten) [51 ms]
+test	Test domain	2026-10-11T04:47:31.3702323Z   Passed Cloverbrook.Domain.Tests.PedigreeTests.EveryFrozenPedigreeCoefficientIsExact(caseId: "inbredFounderParentOffspring") [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.3703357Z   Passed Cloverbrook.Domain.Tests.PedigreeTests.EveryFrozenPedigreeCoefficientIsExact(caseId: "parentOffspring") [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.3704350Z   Passed Cloverbrook.Domain.Tests.PedigreeTests.EveryFrozenPedigreeCoefficientIsExact(caseId: "unrelatedFounders") [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.4140357Z   Passed Cloverbrook.Domain.Tests.PedigreeTests.EveryFrozenPedigreeCoefficientIsExact(caseId: "firstCousins") [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.4153949Z   Passed Cloverbrook.Domain.Tests.PedigreeTests.EveryFrozenPedigreeCoefficientIsExact(caseId: "fullSiblings") [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.4175320Z   Passed Cloverbrook.Domain.Tests.PedigreeTests.UndeclaredFounderRootsRemainIncompleteWithZeroMinimum [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.4204287Z   Passed Cloverbrook.Domain.Tests.PedigreeTests.FullRecordedAncestrySurvivesBeyondTheFiveGenerationUi [3 ms]
+test	Test domain	2026-10-11T04:47:31.4211710Z   Passed Cloverbrook.Domain.Tests.PedigreeTests.UnknownPedigreeKeepsExactValueUnknownButProvesMinimumKinshipFromNamedEdges [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.4250624Z   Passed Cloverbrook.Domain.Tests.StableDayPersistenceTests.GenericSnapshotWritesCannotAdvanceCalendarOrRewriteCareRoot [17 ms]
+test	Test domain	2026-10-11T04:47:31.4276290Z   Passed Cloverbrook.Domain.Tests.StableDayPersistenceTests.PreReplaceFailureLeavesDayCareWalletAndCalendarUntouchedThenRetryWorks(stage: TemporaryWritten) [8 ms]
+test	Test domain	2026-10-11T04:47:31.4277798Z   Passed Cloverbrook.Domain.Tests.StableDayPersistenceTests.PreReplaceFailureLeavesDayCareWalletAndCalendarUntouchedThenRetryWorks(stage: BeforeReplace) [9 ms]
+test	Test domain	2026-10-11T04:47:31.4279713Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.InterruptionBeforePublicationLeavesTheOriginalSaveUntouched(stage: TemporaryWritten) [48 ms]
+test	Test domain	2026-10-11T04:47:31.5601962Z   Passed Cloverbrook.Domain.Tests.StableDayPersistenceTests.PreReplaceFailureLeavesDayCareWalletAndCalendarUntouchedThenRetryWorks(stage: TemporaryPartWritten) [9 ms]
+test	Test domain	2026-10-11T04:47:31.5604842Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.FirstWriteInterruptionDoesNotCreateAPartialPrimaryOrEraseAnything [7 ms]
+test	Test domain	2026-10-11T04:47:31.5607511Z   Passed Cloverbrook.Domain.Tests.StableDayPersistenceTests.PreReplaceFailureLeavesDayCareWalletAndCalendarUntouchedThenRetryWorks(stage: TemporaryFlushed) [10 ms]
+test	Test domain	2026-10-11T04:47:31.5610325Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.AHealthyPrimaryCannotBeRolledBackToAnOlderBackup [31 ms]
+test	Test domain	2026-10-11T04:47:31.5612692Z   Passed Cloverbrook.Domain.Tests.StableDayPersistenceTests.SafeEndDayPreservesIdentityInheritancePregnancyAndUnbornStageWhileAgingByOne [33 ms]
+test	Test domain	2026-10-11T04:47:31.5614988Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.InterruptionAfterPublicationIsAnIdempotentSuccessOnRetry [32 ms]
+test	Test domain	2026-10-11T04:47:31.5617006Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.RejectedConceptionAndConflictingRetryDoNotTouchDiskOrBackup [34 ms]
+test	Test domain	2026-10-11T04:47:31.5619433Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.CorruptPrimaryRequiresAcknowledgmentAndKeepsItsBackupAndEvidence [32 ms]
+test	Test domain	2026-10-11T04:47:31.7154765Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.ExclusiveWriterLockAndOptimisticRevisionRejectLostUpdates [11 ms]
+test	Test domain	2026-10-11T04:47:31.7204277Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.FuturePrimaryFormatsAreNotMisdiagnosedAsCorruptionOrRolledBack [29 ms]
+test	Test domain	2026-10-11T04:47:31.7206165Z   Passed Cloverbrook.Domain.Tests.StableDayPersistenceTests.BirthAndGrowthAdvanceTheCommittedFoalWithoutRerollingOrConsumingItsHoldAgain [163 ms]
+test	Test domain	2026-10-11T04:47:31.7207474Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.NeitherCorruptCopyCreatesAFreshStableAndMissingPrimaryUsesAnExplicitOffer [29 ms]
+test	Test domain	2026-10-11T04:47:31.7208931Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.GenericSavingCannotBypassConceptionOrChangeFounderInheritance [21 ms]
+test	Test domain	2026-10-11T04:47:31.7211119Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.DurableConceptionSurvivesRestartAndRetryWithoutAnotherChargeOrFoal [30 ms]
+test	Test domain	2026-10-11T04:47:31.7212364Z   Passed Cloverbrook.Domain.Tests.StableDayPersistenceTests.RenameBornFoalUsesCanonicalRecordAndRejectsUnbornStaleOrUnauthorizedChanges [84 ms]
+test	Test domain	2026-10-11T04:47:31.7213589Z   Passed Cloverbrook.Domain.Tests.StableDayPersistenceTests.PostReplaceFailureIsResolvedByExactRetryWithoutChargingTwice [8 ms]
+test	Test domain	2026-10-11T04:47:31.7975127Z   Passed Cloverbrook.Domain.Tests.StableDayPersistenceTests.EndDayPublishesCalendarCareWalletAndReceiptAsOneRestartableIdempotentChange [7 ms]
+test	Test domain	2026-10-11T04:47:31.8010693Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.ForecastToDiskToRestartPreservesTheChosenGeneticOutcome [91 ms]
+test	Test domain	2026-10-11T04:47:31.8012818Z   Passed Cloverbrook.Domain.Tests.AtomicSaveStoreTests.AbandonedTemporariesNeverOverrideACommittedSave [19 ms]
+test	Test domain	2026-10-11T04:47:31.8014617Z   Passed Cloverbrook.Domain.Tests.SaveCodecTests.ChecksumValidHostileLengthsFailBeforeAllocation [3 ms]
+test	Test domain	2026-10-11T04:47:31.8016513Z   Passed Cloverbrook.Domain.Tests.SaveCodecTests.DamagedFramesAreRejectedInsteadOfPartiallyLoaded(offset: 0) [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.8018432Z   Passed Cloverbrook.Domain.Tests.SaveCodecTests.DamagedFramesAreRejectedInsteadOfPartiallyLoaded(offset: 100) [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.8020550Z   Passed Cloverbrook.Domain.Tests.SaveCodecTests.DamagedFramesAreRejectedInsteadOfPartiallyLoaded(offset: 12) [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.8022233Z   Passed Cloverbrook.Domain.Tests.SaveCodecTests.DamagedFramesAreRejectedInsteadOfPartiallyLoaded(offset: 16) [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.8562153Z   Passed Cloverbrook.Domain.Tests.SaveCodecTests.LegacyMigrationMustBeExplicitAndRecordedWithoutRerolling [32 ms]
+test	Test domain	2026-10-11T04:47:31.8564590Z   Passed Cloverbrook.Domain.Tests.StableDayPersistenceTests.BirthAndGrowthFaultsResolveOnlyThroughExactAtomicRetry [120 ms]
+test	Test domain	2026-10-11T04:47:31.8566706Z   Passed Cloverbrook.Domain.Tests.FixtureLoadingTests.LoadsTheFrozenGeneticsFixtureFile [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.8568399Z   Passed Cloverbrook.Domain.Tests.FixtureLoadingTests.DomainHasNoEngineAssemblyDependency [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.8570705Z   Passed Cloverbrook.Domain.Tests.SaveCodecTests.HistoricalParentRevisionsDoNotGetReconstructedFromCurrentNames [19 ms]
+test	Test domain	2026-10-11T04:47:31.8573618Z   Passed Cloverbrook.Domain.Tests.SaveCodecTests.EncodingRejectsOversizedStringsRatherThanCreatingUnreadableSaves [< 1 ms]
+test	Test domain	2026-10-11T04:47:31.8579367Z   Passed Cloverbrook.Domain.Tests.SaveCodecTests.PhaseHiddenKnowledgeCosmeticsTrainingAndUnicodeNamesRoundTrip [2 ms]
+test	Test domain	2026-10-11T04:47:31.8581417Z   Passed Cloverbrook.Domain.Tests.SaveCodecTests.TruncatedAndTrailingDataNeverProduceAValidSave [3 ms]
+test	Test domain	2026-10-11T04:47:31.8583478Z   Passed Cloverbrook.Domain.Tests.SaveCodecTests.FutureWireAndPayloadSchemasRequireCompatibilityNotBackupRollback [1 ms]
+test	Test domain	2026-10-11T04:47:33.3541080Z   Passed Cloverbrook.Domain.Tests.SaveCodecTests.DeterministicEncodingDoesNotDependOnCurrentCulture [17 ms]
+test	Test domain	2026-10-11T04:47:33.3551107Z   Passed Cloverbrook.Domain.Tests.SaveCodecTests.ACommittedFoalAndEveryTransactionEffectSurviveByteStableRoundTrip [12 ms]
+test	Test domain	2026-10-11T04:47:33.3553867Z   Passed Cloverbrook.Domain.Tests.BreedingForecastTests.MaskedPearlUsesOneLocusAndUndiscoveredVariantsStayConditional [4 s]
+test	Test domain	2026-10-11T04:47:33.6610089Z [xUnit.net 00:00:18.17]   Finished:    Cloverbrook.Domain.Tests
+test	Test domain	2026-10-11T04:47:33.7263669Z   Passed Cloverbrook.Domain.Tests.CoatForecastTests.SampledResultsAreLabeledReproducibleAndAgreeWithTheExactCross [11 s]
+test	Test domain	2026-10-11T04:47:33.7265102Z   Passed Cloverbrook.Domain.Tests.CoatForecastTests.HypotheticalGenomesCannotClaimActualParentAuthority [10 ms]
+test	Test domain	2026-10-11T04:47:33.7266431Z   Passed Cloverbrook.Domain.Tests.CoatForecastTests.FullyKnownPalominosHaveExactFrozenProbabilitiesAndNoLiveExample [13 ms]
+test	Test domain	2026-10-11T04:47:33.7792876Z Results File: /home/runner/work/Horse/Horse/tests/Cloverbrook.Domain.Tests/TestResults/results.trx
+test	Test domain	2026-10-11T04:47:33.7797581Z
+test	Test domain	2026-10-11T04:47:33.7834401Z Test Run Successful.
+test	Test domain	2026-10-11T04:47:33.7834945Z Total tests: 190
+test	Test domain	2026-10-11T04:47:33.7835418Z      Passed: 190
+test	Test domain	2026-10-11T04:47:33.7836699Z  Total time: 20.2197 Seconds
+test	Upload test results	﻿2026-10-11T04:47:33.8392398Z ##[group]Run actions/upload-artifact@v4
+test	Upload test results	2026-10-11T04:47:33.8392719Z with:
+test	Upload test results	2026-10-11T04:47:33.8392929Z   name: test-results
+test	Upload test results	2026-10-11T04:47:33.8393155Z   path: **/TestResults/*.trx
+test	Upload test results	2026-10-11T04:47:33.8393397Z   if-no-files-found: warn
+test	Upload test results	2026-10-11T04:47:33.8393632Z   compression-level: 6
+test	Upload test results	2026-10-11T04:47:33.8393851Z   overwrite: false
+test	Upload test results	2026-10-11T04:47:33.8394064Z   include-hidden-files: false
+test	Upload test results	2026-10-11T04:47:33.8394294Z env:
+test	Upload test results	2026-10-11T04:47:33.8394488Z   DOTNET_ROOT: /usr/share/dotnet
+test	Upload test results	2026-10-11T04:47:33.8394729Z ##[endgroup]
+test	Upload test results	2026-10-11T04:47:34.0048228Z (node:2716) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test	Upload test results	2026-10-11T04:47:34.0049799Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test	Upload test results	2026-10-11T04:47:34.1034564Z With the provided path, there will be 1 file uploaded
+test	Upload test results	2026-10-11T04:47:34.1043582Z Artifact name is valid!
+test	Upload test results	2026-10-11T04:47:34.1044399Z Root directory input is valid!
+test	Upload test results	2026-10-11T04:47:34.4192466Z Beginning upload of artifact content to blob storage
+test	Upload test results	2026-10-11T04:47:34.4437936Z (node:2716) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+test	Upload test results	2026-10-11T04:47:34.7593287Z Uploaded bytes 47166
+test	Upload test results	2026-10-11T04:47:34.8280295Z Finished uploading artifact content to blob storage!
+test	Upload test results	2026-10-11T04:47:34.8281649Z SHA256 digest of uploaded artifact zip is 11caac8acd1d09809b586a1a3871d0153ee2ff449f3ab2bcca2b4983c2802619
+test	Upload test results	2026-10-11T04:47:34.8282914Z Finalizing artifact upload
+test	Upload test results	2026-10-11T04:47:35.0664743Z Artifact test-results.zip successfully finalized. Artifact ID 11692113036
+test	Upload test results	2026-10-11T04:47:35.0666748Z Artifact test-results has been successfully uploaded! Final size is 47166 bytes. Artifact ID is 11692113036
+test	Upload test results	2026-10-11T04:47:35.0674139Z Artifact download URL: https://github.com/MarkJRogers92/Horse/actions/runs/38112660179/artifacts/11692113036
+test	Upload renderer reference descriptors	﻿2026-10-11T04:47:35.0885713Z ##[group]Run actions/upload-artifact@v4
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.0886261Z with:
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.0886891Z   name: visual-descriptor-fixtures
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.0887501Z   path: **/TestResults/visual-descriptor-fixtures.json
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.0888122Z   if-no-files-found: error
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.0888562Z   compression-level: 6
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.0889248Z   overwrite: false
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.0889680Z   include-hidden-files: false
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.0890129Z env:
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.0890478Z   DOTNET_ROOT: /usr/share/dotnet
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.0890939Z ##[endgroup]
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.2631937Z (node:2728) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.2633384Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.3606395Z With the provided path, there will be 1 file uploaded
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.3619838Z Artifact name is valid!
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.3631671Z Root directory input is valid!
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.7336879Z Beginning upload of artifact content to blob storage
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.7537111Z (node:2728) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+test	Upload renderer reference descriptors	2026-10-11T04:47:35.9457927Z Uploaded bytes 4520
+test	Upload renderer reference descriptors	2026-10-11T04:47:36.0031870Z Finished uploading artifact content to blob storage!
+test	Upload renderer reference descriptors	2026-10-11T04:47:36.0033329Z SHA256 digest of uploaded artifact zip is e50151f98d50c529d026b3e1be7e43e57edc1bdf8ae082231d609e7517afc9df
+test	Upload renderer reference descriptors	2026-10-11T04:47:36.0034320Z Finalizing artifact upload
+test	Upload renderer reference descriptors	2026-10-11T04:47:36.2586683Z Artifact visual-descriptor-fixtures.zip successfully finalized. Artifact ID 11692297627
+test	Upload renderer reference descriptors	2026-10-11T04:47:36.2589403Z Artifact visual-descriptor-fixtures has been successfully uploaded! Final size is 4520 bytes. Artifact ID is 11692297627
+test	Upload renderer reference descriptors	2026-10-11T04:47:36.2595825Z Artifact download URL: https://github.com/MarkJRogers92/Horse/actions/runs/38112660179/artifacts/11692297627
+test	Post Run actions/setup-dotnet@v4	﻿2026-10-11T04:47:36.2779306Z Post job cleanup.
+test	Post Run actions/setup-dotnet@v4	2026-10-11T04:47:36.4025355Z (node:2742) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+test	Post Run actions/setup-dotnet@v4	2026-10-11T04:47:36.4026546Z (Use `node --trace-deprecation ...` to show where the warning was created)
+test	Post Run actions/checkout@v4	﻿2026-10-11T04:47:36.4251255Z Post job cleanup.
+test	Post Run actions/checkout@v4	2026-10-11T04:47:36.5189772Z [command]/usr/bin/git version
+test	Post Run actions/checkout@v4	2026-10-11T04:47:36.5232951Z git version 2.55.0
+test	Post Run actions/checkout@v4	2026-10-11T04:47:36.5276343Z Temporarily overriding HOME='/home/runner/work/_temp/92e085b1-4573-46ba-972d-93f9c1ab4e28' before making global git config changes
+test	Post Run actions/checkout@v4	2026-10-11T04:47:36.5277859Z Adding repository directory to the temporary git global config as a safe directory
+test	Post Run actions/checkout@v4	2026-10-11T04:47:36.5282475Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Horse/Horse
+test	Post Run actions/checkout@v4	2026-10-11T04:47:36.5327770Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+test	Post Run actions/checkout@v4	2026-10-11T04:47:36.5367619Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+test	Post Run actions/checkout@v4	2026-10-11T04:47:36.5629556Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+test	Post Run actions/checkout@v4	2026-10-11T04:47:36.5661795Z http.https://github.com/.extraheader
+test	Post Run actions/checkout@v4	2026-10-11T04:47:36.5673832Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+test	Post Run actions/checkout@v4	2026-10-11T04:47:36.5714884Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+test	Post Run actions/checkout@v4	2026-10-11T04:47:36.5980075Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+test	Post Run actions/checkout@v4	2026-10-11T04:47:36.6025508Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+test	Complete job	﻿2026-10-11T04:47:36.6485512Z Cleaning up orphan processes
+test	Complete job	2026-10-11T04:47:36.6800547Z Terminate orphan process: pid (2624) (VBCSCompiler)
+test	Complete job	2026-10-11T04:47:36.6839221Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-dotnet@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

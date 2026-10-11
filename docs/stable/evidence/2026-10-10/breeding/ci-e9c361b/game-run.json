@@ -1,0 +1,219 @@
+{
+  "conclusion": "success",
+  "headSha": "e9c361b48eafb228d308f7a53ef8781b45c52724",
+  "jobs": [
+    {
+      "completedAt": "2026-10-11T04:56:54Z",
+      "conclusion": "success",
+      "databaseId": 114391260754,
+      "name": "visual",
+      "startedAt": "2026-10-11T04:46:47Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-11T04:46:51Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-11T04:46:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:46:53Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-10-11T04:46:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:46:54Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-dotnet@v4",
+          "number": 3,
+          "startedAt": "2026-10-11T04:46:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:46:58Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-python@v5",
+          "number": 4,
+          "startedAt": "2026-10-11T04:46:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:47:16Z",
+          "conclusion": "success",
+          "name": "Export reference descriptors from the domain and check for drift",
+          "number": 5,
+          "startedAt": "2026-10-11T04:46:58Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:47:29Z",
+          "conclusion": "success",
+          "name": "Install Blender (bpy) and image tools",
+          "number": 6,
+          "startedAt": "2026-10-11T04:47:16Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:49:14Z",
+          "conclusion": "success",
+          "name": "Rebuild placeholder horse from source",
+          "number": 7,
+          "startedAt": "2026-10-11T04:47:29Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:50:29Z",
+          "conclusion": "success",
+          "name": "Prepare CC0 reference adult and foal for procedural coats",
+          "number": 8,
+          "startedAt": "2026-10-11T04:49:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:50:38Z",
+          "conclusion": "success",
+          "name": "Install Mesa Vulkan (lavapipe) and Xvfb",
+          "number": 9,
+          "startedAt": "2026-10-11T04:50:29Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:50:39Z",
+          "conclusion": "success",
+          "name": "Cache Godot",
+          "number": 10,
+          "startedAt": "2026-10-11T04:50:38Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:50:39Z",
+          "conclusion": "skipped",
+          "name": "Download Godot",
+          "number": 11,
+          "startedAt": "2026-10-11T04:50:39Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:50:43Z",
+          "conclusion": "success",
+          "name": "Build game C#",
+          "number": 12,
+          "startedAt": "2026-10-11T04:50:39Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:50:51Z",
+          "conclusion": "success",
+          "name": "Import project",
+          "number": 13,
+          "startedAt": "2026-10-11T04:50:43Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:51:15Z",
+          "conclusion": "success",
+          "name": "Smoke test main scene (boots, links domain, presents a horse)",
+          "number": 14,
+          "startedAt": "2026-10-11T04:50:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:51:16Z",
+          "conclusion": "success",
+          "name": "Verify stable review, End Day, and saved reload",
+          "number": 15,
+          "startedAt": "2026-10-11T04:51:15Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:51:18Z",
+          "conclusion": "success",
+          "name": "Verify committed birth, naming, growth, and saved reload",
+          "number": 16,
+          "startedAt": "2026-10-11T04:51:16Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:51:20Z",
+          "conclusion": "success",
+          "name": "Verify normal saved-stable breeding, birth, naming, and growth",
+          "number": 17,
+          "startedAt": "2026-10-11T04:51:18Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:56:42Z",
+          "conclusion": "success",
+          "name": "Render evidence",
+          "number": 18,
+          "startedAt": "2026-10-11T04:51:20Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:56:49Z",
+          "conclusion": "success",
+          "name": "Contact sheets and summary",
+          "number": 19,
+          "startedAt": "2026-10-11T04:56:42Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:56:51Z",
+          "conclusion": "success",
+          "name": "Upload evidence",
+          "number": 20,
+          "startedAt": "2026-10-11T04:56:49Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:56:51Z",
+          "conclusion": "success",
+          "name": "Post Cache Godot",
+          "number": 37,
+          "startedAt": "2026-10-11T04:56:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:56:51Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-python@v5",
+          "number": 38,
+          "startedAt": "2026-10-11T04:56:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:56:51Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-dotnet@v4",
+          "number": 39,
+          "startedAt": "2026-10-11T04:56:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:56:52Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 40,
+          "startedAt": "2026-10-11T04:56:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-11T04:56:52Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 41,
+          "startedAt": "2026-10-11T04:56:52Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/MarkJRogers92/Horse/actions/runs/38112660176/job/114391260754"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/MarkJRogers92/Horse/actions/runs/38112660176"
+}

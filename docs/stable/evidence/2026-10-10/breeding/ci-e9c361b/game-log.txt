@@ -1,0 +1,1397 @@
+visual	Set up job	﻿2026-10-11T04:46:48.2010538Z Current runner version: '2.337.0'
+visual	Set up job	2026-10-11T04:46:48.2030145Z ##[group]Runner Image Provisioner
+visual	Set up job	2026-10-11T04:46:48.2030795Z Hosted Compute Agent
+visual	Set up job	2026-10-11T04:46:48.2031168Z Version: 20261002.596
+visual	Set up job	2026-10-11T04:46:48.2031521Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+visual	Set up job	2026-10-11T04:46:48.2031990Z Build Date: 2026-10-02T22:28:27Z
+visual	Set up job	2026-10-11T04:46:48.2032384Z Worker ID: {0f5d38c4-4734-46c5-851d-ba1a7752cc15}
+visual	Set up job	2026-10-11T04:46:48.2032846Z Region: centralus
+visual	Set up job	2026-10-11T04:46:48.2033199Z Cloud: Azure
+visual	Set up job	2026-10-11T04:46:48.2033509Z ##[endgroup]
+visual	Set up job	2026-10-11T04:46:48.2034624Z ##[group]Operating System
+visual	Set up job	2026-10-11T04:46:48.2035223Z Ubuntu
+visual	Set up job	2026-10-11T04:46:48.2035602Z 24.04.5
+visual	Set up job	2026-10-11T04:46:48.2036107Z LTS
+visual	Set up job	2026-10-11T04:46:48.2036408Z ##[endgroup]
+visual	Set up job	2026-10-11T04:46:48.2036769Z ##[group]Runner Image
+visual	Set up job	2026-10-11T04:46:48.2037156Z Image: ubuntu-24.04
+visual	Set up job	2026-10-11T04:46:48.2037506Z Version: 20261004.327.1
+visual	Set up job	2026-10-11T04:46:48.2038140Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+visual	Set up job	2026-10-11T04:46:48.2039147Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+visual	Set up job	2026-10-11T04:46:48.2039708Z ##[endgroup]
+visual	Set up job	2026-10-11T04:46:48.2040450Z ##[group]GITHUB_TOKEN Permissions
+visual	Set up job	2026-10-11T04:46:48.2041760Z Contents: read
+visual	Set up job	2026-10-11T04:46:48.2042130Z Metadata: read
+visual	Set up job	2026-10-11T04:46:48.2042465Z Packages: read
+visual	Set up job	2026-10-11T04:46:48.2042792Z ##[endgroup]
+visual	Set up job	2026-10-11T04:46:48.2044253Z Secret source: Actions
+visual	Set up job	2026-10-11T04:46:48.2044789Z Cache mode: write
+visual	Set up job	2026-10-11T04:46:48.2045250Z Prepare workflow directory
+visual	Set up job	2026-10-11T04:46:48.2329644Z Prepare all required actions
+visual	Set up job	2026-10-11T04:46:48.2360991Z Getting action download info
+visual	Set up job	2026-10-11T04:46:48.4533362Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+visual	Set up job	2026-10-11T04:46:48.7638227Z Download action repository 'actions/setup-dotnet@v4' (SHA:67a3573c9a986a3f9c594539f4ab511d57bb3ce9)
+visual	Set up job	2026-10-11T04:46:49.4127735Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+visual	Set up job	2026-10-11T04:46:49.9433306Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+visual	Set up job	2026-10-11T04:46:50.5879856Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+visual	Set up job	2026-10-11T04:46:51.1826297Z Complete job name: visual
+visual	Run actions/checkout@v4	﻿2026-10-11T04:46:51.2300101Z ##[group]Run actions/checkout@v4
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2300423Z with:
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2300554Z   repository: MarkJRogers92/Horse
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2302086Z   token: ***
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2302205Z   ssh-strict: true
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2302321Z   ssh-user: git
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2302445Z   persist-credentials: true
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2302579Z   clean: true
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2302700Z   sparse-checkout-cone-mode: true
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2302854Z   fetch-depth: 1
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2302967Z   fetch-tags: false
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2303101Z   show-progress: true
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2303220Z   lfs: false
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2303345Z   submodules: false
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2303461Z   set-safe-directory: true
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2303603Z   allow-unsafe-pr-checkout: false
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2303812Z env:
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2303931Z   GODOT_VERSION: 4.7.2-stable
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2304065Z   BPY_VERSION: 5.2.2
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2304195Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2304353Z   DOTNET_NOLOGO: 1
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.2358707Z ##[endgroup]
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3022436Z Syncing repository: MarkJRogers92/Horse
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3023690Z ##[group]Getting Git version info
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3024083Z Working directory is '/home/runner/work/Horse/Horse'
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3024551Z [command]/usr/bin/git version
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3087157Z git version 2.55.0
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3100718Z ##[endgroup]
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3106209Z Temporarily overriding HOME='/home/runner/work/_temp/15da5bd2-42ff-4a50-a1aa-ab67aea84497' before making global git config changes
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3107262Z Adding repository directory to the temporary git global config as a safe directory
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3110397Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Horse/Horse
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3154516Z Deleting the contents of '/home/runner/work/Horse/Horse'
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3158364Z ##[group]Initializing the repository
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3161912Z [command]/usr/bin/git init /home/runner/work/Horse/Horse
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3271443Z hint: Using 'master' as the name for the initial branch. This default branch name
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3272206Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3272699Z hint: to use in all of your new repositories, which will suppress this warning,
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3273033Z hint: call:
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3273281Z hint:
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3273612Z hint: 	git config --global init.defaultBranch <name>
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3273908Z hint:
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3274199Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3274647Z hint: 'development'. The just-created branch can be renamed via this command:
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3274995Z hint:
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3275224Z hint: 	git branch -m <name>
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3275476Z hint:
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3276101Z hint: Disable this message with "git config set advice.defaultBranchName false"
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3276798Z Initialized empty Git repository in /home/runner/work/Horse/Horse/.git/
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3279522Z [command]/usr/bin/git remote add origin https://github.com/MarkJRogers92/Horse
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3324118Z ##[endgroup]
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3324521Z ##[group]Disabling automatic garbage collection
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3328129Z [command]/usr/bin/git config --local gc.auto 0
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3355453Z ##[endgroup]
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3355888Z ##[group]Setting up auth
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3361629Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3397310Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3695228Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3726066Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3909226Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.3940728Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.4122180Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.4157855Z ##[endgroup]
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.4158336Z ##[group]Fetching the repository
+visual	Run actions/checkout@v4	2026-10-11T04:46:51.4164779Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +e9c361b48eafb228d308f7a53ef8781b45c52724:refs/remotes/origin/claude/godot-horse-visual-pilot
+visual	Run actions/checkout@v4	2026-10-11T04:46:53.2043746Z From https://github.com/MarkJRogers92/Horse
+visual	Run actions/checkout@v4	2026-10-11T04:46:53.2044501Z  * [new ref]         e9c361b48eafb228d308f7a53ef8781b45c52724 -> origin/claude/godot-horse-visual-pilot
+visual	Run actions/checkout@v4	2026-10-11T04:46:53.2047537Z ##[endgroup]
+visual	Run actions/checkout@v4	2026-10-11T04:46:53.2047881Z ##[group]Determining the checkout info
+visual	Run actions/checkout@v4	2026-10-11T04:46:53.2049145Z ##[endgroup]
+visual	Run actions/checkout@v4	2026-10-11T04:46:53.2054163Z [command]/usr/bin/git sparse-checkout disable
+visual	Run actions/checkout@v4	2026-10-11T04:46:53.2102130Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+visual	Run actions/checkout@v4	2026-10-11T04:46:53.2131831Z ##[group]Checking out the ref
+visual	Run actions/checkout@v4	2026-10-11T04:46:53.2136382Z [command]/usr/bin/git checkout --progress --force -B claude/godot-horse-visual-pilot refs/remotes/origin/claude/godot-horse-visual-pilot
+visual	Run actions/checkout@v4	2026-10-11T04:46:53.3776354Z Switched to a new branch 'claude/godot-horse-visual-pilot'
+visual	Run actions/checkout@v4	2026-10-11T04:46:53.3779091Z branch 'claude/godot-horse-visual-pilot' set up to track 'origin/claude/godot-horse-visual-pilot'.
+visual	Run actions/checkout@v4	2026-10-11T04:46:53.3795908Z ##[endgroup]
+visual	Run actions/checkout@v4	2026-10-11T04:46:53.3851064Z [command]/usr/bin/git log -1 --format=%H
+visual	Run actions/checkout@v4	2026-10-11T04:46:53.3862644Z e9c361b48eafb228d308f7a53ef8781b45c52724
+visual	Run actions/setup-dotnet@v4	﻿2026-10-11T04:46:53.4036352Z ##[group]Run actions/setup-dotnet@v4
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.4036587Z with:
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.4036704Z   dotnet-version: 8.0.x
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.4036835Z   cache: false
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.4036948Z env:
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.4037065Z   GODOT_VERSION: 4.7.2-stable
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.4037205Z   BPY_VERSION: 5.2.2
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.4037331Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.4037471Z   DOTNET_NOLOGO: 1
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.4037593Z ##[endgroup]
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.4978398Z (node:2114) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.4995192Z (Use `node --trace-deprecation ...` to show where the warning was created)
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.4995976Z [command]/home/runner/work/_actions/actions/setup-dotnet/v4/externals/install-dotnet.sh --skip-non-versioned-files --runtime dotnet --channel LTS
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.9673736Z dotnet-install: .NET Core Runtime with version '10.0.12' is already installed.
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:53.9689584Z [command]/home/runner/work/_actions/actions/setup-dotnet/v4/externals/install-dotnet.sh --skip-non-versioned-files --channel 8.0
+visual	Run actions/setup-dotnet@v4	2026-10-11T04:46:54.3191273Z dotnet-install: .NET Core SDK with version '8.0.425' is already installed.
+visual	Run actions/setup-python@v5	﻿2026-10-11T04:46:54.3355345Z ##[group]Run actions/setup-python@v5
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3355586Z with:
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3356012Z   python-version: 3.13
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3356206Z   cache: pip
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3356439Z   cache-dependency-path: tools/visual/requirements.txt
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3356735Z   check-latest: false
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3358225Z   token: ***
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3358465Z   update-environment: true
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3358675Z   allow-prereleases: false
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3358893Z   freethreaded: false
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3359126Z env:
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3359308Z   GODOT_VERSION: 4.7.2-stable
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3359537Z   BPY_VERSION: 5.2.2
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3359746Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3360012Z   DOTNET_NOLOGO: 1
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3360246Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.3360448Z ##[endgroup]
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.4208030Z ##[group]Installed versions
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.4269028Z (node:2307) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.4269937Z (Use `node --trace-deprecation ...` to show where the warning was created)
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.4270664Z Successfully set up CPython (3.13.16)
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.4271186Z ##[endgroup]
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.4470193Z [command]/opt/hostedtoolcache/Python/3.13.16/x64/bin/pip cache dir
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.6913011Z /home/runner/.cache/pip
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.8248726Z Cache hit for: setup-python-Linux-x64-24.04-Ubuntu-python-3.13.16-pip-afa1a4076efd7c6f266b670a8c643ad170357ecef50c8834e97ab34127fc4eaa
+visual	Run actions/setup-python@v5	2026-10-11T04:46:54.8318543Z (node:2307) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+visual	Run actions/setup-python@v5	2026-10-11T04:46:56.0141301Z Received 134217728 of 482376464 (27.8%), 124.4 MBs/sec
+visual	Run actions/setup-python@v5	2026-10-11T04:46:57.0122169Z Received 331350016 of 482376464 (68.7%), 155.7 MBs/sec
+visual	Run actions/setup-python@v5	2026-10-11T04:46:57.8068308Z Received 482376464 of 482376464 (100.0%), 162.9 MBs/sec
+visual	Run actions/setup-python@v5	2026-10-11T04:46:57.8068873Z Cache Size: ~460 MB (482376464 B)
+visual	Run actions/setup-python@v5	2026-10-11T04:46:57.8120473Z [command]/usr/bin/tar -xf /home/runner/work/_temp/d4ca6140-49cb-4eaa-ae27-159d7d914574/cache.tzst -P -C /home/runner/work/Horse/Horse --use-compress-program unzstd
+visual	Run actions/setup-python@v5	2026-10-11T04:46:58.2133316Z Cache restored successfully
+visual	Run actions/setup-python@v5	2026-10-11T04:46:58.2322298Z Cache restored from key: setup-python-Linux-x64-24.04-Ubuntu-python-3.13.16-pip-afa1a4076efd7c6f266b670a8c643ad170357ecef50c8834e97ab34127fc4eaa
+visual	Export reference descriptors from the domain and check for drift	﻿2026-10-11T04:46:58.2851144Z ##[group]Run dotnet test Cloverbrook.sln --configuration Release --filter "FullyQualifiedName~VisualDescriptorFixtureTests"
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.2851724Z ^[[36;1mdotnet test Cloverbrook.sln --configuration Release --filter "FullyQualifiedName~VisualDescriptorFixtureTests"^[[0m
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.2852129Z ^[[36;1mfresh=$(find tests -path '*TestResults/visual-descriptor-fixtures.json' | head -1)^[[0m
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.2852456Z ^[[36;1mif ! cmp -s "$fresh" game/data/fixtures/visual-descriptor-fixtures.json; then^[[0m
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.2852827Z ^[[36;1m  echo "::warning::Domain descriptor export differs from game/data/fixtures; using the fresh export for this run."^[[0m
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.2853179Z ^[[36;1m  cp "$fresh" game/data/fixtures/visual-descriptor-fixtures.json^[[0m
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.2853397Z ^[[36;1mfi^[[0m
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.3067889Z shell: /usr/bin/bash -e {0}
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.3068069Z env:
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.3068191Z   GODOT_VERSION: 4.7.2-stable
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.3068337Z   BPY_VERSION: 5.2.2
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.3068527Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.3068670Z   DOTNET_NOLOGO: 1
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.3068794Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.3068981Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.3069239Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.3069485Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.3069704Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.3069929Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.3070150Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:46:58.3070339Z ##[endgroup]
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:47:02.5444499Z   Determining projects to restore...
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:47:03.0650543Z   Restored /home/runner/work/Horse/Horse/src/Cloverbrook.Domain/Cloverbrook.Domain.csproj (in 63 ms).
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:47:03.7735439Z   Restored /home/runner/work/Horse/Horse/tests/Cloverbrook.Domain.Tests/Cloverbrook.Domain.Tests.csproj (in 744 ms).
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:47:07.3251200Z   Cloverbrook.Domain -> /home/runner/work/Horse/Horse/src/Cloverbrook.Domain/bin/Release/netstandard2.1/Cloverbrook.Domain.dll
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:47:10.6504458Z   Cloverbrook.Domain.Tests -> /home/runner/work/Horse/Horse/tests/Cloverbrook.Domain.Tests/bin/Release/net8.0/Cloverbrook.Domain.Tests.dll
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:47:10.6579391Z Test run for /home/runner/work/Horse/Horse/tests/Cloverbrook.Domain.Tests/bin/Release/net8.0/Cloverbrook.Domain.Tests.dll (.NETCoreApp,Version=v8.0)
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:47:11.5169406Z A total of 1 test files matched the specified pattern.
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:47:16.6991081Z
+visual	Export reference descriptors from the domain and check for drift	2026-10-11T04:47:16.7017228Z Passed!  - Failed:     0, Passed:    14, Skipped:     0, Total:    14, Duration: 170 ms - Cloverbrook.Domain.Tests.dll (net8.0)
+visual	Install Blender (bpy) and image tools	﻿2026-10-11T04:47:16.7480020Z ##[group]Run pip install -r tools/visual/requirements.txt
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7480295Z ^[[36;1mpip install -r tools/visual/requirements.txt^[[0m
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7530752Z shell: /usr/bin/bash -e {0}
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7530894Z env:
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7531006Z   GODOT_VERSION: 4.7.2-stable
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7531136Z   BPY_VERSION: 5.2.2
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7531261Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7531395Z   DOTNET_NOLOGO: 1
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7531511Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7531679Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7531909Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7532136Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7532340Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7532543Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7532886Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:16.7533099Z ##[endgroup]
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.2730762Z Collecting bpy==5.2.2 (from -r tools/visual/requirements.txt (line 1))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.2741417Z   Using cached bpy-5.2.2-cp313-cp313-manylinux_2_28_x86_64.whl.metadata (2.0 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.3870979Z Collecting numpy==2.5.3 (from -r tools/visual/requirements.txt (line 2))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.3881621Z   Using cached numpy-2.5.3-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.4312857Z Collecting scikit-image==0.26.0 (from -r tools/visual/requirements.txt (line 3))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.4323231Z   Using cached scikit_image-0.26.0-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (15 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.5778273Z Collecting pillow==12.3.0 (from -r tools/visual/requirements.txt (line 4))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.5789841Z   Using cached pillow-12.3.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.6024502Z Collecting cattrs (from bpy==5.2.2->-r tools/visual/requirements.txt (line 1))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.6032981Z   Using cached cattrs-26.2.1-py3-none-any.whl.metadata (8.5 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.7221196Z Collecting cython (from bpy==5.2.2->-r tools/visual/requirements.txt (line 1))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.7231899Z   Using cached cython-3.3.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (28 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.7500251Z Collecting requests (from bpy==5.2.2->-r tools/visual/requirements.txt (line 1))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.7509845Z   Using cached requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.7946207Z Collecting zstandard (from bpy==5.2.2->-r tools/visual/requirements.txt (line 1))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.7955925Z   Using cached zstandard-0.25.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.3 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.8717699Z Collecting scipy>=1.11.4 (from scikit-image==0.26.0->-r tools/visual/requirements.txt (line 3))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.8728771Z   Using cached scipy-1.18.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.9112372Z Collecting networkx>=3.0 (from scikit-image==0.26.0->-r tools/visual/requirements.txt (line 3))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.9122056Z   Using cached networkx-3.7-py3-none-any.whl.metadata (6.7 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.9363195Z Collecting imageio!=2.35.0,>=2.33 (from scikit-image==0.26.0->-r tools/visual/requirements.txt (line 3))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.9371599Z   Using cached imageio-2.38.1-py3-none-any.whl.metadata (9.7 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.9696636Z Collecting tifffile>=2022.8.12 (from scikit-image==0.26.0->-r tools/visual/requirements.txt (line 3))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.9705413Z   Using cached tifffile-2026.9.20-py3-none-any.whl.metadata (34 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.9950804Z Collecting packaging>=21 (from scikit-image==0.26.0->-r tools/visual/requirements.txt (line 3))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:17.9960084Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.0169624Z Collecting lazy-loader>=0.4 (from scikit-image==0.26.0->-r tools/visual/requirements.txt (line 3))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.0177754Z   Using cached lazy_loader-0.6-py3-none-any.whl.metadata (6.0 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.0409921Z Collecting attrs>=25.4.0 (from cattrs->bpy==5.2.2->-r tools/visual/requirements.txt (line 1))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.0417939Z   Using cached attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.0620877Z Collecting typing-extensions>=4.14.0 (from cattrs->bpy==5.2.2->-r tools/visual/requirements.txt (line 1))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.0629087Z   Using cached typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.1429383Z Collecting charset_normalizer<4,>=2 (from requests->bpy==5.2.2->-r tools/visual/requirements.txt (line 1))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.1440575Z   Using cached charset_normalizer-3.5.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.1662039Z Collecting idna<4,>=2.5 (from requests->bpy==5.2.2->-r tools/visual/requirements.txt (line 1))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.1671558Z   Using cached idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.1913670Z Collecting urllib3<3,>=1.26 (from requests->bpy==5.2.2->-r tools/visual/requirements.txt (line 1))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.1923779Z   Using cached urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.2150789Z Collecting certifi>=2023.5.7 (from requests->bpy==5.2.2->-r tools/visual/requirements.txt (line 1))
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.2160795Z   Using cached certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.2191382Z Using cached bpy-5.2.2-cp313-cp313-manylinux_2_28_x86_64.whl (401.7 MB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3117992Z Using cached numpy-2.5.3-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3167328Z Using cached scikit_image-0.26.0-cp313-cp313-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (13.7 MB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3215991Z Using cached pillow-12.3.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3244653Z Using cached imageio-2.38.1-py3-none-any.whl (328 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3254122Z Using cached lazy_loader-0.6-py3-none-any.whl (8.8 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3262191Z Using cached networkx-3.7-py3-none-any.whl (2.1 MB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3275679Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3283643Z Using cached scipy-1.18.1-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (35.3 MB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3385542Z Using cached tifffile-2026.9.20-py3-none-any.whl (275 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3395322Z Using cached cattrs-26.2.1-py3-none-any.whl (74 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3403903Z Using cached attrs-26.1.0-py3-none-any.whl (67 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3411702Z Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3419474Z Using cached cython-3.3.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (3.4 MB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3435351Z Using cached requests-2.34.2-py3-none-any.whl (73 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3443013Z Using cached charset_normalizer-3.5.2-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (254 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3450474Z Using cached idna-3.20-py3-none-any.whl (69 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3457680Z Using cached urllib3-2.8.0-py3-none-any.whl (135 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3464756Z Using cached certifi-2026.7.22-py3-none-any.whl (136 kB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.3472219Z Using cached zstandard-0.25.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.5 MB)
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:18.7251838Z Installing collected packages: zstandard, urllib3, typing-extensions, pillow, packaging, numpy, networkx, idna, cython, charset_normalizer, certifi, attrs, tifffile, scipy, requests, lazy-loader, imageio, cattrs, scikit-image, bpy
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:29.4964115Z
+visual	Install Blender (bpy) and image tools	2026-10-11T04:47:29.4981559Z Successfully installed attrs-26.1.0 bpy-5.2.2 cattrs-26.2.1 certifi-2026.7.22 charset_normalizer-3.5.2 cython-3.3.0 idna-3.20 imageio-2.38.1 lazy-loader-0.6 networkx-3.7 numpy-2.5.3 packaging-26.3 pillow-12.3.0 requests-2.34.2 scikit-image-0.26.0 scipy-1.18.1 tifffile-2026.9.20 typing-extensions-4.16.0 urllib3-2.8.0 zstandard-0.25.0
+visual	Rebuild placeholder horse from source	﻿2026-10-11T04:47:29.6946965Z ##[group]Run python tools/horse/build_horse.py --out game/assets/horse/placeholder
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.6947356Z ^[[36;1mpython tools/horse/build_horse.py --out game/assets/horse/placeholder^[[0m
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.6998998Z shell: /usr/bin/bash -e {0}
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.6999138Z env:
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.6999251Z   GODOT_VERSION: 4.7.2-stable
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.6999387Z   BPY_VERSION: 5.2.2
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.6999512Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.6999645Z   DOTNET_NOLOGO: 1
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.6999764Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.6999936Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.7000297Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.7000523Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.7000728Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.7000938Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.7001183Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Rebuild placeholder horse from source	2026-10-11T04:47:29.7001356Z ##[endgroup]
+visual	Rebuild placeholder horse from source	2026-10-11T04:48:33.8539797Z ERROR Draco is not available because library could not be found at /opt/hostedtoolcache/Python/3.13.16/x64/lib/python3.13/site-packages/bpy/lib/libbf_intern_draco_bridge.so
+visual	Rebuild placeholder horse from source	2026-10-11T04:48:33.8540976Z ERROR MeshOptimizer is not available because library could not be found at /opt/hostedtoolcache/Python/3.13.16/x64/lib/python3.13/site-packages/bpy/lib/libbf_intern_meshopt_bridge.so
+visual	Rebuild placeholder horse from source	2026-10-11T04:48:33.8541626Z 04:48:33 | INFO: Starting glTF 2.0 export
+visual	Rebuild placeholder horse from source	2026-10-11T04:48:33.8609348Z 04:48:33 | INFO: Extracting primitive: Body.002
+visual	Rebuild placeholder horse from source	2026-10-11T04:48:33.9617303Z 04:48:33 | INFO: Primitives created: 1
+visual	Rebuild placeholder horse from source	2026-10-11T04:48:33.9665122Z 04:48:33 | INFO: Extracting primitive: Sphere
+visual	Rebuild placeholder horse from source	2026-10-11T04:48:33.9712355Z 04:48:33 | INFO: Primitives created: 1
+visual	Rebuild placeholder horse from source	2026-10-11T04:48:33.9736244Z 04:48:33 | INFO: Extracting primitive: Mane
+visual	Rebuild placeholder horse from source	2026-10-11T04:48:33.9829111Z 04:48:33 | INFO: Primitives created: 1
+visual	Rebuild placeholder horse from source	2026-10-11T04:48:33.9856075Z 04:48:33 | INFO: Extracting primitive: Tail
+visual	Rebuild placeholder horse from source	2026-10-11T04:48:33.9905994Z 04:48:33 | INFO: Primitives created: 1
+visual	Rebuild placeholder horse from source	2026-10-11T04:48:34.7244022Z 04:48:34 | INFO: Finished glTF 2.0 export in 0.8703997135162354 s
+visual	Rebuild placeholder horse from source	2026-10-11T04:49:13.6598813Z
+visual	Rebuild placeholder horse from source	2026-10-11T04:49:13.6607333Z [build_horse] adult: {'Body': 36000, 'Eyes': 1440, 'Mane': 2370, 'Tail': 1540} in 64.4s -> game/assets/horse/placeholder/horse_adult.glb
+visual	Rebuild placeholder horse from source	2026-10-11T04:49:13.6607912Z 04:49:13 | INFO: Starting glTF 2.0 export
+visual	Rebuild placeholder horse from source	2026-10-11T04:49:13.6666630Z 04:49:13 | INFO: Extracting primitive: Body.002
+visual	Rebuild placeholder horse from source	2026-10-11T04:49:13.7125641Z 04:49:13 | INFO: Primitives created: 1
+visual	Rebuild placeholder horse from source	2026-10-11T04:49:13.7157908Z 04:49:13 | INFO: Extracting primitive: Sphere
+visual	Rebuild placeholder horse from source	2026-10-11T04:49:13.7193099Z 04:49:13 | INFO: Primitives created: 1
+visual	Rebuild placeholder horse from source	2026-10-11T04:49:13.7205467Z 04:49:13 | INFO: Extracting primitive: Mane
+visual	Rebuild placeholder horse from source	2026-10-11T04:49:13.7268924Z 04:49:13 | INFO: Primitives created: 1
+visual	Rebuild placeholder horse from source	2026-10-11T04:49:13.7279590Z 04:49:13 | INFO: Extracting primitive: Tail
+visual	Rebuild placeholder horse from source	2026-10-11T04:49:13.7317700Z 04:49:13 | INFO: Primitives created: 1
+visual	Rebuild placeholder horse from source	2026-10-11T04:49:14.3947779Z 04:49:14 | INFO: Finished glTF 2.0 export in 0.7346508502960205 s
+visual	Rebuild placeholder horse from source	2026-10-11T04:49:14.4025242Z
+visual	Rebuild placeholder horse from source	2026-10-11T04:49:14.4025568Z [build_horse] foal: {'Body': 26000, 'Eyes': 1440, 'Mane': 1770, 'Tail': 840} in 39.7s -> game/assets/horse/placeholder/horse_foal.glb
+visual	Prepare CC0 reference adult and foal for procedural coats	﻿2026-10-11T04:49:14.5309050Z ##[group]Run python tools/horse/import_reference.py
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5309428Z ^[[36;1mpython tools/horse/import_reference.py^[[0m
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5376092Z shell: /usr/bin/bash -e {0}
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5376322Z env:
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5376495Z   GODOT_VERSION: 4.7.2-stable
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5376726Z   BPY_VERSION: 5.2.2
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5376934Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5377141Z   DOTNET_NOLOGO: 1
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5377323Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5377614Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5377979Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5378340Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5378672Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5379012Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5379346Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.5379664Z ##[endgroup]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:14.9335316Z 00:00.263  blend            | Read blend: "/home/runner/work/Horse/Horse/art/reference/Horse_Reference/Horse_Reference.blend"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:15.1336216Z /home/runner/work/Horse/Horse/tools/horse/import_reference.py:139: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:15.1337383Z   mat.use_nodes = True
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:17.5697683Z /home/runner/work/Horse/Horse/tools/horse/import_reference.py:802: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:17.5721723Z   used_images={node.image for mat in [coat_mat,hair_mat,eyes_ob.data.materials[0]] if mat and mat.use_nodes for node in mat.node_tree.nodes if node.type=="TEX_IMAGE" and node.image}
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:51.5059030Z Info: Saved as "horse_adult.blend"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:51.5059578Z ERROR Draco is not available because library could not be found at /opt/hostedtoolcache/Python/3.13.16/x64/lib/python3.13/site-packages/bpy/lib/libbf_intern_draco_bridge.so
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:51.5060256Z ERROR MeshOptimizer is not available because library could not be found at /opt/hostedtoolcache/Python/3.13.16/x64/lib/python3.13/site-packages/bpy/lib/libbf_intern_meshopt_bridge.so
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:51.5060666Z 04:49:51 | INFO: Starting glTF 2.0 export
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:51.5126537Z 04:49:51 | INFO: Extracting primitive: Body
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:51.5968141Z 04:49:51 | INFO: Primitives created: 1
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:51.6004118Z 04:49:51 | INFO: Extracting primitive: Eyes
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:51.6049665Z 04:49:51 | INFO: Primitives created: 1
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:51.6061384Z 04:49:51 | INFO: Extracting primitive: Mane
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:51.6131019Z 04:49:51 | INFO: Primitives created: 1
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:51.6141146Z 04:49:51 | INFO: Extracting primitive: Tail
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:51.6175043Z 04:49:51 | INFO: Primitives created: 1
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:51.6240403Z 04:49:51 | INFO: Finished glTF 2.0 export in 0.11815190315246582 s
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:49:51.9840628Z 00:37.313  blend            | Read blend: "/home/runner/work/Horse/Horse/art/reference/Horse_Reference/Horse_Reference.blend"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7548381Z
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7556488Z {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7581245Z   "profile": "adult",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7586629Z   "glb": "/home/runner/work/Horse/Horse/game/assets/horse/reference/horse_adult.glb",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7587158Z   "blend": "/home/runner/work/Horse/Horse/art/derived/Horse_Reference/horse_adult.blend",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7587683Z   "manifest": "/home/runner/work/Horse/Horse/game/assets/horse/reference/horse_adult.manifest.json",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7588069Z   "validation": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7588242Z     "mesh_names": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7588413Z       "Body",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7588579Z       "Eyes",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7588738Z       "Mane",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7588888Z       "Tail"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7589040Z     ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7589194Z     "node_names": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7589365Z       "Hind_L_Hoof",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7590040Z       "Hind_L_Pastern",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7590219Z       "Hind_L_Cannon",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7590400Z       "Hind_L_Upper",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7590575Z       "Hind_R_Hoof",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7590752Z       "Hind_R_Pastern",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7590939Z       "Hind_R_Cannon",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7591119Z       "Hind_R_Upper",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7591317Z       "Front_L_Hoof",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7591495Z       "Front_L_Pastern",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7591684Z       "Front_L_Cannon",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7591863Z       "Front_L_Upper",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7592039Z       "Front_R_Hoof",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7592216Z       "Front_R_Pastern",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7592402Z       "Front_R_Cannon",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7592580Z       "Front_R_Upper",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7592751Z       "Ear_L",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7592909Z       "Ear_R",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7593063Z       "Head",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7593219Z       "Neck",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7593372Z       "Chest",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7593532Z       "Spine",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7593687Z       "Tail_03",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7593850Z       "Tail_02",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7594011Z       "Tail_01",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7594172Z       "Pelvis",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7594331Z       "Root",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7594675Z       "Body",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7594826Z       "Eyes",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7595020Z       "Mane",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7595171Z       "Tail",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7595321Z       "Skeleton"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7595484Z     ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7595637Z     "animations": 0,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7595910Z     "triangles": 36162,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7596091Z     "primitives": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7596268Z       "Body": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7596438Z         "vertices": 15064,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7596634Z         "triangles": 28524,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7596836Z         "color_0": 15064,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7597029Z         "texcoord_1": 15064,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7597237Z         "weights_0": 15064
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7597427Z       },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7597584Z       "Eyes": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7597757Z         "triangles": 1920
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7597938Z       },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7598091Z       "Mane": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7598253Z         "triangles": 3920
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7598429Z       },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7598583Z       "Tail": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7598743Z         "triangles": 1798
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7598924Z       }
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7599121Z     },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7599300Z     "attributes": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7599466Z       "Body": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7599619Z         [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7599772Z           "COLOR_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7599944Z           "JOINTS_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7600118Z           "NORMAL",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7600288Z           "POSITION",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7600464Z           "TEXCOORD_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7600645Z           "TEXCOORD_1",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7600827Z           "WEIGHTS_0"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7600994Z         ]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7601145Z       ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7601304Z       "Eyes": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7601465Z         [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7601698Z           "JOINTS_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7601873Z           "NORMAL",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7602046Z           "POSITION",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7602227Z           "TEXCOORD_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7602399Z           "WEIGHTS_0"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7602559Z         ]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7602700Z       ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7602844Z       "Mane": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7602995Z         [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7603142Z           "JOINTS_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7603306Z           "NORMAL",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7603470Z           "POSITION",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7603640Z           "TEXCOORD_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7603829Z           "WEIGHTS_0"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7604002Z         ]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7604156Z       ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7604312Z       "Tail": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7604466Z         [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7604613Z           "JOINTS_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7604778Z           "NORMAL",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7605108Z           "POSITION",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7605277Z           "TEXCOORD_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7605449Z           "WEIGHTS_0"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7605609Z         ]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7605841Z       ]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7605986Z     },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7606150Z     "normal_unit_failures": 0,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7606358Z     "nonfinite_values": 0,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7606588Z     "max_skin_weight_sum_error": 1.3597309589385986e-07,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7606851Z     "skin_weights_by_mesh": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7607038Z       "Body": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7607201Z         "vertices": 15064,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7607397Z         "max_sum_error": 1.3597309589385986e-07
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7607615Z       },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7607758Z       "Eyes": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7607918Z         "vertices": 964,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7608102Z         "max_sum_error": 0.0
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7608291Z       },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7608436Z       "Mane": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7608601Z         "vertices": 1962,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7608802Z         "max_sum_error": 1.862645149230957e-08
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7609018Z       },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7609164Z       "Tail": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7609327Z         "vertices": 901,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7609523Z         "max_sum_error": 2.9802322387695312e-08
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7609867Z       }
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7610014Z     },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7610189Z     "mixed_canonical_category_triangles": 0,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7610440Z     "body_has_descriptor_attributes": true,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7610673Z     "body_has_skin": true,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7610900Z     "exported_head_direction_muzzle_minus_poll": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7611139Z       0.38161,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7611306Z       -0.92432,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7611489Z       0.0
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7611636Z     ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7611803Z     "exported_horizontal_forward_XZ": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7612017Z       1.0,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7612166Z       1e-05
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7612313Z     ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7612479Z     "exported_poll_center_m": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7612675Z       1.26825,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7612828Z       1.69697,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7612982Z       -0.0
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7613132Z     ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7613294Z     "exported_muzzle_center_m": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7613496Z       1.48245,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7613649Z       1.17816,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7613804Z       -0.0
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7613950Z     ]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7614094Z   },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7614254Z   "bodyMaskCoverage": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7614443Z     "vertex_count": 3521,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7614640Z     "head_poll_loops": 2240,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7614844Z     "head_muzzle_loops": 2414,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7615051Z     "head_front_loops": 3272,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7615256Z     "forehead_front_loops": 1266,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7615463Z     "leg_loops": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7615632Z       "Front_L": 404,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7616663Z       "Front_R": 404,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7616841Z       "Hind_L": 402,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7617021Z       "Hind_R": 402
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7617181Z     },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7617341Z     "sentinel_loops": 3200,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7617544Z     "head_half_width_m": 0.14998
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7617739Z   },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7617889Z   "eyes": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7618043Z     "L": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7618193Z       1.3507,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7618345Z       0.08227,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7618502Z       1.53068
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7618599Z     ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7618690Z     "R": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7618784Z       1.3507,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7618886Z       -0.08198,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7618986Z       1.53068
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7619082Z     ]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7619176Z   }
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7619267Z }
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7619405Z Info: Saved as "horse_foal.blend"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7619562Z 04:50:28 | INFO: Starting glTF 2.0 export
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.7619732Z 04:50:28 | INFO: Extracting primitive: Body
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.8240438Z 04:50:28 | INFO: Primitives created: 1
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.8277495Z 04:50:28 | INFO: Extracting primitive: Eyes
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.8322082Z 04:50:28 | INFO: Primitives created: 1
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.8333774Z 04:50:28 | INFO: Extracting primitive: Mane
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.8402141Z 04:50:28 | INFO: Primitives created: 1
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.8411657Z 04:50:28 | INFO: Extracting primitive: Tail
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.8444617Z 04:50:28 | INFO: Primitives created: 1
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.8505224Z 04:50:28 | INFO: Finished glTF 2.0 export in 0.09561324119567871 s
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9975164Z
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9975629Z {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9976014Z   "profile": "foal",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9976357Z   "glb": "/home/runner/work/Horse/Horse/game/assets/horse/reference/horse_foal.glb",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9988871Z   "blend": "/home/runner/work/Horse/Horse/art/derived/Horse_Reference/horse_foal.blend",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9989446Z   "manifest": "/home/runner/work/Horse/Horse/game/assets/horse/reference/horse_foal.manifest.json",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9989833Z   "validation": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9990059Z     "mesh_names": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9990235Z       "Body",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9990395Z       "Eyes",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9990551Z       "Mane",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9990706Z       "Tail"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9990866Z     ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9991344Z     "node_names": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9991564Z       "Hind_L_Hoof",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9991801Z       "Hind_L_Pastern",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9991992Z       "Hind_L_Cannon",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9992175Z       "Hind_L_Upper",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9992356Z       "Hind_R_Hoof",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9992541Z       "Hind_R_Pastern",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9992725Z       "Hind_R_Cannon",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9992898Z       "Hind_R_Upper",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9993015Z       "Front_L_Hoof",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9993136Z       "Front_L_Pastern",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9993259Z       "Front_L_Cannon",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9993377Z       "Front_L_Upper",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9993493Z       "Front_R_Hoof",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9993611Z       "Front_R_Pastern",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9993736Z       "Front_R_Cannon",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9993854Z       "Front_R_Upper",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9993967Z       "Ear_L",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9994074Z       "Ear_R",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9994177Z       "Head",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9994302Z       "Neck",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9994404Z       "Chest",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9994508Z       "Spine",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9994615Z       "Tail_03",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9994720Z       "Tail_02",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9994826Z       "Tail_01",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9994934Z       "Pelvis",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9995043Z       "Root",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9995145Z       "Body",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9995246Z       "Eyes",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9995348Z       "Mane",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9995448Z       "Tail",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9995558Z       "Skeleton"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9995663Z     ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9995905Z     "animations": 0,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9996024Z     "triangles": 36162,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9996150Z     "primitives": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9996263Z       "Body": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9996376Z         "vertices": 15027,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9996506Z         "triangles": 28524,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9996639Z         "color_0": 15027,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9996767Z         "texcoord_1": 15027,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9996899Z         "weights_0": 15027
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9997016Z       },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9997114Z       "Eyes": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9997228Z         "triangles": 1920
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9997345Z       },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9997443Z       "Mane": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9997552Z         "triangles": 3920
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9997672Z       },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9997765Z       "Tail": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9997874Z         "triangles": 1798
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9997988Z       }
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9998086Z     },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9998188Z     "attributes": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9998302Z       "Body": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9998404Z         [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9998507Z           "COLOR_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9998625Z           "JOINTS_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9998878Z           "NORMAL",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9998984Z           "POSITION",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9999098Z           "TEXCOORD_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9999216Z           "TEXCOORD_1",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9999331Z           "WEIGHTS_0"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9999444Z         ]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9999539Z       ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9999633Z       "Eyes": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9999732Z         [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:28.9999830Z           "JOINTS_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0000009Z           "NORMAL",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0000176Z           "POSITION",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0000348Z           "TEXCOORD_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0000521Z           "WEIGHTS_0"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0000688Z         ]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0000781Z       ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0000874Z       "Mane": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0000975Z         [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0001075Z           "JOINTS_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0001182Z           "NORMAL",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0001287Z           "POSITION",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0001405Z           "TEXCOORD_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0001518Z           "WEIGHTS_0"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0001623Z         ]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0001715Z       ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0001807Z       "Tail": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0001905Z         [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0002002Z           "JOINTS_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0002249Z           "NORMAL",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0002354Z           "POSITION",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0002464Z           "TEXCOORD_0",
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0002579Z           "WEIGHTS_0"
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0002683Z         ]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0002775Z       ]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0002868Z     },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0002973Z     "normal_unit_failures": 0,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0003111Z     "nonfinite_values": 0,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0003262Z     "max_skin_weight_sum_error": 1.3597309589385986e-07,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0003432Z     "skin_weights_by_mesh": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0003556Z       "Body": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0003666Z         "vertices": 15027,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0003798Z         "max_sum_error": 1.3597309589385986e-07
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0003943Z       },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0004037Z       "Eyes": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0004146Z         "vertices": 964,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0004269Z         "max_sum_error": 0.0
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0004387Z       },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0004484Z       "Mane": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0004593Z         "vertices": 1962,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0004723Z         "max_sum_error": 1.862645149230957e-08
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0004884Z       },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0004980Z       "Tail": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0005086Z         "vertices": 901,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0005212Z         "max_sum_error": 2.9802322387695312e-08
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0005350Z       }
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0005443Z     },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0005556Z     "mixed_canonical_category_triangles": 0,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0006015Z     "body_has_descriptor_attributes": true,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0006165Z     "body_has_skin": true,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0006311Z     "exported_head_direction_muzzle_minus_poll": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0006466Z       0.25762,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0006573Z       -0.96625,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0006675Z       0.00017
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0006775Z     ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0006883Z     "exported_horizontal_forward_XZ": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0007018Z       1.0,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0007117Z       0.00065
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0007217Z     ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0007321Z     "exported_poll_center_m": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0007448Z       1.0829,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0007546Z       1.16281,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0007678Z       -5e-05
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0007782Z     ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0007887Z     "exported_muzzle_center_m": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0008017Z       1.20461,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0008116Z       0.70632,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0008218Z       3e-05
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0008314Z     ]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0008407Z   },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0008511Z   "bodyMaskCoverage": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0008633Z     "vertex_count": 3521,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0008761Z     "head_poll_loops": 2258,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0008892Z     "head_muzzle_loops": 2458,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0009121Z     "head_front_loops": 4086,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0009254Z     "forehead_front_loops": 1544,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0009386Z     "leg_loops": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0009496Z       "Front_L": 420,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0009609Z       "Front_R": 420,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0009723Z       "Hind_L": 458,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0009835Z       "Hind_R": 458
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0009937Z     },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0010039Z     "sentinel_loops": 3056,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0010168Z     "head_half_width_m": 0.1467
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0010292Z   },
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0010386Z   "eyes": {
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0010484Z     "L": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0010580Z       1.12065,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0010678Z       0.08227,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0010778Z       1.01535
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0010874Z     ],
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0010966Z     "R": [
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0011062Z       1.12065,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0011164Z       -0.08198,
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0011265Z       1.01535
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0011365Z     ]
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0011460Z   }
+visual	Prepare CC0 reference adult and foal for procedural coats	2026-10-11T04:50:29.0011554Z }
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	﻿2026-10-11T04:50:29.0844983Z ##[group]Run sudo apt-get update -q
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0845200Z ^[[36;1msudo apt-get update -q^[[0m
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0845393Z ^[[36;1msudo apt-get install -y -q mesa-vulkan-drivers xvfb libgl1^[[0m
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0899549Z shell: /usr/bin/bash -e {0}
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0899692Z env:
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0899804Z   GODOT_VERSION: 4.7.2-stable
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0899940Z   BPY_VERSION: 5.2.2
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0900069Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0900206Z   DOTNET_NOLOGO: 1
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0900327Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0900499Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0900737Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0900969Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0901179Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0901394Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0901635Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.0901813Z ##[endgroup]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.1512263Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.1918358Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.1919321Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.1953462Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.1982629Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.2001167Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.2783973Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.3 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.2882436Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [492 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.2997420Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main all Packages [640 B]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.3036668Z Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [548 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.3144719Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1375 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.3196393Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [306 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.3227697Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1702 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.3270044Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [342 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.3293971Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1761 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.3366260Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [401 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.3396256Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [55.0 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.3398775Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [14.3 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.3910696Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1121 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.3949165Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [228 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.4439912Z Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1220 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.4481340Z Get:22 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [245 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.4494347Z Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1669 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.4547835Z Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [383 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.4563809Z Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [49.8 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:29.4571111Z Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [12.4 kB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:33.8155801Z Fetched 12.3 MB in 1s (13.4 MB/s)
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:34.3182851Z Reading package lists...
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:34.3425551Z Reading package lists...
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:34.5064700Z Building dependency tree...
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:34.5070174Z Reading state information...
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:34.6269871Z xvfb is already the newest version (2:21.1.12-1ubuntu1.8).
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:34.6270479Z libgl1 is already the newest version (1.7.0-1build1).
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:34.6270876Z libgl1 set to manually installed.
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:34.6271237Z The following NEW packages will be installed:
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:34.6271572Z   mesa-vulkan-drivers
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:34.6391418Z 0 upgraded, 1 newly installed, 0 to remove and 23 not upgraded.
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:34.6391774Z Need to get 17.5 MB of archives.
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:34.6392110Z After this operation, 98.5 MB of additional disk space will be used.
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:34.6392528Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:34.6981967Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 mesa-vulkan-drivers amd64 25.2.8-0ubuntu0.24.04.4 [17.5 MB]
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.1009375Z Fetched 17.5 MB in 0s (58.7 MB/s)
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.1159987Z Selecting previously unselected package mesa-vulkan-drivers:amd64.
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.1378102Z (Reading database ...
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.1378349Z (Reading database ... 5%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.1378579Z (Reading database ... 10%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.1378718Z (Reading database ... 15%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.1379156Z (Reading database ... 20%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.1379335Z (Reading database ... 25%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.1379472Z (Reading database ... 30%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.1379602Z (Reading database ... 35%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.1379733Z (Reading database ... 40%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.1379859Z (Reading database ... 45%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.1379986Z (Reading database ... 50%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.1417302Z (Reading database ... 55%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.2124017Z (Reading database ... 60%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.4582505Z (Reading database ... 65%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.6229480Z (Reading database ... 70%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.8073856Z (Reading database ... 75%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:35.9266757Z (Reading database ... 80%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:36.0617799Z (Reading database ... 85%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:36.2178676Z (Reading database ... 90%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:36.3242856Z (Reading database ... 95%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:36.3243169Z (Reading database ... 100%
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:36.3243419Z (Reading database ... 203191 files and directories currently installed.)
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:36.3278477Z Preparing to unpack .../mesa-vulkan-drivers_25.2.8-0ubuntu0.24.04.4_amd64.deb ...
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:36.3302121Z Unpacking mesa-vulkan-drivers:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:36.9211323Z Setting up mesa-vulkan-drivers:amd64 (25.2.8-0ubuntu0.24.04.4) ...
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:36.9226001Z Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:37.5167964Z
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:37.5168543Z Running kernel seems to be up-to-date.
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:37.5168777Z
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:37.5168887Z No services need to be restarted.
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:37.5169076Z
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:37.5169177Z No containers need to be restarted.
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:37.5169328Z
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:37.5169451Z No user sessions are running outdated binaries.
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:37.5169625Z
+visual	Install Mesa Vulkan (lavapipe) and Xvfb	2026-10-11T04:50:37.5169820Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+visual	Cache Godot	﻿2026-10-11T04:50:38.1877564Z ##[group]Run actions/cache@v4
+visual	Cache Godot	2026-10-11T04:50:38.1877720Z with:
+visual	Cache Godot	2026-10-11T04:50:38.1877825Z   path: ~/godot
+visual	Cache Godot	2026-10-11T04:50:38.1877946Z   key: godot-4.7.2-stable-mono-linux
+visual	Cache Godot	2026-10-11T04:50:38.1878099Z   enableCrossOsArchive: false
+visual	Cache Godot	2026-10-11T04:50:38.1878235Z   fail-on-cache-miss: false
+visual	Cache Godot	2026-10-11T04:50:38.1878364Z   lookup-only: false
+visual	Cache Godot	2026-10-11T04:50:38.1878478Z   save-always: false
+visual	Cache Godot	2026-10-11T04:50:38.1878606Z env:
+visual	Cache Godot	2026-10-11T04:50:38.1878711Z   GODOT_VERSION: 4.7.2-stable
+visual	Cache Godot	2026-10-11T04:50:38.1878836Z   BPY_VERSION: 5.2.2
+visual	Cache Godot	2026-10-11T04:50:38.1878959Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Cache Godot	2026-10-11T04:50:38.1879089Z   DOTNET_NOLOGO: 1
+visual	Cache Godot	2026-10-11T04:50:38.1879343Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Cache Godot	2026-10-11T04:50:38.1879512Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Cache Godot	2026-10-11T04:50:38.1879743Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Cache Godot	2026-10-11T04:50:38.1879965Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Cache Godot	2026-10-11T04:50:38.1880168Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Cache Godot	2026-10-11T04:50:38.1880409Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Cache Godot	2026-10-11T04:50:38.1880617Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Cache Godot	2026-10-11T04:50:38.1880791Z ##[endgroup]
+visual	Cache Godot	2026-10-11T04:50:38.2553922Z (node:3062) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+visual	Cache Godot	2026-10-11T04:50:38.2554459Z (Use `node --trace-deprecation ...` to show where the warning was created)
+visual	Cache Godot	2026-10-11T04:50:38.3774269Z Cache hit for: godot-4.7.2-stable-mono-linux
+visual	Cache Godot	2026-10-11T04:50:38.3842358Z (node:3062) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+visual	Cache Godot	2026-10-11T04:50:39.3852905Z Received 104837873 of 104837873 (100.0%), 115.6 MBs/sec
+visual	Cache Godot	2026-10-11T04:50:39.3854598Z Cache Size: ~100 MB (104837873 B)
+visual	Cache Godot	2026-10-11T04:50:39.3935023Z [command]/usr/bin/tar -xf /home/runner/work/_temp/b2101818-eaa7-43e2-906c-7fa0fa0d4229/cache.tzst -P -C /home/runner/work/Horse/Horse --use-compress-program unzstd
+visual	Cache Godot	2026-10-11T04:50:39.6049498Z Cache restored successfully
+visual	Cache Godot	2026-10-11T04:50:39.6141164Z Cache restored from key: godot-4.7.2-stable-mono-linux
+visual	Build game C#	﻿2026-10-11T04:50:39.6253721Z ##[group]Run dotnet build game/Cloverbrook.Game.csproj -warnaserror
+visual	Build game C#	2026-10-11T04:50:39.6254022Z ^[[36;1mdotnet build game/Cloverbrook.Game.csproj -warnaserror^[[0m
+visual	Build game C#	2026-10-11T04:50:39.6305541Z shell: /usr/bin/bash -e {0}
+visual	Build game C#	2026-10-11T04:50:39.6305687Z env:
+visual	Build game C#	2026-10-11T04:50:39.6305914Z   GODOT_VERSION: 4.7.2-stable
+visual	Build game C#	2026-10-11T04:50:39.6306093Z   BPY_VERSION: 5.2.2
+visual	Build game C#	2026-10-11T04:50:39.6306222Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Build game C#	2026-10-11T04:50:39.6306356Z   DOTNET_NOLOGO: 1
+visual	Build game C#	2026-10-11T04:50:39.6306478Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Build game C#	2026-10-11T04:50:39.6306647Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Build game C#	2026-10-11T04:50:39.6306878Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Build game C#	2026-10-11T04:50:39.6307104Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Build game C#	2026-10-11T04:50:39.6307311Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Build game C#	2026-10-11T04:50:39.6307518Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Build game C#	2026-10-11T04:50:39.6307723Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Build game C#	2026-10-11T04:50:39.6307949Z ##[endgroup]
+visual	Build game C#	2026-10-11T04:50:40.5884499Z   Determining projects to restore...
+visual	Build game C#	2026-10-11T04:50:41.1980280Z   Restored /home/runner/work/Horse/Horse/game/Cloverbrook.Game.csproj (in 358 ms).
+visual	Build game C#	2026-10-11T04:50:41.2009270Z   1 of 2 projects are up-to-date for restore.
+visual	Build game C#	2026-10-11T04:50:41.9424526Z   Cloverbrook.Domain -> /home/runner/work/Horse/Horse/src/Cloverbrook.Domain/bin/Debug/netstandard2.1/Cloverbrook.Domain.dll
+visual	Build game C#	2026-10-11T04:50:42.9724898Z   Cloverbrook.Game -> /home/runner/work/Horse/Horse/game/.godot/mono/temp/bin/Debug/Cloverbrook.Game.dll
+visual	Build game C#	2026-10-11T04:50:42.9944236Z
+visual	Build game C#	2026-10-11T04:50:42.9948667Z Build succeeded.
+visual	Build game C#	2026-10-11T04:50:42.9948923Z     0 Warning(s)
+visual	Build game C#	2026-10-11T04:50:42.9949116Z     0 Error(s)
+visual	Build game C#	2026-10-11T04:50:42.9950049Z
+visual	Build game C#	2026-10-11T04:50:42.9950188Z Time Elapsed 00:00:03.13
+visual	Import project	﻿2026-10-11T04:50:43.0163086Z ##[group]Run G=$(ls ~/godot/Godot_*/Godot_*.x86_64)
+visual	Import project	2026-10-11T04:50:43.0163439Z ^[[36;1mG=$(ls ~/godot/Godot_*/Godot_*.x86_64)^[[0m
+visual	Import project	2026-10-11T04:50:43.0163613Z ^[[36;1mecho "G=$G" >> $GITHUB_ENV^[[0m
+visual	Import project	2026-10-11T04:50:43.0163778Z ^[[36;1m$G --headless --import --path game^[[0m
+visual	Import project	2026-10-11T04:50:43.0216147Z shell: /usr/bin/bash -e {0}
+visual	Import project	2026-10-11T04:50:43.0216304Z env:
+visual	Import project	2026-10-11T04:50:43.0216421Z   GODOT_VERSION: 4.7.2-stable
+visual	Import project	2026-10-11T04:50:43.0216712Z   BPY_VERSION: 5.2.2
+visual	Import project	2026-10-11T04:50:43.0216845Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Import project	2026-10-11T04:50:43.0216984Z   DOTNET_NOLOGO: 1
+visual	Import project	2026-10-11T04:50:43.0217110Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Import project	2026-10-11T04:50:43.0217284Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Import project	2026-10-11T04:50:43.0217521Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Import project	2026-10-11T04:50:43.0217753Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Import project	2026-10-11T04:50:43.0217977Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Import project	2026-10-11T04:50:43.0218245Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Import project	2026-10-11T04:50:43.0218472Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Import project	2026-10-11T04:50:43.0218654Z ##[endgroup]
+visual	Import project	2026-10-11T04:50:43.0630776Z Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+visual	Import project	2026-10-11T04:50:43.0959592Z
+visual	Import project	2026-10-11T04:50:49.2076121Z [   0% ] ^[[90m^[[1mfirst_scan_filesystem^[[22m | Started Project initialization (5 steps)^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2077112Z [   0% ] ^[[90m^[[1mfirst_scan_filesystem^[[22m | Scanning file structure...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2085272Z [  16% ] ^[[90m^[[1mfirst_scan_filesystem^[[22m | Loading global class names...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2102519Z [  33% ] ^[[90m^[[1mfirst_scan_filesystem^[[22m | Verifying GDExtensions...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2103158Z [  50% ] ^[[90m^[[1mfirst_scan_filesystem^[[22m | Creating autoload scripts...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2103717Z [  66% ] ^[[90m^[[1mfirst_scan_filesystem^[[22m | Initializing plugins...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2104273Z [  83% ] ^[[90m^[[1mfirst_scan_filesystem^[[22m | Starting file scan...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2104973Z ^[[92m[ DONE ]^[[39m ^[[1mfirst_scan_filesystem^[[22m
+visual	Import project	2026-10-11T04:50:49.2105403Z ^[[0m
+visual	Import project	2026-10-11T04:50:49.2256267Z [   0% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | Started Registering global classes... (17 steps)^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2256987Z [   0% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2257451Z [   5% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2257854Z [  11% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2258260Z [  16% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2258660Z [  22% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2259057Z [  27% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2259462Z [  33% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2259860Z [  38% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2260284Z [  44% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2260680Z [  50% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2261451Z [  55% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2262037Z [  61% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2262537Z [  66% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2262926Z [  72% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2263285Z [  77% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2263666Z [  83% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2264042Z [  88% ] ^[[90m^[[1mupdate_scripts_classes^[[22m | ^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2264403Z ^[[92m[ DONE ]^[[39m ^[[1mupdate_scripts_classes^[[22m
+visual	Import project	2026-10-11T04:50:49.2264665Z ^[[0m
+visual	Import project	2026-10-11T04:50:49.2265094Z [   0% ] ^[[90m^[[1m_update_scan_actions^[[22m | Started Scanning actions... (6 steps)^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2266116Z [   0% ] ^[[90m^[[1m_update_scan_actions^[[22m | horse_adult.glb^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2266548Z [  14% ] ^[[90m^[[1m_update_scan_actions^[[22m | horse_foal.glb^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2266989Z [  28% ] ^[[90m^[[1m_update_scan_actions^[[22m | horse_adult.glb^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2267494Z [  42% ] ^[[90m^[[1m_update_scan_actions^[[22m | horse_adult_Horse_Coat_Normal.png^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2268186Z [  57% ] ^[[90m^[[1m_update_scan_actions^[[22m | horse_foal.glb^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2268672Z [  71% ] ^[[90m^[[1m_update_scan_actions^[[22m | horse_foal_Horse_Coat_Normal.png^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2269103Z ^[[92m[ DONE ]^[[39m ^[[1m_update_scan_actions^[[22m
+visual	Import project	2026-10-11T04:50:49.2269368Z ^[[0m
+visual	Import project	2026-10-11T04:50:49.2269730Z [   0% ] ^[[90m^[[1mreimport^[[22m | Started (Re)Importing Assets (6 steps)^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2270214Z [   0% ] ^[[90m^[[1mreimport^[[22m | Preparing files to reimport...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2270666Z [  14% ] ^[[90m^[[1mreimport^[[22m | Preparing files to reimport...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2271123Z [  28% ] ^[[90m^[[1mreimport^[[22m | Preparing files to reimport...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2271578Z [  42% ] ^[[90m^[[1mreimport^[[22m | Preparing files to reimport...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2272025Z [  57% ] ^[[90m^[[1mreimport^[[22m | Preparing files to reimport...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2272477Z [  71% ] ^[[90m^[[1mreimport^[[22m | Preparing files to reimport...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2273308Z [   0% ] ^[[90m^[[1mreimport^[[22m | Executing pre-reimport operations...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2274172Z [   0% ] ^[[90m^[[1mpreload_reimporting_scene^[[22m | Started Preparing scenes for reload (1 steps)^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2274786Z [   0% ] ^[[90m^[[1mpreload_reimporting_scene^[[22m | Analyzing scene [empty]^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2275309Z [  50% ] ^[[90m^[[1mpreload_reimporting_scene^[[22m | Preparation done.^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.2275891Z ^[[92m[ DONE ]^[[39m ^[[1mpreload_reimporting_scene^[[22m
+visual	Import project	2026-10-11T04:50:49.2276190Z ^[[0m
+visual	Import project	2026-10-11T04:50:49.2276554Z [   0% ] ^[[90m^[[1mreimport^[[22m | horse_adult_Horse_Coat_Normal.png^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.5027252Z [  14% ] ^[[90m^[[1mreimport^[[22m | horse_foal_Horse_Coat_Normal.png^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.5280955Z [  28% ] ^[[90m^[[1mreimport^[[22m | horse_adult.glb^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.5282817Z [   0% ] ^[[90m^[[1mimport^[[22m | Started Import Scene (104 steps)^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.5283474Z [   0% ] ^[[90m^[[1mimport^[[22m | Importing Scene...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.6445592Z [   1% ] ^[[90m^[[1mimport^[[22m | Running Custom Script...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.6446506Z [  99% ] ^[[90m^[[1mimport^[[22m | Saving...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.6557515Z ^[[92m[ DONE ]^[[39m ^[[1mimport^[[22m
+visual	Import project	2026-10-11T04:50:49.6558068Z ^[[0m
+visual	Import project	2026-10-11T04:50:49.6606406Z [  42% ] ^[[90m^[[1mreimport^[[22m | horse_foal.glb^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.6608051Z [   0% ] ^[[90m^[[1mimport^[[22m | Started Import Scene (104 steps)^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.6608573Z [   0% ] ^[[90m^[[1mimport^[[22m | Importing Scene...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.7476126Z [   1% ] ^[[90m^[[1mimport^[[22m | Running Custom Script...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.7476719Z [  99% ] ^[[90m^[[1mimport^[[22m | Saving...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.7569669Z ^[[92m[ DONE ]^[[39m ^[[1mimport^[[22m
+visual	Import project	2026-10-11T04:50:49.7570075Z ^[[0m
+visual	Import project	2026-10-11T04:50:49.7608784Z [  57% ] ^[[90m^[[1mreimport^[[22m | horse_adult.glb^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.7610586Z [   0% ] ^[[90m^[[1mimport^[[22m | Started Import Scene (104 steps)^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.7611066Z [   0% ] ^[[90m^[[1mimport^[[22m | Importing Scene...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.8697246Z [   1% ] ^[[90m^[[1mimport^[[22m | Running Custom Script...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.8697827Z [  99% ] ^[[90m^[[1mimport^[[22m | Saving...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.8776674Z ^[[92m[ DONE ]^[[39m ^[[1mimport^[[22m
+visual	Import project	2026-10-11T04:50:49.8777057Z ^[[0m
+visual	Import project	2026-10-11T04:50:49.8824986Z [  71% ] ^[[90m^[[1mreimport^[[22m | horse_foal.glb^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.8826869Z [   0% ] ^[[90m^[[1mimport^[[22m | Started Import Scene (104 steps)^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.8827771Z [   0% ] ^[[90m^[[1mimport^[[22m | Importing Scene...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.9901812Z [   1% ] ^[[90m^[[1mimport^[[22m | Running Custom Script...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.9902295Z [  99% ] ^[[90m^[[1mimport^[[22m | Saving...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:49.9980778Z ^[[92m[ DONE ]^[[39m ^[[1mimport^[[22m
+visual	Import project	2026-10-11T04:50:49.9981210Z ^[[0m
+visual	Import project	2026-10-11T04:50:50.0029804Z [  85% ] ^[[90m^[[1mreimport^[[22m | Finalizing Asset Import...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:50.0031912Z ^[[92m[ DONE ]^[[39m ^[[1mreimport^[[22m
+visual	Import project	2026-10-11T04:50:50.0032163Z ^[[0m
+visual	Import project	2026-10-11T04:50:50.0032584Z [   0% ] ^[[90m^[[1mreimport^[[22m | Started (Re)Importing Assets (6 steps)^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:50.0033178Z [   0% ] ^[[90m^[[1mreimport^[[22m | Executing post-reimport operations...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:50.0033597Z ^[[92m[ DONE ]^[[39m ^[[1mreimport^[[22m
+visual	Import project	2026-10-11T04:50:50.0033867Z ^[[0m
+visual	Import project	2026-10-11T04:50:50.0056900Z [   0% ] ^[[90m^[[1mloading_editor_layout^[[22m | Started Loading editor (5 steps)^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:50.0057572Z [   0% ] ^[[90m^[[1mloading_editor_layout^[[22m | Loading editor layout...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:50.0058085Z [  16% ] ^[[90m^[[1mloading_editor_layout^[[22m | Loading docks...^[[39m^[[0m
+visual	Import project	2026-10-11T04:50:50.0058509Z ^[[92m[ DONE ]^[[39m ^[[1mloading_editor_layout^[[22m
+visual	Import project	2026-10-11T04:50:50.0058801Z ^[[0m
+visual	Smoke test main scene (boots, links domain, presents a horse)	﻿2026-10-11T04:50:51.1611489Z ##[group]Run timeout 300 xvfb-run -a -s "-screen 0 1280x720x24" $G --path game --rendering-driver vulkan --resolution 1280x720 -- --smoke-test 2>&1 | tee smoke.log; grep -q "\[smoke\] OK" smoke.log
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1612180Z ^[[36;1mtimeout 300 xvfb-run -a -s "-screen 0 1280x720x24" $G --path game --rendering-driver vulkan --resolution 1280x720 -- --smoke-test 2>&1 | tee smoke.log; grep -q "\[smoke\] OK" smoke.log^[[0m
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1663788Z shell: /usr/bin/bash -e {0}
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1663927Z env:
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1664040Z   GODOT_VERSION: 4.7.2-stable
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1664175Z   BPY_VERSION: 5.2.2
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1664303Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1664442Z   DOTNET_NOLOGO: 1
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1664563Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1664734Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1664975Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1665202Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1665453Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1665665Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1666174Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1666496Z   G: /home/runner/godot/Godot_v4.7.2-stable_mono_linux_x86_64/Godot_v4.7.2-stable_mono_linux.x86_64
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1666770Z   VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.1666940Z ##[endgroup]
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.2323583Z Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:51.6103384Z Vulkan 1.4.318 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 20.1.2, 256 bits)
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7732186Z libpulse.so.0: cannot open shared object file: No such file or directory
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7732580Z libpulse.so.0: cannot open shared object file: No such file or directory
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7820300Z ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7821151Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7821860Z ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7822528Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7823176Z ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7823837Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7824611Z ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7825184Z ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7825868Z ERROR: Condition "status < 0" is true. Returning: ERR_CANT_OPEN
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7826405Z    at: init_output_device (drivers/alsa/audio_driver_alsa.cpp:97)
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7827292Z WARNING: All audio drivers failed, falling back to the dummy driver.
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7827794Z      at: initialize (servers/audio/audio_server.cpp:258)
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:52.7828117Z
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:53.1570993Z [DomainBridge] domain resolver phenotype.v1; game links Cloverbrook.Domain
+visual	Smoke test main scene (boots, links domain, presents a horse)	2026-10-11T04:50:53.7828812Z [smoke] OK main scene presented a supported horse
+visual	Verify stable review, End Day, and saved reload	﻿2026-10-11T04:51:15.6806628Z ##[group]Run set -o pipefail
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6806948Z ^[[36;1mset -o pipefail^[[0m
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6807164Z ^[[36;1mmkdir -p evidence/stable-day^[[0m
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6808131Z ^[[36;1mtimeout 180 xvfb-run -a -s "-screen 0 1280x720x24" $G --path game --rendering-driver vulkan --resolution 1280x720 res://scenes/stable_day.tscn -- --stable-day-capture="$PWD/evidence/stable-day" --save-path="$RUNNER_TEMP/stable-day/stable.clvr" 2>&1 | tee evidence/stable-day/capture.log^[[0m
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6809184Z ^[[36;1mgrep -q "\[stable-day-capture\] OK" evidence/stable-day/capture.log^[[0m
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6862535Z shell: /usr/bin/bash -e {0}
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6862701Z env:
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6862821Z   GODOT_VERSION: 4.7.2-stable
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6862961Z   BPY_VERSION: 5.2.2
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6863094Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6863232Z   DOTNET_NOLOGO: 1
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6863358Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6863535Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6863805Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6864035Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6864251Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6864465Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6864684Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6864964Z   G: /home/runner/godot/Godot_v4.7.2-stable_mono_linux_x86_64/Godot_v4.7.2-stable_mono_linux.x86_64
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6865249Z   VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.6865421Z ##[endgroup]
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.7307004Z Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.7902837Z Vulkan 1.4.318 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 20.1.2, 256 bits)
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9218759Z libpulse.so.0: cannot open shared object file: No such file or directory
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9276651Z libpulse.so.0: cannot open shared object file: No such file or directory
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9286934Z ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9287714Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9288383Z ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9289055Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9289720Z ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9290374Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9291066Z ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9291618Z ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9292140Z ERROR: Condition "status < 0" is true. Returning: ERR_CANT_OPEN
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9292632Z    at: init_output_device (drivers/alsa/audio_driver_alsa.cpp:97)
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9293170Z WARNING: All audio drivers failed, falling back to the dummy driver.
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9293653Z      at: initialize (servers/audio/audio_server.cpp:258)
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:15.9293957Z
+visual	Verify stable review, End Day, and saved reload	2026-10-11T04:51:16.7496292Z [stable-day-capture] OK screenshots=3 day=1 coins=464 output=/home/runner/work/Horse/Horse/evidence/stable-day
+visual	Verify committed birth, naming, growth, and saved reload	﻿2026-10-11T04:51:16.9504758Z ##[group]Run set -o pipefail
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9504973Z ^[[36;1mset -o pipefail^[[0m
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9505123Z ^[[36;1mmkdir -p evidence/stable-lifecycle^[[0m
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9505976Z ^[[36;1mtimeout 180 xvfb-run -a -s "-screen 0 1280x720x24" $G --path game --rendering-driver vulkan --resolution 1280x720 res://scenes/stable_day.tscn -- --stable-lifecycle-capture="$PWD/evidence/stable-lifecycle" --save-path="$RUNNER_TEMP/stable-lifecycle/stable.clvr" 2>&1 | tee evidence/stable-lifecycle/capture.log^[[0m
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9506675Z ^[[36;1mgrep -q "\[stable-lifecycle-capture\] OK" evidence/stable-lifecycle/capture.log^[[0m
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9558071Z shell: /usr/bin/bash -e {0}
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9558226Z env:
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9558342Z   GODOT_VERSION: 4.7.2-stable
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9558477Z   BPY_VERSION: 5.2.2
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9558612Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9558748Z   DOTNET_NOLOGO: 1
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9558872Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9559088Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9559326Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9559557Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9559768Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9559977Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9560188Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9560467Z   G: /home/runner/godot/Godot_v4.7.2-stable_mono_linux_x86_64/Godot_v4.7.2-stable_mono_linux.x86_64
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9560737Z   VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9560908Z ##[endgroup]
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:16.9987678Z Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.0570299Z Vulkan 1.4.318 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 20.1.2, 256 bits)
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.1918394Z libpulse.so.0: cannot open shared object file: No such file or directory
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.1964778Z libpulse.so.0: cannot open shared object file: No such file or directory
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.1980956Z ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.2005133Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.2005691Z ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.2006312Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.2006841Z ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.2007381Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.2007957Z ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.2008441Z ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.2008835Z ERROR: Condition "status < 0" is true. Returning: ERR_CANT_OPEN
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.2009210Z    at: init_output_device (drivers/alsa/audio_driver_alsa.cpp:97)
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.2009622Z WARNING: All audio drivers failed, falling back to the dummy driver.
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.2009984Z      at: initialize (servers/audio/audio_server.cpp:258)
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:17.2010183Z
+visual	Verify committed birth, naming, growth, and saved reload	2026-10-11T04:51:18.5941070Z [stable-lifecycle-capture] OK screenshots=7 day=22 coins=0 output=/home/runner/work/Horse/Horse/evidence/stable-lifecycle
+visual	Verify normal saved-stable breeding, birth, naming, and growth	﻿2026-10-11T04:51:18.7803611Z ##[group]Run set -o pipefail
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7803929Z ^[[36;1mset -o pipefail^[[0m
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7804157Z ^[[36;1mmkdir -p evidence^[[0m
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7805280Z ^[[36;1mtimeout 180 xvfb-run -a -s "-screen 0 1280x720x24" $G --path game --rendering-driver vulkan --resolution 1280x720 res://scenes/stable_day.tscn -- --stable-breeding-capture="$PWD/evidence/stable-breeding" --save-path="$RUNNER_TEMP/stable-breeding/stable.clvr" 2>&1 | tee evidence/stable-breeding-capture.log^[[0m
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7807322Z ^[[36;1mgrep -q "\[stable-breeding-capture\] OK" evidence/stable-breeding-capture.log^[[0m
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7807895Z ^[[36;1mcp evidence/stable-breeding-capture.log evidence/stable-breeding/capture.log^[[0m
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7878262Z shell: /usr/bin/bash -e {0}
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7878512Z env:
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7878698Z   GODOT_VERSION: 4.7.2-stable
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7878933Z   BPY_VERSION: 5.2.2
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7879151Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7879378Z   DOTNET_NOLOGO: 1
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7879731Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7880022Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7880431Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7880823Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7881199Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7881562Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7881927Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7882287Z   G: /home/runner/godot/Godot_v4.7.2-stable_mono_linux_x86_64/Godot_v4.7.2-stable_mono_linux.x86_64
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7882588Z   VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.7882774Z ##[endgroup]
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.8346333Z Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:18.8976504Z Vulkan 1.4.318 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 20.1.2, 256 bits)
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0426987Z libpulse.so.0: cannot open shared object file: No such file or directory
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0456436Z libpulse.so.0: cannot open shared object file: No such file or directory
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0476581Z ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0477326Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0480568Z ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0481268Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0481921Z ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0482574Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0483255Z ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0483834Z ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0484354Z ERROR: Condition "status < 0" is true. Returning: ERR_CANT_OPEN
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0484843Z    at: init_output_device (drivers/alsa/audio_driver_alsa.cpp:97)
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0485374Z WARNING: All audio drivers failed, falling back to the dummy driver.
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0485983Z      at: initialize (servers/audio/audio_server.cpp:258)
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:19.0486288Z
+visual	Verify normal saved-stable breeding, birth, naming, and growth	2026-10-11T04:51:20.5307820Z [stable-breeding-capture] OK screenshots=7 day=10 coins=54 child=58c716fb-af63-4777-a526-1bfed27c1037 output=/home/runner/work/Horse/Horse/evidence/stable-breeding
+visual	Render evidence	﻿2026-10-11T04:51:20.7205141Z ##[group]Run mkdir -p evidence
+visual	Render evidence	2026-10-11T04:51:20.7205345Z ^[[36;1mmkdir -p evidence^[[0m
+visual	Render evidence	2026-10-11T04:51:20.7205989Z ^[[36;1mtimeout 2400 xvfb-run -a -s "-screen 0 1280x720x24" $G --path game --rendering-driver vulkan --resolution 1280x720 res://scenes/capture.tscn -- --out "$PWD/evidence" 2>&1 | tee evidence/capture.log^[[0m
+visual	Render evidence	2026-10-11T04:51:20.7206436Z ^[[36;1mtest -f evidence/capture_report.json^[[0m
+visual	Render evidence	2026-10-11T04:51:20.7258086Z shell: /usr/bin/bash -e {0}
+visual	Render evidence	2026-10-11T04:51:20.7258229Z env:
+visual	Render evidence	2026-10-11T04:51:20.7258343Z   GODOT_VERSION: 4.7.2-stable
+visual	Render evidence	2026-10-11T04:51:20.7258488Z   BPY_VERSION: 5.2.2
+visual	Render evidence	2026-10-11T04:51:20.7258767Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Render evidence	2026-10-11T04:51:20.7258929Z   DOTNET_NOLOGO: 1
+visual	Render evidence	2026-10-11T04:51:20.7259052Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Render evidence	2026-10-11T04:51:20.7259227Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Render evidence	2026-10-11T04:51:20.7259474Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Render evidence	2026-10-11T04:51:20.7259707Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Render evidence	2026-10-11T04:51:20.7259948Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Render evidence	2026-10-11T04:51:20.7260170Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Render evidence	2026-10-11T04:51:20.7260387Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Render evidence	2026-10-11T04:51:20.7260689Z   G: /home/runner/godot/Godot_v4.7.2-stable_mono_linux_x86_64/Godot_v4.7.2-stable_mono_linux.x86_64
+visual	Render evidence	2026-10-11T04:51:20.7260969Z   VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+visual	Render evidence	2026-10-11T04:51:20.7261143Z ##[endgroup]
+visual	Render evidence	2026-10-11T04:51:20.7685246Z Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+visual	Render evidence	2026-10-11T04:51:20.8268039Z Vulkan 1.4.318 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 20.1.2, 256 bits)
+visual	Render evidence	2026-10-11T04:51:20.9877040Z libpulse.so.0: cannot open shared object file: No such file or directory
+visual	Render evidence	2026-10-11T04:51:20.9906559Z libpulse.so.0: cannot open shared object file: No such file or directory
+visual	Render evidence	2026-10-11T04:51:20.9936286Z ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+visual	Render evidence	2026-10-11T04:51:20.9950800Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+visual	Render evidence	2026-10-11T04:51:20.9951350Z ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+visual	Render evidence	2026-10-11T04:51:20.9951950Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+visual	Render evidence	2026-10-11T04:51:20.9952555Z ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+visual	Render evidence	2026-10-11T04:51:20.9953238Z ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+visual	Render evidence	2026-10-11T04:51:20.9953995Z ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory
+visual	Render evidence	2026-10-11T04:51:20.9954618Z ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
+visual	Render evidence	2026-10-11T04:51:20.9955151Z ERROR: Condition "status < 0" is true. Returning: ERR_CANT_OPEN
+visual	Render evidence	2026-10-11T04:51:20.9955650Z    at: init_output_device (drivers/alsa/audio_driver_alsa.cpp:97)
+visual	Render evidence	2026-10-11T04:51:20.9956319Z WARNING: All audio drivers failed, falling back to the dummy driver.
+visual	Render evidence	2026-10-11T04:51:20.9956803Z      at: initialize (servers/audio/audio_server.cpp:258)
+visual	Render evidence	2026-10-11T04:51:20.9957126Z
+visual	Render evidence	2026-10-11T04:51:21.4029512Z [capture] set clay
+visual	Render evidence	2026-10-11T04:51:41.0127321Z [capture] set sheet
+visual	Render evidence	2026-10-11T04:54:42.5986971Z [capture] set detail
+visual	Render evidence	2026-10-11T04:54:57.1705117Z [capture] set markings
+visual	Render evidence	2026-10-11T04:55:26.9278707Z [capture] set turntable
+visual	Render evidence	2026-10-11T04:56:02.0709093Z [capture] set pair
+visual	Render evidence	2026-10-11T04:56:22.4794233Z [capture] set stable
+visual	Render evidence	2026-10-11T04:56:37.5425636Z [capture] set anim
+visual	Render evidence	2026-10-11T04:56:37.5448985Z [capture] skipped unavailable animation walk
+visual	Render evidence	2026-10-11T04:56:37.5451779Z [capture] skipped unavailable animation trot
+visual	Render evidence	2026-10-11T04:56:37.5454767Z [capture] skipped unavailable animation look
+visual	Render evidence	2026-10-11T04:56:37.5457954Z [capture] skipped unavailable animation idle
+visual	Render evidence	2026-10-11T04:56:37.5458336Z [capture] set probes
+visual	Render evidence	2026-10-11T04:56:37.5618916Z WARNING: [HorsePresenter] probe.grey: UNSUPPORTED: coat layer 'grey_age' has no renderer implementation; grey progression is not implemented
+visual	Render evidence	2026-10-11T04:56:37.5620329Z      at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:39)
+visual	Render evidence	2026-10-11T04:56:37.5621133Z      C# backtrace (most recent call first):
+visual	Render evidence	2026-10-11T04:56:37.5621613Z          [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+visual	Render evidence	2026-10-11T04:56:37.5622641Z          [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/home/runner/work/Horse/Horse/game/scripts/Visual/HorsePresenter.cs:39)
+visual	Render evidence	2026-10-11T04:56:37.5623974Z          [2] void Cloverbrook.Game.Tools.CaptureRunner+<Probes>d__17.MoveNext() (/home/runner/work/Horse/Horse/game/scripts/Tools/CaptureRunner.cs:250)
+visual	Render evidence	2026-10-11T04:56:37.5624831Z          [3] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.Start<TStateMachine>(TStateMachine&)
+visual	Render evidence	2026-10-11T04:56:37.5625838Z          [4] System.Threading.Tasks.Task Cloverbrook.Game.Tools.CaptureRunner.Probes()
+visual	Render evidence	2026-10-11T04:56:37.5626704Z          [5] void Cloverbrook.Game.Tools.CaptureRunner+<_Ready>d__5.MoveNext() (/home/runner/work/Horse/Horse/game/scripts/Tools/CaptureRunner.cs:53)
+visual	Render evidence	2026-10-11T04:56:37.5627688Z          [6] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+visual	Render evidence	2026-10-11T04:56:37.5628719Z          [7] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+visual	Render evidence	2026-10-11T04:56:37.5629501Z          [8] void System.Threading.Tasks.Task.RunContinuations(object)
+visual	Render evidence	2026-10-11T04:56:37.5630082Z          [9] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+visual	Render evidence	2026-10-11T04:56:37.5630603Z          [10] void Cloverbrook.Game.Tools.CaptureRunner+<StableShots>d__15.MoveNext() (/home/runner/work/Horse/Horse/game/scripts/Tools/CaptureRunner.cs:221)
+visual	Render evidence	2026-10-11T04:56:37.5631192Z          [11] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+visual	Render evidence	2026-10-11T04:56:37.5631773Z          [12] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+visual	Render evidence	2026-10-11T04:56:37.5632207Z          [13] void System.Threading.Tasks.Task.RunContinuations(object)
+visual	Render evidence	2026-10-11T04:56:37.5632512Z          [14] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+visual	Render evidence	2026-10-11T04:56:37.5632956Z          [15] void Cloverbrook.Game.Tools.CaptureRunner+<Shot>d__7.MoveNext() (/home/runner/work/Horse/Horse/game/scripts/Tools/CaptureRunner.cs:98)
+visual	Render evidence	2026-10-11T04:56:37.5633496Z          [16] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+visual	Render evidence	2026-10-11T04:56:37.5634066Z          [17] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+visual	Render evidence	2026-10-11T04:56:37.5634490Z          [18] void System.Threading.Tasks.Task.RunContinuations(object)
+visual	Render evidence	2026-10-11T04:56:37.5634792Z          [19] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+visual	Render evidence	2026-10-11T04:56:37.5635234Z          [20] void Cloverbrook.Game.Tools.CaptureRunner+<Settle>d__6.MoveNext() (/home/runner/work/Horse/Horse/game/scripts/Tools/CaptureRunner.cs:81)
+visual	Render evidence	2026-10-11T04:56:37.5635931Z          [21] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+visual	Render evidence	2026-10-11T04:56:37.5636416Z          [22] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext()
+visual	Render evidence	2026-10-11T04:56:37.5637052Z          [23] void Godot.SignalAwaiter.SignalCallback(nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_bool*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/SignalAwaiter.cs:65)
+visual	Render evidence	2026-10-11T04:56:39.7101277Z WARNING: [HorsePresenter] probe.unknown-recipe: UNSUPPORTED: coat recipe 'eumelanin_points_pheomelanin_body:champagne' is not in the visual catalog
+visual	Render evidence	2026-10-11T04:56:39.7102209Z      at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:39)
+visual	Render evidence	2026-10-11T04:56:39.7102947Z      C# backtrace (most recent call first):
+visual	Render evidence	2026-10-11T04:56:39.7103668Z          [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+visual	Render evidence	2026-10-11T04:56:39.7104690Z          [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/home/runner/work/Horse/Horse/game/scripts/Visual/HorsePresenter.cs:39)
+visual	Render evidence	2026-10-11T04:56:39.7106143Z          [2] void Cloverbrook.Game.Tools.CaptureRunner+<Probes>d__17.MoveNext() (/home/runner/work/Horse/Horse/game/scripts/Tools/CaptureRunner.cs:250)
+visual	Render evidence	2026-10-11T04:56:39.7106711Z          [3] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+visual	Render evidence	2026-10-11T04:56:39.7107279Z          [4] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+visual	Render evidence	2026-10-11T04:56:39.7107704Z          [5] void System.Threading.Tasks.Task.RunContinuations(object)
+visual	Render evidence	2026-10-11T04:56:39.7108085Z          [6] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+visual	Render evidence	2026-10-11T04:56:39.7108524Z          [7] void Cloverbrook.Game.Tools.CaptureRunner+<Shot>d__7.MoveNext() (/home/runner/work/Horse/Horse/game/scripts/Tools/CaptureRunner.cs:98)
+visual	Render evidence	2026-10-11T04:56:39.7109080Z          [8] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+visual	Render evidence	2026-10-11T04:56:39.7109639Z          [9] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+visual	Render evidence	2026-10-11T04:56:39.7110061Z          [10] void System.Threading.Tasks.Task.RunContinuations(object)
+visual	Render evidence	2026-10-11T04:56:39.7110362Z          [11] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+visual	Render evidence	2026-10-11T04:56:39.7110802Z          [12] void Cloverbrook.Game.Tools.CaptureRunner+<Settle>d__6.MoveNext() (/home/runner/work/Horse/Horse/game/scripts/Tools/CaptureRunner.cs:81)
+visual	Render evidence	2026-10-11T04:56:39.7111355Z          [13] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+visual	Render evidence	2026-10-11T04:56:39.7111843Z          [14] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext()
+visual	Render evidence	2026-10-11T04:56:39.7112460Z          [15] void Godot.SignalAwaiter.SignalCallback(nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_bool*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/SignalAwaiter.cs:65)
+visual	Render evidence	2026-10-11T04:56:40.6377513Z WARNING: [HorsePresenter] probe.unknown-mesh: UNSUPPORTED: mesh family 'horse.draft.adult.v1' has no asset
+visual	Render evidence	2026-10-11T04:56:40.6378767Z      at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:39)
+visual	Render evidence	2026-10-11T04:56:40.6379580Z      C# backtrace (most recent call first):
+visual	Render evidence	2026-10-11T04:56:40.6380070Z          [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+visual	Render evidence	2026-10-11T04:56:40.6381146Z          [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/home/runner/work/Horse/Horse/game/scripts/Visual/HorsePresenter.cs:39)
+visual	Render evidence	2026-10-11T04:56:40.6382334Z          [2] void Cloverbrook.Game.Tools.CaptureRunner+<Probes>d__17.MoveNext() (/home/runner/work/Horse/Horse/game/scripts/Tools/CaptureRunner.cs:250)
+visual	Render evidence	2026-10-11T04:56:40.6383613Z          [3] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+visual	Render evidence	2026-10-11T04:56:40.6384536Z          [4] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+visual	Render evidence	2026-10-11T04:56:40.6385389Z          [5] void System.Threading.Tasks.Task.RunContinuations(object)
+visual	Render evidence	2026-10-11T04:56:40.6385992Z          [6] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+visual	Render evidence	2026-10-11T04:56:40.6386904Z          [7] void Cloverbrook.Game.Tools.CaptureRunner+<Shot>d__7.MoveNext() (/home/runner/work/Horse/Horse/game/scripts/Tools/CaptureRunner.cs:98)
+visual	Render evidence	2026-10-11T04:56:40.6387786Z          [8] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+visual	Render evidence	2026-10-11T04:56:40.6388672Z          [9] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+visual	Render evidence	2026-10-11T04:56:40.6389340Z          [10] void System.Threading.Tasks.Task.RunContinuations(object)
+visual	Render evidence	2026-10-11T04:56:40.6389818Z          [11] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+visual	Render evidence	2026-10-11T04:56:40.6390518Z          [12] void Cloverbrook.Game.Tools.CaptureRunner+<Settle>d__6.MoveNext() (/home/runner/work/Horse/Horse/game/scripts/Tools/CaptureRunner.cs:81)
+visual	Render evidence	2026-10-11T04:56:40.6391405Z          [13] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+visual	Render evidence	2026-10-11T04:56:40.6392189Z          [14] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext()
+visual	Render evidence	2026-10-11T04:56:40.6393186Z          [15] void Godot.SignalAwaiter.SignalCallback(nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_bool*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/SignalAwaiter.cs:65)
+visual	Render evidence	2026-10-11T04:56:41.6070641Z [capture] wrote 131 entries, failures=0
+visual	Contact sheets and summary	﻿2026-10-11T04:56:42.2474365Z ##[group]Run python tools/visual/contact_sheets.py evidence || true
+visual	Contact sheets and summary	2026-10-11T04:56:42.2474684Z ^[[36;1mpython tools/visual/contact_sheets.py evidence || true^[[0m
+visual	Contact sheets and summary	2026-10-11T04:56:42.2474948Z ^[[36;1mcp game/assets/horse/placeholder/*.manifest.json evidence/ || true^[[0m
+visual	Contact sheets and summary	2026-10-11T04:56:42.2475231Z ^[[36;1mcp game/assets/horse/reference/*.manifest.json evidence/ || true^[[0m
+visual	Contact sheets and summary	2026-10-11T04:56:42.2475566Z ^[[36;1mcat evidence/SUMMARY.md >> $GITHUB_STEP_SUMMARY || echo "No summary produced" >> $GITHUB_STEP_SUMMARY^[[0m
+visual	Contact sheets and summary	2026-10-11T04:56:42.2476340Z ^[[36;1mpython3 -c "import json,sys; r=json.load(open('evidence/capture_report.json')); sys.exit(1 if r['failures'] else 0)"^[[0m
+visual	Contact sheets and summary	2026-10-11T04:56:42.2529143Z shell: /usr/bin/bash -e {0}
+visual	Contact sheets and summary	2026-10-11T04:56:42.2529306Z env:
+visual	Contact sheets and summary	2026-10-11T04:56:42.2529428Z   GODOT_VERSION: 4.7.2-stable
+visual	Contact sheets and summary	2026-10-11T04:56:42.2529575Z   BPY_VERSION: 5.2.2
+visual	Contact sheets and summary	2026-10-11T04:56:42.2529716Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Contact sheets and summary	2026-10-11T04:56:42.2529861Z   DOTNET_NOLOGO: 1
+visual	Contact sheets and summary	2026-10-11T04:56:42.2529992Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Contact sheets and summary	2026-10-11T04:56:42.2530205Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Contact sheets and summary	2026-10-11T04:56:42.2530460Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Contact sheets and summary	2026-10-11T04:56:42.2530705Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Contact sheets and summary	2026-10-11T04:56:42.2530932Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Contact sheets and summary	2026-10-11T04:56:42.2531159Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Contact sheets and summary	2026-10-11T04:56:42.2531411Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Contact sheets and summary	2026-10-11T04:56:42.2531707Z   G: /home/runner/godot/Godot_v4.7.2-stable_mono_linux_x86_64/Godot_v4.7.2-stable_mono_linux.x86_64
+visual	Contact sheets and summary	2026-10-11T04:56:42.2531966Z ##[endgroup]
+visual	Contact sheets and summary	2026-10-11T04:56:49.8563529Z # Cloverbrook visual evidence
+visual	Contact sheets and summary	2026-10-11T04:56:49.8563747Z
+visual	Contact sheets and summary	2026-10-11T04:56:49.8563837Z - Godot: `4.7.2-stable (official)`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8564075Z - Renderer: `llvmpipe (LLVM 20.1.2, 256 bits) / 1.4.318`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8564303Z - Visual catalog: `reference-assets.v1`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8564793Z - Images: 131 · capture failures: **0**
+visual	Contact sheets and summary	2026-10-11T04:56:49.8564906Z
+visual	Contact sheets and summary	2026-10-11T04:56:49.8565104Z > Stills prove materials, markings and composition only - not animation quality, not art approval.
+visual	Contact sheets and summary	2026-10-11T04:56:49.8565417Z > No coat-matrix row is approved by these renders.
+visual	Contact sheets and summary	2026-10-11T04:56:49.8565550Z
+visual	Contact sheets and summary	2026-10-11T04:56:49.8565604Z ## Mesh sources
+visual	Contact sheets and summary	2026-10-11T04:56:49.8566238Z - `horse.standard.adult.v1`: `res://assets/horse/reference/horse_adult.glb` (placeholder: False)
+visual	Contact sheets and summary	2026-10-11T04:56:49.8566624Z - `horse.compact.adult.v1`: `res://assets/horse/reference/horse_adult.glb` (placeholder: False)
+visual	Contact sheets and summary	2026-10-11T04:56:49.8567017Z - `horse.standard.foal.v1`: `res://assets/horse/reference/horse_foal.glb` (placeholder: False)
+visual	Contact sheets and summary	2026-10-11T04:56:49.8567382Z - `horse.compact.foal.v1`: `res://assets/horse/reference/horse_foal.glb` (placeholder: False)
+visual	Contact sheets and summary	2026-10-11T04:56:49.8567578Z
+visual	Contact sheets and summary	2026-10-11T04:56:49.8567652Z ## Unavailable animations (skipped)
+visual	Contact sheets and summary	2026-10-11T04:56:49.8567812Z - `walk`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8567924Z - `trot`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8568029Z - `look`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8568133Z - `idle`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8568194Z
+visual	Contact sheets and summary	2026-10-11T04:56:49.8568242Z ## Sheets
+visual	Contact sheets and summary	2026-10-11T04:56:49.8568373Z - `sheets/coat_contact_sheet.png`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8568545Z - `sheets/markings_sheet.png`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8568700Z - `sheets/clay_sheet.png`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8568853Z - `sheets/turntable_sheet.png`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8569015Z - `sheets/detail_sheet.png`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8569168Z - `sheets/pair_sheet.png`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8569314Z - `sheets/stable_sheet.png`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8569467Z - `sheets/probes_sheet.png`
+visual	Contact sheets and summary	2026-10-11T04:56:49.8569556Z
+visual	Contact sheets and summary	2026-10-11T04:56:49.8569634Z ## Unsupported probes (expected refusals)
+visual	Contact sheets and summary	2026-10-11T04:56:49.8570045Z - `probe.grey` → UNSUPPORTED: coat layer 'grey_age' has no renderer implementation; grey progression is not implemented
+visual	Contact sheets and summary	2026-10-11T04:56:49.8570589Z - `probe.unknown-recipe` → UNSUPPORTED: coat recipe 'eumelanin_points_pheomelanin_body:champagne' is not in the visual catalog
+visual	Contact sheets and summary	2026-10-11T04:56:49.8571209Z - `probe.unknown-mesh` → UNSUPPORTED: mesh family 'horse.draft.adult.v1' has no asset
+visual	Contact sheets and summary	2026-10-11T04:56:49.8571399Z
+visual	Contact sheets and summary	2026-10-11T04:56:49.8571462Z ## Coat classes rendered
+visual	Contact sheets and summary	2026-10-11T04:56:49.8572064Z - bay: Bay with primitive markings — Supported with limitations: morphs not applied: body_length,chest_width,mane_density,muscle,neck_length,tail_density; test-only descriptor; animation 'idle' unavailable; static pose
+visual	Contact sheets and summary	2026-10-11T04:56:49.8572933Z - bay: Bay — Supported with limitations: morphs not applied: body_length,chest_width,mane_density,muscle,neck_length,tail_density; test-only descriptor; animation 'idle' unavailable; static pose
+visual	Contact sheets and summary	2026-10-11T04:56:49.8573765Z - bay_dun: Bay dun — Supported with limitations: morphs not applied: body_length,chest_width,mane_density,muscle,neck_length,tail_density; test-only descriptor; animation 'idle' unavailable; static pose
+visual	Contact sheets and summary	2026-10-11T04:56:49.8574599Z - black: Black — Supported with limitations: morphs not applied: body_length,chest_width,mane_density,muscle,neck_length,tail_density; test-only descriptor; animation 'idle' unavailable; static pose
+visual	Contact sheets and summary	2026-10-11T04:56:49.8575453Z - buckskin: Buckskin — Supported with limitations: morphs not applied: body_length,chest_width,mane_density,muscle,neck_length,tail_density; test-only descriptor; animation 'idle' unavailable; static pose
+visual	Contact sheets and summary	2026-10-11T04:56:49.8576535Z - chestnut: Chestnut — Supported with limitations: morphs not applied: body_length,chest_width,mane_density,muscle,neck_length,tail_density; test-only descriptor; animation 'idle' unavailable; static pose
+visual	Contact sheets and summary	2026-10-11T04:56:49.8577401Z - cremello: Cremello — Supported with limitations: morphs not applied: body_length,chest_width,mane_density,muscle,neck_length,tail_density; test-only descriptor; animation 'idle' unavailable; static pose
+visual	Contact sheets and summary	2026-10-11T04:56:49.8578253Z - grullo: Grullo — Supported with limitations: morphs not applied: body_length,chest_width,mane_density,muscle,neck_length,tail_density; test-only descriptor; animation 'idle' unavailable; static pose
+visual	Contact sheets and summary	2026-10-11T04:56:49.8579110Z - palomino: Palomino — Supported with limitations: morphs not applied: body_length,chest_width,mane_density,muscle,neck_length,tail_density; test-only descriptor; animation 'idle' unavailable; static pose
+visual	Contact sheets and summary	2026-10-11T04:56:49.8579970Z - perlino: Perlino — Supported with limitations: morphs not applied: body_length,chest_width,mane_density,muscle,neck_length,tail_density; test-only descriptor; animation 'idle' unavailable; static pose
+visual	Contact sheets and summary	2026-10-11T04:56:49.8580925Z - red_dun: Red dun — Supported with limitations: morphs not applied: body_length,chest_width,mane_density,muscle,neck_length,tail_density; test-only descriptor; animation 'idle' unavailable; static pose
+visual	Contact sheets and summary	2026-10-11T04:56:49.8581806Z - smoky_black: Smoky black — Supported with limitations: morphs not applied: body_length,chest_width,mane_density,muscle,neck_length,tail_density; test-only descriptor; animation 'idle' unavailable; static pose
+visual	Contact sheets and summary	2026-10-11T04:56:49.8582696Z - smoky_cream: Smoky cream — Supported with limitations: morphs not applied: body_length,chest_width,mane_density,muscle,neck_length,tail_density; test-only descriptor; animation 'idle' unavailable; static pose
+visual	Upload evidence	﻿2026-10-11T04:56:49.8905041Z ##[group]Run actions/upload-artifact@v4
+visual	Upload evidence	2026-10-11T04:56:49.8905218Z with:
+visual	Upload evidence	2026-10-11T04:56:49.8905332Z   name: visual-evidence
+visual	Upload evidence	2026-10-11T04:56:49.8905458Z   path: evidence/
+visual	Upload evidence	2026-10-11T04:56:49.8905589Z   retention-days: 30
+visual	Upload evidence	2026-10-11T04:56:49.8905879Z   if-no-files-found: warn
+visual	Upload evidence	2026-10-11T04:56:49.8906042Z   compression-level: 6
+visual	Upload evidence	2026-10-11T04:56:49.8906168Z   overwrite: false
+visual	Upload evidence	2026-10-11T04:56:49.8906291Z   include-hidden-files: false
+visual	Upload evidence	2026-10-11T04:56:49.8906426Z env:
+visual	Upload evidence	2026-10-11T04:56:49.8906536Z   GODOT_VERSION: 4.7.2-stable
+visual	Upload evidence	2026-10-11T04:56:49.8906669Z   BPY_VERSION: 5.2.2
+visual	Upload evidence	2026-10-11T04:56:49.8906799Z   DOTNET_CLI_TELEMETRY_OPTOUT: 1
+visual	Upload evidence	2026-10-11T04:56:49.8906937Z   DOTNET_NOLOGO: 1
+visual	Upload evidence	2026-10-11T04:56:49.8907061Z   DOTNET_ROOT: /usr/share/dotnet
+visual	Upload evidence	2026-10-11T04:56:49.8907234Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Upload evidence	2026-10-11T04:56:49.8907474Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib/pkgconfig
+visual	Upload evidence	2026-10-11T04:56:49.8907709Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Upload evidence	2026-10-11T04:56:49.8907942Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Upload evidence	2026-10-11T04:56:49.8908155Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.16/x64
+visual	Upload evidence	2026-10-11T04:56:49.8908377Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.16/x64/lib
+visual	Upload evidence	2026-10-11T04:56:49.8908659Z   G: /home/runner/godot/Godot_v4.7.2-stable_mono_linux_x86_64/Godot_v4.7.2-stable_mono_linux.x86_64
+visual	Upload evidence	2026-10-11T04:56:49.8908904Z ##[endgroup]
+visual	Upload evidence	2026-10-11T04:56:49.9969166Z (node:3623) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+visual	Upload evidence	2026-10-11T04:56:49.9969651Z (Use `node --trace-deprecation ...` to show where the warning was created)
+visual	Upload evidence	2026-10-11T04:56:50.0143693Z With the provided path, there will be 166 files uploaded
+visual	Upload evidence	2026-10-11T04:56:50.0147101Z Artifact name is valid!
+visual	Upload evidence	2026-10-11T04:56:50.0147556Z Root directory input is valid!
+visual	Upload evidence	2026-10-11T04:56:50.2394804Z Beginning upload of artifact content to blob storage
+visual	Upload evidence	2026-10-11T04:56:50.4368753Z (node:3623) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+visual	Upload evidence	2026-10-11T04:56:50.9208811Z Uploaded bytes 8388608
+visual	Upload evidence	2026-10-11T04:56:51.0612570Z Uploaded bytes 16777216
+visual	Upload evidence	2026-10-11T04:56:51.1740656Z Uploaded bytes 25165824
+visual	Upload evidence	2026-10-11T04:56:51.3435012Z Uploaded bytes 33554432
+visual	Upload evidence	2026-10-11T04:56:51.4796004Z Uploaded bytes 39196718
+visual	Upload evidence	2026-10-11T04:56:51.5246103Z Finished uploading artifact content to blob storage!
+visual	Upload evidence	2026-10-11T04:56:51.5248485Z SHA256 digest of uploaded artifact zip is d1a11920cdd39562cd65914a13d94e89899e4c660c07247dca6516e48614f505
+visual	Upload evidence	2026-10-11T04:56:51.5250019Z Finalizing artifact upload
+visual	Upload evidence	2026-10-11T04:56:51.7306535Z Artifact visual-evidence.zip successfully finalized. Artifact ID 11692029078
+visual	Upload evidence	2026-10-11T04:56:51.7306996Z Artifact visual-evidence has been successfully uploaded! Final size is 39196718 bytes. Artifact ID is 11692029078
+visual	Upload evidence	2026-10-11T04:56:51.7313105Z Artifact download URL: https://github.com/MarkJRogers92/Horse/actions/runs/38112660176/artifacts/11692029078
+visual	Post Cache Godot	﻿2026-10-11T04:56:51.7472716Z Post job cleanup.
+visual	Post Cache Godot	2026-10-11T04:56:51.8187743Z Cache hit occurred on the primary key godot-4.7.2-stable-mono-linux, not saving cache.
+visual	Post Cache Godot	2026-10-11T04:56:51.8188822Z (node:3635) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+visual	Post Cache Godot	2026-10-11T04:56:51.8189428Z (Use `node --trace-deprecation ...` to show where the warning was created)
+visual	Post Run actions/setup-python@v5	﻿2026-10-11T04:56:51.8275320Z Post job cleanup.
+visual	Post Run actions/setup-python@v5	2026-10-11T04:56:51.9036046Z Cache hit occurred on the primary key setup-python-Linux-x64-24.04-Ubuntu-python-3.13.16-pip-afa1a4076efd7c6f266b670a8c643ad170357ecef50c8834e97ab34127fc4eaa, not saving cache.
+visual	Post Run actions/setup-python@v5	2026-10-11T04:56:51.9037093Z (node:3643) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+visual	Post Run actions/setup-python@v5	2026-10-11T04:56:51.9037573Z (Use `node --trace-deprecation ...` to show where the warning was created)
+visual	Post Run actions/setup-dotnet@v4	﻿2026-10-11T04:56:51.9119975Z Post job cleanup.
+visual	Post Run actions/setup-dotnet@v4	2026-10-11T04:56:51.9905508Z (node:3651) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+visual	Post Run actions/setup-dotnet@v4	2026-10-11T04:56:51.9920881Z (Use `node --trace-deprecation ...` to show where the warning was created)
+visual	Post Run actions/checkout@v4	﻿2026-10-11T04:56:52.0030268Z Post job cleanup.
+visual	Post Run actions/checkout@v4	2026-10-11T04:56:52.0607254Z [command]/usr/bin/git version
+visual	Post Run actions/checkout@v4	2026-10-11T04:56:52.0640254Z git version 2.55.0
+visual	Post Run actions/checkout@v4	2026-10-11T04:56:52.0662849Z Temporarily overriding HOME='/home/runner/work/_temp/f82e5082-3945-458b-97ed-ec56152c945c' before making global git config changes
+visual	Post Run actions/checkout@v4	2026-10-11T04:56:52.0663766Z Adding repository directory to the temporary git global config as a safe directory
+visual	Post Run actions/checkout@v4	2026-10-11T04:56:52.0667012Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/Horse/Horse
+visual	Post Run actions/checkout@v4	2026-10-11T04:56:52.0697429Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+visual	Post Run actions/checkout@v4	2026-10-11T04:56:52.0724781Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+visual	Post Run actions/checkout@v4	2026-10-11T04:56:52.0928171Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+visual	Post Run actions/checkout@v4	2026-10-11T04:56:52.0948759Z http.https://github.com/.extraheader
+visual	Post Run actions/checkout@v4	2026-10-11T04:56:52.0961448Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+visual	Post Run actions/checkout@v4	2026-10-11T04:56:52.0996558Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+visual	Post Run actions/checkout@v4	2026-10-11T04:56:52.1189484Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+visual	Post Run actions/checkout@v4	2026-10-11T04:56:52.1229945Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+visual	Complete job	﻿2026-10-11T04:56:52.1519988Z Cleaning up orphan processes
+visual	Complete job	2026-10-11T04:56:52.1708039Z Terminate orphan process: pid (2408) (VBCSCompiler)
+visual	Complete job	2026-10-11T04:56:52.1757256Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@v4, actions/checkout@v4, actions/setup-dotnet@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -1,0 +1,14 @@
+[
+  {
+    "file": "domain-log.txt",
+    "rawSha256": "bc90ad856311d209e46724fa9fdf77396038c2feb8a87272d893f81be711ae5e",
+    "savedSha256": "7015ea7a1d45ca6df6894ebf3b595e9915e29c6721e87caeb4e6971391c340ba",
+    "normalization": "Only end-of-line whitespace removed; raw downloads preserved outside the repo."
+  },
+  {
+    "file": "game-log.txt",
+    "rawSha256": "92110e74a8f301a00729c9ce5ec010d47e3d2bd7f090dea90c02c485b1895da7",
+    "savedSha256": "5c5ef58d7d254ed297d89f4df686abd1f86a4ed85ec6194e277de4a6fff88641",
+    "normalization": "Only end-of-line whitespace removed; raw downloads preserved outside the repo."
+  }
+]

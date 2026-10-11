@@ -1,0 +1,72 @@
+{
+  "domain": {
+    "total_count": 2,
+    "artifacts": [
+      {
+        "id": 11692297627,
+        "node_id": "MDg6QXJ0aWZhY3QxMTY5MjI5NzYyNw==",
+        "name": "visual-descriptor-fixtures",
+        "size_in_bytes": 4520,
+        "url": "https://api.github.com/repos/MarkJRogers92/Horse/actions/artifacts/11692297627",
+        "archive_download_url": "https://api.github.com/repos/MarkJRogers92/Horse/actions/artifacts/11692297627/zip",
+        "expired": false,
+        "digest": "sha256:e50151f98d50c529d026b3e1be7e43e57edc1bdf8ae082231d609e7517afc9df",
+        "created_at": "2026-10-11T04:47:36Z",
+        "updated_at": "2026-10-11T04:47:36Z",
+        "expires_at": "2027-01-09T04:46:45Z",
+        "workflow_run": {
+          "id": 38112660179,
+          "repository_id": 1413676505,
+          "head_repository_id": 1413676505,
+          "head_branch": "claude/godot-horse-visual-pilot",
+          "head_sha": "e9c361b48eafb228d308f7a53ef8781b45c52724"
+        }
+      },
+      {
+        "id": 11692113036,
+        "node_id": "MDg6QXJ0aWZhY3QxMTY5MjExMzAzNg==",
+        "name": "test-results",
+        "size_in_bytes": 47166,
+        "url": "https://api.github.com/repos/MarkJRogers92/Horse/actions/artifacts/11692113036",
+        "archive_download_url": "https://api.github.com/repos/MarkJRogers92/Horse/actions/artifacts/11692113036/zip",
+        "expired": false,
+        "digest": "sha256:11caac8acd1d09809b586a1a3871d0153ee2ff449f3ab2bcca2b4983c2802619",
+        "created_at": "2026-10-11T04:47:35Z",
+        "updated_at": "2026-10-11T04:47:35Z",
+        "expires_at": "2027-01-09T04:46:45Z",
+        "workflow_run": {
+          "id": 38112660179,
+          "repository_id": 1413676505,
+          "head_repository_id": 1413676505,
+          "head_branch": "claude/godot-horse-visual-pilot",
+          "head_sha": "e9c361b48eafb228d308f7a53ef8781b45c52724"
+        }
+      }
+    ]
+  },
+  "game": {
+    "total_count": 1,
+    "artifacts": [
+      {
+        "id": 11692029078,
+        "node_id": "MDg6QXJ0aWZhY3QxMTY5MjAyOTA3OA==",
+        "name": "visual-evidence",
+        "size_in_bytes": 39196718,
+        "url": "https://api.github.com/repos/MarkJRogers92/Horse/actions/artifacts/11692029078",
+        "archive_download_url": "https://api.github.com/repos/MarkJRogers92/Horse/actions/artifacts/11692029078/zip",
+        "expired": false,
+        "digest": "sha256:d1a11920cdd39562cd65914a13d94e89899e4c660c07247dca6516e48614f505",
+        "created_at": "2026-10-11T04:56:51Z",
+        "updated_at": "2026-10-11T04:56:51Z",
+        "expires_at": "2026-11-10T04:56:50Z",
+        "workflow_run": {
+          "id": 38112660176,
+          "repository_id": 1413676505,
+          "head_repository_id": 1413676505,
+          "head_branch": "claude/godot-horse-visual-pilot",
+          "head_sha": "e9c361b48eafb228d308f7a53ef8781b45c52724"
+        }
+      }
+    ]
+  }
+}

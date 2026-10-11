@@ -1,0 +1,29 @@
+{
+  "outcome": "ok",
+  "day": 10,
+  "coins": 54,
+  "breedingFee": 50,
+  "conceptionCount": 1,
+  "breedingEventCounter": 1,
+  "childId": "58c716fb-af63-4777-a526-1bfed27c1037",
+  "childGenomeHash": "aa1d5c8f2b3c943c99cc6f9f8d4621e086768a444dda8a67818ae113b603631f",
+  "parentAId": "13cbcdc2-d683-4f9b-9010-a4d14261c365",
+  "parentBId": "43fe39b2-130b-42a0-8f75-3591128e4a22",
+  "birthDay": 4,
+  "stage": "Adult",
+  "name": "Clover",
+  "lifecycleEvents": [
+    "Birth",
+    "FoalToYoungster",
+    "YoungsterToAdult"
+  ],
+  "screenshots": [
+    "01_initial.png",
+    "02_plan.png",
+    "03_canceled.png",
+    "04_saved_pregnancy.png",
+    "05_birth.png",
+    "06_named_reload.png",
+    "07_reloaded_adult.png"
+  ]
+}
