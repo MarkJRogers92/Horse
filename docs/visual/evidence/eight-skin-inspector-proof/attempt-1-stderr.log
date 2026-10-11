@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/work/eight-skin-inspector-proof/run_inspector_tests.py", line 112, in <module>
+    report['checks']['all_expected']=all(x.get('passed') for x in report['checks'].values())
+                                     ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/work/eight-skin-inspector-proof/run_inspector_tests.py", line 112, in <genexpr>
+    report['checks']['all_expected']=all(x.get('passed') for x in report['checks'].values())
+                                         ^^^^^
+AttributeError: 'bool' object has no attribute 'get'

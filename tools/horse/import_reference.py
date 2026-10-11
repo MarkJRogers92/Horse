@@ -13,6 +13,7 @@ import argparse
 import hashlib
 import json
 import math
+import re
 import struct
 import sys
 import time
@@ -638,7 +639,84 @@ def gltf_matrix(values: list[float]) -> Matrix:
     return Matrix(((values[0],values[4],values[8],values[12]),(values[1],values[5],values[9],values[13]),(values[2],values[6],values[10],values[14]),(values[3],values[7],values[11],values[15])))
 
 
-def inspect_glb(path: Path, blender_report: dict, allow_animations: bool=False) -> dict:
+def _read_skin_influences(doc: dict, binary: bytes, attributes: dict,
+                          vertex_count: int, skin_joint_counts: list[int],
+                          max_skin_influences: int) -> tuple[list[list[int]], list[list[float]], int]:
+    """Read and validate the supported glTF skin attribute sets for one primitive."""
+    if not skin_joint_counts:
+        raise RuntimeError("Skinned mesh primitive has no attached skin")
+    sets: dict[int, dict[str, str]] = {}
+    for semantic in attributes:
+        match = re.fullmatch(r"(JOINTS|WEIGHTS)_(\d+)", semantic)
+        if match is None:
+            continue
+        kind, raw_index = match.groups()
+        set_index = int(raw_index)
+        if set_index > 1:
+            raise RuntimeError(f"Unsupported skin attribute set {semantic}; only sets 0 and 1 are supported")
+        sets.setdefault(set_index, {})[kind] = semantic
+    if 0 not in sets or set(sets[0]) != {"JOINTS", "WEIGHTS"}:
+        raise RuntimeError("Skinned mesh is missing paired JOINTS_0/WEIGHTS_0 attributes")
+    for set_index, pair in sets.items():
+        if set(pair) != {"JOINTS", "WEIGHTS"}:
+            raise RuntimeError(f"Skin attribute set {set_index} must contain paired JOINTS_{set_index}/WEIGHTS_{set_index}")
+    if max_skin_influences == 4 and 1 in sets:
+        raise RuntimeError("Mesh exceeds the configured four-influence skin contract")
+
+    joint_rows: list[list[int]] = [[] for _ in range(vertex_count)]
+    weight_rows: list[list[float]] = [[] for _ in range(vertex_count)]
+    for set_index in sorted(sets):
+        joint_accessor = doc["accessors"][attributes[sets[set_index]["JOINTS"]]]
+        weight_accessor = doc["accessors"][attributes[sets[set_index]["WEIGHTS"]]]
+        for semantic, accessor, kind in (
+            (sets[set_index]["JOINTS"], joint_accessor, "JOINTS"),
+            (sets[set_index]["WEIGHTS"], weight_accessor, "WEIGHTS"),
+        ):
+            if accessor.get("type") != "VEC4":
+                raise RuntimeError(f"{semantic} accessor must be VEC4")
+            if accessor.get("count") != vertex_count:
+                raise RuntimeError(f"{semantic} accessor count {accessor.get('count')} does not match POSITION count {vertex_count}")
+            component_type = accessor.get("componentType")
+            normalized = accessor.get("normalized", False)
+            if kind == "JOINTS":
+                if component_type not in (5121, 5123) or normalized:
+                    raise RuntimeError(f"{semantic} must use unnormalized unsigned byte or unsigned short indices")
+            elif component_type == 5126:
+                if normalized:
+                    raise RuntimeError(f"{semantic} FLOAT accessor must not be normalized")
+            elif component_type in (5121, 5123):
+                if not normalized:
+                    raise RuntimeError(f"{semantic} integer accessor must be normalized")
+            else:
+                raise RuntimeError(f"{semantic} must use FLOAT, normalized unsigned byte, or normalized unsigned short weights")
+
+        joint_values = read_accessor(doc, binary, attributes[sets[set_index]["JOINTS"]])
+        weight_values = read_accessor(doc, binary, attributes[sets[set_index]["WEIGHTS"]])
+        for vertex_index, (joints, weights) in enumerate(zip(joint_values, weight_values)):
+            if len(joints) != 4 or len(weights) != 4:
+                raise RuntimeError(f"Skin set {set_index} vertex {vertex_index} must contain exactly four slots")
+            for joint in joints:
+                if type(joint) is not int or joint < 0 or any(joint >= count for count in skin_joint_counts):
+                    raise RuntimeError(f"Skin set {set_index} vertex {vertex_index} has invalid joint index {joint}")
+            for weight in weights:
+                if not math.isfinite(weight) or weight < 0.0:
+                    raise RuntimeError(f"Skin set {set_index} vertex {vertex_index} has non-finite or negative weight {weight}")
+            joint_rows[vertex_index].extend(joints)
+            weight_rows[vertex_index].extend(weights)
+
+    max_active = 0
+    for vertex_index, (joints, weights) in enumerate(zip(joint_rows, weight_rows)):
+        active = sum(weight > 0.0 for weight in weights)
+        if active > max_skin_influences:
+            raise RuntimeError(f"Vertex {vertex_index} has {active} active skin influences; configured maximum is {max_skin_influences}")
+        max_active = max(max_active, active)
+    return joint_rows, weight_rows, max_active
+
+
+def inspect_glb(path: Path, blender_report: dict, allow_animations: bool=False,
+                max_skin_influences: int=4) -> dict:
+    if type(max_skin_influences) is not int or max_skin_influences not in (4, 8):
+        raise ValueError("max_skin_influences must be 4 or 8")
     doc,bin_data=glb_chunks(path)
     mesh_names={m.get("name") for m in doc.get("meshes",[])}
     if mesh_names!=EXPECTED_MESHES:
@@ -649,8 +727,18 @@ def inspect_glb(path: Path, blender_report: dict, allow_animations: bool=False) 
     animation_names=[animation.get("name", "") for animation in doc.get("animations", [])]
     if animation_names and not allow_animations:
         raise RuntimeError("Reference model must not export invented animations")
-    total_triangles=0;primitives={};attribute_report={};weight_sum_error=0.0;bad_normals=0;nonfinite=0;bad_categories=0;skin_weights_by_mesh={}
-    for mesh in doc["meshes"]:
+    mesh_skin_joint_counts: dict[int, list[int]] = {}
+    for node in doc.get("nodes", []):
+        if "mesh" not in node or "skin" not in node:
+            continue
+        mesh_index=node["mesh"];skin_index=node["skin"]
+        if not 0 <= mesh_index < len(doc["meshes"]):
+            raise RuntimeError(f"Node references invalid mesh index {mesh_index}")
+        if not 0 <= skin_index < len(doc.get("skins", [])):
+            raise RuntimeError(f"Node references invalid skin index {skin_index}")
+        mesh_skin_joint_counts.setdefault(mesh_index, []).append(len(doc["skins"][skin_index].get("joints", [])))
+    total_triangles=0;primitives={};attribute_report={};weight_sum_error=0.0;bad_normals=0;nonfinite=0;bad_categories=0;skin_weights_by_mesh={};body_skin_primitives=[];max_active_skin_influences=0
+    for mesh_index,mesh in enumerate(doc["meshes"]):
         name=mesh["name"];tri_count=0;attrs=[]
         for prim in mesh.get("primitives",[]):
             attr=prim["attributes"];attrs.append(sorted(attr))
@@ -682,12 +770,16 @@ def inspect_glb(path: Path, blender_report: dict, allow_animations: bool=False) 
                 primitive_stats={"vertices":len(pos),"triangles":tri_count,"color_0":len(colors),"texcoord_1":len(uv1),"weights_0":len(pos)}
             else:primitive_stats={"triangles":tri_count}
             if name in EXPECTED_MESHES:
-                if not {"JOINTS_0","WEIGHTS_0"}.issubset(attr):raise RuntimeError(f"{name} is missing skin weights")
-                if "JOINTS_1" in attr or "WEIGHTS_1" in attr:raise RuntimeError(f"{name} exceeds the four-influence skin contract")
-                weights=read_accessor(doc,bin_data,attr["WEIGHTS_0"])
+                joints,weights,max_active=_read_skin_influences(
+                    doc,bin_data,attr,len(pos),mesh_skin_joint_counts.get(mesh_index,[]),max_skin_influences)
                 mesh_error=max((abs(sum(w)-1.0) for w in weights),default=0.0)
                 weight_sum_error=max(weight_sum_error,mesh_error)
-                skin_weights_by_mesh[name]={"vertices":len(weights),"max_sum_error":mesh_error}
+                max_active_skin_influences=max(max_active_skin_influences,max_active)
+                skin_stats=skin_weights_by_mesh.setdefault(name,{"vertices":0,"max_sum_error":0.0,"max_active_influences":0,"primitive_count":0})
+                skin_stats["vertices"]+=len(weights);skin_stats["max_sum_error"]=max(skin_stats["max_sum_error"],mesh_error)
+                skin_stats["max_active_influences"]=max(skin_stats["max_active_influences"],max_active);skin_stats["primitive_count"]+=1
+                if name=="Body":
+                    body_skin_primitives.append((pos,read_accessor(doc,bin_data,attr["TEXCOORD_1"]),joints,weights))
         primitives[name]=primitive_stats;attribute_report[name]=attrs
         total_triangles+=tri_count
     if nonfinite or bad_normals:raise RuntimeError(f"Invalid positions/normals ({nonfinite} nonfinite values, {bad_normals} non-unit normals)")
@@ -702,11 +794,7 @@ def inspect_glb(path: Path, blender_report: dict, allow_animations: bool=False) 
     inverse_bind=read_accessor(doc,bin_data,skin["inverseBindMatrices"])
     joint_matrices=[gltf_node_world(doc,node) @ gltf_matrix(values) for node,values in zip(joint_nodes,inverse_bind)]
     poll_points=[];muzzle_points=[]
-    for prim in doc["meshes"][body_mesh_index].get("primitives",[]):
-        attrs=prim["attributes"]
-        if "TEXCOORD_1" not in attrs:continue
-        positions=read_accessor(doc,bin_data,attrs["POSITION"]);canonical=read_accessor(doc,bin_data,attrs["TEXCOORD_1"])
-        joints=read_accessor(doc,bin_data,attrs["JOINTS_0"]);weights=read_accessor(doc,bin_data,attrs["WEIGHTS_0"])
+    for positions,canonical,joints,weights in body_skin_primitives:
         for p,uv,jids,wts in zip(positions,canonical,joints,weights):
             if -0.5<=uv[0]<=1.6:
                 local=Vector((*p,1.0));point=Vector((0,0,0))
@@ -720,7 +808,7 @@ def inspect_glb(path: Path, blender_report: dict, allow_animations: bool=False) 
     horizontal_len=math.hypot(forward.x,forward.z)
     horizontal_forward=(forward.x/horizontal_len,forward.z/horizontal_len) if horizontal_len>1e-8 else (0.0,0.0)
     if horizontal_forward[0]<0.9:raise RuntimeError(f"Exported GLB muzzle does not face horizontal +X: direction={tuple(round(v,5) for v in forward)}")
-    return {"mesh_names":sorted(mesh_names),"node_names":node_names,"animations":len(animation_names),"animationNames":animation_names,"triangles":total_triangles,"primitives":primitives,"attributes":attribute_report,"normal_unit_failures":bad_normals,"nonfinite_values":nonfinite,"max_skin_weight_sum_error":weight_sum_error,"skin_weights_by_mesh":skin_weights_by_mesh,"mixed_canonical_category_triangles":bad_categories,"body_has_descriptor_attributes":True,"body_has_skin":True,"exported_head_direction_muzzle_minus_poll":[round(v,5) for v in forward],"exported_horizontal_forward_XZ":[round(v,5) for v in horizontal_forward],"exported_poll_center_m":[round(v,5) for v in poll_center],"exported_muzzle_center_m":[round(v,5) for v in muzzle_center]}
+    return {"mesh_names":sorted(mesh_names),"node_names":node_names,"animations":len(animation_names),"animationNames":animation_names,"triangles":total_triangles,"primitives":primitives,"attributes":attribute_report,"normal_unit_failures":bad_normals,"nonfinite_values":nonfinite,"max_skin_weight_sum_error":weight_sum_error,"max_skin_influences":max_skin_influences,"max_active_skin_influences":max_active_skin_influences,"skin_weights_by_mesh":skin_weights_by_mesh,"mixed_canonical_category_triangles":bad_categories,"body_has_descriptor_attributes":True,"body_has_skin":True,"exported_head_direction_muzzle_minus_poll":[round(v,5) for v in forward],"exported_horizontal_forward_XZ":[round(v,5) for v in horizontal_forward],"exported_poll_center_m":[round(v,5) for v in poll_center],"exported_muzzle_center_m":[round(v,5) for v in muzzle_center]}
 
 
 def model_bounds(objects: list[bpy.types.Object]) -> dict:

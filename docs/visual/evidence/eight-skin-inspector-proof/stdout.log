@@ -1,0 +1,20 @@
+{
+  "all_expected": true,
+  "all_malformed_rejected": true,
+  "diagnostic_default4_rejects": {
+    "passed": true,
+    "rejected_by": "RuntimeError: Mesh exceeds the configured four-influence skin contract"
+  },
+  "diagnostic_explicit8_passes": {
+    "passed": true
+  },
+  "production_all_pass": true,
+  "unsupported_limit_rejected": {
+    "passed": true,
+    "rejected_by": "ValueError: max_skin_influences must be 4 or 8"
+  }
+}
+REPORT /Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/work/eight-skin-inspector-proof/report.json
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)
+
+Blender quit

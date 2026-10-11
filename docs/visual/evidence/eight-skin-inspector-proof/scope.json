@@ -1,0 +1,115 @@
+{
+  "evidence_files": [
+    {
+      "path": "README.md",
+      "sha256": "3560a0b3f0511dca1ec32ee95d65e7892eb87b418c8b20ee4455c7a689278151",
+      "size_bytes": 1598
+    },
+    {
+      "path": "attempt-1-exit_code.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "size_bytes": 2
+    },
+    {
+      "path": "attempt-1-stderr.log",
+      "sha256": "aa0d4c360c014c0d2afada32c5d94094d6a1c6afb2cef3755a9562b48f2fb471",
+      "size_bytes": 709
+    },
+    {
+      "path": "attempt-2-exit_code.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "size_bytes": 2
+    },
+    {
+      "path": "attempt-2-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "attempt-2-stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "commands.txt",
+      "sha256": "1434aad7c7c7a26e72c2be666fee6f62973847913d895f1ce8cc733ce907b2a3",
+      "size_bytes": 462
+    },
+    {
+      "path": "exit_code.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "size_bytes": 2
+    },
+    {
+      "path": "inspector.diff.gz",
+      "sha256": "5d729fc13fef360a9f41714db066d72abe4f9b3dc207a869c3f274a429cb37aa",
+      "size_bytes": 3304
+    },
+    {
+      "path": "report.json",
+      "sha256": "f035946e87ab9f3d4c190f88d074f0c8445e8795a11518d21a33067531bdbd0d",
+      "size_bytes": 5872
+    },
+    {
+      "path": "run_inspector_tests.py",
+      "sha256": "6ff1af2670acc49cc71a66cd7a65d8f2cad6621e77276503be9455187584730c",
+      "size_bytes": 6970
+    },
+    {
+      "path": "stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "stdout.log",
+      "sha256": "58e3d12ce6653a52d9386ba3706312c6b9f8309d1e98a7e9be455576829c9e98",
+      "size_bytes": 619
+    }
+  ],
+  "inputs": [
+    {
+      "name": "horse_light.glb",
+      "path": "game/assets/horse/production/horse_light.glb",
+      "sha256": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc"
+    },
+    {
+      "name": "horse_stock.glb",
+      "path": "game/assets/horse/production/horse_stock.glb",
+      "sha256": "0b4f422d238e38ad32d2684ab0f0e55edb479aadb505e9c3542f3e1637066439"
+    },
+    {
+      "name": "horse_foal.glb",
+      "path": "game/assets/horse/production/horse_foal.glb",
+      "sha256": "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a"
+    },
+    {
+      "name": "horse_light_float_probe_8weights.glb",
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/outputs/horse-production-review/eight-weight-format-probe/horse_light_float_probe_8weights.glb",
+      "sha256": "5e007c40a99fbf82fa87e7174ed43a93849ea9f782d4bfb349bc6e53224edb7a",
+      "status": "anatomically rejected diagnostic fixture"
+    }
+  ],
+  "inspector": {
+    "path": "tools/horse/import_reference.py",
+    "sha256": "6494bbdac7ef57e9602d7b0ae811b9b5c9e4614b6e2337c1739df0043f2d1004"
+  },
+  "scope": "Optional skin influence inspection support in inspect_glb only; current defaults and four-wide contract remain unchanged.",
+  "scope_limits": {
+    "diagnostic_anatomy_accepted": false,
+    "exporter_or_MAX_INFLUENCES_changed": false,
+    "format_validation_only": true,
+    "godot_rendering_or_pose_accuracy_tested": false,
+    "horse_motion_or_anatomy_accepted": false,
+    "production_assets_modified": false,
+    "production_promotion": false
+  },
+  "task_id": "optional-eight-influence-inspector",
+  "validation": {
+    "blender": "5.2.1 LTS; background factory startup; auto-execution disabled",
+    "default_four_wide_production_inspections": "Light, Stock, foal pass; authored animation clips allowed by the test call; max_skin_influences omitted and therefore defaults to 4",
+    "diagnostic_default_four": "rejected as exceeding four-wide contract",
+    "diagnostic_explicit_eight": "passes skin inspection with eight maximum active influences and unchanged normalized-sum gate",
+    "malformed_scratch_fixtures": "eight cases rejected: unpaired attributes, count mismatch, wrong vector shape, unsupported component type, negative weight, non-finite weight, invalid joint index, unsupported set 2",
+    "unsupported_limit": "6 rejected; only integer 4 and 8 accepted"
+  }
+}

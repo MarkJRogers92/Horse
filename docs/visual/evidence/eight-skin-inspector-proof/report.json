@@ -1,0 +1,164 @@
+{
+  "checks": {
+    "all_expected": true,
+    "all_malformed_rejected": true,
+    "diagnostic_default4_rejects": {
+      "passed": true,
+      "rejected_by": "RuntimeError: Mesh exceeds the configured four-influence skin contract"
+    },
+    "diagnostic_explicit8_passes": {
+      "passed": true
+    },
+    "production_all_pass": true,
+    "unsupported_limit_rejected": {
+      "passed": true,
+      "rejected_by": "ValueError: max_skin_influences must be 4 or 8"
+    }
+  },
+  "diagnostic": {
+    "anatomy_status": "anatomically rejected diagnostic; no motion acceptance",
+    "default4_result": {
+      "passed": true,
+      "rejected_by": "RuntimeError: Mesh exceeds the configured four-influence skin contract"
+    },
+    "explicit8_result": {
+      "passed": true
+    },
+    "explicit8_summary": {
+      "max_active_skin_influences": 8,
+      "max_skin_influences": 8,
+      "max_skin_weight_sum_error": 1.1874362826347351e-07,
+      "skin_weights_by_mesh": {
+        "Body": {
+          "max_active_influences": 8,
+          "max_sum_error": 1.1874362826347351e-07,
+          "primitive_count": 1,
+          "vertices": 15674
+        },
+        "Eyes": {
+          "max_active_influences": 3,
+          "max_sum_error": 1.1175870895385742e-08,
+          "primitive_count": 1,
+          "vertices": 1646
+        },
+        "Mane": {
+          "max_active_influences": 8,
+          "max_sum_error": 9.685754776000977e-08,
+          "primitive_count": 1,
+          "vertices": 1963
+        },
+        "Tail": {
+          "max_active_influences": 5,
+          "max_sum_error": 9.313225746154785e-08,
+          "primitive_count": 1,
+          "vertices": 2297
+        }
+      }
+    },
+    "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/outputs/horse-production-review/eight-weight-format-probe/horse_light_float_probe_8weights.glb",
+    "sha256": "5e007c40a99fbf82fa87e7174ed43a93849ea9f782d4bfb349bc6e53224edb7a"
+  },
+  "malformed": [
+    {
+      "accepted": false,
+      "case": "unpaired_attribute",
+      "rejected_by": "RuntimeError: Skin attribute set 1 must contain paired JOINTS_1/WEIGHTS_1",
+      "sha256": "03cbc062caec12561a0216b1187edaca2365d38f6880df74fd26d0378f617429"
+    },
+    {
+      "accepted": false,
+      "case": "count_mismatch",
+      "rejected_by": "RuntimeError: WEIGHTS_1 accessor count 15673 does not match POSITION count 15674",
+      "sha256": "fafe9d1396541d797979f83eb0933118dadfa73026b1a559514ad3223cbd7e0a"
+    },
+    {
+      "accepted": false,
+      "case": "wrong_accessor_type",
+      "rejected_by": "RuntimeError: WEIGHTS_1 accessor must be VEC4",
+      "sha256": "54e4c2cfc7655df25479cb05a4f72e9a234d282cdd634606affee66125517e0d"
+    },
+    {
+      "accepted": false,
+      "case": "wrong_component_type",
+      "rejected_by": "RuntimeError: WEIGHTS_1 must use FLOAT, normalized unsigned byte, or normalized unsigned short weights",
+      "sha256": "21043eef2e40bec34ae6da78c4cd985c43e273912546ff486e4a20e1ce036f3d"
+    },
+    {
+      "accepted": false,
+      "case": "negative_weight",
+      "rejected_by": "RuntimeError: Skin set 1 vertex 0 has non-finite or negative weight -0.009999999776482582",
+      "sha256": "256df81776d808cf6051879109d4243ebdee5abf2fffb0588eec42f0fb728f10"
+    },
+    {
+      "accepted": false,
+      "case": "nonfinite_weight",
+      "rejected_by": "RuntimeError: Skin set 1 vertex 0 has non-finite or negative weight nan",
+      "sha256": "f89a92d3a410611d86087b857f6bdea36e6fddb27bbe5ae5bdd34a60e2f2ab64"
+    },
+    {
+      "accepted": false,
+      "case": "invalid_joint_index",
+      "rejected_by": "RuntimeError: Skin set 1 vertex 0 has invalid joint index 255",
+      "sha256": "8c0af0aa11d9bb6c0f32e5b04d7e64acd577439736fcb7d1b40422aa48b78269"
+    },
+    {
+      "accepted": false,
+      "case": "unsupported_set2",
+      "rejected_by": "RuntimeError: Unsupported skin attribute set JOINTS_2; only sets 0 and 1 are supported",
+      "sha256": "0cbde713b400dd18b94415442b0ba841019da2de51b052555b5c98f8b24fb72a"
+    }
+  ],
+  "production_default4": [
+    {
+      "max_active_skin_influences": 4,
+      "max_skin_influences": 4,
+      "max_skin_weight_sum_error": 9.778887033462524e-08,
+      "mesh_names": [
+        "Body",
+        "Eyes",
+        "Mane",
+        "Tail"
+      ],
+      "passed": true,
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_light.glb",
+      "sha256": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc"
+    },
+    {
+      "max_active_skin_influences": 4,
+      "max_skin_influences": 4,
+      "max_skin_weight_sum_error": 9.778887033462524e-08,
+      "mesh_names": [
+        "Body",
+        "Eyes",
+        "Mane",
+        "Tail"
+      ],
+      "passed": true,
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_stock.glb",
+      "sha256": "0b4f422d238e38ad32d2684ab0f0e55edb479aadb505e9c3542f3e1637066439"
+    },
+    {
+      "max_active_skin_influences": 4,
+      "max_skin_influences": 4,
+      "max_skin_weight_sum_error": 1.1175870895385742e-07,
+      "mesh_names": [
+        "Body",
+        "Eyes",
+        "Mane",
+        "Tail"
+      ],
+      "passed": true,
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_foal.glb",
+      "sha256": "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a"
+    }
+  ],
+  "source_sha256": {
+    "diagnostic": "5e007c40a99fbf82fa87e7174ed43a93849ea9f782d4bfb349bc6e53224edb7a",
+    "inspector": "6494bbdac7ef57e9602d7b0ae811b9b5c9e4614b6e2337c1739df0043f2d1004",
+    "production": [
+      "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc",
+      "0b4f422d238e38ad32d2684ab0f0e55edb479aadb505e9c3542f3e1637066439",
+      "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a"
+    ]
+  }
+}
