@@ -10,7 +10,7 @@
     450
   ],
   "creditsConsumedByThisAssignment": 34,
-  "remainingCreditsVerified": 1116,
+  "remainingCreditsVerified": 1166,
   "tasks": [
     {
       "taskId": "01a1296c-fa2c-7195-97a8-a1a4185192ab",
@@ -47,13 +47,47 @@
       "savedFiles": [
         "art/candidates/meshy/light_01/source.glb"
       ]
+    },
+    {
+      "taskId": "01a12976-b9b6-750a-aed0-e97cfc9a9f87",
+      "operation": "website rig preparation remesh",
+      "generationModel": "Meshy website",
+      "source": "01a1296e-38cb-73d1-b67f-ce329aa619e0",
+      "parameters": {
+        "topology": "triangle",
+        "targetPolygons": 30000
+      },
+      "creditsCharged": 0,
+      "chargeEvidence": "Confirmation showed 0 credits; App Usage History has no debit and balance remains1166",
+      "result": "SUCCEEDED; website remesh preview shows 31078 faces and20754 vertices",
+      "accepted": false,
+      "savedFiles": []
+    },
+    {
+      "taskId": "01a1297b-52ca-768a-b761-de9a9e98ba3a",
+      "operation": "website Smart Rig Beta",
+      "generationModel": "Smart Rig Beta",
+      "source": "01a12976-b9b6-750a-aed0-e97cfc9a9f87",
+      "parameters": {
+        "characterType": "Smart Rig",
+        "animationLibrarySupported": false
+      },
+      "creditsCharged": 0,
+      "chargeEvidence": "No account debit, current1166; API consumed_credits0",
+      "result": "SUCCEEDED; downloaded: horse31078 triangles plus unrelated Icosphere node; compared locally before acceptance",
+      "accepted": false,
+      "savedFiles": [
+        "art/candidates/meshy/light_01/smart-rig.glb"
+      ],
+      "sha256": "16b0e02194f31907f63e362c7aa3ff75504b1b6ffb0a7681cbcb4f52dda1d989"
     }
   ],
   "notes": [
     "Do not treat API consumed_credits=0 on website tasks as free. Use website usage history.",
     "650 spending ceiling remains unchanged; onboarding reward does not expand authorization.",
     "Website task IDs recovered from asset inventory can be retrieved/downloaded with CLI even though API list omits them.",
-    "Only one geometry job and one reference submitted. No paid textures or rerolls."
+    "Only one geometry job and one reference submitted. No paid textures or rerolls.",
+    "Two automatic +50 onboarding rewards;1100-34+100=1166. No credits purchased."
   ],
-  "accountRewardsDuringAssignment": 50
+  "accountRewardsDuringAssignment": 100
 }

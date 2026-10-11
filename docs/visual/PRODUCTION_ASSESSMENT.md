@@ -1,5 +1,9 @@
 # Initial production assessment — 2026-10-11
 
+Historical snapshot taken before generation. Subsequent task costs and outputs
+are recorded in `MESHY_CREDIT_LEDGER.json`; statements below describe the initial
+inspection, not the current completion status.
+
 - Live visual base: `bedcca5`; clean original checkout. Remote domain branch is
   separately at `1538833`; do not replace the integrated visual branch with it.
 - Existing assets: CC0 authored horse reference, editable adult/foal adaptations,
