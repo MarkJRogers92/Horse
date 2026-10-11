@@ -21,9 +21,14 @@ UV projection precedes the bounded hoof-support correction. Duplicate Body/Mane
 and Body/Tail boundary positions, skin weights and four morph deltas match exactly.
 Forelock seam clearance measured zero at rest, Idle midpoint, Head +5° and Neck +5°.
 
-Current Light actual Godot checks produced 8 focused images plus 23 studio images
-with zero harness failures, advancing Idle, all 58 bones, four components/morphs,
-and generated LOD buffers. The test-only studio covers eight coats/four presets.
+Focused Light Godot checks passed advancing Idle, all 58 bones, four
+components/morphs and generated LOD buffers. A refreshed studio run at `aaf9796`
+now covers both current adult masters with eight test-only coats/four presets,
+23 images and zero harness failures. Its 120-frame static-scene sample averaged
+8.353 ms per frame on this Apple M2; it does not establish moving-herd performance.
+Independent review accepted this scope. Light v5 activation remains supported by
+its separate accepted proof, rather than a new detail measurement in this run.
+See `docs/visual/evidence/appearance-studio-aaf9796`.
 Parent visual review accepts the diagnostic white on bare forehead skin with
 natural partial forelock occlusion; it does not establish a fully visible star.
 Lowered socket eye fits are preserved. The coat workflow also reviewed the new

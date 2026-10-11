@@ -130,10 +130,16 @@ Current source identities:
 | Light | `9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295` | `26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc` |
 | Stock | `77b3f3d188a525f255b3d46adf0645f472ec81fd3b47dd750a52e216dd0f4627` | `0b4f422d238e38ad32d2684ab0f0e55edb479aadb505e9c3542f3e1637066439` |
 
-Light runtime evidence covers eight focused views and 23 appearance-studio
-images; the studio Stock captures predate its latest rebuild. Current Stock has
-separate focused head/front, advancing Idle, bone/morph/LOD evidence. Both runs
-had zero capture-harness failures. See `evidence/adult-runtime-26a4870d` and
+Light runtime evidence includes eight focused views; Stock has separate focused
+head/front, advancing Idle, bone/morph/LOD evidence. A refreshed studio capture at
+`aaf9796` uses both current adult masters and the current material code. It records
+eight distinct test-only coats across four presets, a 2×4 overview, signed morph
+boundary views and generated LOD records: 23 images with zero harness failures.
+Its 120-frame static-scene sample on Apple M2 averaged 8.353 ms, with p95 11.182 ms;
+this is not moving-herd or gait performance. The report does not freshly measure
+signed-detail activation; the unchanged Light v5 binding has separate accepted
+proof. Independent review accepted these limits. See
+`evidence/appearance-studio-aaf9796`, `evidence/adult-runtime-26a4870d` and
 `evidence/detail-stock-runtime-0b4f422d`. Current Light anatomy guides and exact
 hair seam checks are in `evidence/final-light-anatomy-26a4870d`.
 

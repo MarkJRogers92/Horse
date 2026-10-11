@@ -1,0 +1,123 @@
+{
+  "schema": "horse.studio.runtime.snapshot.v1",
+  "sourceCommit": "aaf9796",
+  "status": "accepted for static adult preview scope after parent runtime verification and independent read-only peer review",
+  "sourceGLBSha256": {
+    "light": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc",
+    "stock": "0b4f422d238e38ad32d2684ab0f0e55edb479aadb505e9c3542f3e1637066439"
+  },
+  "codeSHA256": {
+    "game/scripts/Tools/CaptureRunner.cs": "05c42df483f9c2766a15f966ab00d2783dd74b5c9d48ffdaa2750dc644cf6459",
+    "game/scripts/Visual/HorsePresenter.cs": "f765713e19b9ddcc00a9a2331e92cd50d931ffb5c604986385b77aab2feba7ac",
+    "game/scripts/Visual/VisualCatalog.cs": "c7732396d47d532a18ceaca8b2e9de1cb4b842f0b7a5721ab38587ae9ea8d5df",
+    "game/data/visual_catalog.json": "74d3913e2b4937c54284d41168213b8ef2b4b05e7f6f080321cfaf0e5b0be3a2",
+    "game/shaders/horse_coat.gdshader": "8d39d81f3b8e18fbf194b7d26f0076aced486a17f7cf935cdbbc4c3e862f3ea6"
+  },
+  "files": [
+    {
+      "path": "appearance/boundary__horse-compact-adult-v1_-2000.png",
+      "sha256": "5dbc518a93ed216e14a4570234e1d146873b22d925824faf47b6699a444f213a"
+    },
+    {
+      "path": "appearance/boundary__horse-compact-adult-v1_0.png",
+      "sha256": "98aae7580832a8e472e357a1481f15903ccf1fab656ab7b3b67d24fd10f90b8b"
+    },
+    {
+      "path": "appearance/boundary__horse-compact-adult-v1_2000.png",
+      "sha256": "985f662ecc6f8bd1504aa538562e62081dcf95a3b8f5ad53dc9c191e2f2637cf"
+    },
+    {
+      "path": "appearance/boundary__horse-standard-adult-v1_-2000.png",
+      "sha256": "2530cc0466f268ccef88c334c62b26817f259b175764c40805e8dcc6bd245173"
+    },
+    {
+      "path": "appearance/boundary__horse-standard-adult-v1_0.png",
+      "sha256": "526628ea12d7e591b74f8b23212a2e8fae7a120e65aa6a96c88d4cdcb3ad9a13"
+    },
+    {
+      "path": "appearance/boundary__horse-standard-adult-v1_2000.png",
+      "sha256": "452832246a35485ef8b1d97a7e53023ab0e002a35904d765394e36c10d26c941"
+    },
+    {
+      "path": "appearance/light_endurance.bay__head.png",
+      "sha256": "dd88e7f10ab9d27609cacd1ff9815c556c00c032afad4c6830d50acd5f7b9450"
+    },
+    {
+      "path": "appearance/light_endurance.bay__q3.png",
+      "sha256": "7d7c5d15761b61d2ddfc3059c1d69d1dd01f56a824173eab043d8f37c5f679dc"
+    },
+    {
+      "path": "appearance/light_endurance.buckskin__head.png",
+      "sha256": "cad13801b17bfa62b673f66ebdcea79447fb07593ae736a3135b7cdfec62fc0f"
+    },
+    {
+      "path": "appearance/light_endurance.buckskin__q3.png",
+      "sha256": "8264f925b89dd8e2102503d09d6833291c20fc6b0dda5875496a1a89f0efc8e2"
+    },
+    {
+      "path": "appearance/light_racer.chestnut__head.png",
+      "sha256": "125eb2cf97d05fdd4a9777c431141fba2f61cf34d9d374bd3e1402487eb7fd38"
+    },
+    {
+      "path": "appearance/light_racer.chestnut__q3.png",
+      "sha256": "048e4df394392a1ceff2e9d48bc073f395feedf8bd30050ef7f8ed36a05d028b"
+    },
+    {
+      "path": "appearance/light_racer.palomino__head.png",
+      "sha256": "24e68fb8efc3c2330d2fe67ae43d804c17b10d8cc04fc91f74657635cc26178b"
+    },
+    {
+      "path": "appearance/light_racer.palomino__q3.png",
+      "sha256": "aadbefd93bc2ece5860200bd374746ae4c46ce0dc4cc22af3a3eb0bee67cd641"
+    },
+    {
+      "path": "appearance/overview_all_eight.png",
+      "sha256": "aa22e63dd86671bef899f8c40b05f1e23e9267f040b9c7db7939185b926975e3"
+    },
+    {
+      "path": "appearance/stock_cob.bay_dun__head.png",
+      "sha256": "cf82eeabb9eb4407e5fc1f27956551aa90c3e0535063534f996be4f42b8af920"
+    },
+    {
+      "path": "appearance/stock_cob.bay_dun__q3.png",
+      "sha256": "a759493fd204791bbb2f6fe658cd19b9219abb867883b1c2dc64df0b97625ab6"
+    },
+    {
+      "path": "appearance/stock_cob.red_dun__head.png",
+      "sha256": "c1cae96aff87215b25286f9eb37024a24fb3bfa99b7fcbad8858f8360b98aa9a"
+    },
+    {
+      "path": "appearance/stock_cob.red_dun__q3.png",
+      "sha256": "ad36124abcf5f30be857ff8fb0d33379187d56f680c98d810b60f0ab1e0ff80c"
+    },
+    {
+      "path": "appearance/stock_muscular.black__head.png",
+      "sha256": "5ec5da00b72fcf05417472a35d0895f1d9e6943f36ecbdc477943f923ea5e7f2"
+    },
+    {
+      "path": "appearance/stock_muscular.black__q3.png",
+      "sha256": "e707481d0f1dd5de35dbf62f0e907c0844468ef741dfa5bd617a80c4f157c84a"
+    },
+    {
+      "path": "appearance/stock_muscular.smoky_black__head.png",
+      "sha256": "397347e8001c3f04f80173288652000d66f12cf6368c1217365a107567bdfd1b"
+    },
+    {
+      "path": "appearance/stock_muscular.smoky_black__q3.png",
+      "sha256": "3d71ae6baed0ba99019fa8fb768fc1a3e3522ff8a956e82a62eedb38add67806"
+    },
+    {
+      "path": "capture_report.json",
+      "sha256": "dc5d8f6a29a7b07e7a11f074ab8e511ef875b49af0ef1b86182b8f17ccfa272f"
+    }
+  ],
+  "independentReview": {
+    "reviewer": "adult_game_validation",
+    "scope": "actual capture report and capture code; static eight-horse preview only",
+    "limits": [
+      "not moving-herd or gait performance",
+      "signed-detail activation is inherited from separate accepted proof",
+      "test-only fixtures; no live-catalog or owner art approval"
+    ]
+  }
+}
