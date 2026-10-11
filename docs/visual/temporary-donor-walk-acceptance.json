@@ -1,0 +1,80 @@
+{
+  "schema": "horse.temporary-donor-preview.acceptance.v1",
+  "acceptedScope": "Isolated local temporary original Mesh2Motion donor walking preview only",
+  "productionMotionAccepted": false,
+  "productionAssetsStillIdleOnly": true,
+  "productionCatalogAndDefaultSceneChanged": false,
+  "sourceAndRuntimeHashes": {
+    "rigBlendSha256": "585258436808e70a565d76ac493fb018b08c1087798a8c75ba13125f817c0bd9",
+    "walkBlendSha256": "eae76f96316e22b426e2b513db7a621a345fe336a8ac207458d4dbf42db2e5fa",
+    "exportedGlbSha256": "1a68f1fbb8996473273acb620ce2daa8b79b76f5d5265aa4ebee31e44d2bffa1",
+    "previewSceneSha256": "4aa3898a694c07c725296f43652a79cf9feaf243116a3d12dbc74f12d28325a8",
+    "previewScriptSha256": "1847add766c177fd8bc80ae3b1d44428a7a108cef9f06757bbe7acdeff2f7a9c"
+  },
+  "upstreamRevision": "c5b0b6c821dbf2fa1dfe49590a6f431fd9f707ce",
+  "presentation": {
+    "uniformScale": 1,
+    "rootYHeightOffsetMeters": 0.032,
+    "rootRotationDegreesY": 90,
+    "sharedForwardSpeedMetersPerSecond": 0.903103,
+    "speedBasis": "0.873 m mean proxy excursion / (29/30 s imported source frame span) = about 0.903103 m/s; rough presentation calibration only, not a validated no-slip stance speed.",
+    "walkCycleForwardTravelMeters": 0.8729995608329773,
+    "loopModeForcedForPreview": "Linear",
+    "floorContact": "Diagnostic only; source baseline has about 31.6 mm whole-mesh penetration and this shared 32 mm offset is a visual compromise."
+  },
+  "observedAutomaticMovement": {
+    "startX": 0.13144183,
+    "endX": 0.3860729,
+    "deltaX": 0.25463107,
+    "elapsedProcessSeconds": 0.28195133333333333,
+    "accumulatedTravelDeltaMeters": 0.25463109328579914,
+    "expectedFromSharedSpeed": 0.254631093285799,
+    "source": "Same _Process route-advance code used by the interactive preview."
+  },
+  "observedPlayback": {
+    "advanced": true,
+    "finitePoseChanges": true,
+    "wrappedWithForcedLoopMode": true
+  },
+  "validRendererCaptures": 6,
+  "targetedBuild": {
+    "exitCode": 0,
+    "warnings": 0,
+    "errors": 0,
+    "evidence": "/Users/markrogers/Documents/Codex/2026-10-11/con/outputs/horse-production-review/temporary-donor-preview/final-build.stdout.log"
+  },
+  "nativeRuntime": {
+    "exitCode": 0,
+    "failureCount": 0,
+    "evidence": "/Users/markrogers/Documents/Codex/2026-10-11/con/outputs/horse-production-review/temporary-donor-preview/runtime_report.json",
+    "reportSha256": "cc636b28cc4904f9f4667b23f11c251f3cd2081ae345bd1b69d29d4530bfdb2f"
+  },
+  "launcherSmoke": {
+    "exitCode": 0,
+    "evidence": "/Users/markrogers/Documents/Codex/2026-10-11/con/outputs/horse-production-review/temporary-donor-preview/final-launcher-smoke.stdout.log"
+  },
+  "requiredChecks": {
+    "handoffValidator": "passed: 40 tasks and 15 coat classes/layers",
+    "stagedWhitespaceCheck": "passed"
+  },
+  "independentReview": {
+    "reviewer": "existing native Sol motion_foundation_consult, read only",
+    "reviewedScriptSha256": "be76b3103f3a3b2727c5dba09f2360d30ce97706e851e22f23a6fc9fd048c191",
+    "finding": "Boxed float sums skipped double-only weight-sum guards. Playback and measured sums remained valid.",
+    "resolution": "Worker stores sums as doubles and binds report to script and scene. Parent inspected final source, matching hashes, logs and six captures; final build and capture passed."
+  },
+  "preservedFoundations": {
+    "allNineUnchanged": true,
+    "evidence": "/Users/markrogers/Documents/Codex/2026-10-11/con/outputs/horse-production-review/temporary-donor-preserved-foundations.json",
+    "evidenceSha256": "b8201180001317e4abf137647e5b54d8a581b7acb5229a5d01f0951523002bf7"
+  },
+  "limits": [
+    "The 32 mm root offset and approximate 0.903103 m/s forward speed are presentation calibration. Ground contact, hoof sliding and gait quality remain unaccepted.",
+    "Source has 9 active influences on 4 of 1709 vertices. Godot imports 8; six split third-set weights total 0.04576, maximum 0.01030. Runtime skin is not an exact preservation of every source weight.",
+    "Interactive scene route resets after four clip cycles; this is scene movement, not source root motion.",
+    "Light, Stock and foal walking/grazing and production morph/coat/genetics integration are unfinished."
+  ],
+  "localLauncher": "/Users/markrogers/Documents/Codex/2026-10-11/con/outputs/horse-production-review/temporary-donor-preview/Open Temporary Donor Walk.command",
+  "additionalMeshyCreditUseThisMilestone": 0,
+  "externalReleaseActions": false
+}
