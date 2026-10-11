@@ -1,0 +1,20 @@
+{
+  "source": "Genuine ac5695b normal day-one stable, upgraded and paired through actual pointer UI",
+  "actions": "review/cancel/double-confirm/pregnant-block/reload/four-days/birth/name/reload/menu/quit",
+  "originalDay": 1,
+  "originalCoins": 464,
+  "currentDay": 5,
+  "coins": 270,
+  "childId": "d273a2a8-220e-1849-56dd-b9a4bfe6d671",
+  "childName": "Willow",
+  "stage": "Foal",
+  "birthDay": 5,
+  "conceptionCount": 1,
+  "breedingFeeCount": 1,
+  "breedingCoins": 50,
+  "normalPolicy": "stable.text-breeding.v1",
+  "originalNamesIdsGeneticsCareWalletCalendarAndRngPreservedByUpgrade": true,
+  "inheritedChildIdentityPreserved": true,
+  "oneBreedingRngAdvanceOnly": true,
+  "birthNamingCareRngUnchanged": true
+}

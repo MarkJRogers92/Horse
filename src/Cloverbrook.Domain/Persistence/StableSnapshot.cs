@@ -88,6 +88,8 @@ namespace Cloverbrook.Domain
         public StableSnapshot WithHeader(SaveHeader header) => new StableSnapshot(header, PlayerOwnerId, Horses, OpeningCoinBalance, CapacityRevision, Ledger, PendingCapacityPlans, Conceptions, DailyState, LegacyLifecycleBaselines);
         public StableSnapshot WithHorses(IEnumerable<HorseRecord> horses) => new StableSnapshot(Header, PlayerOwnerId, horses, OpeningCoinBalance, CapacityRevision, Ledger, PendingCapacityPlans, Conceptions, DailyState, LegacyLifecycleBaselines);
         public StableSnapshot WithDailyState(StableDailyState dailyState) => new StableSnapshot(Header, PlayerOwnerId, Horses, OpeningCoinBalance, CapacityRevision, Ledger, PendingCapacityPlans, Conceptions, dailyState, LegacyLifecycleBaselines);
+        internal StableSnapshot WithPendingCapacityPlans(IEnumerable<BreedingCapacityPlan> plans) => new StableSnapshot(Header, PlayerOwnerId, Horses,
+            OpeningCoinBalance, CapacityRevision, Ledger, plans, Conceptions, DailyState, LegacyLifecycleBaselines);
         private static void Require(bool condition, string message) { if (!condition) throw new SaveIntegrityException(message); }
         private void Validate()
         {

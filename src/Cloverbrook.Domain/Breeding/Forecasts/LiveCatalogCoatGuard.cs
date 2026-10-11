@@ -26,7 +26,20 @@ namespace Cloverbrook.Domain
         // their neutrality for coat expression is pinned to phenotype.v1.
         public static CatalogCoatAudit Check(IEnumerable<HorseRecord> catalog, CoatSupportMatrix matrix, int maxCoatCombinations = 65536, int maxHaplotypesPerBlock = 64)
         {
-            var horses = Snapshot.List(catalog); global::Cloverbrook.Domain.Check.NotNull(matrix, nameof(matrix));
+            global::Cloverbrook.Domain.Check.NotNull(matrix, nameof(matrix));
+            return CheckCore(catalog, matrix, requireReleasedPresentation: true, maxCoatCombinations, maxHaplotypesPerBlock);
+        }
+
+        // Used only by the pinned text-only Sandbox breeding policy. This proves
+        // genetic closure, but deliberately says nothing about visual approval.
+        internal static CatalogCoatAudit CheckTextOnlyGeneticClosure(IEnumerable<HorseRecord> catalog,
+            int maxCoatCombinations = 65536, int maxHaplotypesPerBlock = 64) =>
+            CheckCore(catalog, null, requireReleasedPresentation: false, maxCoatCombinations, maxHaplotypesPerBlock);
+
+        private static CatalogCoatAudit CheckCore(IEnumerable<HorseRecord> catalog, CoatSupportMatrix? matrix,
+            bool requireReleasedPresentation, int maxCoatCombinations, int maxHaplotypesPerBlock)
+        {
+            var horses = Snapshot.List(catalog);
             if (maxCoatCombinations < 1 || maxCoatCombinations > 1048576 || maxHaplotypesPerBlock < 1 || maxHaplotypesPerBlock > 256) throw new ArgumentOutOfRangeException(nameof(maxCoatCombinations));
             var hash = Canonical.Hash(new[] { "live.catalog.coat.v1" }.Concat(horses.OrderBy(h => h.HorseId.ToString(), StringComparer.Ordinal)
                 .SelectMany(h => new[] { h.HorseId.ToString(), h.Genome.GenomeHash, h.ResolverVersion })));
@@ -86,7 +99,8 @@ namespace Cloverbrook.Domain
                     var r = resolver.ResolveGenetics(CoatForecastService.AnalysisHorse(genome));
                     if (r.Status == ResolutionStatus.Unsupported) { reasons.Add("Reachable unsupported expression: " + r.UnsupportedReason); return; }
                     foreach (var c in r.RequiredCoatClasses) classes.Add(c);
-                    foreach (var problem in matrix.ReleasedSupportProblems(r.RequiredCoatClasses, r.Phenotype!.CoatLayers)) reasons.Add(problem);
+                    if (requireReleasedPresentation)
+                        foreach (var problem in matrix!.ReleasedSupportProblems(r.RequiredCoatClasses, r.Phenotype!.CoatLayers)) reasons.Add(problem);
                 }
                 Visit(0); return Result(true);
             }

@@ -18,15 +18,19 @@ namespace Cloverbrook.Domain
 
     public sealed class KinshipResult
     {
-        internal KinshipResult(Rational? coefficient, string pedigreeHash)
+        internal KinshipResult(Rational? coefficient, Rational minimumCoefficient, string pedigreeHash)
         {
-            Coefficient = coefficient; PedigreeHash = pedigreeHash;
+            Coefficient = coefficient; MinimumCoefficient = minimumCoefficient; PedigreeHash = pedigreeHash;
             Qualification = coefficient.HasValue
                 ? "Exact pedigree kinship, conditional on the declared founder backgrounds; not a DNA measurement."
-                : "Incomplete ancestry or undeclared founder relationships. Zero relatedness is not established.";
+                : "Incomplete ancestry or undeclared founder relationships. The minimum proven kinship is "
+                    + minimumCoefficient.ToString() + "; zero relatedness is not established.";
         }
         // phi(parentA,parentB) equals the proposed child's F, not twice phi.
         public Rational? Coefficient { get; }
+        // Conservative lower bound from the recorded parent links. Unknown
+        // cross-relationships contribute zero; known edges still contribute.
+        public Rational MinimumCoefficient { get; }
         public bool IsComplete => Coefficient.HasValue;
         public string Qualification { get; }
         public string PedigreeHash { get; }
@@ -45,31 +49,39 @@ namespace Cloverbrook.Domain
     {
         private readonly IReadOnlyList<PedigreeNode> ordered;
         private readonly Dictionary<HorseId, int> indices;
+        private readonly int declaredNodeCount;
         public PedigreeGraph(IEnumerable<PedigreeNode> nodes)
         {
             var input = Snapshot.List(nodes);
             var map = new Dictionary<HorseId, PedigreeNode>();
             foreach (var node in input) if (!map.TryAdd(node.HorseId, node)) throw new ArgumentException("Duplicate horse identity in pedigree.", nameof(nodes));
+            declaredNodeCount = input.Count;
+            // A named but unavailable ancestor is still a shared identity. Model
+            // it as an undeclared terminal so repeated references retain the
+            // minimum relatedness proved by their common edge.
+            foreach (var parentId in input.SelectMany(n => new[] { n.Parentage.ParentAId, n.Parentage.ParentBId }).Where(id => id != null).Distinct())
+                if (!map.ContainsKey(parentId!)) map.Add(parentId!, new PedigreeNode(parentId!, new Parentage()));
+            var allNodes = map.Values.ToArray();
             var children = map.Keys.ToDictionary(id => id, _ => new List<HorseId>());
             var degree = map.Keys.ToDictionary(id => id, _ => 0);
-            foreach (var node in input)
+            foreach (var node in allNodes)
                 foreach (var parent in new[] { node.Parentage.ParentAId, node.Parentage.ParentBId })
                     if (parent != null && map.ContainsKey(parent)) { children[parent].Add(node.HorseId); degree[node.HorseId]++; }
-            var queue = new Queue<HorseId>(input.Where(n => degree[n.HorseId] == 0).Select(n => n.HorseId));
+            var queue = new Queue<HorseId>(allNodes.Where(n => degree[n.HorseId] == 0).Select(n => n.HorseId));
             var result = new List<PedigreeNode>();
             while (queue.Count != 0)
             {
                 var id = queue.Dequeue(); result.Add(map[id]);
                 foreach (var child in children[id]) if (--degree[child] == 0) queue.Enqueue(child);
             }
-            if (result.Count != input.Count) throw new ArgumentException("A horse appears among its own ancestors (pedigree cycle).", nameof(nodes));
+            if (result.Count != map.Count) throw new ArgumentException("A horse appears among its own ancestors (pedigree cycle).", nameof(nodes));
             ordered = Snapshot.List(result); indices = ordered.Select((n, i) => (n.HorseId, Index: i)).ToDictionary(p => p.HorseId, p => p.Index);
             PedigreeHash = Canonical.Hash(new[] { "pedigree.v1" }.Concat(input.OrderBy(n => n.HorseId.ToString(), StringComparer.Ordinal).SelectMany(n => new[] {
                 n.HorseId.ToString(), n.Parentage.ParentAId?.ToString() ?? "unknown", n.Parentage.ParentBId?.ToString() ?? "unknown",
                 n.Parentage.FounderBackground?.AssumptionId ?? "undeclared", n.Parentage.FounderBackground?.InbreedingCoefficient.ToString() ?? "unknown" })));
         }
         public string PedigreeHash { get; }
-        public int Count => ordered.Count;
+        public int Count => declaredNodeCount;
         public bool MatchesParentage(HorseRecord horse)
         {
             Check.NotNull(horse, nameof(horse));
@@ -81,19 +93,23 @@ namespace Cloverbrook.Domain
             return parentsMatch && rootsMatch;
         }
         private static (int A, int B) Key(int a, int b) => a >= b ? (a, b) : (b, a);
-        private bool KnownParents(PedigreeNode node, out int a, out int b)
+        private IReadOnlyList<int> KnownParents(PedigreeNode node) => new[] { node.Parentage.ParentAId, node.Parentage.ParentBId }
+            .Where(id => id != null && indices.ContainsKey(id)).Select(id => indices[id!]).ToArray();
+
+        private readonly struct KinshipValue
         {
-            a = b = -1;
-            return node.Parentage.ParentAId != null && node.Parentage.ParentBId != null
-                && indices.TryGetValue(node.Parentage.ParentAId, out a) && indices.TryGetValue(node.Parentage.ParentBId, out b);
+            public KinshipValue(Rational? exact, Rational minimum) { Exact = exact; Minimum = minimum; }
+            public Rational? Exact { get; }
+            public Rational Minimum { get; }
         }
         public KinshipResult Kinship(HorseId first, HorseId second, int maxComputedPairs = 1000000)
         {
             Check.NotNull(first, nameof(first)); Check.NotNull(second, nameof(second));
             if (maxComputedPairs < 1) throw new ArgumentOutOfRangeException(nameof(maxComputedPairs));
-            if (!indices.TryGetValue(first, out var firstIndex) || !indices.TryGetValue(second, out var secondIndex)) return new KinshipResult(null, PedigreeHash);
+            if (!indices.TryGetValue(first, out var firstIndex) || !indices.TryGetValue(second, out var secondIndex))
+                return new KinshipResult(null, Rational.Zero, PedigreeHash);
             var target = Key(firstIndex, secondIndex);
-            var memo = new Dictionary<(int A, int B), Rational?>(); var pending = new Stack<(int A, int B)>(); pending.Push(target);
+            var memo = new Dictionary<(int A, int B), KinshipValue>(); var pending = new Stack<(int A, int B)>(); pending.Push(target);
             while (pending.Count != 0)
             {
                 var key = pending.Peek();
@@ -102,26 +118,47 @@ namespace Cloverbrook.Domain
                 var a = ordered[key.A]; var b = ordered[key.B];
                 if (key.A == key.B && a.IsRoot)
                 {
-                    memo[key] = a.Parentage.FounderBackground == null ? (Rational?)null : (Rational.One + a.Parentage.FounderBackground.InbreedingCoefficient) * Rational.Half;
+                    var exact = a.Parentage.FounderBackground == null ? (Rational?)null
+                        : (Rational.One + a.Parentage.FounderBackground.InbreedingCoefficient) * Rational.Half;
+                    memo[key] = new KinshipValue(exact, exact ?? Rational.Half);
                     continue;
                 }
                 if (key.A != key.B && a.IsRoot && b.IsRoot)
                 {
                     var fa = a.Parentage.FounderBackground; var fb = b.Parentage.FounderBackground;
-                    memo[key] = fa != null && fb != null && fa.AssumptionId == fb.AssumptionId ? Rational.Zero : (Rational?)null;
+                    var exact = fa != null && fb != null && fa.AssumptionId == fb.AssumptionId ? (Rational?)Rational.Zero : null;
+                    memo[key] = new KinshipValue(exact, Rational.Zero);
+                    continue;
+                }
+                if (key.A == key.B)
+                {
+                    var parents = KnownParents(a);
+                    if (parents.Count != 2) { memo[key] = new KinshipValue(null, Rational.Half); continue; }
+                    var parentPair = Key(parents[0], parents[1]);
+                    if (!memo.ContainsKey(parentPair)) { pending.Push(parentPair); continue; }
+                    var parental = memo[parentPair];
+                    memo[key] = new KinshipValue(parental.Exact.HasValue ? (Rational.One + parental.Exact.Value) * Rational.Half : (Rational?)null,
+                        (Rational.One + parental.Minimum) * Rational.Half);
                     continue;
                 }
                 var expand = !a.IsRoot ? a : b; var otherIndex = !a.IsRoot ? key.B : key.A;
-                if (!KnownParents(expand, out var pa, out var pb)) { memo[key] = null; continue; }
-                var left = key.A == key.B ? Key(pa, pb) : Key(pa, otherIndex);
-                var right = key.A == key.B ? left : Key(pb, otherIndex);
-                if (!memo.ContainsKey(left)) { pending.Push(left); continue; }
-                if (!memo.ContainsKey(right)) { pending.Push(right); continue; }
-                var x = memo[left]; var y = memo[right];
-                memo[key] = !x.HasValue || !y.HasValue ? (Rational?)null : key.A == key.B
-                    ? (Rational.One + x.Value) * Rational.Half : (x.Value + y.Value) * Rational.Half;
+                var knownParents = KnownParents(expand);
+                if (knownParents.Count == 0) { memo[key] = new KinshipValue(null, Rational.Zero); continue; }
+                var dependencies = knownParents.Select(parent => Key(parent, otherIndex)).ToArray();
+                var missing = dependencies.FirstOrDefault(dependency => !memo.ContainsKey(dependency));
+                if (dependencies.Any(dependency => !memo.ContainsKey(dependency))) { pending.Push(missing); continue; }
+                var values = dependencies.Select(dependency => memo[dependency]).ToArray();
+                var exactPair = knownParents.Count == 2 && values.All(value => value.Exact.HasValue);
+                Rational exactSum = Rational.Zero; Rational minimumSum = Rational.Zero;
+                foreach (var value in values)
+                {
+                    if (value.Exact.HasValue) exactSum += value.Exact.Value;
+                    minimumSum += value.Minimum;
+                }
+                memo[key] = new KinshipValue(exactPair ? exactSum * Rational.Half : (Rational?)null,
+                    minimumSum * Rational.Half);
             }
-            return new KinshipResult(memo[target], PedigreeHash);
+            var result = memo[target]; return new KinshipResult(result.Exact, result.Minimum, PedigreeHash);
         }
         public KinshipResult ProposedOffspringInbreeding(HorseId parentA, HorseId parentB) => Kinship(parentA, parentB);
     }

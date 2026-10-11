@@ -108,6 +108,113 @@ namespace Cloverbrook.Domain
             var saved = Publish(result.State, preserveCurrentAsBackup: true);
             return new StoredConception(saved, saved.Conceptions.Single(c => c.Commit.BreedingCommitId.Equals(request.EventId)), false);
         }
+
+        public StoredConception CommitStableBreeding(ConceptionRequest request, StableBreedingPlanner planner)
+        {
+            Check.NotNull(request, nameof(request)); Check.NotNull(planner, nameof(planner));
+            using var held = Lock(); var state = RequirePrimary();
+            var existing = state.Conceptions.SingleOrDefault(c => c.Commit.BreedingCommitId.Equals(request.EventId));
+            if (existing != null)
+            {
+                if (existing.Request.RequestHash != request.RequestHash)
+                    throw new ConceptionRejectedException("idempotency_conflict", "This pairing ID already belongs to a different request.");
+                return new StoredConception(state, existing, true);
+            }
+
+            var quote = planner.Preview(state, request.ParentAId, request.ParentBId, request.EventId);
+            if (quote.Request.RequestHash != request.RequestHash)
+                throw new ConceptionRejectedException("quote_mismatch", "The saved stable no longer matches this quote; review the current pairing.");
+            if (!quote.IsEligible)
+            {
+                var first = quote.Rejections[0];
+                throw new ConceptionRejectedException(first.Code, string.Join("; ", quote.Rejections.Select(issue => issue.Message)));
+            }
+            var nextEventIndex = checked(state.Header.RngStreams.Breeding.EventCounter + 1);
+            var costId = ConceptionService.CostTransactionId(state.Header, nextEventIndex);
+            if (state.Ledger.Any(entry => entry.Id.Equals(costId))
+                || state.DailyState.Receipts.Any(receipt => receipt.Request.OperationId.Equals(costId)
+                    || receipt.CostTransactionId.Equals(costId)))
+                throw new ConceptionRejectedException("ledger_id_conflict", "This pairing's deterministic cost identity already appears in saved wallet or care history.");
+
+            // The hold exists only in this locked, in-memory transaction input.
+            // ConceptionTransaction consumes it before the single durable publish.
+            var withTransientHold = state.WithPendingCapacityPlans(state.PendingCapacityPlans.Concat(new[] { quote.Capacity }));
+            var result = ConceptionTransaction.Apply(withTransientHold, request, planner.Service);
+            if (result.State.PendingCapacityPlans.Any(p => p.ReservationId.Equals(request.ReservationId)))
+                throw new SaveIntegrityException("The stable breeding transaction left its temporary capacity hold behind.");
+            var saved = Publish(result.State, preserveCurrentAsBackup: true);
+            return new StoredConception(saved, saved.Conceptions.Single(c => c.Commit.BreedingCommitId.Equals(request.EventId)), false);
+        }
+
+        public StableSnapshot EnableStarterBreeding(OwnerId requester, ulong expectedRevision)
+        {
+            Check.NotNull(requester, nameof(requester)); using var held = Lock(); var current = RequirePrimary();
+            var markerPresent = current.Header.MigrationHistory.Contains(StableBreedingPlanner.StarterMigrationMarker, StringComparer.Ordinal);
+            if (markerPresent)
+            {
+                ValidateUpgradedStarterPair(current, requester);
+                return current;
+            }
+            if (!current.PlayerOwnerId.Equals(requester))
+                throw new StableCommandRejectedException("ownership", "Only the owner can enable starter breeding.");
+            if (current.Header.SaveRevision != expectedRevision)
+                throw new StableCommandRejectedException("stale_save", "The stable changed; reload before enabling breeding.");
+            if (current.Header.SaveMode != SaveMode.Sandbox || current.Header.GameBuildVersion != StableBreedingPlanner.GameBuildVersion
+                || current.Header.CalendarProfileVersion != StableBreedingPlanner.CalendarProfileVersion)
+                throw new StableCommandRejectedException("unsupported_save", "Starter breeding is available only in the stable-management Sandbox save.");
+            if (current.Horses.Count != 2 || current.Conceptions.Count != 0 || current.PendingCapacityPlans.Count != 0)
+                throw new StableCommandRejectedException("ambiguous_starters", "This save is not the untouched two-horse starter stable; no migration was applied.");
+
+            var seed = current.Header.RngStreams.Breeding.Seed;
+            var expectedJuniper = new Seed128(seed.High, seed.Low ^ 0x4a554e49504552UL);
+            var expectedMaple = new Seed128(seed.High ^ 0x4d41504c45UL, seed.Low);
+            var juniper = current.Horses.SingleOrDefault(h => h.AppearanceSeed == expectedJuniper);
+            var maple = current.Horses.SingleOrDefault(h => h.AppearanceSeed == expectedMaple);
+            if (juniper == null || maple == null || juniper.HorseId.Equals(maple.HorseId))
+                throw new StableCommandRejectedException("ambiguous_starters", "The starter identities do not match the saved founder markers; no migration was applied.");
+
+            foreach (var horse in current.Horses)
+            {
+                if (!horse.OwnerId.Equals(requester) || horse.HomeAssignment != HomeKind.ActiveStable
+                    || horse.OriginRecord != "stable-day-starter" || horse.OriginCommitId != null || horse.BirthDay.HasValue
+                    || horse.LifeState.Stage != LifeStage.Adult || horse.ReproductionState.Role != ReproductiveRole.NonBreeding
+                    || horse.ReproductionState.PregnancyId != null || horse.ReproductionState.RecoveryUntilDay != 0
+                    || horse.Parentage.ParentAId != null || horse.Parentage.ParentBId != null)
+                    throw new StableCommandRejectedException("ambiguous_starters", "This save contains breeding history or changed starter records; no migration was applied.");
+            }
+
+            var changed = current.Horses.Select(h =>
+            {
+                var role = h.AppearanceSeed == expectedJuniper ? ReproductiveRole.Mare : ReproductiveRole.Stallion;
+                var age = Math.Max(12, h.LifeState.DaysSinceConception);
+                return new HorseRecord(h.HorseId, h.Name, h.Parentage, h.Genome, h.ResolverVersion, h.AppearanceSeed, h.OwnerId,
+                    new LifeState(LifeStage.Adult, age, h.LifeState.VisualAge), new ReproductionState(role), h.DevelopmentalFactors,
+                    h.InheritedGamePotential, h.TrainingState, h.PlayerKnowledge, h.CosmeticState, h.HomeAssignment,
+                    h.OriginRecord, h.OriginCommitId, h.BirthDay, checked(h.Revision + 1));
+            }).ToArray();
+            var history = current.Header.MigrationHistory.Concat(new[] { StableBreedingPlanner.StarterMigrationMarker });
+            var header = SaveHeaders.Copy(current.Header, revision: checked(current.Header.SaveRevision + 1), history: history, payloadHash: "unwritten");
+            var migrated = new StableSnapshot(header, current.PlayerOwnerId, changed, current.OpeningCoinBalance,
+                current.CapacityRevision, current.Ledger, current.PendingCapacityPlans, current.Conceptions, current.DailyState,
+                current.LegacyLifecycleBaselines);
+            return Publish(migrated, preserveCurrentAsBackup: true);
+        }
+
+        private static void ValidateUpgradedStarterPair(StableSnapshot state, OwnerId requester)
+        {
+            if (!state.PlayerOwnerId.Equals(requester) || state.Header.SaveMode != SaveMode.Sandbox
+                || state.Header.GameBuildVersion != StableBreedingPlanner.GameBuildVersion
+                || state.Header.CalendarProfileVersion != StableBreedingPlanner.CalendarProfileVersion)
+                throw new StableCommandRejectedException("unsupported_save", "The starter breeding migration marker does not match a supported stable.");
+            var seed = state.Header.RngStreams.Breeding.Seed;
+            var juniper = new Seed128(seed.High, seed.Low ^ 0x4a554e49504552UL);
+            var maple = new Seed128(seed.High ^ 0x4d41504c45UL, seed.Low);
+            if (state.Horses.Count(h => h.OriginRecord == "stable-day-starter" && h.OwnerId.Equals(requester)
+                && h.AppearanceSeed == juniper && h.ReproductionState.Role == ReproductiveRole.Mare) != 1
+                || state.Horses.Count(h => h.OriginRecord == "stable-day-starter" && h.OwnerId.Equals(requester)
+                    && h.AppearanceSeed == maple && h.ReproductionState.Role == ReproductiveRole.Stallion) != 1)
+                throw new StableCommandRejectedException("invalid_migration_marker", "The saved starter migration marker is inconsistent with its founder records.");
+        }
         public StoredEndDay CommitEndDay(EndDayRequest request, StableDayService service)
         {
             Check.NotNull(request, nameof(request)); Check.NotNull(service, nameof(service)); using var held = Lock(); var state = RequirePrimary();

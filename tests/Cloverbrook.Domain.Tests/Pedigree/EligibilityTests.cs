@@ -82,5 +82,27 @@ namespace Cloverbrook.Domain.Tests
             var result = new BreedingEligibility().Evaluate(mare, sire, graph, Policy, 20, Event, Capacity(), 0, 0, 7);
             Assert.Equal(new Rational(1, 4), result.Relatedness.Coefficient); Assert.Contains(result.Rejections, r => r.Code == "relationship_policy");
         }
+
+        [Fact]
+        public void UnknownAncestryWarningDoesNotPermitKnownParentChildOrHalfSiblingPairings()
+        {
+            var parent = Mare(ancestry: new Parentage()); var missing = RecordContractTests.Id(900);
+            var child = FrozenFixtureData.Horse(FrozenFixtureData.Genome(), 2, ReproductiveRole.Stallion,
+                new Parentage(parent.HorseId, missing));
+            var parentGraph = new PedigreeGraph(new[] { new PedigreeNode(parent.HorseId, parent.Parentage), new PedigreeNode(child.HorseId, child.Parentage) });
+            var allowUnknown = new BreedingPolicy("test.allow-unknown.v1", new Rational(1, 8), allowUnknownAncestry: true);
+            var eligibility = new BreedingEligibility().Evaluate(parent, child, parentGraph, allowUnknown, 20, Event, Capacity(), 0, 0, 7);
+            Assert.Null(eligibility.Relatedness.Coefficient); Assert.Equal(new Rational(1, 4), eligibility.Relatedness.MinimumCoefficient);
+            Assert.Contains(eligibility.Warnings, issue => issue.Code == "unknown_ancestry");
+            Assert.Contains(eligibility.Rejections, issue => issue.Code == "relationship_policy");
+
+            var shared = RecordContractTests.Id(901); var otherA = RecordContractTests.Id(902); var otherB = RecordContractTests.Id(903);
+            var mare = FrozenFixtureData.Horse(FrozenFixtureData.Genome(), 3, parentage: new Parentage(shared, otherA), days: 12);
+            var stallion = FrozenFixtureData.Horse(FrozenFixtureData.Genome(), 4, ReproductiveRole.Stallion, new Parentage(shared, otherB));
+            var siblingGraph = new PedigreeGraph(new[] { new PedigreeNode(mare.HorseId, mare.Parentage), new PedigreeNode(stallion.HorseId, stallion.Parentage) });
+            var siblings = new BreedingEligibility().Evaluate(mare, stallion, siblingGraph, allowUnknown, 20, Event, Capacity(), 0, 0, 7);
+            Assert.Equal(new Rational(1, 8), siblings.Relatedness.MinimumCoefficient);
+            Assert.Contains(siblings.Rejections, issue => issue.Code == "relationship_policy");
+        }
     }
 }

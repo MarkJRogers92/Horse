@@ -1,0 +1,20 @@
+{
+  "sourceCommit": "ac5695b1d52f5cedcabe6db1dbc1de7da5c4c855",
+  "generator": "Unmodified normal Stable Day bootstrap and actual Godot Metal stable-day capture; no demo or reconstructed test pregnancy.",
+  "gameDllSha256": "ab0c5113a2a6db3825a033d3260ab61c7e5a2d2603c7d1132d30f28fa7211234",
+  "domainDllSha256": "32fc132687e4f28c1b8e5d1d6e36691b8a7cdf672b7d850ac0d15a2ff9ab0b18",
+  "fixtures": [
+    {
+      "file": "old_management_initial_v3.clvr",
+      "sha256": "e3cce4d5725165f8f587f851840cb252dc6704727b22239571b0e4098865491d",
+      "bytes": 4721,
+      "wireVersion": 3
+    },
+    {
+      "file": "old_management_care_v3.clvr",
+      "sha256": "1f4f2919517e8d95074310c946f9a8642b61e12fd71673aaffc9c3b6bf5248de",
+      "bytes": 5471,
+      "wireVersion": 3
+    }
+  ]
+}

@@ -1,6 +1,12 @@
 # Playtest the stable day
 
-Open the game and choose **Manage stable**. This prototype starts a new management slot with two adult horses, Juniper and Maple, and 500 coins. It uses the shared domain save format and store. Opening this screen again loads the same slot.
+Open the game and choose **Manage stable**. A new management slot starts with mature Juniper (mare), Maple (stallion), and 500 coins. Opening this screen again loads the same saved stable. Existing original starter saves keep their horses, names, genetics, care, wallet and calendar while a one-time compatibility upgrade enables the pair.
+
+In **Breeding**, choose the saved mare and stallion, then **Review pairing**. Check the 50-coin fee, remaining wallet, four-day due date, ancestry warning and space reserved through adulthood. **Cancel** returns without charging, drawing a foal or reserving space. **Confirm · 50 coins** saves the pregnancy and the same permanent child together with its fee and future home allocation. Reload or reopen the game to check the pregnancy remains.
+
+This prototype protects four eventual home places. Each owned horse, including an unborn or growing foal, already uses one; an existing child's saved reservation is not counted twice. Pairing needs a remaining place and 50 coins. A pregnant or recovering mare, a horse below breeding age, a recorded close relative, incompatible save data or a full stable has a visible blocked review. Unknown starter ancestry is shown as a warning; the game does not claim the pair is proved unrelated or reveal hidden genetic results.
+
+End four days to meet the foal in this same normal save. Name **New foal** in the roster, reload, then continue to youngster after three more days and adulthood after six. Breeding age is birth +8 and mare recovery ends at birth +2. An uncertain conception save retains **Retry saved breeding**, which uses the exact command and cannot create a second foal or fee. Other save-changing controls pause until that result is resolved. The separately saved **Foaling demo** remains an optional example.
 
 Feed and fresh bedding are included for each locally owned horse in the active stable. Choose optional turnout or grooming, then select **Review day**. The review shows the day's care, upkeep, any assistance, and the wallet balance after payment. **Keep planning** returns without advancing time. **End day** saves the care, payment, and one calendar day together.
 
@@ -8,7 +14,7 @@ Two active horses cost 36 coins per day: 6 for each horse and 24 for the stable.
 
 Each season has 28 days. Time advances only when you confirm End day; closing the game does not advance time. **Reload save** checks the saved state. An interrupted save keeps the exact pending request available through **Retry saved day**, which cannot charge for the same completed day twice. A verified backup requires an explicit restore before further changes.
 
-The management slot is `user://stable-management/stable.clvr`; verification runs use a separate temporary path. This is a sandbox playtest and does not enable the unreleased breeding/visual catalog. Care currently has four simple scores: nutrition, bedding, turnout, and grooming. It does not yet affect training, fatigue, racing, or breeding.
+The management slot is `user://stable-management/stable.clvr`; verification runs use a separate temporary path. Saved pairing uses D-006's explicit text-only Sandbox policy, with canonical inheritance and supported genetic closure. Production visual approvals remain unchanged. Care currently has four simple scores: nutrition, bedding, turnout, and grooming. It does not yet affect training, fatigue, racing, or breeding eligibility.
 
 Choose **Foaling demo** to try a previously committed pregnancy in a separate saved stable. This leaves the normal management slot intact. The example begins with Juniper expecting a foal in four completed days, Maple as the other recorded parent, and 450 coins after the historical conception fee. Reopening the demo continues its saved progress.
 

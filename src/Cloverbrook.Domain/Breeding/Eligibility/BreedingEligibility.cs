@@ -143,7 +143,7 @@ namespace Cloverbrook.Domain
                 var issue = new EligibilityIssue("unknown_ancestry", relatedness.Qualification);
                 if (policy.AllowUnknownAncestry) warnings.Add(issue); else errors.Add(issue);
             }
-            else if (relatedness.Coefficient!.Value >= policy.BlockKinshipAtOrAbove)
+            if (relatedness.MinimumCoefficient >= policy.BlockKinshipAtOrAbove)
                 errors.Add(new EligibilityIssue("relationship_policy", "This pair exceeds the selected game's relatedness policy; choose a less-related mate."));
             if (capacityPlan == null) errors.Add(new EligibilityIssue("capacity_missing", "Reserve foaling and future housing capacity before committing this pairing."));
             else

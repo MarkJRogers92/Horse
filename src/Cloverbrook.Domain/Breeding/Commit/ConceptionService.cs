@@ -91,8 +91,19 @@ namespace Cloverbrook.Domain
     }
     public sealed class ConceptionService
     {
+        private readonly bool textOnlySandboxSupport;
         public ConceptionService(BreedingPolicy policy, ConceptionTerms terms, CoatSupportMatrix matrix)
-        { Policy = Check.NotNull(policy, nameof(policy)); Terms = Check.NotNull(terms, nameof(terms)); Matrix = Check.NotNull(matrix, nameof(matrix)); }
+            : this(policy, terms, matrix, textOnlySandboxSupport: false) { }
+        internal ConceptionService(BreedingPolicy policy, ConceptionTerms terms, CoatSupportMatrix matrix, bool textOnlySandboxSupport)
+        {
+            Policy = Check.NotNull(policy, nameof(policy)); Terms = Check.NotNull(terms, nameof(terms)); Matrix = Check.NotNull(matrix, nameof(matrix));
+            this.textOnlySandboxSupport = textOnlySandboxSupport;
+            if (textOnlySandboxSupport && (policy.Version != StableBreedingPlanner.PolicyVersion || terms.Version != StableBreedingPlanner.TermsVersion
+                || terms.CostCoins != StableBreedingPlanner.CostCoins || policy.PregnancyDays != 4 || policy.FoalDays != 3
+                || policy.YoungsterDays != 3 || policy.BreedableDay != 12 || !policy.AllowUnknownAncestry
+                || policy.BlockKinshipAtOrAbove != new Rational(1, 8)))
+                throw new ArgumentException("The text-only sandbox policy must use the pinned prototype terms.");
+        }
         public BreedingPolicy Policy { get; }
         public ConceptionTerms Terms { get; }
         public CoatSupportMatrix Matrix { get; }
@@ -106,6 +117,9 @@ namespace Cloverbrook.Domain
             Reject(actualCapacityRevision != request.ExpectedCapacityRevision || confirmedCapacity.CapacityRevision != actualCapacityRevision, "stale_capacity", "Capacity changed; refresh the confirmed hold.");
             Reject(!confirmedCapacity.ReservationId.Equals(request.ReservationId), "reservation", "Use this command's confirmed reservation.");
             Reject(request.TermsVersion != Terms.Version, "stale_terms", "The breeding quote changed; review the current terms.");
+            if (textOnlySandboxSupport)
+                Reject(StableBreedingPlanner.PolicyGateProblems(header).Length != 0,
+                    "sandbox_policy", string.Join("; ", StableBreedingPlanner.PolicyGateProblems(header)));
             Reject(availableCoins < Terms.CostCoins, "funds", "Insufficient coins; nothing was charged.");
             Reject(header.ActiveVariantCatalogVersion != CoreGeneticsCatalog.CatalogVersion || header.ActiveInheritanceModelVersion != CoreGeneticsCatalog.InheritanceVersion ||
                 header.DefaultOffspringResolverVersion != CoreGeneticsCatalog.ResolverVersion, "unsupported_versions", "This save needs its versioned genetics implementation; no implicit migration.");
@@ -119,13 +133,14 @@ namespace Cloverbrook.Domain
             var eligibility = new BreedingEligibility().Evaluate(a, b, pedigree, Policy, header.CalendarDay, request.EventId, confirmedCapacity,
                 request.ExpectedParentARevision, request.ExpectedParentBRevision, actualCapacityRevision);
             Reject(!eligibility.IsEligible, "eligibility", string.Join("; ", eligibility.Rejections.Select(i => i.Message)));
-            var closure = LiveCatalogCoatGuard.Check(horses, Matrix);
-            Reject(!closure.IsSupported, "unreleased_catalog", "Live coat closure failed: " + string.Join("; ", closure.Reasons));
+            var closure = textOnlySandboxSupport ? StableBreedingPlanner.CheckGeneticClosure(horses) : LiveCatalogCoatGuard.Check(horses, Matrix);
+            Reject(!closure.IsSupported, textOnlySandboxSupport ? "genetic_closure" : "unreleased_catalog",
+                (textOnlySandboxSupport ? "Complete genetic closure failed: " : "Live coat closure failed: ") + string.Join("; ", closure.Reasons));
             var eventIndex = checked(stream.EventCounter + 1); var eventSeed = Seeds.Derive(stream.Seed, "breeding/event", eventIndex);
             var idScope = Canonical.Hash(header.SaveId.ToString(), eventIndex.ToString(CultureInfo.InvariantCulture));
             var childId = new HorseId(Guid.ParseExact(Canonical.Hash("conception/horse", idScope).Substring(0, 32), "N"));
             Reject(map.ContainsKey(childId), "identity_collision", "The derived unborn identity already exists; investigate save integrity.");
-            var transactionId = new TransactionId(Guid.ParseExact(Canonical.Hash("conception/cost", idScope).Substring(0, 32), "N"));
+            var transactionId = CostTransactionId(header, eventIndex);
             var draft = new MeiosisService(CoreGeneticsCatalog.Model).CreateDraft(a, b, eventSeed);
             var development = GameTraitResolver.CreateDevelopment(draft.DevelopmentSeed); var traits = GameTraitResolver.Resolve(draft.Genome, development);
             var role = new CounterRng(eventSeed, "offspring/reproductive-role").Chance(Rational.Half) ? ReproductiveRole.Mare : ReproductiveRole.Stallion;
@@ -135,6 +150,12 @@ namespace Cloverbrook.Domain
             var commit = new BreedingCommit(request.EventId, a, b, unborn, draft.GameteA, draft.GameteB, eventSeed, eventIndex, header.CalendarDay,
                 checked(header.CalendarDay + Policy.PregnancyDays), header.CalendarProfileVersion, new[] { confirmedCapacity.ReservationId }, transactionId, Policy.Version);
             return new PreparedConception(request, Terms, confirmedCapacity, a, b, unborn, commit, stream);
+        }
+
+        internal static TransactionId CostTransactionId(SaveHeader header, ulong eventIndex)
+        {
+            var scope = Canonical.Hash(header.SaveId.ToString(), eventIndex.ToString(CultureInfo.InvariantCulture));
+            return new TransactionId(Guid.ParseExact(Canonical.Hash("conception/cost", scope).Substring(0, 32), "N"));
         }
     }
 }

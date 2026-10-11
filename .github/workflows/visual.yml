@@ -102,6 +102,16 @@ jobs:
           timeout 180 xvfb-run -a -s "-screen 0 1280x720x24" $G --path game --rendering-driver vulkan --resolution 1280x720 res://scenes/stable_day.tscn -- --stable-lifecycle-capture="$PWD/evidence/stable-lifecycle" --save-path="$RUNNER_TEMP/stable-lifecycle/stable.clvr" 2>&1 | tee evidence/stable-lifecycle/capture.log
           grep -q "\[stable-lifecycle-capture\] OK" evidence/stable-lifecycle/capture.log
 
+      - name: Verify normal saved-stable breeding, birth, naming, and growth
+        env:
+          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+        run: |
+          set -o pipefail
+          mkdir -p evidence
+          timeout 180 xvfb-run -a -s "-screen 0 1280x720x24" $G --path game --rendering-driver vulkan --resolution 1280x720 res://scenes/stable_day.tscn -- --stable-breeding-capture="$PWD/evidence/stable-breeding" --save-path="$RUNNER_TEMP/stable-breeding/stable.clvr" 2>&1 | tee evidence/stable-breeding-capture.log
+          grep -q "\[stable-breeding-capture\] OK" evidence/stable-breeding-capture.log
+          cp evidence/stable-breeding-capture.log evidence/stable-breeding/capture.log
+
       - name: Render evidence
         env:
           VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json

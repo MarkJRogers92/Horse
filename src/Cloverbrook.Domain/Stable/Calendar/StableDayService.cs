@@ -49,7 +49,8 @@ namespace Cloverbrook.Domain
                     if (!commits.TryGetValue(horse.HorseId, out var ageOrigin)) return Block(from, "A committed foal has no reliable conception record.");
                     if (ageOrigin.Commit.CalendarProfileVersion != calendar.ProfileVersion)
                         return Block(from, "This horse was conceived under a calendar profile the current game cannot safely interpret.");
-                    if (ageOrigin.Commit.CompatibilityRuleVersion != "cozy.policy.v1")
+                    if (ageOrigin.Commit.CompatibilityRuleVersion != "cozy.policy.v1"
+                        && ageOrigin.Commit.CompatibilityRuleVersion != StableBreedingPlanner.PolicyVersion)
                         return Block(from, "This horse uses breeding rules the current game cannot safely interpret.");
                     try
                     {

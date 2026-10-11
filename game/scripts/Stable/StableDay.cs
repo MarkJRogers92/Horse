@@ -31,6 +31,7 @@ public partial class StableDay : Node
     private bool _foalingDemoMode;
     private string? _captureOutput;
     private string? _lifecycleCaptureOutput;
+    private string? _breedingCaptureOutput;
     private Label _season = null!, _wallet = null!, _status = null!;
     private VBoxContainer _roster = null!, _care = null!;
     private Button _reviewButton = null!, _retryButton = null!, _reloadButton = null!, _backButton = null!, _foalingDemoButton = null!;
@@ -49,6 +50,7 @@ public partial class StableDay : Node
         BuildUi();
         _captureOutput = args.FirstOrDefault(a => a.StartsWith("--stable-day-capture=", StringComparison.Ordinal))?["--stable-day-capture=".Length..];
         _lifecycleCaptureOutput = args.FirstOrDefault(a => a.StartsWith("--stable-lifecycle-capture=", StringComparison.Ordinal))?["--stable-lifecycle-capture=".Length..];
+        _breedingCaptureOutput = args.FirstOrDefault(a => a.StartsWith("--stable-breeding-capture=", StringComparison.Ordinal))?["--stable-breeding-capture=".Length..];
         if (args.Contains("--stable-day-smoke"))
         {
             _ = RunSmokeAsync();
@@ -59,14 +61,26 @@ public partial class StableDay : Node
         {
             if (_lifecycleCaptureOutput != null)
             {
-                if (!args.Any(a => a == "--save-path" || a.StartsWith("--save-path=", StringComparison.Ordinal)))
+                if (!HasExplicitSavePath(args))
                     throw new InvalidOperationException("Lifecycle capture requires an explicit fresh --save-path so it cannot advance a real demo slot.");
-                if (File.Exists(_store.SavePath) || File.Exists(_store.BackupPath))
+                if (File.Exists(_store.SavePath) || Directory.Exists(_store.SavePath) || File.Exists(_store.BackupPath))
                     throw new InvalidOperationException("Lifecycle capture save path already exists. Choose a new isolated path; existing saves are never replaced.");
+            }
+            if (_breedingCaptureOutput != null)
+            {
+                if (_foalingDemoMode) throw new InvalidOperationException("Breeding capture uses the normal starter stable, not the foaling demo.");
+                if (!HasExplicitSavePath(args))
+                    throw new InvalidOperationException("Breeding capture requires an explicit fresh --save-path so it cannot advance a real stable.");
+                if (File.Exists(_store.SavePath) || Directory.Exists(_store.SavePath) || File.Exists(_store.BackupPath))
+                    throw new InvalidOperationException("Breeding capture save path already exists. Choose a new isolated path; existing saves are never replaced.");
+                var captureDirectory = Path.GetFullPath(_breedingCaptureOutput);
+                if (Directory.Exists(captureDirectory) || File.Exists(captureDirectory))
+                    throw new InvalidOperationException("Breeding capture output must be a fresh path that does not exist yet.");
             }
             LoadOrCreate();
             Refresh();
             if (_lifecycleCaptureOutput != null) _ = RunLifecycleCaptureAsync(_lifecycleCaptureOutput);
+            else if (_breedingCaptureOutput != null) _ = RunBreedingCaptureAsync(_breedingCaptureOutput);
             else if (_captureOutput != null) _ = RunCaptureAsync(_captureOutput);
         }
         catch (Exception ex)
@@ -88,11 +102,25 @@ public partial class StableDay : Node
         return ProjectSettings.GlobalizePath(foalingDemo ? FoalingDemoSavePath : DefaultSavePath);
     }
 
+    private static bool HasExplicitSavePath(IReadOnlyList<string> args)
+    {
+        for (var i = 0; i < args.Count; i++)
+        {
+            if (args[i].StartsWith("--save-path=", StringComparison.Ordinal))
+                return args[i]["--save-path=".Length..].Trim().Length > 0;
+            if (args[i] == "--save-path")
+                return i + 1 < args.Count && !string.IsNullOrWhiteSpace(args[i + 1])
+                    && !args[i + 1].StartsWith("--", StringComparison.Ordinal);
+        }
+        return false;
+    }
+
     private void LoadOrCreate()
     {
         if (File.Exists(_store.SavePath) || File.Exists(_store.BackupPath))
         {
             ApplyLoadedState(_store.Load());
+            EnableStarterBreedingIfSafe();
             return;
         }
 
@@ -118,11 +146,29 @@ public partial class StableDay : Node
         {
             _state = _store.Initialize(StableDayBootstrap.Create(_service));
             SetStatus("Welcome. Your new stable is ready for its first day.");
+            EnableStarterBreedingIfSafe();
         }
         catch (InvalidOperationException)
         {
             // Another instance may have created the same slot after the presence check.
             ApplyLoadedState(_store.Load());
+            EnableStarterBreedingIfSafe();
+        }
+    }
+
+    private void EnableStarterBreedingIfSafe()
+    {
+        if (_foalingDemoMode || _recoveryRequired || _state == null) return;
+        try
+        {
+            _state = _store.EnableStarterBreeding(_state.PlayerOwnerId, _state.Header.SaveRevision);
+            _breedingUnavailableReason = null;
+        }
+        catch (Exception ex)
+        {
+            // This one-time path only recognizes the exact starter founders. A
+            // rejected candidate remains readable and is never replaced.
+            _breedingUnavailableReason = "Starter breeding is unavailable for this saved stable. " + PlainError(ex);
         }
     }
 
@@ -153,7 +199,7 @@ public partial class StableDay : Node
 
     private void OpenFoalingDemo()
     {
-        if (_busy || _pendingRequest != null || _recoveryRequired) return;
+        if (_busy || _pendingRequest != null || _pendingBreedingRequest != null || _recoveryRequired) return;
         try
         {
             _foalingDemoMode = true;
@@ -247,6 +293,7 @@ public partial class StableDay : Node
         _care = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
         _care.AddThemeConstantOverride("separation", 8);
         careScroll.AddChild(_care);
+        BuildBreedingUi(careBox, root);
 
         var footer = new HBoxContainer(); footer.AddThemeConstantOverride("separation", 10);
         var leftActions = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
@@ -408,13 +455,14 @@ public partial class StableDay : Node
 
         if (_recoveryRequired) SetStatus("A verified backup needs your acknowledgment before the stable can be changed.");
         SetControlsEnabled(!_busy && !_recoveryRequired);
-        _reviewButton.Disabled = _busy || _recoveryRequired || _pendingRequest != null || _state.Horses.Count == 0;
+        _reviewButton.Disabled = _busy || _recoveryRequired || _pendingRequest != null || _pendingBreedingRequest != null || _state.Horses.Count == 0;
         _retryButton.Visible = _pendingRequest != null;
         _retryButton.Disabled = _busy || _recoveryRequired;
-        _reloadButton.Disabled = _busy || _pendingRequest != null;
+        _reloadButton.Disabled = _busy || _pendingRequest != null || _pendingBreedingRequest != null;
         foreach (var toggle in _optionalToggles) toggle.Disabled = _busy || _recoveryRequired;
         _foalingDemoButton.Text = _foalingDemoMode ? "Foaling demo · active" : "Foaling demo";
-        _foalingDemoButton.Disabled = _busy || _foalingDemoMode || _pendingRequest != null || _recoveryRequired;
+        _foalingDemoButton.Disabled = _busy || _foalingDemoMode || _pendingRequest != null || _pendingBreedingRequest != null || _recoveryRequired;
+        RefreshBreedingUi();
     }
 
     private string ParentNames(HorseRecord horse)
@@ -505,7 +553,7 @@ public partial class StableDay : Node
 
     private void ShowReview()
     {
-        if (_state == null || _busy || _recoveryRequired || _pendingRequest != null) return;
+        if (_state == null || _busy || _recoveryRequired || _pendingRequest != null || _pendingBreedingRequest != null) return;
         try
         {
             _reviewedPlan = CurrentPlan();
@@ -555,6 +603,7 @@ public partial class StableDay : Node
     private void ConfirmReviewedDay()
     {
         if (_state == null || !_reviewOverlay.Visible || _preview?.Allowed != true || _reviewedPlan == null
+            || _pendingBreedingRequest != null
             || _reviewedRevision != _state.Header.SaveRevision || _reviewedDay != _state.Header.CalendarDay)
         {
             _reviewOverlay.Visible = false;
@@ -627,6 +676,7 @@ public partial class StableDay : Node
             var candidate = _recoveryCandidate.State;
             _state = _store.RecoverFromBackup(candidate.Header.SaveId, candidate.Header.SaveRevision, candidate.Header.PayloadHash).State;
             _recoveryRequired = false; _recoveryCandidate = null; _pendingRequest = null;
+            EnableStarterBreedingIfSafe();
             SetStatus("The verified backup was restored. The stable is ready again.");
             Refresh();
         }
@@ -638,12 +688,13 @@ public partial class StableDay : Node
 
     private void ReloadState()
     {
-        if (_busy || _pendingRequest != null) return;
+        if (_busy || _pendingRequest != null || _pendingBreedingRequest != null) return;
         ClearReviewedPlan();
         try
         {
             var loaded = _store.Load();
             ApplyLoadedState(loaded);
+            EnableStarterBreedingIfSafe();
             if (!loaded.NeedsRecoveryAcknowledgment) SetStatus("The current saved stable was reloaded.");
             Refresh();
         }
@@ -655,7 +706,7 @@ public partial class StableDay : Node
 
     private async Task RenameFoalAsync(HorseId horseId, string requestedName)
     {
-        if (_state == null || _busy || _recoveryRequired || _pendingRequest != null) return;
+        if (_state == null || _busy || _recoveryRequired || _pendingRequest != null || _pendingBreedingRequest != null) return;
         var name = requestedName.Trim();
         if (name.Length == 0)
         {
@@ -904,6 +955,8 @@ public partial class StableDay : Node
     private void SetControlsEnabled(bool enabled)
     {
         foreach (var button in new[] { _reviewButton, _retryButton, _reloadButton, _backButton, _foalingDemoButton })
+            if (GodotObject.IsInstanceValid(button)) button.Disabled = !enabled;
+        foreach (var button in new BaseButton[] { _marePicker, _stallionPicker, _planBreedingButton, _retryBreedingButton })
             if (GodotObject.IsInstanceValid(button)) button.Disabled = !enabled;
         foreach (var toggle in _optionalToggles)
             if (GodotObject.IsInstanceValid(toggle)) toggle.Disabled = !enabled;

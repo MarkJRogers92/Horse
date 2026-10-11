@@ -86,7 +86,7 @@ namespace Cloverbrook.Domain
             var traits = ranges.Select(p => new TraitForecast(p.Key, p.Value.Min, p.Value.Max, p.Value.Min == p.Value.Max
                 ? new[] { new Weighted<int>(p.Value.Min, Rational.One) } : Array.Empty<Weighted<int>>()));
             var relatedness = publicPedigree?.ProposedOffspringInbreeding(a.HorseId, b.HorseId)
-                ?? new KinshipResult(null, "no-public-pedigree");
+                ?? new KinshipResult(null, Rational.Zero, "no-public-pedigree");
             return new BreedingForecast(coat, variants, traits, relatedness);
         }
         public BreedingForecast Hypothetical(GenomeSnapshot a, GenomeSnapshot b, ForecastOptions? options = null)

@@ -71,6 +71,52 @@ namespace Cloverbrook.Domain.Tests
             Assert.Null(new PedigreeGraph(new[] { a, b }).Kinship(a.HorseId, b.HorseId).Coefficient);
             Assert.Throws<ArgumentException>(() => new PedigreeGraph(new[] { a, a }));
         }
+
+        [Fact]
+        public void UnknownPedigreeKeepsExactValueUnknownButProvesMinimumKinshipFromNamedEdges()
+        {
+            var parent = RecordContractTests.Id(20); var child = RecordContractTests.Id(21);
+            var missingOtherParent = RecordContractTests.Id(22);
+            var parentChild = new PedigreeGraph(new[]
+            {
+                new PedigreeNode(parent, new Parentage()),
+                new PedigreeNode(child, new Parentage(parent, missingOtherParent))
+            });
+            var childParent = parentChild.Kinship(parent, child);
+            Assert.Null(childParent.Coefficient); Assert.Equal(new Rational(1, 4), childParent.MinimumCoefficient);
+            Assert.Equal(childParent.MinimumCoefficient, parentChild.Kinship(child, parent).MinimumCoefficient);
+
+            var sharedSire = RecordContractTests.Id(23); var damA = RecordContractTests.Id(24); var damB = RecordContractTests.Id(25);
+            var halfSibA = RecordContractTests.Id(26); var halfSibB = RecordContractTests.Id(27);
+            var halfSiblings = new PedigreeGraph(new[]
+            {
+                new PedigreeNode(halfSibB, new Parentage(sharedSire, damB)),
+                new PedigreeNode(damA, new Parentage()), new PedigreeNode(sharedSire, new Parentage()),
+                new PedigreeNode(halfSibA, new Parentage(sharedSire, damA)), new PedigreeNode(damB, new Parentage())
+            });
+            var halfResult = halfSiblings.Kinship(halfSibA, halfSibB);
+            Assert.Null(halfResult.Coefficient); Assert.Equal(new Rational(1, 8), halfResult.MinimumCoefficient);
+
+            var sharedDam = RecordContractTests.Id(28); var fullSibA = RecordContractTests.Id(29); var fullSibB = RecordContractTests.Id(30);
+            var fullSiblings = new PedigreeGraph(new[]
+            {
+                new PedigreeNode(fullSibA, new Parentage(sharedSire, sharedDam)),
+                new PedigreeNode(fullSibB, new Parentage(sharedDam, sharedSire)),
+                new PedigreeNode(sharedSire, new Parentage()), new PedigreeNode(sharedDam, new Parentage())
+            });
+            var fullResult = fullSiblings.Kinship(fullSibA, fullSibB);
+            Assert.Null(fullResult.Coefficient); Assert.Equal(new Rational(1, 4), fullResult.MinimumCoefficient);
+            Assert.Equal(fullResult.MinimumCoefficient, fullSiblings.Kinship(fullSibB, fullSibA).MinimumCoefficient);
+        }
+
+        [Fact]
+        public void UndeclaredFounderRootsRemainIncompleteWithZeroMinimum()
+        {
+            var a = RecordContractTests.Id(31); var b = RecordContractTests.Id(32);
+            var graph = new PedigreeGraph(new[] { new PedigreeNode(a, new Parentage()), new PedigreeNode(b, new Parentage()) });
+            var result = graph.Kinship(a, b);
+            Assert.False(result.IsComplete); Assert.Null(result.Coefficient); Assert.Equal(Rational.Zero, result.MinimumCoefficient);
+        }
         [Fact]
         public void FullRecordedAncestrySurvivesBeyondTheFiveGenerationUi()
         {
