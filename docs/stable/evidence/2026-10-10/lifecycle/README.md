@@ -16,4 +16,4 @@ Saved calendar days are zero-based; screenshots display day +1. This is a text-b
 
 An earlier suite attempt had one obsolete future-wire test target (3 had become current). It was corrected to current version +1; the successful final TRX supersedes that attempt. The runtime evidence here uses the final repaired implementation.
 
-GitHub verification will be recorded after the implementation push.
+Implementation `80076b0` passed [domain run 38109572283](https://github.com/MarkJRogers92/Horse/actions/runs/38109572283) (downloaded TRX: 178/178, no skips). The entire [game/visual run 38109572317](https://github.com/MarkJRogers92/Horse/actions/runs/38109572317) passed, including build/import/startup, ordinary stable-day and birth/name/growth/reload checks. Downloaded CI lifecycle images/log show day 22; the existing render batch completed with zero failures. Exact metadata and TRX are in `ci-80076b0/`. No horse visual or matrix approval is implied.

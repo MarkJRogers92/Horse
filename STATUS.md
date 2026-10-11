@@ -1,7 +1,7 @@
 # Project status / checkpoint
 
-**Last updated:** 2026-10-10 by GPT (P2-07 saved births and foal growth locally verified).
-**Phase:** P2-07 births, naming and foal → youngster → adult growth extend the existing End Day slice. Final local domain suite passed 178/178; actual Godot lifecycle and stable-day regression flows passed. Implementation CI is pending push. Prior P2-02 domain and full game/visual CI at `00aa158` completed successfully. Static adult/foal assets and animation work remain frozen.
+**Last updated:** 2026-10-10 by GPT (P2-07 saved births and foal growth verified locally and in CI).
+**Phase:** P2-07 births, naming and foal → youngster → adult growth extend the existing End Day slice. Final local domain suite passed 178/178; actual Godot lifecycle and stable-day regression flows passed. Implementation `80076b0` passed full domain and game/visual CI. Prior P2-02 domain and full game/visual CI at `00aa158` completed successfully. Static adult/foal assets and animation work remain frozen.
 **Branch:** `claude/godot-horse-visual-pilot` (domain checkpoint history below originated on `claude/great-euler-hq83x3`).
 
 ## Current gameplay state — stable day, births and foal growth
@@ -14,7 +14,7 @@ Current local acceptance: 178/178 full Release tests with zero failures/skips; z
 
 This is a committed-conception text playtest, not a released breeding catalog or full facility capacity manager. Inventory, income, training/race effects, home transfers and breeding planning remain later packages. Horse visuals and animations are untouched.
 
-Prior stable-day implementation at `00aa158` passed [domain run 38107022812](https://github.com/MarkJRogers92/Horse/actions/runs/38107022812), 165/165, and the entire [game/visual run 38107022813](https://github.com/MarkJRogers92/Horse/actions/runs/38107022813). The birth/growth implementation's GitHub run will be recorded after push.
+Prior stable-day implementation at `00aa158` passed [domain run 38107022812](https://github.com/MarkJRogers92/Horse/actions/runs/38107022812), 165/165, and the entire [game/visual run 38107022813](https://github.com/MarkJRogers92/Horse/actions/runs/38107022813). Implementation `80076b0` passed [domain run 38109572283](https://github.com/MarkJRogers92/Horse/actions/runs/38109572283) (downloaded TRX: 178/178, no skips). The entire [game/visual run 38109572317](https://github.com/MarkJRogers92/Horse/actions/runs/38109572317) passed, including build/import/startup, ordinary stable-day and birth/name/growth/reload checks. Downloaded CI lifecycle images/log show day 22; the existing render batch completed with zero failures. Exact metadata and TRX are in `ci-80076b0/`. No horse visual or matrix approval is implied.
 
 ## Current visual state — static adult and foal restored
 
@@ -37,7 +37,7 @@ Remote evidence: [visual run 38099550595](https://github.com/MarkJRogers92/Horse
 | P1-09 numeric/rolling-backup regressions | 51f26128 preserved: 138/138 CI; final suite 147/147 |
 | Public query API + integration/performance | Complete: a15266e3, 147/147 in CI run 38094410593 and local macOS |
 | P2-02 calendar / care / operating-cost prototype | Bounded slice verified: 165/165 local + Linux CI; real Godot screen/pointer checks; CI build/import/startup/stable-day checks passed at 00aa158 |
-| P2-07 saved births / naming / foal growth | Bounded committed-conception slice locally verified: 178/178, actual saved Godot lifecycle and mouse checks; implementation CI pending push |
+| P2-07 saved births / naming / foal growth | Bounded committed-conception slice locally verified: 178/178, actual saved Godot lifecycle and mouse checks; 178/178 Linux CI plus the complete game/visual job passed at 80076b0 |
 
 ## Coordination / accepted decisions
 Mark leads integration. Concurrent persistence checkpoints c8d4eb93/714e92d9/30bee9ea/51f26128 and unified forecasts fa67666b are preserved. The public query API uses that single codec/store. Use expected-head non-forced pushes and read current STATUS. One canonical horse/RNG/resolver/save system.
@@ -63,6 +63,8 @@ All listed jobs passed the frozen-spec validator and Release dotnet test. Older 
 | Atomic store / headless end-to-end | 30bee9ea | 38094043405 / 114336150637 | 134/134 | 11685635596 |
 | Numeric/rolling-backup boundaries | 51f26128 | 38094262761 | 138/138 | successful test-results artifact |
 | Public API + final combined proof | a15266e3 | [38094410593](https://github.com/MarkJRogers92/Horse/actions/runs/38094410593) / 114337226950 | 147/147 | 11685351742 |
+| P2-07 birth/growth combined proof | 80076b0 | [domain run 38109572283](https://github.com/MarkJRogers92/Horse/actions/runs/38109572283) / 114382148586 | 178/178 | 11690753023 |
+
 Latest verified descriptor artifact: 11685376690 (run 38094410593). Initial P1-07 CS0119 was fixed before these green runs; no failed build was called a pass.
 
 ## Completion handoff — P1-07/P1-09 implemented scope
@@ -126,4 +128,4 @@ Latest verified descriptor artifact: 11685376690 (run 38094410593). Initial P1-0
 - Wire/schema v3 stores lifecycle receipts and per-horse legacy baselines. Old receipt hashes/history and four streams remain intact. New births require durable evidence; generic saves cannot rewrite lifecycle or captured provenance. Supported policy is cozy.policy.v1/calendar.v1; other versions block EndDay before costs. Missing anchors and overdue transitions block visibly.
 - The text screen adds an embedded separate foaling slot, pregnancy/recovery/milestones, newborn-first roster, saved naming for all born offspring and scrollable history. Normal stable files are preserved. The fixture derives from TEST-ONLY historical conception; no real catalog is enabled.
 - Parent final verification: 178/178 full Release, no failures/skips; warnings-as-errors game build with zero warnings/errors; seven Metal lifecycle and three ordinary stable images; actual mouse cancel/double-confirm/name/reload/menu/Quit; saved-state verifier; validator/whitespace; all 144 frozen tracked blobs unchanged. Native Sol actual-diff persistence review and independent UI review found no remaining blocker. Evidence: `docs/stable/evidence/2026-10-10/lifecycle/`.
-- Capacity is one offspring obligation using its original committed hold; facility/home management is later work. No models, shaders, catalog approvals, animations, frozen handoff files, purchases, platform release or other-branch merge changed. Implementation CI is pending the authorized push.
+- Capacity is one offspring obligation using its original committed hold; facility/home management is later work. No models, shaders, catalog approvals, animations, frozen handoff files, purchases, platform release or other-branch merge changed. Implementation `80076b0` passed full domain and game/visual CI. Exact downloaded domain evidence and game-step metadata are committed with the handoff.
