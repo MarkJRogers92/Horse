@@ -11,7 +11,7 @@ public sealed record CoatRecipe(string Label, Color Body, Color Points, float Po
 public sealed record HairRecipe(Color Color, Color Tip);
 public sealed record SkinRecipe(Color Color, float NoseAmount);
 public sealed record EyeRecipe(Color Iris, Color Ring);
-public sealed record MeshFamily(string Scene, bool Placeholder, string Age);
+public sealed record MeshFamily(string Scene, bool Placeholder, string Age, string HairGeometry = "cards", string? Limitation = null, Vector3? HeadViewTarget = null);
 
 /// <summary>Result of checking a descriptor against what this renderer can actually draw.</summary>
 public sealed record VisualSupport(bool Supported, IReadOnlyList<string> Problems, IReadOnlyList<string> Limitations)
@@ -54,7 +54,11 @@ public sealed class VisualCatalog
         foreach (var l in r.GetProperty("implementedLayers").EnumerateArray()) cat.ImplementedLayers.Add(l.GetString()!);
         foreach (var m in r.GetProperty("meshFamilies").EnumerateObject())
             cat.MeshFamilies[m.Name] = new MeshFamily(m.Value.GetProperty("scene").GetString()!, m.Value.GetProperty("placeholder").GetBoolean(),
-                m.Value.GetProperty("age").GetString()!);
+                m.Value.GetProperty("age").GetString()!,
+                m.Value.TryGetProperty("hairGeometry", out var hairGeometry) ? hairGeometry.GetString()! : "cards",
+                m.Value.TryGetProperty("limitation", out var limitation) ? limitation.GetString() : null,
+                m.Value.TryGetProperty("headViewTarget", out var headTarget)
+                    ? new Vector3(headTarget[0].GetSingle(), headTarget[1].GetSingle(), headTarget[2].GetSingle()) : null);
         foreach (var c in r.GetProperty("coatRecipes").EnumerateObject())
         {
             var v = c.Value;
@@ -90,7 +94,11 @@ public sealed class VisualCatalog
         if (!Skin.ContainsKey(d.SkinRecipe)) problems.Add($"skin recipe '{d.SkinRecipe}' is not in the visual catalog");
         if (!Eyes.ContainsKey(d.EyeRecipe)) problems.Add($"eye recipe '{d.EyeRecipe}' is not in the visual catalog");
         if (!MeshFamilies.TryGetValue(d.MeshFamilyId, out var family)) problems.Add($"mesh family '{d.MeshFamilyId}' has no asset");
-        else if (family.Placeholder) limits.Add("TEMPORARY placeholder mesh");
+        else
+        {
+            if (family.Placeholder) limits.Add("TEMPORARY placeholder mesh");
+            if (!string.IsNullOrEmpty(family.Limitation)) limits.Add(family.Limitation);
+        }
         if (d.GrayAmount != 0 && !ImplementedLayers.Contains("grey_age")) problems.Add("grey progression is not implemented");
         if (d.LpPatternPresent || d.Patn1Coverage != 0) problems.Add("leopard complex / PATN1 is not implemented");
         if (d.PrimitiveMarkingStrength > 0 && Coats.TryGetValue(d.CoatRecipe, out var c) && c.Primitive is null && !d.CoatLayers.Contains("primitive_markings"))

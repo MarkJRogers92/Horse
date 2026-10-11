@@ -1,0 +1,22 @@
+Source mesh and packed original textures: Lyndon Daniels.
+Source submission: Realtime Rancher's 3D Model Pack (2012).
+License shown by source: CC0 1.0 Universal / public-domain dedication.
+Source page: https://opengameart.org/content/realtime-ranchers-3d-model-pack
+Downloaded source file: ChadM's Rigged Horse (2012), same CC0 license.
+The posing rig in this package was newly built; it replaces the downloaded rig.
+Rigged source page: https://opengameart.org/content/rigged-horse
+Exact download: https://opengameart.org/sites/default/files/riggedHorse.blend
+Downloaded on 2026-10-10. SHA-256: 9cca670b93a74d50e89263e50d55ab035a6c46aa7d2b21e354bdac6987037f4a
+CC0 reference: https://creativecommons.org/publicdomain/zero/1.0/
+
+This package is an adaptation of that existing model. It is not represented
+as a wholly newly sculpted model. New organization, PBR materials, separate
+hooves, normalized posing rig and rendered reference views were prepared for
+this request. No paid assets or generation services were used.
+The source model remains preserved separately; the user's Horse repository
+was inspected read-only and was not edited, committed, pushed or integrated.
+
+Game adaptation: neutral coat materials and procedural mask/UV contract.
+Foal: regional juvenile deformation of this same authored mesh; short mane and tail.
+Original art/reference/Horse_Reference package remains intact.
+Both derived rigs are basic FK with no animation clips.

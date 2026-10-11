@@ -1,8 +1,41 @@
 # Visual track status (Godot + horse pipeline)
 
 **Branch:** `claude/godot-horse-visual-pilot` (it includes GPT's backend through `1538833` via a merge commit)
-**Owner:** Claude (visual track). Mark is the integration lead. GPT owns domain and persistence.
+**Owner:** Mark leads integration; GPT adapted the selected horse. Claude's visual foundation is retained.
 **Last updated:** 2026-10-10
+
+## Current result — authored adult and foal
+
+The owner-selected CC0 horse replaces the runtime placeholder for **both ages**. The original package in `art/reference/Horse_Reference/` stays intact. The foal is a separate juvenile adaptation with a shorter, shallower barrel, relatively long legs and large head, shorter muzzle, smaller hooves and short mane/tail. Independent peer review checked its new silhouette against the rejected first pass.
+
+| Area | Current state |
+| --- | --- |
+| Game meshes | `game/assets/horse/reference/horse_{adult,foal}.glb`, 36,162 triangles each, metre units, +X forward, grounded root, Body/Eyes/Mane/Tail, COLOR_0 masks and canonical TEXCOORD_1. |
+| Editable source | `art/derived/Horse_Reference/horse_{adult,foal}.blend`: quad-dominant body cage, separate hooves, eyes, mane/tail and 27-bone basic FK rig. Source is outside `game/` to avoid Blender auto-import. |
+| Coats | Original fur normal detail connects to the procedural shader; fixed chestnut/blaze/socks are absent from exported albedo. All 26 fixtures (13 classes × two ages) rendered locally. Claude's descriptor recipes and deterministic marks remain the source of colour/markings. |
+| Hair | Authored solid clumps use matte shading. Foal mane/forelock is shortened from the crest/poll; tail and tail bones shorten together from the dock. |
+| Shapes | Adult and foal differ anatomically. Standard and compact share the same cob build within each age; compact reports this limitation. Only descriptor height is applied; other body/hair morphs remain unapplied. |
+| Motion | Authored assets have no clips. Missing viewer options are disabled and capture skips them. Old placeholder skeleton/clips remain available for later retargeting; no gait quality is claimed. |
+| Local verification | Game build 0 warnings/errors; both actual Godot imports retained skin, masks/UV2 and normal detail; main-scene smoke passed; real Metal capture produced **131 images, 0 failures** with correct unsupported refusals. |
+| CI | New visual/domain CI is pending the integration push. Prior successful placeholder artifacts are preserved for comparison. |
+
+No coat-matrix rows were promoted. These renders and renderer capabilities do not release the domain's live visual catalog or replace owner approval.
+
+### Face-marking finding
+
+The fresh Claude face-fix run [38096698518](https://github.com/MarkJRogers92/Horse/actions/runs/38096698518), `236f36d`, still showed misplaced/absent forehead white. The placeholder had inward normals from an extra winding reversal. `anatomy.py` now preserves marching-cubes winding; corrected legacy geometry was locally re-rendered with forehead white before being replaced in the runtime catalog.
+
+New authored meshes derive the head mask from poll-to-muzzle and face-front axes. Fresh local captures show forehead stars, a central strip and muzzle snip, with matching adult/foal marking keys. Per-family head-camera targets fit these actual proportions. Inspect final CI images before recording remote verification.
+
+### Exact next work and limits
+
+Inspect the new CI clay/coat/marking sheets against baseline [38095905278](https://github.com/MarkJRogers92/Horse/actions/runs/38095905278) (`1124b73`) and record the evidence checkpoint. Matrix approval stays with the owner. Motion clips, adult body-shape morphs, live stable integration and platform exports remain later work.
+
+Grey progression, pearl, silver, champagne, leopard/PATN1, roan, tobiano/sabino and shoulder bars remain Unsupported; tack/cosmetics remain unapplied. Additional CC0 fur listings were researched but their short-coat suitability is unverified; the preferred reference detail remains the default. See `REFERENCE_ASSET_WORKFLOW.md` for source credits, material workflow and editing notes, and `TOOLCHAIN.md` for reproduction.
+
+## Previous placeholder checkpoint (superseded)
+
+The following preserves Claude's earlier handoff for context. Its mesh/animation limitations and next steps describe the former placeholder; the current state is above.
 
 ## What works now
 | Phase | State |

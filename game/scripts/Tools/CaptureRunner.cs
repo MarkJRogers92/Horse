@@ -22,6 +22,7 @@ public partial class CaptureRunner : Node
     private HorseStage _stage = null!;
     private readonly List<Dictionary<string, object?>> _report = new();
     private int _failures;
+    private readonly List<string> _unavailableAnimations = new();
 
     public override async void _Ready()
     {
@@ -64,6 +65,9 @@ public partial class CaptureRunner : Node
             catalog = VisualCatalog.Instance.Version,
             warning = "Stills prove materials, markings and composition only - not animation quality, not art approval.",
             failures = _failures,
+            meshFamilies = VisualCatalog.Instance.MeshFamilies.ToDictionary(p => p.Key,
+                p => new { scene = p.Value.Scene, placeholder = p.Value.Placeholder, age = p.Value.Age }),
+            unavailableAnimations = _unavailableAnimations,
             images = _report,
         }, new JsonSerializerOptions { WriteIndented = true });
         using (var f = FileAccess.Open(_out.PathJoin("capture_report.json"), FileAccess.ModeFlags.Write)) f.StoreString(json);
@@ -89,6 +93,7 @@ public partial class CaptureRunner : Node
             ["file"] = file, ["set"] = set, ["view"] = view, ["lighting"] = _stage.Mode.ToString(), ["note"] = extra,
             ["fixtureId"] = d?.FixtureId, ["coatClassId"] = d?.CoatClassId, ["label"] = d?.DisplayLabel, ["cacheKey"] = d?.CacheKey,
             ["support"] = _stage.Presenter.Support?.Summary, ["markings"] = _stage.Presenter.Markings?.Describe(), ["testOnly"] = d?.TestOnly,
+            ["meshFamilyId"] = d?.MeshFamilyId,
         });
     }
 
@@ -157,7 +162,11 @@ public partial class CaptureRunner : Node
         // same key, adult vs foal: markings must match
         var key = FixtureLibrary.MarkingVariety("chestnut", false, 3).Last();
         var foalSame = FixtureLibrary.Get("chestnut", true).WithTestMarkingKey(key.MarkingRealizationKey, key.DisplayLabel + " (foal)");
-        if (Show(foalSame)) { _stage.FrameView("q3"); await Shot("markings/test_2__foal_q3.png", "markings", foalSame, "q3", "same key as test_2 adult"); }
+        if (Show(foalSame))
+        {
+            _stage.FrameView("q3"); await Shot("markings/test_2__foal_q3.png", "markings", foalSame, "q3", "same key as test_2 adult");
+            _stage.FrameView("head"); await Shot("markings/test_2__foal_head.png", "markings", foalSame, "head", "same key as test_2 adult; foal face check");
+        }
     }
 
     private async Task Turntable()
@@ -216,12 +225,21 @@ public partial class CaptureRunner : Node
         _stage.SetMode(LightingMode.Neutral);
         var d = FixtureLibrary.Get("bay", false);
         foreach (var (anim, len) in new[] { ("walk", 1.2), ("trot", 0.733), ("look", 5.0), ("idle", 4.0) })
+        {
+            if (!Show(d)) continue;
+            if (_stage.Presenter.Animator == null || !_stage.Presenter.Animator.HasAnimation(anim))
+            {
+                _unavailableAnimations.Add(anim);
+                GD.Print($"[capture] skipped unavailable animation {anim}");
+                continue;
+            }
             for (int i = 0; i < 6; i++)
             {
                 if (!Show(d, anim, len * i / 6.0)) continue;
                 _stage.FrameView("side");
                 await Shot($"anim/{anim}_{i}.png", "anim", d, "side", $"{anim} t={len * i / 6.0:0.00}s (pose sample, not playback)");
             }
+        }
     }
 
     private async Task Probes()

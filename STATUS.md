@@ -1,8 +1,13 @@
 # Project status / checkpoint
 
-**Last updated:** 2026-10-10 by GPT (combined domain integration).
-**Phase:** P1-07/P1-09 headless implementation and public Godot API complete; 147/147 tests verified on macOS and Linux CI.
-**Branch:** `claude/great-euler-hq83x3`
+**Last updated:** 2026-10-10 by GPT (CC0 horse integration on the visual pilot).
+**Phase:** P1-01 authored adult/foal assets integrated and locally rendered; visual CI pending this checkpoint. P1-07/P1-09 domain implementation remains complete with its previously verified 147/147 tests.
+**Branch:** `claude/godot-horse-visual-pilot` (domain checkpoint history below originated on `claude/great-euler-hq83x3`).
+
+## Current visual checkpoint
+The owner selected the CC0 reference horse in `art/reference/Horse_Reference/`. Both adult and foal now use it; the foal has a shorter, shallower body, proportionally long legs, shorter muzzle, smaller hooves and short mane/tail. Editable sources are in `art/derived/Horse_Reference/`, game exports in `game/assets/horse/reference/`. Claude's descriptor presenter, recipes, shaders, scenes and evidence pipeline are preserved. See `docs/visual/VISUAL_STATUS.md` and `REFERENCE_ASSET_WORKFLOW.md` for exact paths and limitations.
+
+Local evidence: warnings-as-errors game build passed; both actual Godot imports retained masks/UV2, normal detail and a 27-bone skinned rig; main-scene smoke passed; Metal captured 131 images with zero capture failures, covering all 13 fixture classes at both ages and three correct unsupported refusals. Independent peer review checked the juvenile silhouette and supporting import/code evidence. No gait clips or adult breed-shape morphs are claimed. No domain/frozen handoff/matrix edits, purchases or other-branch merges. Push this completed checkpoint to the visual pilot and inspect its visual/domain CI runs before recording remote verification.
 
 ## Task state
 | Task | State |
@@ -19,7 +24,7 @@ D-001 parallel genetics/art accepted; D-002 licensed horse trial accepted (owner
 
 ## Next step
 1. P1-07 and P1-09 are complete for the authorized headless scope. Do not recreate their records, RNG, forecasts, conception transition, codec or filesystem store. Code commit a15266e3fbe6453f2489f8043fb7d5a1b0d7576d passed validator + 147/147 tests in https://github.com/MarkJRogers92/Horse/actions/runs/38094410593 (job 114337226950).
-2. P1-10 integration owner: use docs/genetics/godot_domain_api.md, StableBreedingQueries and AtomicSaveStore to connect to the Godot proof after the required art/toolchain work. Claude owns the separate visual branch; no engine, viewer or material edits were made here.
+2. Visual pilot: verify CI and compare the new clay/coat/marking sheets against the preserved placeholder evidence. The authored meshes have static FK rigs; motion clips and body-shape morphs are later work. P1-10 live-stable integration should use docs/genetics/godot_domain_api.md, StableBreedingQueries and AtomicSaveStore after the real visual catalog is approved.
 3. Keep the real live catalog disabled until its visuals are approved. Full marketplace/external studs, capacity/calendar management, automatic birth/day advancement and gameplay UI remain later tasks. No frozen handoff or engine-decision changes.
 4. Current limits: 32 MiB payload, 4096-entry collection budget; explicit synthetic migration fixture only (no released legacy save exists). Mac/Linux real-file fault-injection coverage does not establish process-kill, universal power-loss, network-filesystem or Windows guarantees.
 
@@ -56,3 +61,10 @@ Latest verified descriptor artifact: 11685376690 (run 38094410593). Initial P1-0
 - No frozen handoff, accepted engine decision, matrix release flags, visual branch, mesh, material or viewer edits. No force push/main merge, paid service or added runtime dependency.
 - Actual final Actions log and artifact inspected: run 38094410593, validator OK, 147/147 tests, no skips; TRX 11685351742. Local TRX: tests/Cloverbrook.Domain.Tests/TestResults/final-integration.trx; downloaded CI TRX is under TestResults/CI-a15266e.
 - Remaining: playable/visual P1-10 proof remains with Claude's art track; no headless implementation blocker. Parent-thread checkpoint messaging was unavailable (thread not found); repository checkpoints preserve progress.
+
+## Completion handoff — P1-01 CC0 reference integration (local proof)
+- Input: owner-committed reference package at e35bdc4; isolated checkout on the visual pilot. Original source package is unchanged.
+- Output: reproducible Blender importer; authored adult and juvenile GLBs meeting Body/Eyes/Mane/Tail, +X/metre/ground, COLOR_0 and TEXCOORD_1 contracts; editable Blender cages and rigs; normal-detail binding, matte solid-clump hair, calibrated head cameras and honest missing-animation UI/capture handling.
+- Face-fix check: Claude's fresh 236f36d CI evidence still misplaced facial white. The legacy SDF mesh had reversed winding/inward normals; corrected geometry was locally re-rendered with forehead stars. New authored-asset captures independently show forehead/strip/snip placement and matching adult/foal marking keys.
+- Validation actually run: JSON validator OK; C# build 0 warnings/errors; imported adult+foal contracts passed; main smoke OK; 131 real Metal captures, 0 failures. Existing domain implementation/tests were not changed or rerun locally for this asset-only package; the branch's domain workflow will verify the new commit.
+- Remaining: inspect new CI and publish its evidence checkpoint; matrix approval stays with the owner. Both adult family IDs share one cob build per age, only height is applied, and rigs have no animation clips. No purchase, force push, main merge or live-catalog approval.

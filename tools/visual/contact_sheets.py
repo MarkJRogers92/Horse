@@ -76,19 +76,25 @@ def main():
         files = {im["file"] for im in by_set["sheet"]}
         label = {im["file"].split("/")[1].split("__")[0]: im["label"] for im in by_set["sheet"]}
         rows = [(label[c], [f"sheet/{c}__{col}.png" if f"sheet/{c}__{col}.png" in files else None for col in cols]) for c in classes]
-        made.append(grid("Phase-1 coat contact sheet (placeholder mesh)", rows,
-                         ["Adult 3/4 - neutral", "Adult side - neutral", "Foal 3/4 - neutral", "Adult 3/4 - stable", "Foal 3/4 - stable"],
-                         "coat_contact_sheet.png", "TEMPORARY placeholder horse. Not art approval. Matrix rows remain unapproved."))
+        families = report.get("meshFamilies", {})
+        foal_label = "Foal placeholder" if families.get("horse.standard.foal.v1", {}).get("placeholder") else "Foal"
+        made.append(grid("Phase-1 coat contact sheet", rows,
+                         ["Adult 3/4 - neutral", "Adult side - neutral", f"{foal_label} - neutral", "Adult 3/4 - stable", f"{foal_label} - stable"],
+                         "coat_contact_sheet.png", "Render comparison only. Matrix rows remain unapproved. Asset sources are listed in SUMMARY.md."))
     if by_set["markings"]:
         ims = by_set["markings"]
         rows = []
-        for i in range(0, len(ims) - 1, 2):
-            rows.append((f"key #{i // 2}\n{ims[i]['markings']}"[:60], [ims[i]["file"], ims[i + 1]["file"]]))
-        if len(ims) % 2 == 1:
-            rows.append(("same key #2 as foal", [ims[-1]["file"], None]))
+        files = {im["file"] for im in ims}
+        for im in ims:
+            if im["view"] != "q3":
+                continue
+            stem = Path(im["file"]).stem.split("__")[0]
+            label = "same key #2 - foal" if "foal" in im["file"] else stem.replace("test_", "key #")
+            head = im["file"].replace("q3.png", "head.png")
+            rows.append((f"{label}\n{im['markings']}"[:80], [im["file"], head if head in files else None]))
         made.append(grid("Deterministic white markings (TEST-ONLY keys)", rows, ["3/4", "head"], "markings_sheet.png",
                          "Markings come only from markingRealizationKey; adult and foal with the same key must match."))
-    for setname, title, per_row in (("clay", "Clay form review - placeholder anatomy, no coat", 3), ("turntable", "Turntables", 4), ("detail", "Detail views (neutral)", 3),
+    for setname, title, per_row in (("clay", "Clay form review - no coat", 3), ("turntable", "Turntables", 4), ("detail", "Detail views (neutral)", 3),
                                     ("pair", "Adult + foal (stable lighting)", 2), ("stable", "Stable environment", 2),
                                     ("probes", "Unsupported probes (must be EMPTY - no substitute coat)", 3)):
         ims = by_set[setname]
@@ -116,7 +122,14 @@ def main():
         f"- Images: {len(imgs)} · capture failures: **{report['failures']}**",
         "",
         "> " + report["warning"],
-        "> The horse is a TEMPORARY procedural placeholder (D-002). No coat-matrix row is approved by these renders.",
+        "> No coat-matrix row is approved by these renders.",
+        "",
+        "## Mesh sources",
+        *[f"- `{key}`: `{value['scene']}` (placeholder: {value['placeholder']})" for key, value in report.get('meshFamilies', {}).items()],
+        *(["- Legacy capture: mesh source was not recorded; see its original catalog."] if not report.get('meshFamilies') else []),
+        "",
+        "## Unavailable animations (skipped)",
+        *[f"- `{name}`" for name in report.get('unavailableAnimations', [])],
         "",
         "## Sheets",
         *[f"- `sheets/{m}`" for m in made],

@@ -21,6 +21,9 @@ uniform vec3 hoof_pale : source_color = vec3(0.79, 0.72, 0.62);
 uniform float sooty = 0.2;
 uniform float dapple = 0.2;
 uniform float sheen = 0.55;
+uniform sampler2D coat_normal : hint_normal, filter_linear_mipmap;
+uniform bool use_coat_normal = false;
+uniform float coat_normal_depth = 0.35;
 // markings
 uniform int face_type = 0;          // FaceMarking enum
 uniform vec4 face_params = vec4(0.08, 0.15, 0.35, 0.07); // star, strip, blaze, snip
@@ -116,6 +119,10 @@ void fragment() {
 	ALBEDO = col;
 	ROUGHNESS = rough;
 	SPECULAR = 0.28;
+	if (use_coat_normal) {
+		NORMAL_MAP = texture(coat_normal, UV).rgb;
+		NORMAL_MAP_DEPTH = (is_leg && c.y < 0.165) ? 0.0 : coat_normal_depth;
+	}
 	// fine hair direction sheen
 	ANISOTROPY = 0.25 * sheen;
 	BACKLIGHT = vec3(0.03) * col;

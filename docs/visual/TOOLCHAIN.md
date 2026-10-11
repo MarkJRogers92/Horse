@@ -17,12 +17,12 @@
   - `COLOR_0` holds the coat masks.
   - `TEXCOORD_1` holds the canonical marking coordinates.
 
-  Exact meanings are in `game/assets/horse/placeholder/*.manifest.json`. A licensed replacement must provide the same masks and coordinates, either as vertex data or mask textures.
+  Exact meanings and validation are in `game/assets/horse/reference/*.manifest.json`. The current CC0 adult and foal have rigs but no animation clips. Missing clips are skipped and unavailable viewer options are disabled.
 
 ## Reproduce locally (Linux)
 ```sh
 pip install -r tools/visual/requirements.txt
-python3 tools/horse/build_horse.py --out game/assets/horse/placeholder     # ~3 min
+python3 tools/horse/import_reference.py                                  # CC0 adult + foal
 dotnet build game/Cloverbrook.Game.csproj
 godot --headless --import --path game
 VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/lvp_icd.json xvfb-run -a -s "-screen 0 1280x720x24" \

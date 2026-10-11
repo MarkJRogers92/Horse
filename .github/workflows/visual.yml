@@ -1,12 +1,12 @@
 name: visual
 
-# Builds the Godot game, regenerates the placeholder horse from source, boots the
+# Builds the Godot game, prepares the CC0 adult and foal, boots the
 # main scene, renders headless evidence (Xvfb + Mesa lavapipe Vulkan) and uploads
 # contact sheets. Tool versions are pinned here and in docs/visual/TOOLCHAIN.md.
 
 on:
   push:
-    paths: ['game/**', 'tools/**', 'src/**', '.github/workflows/visual.yml']
+    paths: ['game/**', 'tools/**', 'src/**', 'art/reference/Horse_Reference/**', '.github/workflows/visual.yml']
   pull_request:
   workflow_dispatch:
 
@@ -47,6 +47,9 @@ jobs:
 
       - name: Rebuild placeholder horse from source
         run: python tools/horse/build_horse.py --out game/assets/horse/placeholder
+
+      - name: Prepare CC0 reference adult and foal for procedural coats
+        run: python tools/horse/import_reference.py
 
       - name: Install Mesa Vulkan (lavapipe) and Xvfb
         run: |
@@ -94,6 +97,7 @@ jobs:
         run: |
           python tools/visual/contact_sheets.py evidence || true
           cp game/assets/horse/placeholder/*.manifest.json evidence/ || true
+          cp game/assets/horse/reference/*.manifest.json evidence/ || true
           cat evidence/SUMMARY.md >> $GITHUB_STEP_SUMMARY || echo "No summary produced" >> $GITHUB_STEP_SUMMARY
           python3 -c "import json,sys; r=json.load(open('evidence/capture_report.json')); sys.exit(1 if r['failures'] else 0)"
 

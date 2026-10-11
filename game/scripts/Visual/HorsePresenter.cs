@@ -26,6 +26,7 @@ public partial class HorsePresenter : Node3D
     public Node3D? Model { get; private set; }
     public AnimationPlayer? Animator { get; private set; }
     public string CurrentAnimation { get; private set; } = "";
+    public Vector3? HeadViewTarget { get; private set; }
 
     public VisualSupport Present(VisualDescriptor descriptor, string animation = "idle")
     {
@@ -85,9 +86,19 @@ public partial class HorsePresenter : Node3D
         hairMat.SetShaderParameter("hair_color", hair.Color);
         hairMat.SetShaderParameter("tip_color", hair.Tip);
         hairMat.SetShaderParameter("seed", Markings.EdgeSeed);
+        hairMat.SetShaderParameter("solid_clumps", family.HairGeometry == "solid_clumps");
 
         foreach (var mesh in FindAll<MeshInstance3D>(Model))
         {
+            if (mesh.Name == "Body")
+                for (int s = 0; s < mesh.Mesh.GetSurfaceCount(); s++)
+                    if (mesh.Mesh.SurfaceGetMaterial(s) is StandardMaterial3D { NormalEnabled: true, NormalTexture: not null } source)
+                    {
+                        coatMat.SetShaderParameter("coat_normal", source.NormalTexture);
+                        coatMat.SetShaderParameter("use_coat_normal", true);
+                        coatMat.SetShaderParameter("coat_normal_depth", source.NormalScale);
+                        break;
+                    }
             var mat = mesh.Name.ToString() switch
             {
                 "Body" => coatMat,
@@ -100,24 +111,27 @@ public partial class HorsePresenter : Node3D
             mesh.CastShadow = GeometryInstance3D.ShadowCastingSetting.On;
         }
 
-        // Bounded body variation. The placeholder has no blend shapes, so only height is approximated.
+        // Both current assets lack body blend shapes, so only height is approximated.
         float height = 1f + (descriptor.MorphWeights.TryGetValue("height", out var h) ? h : 0) * catalog.HeightScalePerUnit;
         Model.Scale = Vector3.One * height;
+        HeadViewTarget = family.HeadViewTarget * height;
 
         Animator = FindAll<AnimationPlayer>(Model).FirstOrDefault();
         if (Animator != null)
             foreach (var name in Animator.GetAnimationList())
                 Animator.GetAnimation(name).LoopMode = Animation.LoopModeEnum.Linear;
         Play(animation);
+        if (!string.IsNullOrEmpty(animation) && (Animator == null || !Animator.HasAnimation(animation)))
+            Support = Support with { Limitations = Support.Limitations.Append($"animation '{animation}' unavailable; static pose").ToArray() };
         EmitSignal(SignalName.Presented, Support.Summary, true);
         return Support;
     }
 
     public void Play(string animation)
     {
-        CurrentAnimation = animation;
+        CurrentAnimation = Animator != null && Animator.HasAnimation(animation) ? animation : "";
         if (Animator == null) return;
-        if (string.IsNullOrEmpty(animation) || !Animator.HasAnimation(animation)) { Animator.Stop(); return; }
+        if (string.IsNullOrEmpty(CurrentAnimation)) { Animator.Stop(); return; }
         Animator.Play(animation);
     }
 
@@ -147,7 +161,7 @@ public partial class HorsePresenter : Node3D
     private void ClearModel()
     {
         if (Model != null) { RemoveChild(Model); Model.QueueFree(); }
-        Model = null; Animator = null;
+        Model = null; Animator = null; HeadViewTarget = null;
     }
 
     private static IEnumerable<T> FindAll<T>(Node root) where T : Node

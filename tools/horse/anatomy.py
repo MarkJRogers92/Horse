@@ -307,7 +307,10 @@ class Horse:
             vol[i] = self.field(pts).reshape(ny, nz)
         verts, faces, normals, _ = measure.marching_cubes(vol, 0.0, spacing=(h, h, h))
         verts += lo
-        return verts, faces[:, ::-1].copy()  # outward winding
+        # The field is negative inside. These faces already wind outward;
+        # reversing them made the vertex normals face inward, suppressing the
+        # forehead marking mask and lighting the placeholder from its interior.
+        return verts, faces.copy()
 
     # per-vertex anatomy ----------------------------------------------------------------
     def vertex_data(self, verts, normals):

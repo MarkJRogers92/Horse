@@ -46,7 +46,7 @@ public partial class HorseStage : Node3D
             case "side_left": Camera.SetView(180, 4, 5.4f * s, target); break;
             case "front": Camera.SetView(90, 6, 4.6f * s, target); break;
             case "rear": Camera.SetView(-90, 8, 4.6f * s, target); break;
-            case "head": Camera.SetView(55, 6, 1.6f * s, new Vector3(1.2f * s, 1.75f * s, 0)); break;
+            case "head": Camera.SetView(55, 6, 1.6f * s, Presenter.HeadViewTarget ?? new Vector3(1.2f * s, 1.75f * s, 0)); break;
             case "legs": Camera.SetView(30, 2, 2.4f * s, new Vector3(0.0f, 0.45f * s, 0)); break;
             case "wide": Camera.SetView(38, 12, 10.5f * s, target + new Vector3(-1.6f, 0.6f, -1.2f)); break;
             default: Camera.SetView(42, 8, 5.0f * s, target); break; // q3: three-quarter front, mane side

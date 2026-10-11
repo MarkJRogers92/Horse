@@ -4,7 +4,7 @@
   "status": "TEMPORARY PLACEHOLDER - not an approved horse asset",
   "units": "metres; glTF +Y up; horse faces +X",
   "generator": "tools/horse/build_horse.py",
-  "blender": "5.2.2 LTS",
+  "blender": "5.2.1 LTS",
   "triangles": {
     "Body": 26000,
     "Eyes": 1440,
@@ -232,5 +232,5 @@
       1.003
     ]
   },
-  "buildSeconds": 69.3
+  "buildSeconds": 39.3
 }

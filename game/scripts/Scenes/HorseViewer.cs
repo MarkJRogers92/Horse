@@ -103,7 +103,11 @@ public partial class HorseViewer : Node
         var d = _entries[_coat.Selected];
         if (_foal.ButtonPressed && !d.FixtureId.StartsWith("probe") && !d.TestOnly)
             d = FixtureLibrary.Get(d.FixtureId.Split('.')[0], true);
-        var support = _stage.Presenter.Present(d, _anim.Selected is >= 0 and < 5 ? _anim.GetItemText(_anim.Selected) : "idle");
+        var support = _stage.Presenter.Present(d, _anim.Selected is >= 0 and < 5 ? _anim.GetItemText(_anim.Selected) : "");
+        for (int i = 0; i < 5; i++)
+            _anim.SetItemDisabled(i, _stage.Presenter.Animator?.HasAnimation(_anim.GetItemText(i)) != true);
+        if (_anim.Selected is >= 0 and < 5 && _anim.IsItemDisabled(_anim.Selected))
+            _anim.Select(5); // The authored reference has a rig but no motion clips yet.
         _warning.Visible = !support.Supported;
         _warningText.Text = "This horse cannot be shown yet.\n" + support.Summary + "\n(No substitute coat is drawn.)";
         _status.Text = $"{d.DisplayLabel}\nclass {d.CoatClassId} · {d.MeshFamilyId}\nrecipe {d.CoatRecipe} · eyes {d.EyeRecipe} · skin {d.SkinRecipe}\n" +
