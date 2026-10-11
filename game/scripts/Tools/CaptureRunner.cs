@@ -35,12 +35,15 @@ public partial class CaptureRunner : Node
     private List<Dictionary<string, object?>> _meshLodEvidence = new();
     private readonly List<Dictionary<string, object?>> _signedDetailEvidence = new();
     private readonly List<Dictionary<string, object?>> _signedDetailFallbackEvidence = new();
+    private readonly List<Dictionary<string, object?>> _candidateWalkEvidence = new();
+    private string _candidateScene = "";
 
     public override async void _Ready()
     {
         var args = OS.GetCmdlineUserArgs();
         string Arg(string name, string def) { int i = Array.IndexOf(args, name); return i >= 0 && i + 1 < args.Length ? args[i + 1] : def; }
         _out = Arg("--out", _out);
+        _candidateScene = Arg("--candidate-scene", "");
         var sets = Arg("--sets", "clay,sheet,detail,appearance,markings,turntable,pair,stable,anim,probes").Split(',');
         DirAccess.MakeDirRecursiveAbsolute(_out);
         GetWindow().Size = new Vector2I(1280, 720);
@@ -70,6 +73,7 @@ public partial class CaptureRunner : Node
                     case "detail_baseline": await SignedDetailBaseline(); break;
                     case "detail_runtime": await SignedDetailRuntimeSet(); break;
                     case "stock_runtime": await StockRuntimeSet(); break;
+                    case "candidate_walk": await CandidateWalkSet(); break;
                     case "turntable": await Turntable(); break;
                     case "pair": await Pair(); break;
                     case "stable": await StableShots(); break;
@@ -101,6 +105,7 @@ public partial class CaptureRunner : Node
             meshLodEvidence = _meshLodEvidence,
             signedDetailEvidence = _signedDetailEvidence,
             signedDetailFallbackEvidence = _signedDetailFallbackEvidence,
+            candidateWalkEvidence = _candidateWalkEvidence,
             images = _report,
         }, new JsonSerializerOptions { WriteIndented = true });
         using (var f = FileAccess.Open(_out.PathJoin("capture_report.json"), FileAccess.ModeFlags.Write)) f.StoreString(json);
@@ -1277,6 +1282,337 @@ public partial class CaptureRunner : Node
             _stage.Camera.SetView(yaw, 7f, 1.7f, target);
             await Shot($"adult_runtime/light_head_{name}.png", "adult_runtime", descriptor, $"head_{name}",
                 "close view of ears, eye, muzzle, forehead star and mane attachment under neutral lighting");
+        }
+    }
+
+    private async Task CandidateWalkSet()
+    {
+        _stage.SetMode(LightingMode.Neutral);
+        if (string.IsNullOrWhiteSpace(_candidateScene))
+        {
+            _failures++;
+            GD.PushError("[capture] candidate_walk requires an explicit --candidate-scene res://path/to/candidate.glb input");
+            _candidateWalkEvidence.Add(new Dictionary<string, object?>
+            {
+                ["status"] = "failed-missing-input",
+                ["requiredArgument"] = "--candidate-scene res://...",
+            });
+            return;
+        }
+        if (!_candidateScene.StartsWith("res://", StringComparison.Ordinal) || !ResourceLoader.Exists(_candidateScene))
+        {
+            _failures++;
+            GD.PushError($"[capture] candidate_walk scene '{_candidateScene}' is missing or is not a res:// resource");
+            _candidateWalkEvidence.Add(new Dictionary<string, object?>
+            {
+                ["status"] = "failed-missing-candidate-scene",
+                ["candidateScene"] = _candidateScene,
+            });
+            return;
+        }
+
+        var originalCatalog = VisualCatalog.Instance;
+        var lightDescriptor = FixtureLibrary.AppearanceStudio.FirstOrDefault(d => d.MeshFamilyId == "horse.standard.adult.v1");
+        var singletonField = typeof(VisualCatalog).GetField("_instance", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+        if (lightDescriptor == null || singletonField == null)
+        {
+            _failures++;
+            GD.PushError("[capture] candidate_walk cannot find the Light appearance descriptor or VisualCatalog singleton");
+            return;
+        }
+
+        try
+        {
+            var catalogRoot = JsonNode.Parse(FileAccess.GetFileAsString(VisualCatalog.Path))?.AsObject();
+            var lightFamily = catalogRoot?["meshFamilies"]?["horse.standard.adult.v1"]?.AsObject();
+            if (lightFamily == null)
+                throw new InvalidOperationException("Light family is absent from the visual catalog JSON");
+            lightFamily["scene"] = _candidateScene;
+            var detail = lightFamily["bodySignedDetail"]?.AsObject();
+            if (detail == null)
+            {
+                detail = new JsonObject();
+                lightFamily["bodySignedDetail"] = detail;
+            }
+            // The accepted atlas is bound to the frozen Light GLB. Never carry it
+            // into a Mesh2Motion candidate scene through this temporary catalog.
+            detail["enabled"] = false;
+            detail["strength"] = 0.0;
+            var candidateCatalog = VisualCatalog.Load(catalogRoot!.ToJsonString());
+            singletonField.SetValue(null, candidateCatalog);
+
+            var descriptor = lightDescriptor.WithTestMarkingKey(
+                DiagnosticMarkingKey(30), "TEST ONLY Mesh2Motion Walk candidate");
+            var support = _stage.Presenter.Present(descriptor, "walk");
+            if (!support.Supported || _stage.Presenter.Model == null)
+            {
+                _failures++;
+                GD.PushError($"[capture] candidate_walk unsupported: {support.Summary}");
+                _candidateWalkEvidence.Add(new Dictionary<string, object?>
+                {
+                    ["status"] = "unsupported-candidate-scene",
+                    ["candidateScene"] = _candidateScene,
+                    ["testOnly"] = descriptor.TestOnly,
+                    ["detailExplicitlyDisabledInClone"] = true,
+                    ["support"] = support.Summary,
+                });
+                return;
+            }
+
+            var presenter = _stage.Presenter;
+            var player = presenter.Animator;
+            string resolvedAnimation = presenter.CurrentAnimation;
+            var clip = player != null && !string.IsNullOrEmpty(resolvedAnimation)
+                ? player.GetAnimation(resolvedAnimation)
+                : null;
+            if (player == null || clip == null || !presenter.IsAnimationAvailable("walk") || clip.Length <= 0)
+            {
+                _failures++;
+                GD.PushError($"[capture] candidate_walk has no positive-length, uniquely resolved Walk clip; resolved='{resolvedAnimation}'");
+                return;
+            }
+
+            var components = FindAll<MeshInstance3D>(presenter.Model).ToArray();
+            var componentGroups = components.GroupBy(mesh => mesh.Name.ToString(), StringComparer.Ordinal)
+                .ToDictionary(group => group.Key, group => group.ToArray(), StringComparer.Ordinal);
+            var requiredComponents = new[] { "Body", "Eyes", "Mane", "Tail" };
+            if (requiredComponents.Any(name => !componentGroups.TryGetValue(name, out var matches) || matches.Length != 1))
+            {
+                _failures++;
+                GD.PushError("[capture] candidate_walk expected one Body, Eyes, Mane, and Tail component after Light-catalog presentation");
+            }
+            VerifyMorphValues(descriptor);
+
+            bool finiteGeometry = true;
+            var meshEvidence = new List<Dictionary<string, object?>>();
+            foreach (var mesh in components)
+            {
+                var surfaces = new List<Dictionary<string, object?>>();
+                for (int surfaceIndex = 0; mesh.Mesh != null && surfaceIndex < mesh.Mesh.GetSurfaceCount(); surfaceIndex++)
+                {
+                    if (mesh.Mesh is not ArrayMesh arrayMesh) continue;
+                    var arrays = arrayMesh.SurfaceGetArrays(surfaceIndex);
+                    var vertexValues = arrays.Count > (int)Mesh.ArrayType.Vertex
+                        ? arrays[(int)Mesh.ArrayType.Vertex].AsVector3Array()
+                        : Array.Empty<Vector3>();
+                    var boneValues = arrays.Count > (int)Mesh.ArrayType.Bones
+                        ? arrays[(int)Mesh.ArrayType.Bones].AsInt32Array()
+                        : Array.Empty<int>();
+                    var weightValues = arrays.Count > (int)Mesh.ArrayType.Weights
+                        ? arrays[(int)Mesh.ArrayType.Weights].AsFloat32Array()
+                        : Array.Empty<float>();
+                    bool verticesFinite = vertexValues.All(v => float.IsFinite(v.X) && float.IsFinite(v.Y) && float.IsFinite(v.Z));
+                    bool weightsFinite = weightValues.All(float.IsFinite);
+                    finiteGeometry &= verticesFinite && weightsFinite;
+                    int influenceWidth = vertexValues.Length > 0 && boneValues.Length == weightValues.Length && boneValues.Length % vertexValues.Length == 0
+                        ? boneValues.Length / vertexValues.Length
+                        : 0;
+                    surfaces.Add(new Dictionary<string, object?>
+                    {
+                        ["surface"] = surfaceIndex,
+                        ["vertexCount"] = vertexValues.Length,
+                        ["boneArrayCount"] = boneValues.Length,
+                        ["weightArrayCount"] = weightValues.Length,
+                        ["influenceWidth"] = influenceWidth,
+                        ["verticesFinite"] = verticesFinite,
+                        ["weightsFinite"] = weightsFinite,
+                    });
+                }
+                var expectedMorphs = VisualCatalog.Instance.FamilyMeshBlendShapes[descriptor.MeshFamilyId]
+                    .TryGetValue(mesh.Name.ToString(), out var channels)
+                    ? channels.Values.ToArray()
+                    : Array.Empty<string>();
+                var availableMorphs = expectedMorphs
+                    .Where(shape => mesh.FindBlendShapeByName(shape) >= 0)
+                    .ToArray();
+                meshEvidence.Add(new Dictionary<string, object?>
+                {
+                    ["component"] = mesh.Name.ToString(),
+                    ["surfaceCount"] = mesh.Mesh?.GetSurfaceCount() ?? 0,
+                    ["blendShapeCount"] = mesh.GetBlendShapeCount(),
+                    ["expectedBlendShapes"] = expectedMorphs,
+                    ["availableExpectedBlendShapes"] = availableMorphs,
+                    ["surfaces"] = surfaces,
+                });
+            }
+            if (!finiteGeometry)
+            {
+                _failures++;
+                GD.PushError("[capture] candidate_walk found non-finite mesh vertices or skin weights");
+            }
+
+            var skeletons = FindAll<Skeleton3D>(presenter.Model).ToArray();
+            if (skeletons.Length != 1)
+            {
+                _failures++;
+                GD.PushError($"[capture] candidate_walk expected one imported Skeleton3D, found {skeletons.Length}");
+            }
+            var skeleton = skeletons.FirstOrDefault();
+            var boneNames = skeleton == null
+                ? Array.Empty<string>()
+                : Enumerable.Range(0, skeleton.GetBoneCount()).Select(i => skeleton.GetBoneName(i).ToString()).ToArray();
+            (Vector3[] positions, Quaternion[] rotations, Vector3[] scales, bool finite) ReadPose()
+            {
+                if (skeleton == null) return (Array.Empty<Vector3>(), Array.Empty<Quaternion>(), Array.Empty<Vector3>(), false);
+                var positions = new Vector3[skeleton.GetBoneCount()];
+                var rotations = new Quaternion[skeleton.GetBoneCount()];
+                var scales = new Vector3[skeleton.GetBoneCount()];
+                bool finite = true;
+                for (int i = 0; i < skeleton.GetBoneCount(); i++)
+                {
+                    positions[i] = skeleton.GetBonePosePosition(i);
+                    rotations[i] = skeleton.GetBonePoseRotation(i);
+                    scales[i] = skeleton.GetBonePoseScale(i);
+                    var p = positions[i]; var q = rotations[i]; var s = scales[i];
+                    finite &= float.IsFinite(p.X) && float.IsFinite(p.Y) && float.IsFinite(p.Z) &&
+                              float.IsFinite(q.X) && float.IsFinite(q.Y) && float.IsFinite(q.Z) && float.IsFinite(q.W) &&
+                              float.IsFinite(s.X) && float.IsFinite(s.Y) && float.IsFinite(s.Z);
+                }
+                return (positions, rotations, scales, finite);
+            }
+            float PoseDelta((Vector3[] positions, Quaternion[] rotations, Vector3[] scales, bool finite) a,
+                (Vector3[] positions, Quaternion[] rotations, Vector3[] scales, bool finite) b, out float maxAngle, out float maxScale)
+            {
+                float maxPosition = 0f; maxAngle = 0f; maxScale = 0f;
+                int count = Math.Min(a.positions.Length, b.positions.Length);
+                for (int i = 0; i < count; i++)
+                {
+                    maxPosition = Math.Max(maxPosition, a.positions[i].DistanceTo(b.positions[i]));
+                    maxAngle = Math.Max(maxAngle, a.rotations[i].AngleTo(b.rotations[i]));
+                    maxScale = Math.Max(maxScale, a.scales[i].DistanceTo(b.scales[i]));
+                }
+                return maxPosition;
+            }
+
+            double clipLength = clip.Length;
+            double startPosition = player.CurrentAnimationPosition;
+            var poseBefore = ReadPose();
+            await Settle(10);
+            double progressedPosition = player.CurrentAnimationPosition;
+            var poseAfter = ReadPose();
+            bool playbackAdvanced = player.IsPlaying() && clipLength > 0 &&
+                (progressedPosition > startPosition + 0.0001 ||
+                 (progressedPosition < startPosition && clipLength - startPosition + progressedPosition > 0.0001));
+            float maxPlaybackAngle, maxPlaybackScale;
+            float maxPlaybackPosition = PoseDelta(poseBefore, poseAfter, out maxPlaybackAngle, out maxPlaybackScale);
+            bool poseMoved = maxPlaybackPosition > 0.00001f || maxPlaybackAngle > 0.00001f || maxPlaybackScale > 0.00001f;
+            bool skeletonPoseFinite = poseBefore.finite && poseAfter.finite;
+            if (!playbackAdvanced || !poseMoved || !skeletonPoseFinite)
+            {
+                _failures++;
+                GD.PushError($"[capture] candidate_walk playback/pose check failed: advanced={playbackAdvanced}, moved={poseMoved}, finite={skeletonPoseFinite}, delta={maxPlaybackPosition}/{maxPlaybackAngle}");
+            }
+
+            var phases = new List<Dictionary<string, object?>>();
+            foreach (var (name, fraction) in new[] { ("early", 0.10), ("mid", 0.50), ("late", 0.85) })
+            {
+                double time = clipLength * fraction;
+                presenter.Pose("walk", time);
+                var phasePose = ReadPose();
+                if (!phasePose.finite)
+                {
+                    _failures++;
+                    GD.PushError($"[capture] candidate_walk phase '{name}' produced non-finite bone position/rotation/scale values");
+                }
+                foreach (var view in new[] { "side", "front", "q3" })
+                {
+                    _stage.FrameView(view);
+                    await Shot($"candidate_walk/{name}_{view}.png", "candidate_walk", descriptor, $"{name}_{view}",
+                        $"TEST ONLY imported candidate Walk clip at {time:F3}s ({fraction:P0}); neutral lighting");
+                }
+                phases.Add(new Dictionary<string, object?>
+                {
+                    ["phase"] = name,
+                    ["fractionOfClip"] = fraction,
+                    ["timeSeconds"] = time,
+                    ["poseFinite"] = phasePose.finite,
+                    ["bonePoseScale"] = phasePose.scales.Select(scale => new[] { scale.X, scale.Y, scale.Z }).ToArray(),
+                });
+            }
+
+            player.Play(resolvedAnimation);
+            player.Seek(Math.Max(0.0, clipLength - Math.Min(0.05, clipLength * 0.05)), true);
+            double nearEndPosition = player.CurrentAnimationPosition;
+            bool loopWrapped = false;
+            int wrapWaitFrames = 0;
+            while (player.IsPlaying() && wrapWaitFrames < 120)
+            {
+                await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                wrapWaitFrames++;
+                if (player.CurrentAnimationPosition + 0.01 < nearEndPosition)
+                {
+                    loopWrapped = true;
+                    break;
+                }
+            }
+            if (!loopWrapped)
+            {
+                _failures++;
+                GD.PushError($"[capture] candidate_walk did not wrap within {wrapWaitFrames} frames from {nearEndPosition:F4}s (mode={clip.LoopMode})");
+            }
+
+            var body = componentGroups.TryGetValue("Body", out var bodies) && bodies.Length == 1 ? bodies[0] : null;
+            var bodyMaterial = body?.GetActiveMaterial(0) as ShaderMaterial;
+            bool detailOff = bodyMaterial != null && !bodyMaterial.GetShaderParameter("use_signed_detail").AsBool() &&
+                             Mathf.Abs(bodyMaterial.GetShaderParameter("signed_detail_strength").AsSingle()) <= 0.000001f;
+            if (!detailOff)
+            {
+                _failures++;
+                GD.PushError("[capture] candidate_walk clone did not keep Light Body signed detail explicitly disabled at false/zero");
+            }
+
+            _candidateWalkEvidence.Add(new Dictionary<string, object?>
+            {
+                ["status"] = "captured-test-only-candidate",
+                ["candidateScene"] = _candidateScene,
+                ["familySceneOverriddenInTemporaryCatalogClone"] = true,
+                ["bodySignedDetailExplicitlyDisabledInClone"] = detailOff,
+                ["fixtureId"] = descriptor.FixtureId,
+                ["testOnly"] = descriptor.TestOnly,
+                ["support"] = support.Summary,
+                ["resolvedAnimation"] = resolvedAnimation,
+                ["animationNames"] = player.GetAnimationList(),
+                ["clipLengthSeconds"] = clipLength,
+                ["clipLoopMode"] = clip.LoopMode.ToString(),
+                ["playbackAdvanced"] = playbackAdvanced,
+                ["playbackStartPosition"] = startPosition,
+                ["playbackPositionAfterWait"] = progressedPosition,
+                ["maximumPosePositionDelta"] = maxPlaybackPosition,
+                ["maximumPoseRotationDeltaRadians"] = maxPlaybackAngle,
+                ["maximumPoseScaleDelta"] = maxPlaybackScale,
+                ["poseChangedWhilePlaying"] = poseMoved,
+                ["skeletonPoseFinite"] = skeletonPoseFinite,
+                ["skeletonCount"] = skeletons.Length,
+                ["boneCount"] = skeleton?.GetBoneCount() ?? 0,
+                ["boneNames"] = boneNames,
+                ["meshComponents"] = meshEvidence,
+                ["finiteMeshGeometryAndWeights"] = finiteGeometry,
+                ["phaseSamples"] = phases,
+                ["loopWrapObserved"] = loopWrapped,
+                ["loopWrapWaitFrames"] = wrapWaitFrames,
+                ["loopPositionNearEnd"] = nearEndPosition,
+                ["loopPositionAfterWait"] = player.CurrentAnimationPosition,
+                ["loopInterpretation"] = "Playback wrapped under HorsePresenter's forced loop mode; this does not validate skinning or prove authored seamless closure.",
+                ["influenceWidthInterpretation"] = "Per-surface bone/weight width is inventory only; it does not prove skin validity or posed accuracy.",
+            });
+        }
+        catch (Exception e)
+        {
+            _failures++;
+            GD.PushError($"[capture] candidate_walk failed: {e}");
+            _candidateWalkEvidence.Add(new Dictionary<string, object?>
+            {
+                ["status"] = "candidate-capture-exception",
+                ["candidateScene"] = _candidateScene,
+                ["error"] = e.ToString(),
+            });
+        }
+        finally
+        {
+            singletonField.SetValue(null, originalCatalog);
+            // Leave the shared stage back on its ordinary Light family if this
+            // test-only set is combined with any other capture sets.
+            _stage.Presenter.Present(lightDescriptor, "");
         }
     }
 
