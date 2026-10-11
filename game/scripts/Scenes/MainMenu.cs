@@ -30,8 +30,9 @@ public partial class MainMenu : Node
         var box = new VBoxContainer(); box.AddThemeConstantOverride("separation", 12);
         panel.AddChild(box);
         box.AddChild(CozyTheme.Title("Cloverbrook Stables", 40));
-        box.AddChild(CozyTheme.Title("visual pilot · placeholder horse", 15));
+        box.AddChild(CozyTheme.Title("appearance studio · adult shape demo", 15));
         AddButton(box, "Horse viewer", "res://scenes/viewer.tscn");
+        AddButton(box, "Appearance studio", "res://scenes/appearance_demo.tscn");
         AddButton(box, "Visit the stable", "res://scenes/stable.tscn");
         AddButton(box, "Manage stable", "res://scenes/stable_day.tscn");
         var quit = new Button { Text = "Quit" }; quit.Pressed += () => GetTree().Quit(); box.AddChild(quit);

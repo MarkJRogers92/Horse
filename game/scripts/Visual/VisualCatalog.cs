@@ -41,6 +41,10 @@ public sealed class VisualCatalog
     public Color HoofDark { get; private set; }
     public Color HoofPale { get; private set; }
     public float HeightScalePerUnit { get; private set; }
+    public float BodyBlendShapeNormalization { get; private set; }
+    public Dictionary<string, string> BodyBlendShapes { get; } = new(StringComparer.Ordinal);
+    public Dictionary<string, Dictionary<string, string>> MeshBlendShapes { get; } = new(StringComparer.Ordinal);
+    public List<string> ComponentMorphLimitations { get; } = new();
     public HashSet<string> UnsupportedMorphs { get; } = new(StringComparer.Ordinal);
 
     private static VisualCatalog? _instance;
@@ -74,6 +78,25 @@ public sealed class VisualCatalog
         cat.White = Hex(w, "color"); cat.PinkSkin = Hex(w, "pinkSkin"); cat.HoofDark = Hex(w, "hoofDark"); cat.HoofPale = Hex(w, "hoofPale");
         var morph = r.GetProperty("morphSupport");
         cat.HeightScalePerUnit = morph.GetProperty("height").GetProperty("perUnit").GetSingle();
+        cat.BodyBlendShapeNormalization = morph.GetProperty("bodyBlendShapeNormalization").GetSingle();
+        if (!float.IsFinite(cat.BodyBlendShapeNormalization) || cat.BodyBlendShapeNormalization <= 0f)
+            throw new JsonException("morphSupport.bodyBlendShapeNormalization must be a finite positive number");
+        foreach (var shape in morph.GetProperty("bodyBlendShapes").EnumerateObject())
+            cat.BodyBlendShapes[shape.Name] = shape.Value.GetString()!;
+        cat.MeshBlendShapes["Body"] = cat.BodyBlendShapes;
+        if (morph.TryGetProperty("meshBlendShapes", out var meshShapes))
+            foreach (var mesh in meshShapes.EnumerateObject())
+            {
+                var channels = new Dictionary<string, string>(StringComparer.Ordinal);
+                foreach (var shape in mesh.Value.EnumerateObject()) channels[shape.Name] = shape.Value.GetString()!;
+                cat.MeshBlendShapes[mesh.Name] = channels;
+            }
+        if (cat.MeshBlendShapes.TryGetValue("Body", out var declaredBody) &&
+            (declaredBody.Count != cat.BodyBlendShapes.Count || cat.BodyBlendShapes.Any(pair =>
+                !declaredBody.TryGetValue(pair.Key, out var shape) || !string.Equals(pair.Value, shape, StringComparison.Ordinal))))
+            throw new JsonException("morphSupport.bodyBlendShapes must exactly match meshBlendShapes.Body");
+        if (morph.TryGetProperty("componentMorphLimitations", out var componentLimits))
+            foreach (var item in componentLimits.EnumerateArray()) cat.ComponentMorphLimitations.Add(item.GetString()!);
         foreach (var u in morph.GetProperty("unsupported").EnumerateArray()) cat.UnsupportedMorphs.Add(u.GetString()!);
         return cat;
     }
@@ -104,8 +127,12 @@ public sealed class VisualCatalog
         if (d.PrimitiveMarkingStrength > 0 && Coats.TryGetValue(d.CoatRecipe, out var c) && c.Primitive is null && !d.CoatLayers.Contains("primitive_markings"))
             problems.Add("primitive markings requested without a primitive_markings layer");
         if (!string.IsNullOrEmpty(d.CosmeticLayer)) limits.Add($"cosmetic layer '{d.CosmeticLayer}' ignored (not implemented)");
-        var unappliedMorphs = d.MorphWeights.Where(kv => kv.Value != 0 && UnsupportedMorphs.Contains(kv.Key)).Select(kv => kv.Key).ToArray();
+        var supportedMorphs = MeshBlendShapes.Values.SelectMany(channels => channels.Keys).ToHashSet(StringComparer.Ordinal);
+        var unappliedMorphs = d.MorphWeights.Where(kv => kv.Value != 0 &&
+            (UnsupportedMorphs.Contains(kv.Key) || (supportedMorphs.Contains(kv.Key) && d.IsFoal)))
+            .Select(kv => kv.Key).ToArray();
         if (unappliedMorphs.Length > 0) limits.Add("morphs not applied: " + string.Join(",", unappliedMorphs));
+        limits.AddRange(ComponentMorphLimitations);
         if (d.TestOnly) limits.Add("test-only descriptor");
         return new VisualSupport(problems.Count == 0, problems, limits);
     }

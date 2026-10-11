@@ -33,7 +33,7 @@ public static class Lighting
             env.TonemapMode = Godot.Environment.ToneMapper.Agx;
             env.TonemapExposure = 1.0f;
             env.SsaoEnabled = true; env.SsaoRadius = 0.6f; env.SsaoIntensity = 1.2f;
-            AddSun(root, new Color(1f, 1f, 1f), 1.6f, new Vector3(-50, 35, 0), shadows: true);
+            AddSun(root, new Color(1f, 1f, 1f), 1.6f, new Vector3(-50, 35, 0), shadows: true, tunePreviewShadows: true);
             AddSun(root, new Color(1f, 1f, 1f), 0.35f, new Vector3(-20, -140, 0), shadows: false); // fill
         }
         else
@@ -63,15 +63,27 @@ public static class Lighting
         return root;
     }
 
-    private static void AddSun(Node3D root, Color color, float energy, Vector3 rotationDeg, bool shadows)
+    private static void AddSun(Node3D root, Color color, float energy, Vector3 rotationDeg, bool shadows, bool tunePreviewShadows = false)
     {
         var sun = new DirectionalLight3D
         {
             LightColor = color, LightEnergy = energy, ShadowEnabled = shadows,
-            RotationDegrees = rotationDeg, ShadowBlur = 1.5f,
+            RotationDegrees = rotationDeg,
+            // Preserve the Stable scene's previous 1.5 blur and 40m range.
+            ShadowBlur = tunePreviewShadows ? 1.0f : 1.5f,
             DirectionalShadowMode = DirectionalLight3D.ShadowMode.Parallel2Splits,
-            DirectionalShadowMaxDistance = 40f,
+            DirectionalShadowMaxDistance = tunePreviewShadows ? 30f : 40f,
         };
+        if (tunePreviewShadows)
+        {
+            // The old 40m neutral preview map produced self-shadow bands on
+            // smooth meshes. Keep contact shadows and tune only this art-test
+            // light; Stable/menu lighting retains Godot's prior bias/split values.
+            sun.ShadowBias = 0.15f;
+            sun.ShadowNormalBias = 2.5f;
+            sun.DirectionalShadowSplit1 = 0.15f;
+            sun.DirectionalShadowPancakeSize = 12f;
+        }
         root.AddChild(sun);
     }
 }

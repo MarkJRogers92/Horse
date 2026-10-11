@@ -1,0 +1,562 @@
+{
+  "formatVersion": "cloverbrook.visual-fixtures.v1",
+  "evidence": "canonical_resolver_art_test_only",
+  "renderingStatus": "generated_not_rendered",
+  "notForLiveStock": true,
+  "resolverVersion": "phenotype.v1",
+  "traitModelVersion": "game.traits.v1",
+  "matrixVersion": "0.1.appearance-studio-test-only",
+  "note": "Deterministic art-test examples generated through the canonical genetics and phenotype resolver. Four authored body profiles \u00D7 two supported coat classes; synthetic game-marker inputs and zero developmental factors are disclosed per fixture. These are not player saves, breed records, or offspring, and the in-memory phase-one matrix promotion does not change release status.",
+  "presets": [
+    {
+      "id": "light_racer",
+      "label": "Light \u00B7 athletic",
+      "examples": [
+        {
+          "fixtureId": "light_racer.chestnut",
+          "coatClass": "chestnut",
+          "meshFamily": "horse.standard.adult.v1",
+          "markingRealizationKey": "66bd21c8090d0115ac470c13df7bd0c677900ecf31a7e8a3caf23d64fd3a6b36"
+        },
+        {
+          "fixtureId": "light_racer.palomino",
+          "coatClass": "palomino",
+          "meshFamily": "horse.standard.adult.v1",
+          "markingRealizationKey": "35f9905c88d2bde290c9bef17eae823ce7f94e64d14cd00015d4cce5fd19c19f"
+        }
+      ]
+    },
+    {
+      "id": "light_endurance",
+      "label": "Light \u00B7 long-stride",
+      "examples": [
+        {
+          "fixtureId": "light_endurance.bay",
+          "coatClass": "bay",
+          "meshFamily": "horse.standard.adult.v1",
+          "markingRealizationKey": "f3b1e787a3bac3437e03484d897ea2348aa85d090345c79185adc98f633d95c2"
+        },
+        {
+          "fixtureId": "light_endurance.buckskin",
+          "coatClass": "buckskin",
+          "meshFamily": "horse.standard.adult.v1",
+          "markingRealizationKey": "f94a41307c34a7597c57f61ebcb64072690467e62f8c9393d0ffd10d81da5bc2"
+        }
+      ]
+    },
+    {
+      "id": "stock_muscular",
+      "label": "Stock \u00B7 muscular",
+      "examples": [
+        {
+          "fixtureId": "stock_muscular.black",
+          "coatClass": "black",
+          "meshFamily": "horse.compact.adult.v1",
+          "markingRealizationKey": "480c6ee440b9dae4ad194bcf39e7f0a2dd62018550303c93f37b56add401fb63"
+        },
+        {
+          "fixtureId": "stock_muscular.smoky_black",
+          "coatClass": "smoky_black",
+          "meshFamily": "horse.compact.adult.v1",
+          "markingRealizationKey": "787e912a2d4395e270f66eef8e7c407906331a042c8ec17e6e107aec4c5953be"
+        }
+      ]
+    },
+    {
+      "id": "stock_cob",
+      "label": "Stock \u00B7 cob-influenced",
+      "examples": [
+        {
+          "fixtureId": "stock_cob.red_dun",
+          "coatClass": "red_dun",
+          "meshFamily": "horse.compact.adult.v1",
+          "markingRealizationKey": "43042d9769a0b4e41aa64f04fc38a21e76550e08133340a49963d82ebbbf2d83"
+        },
+        {
+          "fixtureId": "stock_cob.bay_dun",
+          "coatClass": "bay_dun",
+          "meshFamily": "horse.compact.adult.v1",
+          "markingRealizationKey": "c43c5474da06a62d0822f8ec1dd2863d4cb5b9b659f41eccbcc65870af611117"
+        }
+      ]
+    }
+  ],
+  "fixtures": [
+    {
+      "fixtureId": "light_racer.chestnut",
+      "displayLabel": "Light \u00B7 athletic \u00B7 Chestnut",
+      "presetId": "light_racer",
+      "coatClassId": "chestnut",
+      "authoredInput": {
+        "source": "production-fixtures tool; not a save or offspring",
+        "genome": {
+          "coatClass": "chestnut",
+          "gameMarkers": {
+            "bodyLength": -850,
+            "chestWidth": -850,
+            "neckLength": 850,
+            "muscle": -850
+          }
+        },
+        "developmentalFactors": "all zero (fixed test input)",
+        "appearanceSeed": "efa88f94597752a16dd3e0bfaf437871",
+        "horseId": "30377541-3afe-aa1f-66d8-1e0f0802e3a1"
+      },
+      "descriptor": {
+        "horseId": "30377541-3afe-aa1f-66d8-1e0f0802e3a1",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "chestnut",
+        "requiredCoatClasses": [
+          "chestnut"
+        ],
+        "visualCapabilityVersion": "0.1.appearance-studio-test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": 850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_chestnut",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "66bd21c8090d0115ac470c13df7bd0c677900ecf31a7e8a3caf23d64fd3a6b36",
+        "cosmeticLayer": null,
+        "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b"
+      }
+    },
+    {
+      "fixtureId": "light_racer.palomino",
+      "displayLabel": "Light \u00B7 athletic \u00B7 Palomino",
+      "presetId": "light_racer",
+      "coatClassId": "palomino",
+      "authoredInput": {
+        "source": "production-fixtures tool; not a save or offspring",
+        "genome": {
+          "coatClass": "palomino",
+          "gameMarkers": {
+            "bodyLength": -850,
+            "chestWidth": -850,
+            "neckLength": 850,
+            "muscle": -850
+          }
+        },
+        "developmentalFactors": "all zero (fixed test input)",
+        "appearanceSeed": "c6d637804c28c1ec0b4bab73ae01fbef",
+        "horseId": "b0168bad-70e6-e84d-d7f8-2408be2264d6"
+      },
+      "descriptor": {
+        "horseId": "b0168bad-70e6-e84d-d7f8-2408be2264d6",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "palomino",
+        "requiredCoatClasses": [
+          "chestnut",
+          "palomino"
+        ],
+        "visualCapabilityVersion": "0.1.appearance-studio-test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": 850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "cream_single",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:cream_single",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "cream_pale_mane_tail",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "35f9905c88d2bde290c9bef17eae823ce7f94e64d14cd00015d4cce5fd19c19f",
+        "cosmeticLayer": null,
+        "cacheKey": "6e6dea39ffcdcd83140f501003733571a2b43a621e36f621033b9414fa880c3f"
+      }
+    },
+    {
+      "fixtureId": "light_endurance.bay",
+      "displayLabel": "Light \u00B7 long-stride \u00B7 Bay",
+      "presetId": "light_endurance",
+      "coatClassId": "bay",
+      "authoredInput": {
+        "source": "production-fixtures tool; not a save or offspring",
+        "genome": {
+          "coatClass": "bay",
+          "gameMarkers": {
+            "bodyLength": 850,
+            "chestWidth": -850,
+            "neckLength": 850,
+            "muscle": 0
+          }
+        },
+        "developmentalFactors": "all zero (fixed test input)",
+        "appearanceSeed": "0553fd09c3dad30723de67af640de1c3",
+        "horseId": "5066acc4-267a-1bac-9445-6c90382a34a1"
+      },
+      "descriptor": {
+        "horseId": "5066acc4-267a-1bac-9445-6c90382a34a1",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay"
+        ],
+        "visualCapabilityVersion": "0.1.appearance-studio-test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": 850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": 0,
+          "neck_length": 850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "f3b1e787a3bac3437e03484d897ea2348aa85d090345c79185adc98f633d95c2",
+        "cosmeticLayer": null,
+        "cacheKey": "90aa874e351df15a6222a7c0396e41a89aa9acd8dc55fe5cdae4780e5ef45ee0"
+      }
+    },
+    {
+      "fixtureId": "light_endurance.buckskin",
+      "displayLabel": "Light \u00B7 long-stride \u00B7 Buckskin",
+      "presetId": "light_endurance",
+      "coatClassId": "buckskin",
+      "authoredInput": {
+        "source": "production-fixtures tool; not a save or offspring",
+        "genome": {
+          "coatClass": "buckskin",
+          "gameMarkers": {
+            "bodyLength": 850,
+            "chestWidth": -850,
+            "neckLength": 850,
+            "muscle": 0
+          }
+        },
+        "developmentalFactors": "all zero (fixed test input)",
+        "appearanceSeed": "68d27d9c4728f2473e060163684cf587",
+        "horseId": "1c11d084-42b3-2960-875a-9d3cb49f8830"
+      },
+      "descriptor": {
+        "horseId": "1c11d084-42b3-2960-875a-9d3cb49f8830",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "buckskin",
+        "requiredCoatClasses": [
+          "bay",
+          "buckskin"
+        ],
+        "visualCapabilityVersion": "0.1.appearance-studio-test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": 850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": 0,
+          "neck_length": 850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "cream_single",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:cream_single",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "f94a41307c34a7597c57f61ebcb64072690467e62f8c9393d0ffd10d81da5bc2",
+        "cosmeticLayer": null,
+        "cacheKey": "9ab2f6f6f1a159cce218ef1ba7c53b8662b6acd12d38160c624f279fdea9c5d6"
+      }
+    },
+    {
+      "fixtureId": "stock_muscular.black",
+      "displayLabel": "Stock \u00B7 muscular \u00B7 Black",
+      "presetId": "stock_muscular",
+      "coatClassId": "black",
+      "authoredInput": {
+        "source": "production-fixtures tool; not a save or offspring",
+        "genome": {
+          "coatClass": "black",
+          "gameMarkers": {
+            "bodyLength": -850,
+            "chestWidth": 850,
+            "neckLength": -850,
+            "muscle": 850
+          }
+        },
+        "developmentalFactors": "all zero (fixed test input)",
+        "appearanceSeed": "f3503d877d491d50bc411e1240f18452",
+        "horseId": "ff6a59cc-957d-a79c-517a-b083394b5e58"
+      },
+      "descriptor": {
+        "horseId": "ff6a59cc-957d-a79c-517a-b083394b5e58",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "black",
+        "requiredCoatClasses": [
+          "black"
+        ],
+        "visualCapabilityVersion": "0.1.appearance-studio-test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.compact.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": 850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": 850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_full:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_black",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "480c6ee440b9dae4ad194bcf39e7f0a2dd62018550303c93f37b56add401fb63",
+        "cosmeticLayer": null,
+        "cacheKey": "ab24cb93921c35fab23916519ab6e0906f47fef6ac58f63176645dc65922c394"
+      }
+    },
+    {
+      "fixtureId": "stock_muscular.smoky_black",
+      "displayLabel": "Stock \u00B7 muscular \u00B7 Smoky black",
+      "presetId": "stock_muscular",
+      "coatClassId": "smoky_black",
+      "authoredInput": {
+        "source": "production-fixtures tool; not a save or offspring",
+        "genome": {
+          "coatClass": "smoky_black",
+          "gameMarkers": {
+            "bodyLength": -850,
+            "chestWidth": 850,
+            "neckLength": -850,
+            "muscle": 850
+          }
+        },
+        "developmentalFactors": "all zero (fixed test input)",
+        "appearanceSeed": "feb0f64e2020995297f6031ab4af745b",
+        "horseId": "901dd155-e870-a3e8-6597-9736bb1ea700"
+      },
+      "descriptor": {
+        "horseId": "901dd155-e870-a3e8-6597-9736bb1ea700",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "smoky_black",
+        "requiredCoatClasses": [
+          "black",
+          "smoky_black"
+        ],
+        "visualCapabilityVersion": "0.1.appearance-studio-test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.compact.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": 850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": 850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "cream_single",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_full:cream_single",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_black",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "787e912a2d4395e270f66eef8e7c407906331a042c8ec17e6e107aec4c5953be",
+        "cosmeticLayer": null,
+        "cacheKey": "32a6f52a95c4ed407a30efc0a5e312ab12e2626502a65bb8f29c56b20bba9819"
+      }
+    },
+    {
+      "fixtureId": "stock_cob.red_dun",
+      "displayLabel": "Stock \u00B7 cob-influenced \u00B7 Red dun",
+      "presetId": "stock_cob",
+      "coatClassId": "red_dun",
+      "authoredInput": {
+        "source": "production-fixtures tool; not a save or offspring",
+        "genome": {
+          "coatClass": "red_dun",
+          "gameMarkers": {
+            "bodyLength": 0,
+            "chestWidth": 850,
+            "neckLength": 0,
+            "muscle": 850
+          }
+        },
+        "developmentalFactors": "all zero (fixed test input)",
+        "appearanceSeed": "73ca8d4aaf63c08cefb33a66509fd672",
+        "horseId": "0bb46212-7ad5-3924-8d2f-db34f607c48a"
+      },
+      "descriptor": {
+        "horseId": "0bb46212-7ad5-3924-8d2f-db34f607c48a",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "red_dun",
+        "requiredCoatClasses": [
+          "chestnut",
+          "red_dun"
+        ],
+        "visualCapabilityVersion": "0.1.appearance-studio-test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.compact.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": 0,
+          "chest_width": 850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": 850,
+          "neck_length": 0,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "dun_dilution",
+          "primitive_markings",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:none\u002Bdun",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_chestnut",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 10000,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "43042d9769a0b4e41aa64f04fc38a21e76550e08133340a49963d82ebbbf2d83",
+        "cosmeticLayer": null,
+        "cacheKey": "074db70fffeda3b38e940e15e14c93ea1a2aecb25e0f45e707c38007558e95cd"
+      }
+    },
+    {
+      "fixtureId": "stock_cob.bay_dun",
+      "displayLabel": "Stock \u00B7 cob-influenced \u00B7 Bay dun",
+      "presetId": "stock_cob",
+      "coatClassId": "bay_dun",
+      "authoredInput": {
+        "source": "production-fixtures tool; not a save or offspring",
+        "genome": {
+          "coatClass": "bay_dun",
+          "gameMarkers": {
+            "bodyLength": 0,
+            "chestWidth": 850,
+            "neckLength": 0,
+            "muscle": 850
+          }
+        },
+        "developmentalFactors": "all zero (fixed test input)",
+        "appearanceSeed": "70c766f5554d93a2acef57d6842eb2e2",
+        "horseId": "54048519-1e09-2cb4-e9e5-5fa86eb7c411"
+      },
+      "descriptor": {
+        "horseId": "54048519-1e09-2cb4-e9e5-5fa86eb7c411",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay_dun",
+        "requiredCoatClasses": [
+          "bay",
+          "bay_dun"
+        ],
+        "visualCapabilityVersion": "0.1.appearance-studio-test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.compact.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": 0,
+          "chest_width": 850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": 850,
+          "neck_length": 0,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "dun_dilution",
+          "primitive_markings",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none\u002Bdun",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 10000,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "c43c5474da06a62d0822f8ec1dd2863d4cb5b9b659f41eccbcc65870af611117",
+        "cosmeticLayer": null,
+        "cacheKey": "320c6cc18313835d7c1b2f51178b8427594cd3081fae2c9cdb25b8c6fe074b9e"
+      }
+    }
+  ]
+}

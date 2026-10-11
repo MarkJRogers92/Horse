@@ -13,14 +13,20 @@ namespace Cloverbrook.Game.Visual;
 public static class FixtureLibrary
 {
     public const string FixturePath = "res://data/fixtures/visual-descriptor-fixtures.json";
+    public const string AppearanceStudioPath = "res://data/fixtures/appearance-studio.json";
 
     private static List<VisualDescriptor>? _phase1;
+    private static List<VisualDescriptor>? _appearanceStudio;
     public static IReadOnlyList<VisualDescriptor> Phase1 => _phase1 ??= VisualDescriptor.LoadFixtureFile(FileAccess.GetFileAsString(FixturePath));
+    public static IReadOnlyList<VisualDescriptor> AppearanceStudio => _appearanceStudio ??= VisualDescriptor.LoadFixtureFile(FileAccess.GetFileAsString(AppearanceStudioPath));
 
     public static IEnumerable<string> ClassIds => Phase1.Select(d => d.FixtureId.Split('.')[0]).Distinct();
 
     public static VisualDescriptor Get(string classId, bool foal) =>
         Phase1.First(d => d.FixtureId == classId + (foal ? ".foal" : ".adult"));
+
+    public static VisualDescriptor GetAppearanceStudio(string fixtureId) =>
+        AppearanceStudio.First(d => d.FixtureId == fixtureId);
 
     /// <summary>Deterministic marking keys for the marking-variety sheet (test-only).</summary>
     public static IEnumerable<VisualDescriptor> MarkingVariety(string classId, bool foal, int count)

@@ -1,0 +1,719 @@
+{
+  "assetVersion": "horse-production.meshy.v1.stock",
+  "familyId": "horse.compact",
+  "profile": "Meshy compact stock adult",
+  "status": "Candidate-derived static master for visual and importer review; not approved production anatomy",
+  "source": {
+    "file": "art/candidates/meshy/light_01/source.glb",
+    "sha256": "eb050377a21d5e2e1b58fd6ccbe239df9c7d320ce545dcc42ef9e72946866367",
+    "generationModel": "Meshy 7.1",
+    "accountPlan": "owner-reported Pro",
+    "privacySetting": "Private",
+    "thirdPartyImageInput": false,
+    "ownershipBasis": "Owner-generated candidate; paid Meshy plan ownership subject to compliant input and privacy settings",
+    "termsCheckedDate": "2026-10-11",
+    "termsSources": [
+      "https://help.meshy.ai/en/articles/9992001-can-i-use-meshy-assets-commercially-license-copyright-explained",
+      "https://help.meshy.ai/en/articles/10137554-what-is-the-ownership-of-the-generated-models"
+    ]
+  },
+  "transforms": {
+    "rawToBlender": "(x,y,z)->(-y,x,z+0.79319394)*1.25; baked into vertices",
+    "forward": "+X",
+    "left": "+Y",
+    "up": "+Z",
+    "floor_z_m": 0.0,
+    "family": {
+      "length": -0.08,
+      "width": 1.16,
+      "haunch": 1.24,
+      "shoulder": 1.16,
+      "muscle": 0.045,
+      "neck": -0.095,
+      "profile": "Meshy compact stock adult"
+    },
+    "familyWarp": "trunk length; localized chest/haunch/shoulder lateral profile and muscle bulge; localized neck shift"
+  },
+  "meshNodes": [
+    "Body",
+    "Eyes",
+    "Mane",
+    "Tail"
+  ],
+  "rigNode": "Skeleton",
+  "animations": [
+    "Idle"
+  ],
+  "triangleCount": 32944,
+  "trianglesByMesh": {
+    "Body": {
+      "vertices": 19056,
+      "triangles": 25222,
+      "color_0": 19056,
+      "texcoord_1": 19056,
+      "weights_0": 19056
+    },
+    "Eyes": {
+      "triangles": 2944
+    },
+    "Mane": {
+      "triangles": 332
+    },
+    "Tail": {
+      "triangles": 4446
+    }
+  },
+  "decimation": {
+    "sourceTriangles": 326366,
+    "exportTargetTriangles": 30000,
+    "collapseRatio": 0.091921
+  },
+  "sharedTopologyIndexSha256": "732fac6a5beffc9c88a46b6989cf51cd329ed6c48c9a53cd10221e364e856fdc",
+  "hairPartition": {
+    "sourceFaces": 30000,
+    "bodyFaces": 25222,
+    "maneFaces": 332,
+    "tailFaces": 4446,
+    "sharedSeamEdges": 186,
+    "facePartitionConserved": true,
+    "loopNormalsPreservedFromWeldedSource": true
+  },
+  "bodyShapeKeys": {
+    "body_length": {
+      "neutral": 0.0,
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "nodes": {
+        "Body": 0.04088,
+        "Eyes": 0.0,
+        "Mane": 0.0,
+        "Tail": 0.00482
+      }
+    },
+    "chest_width": {
+      "neutral": 0.0,
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "nodes": {
+        "Body": 0.04044,
+        "Eyes": 0.00061,
+        "Mane": 0.00467,
+        "Tail": 0.00214
+      }
+    },
+    "neck_length": {
+      "neutral": 0.0,
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "nodes": {
+        "Body": 0.075,
+        "Eyes": 0.075,
+        "Mane": 0.05753,
+        "Tail": 0.0
+      }
+    },
+    "muscle": {
+      "neutral": 0.0,
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "nodes": {
+        "Body": 0.02753,
+        "Eyes": 0.0041,
+        "Mane": 0.02035,
+        "Tail": 0.00354
+      }
+    }
+  },
+  "bodyMasks": {
+    "COLOR_0": true,
+    "UV0": "Smart UV Project from Meshy source without source UV",
+    "canonicalUV1": "existing importer anatomy helper"
+  },
+  "maskCoverage": {
+    "vertex_count": 12664,
+    "head_poll_loops": 2736,
+    "head_muzzle_loops": 6107,
+    "head_front_loops": 6878,
+    "forehead_front_loops": 3080,
+    "leg_loops": {
+      "Front_L": 6513,
+      "Front_R": 6789,
+      "Hind_L": 4437,
+      "Hind_R": 4347
+    },
+    "sentinel_loops": 33945,
+    "head_half_width_m": 0.1171
+  },
+  "maskBoundaryRepair": {
+    "method": "per-corner mask projection on majority-classified head/limb polygons",
+    "headBoundaryLoopsReevaluated": 542,
+    "legBoundaryLoopsReevaluated": 973,
+    "checkedHeadLoops": 19635,
+    "checkedLegLoops": 22086,
+    "maxHeadUvError": 6e-08,
+    "maxLegHeightError": 6e-08
+  },
+  "canonicalHeadAxis": {
+    "method": "poll projected from ear-root midpoint shifted back/up onto upper skull; muzzle from centered forward-most nose-tip vertices",
+    "poll_m": [
+      0.66609,
+      0.00392,
+      1.87544
+    ],
+    "muzzle_m": [
+      1.09053,
+      0.00023,
+      1.43979
+    ],
+    "direction": [
+      0.69782,
+      -0.00606,
+      -0.71625
+    ],
+    "horizontalForwardXY": 0.99996,
+    "canonicalS0_30World_m": [
+      0.79342,
+      0.00281,
+      1.74475
+    ],
+    "landmarkValidation": {
+      "earRootMidpoint_m": [
+        0.77345,
+        0.00468,
+        1.83525
+      ],
+      "pollToEarMidpoint_m": 0.11464,
+      "muzzleTipCandidateCount": 50
+    }
+  },
+  "eyeFit": {
+    "method": "BVH orbital surface fit with partially recessed horizontal almond geometry",
+    "sides": [
+      {
+        "side": "right",
+        "socketReference_m": [
+          0.925,
+          -0.16034,
+          1.7
+        ],
+        "probe_m": [
+          0.925,
+          -0.16034,
+          1.7
+        ],
+        "surface_m": [
+          0.89757,
+          -0.11027,
+          1.71445
+        ],
+        "outwardNormal": [
+          0.49971,
+          -0.80169,
+          -0.32801
+        ],
+        "center_m": [
+          0.89557,
+          -0.10706,
+          1.71576
+        ],
+        "surfaceRecess_m": 0.004,
+        "maxSurfaceProtrusion_m": 0.0025,
+        "semiAxes_m": [
+          0.014,
+          0.0065,
+          0.009
+        ]
+      },
+      {
+        "side": "left",
+        "socketReference_m": [
+          0.925,
+          0.16034,
+          1.7
+        ],
+        "probe_m": [
+          0.925,
+          0.16034,
+          1.7
+        ],
+        "surface_m": [
+          0.89752,
+          0.10802,
+          1.71376
+        ],
+        "outwardNormal": [
+          0.56396,
+          0.82527,
+          -0.02963
+        ],
+        "center_m": [
+          0.89526,
+          0.10472,
+          1.71388
+        ],
+        "surfaceRecess_m": 0.004,
+        "maxSurfaceProtrusion_m": 0.0025,
+        "semiAxes_m": [
+          0.014,
+          0.0065,
+          0.009
+        ]
+      }
+    ]
+  },
+  "motion": {
+    "actions": [
+      "Idle"
+    ],
+    "fps": 24,
+    "durationsSeconds": {
+      "Idle": 4.0
+    },
+    "walkAuthored": false,
+    "grazeAuthored": false,
+    "walkGate": "awaiting locomotion and planted-hoof review",
+    "grazeGate": "awaiting ground-reaching pose and deformation review"
+  },
+  "rig": {
+    "version": "cloverbrook.meshy-smart-rig-transfer.v1",
+    "family": "stock",
+    "source": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/art/candidates/meshy/light_01/smart-rig.glb",
+    "sourceSha256": "16b0e02194f31907f63e362c7aa3ff75504b1b6ffb0a7681cbcb4f52dda1d989",
+    "sourceBoneCount": 57,
+    "boneCount": 58,
+    "boneNames": [
+      "Chest",
+      "Ear_L",
+      "Ear_L_02",
+      "Ear_L_03",
+      "Ear_R",
+      "Ear_R_02",
+      "Ear_R_03",
+      "Front_L_Cannon",
+      "Front_L_Forearm",
+      "Front_L_Hoof",
+      "Front_L_Hoof_02",
+      "Front_L_Hoof_03",
+      "Front_L_Pastern",
+      "Front_L_Upper",
+      "Front_R_Cannon",
+      "Front_R_Forearm",
+      "Front_R_Hoof",
+      "Front_R_Hoof_02",
+      "Front_R_Hoof_03",
+      "Front_R_Pastern",
+      "Front_R_Upper",
+      "Head",
+      "Head_Base",
+      "Head_Nose",
+      "Head_Upper",
+      "Hind_L_Cannon",
+      "Hind_L_Gaskin",
+      "Hind_L_Hoof",
+      "Hind_L_Hoof_02",
+      "Hind_L_Pastern",
+      "Hind_L_Upper",
+      "Hind_R_Cannon",
+      "Hind_R_Gaskin",
+      "Hind_R_Hoof",
+      "Hind_R_Hoof_02",
+      "Hind_R_Pastern",
+      "Hind_R_Upper",
+      "Jaw_Mid",
+      "Jaw_Tip",
+      "Jaw_Upper",
+      "Neck",
+      "Neck_Base",
+      "Neck_Mid",
+      "Neck_Top",
+      "Neck_Upper",
+      "Pelvis",
+      "Pelvis_Root",
+      "Root",
+      "Spine",
+      "Spine_Mid",
+      "Spine_Upper",
+      "Tail_01",
+      "Tail_02",
+      "Tail_03",
+      "Tail_04",
+      "Tail_05",
+      "Tail_06",
+      "Tail_07"
+    ],
+    "boneMapping": {
+      "root": "Root",
+      "aliases": {
+        "Bone_000": "Pelvis_Root",
+        "Bone_001": "Pelvis",
+        "Bone_014": "Spine",
+        "Bone_013": "Spine_Mid",
+        "Bone_012": "Spine_Upper",
+        "Bone_011": "Chest",
+        "Bone_010": "Neck_Base",
+        "Bone_009": "Neck",
+        "Bone_033": "Neck_Mid",
+        "Bone_032": "Neck_Upper",
+        "Bone_031": "Neck_Top",
+        "Bone_030": "Head_Base",
+        "Bone_029": "Head",
+        "Bone_028": "Head_Upper",
+        "Bone_027": "Head_Nose",
+        "Bone_050": "Jaw_Upper",
+        "Bone_049": "Jaw_Mid",
+        "Bone_048": "Jaw_Tip",
+        "Bone_008": "Tail_01",
+        "Bone_007": "Tail_02",
+        "Bone_006": "Tail_03",
+        "Bone_005": "Tail_04",
+        "Bone_004": "Tail_05",
+        "Bone_003": "Tail_06",
+        "Bone_002": "Tail_07",
+        "Bone_056": "Ear_L",
+        "Bone_055": "Ear_L_02",
+        "Bone_054": "Ear_L_03",
+        "Bone_053": "Ear_R",
+        "Bone_052": "Ear_R_02",
+        "Bone_051": "Ear_R_03",
+        "Bone_047": "Front_L_Upper",
+        "Bone_046": "Front_L_Forearm",
+        "Bone_045": "Front_L_Cannon",
+        "Bone_044": "Front_L_Pastern",
+        "Bone_043": "Front_L_Hoof",
+        "Bone_042": "Front_L_Hoof_02",
+        "Bone_041": "Front_L_Hoof_03",
+        "Bone_040": "Front_R_Upper",
+        "Bone_039": "Front_R_Forearm",
+        "Bone_038": "Front_R_Cannon",
+        "Bone_037": "Front_R_Pastern",
+        "Bone_036": "Front_R_Hoof",
+        "Bone_035": "Front_R_Hoof_02",
+        "Bone_034": "Front_R_Hoof_03",
+        "Bone_026": "Hind_L_Upper",
+        "Bone_025": "Hind_L_Gaskin",
+        "Bone_024": "Hind_L_Cannon",
+        "Bone_023": "Hind_L_Pastern",
+        "Bone_022": "Hind_L_Hoof",
+        "Bone_021": "Hind_L_Hoof_02",
+        "Bone_020": "Hind_R_Upper",
+        "Bone_019": "Hind_R_Gaskin",
+        "Bone_018": "Hind_R_Cannon",
+        "Bone_017": "Hind_R_Pastern",
+        "Bone_016": "Hind_R_Hoof",
+        "Bone_015": "Hind_R_Hoof_02"
+      },
+      "unmappedNamesPrefix": "Smart_"
+    },
+    "weighting": [
+      {
+        "mesh": "Body",
+        "vertices": 12664,
+        "groups": 54,
+        "maxInfluences": 4,
+        "maxProjectionDistance_m": 0.006037,
+        "weightMethod": "nearest Smart Rig triangle, barycentric 4-influence transfer, exact-sum 8-bit weights",
+        "localization": "rest-segment attenuation for forelimb and neck/head weights on Body"
+      },
+      {
+        "mesh": "Eyes",
+        "vertices": 1476,
+        "groups": 4,
+        "maxInfluences": 4,
+        "maxProjectionDistance_m": 0.011134,
+        "weightMethod": "nearest Smart Rig triangle, barycentric 4-influence transfer, exact-sum 8-bit weights",
+        "localization": "none; source surface weights preserved"
+      },
+      {
+        "mesh": "Mane",
+        "vertices": 189,
+        "groups": 5,
+        "maxInfluences": 4,
+        "maxProjectionDistance_m": 0.001665,
+        "weightMethod": "nearest Smart Rig triangle, barycentric 4-influence transfer, exact-sum 8-bit weights",
+        "localization": "none; source surface weights preserved"
+      },
+      {
+        "mesh": "Tail",
+        "vertices": 2295,
+        "groups": 7,
+        "maxInfluences": 4,
+        "maxProjectionDistance_m": 0.002253,
+        "weightMethod": "nearest Smart Rig triangle, barycentric 4-influence transfer, exact-sum 8-bit weights",
+        "localization": "none; source surface weights preserved"
+      }
+    ],
+    "skinInfluenceLimit": 4,
+    "walkAuthored": false,
+    "poseGate": "static and locomotion pose review required before clips"
+  },
+  "bounds": {
+    "min_m": [
+      -1.18896,
+      -0.33992,
+      -0.00025
+    ],
+    "max_m": [
+      1.09663,
+      0.33717,
+      1.97048
+    ],
+    "size_m": [
+      2.28559,
+      0.67709,
+      1.97074
+    ]
+  },
+  "headViewTarget_m": [
+    0.83861,
+    1.63441,
+    0.0181
+  ],
+  "glbValidation": {
+    "mesh_names": [
+      "Body",
+      "Eyes",
+      "Mane",
+      "Tail"
+    ],
+    "node_names": [
+      "Hind_L_Hoof_02",
+      "Hind_L_Hoof",
+      "Hind_L_Pastern",
+      "Hind_L_Cannon",
+      "Hind_L_Gaskin",
+      "Hind_L_Upper",
+      "Hind_R_Hoof_02",
+      "Hind_R_Hoof",
+      "Hind_R_Pastern",
+      "Hind_R_Cannon",
+      "Hind_R_Gaskin",
+      "Hind_R_Upper",
+      "Front_L_Hoof_03",
+      "Front_L_Hoof_02",
+      "Front_L_Hoof",
+      "Front_L_Pastern",
+      "Front_L_Cannon",
+      "Front_L_Forearm",
+      "Front_L_Upper",
+      "Front_R_Hoof_03",
+      "Front_R_Hoof_02",
+      "Front_R_Hoof",
+      "Front_R_Pastern",
+      "Front_R_Cannon",
+      "Front_R_Forearm",
+      "Front_R_Upper",
+      "Ear_L_03",
+      "Ear_L_02",
+      "Ear_L",
+      "Ear_R_03",
+      "Ear_R_02",
+      "Ear_R",
+      "Jaw_Tip",
+      "Jaw_Mid",
+      "Jaw_Upper",
+      "Head_Nose",
+      "Head_Upper",
+      "Head",
+      "Head_Base",
+      "Neck_Top",
+      "Neck_Upper",
+      "Neck_Mid",
+      "Neck",
+      "Neck_Base",
+      "Chest",
+      "Spine_Upper",
+      "Spine_Mid",
+      "Spine",
+      "Tail_07",
+      "Tail_06",
+      "Tail_05",
+      "Tail_04",
+      "Tail_03",
+      "Tail_02",
+      "Tail_01",
+      "Pelvis",
+      "Pelvis_Root",
+      "Root",
+      "Body",
+      "Eyes",
+      "Mane",
+      "Tail",
+      "Skeleton"
+    ],
+    "animations": 1,
+    "animationNames": [
+      "Idle"
+    ],
+    "triangles": 32944,
+    "primitives": {
+      "Body": {
+        "vertices": 19056,
+        "triangles": 25222,
+        "color_0": 19056,
+        "texcoord_1": 19056,
+        "weights_0": 19056
+      },
+      "Eyes": {
+        "triangles": 2944
+      },
+      "Mane": {
+        "triangles": 332
+      },
+      "Tail": {
+        "triangles": 4446
+      }
+    },
+    "attributes": {
+      "Body": [
+        [
+          "COLOR_0",
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "TEXCOORD_1",
+          "WEIGHTS_0"
+        ]
+      ],
+      "Eyes": [
+        [
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "TEXCOORD_1",
+          "WEIGHTS_0"
+        ]
+      ],
+      "Mane": [
+        [
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "WEIGHTS_0"
+        ]
+      ],
+      "Tail": [
+        [
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "WEIGHTS_0"
+        ]
+      ]
+    },
+    "normal_unit_failures": 0,
+    "nonfinite_values": 0,
+    "max_skin_weight_sum_error": 9.778887033462524e-08,
+    "skin_weights_by_mesh": {
+      "Body": {
+        "vertices": 19056,
+        "max_sum_error": 9.778887033462524e-08
+      },
+      "Eyes": {
+        "vertices": 1646,
+        "max_sum_error": 1.1175870895385742e-08
+      },
+      "Mane": {
+        "vertices": 189,
+        "max_sum_error": 7.078051567077637e-08
+      },
+      "Tail": {
+        "vertices": 2295,
+        "max_sum_error": 9.406358003616333e-08
+      }
+    },
+    "mixed_canonical_category_triangles": 0,
+    "body_has_descriptor_attributes": true,
+    "body_has_skin": true,
+    "exported_head_direction_muzzle_minus_poll": [
+      0.68296,
+      -0.72786,
+      -0.06155
+    ],
+    "exported_horizontal_forward_XZ": [
+      0.99596,
+      -0.08976
+    ],
+    "exported_poll_center_m": [
+      0.65286,
+      1.83237,
+      0.03484
+    ],
+    "exported_muzzle_center_m": [
+      1.02436,
+      1.43644,
+      0.00136
+    ]
+  },
+  "glbMorphTargets": {
+    "Body": [
+      "body_length",
+      "chest_width",
+      "neck_length",
+      "muscle"
+    ],
+    "Eyes": [
+      "body_length",
+      "chest_width",
+      "neck_length",
+      "muscle"
+    ],
+    "Mane": [
+      "body_length",
+      "chest_width",
+      "neck_length",
+      "muscle"
+    ],
+    "Tail": [
+      "body_length",
+      "chest_width",
+      "neck_length",
+      "muscle"
+    ]
+  },
+  "geometryQuality": {
+    "Body": {
+      "nonmanifold_edges": 186,
+      "zero_area_faces": 0,
+      "loose_vertices": 0
+    },
+    "Eyes": {
+      "nonmanifold_edges": 0,
+      "zero_area_faces": 0,
+      "loose_vertices": 0
+    },
+    "Mane": {
+      "nonmanifold_edges": 44,
+      "zero_area_faces": 0,
+      "loose_vertices": 0
+    },
+    "Tail": {
+      "nonmanifold_edges": 142,
+      "zero_area_faces": 0,
+      "loose_vertices": 0
+    }
+  },
+  "evidence": {
+    "side": "art/derived/production/evidence/meshy/horse_stock_side.png",
+    "front": "art/derived/production/evidence/meshy/horse_stock_front.png",
+    "rear": "art/derived/production/evidence/meshy/horse_stock_rear.png",
+    "q3": "art/derived/production/evidence/meshy/horse_stock_q3.png",
+    "wire": "art/derived/production/evidence/meshy/horse_stock_wire.png"
+  },
+  "limitations": [
+    "Meshy source was one welded mesh with no UV, skin, morphs, or named components.",
+    "Eyes are newly authored UV spheres. Existing sculpted Mane and Tail faces were partitioned into named meshes; seam edges are shared and verified.",
+    "Idle is a subtle candidate clip; walk/graze remain excluded, and no animation or final anatomy acceptance is claimed."
+  ]
+}

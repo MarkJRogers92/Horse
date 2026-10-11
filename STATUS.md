@@ -5,27 +5,30 @@
 The prior visual/animation freeze below is historical and remains true for the
 original checkout; new work is isolated here. No release-matrix promotion or main merge.
 
-Initial inspection complete. Blender MCP works; Meshy OAuth and 1,100 starting
-credits verified. One generated reference and one private untextured Meshy horse
-are preserved under `art/candidates/meshy/light_01/` with provenance and four-angle
-local Blender renders. Actual website charges: 9 + 25 + 9 + 25 = 68; automatic onboarding
-rewards +100; balance 1,132. A separate juvenile geometry and free rig candidate are preserved. API task billing for website jobs reports zero and is
-not authoritative; use the website usage history and `MESHY_CREDIT_LEDGER.json`.
+Two private Meshy geometry sources are preserved: the adult source and a distinct
+juvenile source under `art/candidates/meshy/`. Actual website charges total 68
+credits (two references at 9 plus two geometry jobs at 25); automatic rewards
+added 100, leaving 1,132. The free foal rig retry has separate limb chains;
+the first incomplete foal rig is rejected and retained as evidence.
 
-The immutable source has 326,366 triangles. Derived Light and Stock candidates
-now have 31,440 triangles each, shared base topology, four component-wide body
-morphs, provisional UVs/anatomical masks, and a transferred 58-bone rig. The
-canonical test-only appearance studio displays eight horses from four presets.
-The .NET Godot build/import and targeted captures pass; actual runtime LOD
-buffers exist. Those checks do not establish visual acceptance: eye fit,
-surface/lighting artifacts, and marking boundaries are still being resolved.
-Idle has a closed Blender preview loop; Walk and Graze remain rejected and
-excluded from production exports. Existing CC0-derived work is retained as
-fallback. The owner has prioritized a proper foal next, before finalizing the
-procedural mesh workflow. The separate “Build horse coat texture pipeline” chat
-is authorized to coordinate and is waiting for a stable source snapshot.
-No new master or motion is accepted as final. See D-007 and
-`docs/visual/PRODUCTION_ASSESSMENT.md`.
+Current Light and Stock exports each have 32,944 triangles, four component-wide
+body morphs, provisional primary UVs and anatomical masks, and 58-bone rigs.
+The eight-horse/four-preset test-only appearance studio is implemented. Targeted
+Godot verification on Light `2d282d40` and Stock `88cef2c3` produced 41 images with
+zero harness failures, playing/advancing Idle on both, and actual generated LOD
+buffers. Eye placement was lowered into the sculpted sockets and checked on
+both sides, including independently in the coat workflow. Walk and Graze remain
+rejected and excluded. These are candidate checkpoints, not complete production
+acceptance: the owner has requested explicit ear, nose, neck and mane landmark
+verification; the forelock and hanging mane partition are confirmed incomplete and are being corrected.
+
+The distinct foal adapter is next, using genuine juvenile geometry, locally
+repaired rig hierarchy, and the same semantic shape/coat interface. Source-rig
+isolated limb poses passed, but skin transfer to the cleaned foal remains unverified.
+The separate “Build horse coat texture pipeline” chat is authorized to coordinate
+and has the immutable Light snapshot `30507e2e` with matching UVs. No main merge,
+push, paid texture generation, or complete asset-library acceptance has occurred.
+See D-007, `docs/visual/MESHY_CREDIT_LEDGER.json`, and the production evidence.
 
 ---
 

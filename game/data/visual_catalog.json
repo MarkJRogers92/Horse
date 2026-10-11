@@ -10,8 +10,8 @@
   ],
 
   "meshFamilies": {
-    "horse.standard.adult.v1": { "scene": "res://assets/horse/reference/horse_adult.glb", "placeholder": false, "age": "adult", "hairGeometry": "solid_clumps", "headViewTarget": [1.38, 1.44, 0] },
-    "horse.compact.adult.v1":  { "scene": "res://assets/horse/reference/horse_adult.glb", "placeholder": false, "age": "adult", "hairGeometry": "solid_clumps", "headViewTarget": [1.38, 1.44, 0], "limitation": "Uses the same cob build as standard adults; separate body shapes are not available yet." },
+    "horse.standard.adult.v1": { "scene": "res://assets/horse/production/horse_light.glb", "placeholder": false, "age": "adult", "hairGeometry": "solid_clumps", "headViewTarget": [0.90649, 1.58086, 0.02993] },
+    "horse.compact.adult.v1":  { "scene": "res://assets/horse/production/horse_stock.glb", "placeholder": false, "age": "adult", "hairGeometry": "solid_clumps", "headViewTarget": [0.77317, 1.57563, 0.03001] },
     "horse.standard.foal.v1":  { "scene": "res://assets/horse/reference/horse_foal.glb", "placeholder": false, "age": "foal", "hairGeometry": "solid_clumps", "headViewTarget": [1.14376, 0.93456, 0] },
     "horse.compact.foal.v1":   { "scene": "res://assets/horse/reference/horse_foal.glb", "placeholder": false, "age": "foal", "hairGeometry": "solid_clumps", "headViewTarget": [1.14376, 0.93456, 0], "limitation": "Uses the same juvenile cob build as standard foals; separate body shapes are not available yet." }
   },
@@ -95,7 +95,21 @@
   "white": { "color": "#f7f3ee", "pinkSkin": "#e6b3a8", "hoofDark": "#2a2420", "hoofPale": "#c9b79d" },
 
   "morphSupport": {
-    "height": { "mode": "uniform_scale", "perUnit": 0.000006, "note": "Whole-horse scale. Standard and compact adults share the CC0 cob mesh; no body-shape blend shapes are installed yet." },
-    "unsupported": ["body_length", "chest_width", "neck_length", "muscle", "mane_density", "tail_density"]
+    "height": { "mode": "uniform_scale", "perUnit": 0.000006, "note": "Whole-horse scale, retained from the existing descriptor behavior." },
+    "bodyBlendShapes": {
+      "body_length": "body_length",
+      "chest_width": "chest_width",
+      "neck_length": "neck_length",
+      "muscle": "muscle"
+    },
+    "meshBlendShapes": {
+      "Body": { "body_length": "body_length", "chest_width": "chest_width", "neck_length": "neck_length", "muscle": "muscle" },
+      "Eyes": { "body_length": "body_length", "chest_width": "chest_width", "neck_length": "neck_length", "muscle": "muscle" },
+      "Mane": { "body_length": "body_length", "chest_width": "chest_width", "neck_length": "neck_length", "muscle": "muscle" },
+      "Tail": { "body_length": "body_length", "chest_width": "chest_width", "neck_length": "neck_length", "muscle": "muscle" }
+    },
+    "bodyBlendShapeNormalization": 2000.0,
+    "componentMorphLimitations": [],
+    "unsupported": ["mane_density", "tail_density"]
   }
 }

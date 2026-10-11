@@ -48,6 +48,60 @@ public partial class HorsePresenter : Node3D
         Model.Name = "Model";
         AddChild(Model);
 
+        var meshGroups = FindAll<MeshInstance3D>(Model)
+            .GroupBy(mesh => mesh.Name.ToString(), StringComparer.Ordinal)
+            .ToDictionary(group => group.Key, group => group.ToArray(), StringComparer.Ordinal);
+        var bodyMatches = meshGroups.TryGetValue("Body", out var namedBodies) ? namedBodies : Array.Empty<MeshInstance3D>();
+        var body = bodyMatches.Length == 1 ? bodyMatches[0] : null;
+        if (!descriptor.IsFoal && catalog.BodyBlendShapes.Count > 0)
+        {
+            var missing = bodyMatches.Length != 1
+                ? new[] { $"Body component expected exactly once; found {bodyMatches.Length}" }
+                : catalog.BodyBlendShapes.Values.Where(shape => body!.Mesh == null || !HasBlendShape(body, shape)).ToArray();
+            if (missing.Length > 0)
+            {
+                Support = Support with
+                {
+                    Supported = false,
+                    Problems = Support.Problems.Append("adult mesh is missing required body blend shapes: " + string.Join(", ", missing)).ToArray()
+                };
+                ClearModel();
+                GD.PushWarning($"[HorsePresenter] {descriptor.FixtureId}: {Support.Summary}");
+                EmitSignal(SignalName.Presented, Support.Summary, false);
+                return Support;
+            }
+        }
+
+        // A component/channel pair declared by the catalog is an explicit asset
+        // contract. Body channels are required; any additional declared component
+        // channels are also required so a head/coat part cannot silently detach.
+        if (!descriptor.IsFoal)
+        {
+            var missing = catalog.MeshBlendShapes
+                .Where(pair => pair.Value.Count > 0)
+                .SelectMany(pair =>
+                {
+                    if (!meshGroups.TryGetValue(pair.Key, out var matches) || matches.Length != 1)
+                        return new[] { $"{pair.Key} component expected exactly once; found {(matches?.Length ?? 0)}" };
+                    var mesh = matches[0];
+                    return pair.Value.Values.Where(shape => mesh.Mesh == null || !HasBlendShape(mesh, shape))
+                        .Select(shape => $"{pair.Key}.{shape}");
+                })
+                .ToArray();
+            if (missing.Length > 0)
+            {
+                Support = Support with
+                {
+                    Supported = false,
+                    Problems = Support.Problems.Append("adult mesh is missing declared component blend shapes: " + string.Join(", ", missing)).ToArray()
+                };
+                ClearModel();
+                GD.PushWarning($"[HorsePresenter] {descriptor.FixtureId}: {Support.Summary}");
+                EmitSignal(SignalName.Presented, Support.Summary, false);
+                return Support;
+            }
+        }
+
         var coat = catalog.Coats[descriptor.CoatRecipe];
         var hair = catalog.Hair[descriptor.HairRecipe];
         var skin = catalog.Skin[descriptor.SkinRecipe];
@@ -111,17 +165,33 @@ public partial class HorsePresenter : Node3D
             mesh.CastShadow = GeometryInstance3D.ShadowCastingSetting.On;
         }
 
-        // Both current assets lack body blend shapes, so only height is approximated.
+        // Height is retained as whole-model scale from the pre-existing descriptor behavior.
         float height = 1f + (descriptor.MorphWeights.TryGetValue("height", out var h) ? h : 0) * catalog.HeightScalePerUnit;
         Model.Scale = Vector3.One * height;
         HeadViewTarget = family.HeadViewTarget * height;
+
+        if (!descriptor.IsFoal)
+        {
+            foreach (var (component, channels) in catalog.MeshBlendShapes)
+            {
+                if (!meshGroups.TryGetValue(component, out var matches) || matches.Length != 1) continue;
+                var mesh = matches[0];
+                foreach (var (morph, shape) in channels)
+                {
+                    float normalized = descriptor.MorphWeights.TryGetValue(morph, out var weight)
+                        ? Mathf.Clamp(weight / catalog.BodyBlendShapeNormalization, -1f, 1f)
+                        : 0f;
+                    mesh.SetBlendShapeValue(mesh.FindBlendShapeByName(shape), normalized);
+                }
+            }
+        }
 
         Animator = FindAll<AnimationPlayer>(Model).FirstOrDefault();
         if (Animator != null)
             foreach (var name in Animator.GetAnimationList())
                 Animator.GetAnimation(name).LoopMode = Animation.LoopModeEnum.Linear;
         Play(animation);
-        if (!string.IsNullOrEmpty(animation) && (Animator == null || !Animator.HasAnimation(animation)))
+        if (!string.IsNullOrEmpty(animation) && string.IsNullOrEmpty(ResolveAnimation(animation)))
             Support = Support with { Limitations = Support.Limitations.Append($"animation '{animation}' unavailable; static pose").ToArray() };
         EmitSignal(SignalName.Presented, Support.Summary, true);
         return Support;
@@ -129,19 +199,36 @@ public partial class HorsePresenter : Node3D
 
     public void Play(string animation)
     {
-        CurrentAnimation = Animator != null && Animator.HasAnimation(animation) ? animation : "";
+        CurrentAnimation = ResolveAnimation(animation) ?? "";
         if (Animator == null) return;
         if (string.IsNullOrEmpty(CurrentAnimation)) { Animator.Stop(); return; }
-        Animator.Play(animation);
+        Animator.Play(CurrentAnimation);
     }
 
     /// <summary>Freeze the current animation at a time (used for deterministic captures).</summary>
     public void Pose(string animation, double time)
     {
-        if (Animator == null || !Animator.HasAnimation(animation)) return;
-        Animator.Play(animation);
+        var resolved = ResolveAnimation(animation);
+        if (Animator == null || string.IsNullOrEmpty(resolved)) return;
+        CurrentAnimation = resolved;
+        Animator.Play(resolved);
         Animator.Seek(time, true);
         Animator.Pause();
+    }
+
+    /// <summary>
+    /// Resolve animation requests exactly first, then allow a unique case-insensitive
+    /// alias for imported clip naming (for example, the stable's "idle" and GLB's "Idle").
+    /// Ambiguous aliases are rejected instead of choosing an arbitrary clip.
+    /// </summary>
+    private string? ResolveAnimation(string requested)
+    {
+        if (Animator == null || string.IsNullOrEmpty(requested)) return null;
+        var names = Animator.GetAnimationList();
+        if (names.Contains(requested, StringComparer.Ordinal)) return requested;
+        var matches = names.Where(name => string.Equals(name, requested, StringComparison.OrdinalIgnoreCase))
+            .Take(2).ToArray();
+        return matches.Length == 1 ? matches[0] : null;
     }
 
     /// <summary>Form review: replace every material with matte grey clay (anatomy only, no coat).</summary>
@@ -172,4 +259,6 @@ public partial class HorsePresenter : Node3D
             foreach (var x in FindAll<T>(child)) yield return x;
         }
     }
+
+    private static bool HasBlendShape(MeshInstance3D mesh, string shape) => mesh.FindBlendShapeByName(shape) >= 0;
 }

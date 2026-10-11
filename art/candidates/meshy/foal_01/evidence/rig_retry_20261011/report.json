@@ -1,0 +1,37 @@
+{
+  "taskId": "horse-production-motion-20261011",
+  "source": "art/candidates/meshy/foal_01/smart-rig-retry.glb",
+  "sourceSha256": "6b5961323edb18dc795f5d54a0b65bfdd9e47bc1661677fc2989f22e8a670d0a",
+  "sourceJointCount": 60,
+  "adapterOutputBoneCount": 61,
+  "fixture": {
+    "geometry": "The retry Smart Rig's own low-poly mesh, copied as Body and transformed into production axes.",
+    "vertices": 23416,
+    "heightMeters": 1.1,
+    "familyWarp": "identity",
+    "projection": "nearest surface triangle with barycentric source weights",
+    "maxProjectionDistanceMeters": 0.0,
+    "maxInfluencesPerVertex": 4,
+    "maxWeightSumError": 0.00000005215407,
+    "clearOppositeSideVerticesOver8Pct": 6
+  },
+  "hierarchyChanges": {
+    "forelimbRoots": "Front_L_Upper and Front_R_Upper parented to Chest",
+    "hindlimbRoots": "Hind_L_Upper and Hind_R_Upper parented to Pelvis",
+    "detachedLimbChains": "Pastern, hoof, and toe groups reparented below their corresponding cannon/hock chains; rest heads/tails retained",
+    "root": "Added one non-deforming Root above Pelvis_Root"
+  },
+  "poseValidation": {
+    "poseType": "one limb at a time; shoulder/hip root only",
+    "axis": "horse lateral axis (target Y), converted through each rest basis",
+    "angleDegrees": 30,
+    "poses": ["front_left", "front_right", "hind_left", "hind_right"],
+    "result": "Each selected hoof visibly lifts while the other three remain planted in side and q3 renders."
+  },
+  "limitations": [
+    "Fixture does not verify transfer onto final family-warped/decimated foal geometry.",
+    "No loaded-pose foot planting or gait validation.",
+    "Source contains visible shoulder/haunch groove and crease artifacts in more extreme deformations.",
+    "No Idle, Walk, or Graze clip was authored or exported."
+  ]
+}
