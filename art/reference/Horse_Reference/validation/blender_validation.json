@@ -1,0 +1,214 @@
+{
+  "passed": true,
+  "blender_version": "5.2.1 LTS",
+  "objects": [
+    {
+      "name": "Horse_Body",
+      "vertices": 3521,
+      "faces": 3502,
+      "quads": 3496,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "zero_area_faces": 0,
+      "uv_layers": 1,
+      "weight_coverage": true,
+      "max_weight_error": 4.470348358154297e-08,
+      "max_influences": 4,
+      "signed_volume_m3": 0.6779082717240089
+    },
+    {
+      "name": "Hoof_Front_R",
+      "vertices": 74,
+      "faces": 66,
+      "quads": 65,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "zero_area_faces": 0,
+      "uv_layers": 1,
+      "weight_coverage": true,
+      "max_weight_error": 0,
+      "max_influences": 1,
+      "signed_volume_m3": 0.0022768028648290166
+    },
+    {
+      "name": "Hoof_Hind_R",
+      "vertices": 40,
+      "faces": 35,
+      "quads": 34,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "zero_area_faces": 0,
+      "uv_layers": 1,
+      "weight_coverage": true,
+      "max_weight_error": 0,
+      "max_influences": 1,
+      "signed_volume_m3": 0.0025109191472312276
+    },
+    {
+      "name": "Hoof_Front_L",
+      "vertices": 74,
+      "faces": 66,
+      "quads": 65,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "zero_area_faces": 0,
+      "uv_layers": 1,
+      "weight_coverage": true,
+      "max_weight_error": 0,
+      "max_influences": 1,
+      "signed_volume_m3": 0.0022863104165589693
+    },
+    {
+      "name": "Hoof_Hind_L",
+      "vertices": 40,
+      "faces": 35,
+      "quads": 34,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "zero_area_faces": 0,
+      "uv_layers": 1,
+      "weight_coverage": true,
+      "max_weight_error": 0,
+      "max_influences": 1,
+      "signed_volume_m3": 0.0025343798512603797
+    },
+    {
+      "name": "Horse_Mane_and_Forelock",
+      "vertices": 1962,
+      "faces": 1960,
+      "quads": 1960,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "zero_area_faces": 0,
+      "uv_layers": 1,
+      "weight_coverage": true,
+      "max_weight_error": 1.862645149230957e-08,
+      "max_influences": 2,
+      "signed_volume_m3": 0.008884146831306765
+    },
+    {
+      "name": "Horse_Tail",
+      "vertices": 901,
+      "faces": 879,
+      "quads": 878,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "zero_area_faces": 0,
+      "uv_layers": 1,
+      "weight_coverage": true,
+      "max_weight_error": 2.9802322387695312e-08,
+      "max_influences": 3,
+      "signed_volume_m3": 0.032074294238157594
+    },
+    {
+      "name": "Horse_Eye.L",
+      "vertices": 482,
+      "faces": 512,
+      "quads": 448,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "zero_area_faces": 0,
+      "uv_layers": 0,
+      "weight_coverage": true,
+      "max_weight_error": 0,
+      "max_influences": 1,
+      "signed_volume_m3": 0.00017799778683597428
+    },
+    {
+      "name": "Horse_Eye.R",
+      "vertices": 482,
+      "faces": 512,
+      "quads": 448,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "zero_area_faces": 0,
+      "uv_layers": 0,
+      "weight_coverage": true,
+      "max_weight_error": 0,
+      "max_influences": 1,
+      "signed_volume_m3": 0.00017799778437041733
+    }
+  ],
+  "rig_root_pose_movement": {
+    "Horse_Body": 0.2148208229676461,
+    "Hoof_Front_R": 0.04049105080211962,
+    "Hoof_Hind_R": 0.034905114246296415,
+    "Hoof_Front_L": 0.04049134936090651,
+    "Hoof_Hind_L": 0.0349308066802449,
+    "Horse_Mane_and_Forelock": 0.21153337883268367,
+    "Horse_Tail": 0.163983862993616,
+    "Horse_Eye.L": 0.1856299034078496,
+    "Horse_Eye.R": 0.18563463573104091
+  },
+  "errors": [],
+  "warnings": [],
+  "bones": [
+    "Root",
+    "Pelvis",
+    "Spine",
+    "Chest",
+    "Neck",
+    "Head",
+    "Ear_L",
+    "Ear_R",
+    "Front_L_Upper",
+    "Front_L_Cannon",
+    "Front_L_Pastern",
+    "Front_L_Hoof",
+    "Front_R_Upper",
+    "Front_R_Cannon",
+    "Front_R_Pastern",
+    "Front_R_Hoof",
+    "Tail_01",
+    "Tail_02",
+    "Tail_03",
+    "Hind_L_Upper",
+    "Hind_L_Cannon",
+    "Hind_L_Pastern",
+    "Hind_L_Hoof",
+    "Hind_R_Upper",
+    "Hind_R_Cannon",
+    "Hind_R_Pastern",
+    "Hind_R_Hoof"
+  ],
+  "images": [
+    {
+      "name": "Horse_Coat_BaseColor.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Horse_Coat_Normal.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "name": "Horse_Hair_BaseColor_Alpha.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    }
+  ],
+  "external_libraries": 0,
+  "units": {
+    "system": "METRIC",
+    "scale_length": 1.0
+  }
+}

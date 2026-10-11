@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "validation_checks": {
+    "blender_validation.json": true,
+    "glb_validation.json": true,
+    "godot_validation.json": true
+  },
+  "render_checks": [
+    {
+      "file": "views/Horse_Left.png",
+      "resolution": [
+        2560,
+        2048
+      ],
+      "alpha_bounds": [
+        283,
+        364,
+        2277,
+        1684
+      ]
+    },
+    {
+      "file": "views/Horse_Right.png",
+      "resolution": [
+        2560,
+        2048
+      ],
+      "alpha_bounds": [
+        283,
+        364,
+        2277,
+        1685
+      ]
+    },
+    {
+      "file": "views/Horse_Front.png",
+      "resolution": [
+        2560,
+        2048
+      ],
+      "alpha_bounds": [
+        1033,
+        364,
+        1526,
+        1684
+      ]
+    },
+    {
+      "file": "views/Horse_Rear.png",
+      "resolution": [
+        2560,
+        2048
+      ],
+      "alpha_bounds": [
+        1033,
+        364,
+        1526,
+        1684
+      ]
+    },
+    {
+      "file": "views/Horse_Top.png",
+      "resolution": [
+        2560,
+        2048
+      ],
+      "alpha_bounds": [
+        282,
+        778,
+        2277,
+        1271
+      ]
+    },
+    {
+      "file": "views/Horse_ThreeQuarter.png",
+      "resolution": [
+        2560,
+        2048
+      ],
+      "alpha_bounds": [
+        606,
+        447,
+        1979,
+        1725
+      ]
+    }
+  ],
+  "same_orthographic_scale": true,
+  "cameras": 6
+}

@@ -1,0 +1,132 @@
+{
+  "title": "Horse Reference",
+  "format": "Editable Blender master and self-contained glTF 2.0",
+  "source_license": "CC0",
+  "source_author": "Lyndon Daniels",
+  "files": [
+    {
+      "path": "Horse_Reference.blend",
+      "bytes": 4386337,
+      "sha256": "3ee913f9716c576e64efcbc780ffcbad3729e1af281aa85c3aaeb3d7ea820349"
+    },
+    {
+      "path": "Horse_Reference.glb",
+      "bytes": 5085368,
+      "sha256": "c5ffb61af6a526cb24116ddad6d8c17e2217b0ce7f8187fa31f5524cd909ef05"
+    },
+    {
+      "path": "Horse_Turnaround.png",
+      "bytes": 4785563,
+      "sha256": "6a43c9f89862dd338ec7b411e498116072a27c5e49c62a426ad3b6a12bd4f7d0"
+    },
+    {
+      "path": "Horse_Turnaround_Preview.jpg",
+      "bytes": 212626,
+      "sha256": "8343ec077cf82b9e5b3d79b1da7e3fa74cde0d5fa0dcc21776dd55e5dce68484"
+    },
+    {
+      "path": "SOURCE_CREDIT.txt",
+      "bytes": 1171,
+      "sha256": "0ccfb6152b452ad6f76f9eefa27a86b7b1d42eb9419acecc57b970f68f7ef1f4"
+    },
+    {
+      "path": "START_HERE.txt",
+      "bytes": 7006,
+      "sha256": "2d9c8b6802849daed76ec1190128cde42283a7a6d1bcef8a5b781a59d862674f"
+    },
+    {
+      "path": "build_report.json",
+      "bytes": 5899,
+      "sha256": "a79b8c97b381d586d6b215959c9dc79892ed494b8c5182b9003e96177289cd69"
+    },
+    {
+      "path": "sheet_calibration.json",
+      "bytes": 1137,
+      "sha256": "424de5fcc59e66caeb418b39ccef2d20bf7cdc1f51e6efc40c6f6d73d2a09fb4"
+    },
+    {
+      "path": "textures/Horse_Coat_BaseColor.png",
+      "bytes": 1094075,
+      "sha256": "d4ae324a30db3351ad260244b893cdc9236c04876df8735ee9be3fea67b5b82c"
+    },
+    {
+      "path": "textures/Horse_Coat_Normal.png",
+      "bytes": 550253,
+      "sha256": "da4510146487e3d75674991b037815ed452d18ffb414e0ced0b7976bc961be6c"
+    },
+    {
+      "path": "textures/Horse_Hair_BaseColor_Alpha.png",
+      "bytes": 2224179,
+      "sha256": "c0a89753d46a82296c07a89d511085331bdf1721d8e93e8a59e9b21c6862d8a3"
+    },
+    {
+      "path": "validation/blender_validation.json",
+      "bytes": 4937,
+      "sha256": "196c78c90c68493b3a398e99479099ef3aae4e6b731db79364fbc32565f9f8dd"
+    },
+    {
+      "path": "validation/glb_validation.json",
+      "bytes": 3883,
+      "sha256": "fe72acb977495bc24572d36f282be2e3d173e421efd42e793f7b8a0526967996"
+    },
+    {
+      "path": "validation/godot_validation.json",
+      "bytes": 4559,
+      "sha256": "bca82ead21dc82feaddc29ee7c02878c082bdd009360783c59d07d571e023e08"
+    },
+    {
+      "path": "validation/package_validation.json",
+      "bytes": 1405,
+      "sha256": "554d0a0ce7bd2bad6a53a41972ceded9c01b11f4f5cec1e0ef574581dce1b4b0"
+    },
+    {
+      "path": "view_calibration.json",
+      "bytes": 2211,
+      "sha256": "5346462afea2ecb3f2281603edba9224e1145699afdd4165f3a518d090d865c5"
+    },
+    {
+      "path": "views/Horse_Front.png",
+      "bytes": 850764,
+      "sha256": "96e66ecf8bdc46155f1e38352e1bc58073d7d0ce4591e4a85d593a0c61b00365"
+    },
+    {
+      "path": "views/Horse_Left.png",
+      "bytes": 1815579,
+      "sha256": "32ea34c15997c26113cfa515901eb61bab6e249a98cd1d54bbb83f453e9e01e5"
+    },
+    {
+      "path": "views/Horse_Rear.png",
+      "bytes": 883762,
+      "sha256": "c80503d2a8b951093d01c451ef5f49f48719ef1402299b421ed8b7857909de2c"
+    },
+    {
+      "path": "views/Horse_Right.png",
+      "bytes": 1907795,
+      "sha256": "f80ee6367dc73ebc34ad3bbf9583c441345636f2659bd1df2b6d570f1e8099c4"
+    },
+    {
+      "path": "views/Horse_ThreeQuarter.png",
+      "bytes": 1574983,
+      "sha256": "13931f94e0d5f7f1dd7c5d5e1fb91f9a061b27d4eef62ae6b1e3bc937743720c"
+    },
+    {
+      "path": "views/Horse_Top.png",
+      "bytes": 1209355,
+      "sha256": "39e0f9d508ae25b0d77a7ff76a4267cb7c586d62a422d63ad2487e1824bcdefd"
+    },
+    {
+      "path": "validation/compact_validation.json",
+      "bytes": 3344,
+      "sha256": "678c8d222d89810bde0acfadd944dd515cf725369bc20ae2ce52eeea66517d3d"
+    }
+  ],
+  "compact_version": {
+    "texture_resolution": [
+      1024,
+      1024
+    ],
+    "full_resolution_reference_images_preserved": true,
+    "original_model_and_rig_preserved": true,
+    "validation": "validation/compact_validation.json"
+  }
+}

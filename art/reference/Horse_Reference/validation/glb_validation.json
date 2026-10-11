@@ -1,0 +1,176 @@
+{
+  "passed": true,
+  "file": "Horse_Reference.glb",
+  "bytes": 16080476,
+  "gltf_version": "2.0",
+  "mesh_count": 9,
+  "skin_count": 1,
+  "materials": [
+    {
+      "name": "Hoof_Horn",
+      "alphaMode": "OPAQUE",
+      "doubleSided": true,
+      "baseColorTexture": false,
+      "normalTexture": false,
+      "occlusionTexture": false
+    },
+    {
+      "name": "Chestnut_Coat",
+      "alphaMode": "OPAQUE",
+      "doubleSided": true,
+      "baseColorTexture": true,
+      "normalTexture": true,
+      "occlusionTexture": false
+    },
+    {
+      "name": "Eye_Dark_Brown",
+      "alphaMode": "OPAQUE",
+      "doubleSided": true,
+      "baseColorTexture": false,
+      "normalTexture": false,
+      "occlusionTexture": false
+    },
+    {
+      "name": "Mane_Tail",
+      "alphaMode": "BLEND",
+      "doubleSided": true,
+      "baseColorTexture": true,
+      "normalTexture": false,
+      "occlusionTexture": false
+    }
+  ],
+  "primitives": [
+    {
+      "mesh": "Plane.006",
+      "vertices": 92,
+      "triangles": 144,
+      "finite_positions": true,
+      "normal_count": 92,
+      "uvs": true,
+      "weights": true,
+      "max_weight_sum_error": 0.0,
+      "unweighted_vertices": 0
+    },
+    {
+      "mesh": "Plane.004",
+      "vertices": 92,
+      "triangles": 144,
+      "finite_positions": true,
+      "normal_count": 92,
+      "uvs": true,
+      "weights": true,
+      "max_weight_sum_error": 0.0,
+      "unweighted_vertices": 0
+    },
+    {
+      "mesh": "Plane.007",
+      "vertices": 53,
+      "triangles": 76,
+      "finite_positions": true,
+      "normal_count": 53,
+      "uvs": true,
+      "weights": true,
+      "max_weight_sum_error": 0.0,
+      "unweighted_vertices": 0
+    },
+    {
+      "mesh": "Plane.005",
+      "vertices": 53,
+      "triangles": 76,
+      "finite_positions": true,
+      "normal_count": 53,
+      "uvs": true,
+      "weights": true,
+      "max_weight_sum_error": 0.0,
+      "unweighted_vertices": 0
+    },
+    {
+      "mesh": "Plane.008",
+      "vertices": 14594,
+      "triangles": 28084,
+      "finite_positions": true,
+      "normal_count": 14594,
+      "uvs": true,
+      "weights": true,
+      "max_weight_sum_error": 1.434236764907837e-07,
+      "unweighted_vertices": 0
+    },
+    {
+      "mesh": "Sphere.001",
+      "vertices": 482,
+      "triangles": 960,
+      "finite_positions": true,
+      "normal_count": 482,
+      "uvs": false,
+      "weights": true,
+      "max_weight_sum_error": 0.0,
+      "unweighted_vertices": 0
+    },
+    {
+      "mesh": "Sphere.002",
+      "vertices": 482,
+      "triangles": 960,
+      "finite_positions": true,
+      "normal_count": 482,
+      "uvs": false,
+      "weights": true,
+      "max_weight_sum_error": 0.0,
+      "unweighted_vertices": 0
+    },
+    {
+      "mesh": "Mesh.001",
+      "vertices": 2306,
+      "triangles": 3920,
+      "finite_positions": true,
+      "normal_count": 2306,
+      "uvs": true,
+      "weights": true,
+      "max_weight_sum_error": 1.862645149230957e-08,
+      "unweighted_vertices": 0
+    },
+    {
+      "mesh": "Mesh.002",
+      "vertices": 969,
+      "triangles": 1798,
+      "finite_positions": true,
+      "normal_count": 969,
+      "uvs": true,
+      "weights": true,
+      "max_weight_sum_error": 2.9802322387695312e-08,
+      "unweighted_vertices": 0
+    }
+  ],
+  "textures_embedded": true,
+  "triangles": 36162,
+  "animations": 0,
+  "errors": [],
+  "bone_names": [
+    "Hind_L_Hoof",
+    "Hind_L_Pastern",
+    "Hind_L_Cannon",
+    "Hind_L_Upper",
+    "Hind_R_Hoof",
+    "Hind_R_Pastern",
+    "Hind_R_Cannon",
+    "Hind_R_Upper",
+    "Front_L_Hoof",
+    "Front_L_Pastern",
+    "Front_L_Cannon",
+    "Front_L_Upper",
+    "Front_R_Hoof",
+    "Front_R_Pastern",
+    "Front_R_Cannon",
+    "Front_R_Upper",
+    "Ear_L",
+    "Ear_R",
+    "Head",
+    "Neck",
+    "Chest",
+    "Spine",
+    "Tail_03",
+    "Tail_02",
+    "Tail_01",
+    "Pelvis",
+    "Root"
+  ]
+}

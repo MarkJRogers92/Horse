@@ -1,0 +1,256 @@
+{
+  "source": "CC0 authored horse model; Lyndon Daniels, rigged by ChadM; source preserved at work/source_riggedHorse.blend",
+  "files": {
+    "blend": "/Users/markrogers/Documents/Codex/2026-10-10/referenced-chatgpt-conversation-this-is-an/outputs/Horse_Reference/Horse_Reference.blend",
+    "glb": "/Users/markrogers/Documents/Codex/2026-10-10/referenced-chatgpt-conversation-this-is-an/outputs/Horse_Reference/Horse_Reference.glb",
+    "textures": "/Users/markrogers/Documents/Codex/2026-10-10/referenced-chatgpt-conversation-this-is-an/outputs/Horse_Reference/textures"
+  },
+  "units": "1 Blender unit = 1 metre; nose faces Blender -Y, glTF/Godot +Z; positive X is anatomical left",
+  "origin": "Ground at barrel center; shared object origins at (0,0,0)",
+  "withers_height_m": 1.6,
+  "withers_source_xyz": [
+    -0.0,
+    -3.39497,
+    3.49054
+  ],
+  "withers_model_xyz": [
+    -0.0,
+    -0.63914,
+    1.6
+  ],
+  "lowest_hoof_z_m": 0.0,
+  "body_source": {
+    "vertices": 3697,
+    "faces": 3696,
+    "quads": 3694
+  },
+  "geometry": {
+    "objects": [
+      "Horse_Body",
+      "Horse_Mane_and_Forelock",
+      "Horse_Tail",
+      "Horse_Eye.L",
+      "Horse_Eye.R",
+      "Hoof_Front_R",
+      "Hoof_Hind_R",
+      "Hoof_Front_L",
+      "Hoof_Hind_L"
+    ],
+    "base_vertices": 7576,
+    "base_faces": 7567,
+    "armature_bones": 27,
+    "body_subdivision_level": 1,
+    "glb_body_subdivision_applied": true,
+    "glb_triangles": 36162
+  },
+  "rig": "Named FK deformation rig; body, mane, tail, eyes and hooves assigned weights; no animation clip",
+  "mesh_quality": {
+    "Horse_Body": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "zero_area_faces": 0,
+      "zero_weight_vertices": 0,
+      "max_influences": 4,
+      "max_weight_sum_error": 0.0
+    },
+    "Horse_Mane_and_Forelock": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "zero_area_faces": 0,
+      "zero_weight_vertices": 0,
+      "max_influences": 2,
+      "max_weight_sum_error": 0.0
+    },
+    "Horse_Tail": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "zero_area_faces": 0,
+      "zero_weight_vertices": 0,
+      "max_influences": 3,
+      "max_weight_sum_error": 0.0
+    },
+    "Horse_Eye.L": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "zero_area_faces": 0,
+      "zero_weight_vertices": 0,
+      "max_influences": 1,
+      "max_weight_sum_error": 0.0
+    },
+    "Horse_Eye.R": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "zero_area_faces": 0,
+      "zero_weight_vertices": 0,
+      "max_influences": 1,
+      "max_weight_sum_error": 0.0
+    },
+    "Hoof_Front_R": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "zero_area_faces": 0,
+      "zero_weight_vertices": 0,
+      "max_influences": 1,
+      "max_weight_sum_error": 0.0
+    },
+    "Hoof_Hind_R": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "zero_area_faces": 0,
+      "zero_weight_vertices": 0,
+      "max_influences": 1,
+      "max_weight_sum_error": 0.0
+    },
+    "Hoof_Front_L": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "zero_area_faces": 0,
+      "zero_weight_vertices": 0,
+      "max_influences": 1,
+      "max_weight_sum_error": 0.0
+    },
+    "Hoof_Hind_L": {
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "zero_area_faces": 0,
+      "zero_weight_vertices": 0,
+      "max_influences": 1,
+      "max_weight_sum_error": 0.0
+    }
+  },
+  "hoof_dimensions": {
+    "Hoof_Front_R": {
+      "bounds_m": [
+        [
+          -0.32644,
+          -0.16023
+        ],
+        [
+          -0.46095,
+          -0.24649
+        ],
+        [
+          0.00527,
+          0.14253
+        ]
+      ],
+      "sole_width_length_m": [
+        0.14728,
+        0.17603
+      ],
+      "preserved_cut_seam_width_length_m": [
+        0.16621,
+        0.17901
+      ]
+    },
+    "Hoof_Hind_R": {
+      "bounds_m": [
+        [
+          -0.28127,
+          -0.10127
+        ],
+        [
+          0.29241,
+          0.53048
+        ],
+        [
+          0.0001,
+          0.1224
+        ]
+      ],
+      "sole_width_length_m": [
+        0.13803,
+        0.19087
+      ],
+      "preserved_cut_seam_width_length_m": [
+        0.17921,
+        0.19712
+      ]
+    },
+    "Hoof_Front_L": {
+      "bounds_m": [
+        [
+          0.16023,
+          0.32644
+        ],
+        [
+          -0.46095,
+          -0.24649
+        ],
+        [
+          0.00527,
+          0.14253
+        ]
+      ],
+      "sole_width_length_m": [
+        0.14728,
+        0.17602
+      ],
+      "preserved_cut_seam_width_length_m": [
+        0.16621,
+        0.17901
+      ]
+    },
+    "Hoof_Hind_L": {
+      "bounds_m": [
+        [
+          0.1011,
+          0.2816
+        ],
+        [
+          0.2924,
+          0.52966
+        ],
+        [
+          0.0,
+          0.12243
+        ]
+      ],
+      "sole_width_length_m": [
+        0.1379,
+        0.18958
+      ],
+      "preserved_cut_seam_width_length_m": [
+        0.17966,
+        0.19954
+      ]
+    }
+  },
+  "bounds_m": [
+    [
+      -0.335,
+      0.33498
+    ],
+    [
+      -1.55236,
+      0.94903
+    ],
+    [
+      0.1032,
+      1.80282
+    ]
+  ],
+  "materials": [
+    "Chestnut_Coat",
+    "Mane_Tail",
+    "Hoof_Horn",
+    "Eye_Dark_Brown"
+  ],
+  "eye_centroids_m": {
+    "Horse_Eye.L": [
+      0.08227,
+      -1.3507,
+      1.53068
+    ],
+    "Horse_Eye.R": [
+      -0.08198,
+      -1.3507,
+      1.53068
+    ]
+  },
+  "limitations": [
+    "The horse preserves the authored base anatomy and proportions; it is an editable polished reference based on existing art rather than a new anatomical sculpt.",
+    "The continuous source body remains a quad cage; four source hoof regions are extracted as independent closed objects.",
+    "The neutral FK rig is suitable for posing and further rigging; no gait cycle or production animation controls are included."
+  ]
+}

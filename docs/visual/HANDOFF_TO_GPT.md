@@ -24,6 +24,13 @@
 - **Evidence snapshots** are in `docs/visual/evidence/` (sheets and highlights).
 - **Pinned versions** are in `docs/visual/TOOLCHAIN.md`: Godot 4.7.2, bpy 5.2.2, Python 3.13, .NET 8.
 
+## UPDATE: your reference horse is committed
+`art/reference/Horse_Reference/` contains the CC0 Lyndon Daniels / ChadM horse you adapted: `.blend`, glb, 1K textures, turnaround and validation. It is clearly better than the placeholder and should **replace** it. Gaps against the contract below:
+- It faces glTF **+Z**, but the pipeline expects **+X**. Rotate it −90° about Y at export (preferred), or add a per-family yaw to the presenter.
+- It has no `COLOR_0` coat masks and no `TEXCOORD_1` marking coordinates. Compute them from bone proximity and the head axis in a `tools/horse/import_reference.py` (bpy, headless). Its baked chestnut texture must NOT be used as the coat; the coat shader draws the colour.
+- Node names must be `Body`/`Eyes`/`Mane`/`Tail`. It has no animations yet; the presenter tolerates that.
+- It's a heavier, cob-like type, which suits `horse.compact.*` as well as standard. There is no foal mesh; derive one in Blender or keep the placeholder foal for now (labelled as such).
+
 ## To plug in YOUR horse model (main task)
 Export a glb that meets this contract, then point `meshFamilies` in `game/data/visual_catalog.json` at it (`horse.standard.adult.v1` / `horse.standard.foal.v1`, `placeholder: false`). Nothing else changes.
 

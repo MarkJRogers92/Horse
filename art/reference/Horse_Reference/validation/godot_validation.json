@@ -1,0 +1,211 @@
+{
+  "animations": [],
+  "bounds": {
+    "min": [
+      -0.335001468658447,
+      0.0,
+      -1.17139708995819
+    ],
+    "size": [
+      0.669982135295868,
+      1.80282425880432,
+      2.72375535964966
+    ]
+  },
+  "errors": [],
+  "godot_version": "4.7.2-stable (official)",
+  "meshes": [
+    {
+      "name": "Hoof_Front_L",
+      "skeleton_path": "..",
+      "skin": true,
+      "surfaces": [
+        {
+          "albedo_texture": false,
+          "material": "Hoof_Horn",
+          "normal_texture": false,
+          "normals": 92,
+          "roughness": 0.639999985694885,
+          "triangles": 144,
+          "vertices": 92
+        }
+      ]
+    },
+    {
+      "name": "Hoof_Front_R",
+      "skeleton_path": "..",
+      "skin": true,
+      "surfaces": [
+        {
+          "albedo_texture": false,
+          "material": "Hoof_Horn",
+          "normal_texture": false,
+          "normals": 92,
+          "roughness": 0.639999985694885,
+          "triangles": 144,
+          "vertices": 92
+        }
+      ]
+    },
+    {
+      "name": "Hoof_Hind_L",
+      "skeleton_path": "..",
+      "skin": true,
+      "surfaces": [
+        {
+          "albedo_texture": false,
+          "material": "Hoof_Horn",
+          "normal_texture": false,
+          "normals": 53,
+          "roughness": 0.639999985694885,
+          "triangles": 76,
+          "vertices": 53
+        }
+      ]
+    },
+    {
+      "name": "Hoof_Hind_R",
+      "skeleton_path": "..",
+      "skin": true,
+      "surfaces": [
+        {
+          "albedo_texture": false,
+          "material": "Hoof_Horn",
+          "normal_texture": false,
+          "normals": 53,
+          "roughness": 0.639999985694885,
+          "triangles": 76,
+          "vertices": 53
+        }
+      ]
+    },
+    {
+      "name": "Horse_Body_GLTF",
+      "skeleton_path": "..",
+      "skin": true,
+      "surfaces": [
+        {
+          "albedo_size": [
+            2048,
+            2048
+          ],
+          "albedo_texture": true,
+          "material": "Chestnut_Coat",
+          "normal_texture": true,
+          "normals": 14594,
+          "roughness": 0.579999983310699,
+          "triangles": 28084,
+          "vertices": 14594
+        }
+      ]
+    },
+    {
+      "name": "Horse_Eye_L",
+      "skeleton_path": "..",
+      "skin": true,
+      "surfaces": [
+        {
+          "albedo_texture": false,
+          "material": "Eye_Dark_Brown",
+          "normal_texture": false,
+          "normals": 482,
+          "roughness": 0.230000004172325,
+          "triangles": 960,
+          "vertices": 482
+        }
+      ]
+    },
+    {
+      "name": "Horse_Eye_R",
+      "skeleton_path": "..",
+      "skin": true,
+      "surfaces": [
+        {
+          "albedo_texture": false,
+          "material": "Eye_Dark_Brown",
+          "normal_texture": false,
+          "normals": 482,
+          "roughness": 0.230000004172325,
+          "triangles": 960,
+          "vertices": 482
+        }
+      ]
+    },
+    {
+      "name": "Horse_Mane_and_Forelock",
+      "skeleton_path": "..",
+      "skin": true,
+      "surfaces": [
+        {
+          "albedo_size": [
+            2048,
+            2048
+          ],
+          "albedo_texture": true,
+          "material": "Mane_Tail",
+          "normal_texture": false,
+          "normals": 2306,
+          "roughness": 0.720000028610229,
+          "triangles": 3920,
+          "vertices": 2306
+        }
+      ]
+    },
+    {
+      "name": "Horse_Tail",
+      "skeleton_path": "..",
+      "skin": true,
+      "surfaces": [
+        {
+          "albedo_size": [
+            2048,
+            2048
+          ],
+          "albedo_texture": true,
+          "material": "Mane_Tail",
+          "normal_texture": false,
+          "normals": 969,
+          "roughness": 0.720000028610229,
+          "triangles": 1798,
+          "vertices": 969
+        }
+      ]
+    }
+  ],
+  "passed": true,
+  "skeletons": [
+    {
+      "bone_count": 27,
+      "bones": [
+        "Root",
+        "Pelvis",
+        "Hind_L_Upper",
+        "Hind_L_Cannon",
+        "Hind_L_Pastern",
+        "Hind_L_Hoof",
+        "Hind_R_Upper",
+        "Hind_R_Cannon",
+        "Hind_R_Pastern",
+        "Hind_R_Hoof",
+        "Spine",
+        "Chest",
+        "Front_L_Upper",
+        "Front_L_Cannon",
+        "Front_L_Pastern",
+        "Front_L_Hoof",
+        "Front_R_Upper",
+        "Front_R_Cannon",
+        "Front_R_Pastern",
+        "Front_R_Hoof",
+        "Neck",
+        "Head",
+        "Ear_L",
+        "Ear_R",
+        "Tail_01",
+        "Tail_02",
+        "Tail_03"
+      ],
+      "name": "Skeleton3D"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "sheet_dimensions": [
+    6080,
+    3787
+  ],
+  "tiles": [
+    {
+      "view": "Left",
+      "rectangle": [
+        100,
+        355,
+        1920,
+        1536
+      ],
+      "resize_factor": 0.75
+    },
+    {
+      "view": "Right",
+      "rectangle": [
+        2080,
+        355,
+        1920,
+        1536
+      ],
+      "resize_factor": 0.75
+    },
+    {
+      "view": "Front",
+      "rectangle": [
+        4060,
+        355,
+        1920,
+        1536
+      ],
+      "resize_factor": 0.75
+    },
+    {
+      "view": "Rear",
+      "rectangle": [
+        100,
+        2046,
+        1920,
+        1536
+      ],
+      "resize_factor": 0.75
+    },
+    {
+      "view": "Top",
+      "rectangle": [
+        2080,
+        2046,
+        1920,
+        1536
+      ],
+      "resize_factor": 0.75
+    },
+    {
+      "view": "ThreeQuarter",
+      "rectangle": [
+        4060,
+        2046,
+        1920,
+        1536
+      ],
+      "resize_factor": 0.75
+    }
+  ],
+  "same_scale": true,
+  "orthographic_vertical_span_m": 2.799999952316284,
+  "separate_view_dimensions": [
+    2560,
+    2048
+  ],
+  "sheet_pixels_per_meter": 548.5714379135445
+}

@@ -1,0 +1,119 @@
+HORSE REFERENCE — START HERE
+
+COMPACT VERSION
+All texture maps are 1024 x 1024 instead of the original 2048 x 2048.
+Model geometry, skin weights, rig, cameras and full-resolution reference
+images are preserved. The Blender file and GLB still embed their textures.
+The original validation reports describe the full-resolution source package;
+validation/compact_validation.json records the checks for this version.
+
+An editable, textured horse reference adapted from the CC0 model by Lyndon
+Daniels. The proportions, face and main body topology originate in that
+authored model. This package updates the materials, object organization,
+scale, hoof separation and basic posing rig, and supplies consistent views.
+Your existing Horse project and meshes have not been changed.
+Saved and checked with Blender 5.2.1 LTS.
+GLB import checked with Godot 4.7.2-stable (official).
+
+FILES
+Horse_Reference.blend — editable quad control mesh, separate elements,
+  packed textures, named skeleton and six orthographic cameras.
+Horse_Reference.glb — self-contained glTF 2.0 mesh, materials and skin.
+Horse_Turnaround.png — full-resolution, six-view reference sheet.
+views/Horse_*.png — six transparent 2560 x 2048 renders.
+textures/ — 1024 x 1024 texture maps retained for editing.
+validation/ — original Blender/GLB/Godot reports and compact-package checks.
+
+SCALE AND AXES
+One Blender unit is one meter. Withers height: 1.60 m.
+The hoof soles meet ground height 0. Object origins sit at ground beneath
+the barrel. Blender uses Z up / -Y front; glTF and Godot use Y up / +Z front.
+Positive X is the horse's anatomical left. The model shows an adult horse
+in a relaxed standing pose.
+
+All six cameras are orthographic and share a 2.80 m vertical span.
+The PNG images have the same frame and scale: 731.43 pixels per meter.
+No individual view has been enlarged to fill its panel. Front and rear views
+are deliberately narrower on the sheet. Grid lines are 0.25 m apart.
+
+USING IT TO IMPROVE YOUR BLENDER HORSE
+1. Open your existing file, then use File > Append. Select this .blend and
+   select Horse_Geometry and Horse_Rig together in its Collection folder and
+   append both in one operation. Keep your
+   own horse in a separate collection and save a new working copy.
+2. Compare in orthographic side, front and top views. Match overall size and
+   silhouette before adding fine surface detail. Measure height at the
+   withers, not the ears or poll.
+3. Check the balance of shoulder, barrel and hindquarters. A useful starting
+   guide is roughly equal withers height and shoulder-to-buttock body length.
+   The back should read as a shorter bridge between the shoulder and hips;
+   the underside rises toward the flank.
+4. Make the shoulder, elbow, knee, cannon, fetlock, pastern and hoof legible
+   in the front legs. In the hind legs the stifle sits forward and the hock
+   points backward. The hock is an ankle joint; avoid treating it as a knee.
+   Preserve four distinct legs when checking the front/rear silhouettes.
+   Continue the pastern slope into the front hoof wall; avoid an abrupt boot
+   shape. Fore hooves generally have rounder toes, while hind hooves are
+   narrower and more pointed.
+5. Compare the poll, cheek/jaw, eye sockets, throatlatch and muzzle. Give the
+   muzzle real width in the front and top views. Keep eyes on the sides of
+   the head and the ear shells hollow-looking, with a defined inner surface.
+6. Keep loops around bending joints and concentrate useful geometry at the
+   shoulder, hip, stifle, hock and fetlock. Avoid a dense triangulated sculpt
+   as your editable base. Inspect this model's control cage in Edit Mode;
+   its smoothing is a separate Subdivision Surface modifier.
+7. Append the 3D reference for the easiest alignment. If you instead add a
+   view PNG as an Image Reference, its full-frame world width is
+   3.50 m and height is 2.80 m. Place it at the shared
+   camera center recorded in view_calibration.json, then align the image
+   plane with the corresponding camera in this Blender file.
+
+Conformation guides vary by breed and purpose. Anatomy source: University of Minnesota
+Extension, Conformation of the horse:
+https://extension.umn.edu/agriculture/animals-and-livestock/horse/conformation-of-the-horse
+Hoof shape reference: Cooperative Extension / University of Kentucky:
+https://horses.extension.org/bones-of-the-hoof/
+Pastern and hoof-wall alignment: University of Minnesota Extension:
+https://extension.umn.edu/agriculture/animals-and-livestock/horse/caring-for-your-horses-hooves
+
+BLENDER EDITING AND EXPORT
+The body has an editable quad-dominant cage with a non-destructive smoothing
+modifier. Hooves, mane/forelock, tail and eyes are separate objects. UVs are
+retained from the base where applicable. Check UV reuse before painting new
+asymmetric markings; any new hoof geometry may need its own unwrap for a
+future textured hoof material. Packed maps let this .blend open on its own.
+
+To export after edits: return the armature to its rest pose, select all model
+meshes and Horse_Rig, File > Export > glTF 2.0, choose GLB, Selected Objects,
+Apply Modifiers, +Y Up, Materials and Skinning. Keep cameras and lights out
+of the game export. Preserve your editable subdivision cage in the .blend.
+
+GODOT 4
+Copy Horse_Reference.glb into your project's asset folder. Let Godot import
+it, then drag it into a Node3D scene. Use a wrapper node for gameplay movement,
+collision and scripts. The visual front is +Z, following Godot's asset
+convention. If your controller treats -Z as forward, rotate the visual child
+180 degrees around Y. Do not change the skeleton bind pose to fix facing.
+
+The actual export contains 36,162 triangles and 27 armature bones.
+All exported elements have skin weights. This is a simple FK posing skeleton:
+rotate parent bones in Pose Mode, then refine the rig and weights for your
+specific animations. No walk, trot, canter, IK foot locks, production control
+rig, gameplay controller or collision setup is supplied. Test extreme poses
+and locomotion yourself before using it as an animated hero asset.
+
+The isolated Godot import check confirms a usable imported scene, meshes,
+textures, normals, skin links and skeleton. It does not establish animation
+quality or performance in your existing game. Exact reports are included.
+
+SOURCES AND LICENSE
+Base model: Lyndon Daniels, Realtime Rancher's 3D Model Pack, CC0.
+https://opengameart.org/content/realtime-ranchers-3d-model-pack
+Download used: Rigged Horse, submitted by ChadM, also marked CC0.
+https://opengameart.org/content/rigged-horse
+The source skeleton was replaced with a new named FK rig. Source credit is
+retained even though CC0 does not require attribution. See SOURCE_CREDIT.txt.
+
+Godot official format and export guidance:
+https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/available_formats.html
+https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/model_export_considerations.html

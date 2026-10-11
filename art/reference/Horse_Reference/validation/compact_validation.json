@@ -1,0 +1,117 @@
+{
+  "passed": true,
+  "purpose": "Compact package under 30,000,000 bytes.",
+  "original_zip_bytes": 58857660,
+  "original_zip_sha256": "8972237e59928cfc12f5357d0b7d68173354ce0eebbff9d6a22112cce14905a5",
+  "changes": "Texture maps reduced from 2048 x 2048 to 1024 x 1024; Blender file saved with compression. Full-resolution reference renders retained.",
+  "normal_map_processing": "Lanczos downsample of vector components followed by unit-vector normalization.",
+  "all_original_file_paths_retained": true,
+  "unchanged_files": [
+    "Horse_Turnaround.png",
+    "Horse_Turnaround_Preview.jpg",
+    "SOURCE_CREDIT.txt",
+    "START_HERE.txt",
+    "build_report.json",
+    "package_manifest.json",
+    "sheet_calibration.json",
+    "validation/blender_validation.json",
+    "validation/glb_validation.json",
+    "validation/godot_validation.json",
+    "validation/package_validation.json",
+    "view_calibration.json",
+    "views/Horse_Front.png",
+    "views/Horse_Left.png",
+    "views/Horse_Rear.png",
+    "views/Horse_Right.png",
+    "views/Horse_ThreeQuarter.png",
+    "views/Horse_Top.png"
+  ],
+  "assets": {
+    "textures": [
+      {
+        "file": "textures/Horse_Coat_BaseColor.png",
+        "original_resolution": [
+          2048,
+          2048
+        ],
+        "resolution": [
+          1024,
+          1024
+        ],
+        "original_bytes": 4527997,
+        "bytes": 1094075,
+        "mode": "RGB"
+      },
+      {
+        "file": "textures/Horse_Coat_Normal.png",
+        "original_resolution": [
+          2048,
+          2048
+        ],
+        "resolution": [
+          1024,
+          1024
+        ],
+        "original_bytes": 2356220,
+        "bytes": 550253,
+        "mode": "RGB"
+      },
+      {
+        "file": "textures/Horse_Hair_BaseColor_Alpha.png",
+        "original_resolution": [
+          2048,
+          2048
+        ],
+        "resolution": [
+          1024,
+          1024
+        ],
+        "original_bytes": 7979389,
+        "bytes": 2224179,
+        "mode": "RGBA"
+      }
+    ],
+    "glb_scene_metadata_unchanged": true,
+    "glb_non_image_buffer_views_unchanged": 52,
+    "glb_embedded_images_match_external_pngs": true,
+    "glb_bytes": 5085368
+  },
+  "blender": {
+    "blender_reopen_passed": true,
+    "blender_version": "5.2.1 LTS",
+    "model_rig_cameras_material_graph_unchanged": true,
+    "images": [
+      {
+        "name": "Horse_Coat_BaseColor.png",
+        "size": [
+          1024,
+          1024
+        ],
+        "packed": true,
+        "colorspace": "sRGB"
+      },
+      {
+        "name": "Horse_Coat_Normal.png",
+        "size": [
+          1024,
+          1024
+        ],
+        "packed": true,
+        "colorspace": "Non-Color"
+      },
+      {
+        "name": "Horse_Hair_BaseColor_Alpha.png",
+        "size": [
+          1024,
+          1024
+        ],
+        "packed": true,
+        "colorspace": "sRGB"
+      }
+    ],
+    "blend_bytes": 4386337,
+    "original_scene_digest": "9ddb966895976f3f4c015a09071ffb55e6781782a69c7286bb97dee724384309",
+    "saved_scene_digest": "9ddb966895976f3f4c015a09071ffb55e6781782a69c7286bb97dee724384309"
+  },
+  "historical_reports": "The other files in validation/ are reports from the original full-resolution package. Those tests have not been rerun on this compact package. See this file for the checks performed on the compact version."
+}
