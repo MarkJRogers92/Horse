@@ -1,8 +1,14 @@
 # Project status / checkpoint
 
-**Last updated:** 2026-10-10 by GPT (P2-07 saved births and foal growth verified locally and in CI).
+**Last updated:** 2026-10-10 by GPT (P2-06 normal saved-stable breeding in progress; genuine starter-save baselines preserved).
 **Phase:** P2-07 births, naming and foal → youngster → adult growth extend the existing End Day slice. Final local domain suite passed 178/178; actual Godot lifecycle and stable-day regression flows passed. Implementation `80076b0` passed full domain and game/visual CI. Prior P2-02 domain and full game/visual CI at `00aa158` completed successfully. Static adult/foal assets and animation work remain frozen.
 **Branch:** `claude/godot-horse-visual-pilot` (domain checkpoint history below originated on `claude/great-euler-hq83x3`).
+
+## Active package — breeding in the normal saved stable
+
+The owner requested owned-parent breeding in **Manage stable**, with visuals and animations frozen and checkpoints pushed to this same branch. D-006 defines one read-only pairing plan and one canonical atomic conception, a 50-coin prototype fee, conservative protection for four eventual home allocations, and a narrowly named text-only Sandbox policy. Default visual-release guards and all matrix statuses remain unchanged. External studs, purchases and facility expansion are outside this package.
+
+Before modifying the normal bootstrap, its unchanged `ac5695b` game ran the actual Godot Metal stable-day capture successfully: three screenshots, day 1, wallet 464. Genuine initial/day-one v3 files are preserved in `tests/Cloverbrook.Domain.Tests/Stable/Fixtures/` with hashes and provenance. They contain the original two non-breeding starters and no conception; upcoming compatibility tests must preserve their identities, names, genetics, care, wallet and RNG while enabling the exact original pair. Read-only Sol checked the proposed source boundaries. Implementation and acceptance are still pending; the verified previous package remains recorded below.
 
 ## Current gameplay state — stable day, births and foal growth
 
@@ -12,7 +18,7 @@ The same child identity, genetics, parents and four random streams persist. Birt
 
 Current local acceptance: 178/178 full Release tests with zero failures/skips; zero-warning/error game build; seven actual Metal lifecycle captures through saved adulthood and breeding age; three existing stable-day regression captures; real mouse cancel/double-confirm/name/reload/menu/Quit; native Sol persistence and independent UI diff reviews; validator/whitespace; all 144 frozen tracked file hashes unchanged. Evidence: `docs/stable/evidence/2026-10-10/lifecycle/`. Scope and limits: D-005, `docs/stable/lifecycle_model.md` and `PLAYTEST.md`.
 
-This is a committed-conception text playtest, not a released breeding catalog or full facility capacity manager. Inventory, income, training/race effects, home transfers and breeding planning remain later packages. Horse visuals and animations are untouched.
+This is a committed-conception text playtest, not a released breeding catalog or full facility capacity manager. Owned-parent breeding is the active D-006 package. Inventory, income, training/race effects, home transfers and wider marketplace planning remain later packages. Horse visuals and animations are untouched.
 
 Prior stable-day implementation at `00aa158` passed [domain run 38107022812](https://github.com/MarkJRogers92/Horse/actions/runs/38107022812), 165/165, and the entire [game/visual run 38107022813](https://github.com/MarkJRogers92/Horse/actions/runs/38107022813). Implementation `80076b0` passed [domain run 38109572283](https://github.com/MarkJRogers92/Horse/actions/runs/38109572283) (downloaded TRX: 178/178, no skips). The entire [game/visual run 38109572317](https://github.com/MarkJRogers92/Horse/actions/runs/38109572317) passed, including build/import/startup, ordinary stable-day and birth/name/growth/reload checks. Downloaded CI lifecycle images/log show day 22; the existing render batch completed with zero failures. Exact metadata and TRX are in `ci-80076b0/`. No horse visual or matrix approval is implied.
 
@@ -38,6 +44,7 @@ Remote evidence: [visual run 38099550595](https://github.com/MarkJRogers92/Horse
 | Public query API + integration/performance | Complete: a15266e3, 147/147 in CI run 38094410593 and local macOS |
 | P2-02 calendar / care / operating-cost prototype | Bounded slice verified: 165/165 local + Linux CI; real Godot screen/pointer checks; CI build/import/startup/stable-day checks passed at 00aa158 |
 | P2-07 saved births / naming / foal growth | Bounded committed-conception slice locally verified: 178/178, actual saved Godot lifecycle and mouse checks; 178/178 Linux CI plus the complete game/visual job passed at 80076b0 |
+| P2-06 owned-parent normal stable breeding | In progress under D-006; original normal v3 starter-save baselines preserved before implementation |
 
 ## Coordination / accepted decisions
 Mark leads integration. Concurrent persistence checkpoints c8d4eb93/714e92d9/30bee9ea/51f26128 and unified forecasts fa67666b are preserved. The public query API uses that single codec/store. Use expected-head non-forced pushes and read current STATUS. One canonical horse/RNG/resolver/save system.
