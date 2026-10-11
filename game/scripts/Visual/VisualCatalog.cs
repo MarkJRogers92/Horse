@@ -28,7 +28,7 @@ public sealed record RigOnlyDerivationEvidence(string PreservationReportPath, st
 public sealed record WalkAnimationVariant(string Scene, string SourceGlbSha256, string CandidateBlendSha256,
     string MotionProfilePath, string MotionProfileSha256, string ReceiptPath, string ReceiptSha256,
     string CpuMotionAuditPath, string CpuMotionAuditSha256, double ForwardSpeedMetersPerSecond,
-    int PeriodFrames, int FramesPerSecond, float DutyFactor, BodySignedDetail BodySignedDetail);
+    int PeriodFrames, int FramesPerSecond, float DutyFactor, BodySignedDetail? BodySignedDetail);
 public sealed record MeshFamily(string Scene, bool Placeholder, string Age, string HairGeometry = "cards", string? Limitation = null,
     Vector3? HeadViewTarget = null, BodySignedDetail? BodySignedDetail = null, string? BodySignedDetailDisabledReason = null,
     WalkAnimationVariant? WalkVariant = null, string? WalkVariantDisabledReason = null);
@@ -287,6 +287,8 @@ public sealed class VisualCatalog
         try
         {
             if (variant.ValueKind != JsonValueKind.Object) return null;
+            if (familyId != "horse.standard.adult.v1")
+                return RemainingWalkEvidence.Parse(variant, familyId, age, out disabledReason);
             const string expectedFamily = "horse.standard.adult.v1";
             const string expectedScene = "res://assets/horse/production/horse_light_walk.glb";
             const string expectedGlb = "13a678c5fe5ddb20cd48a1b0b17d9e59ecf4a98b7d9599a160f6ee8ce3373219";

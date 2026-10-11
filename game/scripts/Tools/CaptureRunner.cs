@@ -975,15 +975,18 @@ public partial class CaptureRunner : Node
             var headRotationStart = skeleton.GetBonePoseRotation(headIndex);
             double target = player.CurrentAnimationLength * 0.5;
             int frames = 0;
+            float headRotationDelta = 0f;
             while (player.IsPlaying() && player.CurrentAnimationPosition + 0.0001 < target && frames < 180)
             {
                 await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
                 frames++;
+                headRotationDelta = Math.Max(headRotationDelta,
+                    StableRotationDistance(headRotationStart, skeleton.GetBonePoseRotation(headIndex)));
             }
             var rootPositionEnd = skeleton.GetBonePosePosition(rootIndex);
             var rootRotationEnd = skeleton.GetBonePoseRotation(rootIndex);
             var headRotationEnd = skeleton.GetBonePoseRotation(headIndex);
-            var headRotationDelta = headRotationStart.AngleTo(headRotationEnd);
+            headRotationDelta = Math.Max(headRotationDelta, StableRotationDistance(headRotationStart, headRotationEnd));
             double after = player.CurrentAnimationPosition;
             double length = player.CurrentAnimationLength;
             RecordAnimationTracks(descriptor, "idle", before, after, length);
@@ -1002,6 +1005,8 @@ public partial class CaptureRunner : Node
                 ["playbackAdvanced"] = advanced,
                 ["rootStayedFixed"] = rootFixed,
                 ["headRotationDeltaRadians"] = headRotationDelta,
+                ["rotationMeasurement"] = "maximum throughout advancing half-cycle; relative-quaternion atan2",
+                ["sampledFrames"] = frames,
                 ["headPoseChanged"] = headMoved,
             });
             if (!advanced || !rootFixed || !headMoved || headTrackCount <= 1 || earTrackCount <= 1)
@@ -1010,6 +1015,16 @@ public partial class CaptureRunner : Node
                 GD.PushError($"[capture] adult Idle import check failed for {familyId}: advanced={advanced}, rootFixed={rootFixed}, headDelta={headRotationDelta}, headKeys={headTrackCount}, earKeys={earTrackCount}");
             }
         }
+    }
+
+    // acos(dot) rounds tiny Idle rotations to zero in single precision. The
+    // vector part of the relative quaternion retains the same small movement.
+    private static float StableRotationDistance(Quaternion a, Quaternion b)
+    {
+        var relative = a.Normalized().Inverse() * b.Normalized();
+        double vectorLength = Math.Sqrt((double)relative.X * relative.X +
+            (double)relative.Y * relative.Y + (double)relative.Z * relative.Z);
+        return (float)(2.0 * Math.Atan2(vectorLength, Math.Abs(relative.W)));
     }
 
     private void VerifyFamilyMorphCatalogContracts(VisualDescriptor foal)

@@ -1,10 +1,17 @@
-# macOS build with checked Light Walk
+# macOS builds with checked family Walk
 
-The normal Horse viewer and stable view offer the checked Light adult Walk with
-the accepted v5 signed-detail atlas and procedural coats. Walking temporarily
-uses neutral shape values and unit scale. Idle restores the source descriptor's
-shape. Stock, foal and unsupported probes retain their existing restrictions.
-This does not accept extreme-morph gait quality, Graze or moving-herd performance.
+The current source offers checked Light and Stock adult Walk plus both foal
+family mappings. Walk uses neutral shape values at unit scale; Idle restores the
+selected descriptor. Stock/foal keep their own UVs, masks and procedural coats;
+only Light uses its accepted v5 signed-detail atlas. Unsupported probes, untested
+shape extremes and Graze remain outside this acceptance.
+
+The new cloud cross-export (build 20261011.2) is an **unsigned, unnotarized
+candidate**, not Mac launch-verified. Linux cannot run native Apple codesign.
+Its raw evidence and imported resources passed independent PCK checks, and the
+game passed Godot 4.7.2 .NET Linux runtime tests. The older signed M2-tested
+download documented below remains the verified Mac package. No Mac was accessed
+for this integration.
 
 ## Build and verify
 
@@ -32,9 +39,10 @@ made strict bundle verification fail. Native Apple signing creates valid DER
 entitlements; the engine's built-in ad hoc signer was rejected by the host OS.
 Neither workaround changes OS security settings or removes quarantine metadata.
 
-The enabled `horse_asset_evidence` export plugin adds only the original Light
-GLB, Walk GLB, detail PNG and neutral-skin mask bytes alongside their normal
-Godot imports. JSON evidence is included by the preset. Do not remove runtime
+The enabled `horse_asset_evidence` export plugin adds the original Light
+GLB, all three Walk GLBs, detail PNG and neutral-skin mask bytes alongside their
+normal Godot imports. Exact Stock/foal proof JSON is also exported explicitly;
+other JSON evidence is included by the preset. Do not remove runtime
 provenance checks to accommodate an export. The smoke test requires the checked
 Walk metadata and actual lossless shader detail to remain active in the app.
 
@@ -57,7 +65,7 @@ require the owner's approval through macOS. Distribution with a Developer ID
 and notarization is a separate package and needs the owner's Apple setup.
 Official guidance: [Godot macOS export](https://docs.godotengine.org/en/4.7/tutorials/export/exporting_for_macos.html).
 
-## Checked downloadable package
+## Existing checked downloadable package (Light-only Walk)
 
 `Cloverbrook-Stables-macOS-2026-10-11.zip` contains the app, launch instructions,
 build manifest and license notices. Game source is commit

@@ -79,10 +79,25 @@ jobs:
           echo "G=$G" >> $GITHUB_ENV
           $G --headless --import --path game
 
-      - name: Smoke test main scene (boots, links domain, presents a horse)
+      - name: Verify pinned Stock and foal import proofs
+        run: |
+          python3 -m unittest discover -s tools/horse -p 'test_*walk*.py'
+          mkdir -p evidence/walk-import
+          for family in stock foal; do
+            "$G" --headless --path game --script "$PWD/tools/horse/check_imported_walk.gd" -- \
+              "res://assets/horse/production/horse_${family}_walk.glb" \
+              "$PWD/evidence/walk-import/${family}.json" \
+              "res://assets/horse/production/evidence/${family}-walk-polish/walk-motion-profile.json" --imported
+          done
+
+      - name: Smoke test main scene (checked family Walk, coats, and viewer controls)
         env:
           VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
-        run: timeout 300 xvfb-run -a -s "-screen 0 1280x720x24" $G --path game --rendering-driver vulkan --resolution 1280x720 -- --smoke-test 2>&1 | tee smoke.log; grep -q "\[smoke\] OK" smoke.log
+        run: |
+          set -o pipefail
+          mkdir -p evidence/walk-integration
+          timeout 300 xvfb-run -a -s "-screen 0 1280x720x24" $G --path game --rendering-driver vulkan --resolution 1280x720 -- --smoke-test --walk-evidence="$PWD/evidence/walk-integration" 2>&1 | tee evidence/walk-integration/smoke.log
+          grep -q "\[smoke\] OK all four family mappings" evidence/walk-integration/smoke.log
 
       - name: Verify stable review, End Day, and saved reload
         env:

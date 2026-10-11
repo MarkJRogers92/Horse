@@ -1,0 +1,182 @@
+{
+  "baselineCommit": "26b65cdf8f1cd4b8246657787a5b55a88a927d64",
+  "protectedFiles": [
+    {
+      "path": "game/assets/horse/production/evidence/light-v5-detail/ai-neutral-skin-mask.png",
+      "sha256": "f78c9f8380ec6f244f855da9a130a9103f439937ca8d0ecea55e8efc5c4fa12e",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-v5-detail/ai-neutral-skin-mask.png.import",
+      "sha256": "4647c4d039b94aa9664e293d3426b1a1b93e24bced4019dc884113a6940ce94a",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-v5-detail/game-integration-handoff.json",
+      "sha256": "6410f515e3445726b0a1a652f7c6bfa096b25006c726d219ef3df91353d5f773",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-v5-detail/light-v5-uv-reuse-binding.json",
+      "sha256": "f81192626f5583179b46362c6ae4f1fbdc92341b25f697973f5524d0309db3eb",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v5-detail/game-integration-handoff.json",
+      "sha256": "88b295c165b56fb5570a57798ce2444b3ef765a17a07114e6c264f8827f52996",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v5-detail/geometry-uv-preservation.json",
+      "sha256": "1d50be451b4fde0b4d7a703dcb6226c4bb8653410de5f9992c296bab9c7ca00f",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v5-detail/light-v5-uv-reuse-binding.json",
+      "sha256": "aa4f03fadd344e8e970da04a14c051909f4d4019f67a08df4d150157da2b9cdd",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v5-detail/neutral-motion-audit.json",
+      "sha256": "face59f6bfae24d44d3e1c2bf10c3deea3b2983fba3356e625af74b6c0b83f61",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v5-detail/walk-motion-profile.json",
+      "sha256": "7f72b680dc658969235a200b32a834b1c1d69c946270cbbcc87973a433243d1f",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v5-detail/walk-motion-receipt.json",
+      "sha256": "81e769bed3d6bac22fa6ce4021f04f28506ba6422fe0fa1a08cf05765297c29f",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_foal.glb",
+      "sha256": "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_foal.glb.import",
+      "sha256": "48e1c853ee01e4aeee60493dd73355e1335b272ef6f64a17e897bbe30f954b6d",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_foal.manifest.json",
+      "sha256": "c77a3eb46cd93739ea0a414c6607dcb9f6d26b253c5b48e1846de7c77088acfe",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_light.glb",
+      "sha256": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_light.glb.import",
+      "sha256": "6a217cffbf0e5f5ca9d0e6454bcbdab0dba747eb9389afe75fb16600dca78b71",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_light.manifest.json",
+      "sha256": "5148b93a78ba4e2534c563fe7430a824a39ed86f781f738a09aafd3c3057ba91",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_light_body_detail_v5.png",
+      "sha256": "56514e8a81871779ded06be790c3d1b9ba021ffb237cfa03af5b31973cdc5cfa",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_light_body_detail_v5.png.import",
+      "sha256": "e4838a680b77350659da619dd86be38ef4bb576d83cc296dd4018868842d3d08",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_light_walk.glb",
+      "sha256": "13a678c5fe5ddb20cd48a1b0b17d9e59ecf4a98b7d9599a160f6ee8ce3373219",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_light_walk.glb.import",
+      "sha256": "dca2bfbce418df7d5e61b041d34fdf762c3ee4bb8541c136d18cb42926823dad",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_stock.glb",
+      "sha256": "0b4f422d238e38ad32d2684ab0f0e55edb479aadb505e9c3542f3e1637066439",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_stock.glb.import",
+      "sha256": "e5e75d78da77056c373849fc00b011bd14c6a9273ca180bc128831998a65df99",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_stock.manifest.json",
+      "sha256": "21b057b5c4367a70c1c4e9ad645d3ac0cd7f2eedbe10beafebf7b55ad06a1831",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/horse_foal.blend",
+      "sha256": "4322de7c3b97e6aa0e71111a6ab0de325f72f4f905424b4ff6e8d22df0ca041b",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/horse_light.blend",
+      "sha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/horse_light_walk.blend",
+      "sha256": "3ef7417273cd9baa9d68b406c2731e4bf7db4bd2bc3a56dde95e3a6471173573",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/horse_stock.blend",
+      "sha256": "77b3f3d188a525f255b3d46adf0645f472ec81fd3b47dd750a52e216dd0f4627",
+      "unchanged": true
+    },
+    {
+      "path": "game/shaders/grass_ground.gdshader",
+      "sha256": "dbbe81d1129d3e566f39f91660e2d9106b7df98ae147b974f01005501b282952",
+      "unchanged": true
+    },
+    {
+      "path": "game/shaders/grass_ground.gdshader.uid",
+      "sha256": "d20d05f49c086ba34cf6d34eff03aa5a2a5700b5ac14412cce7a77828556cf0c",
+      "unchanged": true
+    },
+    {
+      "path": "game/shaders/horse_coat.gdshader",
+      "sha256": "8d39d81f3b8e18fbf194b7d26f0076aced486a17f7cf935cdbbc4c3e862f3ea6",
+      "unchanged": true
+    },
+    {
+      "path": "game/shaders/horse_coat.gdshader.uid",
+      "sha256": "682569d151bddcaddd280dc90030b0c783a41dbc39daa6d343885a6de498b7d6",
+      "unchanged": true
+    },
+    {
+      "path": "game/shaders/horse_eye.gdshader",
+      "sha256": "fc8ea37508fed5ab76334f3045d245b236c20eadf71865850359772cc88230f3",
+      "unchanged": true
+    },
+    {
+      "path": "game/shaders/horse_eye.gdshader.uid",
+      "sha256": "283e7175dcef7f29e447379c03e629506494f2f87a62289eba934165ea8a275c",
+      "unchanged": true
+    },
+    {
+      "path": "game/shaders/horse_hair.gdshader",
+      "sha256": "8bbab767932a1d301a481c8980ad9660d8006da7a3b357b79f5726d05691acb8",
+      "unchanged": true
+    },
+    {
+      "path": "game/shaders/horse_hair.gdshader.uid",
+      "sha256": "2a5d190eaad2243e6a277c075e8a2fe46339174e4c87fe94d78432cc9cb3728b",
+      "unchanged": true
+    }
+  ],
+  "acceptedLightCatalogEntryUnchanged": true,
+  "allPreserved": true
+}

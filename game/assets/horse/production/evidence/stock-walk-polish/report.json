@@ -1,0 +1,181 @@
+{
+  "allComponentDeformation": {
+    "Body": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.46197684779083,
+      "samples": 61,
+      "worstEdge": [
+        3519,
+        3572
+      ],
+      "worstPhase": 0.533333333333333
+    },
+    "Eyes": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.00123982369093,
+      "samples": 61,
+      "worstEdge": [
+        603,
+        648
+      ],
+      "worstPhase": 0.483333333333333
+    },
+    "Mane": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.2879441487534,
+      "samples": 61,
+      "worstEdge": [
+        1880,
+        1912
+      ],
+      "worstPhase": 0.516666666666667
+    },
+    "Tail": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.26926187594137,
+      "samples": 61,
+      "worstEdge": [
+        156,
+        378
+      ],
+      "worstPhase": 0.316666666666667
+    }
+  },
+  "animations": [
+    {
+      "boneMovementMeters": 0.375873923301697,
+      "endpointTranslationErrorMeters": 1.95994175555825e-07,
+      "importLoopMode": 0,
+      "length": 0.966666638851166,
+      "name": "Walk",
+      "tracks": 85
+    }
+  ],
+  "contact": {
+    "failures": [],
+    "limbs": {
+      "fore_l": {
+        "centralSwingMinimumMeters": 0.0610752888023853,
+        "maxPerAxisStanceMotionMeters": 0.00012892484664917,
+        "maxStanceSoleMinimumMeters": 5.12980623170733e-05,
+        "minStanceHeightMeters": -2.72260513156652e-05,
+        "registered": 100
+      },
+      "fore_r": {
+        "centralSwingMinimumMeters": 0.0610289089381695,
+        "maxPerAxisStanceMotionMeters": 0.000186659395694733,
+        "maxStanceSoleMinimumMeters": 4.80050221085548e-05,
+        "minStanceHeightMeters": -0.000135334674268961,
+        "registered": 100
+      },
+      "hind_l": {
+        "centralSwingMinimumMeters": 0.0612578541040421,
+        "maxPerAxisStanceMotionMeters": 0.00109219178557396,
+        "maxStanceSoleMinimumMeters": 0.000389679567888379,
+        "minStanceHeightMeters": 2.21918162424117e-05,
+        "registered": 114
+      },
+      "hind_r": {
+        "centralSwingMinimumMeters": 0.0612222850322723,
+        "maxPerAxisStanceMotionMeters": 0.00107324123382568,
+        "maxStanceSoleMinimumMeters": 0.000357881799573079,
+        "minStanceHeightMeters": -4.39241848653182e-05,
+        "registered": 115
+      }
+    },
+    "registered": 429
+  },
+  "engine": {
+    "build": "official",
+    "hash": "7d41c59c457bd5a245092b4e7eb2d833e3b3f8c3",
+    "hex": 263683,
+    "major": 4,
+    "minor": 6,
+    "patch": 3,
+    "status": "stable",
+    "string": "4.6.3-stable (official)",
+    "timestamp": 0
+  },
+  "failures": [],
+  "file": "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/stock-walk-polish/horse_stock_walk.glb",
+  "importBakeFps": 60.0,
+  "meshCount": 4,
+  "meshes": [
+    {
+      "blendShapes": 4,
+      "name": "Body",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 56,
+      "surfaceArrays": [
+        {
+          "colors": 16441,
+          "uv0": 16441,
+          "uv1": 16441,
+          "vertices": 16441
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    },
+    {
+      "blendShapes": 4,
+      "name": "Eyes",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 56,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 1646,
+          "uv1": 1646,
+          "vertices": 1646
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    },
+    {
+      "blendShapes": 4,
+      "name": "Mane",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 56,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 1963,
+          "uv1": 0,
+          "vertices": 1963
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    },
+    {
+      "blendShapes": 4,
+      "name": "Tail",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 56,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 2297,
+          "uv1": 0,
+          "vertices": 2297
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    }
+  ],
+  "skeletons": 1,
+  "skinDeformation": {
+    "failures": [],
+    "maxBodyEdgeStretch": 1.46197684779083,
+    "samples": 61,
+    "worstEdge": [
+      3519,
+      3572
+    ],
+    "worstPhase": 0.533333333333333
+  },
+  "candidateGlbSha256": "3850db293a2b50d084fc9a4c2359c751e71f5456ba01219bf2dd1449dbda2e9e"
+}

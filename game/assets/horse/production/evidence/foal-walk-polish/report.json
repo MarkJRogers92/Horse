@@ -1,0 +1,181 @@
+{
+  "allComponentDeformation": {
+    "Body": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.64669595490205,
+      "samples": 61,
+      "worstEdge": [
+        5561,
+        5763
+      ],
+      "worstPhase": 0.866666666666667
+    },
+    "Eyes": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.00030063224577,
+      "samples": 61,
+      "worstEdge": [
+        276,
+        291
+      ],
+      "worstPhase": 0.0333333333333333
+    },
+    "Mane": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.02730626333088,
+      "samples": 61,
+      "worstEdge": [
+        12,
+        14
+      ],
+      "worstPhase": 0.05
+    },
+    "Tail": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.00689445831359,
+      "samples": 61,
+      "worstEdge": [
+        28,
+        30
+      ],
+      "worstPhase": 0.0333333333333333
+    }
+  },
+  "animations": [
+    {
+      "boneMovementMeters": 0.166666552424431,
+      "endpointTranslationErrorMeters": 4.4703483581543e-08,
+      "importLoopMode": 0,
+      "length": 0.966666638851166,
+      "name": "Walk",
+      "tracks": 42
+    }
+  ],
+  "contact": {
+    "failures": [],
+    "limbs": {
+      "fore_l": {
+        "centralSwingMinimumMeters": 0.0412360988557339,
+        "maxPerAxisStanceMotionMeters": 6.1333179473877e-05,
+        "maxStanceSoleMinimumMeters": 3.13277123495936e-05,
+        "minStanceHeightMeters": -9.47414082475007e-06,
+        "registered": 42
+      },
+      "fore_r": {
+        "centralSwingMinimumMeters": 0.041235513985157,
+        "maxPerAxisStanceMotionMeters": 6.103515625e-05,
+        "maxStanceSoleMinimumMeters": 3.14226490445435e-05,
+        "minStanceHeightMeters": -9.40688187256455e-06,
+        "registered": 44
+      },
+      "hind_l": {
+        "centralSwingMinimumMeters": 0.0414479523897171,
+        "maxPerAxisStanceMotionMeters": 0.000490978360176086,
+        "maxStanceSoleMinimumMeters": 0.000165700592333451,
+        "minStanceHeightMeters": -2.00402864720672e-05,
+        "registered": 46
+      },
+      "hind_r": {
+        "centralSwingMinimumMeters": 0.0414480865001678,
+        "maxPerAxisStanceMotionMeters": 0.000490665435791016,
+        "maxStanceSoleMinimumMeters": 0.00016614850028418,
+        "minStanceHeightMeters": -1.95722677744925e-05,
+        "registered": 44
+      }
+    },
+    "registered": 176
+  },
+  "engine": {
+    "build": "official",
+    "hash": "7d41c59c457bd5a245092b4e7eb2d833e3b3f8c3",
+    "hex": 263683,
+    "major": 4,
+    "minor": 6,
+    "patch": 3,
+    "status": "stable",
+    "string": "4.6.3-stable (official)",
+    "timestamp": 0
+  },
+  "failures": [],
+  "file": "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/foal-walk-polish/horse_foal_walk.glb",
+  "importBakeFps": 60.0,
+  "meshCount": 4,
+  "meshes": [
+    {
+      "blendShapes": 4,
+      "name": "Body",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 68,
+      "surfaceArrays": [
+        {
+          "colors": 8867,
+          "uv0": 8867,
+          "uv1": 8867,
+          "vertices": 8867
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    },
+    {
+      "blendShapes": 4,
+      "name": "Eyes",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 68,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 846,
+          "uv1": 846,
+          "vertices": 846
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    },
+    {
+      "blendShapes": 4,
+      "name": "Mane",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 68,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 364,
+          "uv1": 0,
+          "vertices": 364
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    },
+    {
+      "blendShapes": 4,
+      "name": "Tail",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 68,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 58,
+          "uv1": 0,
+          "vertices": 58
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    }
+  ],
+  "skeletons": 1,
+  "skinDeformation": {
+    "failures": [],
+    "maxBodyEdgeStretch": 1.64669595490205,
+    "samples": 61,
+    "worstEdge": [
+      5561,
+      5763
+    ],
+    "worstPhase": 0.866666666666667
+  },
+  "candidateGlbSha256": "219061fb162cfb227a9c0a6e025e12c83c8af6e834ba8517e3754ac8e3dd0769"
+}

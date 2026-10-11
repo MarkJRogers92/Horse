@@ -55,7 +55,7 @@ public partial class HorsePresenter : Node3D
             Support = Support with
             {
                 Supported = false,
-                Problems = Support.Problems.Append("Walk requires the checked neutral adult shape (all supported body morphs and height at zero)").ToArray()
+                Problems = Support.Problems.Append("Walk requires the checked neutral family shape (all supported body morphs and height at zero)").ToArray()
             };
             GD.PushWarning($"[HorsePresenter] {descriptor.FixtureId}: {Support.Summary}");
             EmitSignal(SignalName.Presented, Support.Summary, false);
@@ -262,7 +262,7 @@ public partial class HorsePresenter : Node3D
         }
     }
 
-    /// <summary>Returns true when the current clip resolves or the checked Light Walk variant can be selected.</summary>
+    /// <summary>Returns true when the current clip resolves or the checked family Walk variant can be selected.</summary>
     public bool IsAnimationAvailable(string animation)
     {
         if (!string.IsNullOrEmpty(ResolveAnimation(animation))) return true;
@@ -290,11 +290,12 @@ public partial class HorsePresenter : Node3D
 
     private static bool HasNeutralWalkShape(VisualDescriptor descriptor, MeshFamily family, VisualCatalog catalog)
     {
-        if (descriptor.IsFoal || family.WalkVariant == null || family.Age != "adult") return false;
+        if (family.WalkVariant == null || family.Age != (descriptor.IsFoal ? "foal" : "adult") ||
+            descriptor.FixtureId.StartsWith("probe.", StringComparison.Ordinal)) return false;
         if (descriptor.MorphWeights.TryGetValue("height", out int height) && height != 0) return false;
         if (!catalog.FamilyMeshBlendShapes.TryGetValue(descriptor.MeshFamilyId, out var meshes) ||
             !meshes.TryGetValue("Body", out var channels)) return false;
-        return channels.Keys.All(shape => !descriptor.MorphWeights.TryGetValue(shape, out int value) || value == 0);
+        return channels.Count > 0 && descriptor.MorphWeights.Values.All(value => value == 0);
     }
 
     /// <summary>Freeze the current animation at a time (used for deterministic captures).</summary>

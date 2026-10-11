@@ -15,7 +15,7 @@ public partial class HorseViewer : Node
 
     private HorseStage _stage = null!;
     private readonly List<VisualDescriptor> _entries = new();
-    private OptionButton _coat = null!, _anim = null!;
+    private OptionButton _coat = null!, _anim = null!, _bodyFamily = null!;
     private CheckButton _foal = null!, _stable = null!, _spin = null!;
     private Label _status = null!, _title = null!;
     private PanelContainer _warning = null!;
@@ -59,6 +59,12 @@ public partial class HorseViewer : Node
         foreach (var e in _entries) _coat.AddItem(e.DisplayLabel + (e.TestOnly ? "  (test)" : ""));
         _coat.ItemSelected += _ => Refresh();
         box.AddChild(_coat);
+
+        _bodyFamily = new OptionButton { Name = "BodyFamilySelector" };
+        _bodyFamily.AddItem("Light");
+        _bodyFamily.AddItem("Stock");
+        _bodyFamily.ItemSelected += _ => Refresh();
+        box.AddChild(_bodyFamily);
 
         _foal = new CheckButton { Name = "FoalToggle", Text = "Foal" }; _foal.Toggled += _ => Refresh();
         _stable = new CheckButton { Text = "Stable lighting", ButtonPressed = StartInStable };
@@ -107,6 +113,8 @@ public partial class HorseViewer : Node
         var d = _entries[_coat.Selected];
         if (_foal.ButtonPressed)
             d = ResolveAgeVariant(d, foal: true);
+        if (!d.FixtureId.StartsWith("probe.", System.StringComparison.Ordinal))
+            d = d with { MeshFamilyId = $"horse.{(_bodyFamily.Selected == 1 ? "compact" : "standard")}.{(d.IsFoal ? "foal" : "adult")}.v1" };
         string requestedAnimation = _anim.Selected >= 0 && _anim.Selected < _anim.ItemCount - 1
             ? _anim.GetItemText(_anim.Selected)
             : "";
@@ -114,7 +122,7 @@ public partial class HorseViewer : Node
         bool walkShapeOverride = false;
         if (string.Equals(requestedAnimation, "walk", System.StringComparison.OrdinalIgnoreCase))
         {
-            if (CanUseCheckedLightWalk(d))
+            if (CanUseCheckedWalk(d))
             {
                 d = WithNeutralWalkShape(d);
                 walkShapeOverride = true;
@@ -140,7 +148,7 @@ public partial class HorseViewer : Node
         _warningText.Text = "This horse cannot be shown yet.\n" + support.Summary + "\n(No substitute coat is drawn.)";
         _status.Text = $"{d.DisplayLabel}\nclass {d.CoatClassId} · {d.MeshFamilyId}\nrecipe {d.CoatRecipe} · eyes {d.EyeRecipe} · skin {d.SkinRecipe}\n" +
                        (support.Supported ? "markings: " + _stage.Presenter.Markings!.Describe() + "\n" : "") +
-                       (walkShapeOverride ? "Walk uses the checked base adult shape.\n" : "") + support.Summary;
+                       (walkShapeOverride ? "Walk uses the checked neutral family shape.\n" : "") + support.Summary;
         if (resetView) _currentView = "q3";
         _stage.FrameView(_currentView);
     }
@@ -154,13 +162,12 @@ public partial class HorseViewer : Node
         return -1;
     }
 
-    private static bool CanUseCheckedLightWalk(VisualDescriptor descriptor)
+    private static bool CanUseCheckedWalk(VisualDescriptor descriptor)
     {
-        if (descriptor.FixtureId.StartsWith("probe.", System.StringComparison.Ordinal) || descriptor.IsFoal ||
-            descriptor.MeshFamilyId != "horse.standard.adult.v1") return false;
+        if (descriptor.FixtureId.StartsWith("probe.", System.StringComparison.Ordinal)) return false;
         var catalog = VisualCatalog.Instance;
         return catalog.Check(descriptor).Supported && catalog.MeshFamilies.TryGetValue(descriptor.MeshFamilyId, out var family) &&
-               family.Age == "adult" && family.WalkVariant != null;
+               family.Age == (descriptor.IsFoal ? "foal" : "adult") && family.WalkVariant != null;
     }
 
     private static VisualDescriptor WithNeutralWalkShape(VisualDescriptor descriptor)

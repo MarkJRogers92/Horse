@@ -1,5 +1,9 @@
 # Stock and foal Walk integration preparation
 
+**Historical staging checklist.** The owner subsequently approved integration.
+Completed game checks and the cloud-only Mac signing boundary are recorded in
+[the integration evidence](evidence/game-walk-integration-cloud-2026-10-11/README.md).
+
 This is staging guidance, not authorization to silently enable an untested scene.
 The owner's October 11 request is to polish the two cloud-created walks and then
 prepare integration. The Mac build and accepted Light path stay unchanged during

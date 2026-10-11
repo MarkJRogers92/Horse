@@ -1,0 +1,49 @@
+{
+  "candidateBlendSha256": "4efbbb61a865c08367d7bcdba8b7c756cf2100a8ad1ec90125e1641a7bc1d5b0",
+  "sampleCount": 581,
+  "bodyMaxEdgeStretch": 1.470894455909729,
+  "worstEdge": {
+    "ratio": 1.470894455909729,
+    "frame": 31.0,
+    "edge": [
+      2497,
+      2531
+    ],
+    "restPoints": [
+      [
+        0.4767141044139862,
+        -0.12024766951799393,
+        1.5472700595855713
+      ],
+      [
+        0.4735855758190155,
+        -0.11937348544597626,
+        1.5398651361465454
+      ]
+    ]
+  },
+  "minimumEdgeRatio": 0.44021230936050415,
+  "maximumInfluences": 8,
+  "maximumWeightSumError": 8.754432201385498e-08,
+  "componentEdgeStretch": {
+    "Body": {
+      "maxEdgeStretch": 1.470894455909729,
+      "minimumEdgeRatio": 0.44021230936050415
+    },
+    "Eyes": {
+      "maxEdgeStretch": 1.0012708902359009,
+      "minimumEdgeRatio": 0.9986714124679565
+    },
+    "Mane": {
+      "maxEdgeStretch": 1.288490653038025,
+      "minimumEdgeRatio": 0.7520959377288818
+    },
+    "Tail": {
+      "maxEdgeStretch": 1.2688320875167847,
+      "minimumEdgeRatio": 0.7979379296302795
+    }
+  },
+  "bodyStretchLimit": 2.0,
+  "bodyStretchPass": true,
+  "scope": "Neutral shape only; dense source deformation check supplementary to runtime/visual gates."
+}

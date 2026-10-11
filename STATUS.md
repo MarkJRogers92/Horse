@@ -6,6 +6,45 @@ The prior visual/animation freeze below is historical and remains true for the
 original checkout; new work is isolated here. No release-matrix promotion or main merge.
 
 
+## Integrated Stock and foal Walk on the cloud computer — 2026-10-11
+
+Owner-approved D-007 integration now maps the exact polished Stock/foal exports
+into the normal game, with a Light/Stock viewer selector and both foal mappings.
+The accepted Light path stays intact. Neutral Walk temporarily zeros all shape
+values at unit scale; Idle restores the selected shape. Direct nonneutral Walk,
+unsupported probes and malformed/stale evidence fail closed. Stock/foal retain
+their own procedural coats and receive no Light atlas.
+
+Actual pinned Godot 4.7.2 .NET project imports pass 60 fps/optimizer settings,
+all four component morphs and normalized skin weights, loop transforms, contact
+and attachment checks. Stock's 429 soles stay within 1.092 mm planted drift and
+all 222 exact hair joins stay closed. Foal's 176 soles stay within 0.491 mm;
+395 imported hair witnesses stay within 0.059 mm gap drift. Raw geometry,
+normals, both UV sets, mask values and all morphs compare exactly with each
+foundation. Thirty-five protected files and the full Light catalog entry remain
+byte-identical.
+
+Warnings-as-errors build, all 190 domain tests, 14 focused evidence tests,
+frozen-spec validation, main-entry headless/rendered smoke and an additional
+50-entry visual/runtime regression pass. Twenty-four real game captures cover
+coats, markings and controls. Tests include repeat Walk/Idle transitions, shape
+restoration, pause/resume, exact profile speed, camera follow, route bounds,
+both juvenile mappings and invalid evidence. A pre-existing adult Idle probe
+was corrected to measure the advancing interval rather than two equivalent
+periodic poses; source assets and its movement threshold are unchanged.
+
+Raw source/evidence coverage passed an exported PCK check from an empty project.
+A separate universal Mac candidate was cross-exported without signing; it is
+unsigned, unnotarized and not Mac launch-verified. Native Apple codesign cannot
+run in this Linux environment. The existing signed M2-tested download and
+native-signing preset are unchanged. No Mac access, new paid generation,
+release-matrix promotion, main merge or public release occurred.
+
+Evidence: docs/visual/evidence/game-walk-integration-cloud-2026-10-11/.
+Completion handoff: D-007 checked-neutral integration implemented and cloud
+verified; native Mac signing/launch and owner art approval remain outside these
+checks. Remote publication/CI must be checked for the final commit.
+
 ## Completed neutral Walk polish and inactive integration preparation — 2026-10-11
 
 The owner requested polishing both remaining models and preparing integration.
