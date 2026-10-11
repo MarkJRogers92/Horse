@@ -92,6 +92,13 @@ jobs:
           timeout 2400 xvfb-run -a -s "-screen 0 1280x720x24" $G --path game --rendering-driver vulkan --resolution 1280x720 res://scenes/capture.tscn -- --out "$PWD/evidence" 2>&1 | tee evidence/capture.log
           test -f evidence/capture_report.json
 
+      - name: Verify adult and foal playback and clip transitions
+        env:
+          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+        run: |
+          timeout 300 xvfb-run -a -s "-screen 0 960x540x24" $G --path game --rendering-driver vulkan --resolution 960x540 res://scenes/motion_capture.tscn -- --animation transitions --age both --out "$PWD/evidence/motion" 2>&1 | tee evidence/motion.log
+          python3 -c "import json,sys; r=json.load(open('evidence/motion/motion_report.json')); sys.exit(1 if r['failures'] else 0)"
+
       - name: Contact sheets and summary
         if: always()
         run: |

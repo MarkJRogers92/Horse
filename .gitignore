@@ -6,3 +6,6 @@
 .DS_Store
 *.user
 *.suo
+
+# Disposable Python bytecode; editable scripts are tracked.
+**/__pycache__/

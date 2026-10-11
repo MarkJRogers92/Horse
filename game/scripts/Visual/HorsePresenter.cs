@@ -132,14 +132,14 @@ public partial class HorsePresenter : Node3D
         CurrentAnimation = Animator != null && Animator.HasAnimation(animation) ? animation : "";
         if (Animator == null) return;
         if (string.IsNullOrEmpty(CurrentAnimation)) { Animator.Stop(); return; }
-        Animator.Play(animation);
+        Animator.Play(animation, 0.18);
     }
 
     /// <summary>Freeze the current animation at a time (used for deterministic captures).</summary>
     public void Pose(string animation, double time)
     {
         if (Animator == null || !Animator.HasAnimation(animation)) return;
-        Animator.Play(animation);
+        Animator.Play(animation, 0.0);
         Animator.Seek(time, true);
         Animator.Pause();
     }

@@ -223,21 +223,39 @@ public partial class CaptureRunner : Node
     private async Task AnimFrames()
     {
         _stage.SetMode(LightingMode.Neutral);
-        var d = FixtureLibrary.Get("bay", false);
-        foreach (var (anim, len) in new[] { ("walk", 1.2), ("trot", 0.733), ("look", 5.0), ("idle", 4.0) })
+        foreach (var isFoal in new[] { false, true })
         {
+            var d = FixtureLibrary.Get("bay", isFoal);
             if (!Show(d)) continue;
-            if (_stage.Presenter.Animator == null || !_stage.Presenter.Animator.HasAnimation(anim))
+            foreach (var anim in new[] { "idle", "walk", "trot", "look", "breathe" })
             {
-                _unavailableAnimations.Add(anim);
-                GD.Print($"[capture] skipped unavailable animation {anim}");
-                continue;
-            }
-            for (int i = 0; i < 6; i++)
-            {
-                if (!Show(d, anim, len * i / 6.0)) continue;
-                _stage.FrameView("side");
-                await Shot($"anim/{anim}_{i}.png", "anim", d, "side", $"{anim} t={len * i / 6.0:0.00}s (pose sample, not playback)");
+                var player = _stage.Presenter.Animator;
+                if (player == null || !player.HasAnimation(anim))
+                {
+                    _unavailableAnimations.Add($"{d.MeshFamilyId}:{anim}");
+                    if (anim is "idle" or "walk" or "trot")
+                    {
+                        GD.PushError($"[capture] required animation unavailable for {(isFoal ? "foal" : "adult")}: {anim}");
+                        _failures++;
+                    }
+                    else GD.Print($"[capture] skipped optional unavailable animation {(isFoal ? "foal" : "adult")}/{anim}");
+                    continue;
+                }
+
+                var clip = player.GetAnimation(anim);
+                if (clip.Length <= 0)
+                {
+                    GD.PushError($"[capture] animation has no duration: {(isFoal ? "foal" : "adult")}/{anim}");
+                    _failures++;
+                    continue;
+                }
+                for (int i = 0; i < 6; i++)
+                {
+                    double time = clip.Length * i / 6.0;
+                    if (!Show(d, anim, time)) continue;
+                    _stage.FrameView("side");
+                    await Shot($"anim/{(isFoal ? "foal" : "adult")}_{anim}_{i}.png", "anim", d, "side", $"{anim} t={time:0.00}s / {clip.Length:0.00}s (static pose sample; use motion capture for playback)");
+                }
             }
         }
     }

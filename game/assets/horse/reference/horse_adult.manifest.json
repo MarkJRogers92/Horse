@@ -18,14 +18,257 @@
     "Tail"
   ],
   "rigNode": "Skeleton",
-  "animations": [],
+  "animations": {
+    "idle": {
+      "durationSeconds": 3.0,
+      "fps": 30,
+      "loop": true,
+      "keyedSamplesIncludingSeam": 91,
+      "solverMaxEndpointError_m": 7e-06,
+      "solverMaxSegmentLengthError_m": 0.0,
+      "maximumTargetLift_m": 0.0,
+      "minimumPelvisCompression_m": 0.008,
+      "evaluatedHoofMinZ_m": 0.0,
+      "evaluatedHoofMaxZ_m": 0.0,
+      "evaluatedHoofGroundPenetration_m": 0.0,
+      "maxPlantedHoofPlanarDrift_m": 0.0
+    },
+    "walk": {
+      "durationSeconds": 1.6666666666666667,
+      "fps": 30,
+      "loop": true,
+      "keyedSamplesIncludingSeam": 51,
+      "solverMaxEndpointError_m": 1e-05,
+      "solverMaxSegmentLengthError_m": 0.0,
+      "maximumTargetLift_m": 0.044421225786209106,
+      "minimumPelvisCompression_m": 0.025,
+      "referenceMotion": {
+        "source": {
+          "title": "Horse Rigged All Gaits",
+          "creator": "fdoss001",
+          "originalMeshCredit": "Tarnyloo (BlendSwap 17172, CC-BY; mesh is not included)",
+          "url": "https://blendswap.com/blend/28627",
+          "license": "CC0 listing",
+          "note": "Evaluated walk/trot motion only; no source mesh or materials."
+        },
+        "clip": "horse.walk",
+        "sourceDurationSeconds": 1.6666666666666667,
+        "axisConversion": "source Z-up/-Y-forward/+X-left to target Blender +X-forward/+Y-left via +90deg Z",
+        "trajectoryAmplitudeScale": 0.65
+      },
+      "evaluatedHoofMinZ_m": -0.0,
+      "evaluatedHoofMaxZ_m": 0.044421,
+      "evaluatedHoofGroundPenetration_m": 0.0,
+      "maxVirtualForwardCompensatedStanceSlip_m": 0.0,
+      "netVirtualForwardCompensatedContactCentroidDrift_m_byLeg": {
+        "Front_L": 0.0,
+        "Front_R": 0.0,
+        "Hind_L": 0.0,
+        "Hind_R": 0.0
+      },
+      "accumulatedCompensatedContactResidualPath_m_byLeg": {
+        "Front_L": 3e-06,
+        "Front_R": 2e-06,
+        "Hind_L": 2e-06,
+        "Hind_R": 2e-06
+      },
+      "contactDriftMetricNote": "Net XY residual after virtual forward travel, plus accumulated residual path length, measured from evaluated low-vertex centroids; the low-vertex set can change slightly as hoof roll changes.",
+      "stanceHoofMinZ_m": -0.0,
+      "stanceHoofMaxZ_m": 0.0,
+      "stanceSoleZByLeg_m": {
+        "Front_L": [
+          -0.0,
+          0.0
+        ],
+        "Front_R": [
+          -0.0,
+          0.0
+        ],
+        "Hind_L": [
+          -0.0,
+          0.0
+        ],
+        "Hind_R": [
+          -0.0,
+          0.0
+        ]
+      },
+      "inPlace": true,
+      "travelSpeedMps": 0.4418,
+      "stanceDuty": 0.5531,
+      "stanceSweep_m": 0.40726,
+      "footfallPattern": "Front_R, Hind_L, Front_L, Hind_R",
+      "touchdownPhase": {
+        "Front_L": 0.8375,
+        "Front_R": 0.3375,
+        "Hind_L": 0.5,
+        "Hind_R": 0.9625
+      },
+      "sourceClip": "horse.walk"
+    },
+    "trot": {
+      "durationSeconds": 0.8333333333333334,
+      "fps": 30,
+      "loop": true,
+      "keyedSamplesIncludingSeam": 26,
+      "solverMaxEndpointError_m": 1e-05,
+      "solverMaxSegmentLengthError_m": 0.0,
+      "maximumTargetLift_m": 0.13581149280071259,
+      "minimumPelvisCompression_m": 0.025,
+      "referenceMotion": {
+        "source": {
+          "title": "Horse Rigged All Gaits",
+          "creator": "fdoss001",
+          "originalMeshCredit": "Tarnyloo (BlendSwap 17172, CC-BY; mesh is not included)",
+          "url": "https://blendswap.com/blend/28627",
+          "license": "CC0 listing",
+          "note": "Evaluated walk/trot motion only; no source mesh or materials."
+        },
+        "clip": "horse.trot",
+        "sourceDurationSeconds": 0.8333333333333334,
+        "axisConversion": "source Z-up/-Y-forward/+X-left to target Blender +X-forward/+Y-left via +90deg Z",
+        "trajectoryAmplitudeScale": 0.55
+      },
+      "evaluatedHoofMinZ_m": -0.0,
+      "evaluatedHoofMaxZ_m": 0.135811,
+      "evaluatedHoofGroundPenetration_m": 0.0,
+      "maxVirtualForwardCompensatedStanceSlip_m": 0.0,
+      "netVirtualForwardCompensatedContactCentroidDrift_m_byLeg": {
+        "Front_L": 0.0,
+        "Front_R": 0.0,
+        "Hind_L": 0.0,
+        "Hind_R": 0.0
+      },
+      "accumulatedCompensatedContactResidualPath_m_byLeg": {
+        "Front_L": 1e-06,
+        "Front_R": 1e-06,
+        "Hind_L": 1e-06,
+        "Hind_R": 1e-06
+      },
+      "contactDriftMetricNote": "Net XY residual after virtual forward travel, plus accumulated residual path length, measured from evaluated low-vertex centroids; the low-vertex set can change slightly as hoof roll changes.",
+      "stanceHoofMinZ_m": -0.0,
+      "stanceHoofMaxZ_m": 0.0,
+      "stanceSoleZByLeg_m": {
+        "Front_L": [
+          -0.0,
+          0.0
+        ],
+        "Front_R": [
+          -0.0,
+          0.0
+        ],
+        "Hind_L": [
+          -0.0,
+          0.0
+        ],
+        "Hind_R": [
+          -0.0,
+          0.0
+        ]
+      },
+      "inPlace": true,
+      "travelSpeedMps": 1.2458,
+      "stanceDuty": 0.3625,
+      "stanceSweep_m": 0.37632,
+      "footfallPattern": "Front_R, Hind_L, Front_L, Hind_R",
+      "touchdownPhase": {
+        "Front_L": 0.5,
+        "Front_R": 0.0,
+        "Hind_L": 0.0,
+        "Hind_R": 0.5
+      },
+      "sourceClip": "horse.trot"
+    }
+  },
+  "animationReferenceNotes": [
+    "Walk and trot bone trajectories are retargeted from evaluated CC0 clips of Horse Rigged All Gaits by fdoss001 (original mesh credit Tarnyloo), scaled to the target rig and grounded against its hoof meshes.",
+    "Walk footfalls follow the four-beat lateral sequence HL, FL, HR, FR described by Kentucky Equine Extension and UGA Extension.",
+    "Trot footfalls use diagonal pairs FL+HR and FR+HL as described by Kentucky Equine Extension; idle is separately authored because the source package has no idle clip."
+  ],
+  "animationReferences": [
+    "https://horses.extension.org/horse-walk/",
+    "https://horses.extension.org/horse-trot/",
+    "https://extension.uga.edu/publications/detail.html?number=B1401&title=evaluating-common-equine-performance-classes"
+  ],
+  "gaitRigAdaptation": {
+    "newHindShinBones": {
+      "Front_L": {
+        "shoulder_m": [
+          0.5,
+          0.20999999344348907,
+          1.1699999570846558
+        ],
+        "elbow_m": [
+          0.30000001192092896,
+          0.22200000286102295,
+          0.9399999976158142
+        ],
+        "carpus_m": [
+          0.3213408291339874,
+          0.22239457070827484,
+          0.6322352290153503
+        ]
+      },
+      "Hind_L": {
+        "stifle_m": [
+          -0.215,
+          0.145,
+          1.035
+        ],
+        "hock_m": [
+          -0.585,
+          0.165,
+          0.655
+        ]
+      },
+      "Front_R": {
+        "shoulder_m": [
+          0.5,
+          -0.20999999344348907,
+          1.1699999570846558
+        ],
+        "elbow_m": [
+          0.30000001192092896,
+          -0.22200000286102295,
+          0.9399999976158142
+        ],
+        "carpus_m": [
+          0.3213408291339874,
+          -0.22239457070827484,
+          0.6322352290153503
+        ]
+      },
+      "Hind_R": {
+        "stifle_m": [
+          -0.215,
+          -0.145,
+          1.035
+        ],
+        "hock_m": [
+          -0.585,
+          -0.165,
+          0.655
+        ]
+      }
+    },
+    "bodyWeightRepair": {
+      "tailWeightVerticesCleared": 259,
+      "anatomicalLimbVerticesReweighted": {
+        "Front_L": 176,
+        "Front_R": 178,
+        "Hind_L": 163,
+        "Hind_R": 163
+      },
+      "adjacentJointBlendHalfWidth_m": 0.07
+    }
+  },
   "triangles": {
     "Body": {
-      "vertices": 15064,
+      "vertices": 15027,
       "triangles": 28524,
-      "color_0": 15064,
-      "texcoord_1": 15064,
-      "weights_0": 15064
+      "color_0": 15027,
+      "texcoord_1": 15027,
+      "weights_0": 15027
     },
     "Eyes": {
       "triangles": 1920
@@ -47,11 +290,15 @@
     "Head",
     "Ear_L",
     "Ear_R",
+    "Front_L_Scapula",
     "Front_L_Upper",
+    "Front_L_Forearm",
     "Front_L_Cannon",
     "Front_L_Pastern",
     "Front_L_Hoof",
+    "Front_R_Scapula",
     "Front_R_Upper",
+    "Front_R_Forearm",
     "Front_R_Cannon",
     "Front_R_Pastern",
     "Front_R_Hoof",
@@ -59,10 +306,12 @@
     "Tail_02",
     "Tail_03",
     "Hind_L_Upper",
+    "Hind_L_Shin",
     "Hind_L_Cannon",
     "Hind_L_Pastern",
     "Hind_L_Hoof",
     "Hind_R_Upper",
+    "Hind_R_Shin",
     "Hind_R_Cannon",
     "Hind_R_Pastern",
     "Hind_R_Hoof"
@@ -83,10 +332,10 @@
     "leg_loops": {
       "Front_L": 404,
       "Front_R": 404,
-      "Hind_L": 402,
-      "Hind_R": 402
+      "Hind_L": 474,
+      "Hind_R": 474
     },
-    "sentinel_loops": 3200,
+    "sentinel_loops": 3056,
     "head_half_width_m": 0.14998
   },
   "exportMaskCoverage": {
@@ -99,10 +348,10 @@
       "leg_loops": {
         "Front_L": 1920,
         "Front_R": 1920,
-        "Hind_L": 1738,
-        "Hind_R": 1742
+        "Hind_L": 1978,
+        "Hind_R": 1978
       },
-      "sentinel_loops": 13004,
+      "sentinel_loops": 12528,
       "head_half_width_m": 0.14879
     }
   },
@@ -171,19 +420,19 @@
   },
   "bounds": {
     "min_m": [
-      -1.1714,
+      -1.17137,
       -0.335,
       -0.0
     ],
     "max_m": [
       1.55236,
       0.33498,
-      1.80282
+      1.79482
     ],
     "size_m": [
-      2.72376,
+      2.72373,
       0.66998,
-      1.80282
+      1.79482
     ]
   },
   "bonesRestWorld": [
@@ -206,12 +455,12 @@
       "parent": "Root",
       "head_m": [
         -0.48948,
-        -0.0,
+        0.0,
         1.26291
       ],
       "tail_m": [
         -0.06589,
-        -0.0,
+        0.0,
         1.28174
       ]
     },
@@ -220,12 +469,12 @@
       "parent": "Pelvis",
       "head_m": [
         -0.06589,
-        -0.0,
+        0.0,
         1.28174
       ],
       "tail_m": [
         0.24474,
-        0.0,
+        -0.0,
         1.37587
       ]
     },
@@ -234,7 +483,7 @@
       "parent": "Spine",
       "head_m": [
         0.24474,
-        0.0,
+        -0.0,
         1.37587
       ],
       "tail_m": [
@@ -253,7 +502,7 @@
       ],
       "tail_m": [
         1.23311,
-        0.0,
+        -0.0,
         1.65826
       ]
     },
@@ -262,12 +511,12 @@
       "parent": "Neck",
       "head_m": [
         1.23311,
-        0.0,
+        -0.0,
         1.65826
       ],
       "tail_m": [
         1.5155,
-        0.0,
+        -0.0,
         1.14995
       ]
     },
@@ -300,12 +549,40 @@
       ]
     },
     {
-      "name": "Front_L_Upper",
+      "name": "Front_L_Scapula",
       "parent": "Chest",
       "head_m": [
         0.25168,
         0.20263,
         1.40411
+      ],
+      "tail_m": [
+        0.5,
+        0.21,
+        1.17
+      ]
+    },
+    {
+      "name": "Front_L_Upper",
+      "parent": "Front_L_Scapula",
+      "head_m": [
+        0.5,
+        0.21,
+        1.17
+      ],
+      "tail_m": [
+        0.3,
+        0.222,
+        0.94
+      ]
+    },
+    {
+      "name": "Front_L_Forearm",
+      "parent": "Front_L_Upper",
+      "head_m": [
+        0.3,
+        0.222,
+        0.94
       ],
       "tail_m": [
         0.32134,
@@ -315,7 +592,7 @@
     },
     {
       "name": "Front_L_Cannon",
-      "parent": "Front_L_Upper",
+      "parent": "Front_L_Forearm",
       "head_m": [
         0.32134,
         0.22239,
@@ -356,12 +633,40 @@
       ]
     },
     {
-      "name": "Front_R_Upper",
+      "name": "Front_R_Scapula",
       "parent": "Chest",
       "head_m": [
         0.25168,
         -0.20263,
         1.40411
+      ],
+      "tail_m": [
+        0.5,
+        -0.21,
+        1.17
+      ]
+    },
+    {
+      "name": "Front_R_Upper",
+      "parent": "Front_R_Scapula",
+      "head_m": [
+        0.5,
+        -0.21,
+        1.17
+      ],
+      "tail_m": [
+        0.3,
+        -0.222,
+        0.94
+      ]
+    },
+    {
+      "name": "Front_R_Forearm",
+      "parent": "Front_R_Upper",
+      "head_m": [
+        0.3,
+        -0.222,
+        0.94
       ],
       "tail_m": [
         0.32134,
@@ -371,7 +676,7 @@
     },
     {
       "name": "Front_R_Cannon",
-      "parent": "Front_R_Upper",
+      "parent": "Front_R_Forearm",
       "head_m": [
         0.32134,
         -0.22239,
@@ -416,12 +721,12 @@
       "parent": "Pelvis",
       "head_m": [
         -0.80952,
-        -0.0,
+        0.0,
         1.31939
       ],
       "tail_m": [
         -0.93189,
-        -0.0,
+        0.0,
         0.98052
       ]
     },
@@ -430,12 +735,12 @@
       "parent": "Tail_01",
       "head_m": [
         -0.93189,
-        -0.0,
+        0.0,
         0.98052
       ],
       "tail_m": [
         -1.04485,
-        -0.0,
+        0.0,
         0.604
       ]
     },
@@ -444,12 +749,12 @@
       "parent": "Tail_02",
       "head_m": [
         -1.04485,
-        -0.0,
+        0.0,
         0.604
       ],
       "tail_m": [
         -1.15216,
-        -0.0,
+        0.0,
         0.25571
       ]
     },
@@ -462,18 +767,32 @@
         1.42293
       ],
       "tail_m": [
-        -0.43722,
-        0.16279,
-        0.63224
+        -0.215,
+        0.145,
+        1.035
+      ]
+    },
+    {
+      "name": "Hind_L_Shin",
+      "parent": "Hind_L_Upper",
+      "head_m": [
+        -0.215,
+        0.145,
+        1.035
+      ],
+      "tail_m": [
+        -0.585,
+        0.165,
+        0.655
       ]
     },
     {
       "name": "Hind_L_Cannon",
-      "parent": "Hind_L_Upper",
+      "parent": "Hind_L_Shin",
       "head_m": [
-        -0.43722,
-        0.16279,
-        0.63224
+        -0.585,
+        0.165,
+        0.655
       ],
       "tail_m": [
         -0.44098,
@@ -518,18 +837,32 @@
         1.42293
       ],
       "tail_m": [
-        -0.43736,
-        -0.16251,
-        0.63224
+        -0.215,
+        -0.145,
+        1.035
+      ]
+    },
+    {
+      "name": "Hind_R_Shin",
+      "parent": "Hind_R_Upper",
+      "head_m": [
+        -0.215,
+        -0.145,
+        1.035
+      ],
+      "tail_m": [
+        -0.585,
+        -0.165,
+        0.655
       ]
     },
     {
       "name": "Hind_R_Cannon",
-      "parent": "Hind_R_Upper",
+      "parent": "Hind_R_Shin",
       "head_m": [
-        -0.43736,
-        -0.16251,
-        0.63224
+        -0.585,
+        -0.165,
+        0.655
       ],
       "tail_m": [
         -0.44113,
@@ -579,9 +912,9 @@
   },
   "withersHeight_m": 1.6,
   "ratiosToAdult": {
-    "length": 1.0,
+    "length": 0.99999,
     "width": 1.0,
-    "height": 1.0
+    "height": 0.99556
   },
   "recommendedHeadViewTarget": [
     1.37535,
@@ -604,19 +937,25 @@
       "Hind_L_Hoof",
       "Hind_L_Pastern",
       "Hind_L_Cannon",
+      "Hind_L_Shin",
       "Hind_L_Upper",
       "Hind_R_Hoof",
       "Hind_R_Pastern",
       "Hind_R_Cannon",
+      "Hind_R_Shin",
       "Hind_R_Upper",
       "Front_L_Hoof",
       "Front_L_Pastern",
       "Front_L_Cannon",
+      "Front_L_Forearm",
       "Front_L_Upper",
+      "Front_L_Scapula",
       "Front_R_Hoof",
       "Front_R_Pastern",
       "Front_R_Cannon",
+      "Front_R_Forearm",
       "Front_R_Upper",
+      "Front_R_Scapula",
       "Ear_L",
       "Ear_R",
       "Head",
@@ -634,15 +973,2014 @@
       "Tail",
       "Skeleton"
     ],
-    "animations": 0,
+    "animations": [
+      {
+        "name": "idle",
+        "channels": 99,
+        "animatedNodes": [
+          "Chest",
+          "Ear_L",
+          "Ear_R",
+          "Front_L_Cannon",
+          "Front_L_Forearm",
+          "Front_L_Hoof",
+          "Front_L_Pastern",
+          "Front_L_Scapula",
+          "Front_L_Upper",
+          "Front_R_Cannon",
+          "Front_R_Forearm",
+          "Front_R_Hoof",
+          "Front_R_Pastern",
+          "Front_R_Scapula",
+          "Front_R_Upper",
+          "Head",
+          "Hind_L_Cannon",
+          "Hind_L_Hoof",
+          "Hind_L_Pastern",
+          "Hind_L_Shin",
+          "Hind_L_Upper",
+          "Hind_R_Cannon",
+          "Hind_R_Hoof",
+          "Hind_R_Pastern",
+          "Hind_R_Shin",
+          "Hind_R_Upper",
+          "Neck",
+          "Pelvis",
+          "Root",
+          "Spine",
+          "Tail_01",
+          "Tail_02",
+          "Tail_03"
+        ],
+        "changingNodes": [
+          "Chest",
+          "Ear_L",
+          "Ear_R",
+          "Front_L_Cannon",
+          "Front_L_Forearm",
+          "Front_L_Pastern",
+          "Front_L_Scapula",
+          "Front_L_Upper",
+          "Front_R_Cannon",
+          "Front_R_Forearm",
+          "Front_R_Pastern",
+          "Front_R_Scapula",
+          "Front_R_Upper",
+          "Head",
+          "Hind_L_Cannon",
+          "Hind_L_Pastern",
+          "Hind_L_Shin",
+          "Hind_L_Upper",
+          "Hind_R_Cannon",
+          "Hind_R_Pastern",
+          "Hind_R_Shin",
+          "Hind_R_Upper",
+          "Pelvis",
+          "Tail_01",
+          "Tail_02",
+          "Tail_03"
+        ],
+        "start_s": 0.0,
+        "end_s": 3.0,
+        "duration_s": 3.0,
+        "samplers": [
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 3.0,
+            "samples": 91,
+            "seamMaxComponentError": 0.0
+          }
+        ]
+      },
+      {
+        "name": "trot",
+        "channels": 99,
+        "animatedNodes": [
+          "Chest",
+          "Ear_L",
+          "Ear_R",
+          "Front_L_Cannon",
+          "Front_L_Forearm",
+          "Front_L_Hoof",
+          "Front_L_Pastern",
+          "Front_L_Scapula",
+          "Front_L_Upper",
+          "Front_R_Cannon",
+          "Front_R_Forearm",
+          "Front_R_Hoof",
+          "Front_R_Pastern",
+          "Front_R_Scapula",
+          "Front_R_Upper",
+          "Head",
+          "Hind_L_Cannon",
+          "Hind_L_Hoof",
+          "Hind_L_Pastern",
+          "Hind_L_Shin",
+          "Hind_L_Upper",
+          "Hind_R_Cannon",
+          "Hind_R_Hoof",
+          "Hind_R_Pastern",
+          "Hind_R_Shin",
+          "Hind_R_Upper",
+          "Neck",
+          "Pelvis",
+          "Root",
+          "Spine",
+          "Tail_01",
+          "Tail_02",
+          "Tail_03"
+        ],
+        "changingNodes": [
+          "Chest",
+          "Front_L_Cannon",
+          "Front_L_Forearm",
+          "Front_L_Hoof",
+          "Front_L_Pastern",
+          "Front_L_Scapula",
+          "Front_L_Upper",
+          "Front_R_Cannon",
+          "Front_R_Forearm",
+          "Front_R_Hoof",
+          "Front_R_Pastern",
+          "Front_R_Scapula",
+          "Front_R_Upper",
+          "Head",
+          "Hind_L_Cannon",
+          "Hind_L_Hoof",
+          "Hind_L_Pastern",
+          "Hind_L_Shin",
+          "Hind_L_Upper",
+          "Hind_R_Cannon",
+          "Hind_R_Hoof",
+          "Hind_R_Pastern",
+          "Hind_R_Shin",
+          "Hind_R_Upper",
+          "Neck",
+          "Pelvis"
+        ],
+        "start_s": 0.0,
+        "end_s": 0.833333,
+        "duration_s": 0.833333,
+        "samplers": [
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 0.833333,
+            "samples": 26,
+            "seamMaxComponentError": 0.0
+          }
+        ]
+      },
+      {
+        "name": "walk",
+        "channels": 99,
+        "animatedNodes": [
+          "Chest",
+          "Ear_L",
+          "Ear_R",
+          "Front_L_Cannon",
+          "Front_L_Forearm",
+          "Front_L_Hoof",
+          "Front_L_Pastern",
+          "Front_L_Scapula",
+          "Front_L_Upper",
+          "Front_R_Cannon",
+          "Front_R_Forearm",
+          "Front_R_Hoof",
+          "Front_R_Pastern",
+          "Front_R_Scapula",
+          "Front_R_Upper",
+          "Head",
+          "Hind_L_Cannon",
+          "Hind_L_Hoof",
+          "Hind_L_Pastern",
+          "Hind_L_Shin",
+          "Hind_L_Upper",
+          "Hind_R_Cannon",
+          "Hind_R_Hoof",
+          "Hind_R_Pastern",
+          "Hind_R_Shin",
+          "Hind_R_Upper",
+          "Neck",
+          "Pelvis",
+          "Root",
+          "Spine",
+          "Tail_01",
+          "Tail_02",
+          "Tail_03"
+        ],
+        "changingNodes": [
+          "Chest",
+          "Front_L_Cannon",
+          "Front_L_Forearm",
+          "Front_L_Hoof",
+          "Front_L_Pastern",
+          "Front_L_Scapula",
+          "Front_L_Upper",
+          "Front_R_Cannon",
+          "Front_R_Forearm",
+          "Front_R_Hoof",
+          "Front_R_Pastern",
+          "Front_R_Scapula",
+          "Front_R_Upper",
+          "Head",
+          "Hind_L_Cannon",
+          "Hind_L_Hoof",
+          "Hind_L_Pastern",
+          "Hind_L_Shin",
+          "Hind_L_Upper",
+          "Hind_R_Cannon",
+          "Hind_R_Hoof",
+          "Hind_R_Pastern",
+          "Hind_R_Shin",
+          "Hind_R_Upper",
+          "Neck",
+          "Pelvis"
+        ],
+        "start_s": 0.0,
+        "end_s": 1.666667,
+        "duration_s": 1.666667,
+        "samplers": [
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          },
+          {
+            "start_s": 0.0,
+            "end_s": 1.666667,
+            "samples": 51,
+            "seamMaxComponentError": 0.0
+          }
+        ]
+      }
+    ],
     "triangles": 36162,
     "primitives": {
       "Body": {
-        "vertices": 15064,
+        "vertices": 15027,
         "triangles": 28524,
-        "color_0": 15064,
-        "texcoord_1": 15064,
-        "weights_0": 15064
+        "color_0": 15027,
+        "texcoord_1": 15027,
+        "weights_0": 15027
       },
       "Eyes": {
         "triangles": 1920
@@ -699,7 +3037,7 @@
     "max_skin_weight_sum_error": 1.3597309589385986e-07,
     "skin_weights_by_mesh": {
       "Body": {
-        "vertices": 15064,
+        "vertices": 15027,
         "max_sum_error": 1.3597309589385986e-07
       },
       "Eyes": {
@@ -758,8 +3096,8 @@
   "hairGeometry": "solid authored sculpted clump meshes; retain opaque/solid-clump hair shading rather than card alpha clipping",
   "limitations": [
     "Adult retains the authored source proportions and topology; it is an adaptation, not a new anatomical sculpt.",
-    "The rig is a basic FK posing rig only; no animation clips, including gait, are supplied.",
+    "The gait clips are authored in-place reference loops with baked IK-like FK bone motion, not a complete production locomotion/controller rig; no runtime IK constraints are required.",
     "The existing hair meshes are dense sculpted clumps rather than cards; UVs are projected across width/root-to-tip and the presentation shader must avoid card-shaped alpha clipping."
   ],
-  "buildSeconds": 27.11
+  "buildSeconds": 52.99
 }

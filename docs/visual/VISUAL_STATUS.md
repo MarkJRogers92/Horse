@@ -4,7 +4,17 @@
 **Owner:** Mark leads integration; GPT adapted the selected horse. Claude's visual foundation is retained.
 **Last updated:** 2026-10-10
 
-## Current result — authored adult and foal
+## Paused animation checkpoint — 2026-10-10
+
+**Animation work is stopped at the owner's request. This is a preservation checkpoint, not an accepted animation release.** The subsequent request explicitly authorizes saving and pushing the unfinished work.
+
+- The owner rejected the walk/trot deformation: knees and upper legs form sharp shelves, with chest and hindquarter creasing. Numeric playback/loop checks did not establish visual quality.
+- The working tree contains experimental idle/walk/trot generation, source motion samples, capture tooling, Blender files and GLBs. Adult and foal are at different repair stages; the final source edits and saved binaries have not been regenerated and verified together. Do not treat this as a reproducible, accepted final pair.
+- The original static reference package is unchanged. The last verified static game checkpoint is `74f5094bc05681479c15887ca08591793034eeb9` (asset implementation `f0c5b101765bb764d3108d379031c7474e44326e`). Use that revision in a separate checkout when the known static game is needed.
+- Evidence is in `docs/visual/evidence/animation_paused_2026-10-10/`. Those images deliberately document the rejected result. Source benchmark renders do not depict our game mesh.
+- No animation quality approval, full P1-02 completion, coat-matrix promotion, domain change, purchase or merge is claimed. Do not resume animation work without a new owner request.
+
+## Last verified static result — authored adult and foal
 
 The owner-selected CC0 horse replaces the runtime placeholder for **both ages**. The original package in `art/reference/Horse_Reference/` stays intact. The foal is a separate juvenile adaptation with a shorter, shallower barrel, relatively long legs and large head, shorter muzzle, smaller hooves and short mane/tail. Independent peer review checked its new silhouette against the rejected first pass.
 

@@ -1,10 +1,20 @@
 # Project status / checkpoint
 
-**Last updated:** 2026-10-10 by GPT (CC0 horse integration on the visual pilot).
+**Last updated:** 2026-10-10 by GPT (animation work paused and archived).
 **Phase:** P1-01 authored adult/foal assets integrated and CI verified at `f0c5b10`. P1-07/P1-09 domain implementation remains complete; the integration's domain CI passed 147/147 tests.
 **Branch:** `claude/godot-horse-visual-pilot` (domain checkpoint history below originated on `claude/great-euler-hq83x3`).
 
-## Current visual checkpoint
+## Paused animation checkpoint — 2026-10-10
+
+**Animation work is stopped at the owner's request. This is a preservation checkpoint, not an accepted animation release.** The subsequent request explicitly authorizes saving and pushing the unfinished work.
+
+- The owner rejected the walk/trot deformation: knees and upper legs form sharp shelves, with chest and hindquarter creasing. Numeric playback/loop checks did not establish visual quality.
+- The working tree contains experimental idle/walk/trot generation, source motion samples, capture tooling, Blender files and GLBs. Adult and foal are at different repair stages; the final source edits and saved binaries have not been regenerated and verified together. Do not treat this as a reproducible, accepted final pair.
+- The original static reference package is unchanged. The last verified static game checkpoint is `74f5094bc05681479c15887ca08591793034eeb9` (asset implementation `f0c5b101765bb764d3108d379031c7474e44326e`). Use that revision in a separate checkout when the known static game is needed.
+- Evidence is in `docs/visual/evidence/animation_paused_2026-10-10/`. Those images deliberately document the rejected result. Source benchmark renders do not depict our game mesh.
+- No animation quality approval, full P1-02 completion, coat-matrix promotion, domain change, purchase or merge is claimed. Do not resume animation work without a new owner request.
+
+## Last verified static visual checkpoint
 The owner selected the CC0 reference horse in `art/reference/Horse_Reference/`. Both adult and foal now use it; the foal has a shorter, shallower body, proportionally long legs, shorter muzzle, smaller hooves and short mane/tail. Editable sources are in `art/derived/Horse_Reference/`, game exports in `game/assets/horse/reference/`. Claude's descriptor presenter, recipes, shaders, scenes and evidence pipeline are preserved. See `docs/visual/VISUAL_STATUS.md` and `REFERENCE_ASSET_WORKFLOW.md` for exact paths and limitations.
 
 Local evidence: warnings-as-errors game build passed; both actual Godot imports retained masks/UV2, normal detail and a 27-bone skinned rig; main-scene smoke passed; Metal captured 131 images with zero capture failures, covering all 13 fixture classes at both ages and three correct unsupported refusals. The editable foal reopened in Blender, passed a bounded FK posing exercise and has six calibrated orthographic reference views. Independent peer review checked the juvenile silhouette, supporting import/code evidence and final CI images.
@@ -71,3 +81,9 @@ Latest verified descriptor artifact: 11685376690 (run 38094410593). Initial P1-0
 - Validation actually run: JSON validator OK; C# build 0 warnings/errors; imported adult+foal contracts passed; main smoke OK; 131 real Metal captures, 0 failures. Visual CI run 38099550595 rebuilt both assets and passed 131 llvmpipe captures, 0 failures; its mesh manifests match local geometry/contract data except build time. Domain CI run 38099550598 passed 147/147. Existing domain implementation/tests were not changed or rerun locally for this asset-only package.
 - Final reference proof: six calibrated foal views share one mesh/rest pose and scale; Blender reopened the foal and exercised head, foreleg and tail FK without invalid geometry. This does not establish gait quality. Fresh CI captures show corrected facial placement; independent peer review found no material correction. CI logs contain optional MeshOptimizer and absent audio-device diagnostics despite successful export/smoke/capture.
 - Remaining: matrix approval stays with the owner. Both adult family IDs share one cob build per age, only height is applied, and rigs have no animation clips. Motion, breed shapes, live-stable integration and platform exports remain later work. No purchase, force push, main merge or live-catalog approval.
+
+## Completion handoff — P1-02 paused preservation checkpoint
+- Owner stopped animation work after rejecting the knees and surface deformation, then explicitly requested saving and pushing everything. No animation implementation resumed.
+- Saved experimental adult/foal Blender and GLB files, source motion samples, extraction/validation tools, playback capture and CI changes, plus labeled rejected/source comparison evidence. Original static source and checkpoint remain recoverable.
+- Save-time validation: frozen-spec JSON validator OK; C# build 0 warnings/errors; whitespace check passed. No final runtime, final source/binary regeneration, CI or visual acceptance is claimed.
+- Remaining: animation work stays paused until a new owner request. No handoff/domain/matrix edit or merge into another branch.

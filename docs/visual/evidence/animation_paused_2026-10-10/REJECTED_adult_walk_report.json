@@ -1,0 +1,251 @@
+{
+  "format": "cloverbrook.motion-capture.v1",
+  "age": "adult",
+  "meshFamilyId": "horse.standard.adult.v1",
+  "animation": "walk",
+  "durationSeconds": 1.6666666269302368,
+  "loops": 2,
+  "fps": 24,
+  "frames": 81,
+  "view": "side",
+  "resolution": {
+    "width": 960,
+    "height": 540
+  },
+  "sampling": "AnimationPlayer.Play followed by Advance(1/24) between captures; every PNG waits for RenderingServer.FramePostDraw.",
+  "frameFiles": {
+    "pattern": "frame_%05d.png",
+    "first": "frame_00000.png",
+    "last": "frame_00080.png"
+  },
+  "skeleton": {
+    "boneCount": 33,
+    "bones": [
+      "Root",
+      "Pelvis",
+      "Hind_L_Upper",
+      "Hind_L_Shin",
+      "Hind_L_Cannon",
+      "Hind_L_Pastern",
+      "Hind_L_Hoof",
+      "Hind_R_Upper",
+      "Hind_R_Shin",
+      "Hind_R_Cannon",
+      "Hind_R_Pastern",
+      "Hind_R_Hoof",
+      "Spine",
+      "Chest",
+      "Front_L_Scapula",
+      "Front_L_Upper",
+      "Front_L_Forearm",
+      "Front_L_Cannon",
+      "Front_L_Pastern",
+      "Front_L_Hoof",
+      "Front_R_Scapula",
+      "Front_R_Upper",
+      "Front_R_Forearm",
+      "Front_R_Cannon",
+      "Front_R_Pastern",
+      "Front_R_Hoof",
+      "Neck",
+      "Head",
+      "Ear_L",
+      "Ear_R",
+      "Tail_01",
+      "Tail_02",
+      "Tail_03"
+    ]
+  },
+  "tracks": [
+    {
+      "path": "Skeleton/Skeleton3D:Pelvis",
+      "type": "Position3D",
+      "keyCount": 46
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Pelvis",
+      "type": "Rotation3D",
+      "keyCount": 46
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Hind_L_Upper",
+      "type": "Rotation3D",
+      "keyCount": 50
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Hind_L_Shin",
+      "type": "Rotation3D",
+      "keyCount": 49
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Hind_L_Cannon",
+      "type": "Rotation3D",
+      "keyCount": 49
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Hind_L_Pastern",
+      "type": "Rotation3D",
+      "keyCount": 51
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Hind_L_Hoof",
+      "type": "Rotation3D",
+      "keyCount": 40
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Hind_R_Upper",
+      "type": "Rotation3D",
+      "keyCount": 49
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Hind_R_Shin",
+      "type": "Rotation3D",
+      "keyCount": 47
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Hind_R_Cannon",
+      "type": "Rotation3D",
+      "keyCount": 49
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Hind_R_Pastern",
+      "type": "Rotation3D",
+      "keyCount": 50
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Hind_R_Hoof",
+      "type": "Rotation3D",
+      "keyCount": 40
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Chest",
+      "type": "Position3D",
+      "keyCount": 47
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Chest",
+      "type": "Rotation3D",
+      "keyCount": 51
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Front_L_Scapula",
+      "type": "Rotation3D",
+      "keyCount": 48
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Front_L_Upper",
+      "type": "Rotation3D",
+      "keyCount": 50
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Front_L_Forearm",
+      "type": "Rotation3D",
+      "keyCount": 51
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Front_L_Cannon",
+      "type": "Rotation3D",
+      "keyCount": 50
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Front_L_Pastern",
+      "type": "Rotation3D",
+      "keyCount": 50
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Front_L_Hoof",
+      "type": "Rotation3D",
+      "keyCount": 49
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Front_R_Scapula",
+      "type": "Rotation3D",
+      "keyCount": 49
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Front_R_Upper",
+      "type": "Rotation3D",
+      "keyCount": 51
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Front_R_Forearm",
+      "type": "Rotation3D",
+      "keyCount": 51
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Front_R_Cannon",
+      "type": "Rotation3D",
+      "keyCount": 50
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Front_R_Pastern",
+      "type": "Rotation3D",
+      "keyCount": 50
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Front_R_Hoof",
+      "type": "Rotation3D",
+      "keyCount": 49
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Neck",
+      "type": "Position3D",
+      "keyCount": 20
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Neck",
+      "type": "Rotation3D",
+      "keyCount": 45
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Head",
+      "type": "Rotation3D",
+      "keyCount": 44
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Ear_L",
+      "type": "Rotation3D",
+      "keyCount": 1
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Ear_R",
+      "type": "Rotation3D",
+      "keyCount": 1
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Tail_01",
+      "type": "Rotation3D",
+      "keyCount": 1
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Tail_02",
+      "type": "Rotation3D",
+      "keyCount": 1
+    },
+    {
+      "path": "Skeleton/Skeleton3D:Tail_03",
+      "type": "Rotation3D",
+      "keyCount": 1
+    }
+  ],
+  "pose": {
+    "coordinateSpace": "Skeleton3D local bone pose (GetBonePose)",
+    "allFinite": true,
+    "changed": true,
+    "maxPerFrameBoneTranslationMeters": 0.01047271117568016,
+    "maxPerFrameBoneRotationRadians": 0.4412156045436859
+  },
+  "loopSeam": {
+    "lastSampleLocalTimeSeconds": 7.947285984855057E-08,
+    "offsetFromClipEndSeconds": 1.666666547457377,
+    "sampledWrapAtSeconds": 1.6666666666666667,
+    "sampledWrapStepSeconds": 0.041666666666666664,
+    "maxBoneTranslationMetersAcrossWrapStep": 0.003611605381593108,
+    "maxBoneRotationRadiansAcrossWrapStep": 0.21565276384353638,
+    "finalFrameToStartTranslationMeters": 2.7336228836105647E-09,
+    "finalFrameToStartRotationRadians": 0.0009765625,
+    "exactExportedEndpointSeam": "Not measured here; check the animation export validation report for the t=0 and t=duration key poses."
+  },
+  "videoAssembly": "ffmpeg -framerate 24 -i frame_%05d.png -c:v libx264 -pix_fmt yuv420p preview.mp4",
+  "failures": 0
+}

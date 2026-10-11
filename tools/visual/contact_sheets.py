@@ -108,8 +108,20 @@ def main():
     if by_set["anim"]:
         anims = defaultdict(list)
         for im in by_set["anim"]:
-            anims[im["file"].split("/")[1].split("_")[0]].append(im["file"])
-        made.append(grid("Animation pose samples (NOT proof of motion quality)", [(k, v) for k, v in anims.items()],
+            stem = Path(im["file"]).stem
+            parts = stem.split("_")
+            # Current output is age_clip_phase (for example adult_walk_3).
+            # Keep older anim_walk_3 evidence readable as well.
+            if len(parts) >= 3 and parts[0] in {"adult", "foal"}:
+                key = f"{parts[0]} / {parts[1]}"
+                phase = int(parts[2]) if parts[2].isdigit() else len(anims[key])
+            else:
+                key = parts[0] if len(parts) > 1 else stem
+                phase = int(parts[-1]) if parts[-1].isdigit() else len(anims[key])
+            anims[key].append((phase, im["file"]))
+        rows = [(key, [next((path for index, path in frames if index == phase), None) for phase in range(6)])
+                for key, frames in anims.items()]
+        made.append(grid("Animation pose samples (NOT proof of motion quality)", rows,
                          [f"t{i}" for i in range(6)], "anim_sheet.png"))
 
     probes = by_set["probes"]
