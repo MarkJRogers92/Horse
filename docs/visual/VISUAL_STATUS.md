@@ -17,7 +17,8 @@ The owner-selected CC0 horse replaces the runtime placeholder for **both ages**.
 | Shapes | Adult and foal differ anatomically. Standard and compact share the same cob build within each age; compact reports this limitation. Only descriptor height is applied; other body/hair morphs remain unapplied. |
 | Motion | Authored assets have no clips. Missing viewer options are disabled and capture skips them. Old placeholder skeleton/clips remain available for later retargeting; no gait quality is claimed. |
 | Local verification | Game build 0 warnings/errors; both actual Godot imports retained skin, masks/UV2 and normal detail; main-scene smoke passed; real Metal capture produced **131 images, 0 failures** with correct unsupported refusals. |
-| CI | New visual/domain CI is pending the integration push. Prior successful placeholder artifacts are preserved for comparison. |
+| CI | Integration `f0c5b10`: [visual run 38099550595](https://github.com/MarkJRogers92/Horse/actions/runs/38099550595) passed build/import/smoke and **131 images, 0 capture failures**; [domain run 38099550598](https://github.com/MarkJRogers92/Horse/actions/runs/38099550598) passed **147/147 tests**. Downloaded logs/artifacts and actual sheets were inspected. |
+| Reference views | `art/derived/Horse_Reference/Foal_Turnaround.png`: six orthographic views of the same mesh/rest pose at one scale. Calibration and a bounded Blender FK posing report are alongside it. |
 
 No coat-matrix rows were promoted. These renders and renderer capabilities do not release the domain's live visual catalog or replace owner approval.
 
@@ -25,11 +26,13 @@ No coat-matrix rows were promoted. These renders and renderer capabilities do no
 
 The fresh Claude face-fix run [38096698518](https://github.com/MarkJRogers92/Horse/actions/runs/38096698518), `236f36d`, still showed misplaced/absent forehead white. The placeholder had inward normals from an extra winding reversal. `anatomy.py` now preserves marching-cubes winding; corrected legacy geometry was locally re-rendered with forehead white before being replaced in the runtime catalog.
 
-New authored meshes derive the head mask from poll-to-muzzle and face-front axes. Fresh local captures show forehead stars, a central strip and muzzle snip, with matching adult/foal marking keys. Per-family head-camera targets fit these actual proportions. Inspect final CI images before recording remote verification.
+New authored meshes derive the head mask from poll-to-muzzle and face-front axes. Fresh local and CI captures show forehead stars, a central strip and muzzle snip, with matching adult/foal marking keys. Per-family head-camera targets fit these actual proportions. Independent review of the final CI artifact found no recurrence of the cheek-placement error.
+
+The committed [evidence checkpoint](evidence/reference_f0c5b10/README.md) includes clay/coat/marking comparisons and the CI report. Baseline and new captures used the same llvmpipe renderer and whole-body camera settings; head framing was recalibrated for the new anatomy. CI's bpy build reports a missing optional MeshOptimizer library, and Godot falls back to dummy audio because the runner has no audio device. Exports, import, smoke and capture completed; the logs are not error-free.
 
 ### Exact next work and limits
 
-Inspect the new CI clay/coat/marking sheets against baseline [38095905278](https://github.com/MarkJRogers92/Horse/actions/runs/38095905278) (`1124b73`) and record the evidence checkpoint. Matrix approval stays with the owner. Motion clips, adult body-shape morphs, live stable integration and platform exports remain later work.
+The new CI clay/coat/marking sheets were compared against baseline [38095905278](https://github.com/MarkJRogers92/Horse/actions/runs/38095905278) (`1124b73`). The authored adult has defined shoulder, head, limb and hoof forms; the foal uses juvenile proportions and short hair. These findings record the replacement and marking placement, not final art approval. Matrix approval stays with the owner. Motion clips, adult body-shape morphs, live stable integration and platform exports remain later work.
 
 Grey progression, pearl, silver, champagne, leopard/PATN1, roan, tobiano/sabino and shoulder bars remain Unsupported; tack/cosmetics remain unapplied. Additional CC0 fur listings were researched but their short-coat suitability is unverified; the preferred reference detail remains the default. See `REFERENCE_ASSET_WORKFLOW.md` for source credits, material workflow and editing notes, and `TOOLCHAIN.md` for reproduction.
 
@@ -37,7 +40,7 @@ Grey progression, pearl, silver, champagne, leopard/PATN1, roan, tobiano/sabino 
 
 The following preserves Claude's earlier handoff for context. Its mesh/animation limitations and next steps describe the former placeholder; the current state is above.
 
-## What works now
+### What worked at the placeholder checkpoint
 | Phase | State |
 | --- | --- |
 | A. Godot foundation | Godot **4.7.2 .NET** project in `game/`. The C# project references the shared `Cloverbrook.Domain` (no second genetics). Scenes: main menu, horse viewer, stable, capture. Forward+ with soft shadows, SSAO, AgX, MSAA. CI workflow `visual.yml`: build → import → smoke test → headless renders → contact sheets → artifact. |
@@ -51,7 +54,7 @@ The following preserves Claude's earlier handoff for context. Its mesh/animation
 
 **Coat matrix:** no rows were promoted. All 13 phase-1 classes are still `visualStatus: none` and await the owner's review of renders on an accepted (non-placeholder) mesh.
 
-## Known visual problems (honest list)
+### Known problems at the placeholder checkpoint
 - **Face markings in the committed evidence images are misplaced.** The forehead was tagged as neck. The fix (head-region reclaim in `anatomy.py`) is committed and the horses are rebuilt, but the fix was **not visually re-verified** before the session ended. The next CI run's `markings_sheet` will show whether it worked.
 - The horse is a **procedural placeholder**. Its proportions read as a horse, but surface anatomy is soft and blobby: no real muscle and bone definition, and the joints are simplified. It is not acceptable as the final asset.
 - The mane and tail are simple hair cards. They read as hair from a distance but look thin up close. There is no hair physics.
@@ -62,7 +65,7 @@ The following preserves Claude's earlier handoff for context. Its mesh/animation
 - Software (lavapipe) rendering in CI is slow and lacks GPU-only polish. CI images are a functional record, not a beauty benchmark.
 - There are no Windows/macOS export builds yet. Export templates are the next CI step.
 
-## Mesh contract for an alternate horse (for GPT's model, or a licensed one)
+### Earlier mesh contract for an alternate horse
 Make the glb satisfy the following. Then add a `meshFamilies` entry in `visual_catalog.json` (or point the existing IDs at it) and CI renders the identical evidence for comparison.
 1. Units are metres, +Y up, facing +X, with the root at the ground between the hooves.
 2. Mesh nodes are named `Body`, `Eyes`, `Mane`, `Tail`. The animation names are `idle`, `breathe`, `look`, `walk`, `trot`; missing animations are fine but get reported.
@@ -75,11 +78,11 @@ Make the glb satisfy the following. Then add a `meshFamilies` entry in `visual_c
 
 `tools/horse/anatomy.py` (`Horse.vertex_data`) shows how to derive the masks from anatomy. A script for an imported mesh can compute the same values from bone proximity.
 
-## CI
+### Earlier CI state
 - `visual` workflow: https://github.com/MarkJRogers92/Horse/actions/workflows/visual.yml. Run 1 (https://github.com/MarkJRogers92/Horse/actions/runs/38095905278) passed the domain export, horse rebuild, C# build, import and **smoke test**; rendering was still running at handoff. Artifact `visual-evidence` holds PNGs, sheets, `SUMMARY.md` and `capture_report.json`.
 - `domain` workflow (GPT's tests) also runs on this branch.
 
-## Exact next step
+### Earlier next steps
 1. Owner: review `docs/visual/evidence/sheets/*.png` and choose an asset from `ASSET_SHORTLIST.md` (or compare it with GPT's alternate horse).
 2. Visual track: write `tools/horse/import_licensed.py` for the chosen asset, implementing the mesh contract above. Re-run CI, compare clay and coat sheets side by side, then request matrix review.
 3. Integration (with GPT): a viewer "My stable" mode that loads a save through `AtomicSaveStore`, lists horses through `StableBreedingQueries`, and presents them via `DomainBridge.FromPresentation`. With the real matrix unreleased this will correctly show Unsupported until rows are approved.

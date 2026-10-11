@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "blender": "5.2.1 LTS",
+  "bones": 27,
+  "body_control_faces": 3502,
+  "body_control_quads": 3496,
+  "ortho_cameras": 6,
+  "pose_exercise_degrees": 8,
+  "maximum_displacement_m": {
+    "Body": 0.025950069594460046,
+    "Hoof_Front_R": 0.0,
+    "Hoof_Hind_R": 0.0,
+    "Hoof_Front_L": 0.012722987538226054,
+    "Hoof_Hind_L": 0.0,
+    "Mane": 0.016214342206540708,
+    "Tail": 0.007263442778545917,
+    "Eyes": 0.01646965125420941
+  },
+  "limitation": "A bounded FK posing exercise; no motion clips or gait validation."
+}

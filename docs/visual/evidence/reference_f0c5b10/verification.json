@@ -1,0 +1,47 @@
+{
+  "codeCommit": "f0c5b101765bb764d3108d379031c7474e44326e",
+  "branch": "claude/godot-horse-visual-pilot",
+  "visual": {
+    "runId": 38099550595,
+    "url": "https://github.com/MarkJRogers92/Horse/actions/runs/38099550595",
+    "conclusion": "success",
+    "images": 131,
+    "captureFailures": 0,
+    "renderer": "llvmpipe (LLVM 20.1.2, 256 bits) / 1.4.318",
+    "smoke": "OK",
+    "buildWarnings": 0,
+    "buildErrors": 0
+  },
+  "domain": {
+    "runId": 38099550598,
+    "url": "https://github.com/MarkJRogers92/Horse/actions/runs/38099550598",
+    "conclusion": "success",
+    "passed": 147,
+    "total": 147
+  },
+  "local": {
+    "renderer": "Metal / Apple M2",
+    "images": 131,
+    "captureFailures": 0,
+    "godotImports": "adult and foal passed",
+    "editableFoal": "Blender reopen and bounded FK exercise passed"
+  },
+  "baseline": {
+    "runId": 38095905278,
+    "commit": "1124b73",
+    "renderer": "llvmpipe (LLVM 20.1.2, 256 bits) / 1.4.318"
+  },
+  "priorFaceFix": {
+    "runId": 38096698518,
+    "commit": "236f36d",
+    "visualFinding": "Forehead white absent or misplaced in fresh artifact"
+  },
+  "finalReview": "Independent read-only peer inspected final CI images and supporting report; no material correction.",
+  "limitations": [
+    "No animation clips or reviewed gaits",
+    "Standard and compact share one cob build per age",
+    "Only uniform height variation is applied",
+    "No coat-matrix approval",
+    "Optional bpy MeshOptimizer unavailable and CI audio uses dummy fallback"
+  ]
+}

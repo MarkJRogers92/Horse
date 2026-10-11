@@ -1,0 +1,780 @@
+{
+  "assetVersion": "horse-reference.v1.foal",
+  "profile": "foal",
+  "status": "CC0 authored reference adapted for Cloverbrook procedural presentation",
+  "source": {
+    "author": "Lyndon Daniels",
+    "submission": "Realtime Rancher's 3D Model Pack; Rigged Horse submitted by ChadM",
+    "license": "CC0 1.0 Universal",
+    "sourceUrl": "https://opengameart.org/content/rigged-horse",
+    "sourceBlend": "art/reference/Horse_Reference/Horse_Reference.blend",
+    "sha256": "3ee913f9716c576e64efcbc780ffcbad3729e1af281aa85c3aaeb3d7ea820349"
+  },
+  "units": "1 Blender unit = 1 metre; Blender Z up and +X forward; glTF +Y up and +X forward; ground root at origin; anatomical left Blender +Y / glTF -Z",
+  "meshNodes": [
+    "Body",
+    "Eyes",
+    "Mane",
+    "Tail"
+  ],
+  "rigNode": "Skeleton",
+  "animations": [],
+  "triangles": {
+    "Body": {
+      "vertices": 15027,
+      "triangles": 28524,
+      "color_0": 15027,
+      "texcoord_1": 15027,
+      "weights_0": 15027
+    },
+    "Eyes": {
+      "triangles": 1920
+    },
+    "Mane": {
+      "triangles": 3920
+    },
+    "Tail": {
+      "triangles": 1798
+    }
+  },
+  "totalTriangles": 36162,
+  "bones": [
+    "Root",
+    "Pelvis",
+    "Spine",
+    "Chest",
+    "Neck",
+    "Head",
+    "Ear_L",
+    "Ear_R",
+    "Front_L_Upper",
+    "Front_L_Cannon",
+    "Front_L_Pastern",
+    "Front_L_Hoof",
+    "Front_R_Upper",
+    "Front_R_Cannon",
+    "Front_R_Pastern",
+    "Front_R_Hoof",
+    "Tail_01",
+    "Tail_02",
+    "Tail_03",
+    "Hind_L_Upper",
+    "Hind_L_Cannon",
+    "Hind_L_Pastern",
+    "Hind_L_Hoof",
+    "Hind_R_Upper",
+    "Hind_R_Cannon",
+    "Hind_R_Pastern",
+    "Hind_R_Hoof"
+  ],
+  "attributes": {
+    "Body.COLOR_0": "linear float vec4: r points (lower limbs/ear tips), g soft muzzle and eye skin, b trunk/neck dorsal line and front-facing head, a underside countershade",
+    "Body.TEXCOORD_0": "retained source UV detail coordinates; glTF V is flipped by export",
+    "Body.TEXCOORD_1": "head=(s=0 poll to 1 muzzle, t lateral -1..1); legs=(10+FL0/FR1/HL2/HR3, h ground0 to knee/hock1, hoof<0.165); other=(-10,50), authored in Blender UV space",
+    "Eyes.TEXCOORD_0": "U 0 centre-facing pole to 1 outward pole; V vertical 0 bottom to 1 top (glTF V flip)",
+    "Mane/Tail.TEXCOORD_0": "U lateral across clump; V root0 to tips1 in Blender UV space (glTF V flip); parent shader should read 1-UV.y"
+  },
+  "bodyMaskCoverage": {
+    "vertex_count": 3521,
+    "head_poll_loops": 2258,
+    "head_muzzle_loops": 2458,
+    "head_front_loops": 4086,
+    "forehead_front_loops": 1544,
+    "leg_loops": {
+      "Front_L": 420,
+      "Front_R": 420,
+      "Hind_L": 458,
+      "Hind_R": 458
+    },
+    "sentinel_loops": 3056,
+    "head_half_width_m": 0.1467
+  },
+  "exportMaskCoverage": {
+    "evaluatedExportBody": {
+      "vertex_count": 14272,
+      "head_poll_loops": 8863,
+      "head_muzzle_loops": 9918,
+      "head_front_loops": 16530,
+      "forehead_front_loops": 6282,
+      "leg_loops": {
+        "Front_L": 1932,
+        "Front_R": 1932,
+        "Hind_L": 1942,
+        "Hind_R": 1942
+      },
+      "sentinel_loops": 12576,
+      "head_half_width_m": 0.14929
+    }
+  },
+  "geometryQuality": {
+    "editable": {
+      "Body": {
+        "nonmanifold_edges": 0,
+        "zero_area_faces": 0,
+        "loose_vertices": 0
+      },
+      "Hoof_Front_L": {
+        "nonmanifold_edges": 0,
+        "zero_area_faces": 0,
+        "loose_vertices": 0
+      },
+      "Hoof_Front_R": {
+        "nonmanifold_edges": 0,
+        "zero_area_faces": 0,
+        "loose_vertices": 0
+      },
+      "Hoof_Hind_L": {
+        "nonmanifold_edges": 0,
+        "zero_area_faces": 0,
+        "loose_vertices": 0
+      },
+      "Hoof_Hind_R": {
+        "nonmanifold_edges": 0,
+        "zero_area_faces": 0,
+        "loose_vertices": 0
+      },
+      "Eyes": {
+        "nonmanifold_edges": 0,
+        "zero_area_faces": 0,
+        "loose_vertices": 0
+      },
+      "Mane": {
+        "nonmanifold_edges": 0,
+        "zero_area_faces": 0,
+        "loose_vertices": 0
+      },
+      "Tail": {
+        "nonmanifold_edges": 0,
+        "zero_area_faces": 0,
+        "loose_vertices": 0
+      }
+    },
+    "export": {
+      "Body.001": {
+        "nonmanifold_edges": 0,
+        "zero_area_faces": 0,
+        "loose_vertices": 0
+      }
+    }
+  },
+  "eyeCentroids_m": {
+    "L": [
+      1.12065,
+      0.08227,
+      1.01535
+    ],
+    "R": [
+      1.12065,
+      -0.08198,
+      1.01535
+    ]
+  },
+  "bounds": {
+    "min_m": [
+      -0.44082,
+      -0.26509,
+      0.0
+    ],
+    "max_m": [
+      1.25571,
+      0.26509,
+      1.24932
+    ],
+    "size_m": [
+      1.69652,
+      0.53018,
+      1.24932
+    ]
+  },
+  "bonesRestWorld": [
+    {
+      "name": "Root",
+      "parent": null,
+      "head_m": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "tail_m": [
+        0.0,
+        0.0,
+        0.18
+      ]
+    },
+    {
+      "name": "Pelvis",
+      "parent": "Root",
+      "head_m": [
+        -0.12832,
+        -0.0,
+        0.91271
+      ],
+      "tail_m": [
+        0.15972,
+        0.0,
+        0.9225
+      ]
+    },
+    {
+      "name": "Spine",
+      "parent": "Pelvis",
+      "head_m": [
+        0.15972,
+        0.0,
+        0.9225
+      ],
+      "tail_m": [
+        0.37095,
+        0.0,
+        0.97145
+      ]
+    },
+    {
+      "name": "Chest",
+      "parent": "Spine",
+      "head_m": [
+        0.37095,
+        0.0,
+        0.97145
+      ],
+      "tail_m": [
+        0.63914,
+        0.0,
+        1.088
+      ]
+    },
+    {
+      "name": "Neck",
+      "parent": "Chest",
+      "head_m": [
+        0.63914,
+        0.0,
+        1.088
+      ],
+      "tail_m": [
+        1.0668,
+        0.0,
+        1.12762
+      ]
+    },
+    {
+      "name": "Head",
+      "parent": "Neck",
+      "head_m": [
+        1.0668,
+        0.0,
+        1.12762
+      ],
+      "tail_m": [
+        1.22942,
+        0.0,
+        0.68031
+      ]
+    },
+    {
+      "name": "Ear_L",
+      "parent": "Head",
+      "head_m": [
+        1.08032,
+        0.03765,
+        1.0365
+      ],
+      "tail_m": [
+        1.09896,
+        0.05648,
+        1.24027
+      ]
+    },
+    {
+      "name": "Ear_R",
+      "parent": "Head",
+      "head_m": [
+        1.08032,
+        -0.03765,
+        1.0365
+      ],
+      "tail_m": [
+        1.09896,
+        -0.05648,
+        1.24027
+      ]
+    },
+    {
+      "name": "Front_L_Upper",
+      "parent": "Chest",
+      "head_m": [
+        0.37567,
+        0.17021,
+        1.03904
+      ],
+      "tail_m": [
+        0.42304,
+        0.18681,
+        0.46785
+      ]
+    },
+    {
+      "name": "Front_L_Cannon",
+      "parent": "Front_L_Upper",
+      "head_m": [
+        0.42304,
+        0.18681,
+        0.46785
+      ],
+      "tail_m": [
+        0.42944,
+        0.20757,
+        0.16136
+      ]
+    },
+    {
+      "name": "Front_L_Pastern",
+      "parent": "Front_L_Cannon",
+      "head_m": [
+        0.42944,
+        0.20757,
+        0.16136
+      ],
+      "tail_m": [
+        0.42944,
+        0.20016,
+        0.10031
+      ]
+    },
+    {
+      "name": "Front_L_Hoof",
+      "parent": "Front_L_Pastern",
+      "head_m": [
+        0.42944,
+        0.20016,
+        0.10031
+      ],
+      "tail_m": [
+        0.42944,
+        0.19274,
+        0.0
+      ]
+    },
+    {
+      "name": "Front_R_Upper",
+      "parent": "Chest",
+      "head_m": [
+        0.37567,
+        -0.17021,
+        1.03904
+      ],
+      "tail_m": [
+        0.42304,
+        -0.18681,
+        0.46785
+      ]
+    },
+    {
+      "name": "Front_R_Cannon",
+      "parent": "Front_R_Upper",
+      "head_m": [
+        0.42304,
+        -0.18681,
+        0.46785
+      ],
+      "tail_m": [
+        0.42944,
+        -0.20757,
+        0.16136
+      ]
+    },
+    {
+      "name": "Front_R_Pastern",
+      "parent": "Front_R_Cannon",
+      "head_m": [
+        0.42944,
+        -0.20757,
+        0.16136
+      ],
+      "tail_m": [
+        0.42944,
+        -0.20016,
+        0.10031
+      ]
+    },
+    {
+      "name": "Front_R_Hoof",
+      "parent": "Front_R_Pastern",
+      "head_m": [
+        0.42944,
+        -0.20016,
+        0.10031
+      ],
+      "tail_m": [
+        0.42944,
+        -0.19274,
+        0.0
+      ]
+    },
+    {
+      "name": "Tail_01",
+      "parent": "Pelvis",
+      "head_m": [
+        -0.34595,
+        -0.0,
+        0.89718
+      ],
+      "tail_m": [
+        -0.37091,
+        -0.0,
+        0.82806
+      ]
+    },
+    {
+      "name": "Tail_02",
+      "parent": "Tail_01",
+      "head_m": [
+        -0.37091,
+        -0.0,
+        0.82806
+      ],
+      "tail_m": [
+        -0.39396,
+        -0.0,
+        0.75124
+      ]
+    },
+    {
+      "name": "Tail_03",
+      "parent": "Tail_02",
+      "head_m": [
+        -0.39396,
+        -0.0,
+        0.75124
+      ],
+      "tail_m": [
+        -0.41585,
+        -0.0,
+        0.68019
+      ]
+    },
+    {
+      "name": "Hind_L_Upper",
+      "parent": "Pelvis",
+      "head_m": [
+        -0.05054,
+        0.12459,
+        1.05297
+      ],
+      "tail_m": [
+        -0.09278,
+        0.13674,
+        0.46785
+      ]
+    },
+    {
+      "name": "Hind_L_Cannon",
+      "parent": "Hind_L_Upper",
+      "head_m": [
+        -0.09278,
+        0.13674,
+        0.46785
+      ],
+      "tail_m": [
+        -0.09534,
+        0.15194,
+        0.16136
+      ]
+    },
+    {
+      "name": "Hind_L_Pastern",
+      "parent": "Hind_L_Cannon",
+      "head_m": [
+        -0.09534,
+        0.15194,
+        0.16136
+      ],
+      "tail_m": [
+        -0.09534,
+        0.14651,
+        0.10031
+      ]
+    },
+    {
+      "name": "Hind_L_Hoof",
+      "parent": "Hind_L_Pastern",
+      "head_m": [
+        -0.09534,
+        0.14651,
+        0.10031
+      ],
+      "tail_m": [
+        -0.09534,
+        0.14108,
+        0.0
+      ]
+    },
+    {
+      "name": "Hind_R_Upper",
+      "parent": "Pelvis",
+      "head_m": [
+        -0.05064,
+        -0.12437,
+        1.05297
+      ],
+      "tail_m": [
+        -0.09288,
+        -0.1365,
+        0.46785
+      ]
+    },
+    {
+      "name": "Hind_R_Cannon",
+      "parent": "Hind_R_Upper",
+      "head_m": [
+        -0.09288,
+        -0.1365,
+        0.46785
+      ],
+      "tail_m": [
+        -0.09544,
+        -0.15167,
+        0.16136
+      ]
+    },
+    {
+      "name": "Hind_R_Pastern",
+      "parent": "Hind_R_Cannon",
+      "head_m": [
+        -0.09544,
+        -0.15167,
+        0.16136
+      ],
+      "tail_m": [
+        -0.09544,
+        -0.14626,
+        0.10031
+      ]
+    },
+    {
+      "name": "Hind_R_Hoof",
+      "parent": "Hind_R_Pastern",
+      "head_m": [
+        -0.09544,
+        -0.14626,
+        0.10031
+      ],
+      "tail_m": [
+        -0.09544,
+        -0.14084,
+        0.0
+      ]
+    }
+  ],
+  "foalDeformation": {
+    "withersBefore_m": 1.6,
+    "withersAfter_m": 1.088,
+    "withersScale": 0.68,
+    "regionalScales": {
+      "barrel_axial": 0.68,
+      "barrel_lateral": 0.63,
+      "barrel_vertical_from_topline": 0.52,
+      "legs_vertical": 0.74,
+      "head_muzzle_axial": 0.66,
+      "head_relative_vertical": 0.88,
+      "hoof_lateral": 0.78
+    },
+    "hairShortening": {
+      "mane": {
+        "mane_verticalToCrest": 0.24,
+        "mane_lateralWidth": 0.72,
+        "forelockScaleAboutPoll": 0.3,
+        "crestField": "sampled centerline downward ray onto Body; no per-vertex nearest-surface projection"
+      },
+      "tail": {
+        "factor": 0.3,
+        "anchor": "Tail_01 dock; shared affine map for mesh and Tail_* rest joints"
+      }
+    }
+  },
+  "withersHeight_m": 1.088,
+  "ratiosToAdult": {
+    "length": 0.62286,
+    "width": 0.79134,
+    "height": 0.69298
+  },
+  "recommendedHeadViewTarget": [
+    1.14376,
+    0.93456,
+    -1e-05
+  ],
+  "recommendedHeadViewTarget_m": [
+    1.14376,
+    0.93456,
+    -1e-05
+  ],
+  "glbValidation": {
+    "mesh_names": [
+      "Body",
+      "Eyes",
+      "Mane",
+      "Tail"
+    ],
+    "node_names": [
+      "Hind_L_Hoof",
+      "Hind_L_Pastern",
+      "Hind_L_Cannon",
+      "Hind_L_Upper",
+      "Hind_R_Hoof",
+      "Hind_R_Pastern",
+      "Hind_R_Cannon",
+      "Hind_R_Upper",
+      "Front_L_Hoof",
+      "Front_L_Pastern",
+      "Front_L_Cannon",
+      "Front_L_Upper",
+      "Front_R_Hoof",
+      "Front_R_Pastern",
+      "Front_R_Cannon",
+      "Front_R_Upper",
+      "Ear_L",
+      "Ear_R",
+      "Head",
+      "Neck",
+      "Chest",
+      "Spine",
+      "Tail_03",
+      "Tail_02",
+      "Tail_01",
+      "Pelvis",
+      "Root",
+      "Body",
+      "Eyes",
+      "Mane",
+      "Tail",
+      "Skeleton"
+    ],
+    "animations": 0,
+    "triangles": 36162,
+    "primitives": {
+      "Body": {
+        "vertices": 15027,
+        "triangles": 28524,
+        "color_0": 15027,
+        "texcoord_1": 15027,
+        "weights_0": 15027
+      },
+      "Eyes": {
+        "triangles": 1920
+      },
+      "Mane": {
+        "triangles": 3920
+      },
+      "Tail": {
+        "triangles": 1798
+      }
+    },
+    "attributes": {
+      "Body": [
+        [
+          "COLOR_0",
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "TEXCOORD_1",
+          "WEIGHTS_0"
+        ]
+      ],
+      "Eyes": [
+        [
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "WEIGHTS_0"
+        ]
+      ],
+      "Mane": [
+        [
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "WEIGHTS_0"
+        ]
+      ],
+      "Tail": [
+        [
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "WEIGHTS_0"
+        ]
+      ]
+    },
+    "normal_unit_failures": 0,
+    "nonfinite_values": 0,
+    "max_skin_weight_sum_error": 1.3597309589385986e-07,
+    "skin_weights_by_mesh": {
+      "Body": {
+        "vertices": 15027,
+        "max_sum_error": 1.3597309589385986e-07
+      },
+      "Eyes": {
+        "vertices": 964,
+        "max_sum_error": 0.0
+      },
+      "Mane": {
+        "vertices": 1962,
+        "max_sum_error": 1.862645149230957e-08
+      },
+      "Tail": {
+        "vertices": 901,
+        "max_sum_error": 2.9802322387695312e-08
+      }
+    },
+    "mixed_canonical_category_triangles": 0,
+    "body_has_descriptor_attributes": true,
+    "body_has_skin": true,
+    "exported_head_direction_muzzle_minus_poll": [
+      0.25762,
+      -0.96625,
+      0.00017
+    ],
+    "exported_horizontal_forward_XZ": [
+      1.0,
+      0.00065
+    ],
+    "exported_poll_center_m": [
+      1.0829,
+      1.16281,
+      -5e-05
+    ],
+    "exported_muzzle_center_m": [
+      1.20461,
+      0.70632,
+      3e-05
+    ]
+  },
+  "sourceGeometry": {
+    "bodyControlVerts": 3521,
+    "bodyControlFaces": 3502,
+    "exportBody": {
+      "vertices": 14272,
+      "faces": 14244,
+      "triangles": 28524,
+      "quality": {
+        "Body.001": {
+          "nonmanifold_edges": 0,
+          "zero_area_faces": 0,
+          "loose_vertices": 0
+        }
+      }
+    }
+  },
+  "normalDetailTexture": "Horse_Coat_Normal.png retained in the neutral PBR Body material; original fixed coat color texture is not exported",
+  "hairGeometry": "solid authored sculpted clump meshes; retain opaque/solid-clump hair shading rather than card alpha clipping",
+  "limitations": [
+    "Foal adapts the source authored anatomy and topology with intentionally changed juvenile proportions; it is not a new anatomical sculpt.",
+    "The rig is a basic FK posing rig only; no animation clips, including gait, are supplied.",
+    "The existing hair meshes are dense sculpted clumps rather than cards; UVs are projected across width/root-to-tip and the presentation shader must avoid card-shaped alpha clipping."
+  ],
+  "buildSeconds": 60.57
+}

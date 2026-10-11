@@ -1,13 +1,15 @@
 # Project status / checkpoint
 
 **Last updated:** 2026-10-10 by GPT (CC0 horse integration on the visual pilot).
-**Phase:** P1-01 authored adult/foal assets integrated and locally rendered; visual CI pending this checkpoint. P1-07/P1-09 domain implementation remains complete with its previously verified 147/147 tests.
+**Phase:** P1-01 authored adult/foal assets integrated and CI verified at `f0c5b10`. P1-07/P1-09 domain implementation remains complete; the integration's domain CI passed 147/147 tests.
 **Branch:** `claude/godot-horse-visual-pilot` (domain checkpoint history below originated on `claude/great-euler-hq83x3`).
 
 ## Current visual checkpoint
 The owner selected the CC0 reference horse in `art/reference/Horse_Reference/`. Both adult and foal now use it; the foal has a shorter, shallower body, proportionally long legs, shorter muzzle, smaller hooves and short mane/tail. Editable sources are in `art/derived/Horse_Reference/`, game exports in `game/assets/horse/reference/`. Claude's descriptor presenter, recipes, shaders, scenes and evidence pipeline are preserved. See `docs/visual/VISUAL_STATUS.md` and `REFERENCE_ASSET_WORKFLOW.md` for exact paths and limitations.
 
-Local evidence: warnings-as-errors game build passed; both actual Godot imports retained masks/UV2, normal detail and a 27-bone skinned rig; main-scene smoke passed; Metal captured 131 images with zero capture failures, covering all 13 fixture classes at both ages and three correct unsupported refusals. Independent peer review checked the juvenile silhouette and supporting import/code evidence. No gait clips or adult breed-shape morphs are claimed. No domain/frozen handoff/matrix edits, purchases or other-branch merges. Push this completed checkpoint to the visual pilot and inspect its visual/domain CI runs before recording remote verification.
+Local evidence: warnings-as-errors game build passed; both actual Godot imports retained masks/UV2, normal detail and a 27-bone skinned rig; main-scene smoke passed; Metal captured 131 images with zero capture failures, covering all 13 fixture classes at both ages and three correct unsupported refusals. The editable foal reopened in Blender, passed a bounded FK posing exercise and has six calibrated orthographic reference views. Independent peer review checked the juvenile silhouette, supporting import/code evidence and final CI images.
+
+Remote evidence: [visual run 38099550595](https://github.com/MarkJRogers92/Horse/actions/runs/38099550595) at `f0c5b10` passed build/import/smoke and 131 captures with zero failures; [domain run 38099550598](https://github.com/MarkJRogers92/Horse/actions/runs/38099550598) passed 147/147. Downloaded logs and actual clay/coat/marking/probe images were inspected and compared with the preserved placeholder using the same llvmpipe renderer. See `docs/visual/evidence/reference_f0c5b10/README.md`. No gait clips or adult breed-shape morphs are claimed. No domain/frozen handoff/matrix edits, purchases or other-branch merges.
 
 ## Task state
 | Task | State |
@@ -24,7 +26,7 @@ D-001 parallel genetics/art accepted; D-002 licensed horse trial accepted (owner
 
 ## Next step
 1. P1-07 and P1-09 are complete for the authorized headless scope. Do not recreate their records, RNG, forecasts, conception transition, codec or filesystem store. Code commit a15266e3fbe6453f2489f8043fb7d5a1b0d7576d passed validator + 147/147 tests in https://github.com/MarkJRogers92/Horse/actions/runs/38094410593 (job 114337226950).
-2. Visual pilot: verify CI and compare the new clay/coat/marking sheets against the preserved placeholder evidence. The authored meshes have static FK rigs; motion clips and body-shape morphs are later work. P1-10 live-stable integration should use docs/genetics/godot_domain_api.md, StableBreedingQueries and AtomicSaveStore after the real visual catalog is approved.
+2. Visual pilot: CI and the placeholder comparison are recorded in the current evidence checkpoint. The authored meshes have static FK rigs; motion clips and body-shape morphs are later work. P1-10 live-stable integration should use docs/genetics/godot_domain_api.md, StableBreedingQueries and AtomicSaveStore after the real visual catalog is approved.
 3. Keep the real live catalog disabled until its visuals are approved. Full marketplace/external studs, capacity/calendar management, automatic birth/day advancement and gameplay UI remain later tasks. No frozen handoff or engine-decision changes.
 4. Current limits: 32 MiB payload, 4096-entry collection budget; explicit synthetic migration fixture only (no released legacy save exists). Mac/Linux real-file fault-injection coverage does not establish process-kill, universal power-loss, network-filesystem or Windows guarantees.
 
@@ -62,9 +64,10 @@ Latest verified descriptor artifact: 11685376690 (run 38094410593). Initial P1-0
 - Actual final Actions log and artifact inspected: run 38094410593, validator OK, 147/147 tests, no skips; TRX 11685351742. Local TRX: tests/Cloverbrook.Domain.Tests/TestResults/final-integration.trx; downloaded CI TRX is under TestResults/CI-a15266e.
 - Remaining: playable/visual P1-10 proof remains with Claude's art track; no headless implementation blocker. Parent-thread checkpoint messaging was unavailable (thread not found); repository checkpoints preserve progress.
 
-## Completion handoff — P1-01 CC0 reference integration (local proof)
+## Completion handoff — P1-01 CC0 reference integration (CI verified)
 - Input: owner-committed reference package at e35bdc4; isolated checkout on the visual pilot. Original source package is unchanged.
 - Output: reproducible Blender importer; authored adult and juvenile GLBs meeting Body/Eyes/Mane/Tail, +X/metre/ground, COLOR_0 and TEXCOORD_1 contracts; editable Blender cages and rigs; normal-detail binding, matte solid-clump hair, calibrated head cameras and honest missing-animation UI/capture handling.
 - Face-fix check: Claude's fresh 236f36d CI evidence still misplaced facial white. The legacy SDF mesh had reversed winding/inward normals; corrected geometry was locally re-rendered with forehead stars. New authored-asset captures independently show forehead/strip/snip placement and matching adult/foal marking keys.
-- Validation actually run: JSON validator OK; C# build 0 warnings/errors; imported adult+foal contracts passed; main smoke OK; 131 real Metal captures, 0 failures. Existing domain implementation/tests were not changed or rerun locally for this asset-only package; the branch's domain workflow will verify the new commit.
-- Remaining: inspect new CI and publish its evidence checkpoint; matrix approval stays with the owner. Both adult family IDs share one cob build per age, only height is applied, and rigs have no animation clips. No purchase, force push, main merge or live-catalog approval.
+- Validation actually run: JSON validator OK; C# build 0 warnings/errors; imported adult+foal contracts passed; main smoke OK; 131 real Metal captures, 0 failures. Visual CI run 38099550595 rebuilt both assets and passed 131 llvmpipe captures, 0 failures; its mesh manifests match local geometry/contract data except build time. Domain CI run 38099550598 passed 147/147. Existing domain implementation/tests were not changed or rerun locally for this asset-only package.
+- Final reference proof: six calibrated foal views share one mesh/rest pose and scale; Blender reopened the foal and exercised head, foreleg and tail FK without invalid geometry. This does not establish gait quality. Fresh CI captures show corrected facial placement; independent peer review found no material correction. CI logs contain optional MeshOptimizer and absent audio-device diagnostics despite successful export/smoke/capture.
+- Remaining: matrix approval stays with the owner. Both adult family IDs share one cob build per age, only height is applied, and rigs have no animation clips. Motion, breed shapes, live-stable integration and platform exports remain later work. No purchase, force push, main merge or live-catalog approval.
