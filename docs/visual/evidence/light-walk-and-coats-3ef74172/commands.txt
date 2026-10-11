@@ -1,0 +1,4 @@
+Build: DOTNET_ROOT=/opt/homebrew/Cellar/dotnet/10.0.401/libexec /opt/homebrew/Cellar/dotnet/10.0.401/libexec/dotnet build game/Cloverbrook.Game.csproj --no-restore -warnaserror -v:minimal
+Import: DOTNET_ROOT=/opt/homebrew/Cellar/dotnet/10.0.401/libexec /Users/markrogers/Documents/Codex/2026-10-10/referenced-chatgpt-conversation-this-is-an/work/runtime/mono/Godot_mono.app/Contents/MacOS/Godot --headless --path game --editor --import
+Runtime: DOTNET_ROOT=/opt/homebrew/Cellar/dotnet/10.0.401/libexec /Users/markrogers/Documents/Codex/2026-10-10/referenced-chatgpt-conversation-this-is-an/work/runtime/mono/Godot_mono.app/Contents/MacOS/Godot --path game --rendering-method gl_compatibility --resolution 1280x720 res://scenes/tools/CoatedHorseWalk.tscn -- --out /Users/markrogers/Documents/Codex/2026-10-11/con/work/walking-coat-integration/native-final
+All three exit codes: 0. Runtime was a native rendered scene on Apple M2 / Metal Compatibility renderer, not headless.

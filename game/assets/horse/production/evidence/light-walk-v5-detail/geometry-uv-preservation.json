@@ -1,0 +1,276 @@
+{
+  "schema": "horse_rig_only_geometry_uv_preservation.v1",
+  "baseline_blend_sha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+  "candidate_blend_sha256": "3ef7417273cd9baa9d68b406c2731e4bf7db4bd2bc3a56dde95e3a6471173573",
+  "glb_sha256": "13a678c5fe5ddb20cd48a1b0b17d9e59ecf4a98b7d9599a160f6ee8ce3373219",
+  "mesh_set_matches": true,
+  "preserved_fields": [
+    "positions",
+    "topology",
+    "transform",
+    "UV_layers_order",
+    "UV_active_render",
+    "frozen_UVs",
+    "colors",
+    "morphs",
+    "UV0"
+  ],
+  "forbidden_changes": [],
+  "baseline": {
+    "Body": {
+      "positions": "7d9532c40d93d5dd23ca66570aeb76c17bafb99daa02af84a6cef7fa464d30c4",
+      "topology": "b1946929e4add0e94d1dddc919cf8c0d546cabc020391bf667aeaf0f64a4fd41",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "bad133e1394f133d11a8e6f7f029bebdf2b98b9ef2de273c9de7785ee3f16958",
+      "UV_active_render": "153c9dbcc7025ecd7e50ce6d83f1995233dfc636bc869098e3a8d84288fd938a",
+      "frozen_UVs": "eb659d2aa325d65cc1afd0db1ada41ff57a7cc1981f9d47108a35e494d0594d5",
+      "colors": "8e254ed5307b6888599e334496a77c13ee66b45124c5d994dbbd0f3c31c115c3",
+      "weights": "347102998ec9e1ca1c79b2ce1f20ec6baed2e2ddea40b191c4077aff6ab47fbf",
+      "morphs": "857b5d5a695f293872ecfa308e40575b39cd361f0791017593a6908f78a49fc5",
+      "UV0": "b323371574fd98890eda3682a3760f902e5bfca38f72fb27650ed19d3a57205f"
+    },
+    "Eyes": {
+      "positions": "9dde78f1aa8bc3d693de7f610a5471c43079330a6b4bcba833e963d8de8534d2",
+      "topology": "83992f628d9db1d37a9283a7ad4cb08d4ebb17cb5b744d098bfae6b5d61005fb",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "5cfbe290be817259e457b346a345b2ee0d919422b3c1042104423eecd61fa703",
+      "UV_active_render": "153c9dbcc7025ecd7e50ce6d83f1995233dfc636bc869098e3a8d84288fd938a",
+      "frozen_UVs": "609c15bb990b936a9a785bf5eef8977f2633382da1d91796a39ceb832f62742a",
+      "colors": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "weights": "8f156e545dd6e00d3b8a0bc1b228e3473af6c4426fbd513d5073229acd8d187b",
+      "morphs": "9ebc78a9fe28e5de47e29fd9d9e83f0363fca3e66a7072ece291840b9d5842f3",
+      "UV0": "ee27bbdce35014b7b2bb57d3730a4ef9c2d884801f89a6da96f5966dd82d8248"
+    },
+    "Mane": {
+      "positions": "5956a9fe33d329d1320baf2f46af96d10b744130a249a2a9f03eb0124a570428",
+      "topology": "cc0f55a82ee53e1663a2842476d89398c6ecfd01385b4935b5a2bc9151239f67",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "547435c435ef3929a4b130b9e56c2ba827b0e05428253d7af2891c4a9dcdd5d1",
+      "UV_active_render": "1c28f2eb0958c3d15db1f0f0e7f2b8998ca2b8f67ab426a1fbb3d561fe76fad9",
+      "frozen_UVs": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "colors": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "weights": "59e422c2dffb9a1cf80e37076682daac748f09b9b2a87d2e2fb39128b0b17fc4",
+      "morphs": "2f0edcd7668ec32aec1a9141350436bf4f88299a89466a5e6e37f588496fb215",
+      "UV0": "de5cab99a11126702b132b9e44fc006edc4e78f88f07aec9f56bfc4add3785c6"
+    },
+    "Tail": {
+      "positions": "ac3d0aca80ad95b31b321df4c37ed13271656fa1207c982743717e02f6137138",
+      "topology": "e830d1b9038dab9e3bff17de2881477c08dfbc58af9e5af142967895c233b726",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "547435c435ef3929a4b130b9e56c2ba827b0e05428253d7af2891c4a9dcdd5d1",
+      "UV_active_render": "1c28f2eb0958c3d15db1f0f0e7f2b8998ca2b8f67ab426a1fbb3d561fe76fad9",
+      "frozen_UVs": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "colors": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "weights": "0b38293630755879a693ef9888d120426def0d98cdb67efeda5dc1033f7ba185",
+      "morphs": "3cbb6cfa2539b8c42dcc6b5dcf3427a3b0400d657f1eb2933a37d941ad75a906",
+      "UV0": "f51c9e38d80eece195e4d2f123b532f4840e2740eef6b26fcfc1c406b1e9300c"
+    }
+  },
+  "candidate": {
+    "Body": {
+      "positions": "7d9532c40d93d5dd23ca66570aeb76c17bafb99daa02af84a6cef7fa464d30c4",
+      "topology": "b1946929e4add0e94d1dddc919cf8c0d546cabc020391bf667aeaf0f64a4fd41",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "bad133e1394f133d11a8e6f7f029bebdf2b98b9ef2de273c9de7785ee3f16958",
+      "UV_active_render": "153c9dbcc7025ecd7e50ce6d83f1995233dfc636bc869098e3a8d84288fd938a",
+      "frozen_UVs": "eb659d2aa325d65cc1afd0db1ada41ff57a7cc1981f9d47108a35e494d0594d5",
+      "colors": "8e254ed5307b6888599e334496a77c13ee66b45124c5d994dbbd0f3c31c115c3",
+      "weights": "4878ecead1c5822a69b09fe8721e4b725d13bb0aa3a88a4bf9d406dad1e1d472",
+      "morphs": "857b5d5a695f293872ecfa308e40575b39cd361f0791017593a6908f78a49fc5",
+      "UV0": "b323371574fd98890eda3682a3760f902e5bfca38f72fb27650ed19d3a57205f"
+    },
+    "Eyes": {
+      "positions": "9dde78f1aa8bc3d693de7f610a5471c43079330a6b4bcba833e963d8de8534d2",
+      "topology": "83992f628d9db1d37a9283a7ad4cb08d4ebb17cb5b744d098bfae6b5d61005fb",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "5cfbe290be817259e457b346a345b2ee0d919422b3c1042104423eecd61fa703",
+      "UV_active_render": "153c9dbcc7025ecd7e50ce6d83f1995233dfc636bc869098e3a8d84288fd938a",
+      "frozen_UVs": "609c15bb990b936a9a785bf5eef8977f2633382da1d91796a39ceb832f62742a",
+      "colors": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "weights": "bacecfe69fe0e8756e030d391d31b1b7490ff5148ca0f82cf37acf31a5a4f92b",
+      "morphs": "9ebc78a9fe28e5de47e29fd9d9e83f0363fca3e66a7072ece291840b9d5842f3",
+      "UV0": "ee27bbdce35014b7b2bb57d3730a4ef9c2d884801f89a6da96f5966dd82d8248"
+    },
+    "Mane": {
+      "positions": "5956a9fe33d329d1320baf2f46af96d10b744130a249a2a9f03eb0124a570428",
+      "topology": "cc0f55a82ee53e1663a2842476d89398c6ecfd01385b4935b5a2bc9151239f67",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "547435c435ef3929a4b130b9e56c2ba827b0e05428253d7af2891c4a9dcdd5d1",
+      "UV_active_render": "1c28f2eb0958c3d15db1f0f0e7f2b8998ca2b8f67ab426a1fbb3d561fe76fad9",
+      "frozen_UVs": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "colors": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "weights": "5e668bd2c58a6745da398a1378b5879a0f60b6125c94021b724e217c31339cd2",
+      "morphs": "2f0edcd7668ec32aec1a9141350436bf4f88299a89466a5e6e37f588496fb215",
+      "UV0": "de5cab99a11126702b132b9e44fc006edc4e78f88f07aec9f56bfc4add3785c6"
+    },
+    "Tail": {
+      "positions": "ac3d0aca80ad95b31b321df4c37ed13271656fa1207c982743717e02f6137138",
+      "topology": "e830d1b9038dab9e3bff17de2881477c08dfbc58af9e5af142967895c233b726",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "547435c435ef3929a4b130b9e56c2ba827b0e05428253d7af2891c4a9dcdd5d1",
+      "UV_active_render": "1c28f2eb0958c3d15db1f0f0e7f2b8998ca2b8f67ab426a1fbb3d561fe76fad9",
+      "frozen_UVs": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "colors": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "weights": "33410b8aa31cdeba7ee5580387de0c166c156df0c403f6ad74c1cb5387e562f6",
+      "morphs": "3cbb6cfa2539b8c42dcc6b5dcf3427a3b0400d657f1eb2933a37d941ad75a906",
+      "UV0": "f51c9e38d80eece195e4d2f123b532f4840e2740eef6b26fcfc1c406b1e9300c"
+    }
+  },
+  "export_corner_audit": {
+    "source_sha256": "3ef7417273cd9baa9d68b406c2731e4bf7db4bd2bc3a56dde95e3a6471173573",
+    "glb_sha256": "13a678c5fe5ddb20cd48a1b0b17d9e59ecf4a98b7d9599a160f6ee8ce3373219",
+    "meshes": {
+      "Body": {
+        "source_vertices": 10924,
+        "export_vertices": 15674,
+        "source_triangles": 21706,
+        "export_triangles": 21706,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_absolute_attribute_error": {
+          "TEXCOORD_0": 2.9802322387695312e-08,
+          "TEXCOORD_1": 1.1920928955078125e-07,
+          "COLOR_0": 7.649390986852467e-06
+        },
+        "pass": true
+      },
+      "Eyes": {
+        "source_vertices": 1476,
+        "export_vertices": 1646,
+        "source_triangles": 2944,
+        "export_triangles": 2944,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_absolute_attribute_error": {
+          "TEXCOORD_0": 0,
+          "TEXCOORD_1": 2.9802322387695312e-08
+        },
+        "pass": true
+      },
+      "Mane": {
+        "source_vertices": 1963,
+        "export_vertices": 1963,
+        "source_triangles": 3752,
+        "export_triangles": 3752,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_absolute_attribute_error": {
+          "TEXCOORD_0": 2.9802322387695312e-08
+        },
+        "pass": true
+      },
+      "Tail": {
+        "source_vertices": 2297,
+        "export_vertices": 2297,
+        "source_triangles": 4542,
+        "export_triangles": 4542,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_absolute_attribute_error": {
+          "TEXCOORD_0": 2.9802322387695312e-08
+        },
+        "pass": true
+      }
+    },
+    "pass": true,
+    "mesh_set_matches": true
+  },
+  "export_morph_audit": {
+    "source_sha256": "3ef7417273cd9baa9d68b406c2731e4bf7db4bd2bc3a56dde95e3a6471173573",
+    "glb_sha256": "13a678c5fe5ddb20cd48a1b0b17d9e59ecf4a98b7d9599a160f6ee8ce3373219",
+    "meshes": {
+      "Body": {
+        "target_names": [
+          "body_length",
+          "chest_width",
+          "neck_length",
+          "muscle"
+        ],
+        "source_triangles": 21706,
+        "export_triangles": 21706,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_position_delta_error": {
+          "body_length": 9.313225746154785e-10,
+          "chest_width": 0.0,
+          "neck_length": 0.0,
+          "muscle": 0.0
+        },
+        "pass": true
+      },
+      "Eyes": {
+        "target_names": [
+          "body_length",
+          "chest_width",
+          "neck_length",
+          "muscle"
+        ],
+        "source_triangles": 2944,
+        "export_triangles": 2944,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_position_delta_error": {
+          "body_length": 0.0,
+          "chest_width": 0.0,
+          "neck_length": 0.0,
+          "muscle": 0.0
+        },
+        "pass": true
+      },
+      "Mane": {
+        "target_names": [
+          "body_length",
+          "chest_width",
+          "neck_length",
+          "muscle"
+        ],
+        "source_triangles": 3752,
+        "export_triangles": 3752,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_position_delta_error": {
+          "body_length": 0.0,
+          "chest_width": 0.0,
+          "neck_length": 0.0,
+          "muscle": 0.0
+        },
+        "pass": true
+      },
+      "Tail": {
+        "target_names": [
+          "body_length",
+          "chest_width",
+          "neck_length",
+          "muscle"
+        ],
+        "source_triangles": 4542,
+        "export_triangles": 4542,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_position_delta_error": {
+          "body_length": 0.0,
+          "chest_width": 0.0,
+          "neck_length": 0.0,
+          "muscle": 0.0
+        },
+        "pass": true
+      }
+    },
+    "pass": true,
+    "mesh_set_matches": true
+  },
+  "scope": "Exact indexed positions, topology, transforms, morphs, UV0, other UV layers and colors; rig, skin weights and motion intentionally changed. Export corner audit handles vertex splits and reorder. This does not certify gait quality or UV layout quality.",
+  "validator_sha256": {
+    "validate_uv_only": "dd7014574ad2d37051add087b5deae3414a46178e829f7ddafa65def248d6cd3",
+    "validate_export": "9989664ab774f4889afde6152cb295c1d4367912bbe76b01020d481a2c6978e4"
+  },
+  "pass": true
+}

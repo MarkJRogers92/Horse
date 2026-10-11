@@ -1,0 +1,20 @@
+{
+  "schema": "horse_ai_uv_reuse_binding.v1",
+  "kind": "neutral-only-recovered-skin",
+  "current_blend_sha256": "3ef7417273cd9baa9d68b406c2731e4bf7db4bd2bc3a56dde95e3a6471173573",
+  "reference_blend_sha256": "03aeb3075098dfb963467272c06f1705d2459b4a53061d07641c4fede67504ef",
+  "reference_uv_contract_sha256": "9915bb04847c0dcb7dc65ef903bd4821c003e94cc26b775a75217cc1f71748fe",
+  "corpus_relative_path": "source/horse_light-v5-uv0-provenance.json",
+  "corpus_sha256": "f1c6d2521a69f99256ddd165b66843d7db9e4acbea95e6eaacd11f83247d7f54",
+  "current_glb_sha256": "13a678c5fe5ddb20cd48a1b0b17d9e59ecf4a98b7d9599a160f6ee8ce3373219",
+  "reference_glb_sha256": "2d282d40a4354e5cabba80bd89be4dd4e64a1bb675daecbf2696f71cce400cee",
+  "reference_triangle_count": 25222,
+  "rig_only_derivation": {
+    "baseline_blend_sha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+    "baseline_glb_sha256": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc",
+    "parent_binding_sha256": "f81192626f5583179b46362c6ae4f1fbdc92341b25f697973f5524d0309db3eb",
+    "parent_handoff_sha256": "6410f515e3445726b0a1a652f7c6bfa096b25006c726d219ef3df91353d5f773",
+    "preservation_report_path": "res://assets/horse/production/evidence/light-walk-v5-detail/geometry-uv-preservation.json",
+    "preservation_report_sha256": "1d50be451b4fde0b4d7a703dcb6226c4bb8653410de5f9992c296bab9c7ca00f"
+  }
+}

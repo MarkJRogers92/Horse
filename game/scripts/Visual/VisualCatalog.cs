@@ -20,7 +20,11 @@ public sealed record EyeRecipe(Color Iris, Color Ring);
 public sealed record BodySignedDetail(string Path, string Encoding, float Strength, string SourceGlbSha256, string TextureSha256,
     string PixelSha256, string HandoffPath, string BindingPath, string CorpusSha256, float BakedStrength,
     string UvReuseStatus, int RetainedTriangleCount, int NeutralRecoveredFaceCount, int NeutralRecoveredPixelCount,
-    string NeutralMaskPath, string NeutralMaskSha256, string HandoffSha256, string BindingSha256);
+    string NeutralMaskPath, string NeutralMaskSha256, string HandoffSha256, string BindingSha256,
+    RigOnlyDerivationEvidence? RigOnlyDerivation = null);
+public sealed record RigOnlyDerivationEvidence(string PreservationReportPath, string PreservationReportSha256,
+    string BaselineBlendSha256, string BaselineGlbSha256, string CandidateBlendSha256, string CandidateGlbSha256,
+    string ParentBindingSha256, string ParentHandoffSha256);
 public sealed record MeshFamily(string Scene, bool Placeholder, string Age, string HairGeometry = "cards", string? Limitation = null,
     Vector3? HeadViewTarget = null, BodySignedDetail? BodySignedDetail = null, string? BodySignedDetailDisabledReason = null);
 
@@ -203,8 +207,11 @@ public sealed class VisualCatalog
         string? neutralMaskPath = ReadString(detail, "neutralMaskPath");
         string? neutralMaskHash = ReadString(detail, "neutralMaskSha256");
         string? uvReuseStatus = ReadString(detail, "uvReuseStatus");
-        if (!IsProductionEvidencePath(handoffPath, "game-integration-handoff.json") ||
-            !IsProductionEvidencePath(bindingPath, "light-v5-uv-reuse-binding.json") ||
+        bool originalEvidence = IsProductionEvidencePath(handoffPath, "game-integration-handoff.json") &&
+                                IsProductionEvidencePath(bindingPath, "light-v5-uv-reuse-binding.json");
+        bool walkDerivedEvidence = IsWalkDerivedEvidencePath(handoffPath, "game-integration-handoff.json") &&
+                                   IsWalkDerivedEvidencePath(bindingPath, "light-v5-uv-reuse-binding.json");
+        if ((!originalEvidence && !walkDerivedEvidence) ||
             !IsProductionEvidencePath(neutralMaskPath, "ai-neutral-skin-mask.png") ||
             !IsSha256(handoffHash) || !IsSha256(bindingHash) || !IsSha256(corpusHash) || !IsSha256(neutralMaskHash))
             return DisableBodySignedDetail("UV reuse evidence paths or hashes are missing or malformed", out disabledReason);
@@ -225,7 +232,7 @@ public sealed class VisualCatalog
             return DisableBodySignedDetail("UV reuse compatibility counts or baked detail strength are incompatible", out disabledReason);
 
         if (!TryValidateAcceptedEvidence(handoffPath!, bindingPath!, sourceHash!, textureHash!, handoffHash!, bindingHash!, corpusHash!, neutralMaskHash!,
-                retainedTriangles, neutralFaces, neutralPixels, out string evidenceReason))
+                retainedTriangles, neutralFaces, neutralPixels, walkDerivedEvidence, out string evidenceReason, out var rigOnlyDerivation))
             return DisableBodySignedDetail(evidenceReason, out disabledReason);
 
         var image = new Image();
@@ -261,11 +268,14 @@ public sealed class VisualCatalog
 
         return new BodySignedDetail(path, encoding!, strength, sourceHash!, textureHash!, Sha256(pixels),
             handoffPath!, bindingPath!, corpusHash!, bakedStrength, uvReuseStatus!, retainedTriangles, neutralFaces, neutralPixels,
-            neutralMaskPath!, neutralMaskHash!, handoffHash!, bindingHash!);
+            neutralMaskPath!, neutralMaskHash!, handoffHash!, bindingHash!, rigOnlyDerivation);
     }
 
     private static bool IsProductionEvidencePath(string? path, string fileName) =>
         string.Equals(path, "res://assets/horse/production/evidence/light-v5-detail/" + fileName, StringComparison.Ordinal);
+
+    private static bool IsWalkDerivedEvidencePath(string? path, string fileName) =>
+        string.Equals(path, "res://assets/horse/production/evidence/light-walk-v5-detail/" + fileName, StringComparison.Ordinal);
 
     private static bool TryReadPositiveInt(JsonElement node, string key, out int value)
     {
@@ -276,9 +286,10 @@ public sealed class VisualCatalog
 
     private static bool TryValidateAcceptedEvidence(string handoffPath, string bindingPath, string sourceHash, string textureHash,
         string handoffHash, string bindingHash, string corpusHash, string neutralMaskHash, int retainedTriangles, int neutralFaces, int neutralPixels,
-        out string reason)
+        bool walkDerivedEvidence, out string reason, out RigOnlyDerivationEvidence? rigOnlyDerivation)
     {
         reason = "UV reuse handoff or binding content is malformed or incompatible";
+        rigOnlyDerivation = null;
         try
         {
             using var handoffDoc = JsonDocument.Parse(FileAccess.GetFileAsBytes(handoffPath));
@@ -333,6 +344,15 @@ public sealed class VisualCatalog
                 binding.GetProperty("reference_uv_contract_sha256").GetString() != reference.GetProperty("uv_contract_sha256").GetString())
                 return false;
 
+            if (walkDerivedEvidence)
+            {
+                if (!TryValidateRigOnlyDerivation(handoff, binding, sourceHash, textureHash, corpusHash, neutralMaskHash,
+                        out rigOnlyDerivation, out reason))
+                    return false;
+            }
+            else if (handoff.TryGetProperty("rig_only_derivation", out _) || binding.TryGetProperty("rig_only_derivation", out _))
+                return false;
+
             reason = "";
             return true;
         }
@@ -342,6 +362,204 @@ public sealed class VisualCatalog
             return false;
         }
     }
+
+    private static bool TryValidateRigOnlyDerivation(JsonElement handoff, JsonElement binding, string sourceHash,
+        string textureHash, string corpusHash, string neutralMaskHash,
+        out RigOnlyDerivationEvidence? evidence, out string reason)
+    {
+        evidence = null;
+        reason = "rig-only geometry/UV preservation evidence is malformed or incompatible";
+        try
+        {
+            if (!handoff.TryGetProperty("rig_only_derivation", out var handoffDerivation) ||
+                !binding.TryGetProperty("rig_only_derivation", out var bindingDerivation) ||
+                handoffDerivation.ValueKind != JsonValueKind.Object || bindingDerivation.ValueKind != JsonValueKind.Object)
+                return false;
+            string[] derivationKeys = { "baseline_blend_sha256", "baseline_glb_sha256", "parent_binding_sha256", "parent_handoff_sha256", "preservation_report_path", "preservation_report_sha256" };
+            if (!HasExactProperties(handoffDerivation, derivationKeys) || !HasExactProperties(bindingDerivation, derivationKeys))
+                return false;
+            foreach (var key in derivationKeys)
+                if (handoffDerivation.GetProperty(key).GetString() != bindingDerivation.GetProperty(key).GetString()) return false;
+
+            const string baselineBlend = "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295";
+            const string baselineGlb = "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc";
+            const string parentBinding = "f81192626f5583179b46362c6ae4f1fbdc92341b25f697973f5524d0309db3eb";
+            const string parentHandoff = "6410f515e3445726b0a1a652f7c6bfa096b25006c726d219ef3df91353d5f773";
+            const string proofPath = "res://assets/horse/production/evidence/light-walk-v5-detail/geometry-uv-preservation.json";
+            const string baselineGlbPath = "res://assets/horse/production/horse_light.glb";
+            const string atlasPath = "res://assets/horse/production/horse_light_body_detail_v5.png";
+            const string parentHandoffPath = "res://assets/horse/production/evidence/light-v5-detail/game-integration-handoff.json";
+            const string parentBindingPath = "res://assets/horse/production/evidence/light-v5-detail/light-v5-uv-reuse-binding.json";
+            const string neutralMaskPath = "res://assets/horse/production/evidence/light-v5-detail/ai-neutral-skin-mask.png";
+            string? Read(JsonElement node, string key) => node.GetProperty(key).GetString();
+            string? proofSha = Read(handoffDerivation, "preservation_report_sha256");
+            if (Read(handoffDerivation, "baseline_blend_sha256") != baselineBlend ||
+                Read(handoffDerivation, "baseline_glb_sha256") != baselineGlb ||
+                Read(handoffDerivation, "parent_binding_sha256") != parentBinding ||
+                Read(handoffDerivation, "parent_handoff_sha256") != parentHandoff ||
+                Read(handoffDerivation, "preservation_report_path") != proofPath || !IsSha256(proofSha) ||
+                !FileAccess.FileExists(proofPath) ||
+                !string.Equals(Sha256(FileAccess.GetFileAsBytes(proofPath)), proofSha, StringComparison.Ordinal))
+                return false;
+
+            if (!FileAccess.FileExists(baselineGlbPath) || !FileAccess.FileExists(atlasPath) ||
+                !FileAccess.FileExists(parentHandoffPath) || !FileAccess.FileExists(parentBindingPath) || !FileAccess.FileExists(neutralMaskPath) ||
+                Sha256(FileAccess.GetFileAsBytes(baselineGlbPath)) != baselineGlb ||
+                Sha256(FileAccess.GetFileAsBytes(atlasPath)) != textureHash ||
+                Sha256(FileAccess.GetFileAsBytes(parentHandoffPath)) != parentHandoff ||
+                Sha256(FileAccess.GetFileAsBytes(parentBindingPath)) != parentBinding ||
+                Sha256(FileAccess.GetFileAsBytes(neutralMaskPath)) != neutralMaskHash)
+                return false;
+            using (var parentHandoffDoc = JsonDocument.Parse(FileAccess.GetFileAsBytes(parentHandoffPath)))
+            using (var parentBindingDoc = JsonDocument.Parse(FileAccess.GetFileAsBytes(parentBindingPath)))
+            {
+                var parent = parentHandoffDoc.RootElement;
+                var parentBind = parentBindingDoc.RootElement;
+                if (parent.GetProperty("status").GetString() != "ACCEPTED_LIGHT_DETAIL_READY_FOR_GAME" ||
+                    parent.GetProperty("family_scope").GetString() != "Light Body only" ||
+                    parent.GetProperty("source").GetProperty("sha256").GetString() != baselineBlend ||
+                    parent.GetProperty("source").GetProperty("glb_sha256").GetString() != baselineGlb ||
+                    parent.GetProperty("detail").GetProperty("sha256").GetString() != textureHash ||
+                    parent.GetProperty("reuse_proof").GetProperty("binding_sha256").GetString() != parentBinding ||
+                    parent.GetProperty("reuse_proof").GetProperty("corpus_sha256").GetString() != corpusHash ||
+                    parent.GetProperty("reuse_proof").GetProperty("neutral_mask_sha256").GetString() != neutralMaskHash ||
+                    parentBind.GetProperty("schema").GetString() != "horse_ai_uv_reuse_binding.v1" ||
+                    parentBind.GetProperty("current_blend_sha256").GetString() != baselineBlend ||
+                    parentBind.GetProperty("current_glb_sha256").GetString() != baselineGlb ||
+                    parentBind.GetProperty("corpus_sha256").GetString() != corpusHash)
+                    return false;
+            }
+
+            using var proofDoc = JsonDocument.Parse(FileAccess.GetFileAsBytes(proofPath));
+            var proof = proofDoc.RootElement;
+            string[] preserved = { "positions", "topology", "transform", "UV_layers_order", "UV_active_render", "frozen_UVs", "colors", "morphs", "UV0" };
+            string[] components = { "Body", "Eyes", "Mane", "Tail" };
+            string[] snapshotKeys = preserved.Append("weights").ToArray();
+            if (proof.GetProperty("schema").GetString() != "horse_rig_only_geometry_uv_preservation.v1" ||
+                proof.GetProperty("pass").ValueKind != JsonValueKind.True ||
+                proof.GetProperty("baseline_blend_sha256").GetString() != baselineBlend ||
+                proof.GetProperty("glb_sha256").GetString() != sourceHash ||
+                proof.GetProperty("mesh_set_matches").ValueKind != JsonValueKind.True ||
+                proof.GetProperty("forbidden_changes").GetArrayLength() != 0 ||
+                !ExactStringArray(proof.GetProperty("preserved_fields"), preserved))
+                return false;
+            string? candidateBlendHash = proof.GetProperty("candidate_blend_sha256").GetString();
+            var handoffSource = handoff.GetProperty("source");
+            if (!IsSha256(candidateBlendHash) || handoffSource.GetProperty("sha256").GetString() != candidateBlendHash ||
+                handoffSource.GetProperty("glb_sha256").GetString() != sourceHash ||
+                binding.GetProperty("current_blend_sha256").GetString() != candidateBlendHash ||
+                binding.GetProperty("current_glb_sha256").GetString() != sourceHash)
+                return false;
+
+            var baselineMeshes = proof.GetProperty("baseline");
+            var candidateMeshes = proof.GetProperty("candidate");
+            if (!HasExactProperties(baselineMeshes, components) || !HasExactProperties(candidateMeshes, components)) return false;
+            foreach (var component in components)
+            {
+                var before = baselineMeshes.GetProperty(component);
+                var after = candidateMeshes.GetProperty(component);
+                if (!HasExactProperties(before, snapshotKeys) || !HasExactProperties(after, snapshotKeys)) return false;
+                foreach (var field in preserved)
+                {
+                    string? beforeHash = before.GetProperty(field).GetString();
+                    string? afterHash = after.GetProperty(field).GetString();
+                    if (!IsSha256(beforeHash) || !IsSha256(afterHash) || beforeHash != afterHash) return false;
+                }
+                if (!IsSha256(before.GetProperty("weights").GetString()) || !IsSha256(after.GetProperty("weights").GetString())) return false;
+            }
+
+            if (!TryValidateExportCornerAudit(proof.GetProperty("export_corner_audit"), candidateBlendHash!, sourceHash, out reason) ||
+                !proof.TryGetProperty("export_morph_audit", out var morphAudit) ||
+                !TryValidateExportMorphAudit(morphAudit, candidateBlendHash!, sourceHash, out reason)) return false;
+            evidence = new RigOnlyDerivationEvidence(proofPath, proofSha!, baselineBlend, baselineGlb, candidateBlendHash!, sourceHash, parentBinding, parentHandoff);
+            reason = "";
+            return true;
+        }
+        catch (Exception e)
+        {
+            reason = "rig-only preservation evidence could not be read: " + e.Message;
+            return false;
+        }
+    }
+
+    private static bool TryValidateExportCornerAudit(JsonElement audit, string candidateBlendHash, string glbHash, out string reason)
+    {
+        reason = "rig-only Blender-to-GLB corner audit failed or is incomplete";
+        string[] components = { "Body", "Eyes", "Mane", "Tail" };
+        string[] meshKeys = { "source_vertices", "export_vertices", "source_triangles", "export_triangles", "unmatched_export_triangles", "unmatched_source_triangles", "ambiguous_matches", "max_absolute_attribute_error", "pass" };
+        if (audit.GetProperty("pass").ValueKind != JsonValueKind.True ||
+            audit.GetProperty("source_sha256").GetString() != candidateBlendHash ||
+            audit.GetProperty("glb_sha256").GetString() != glbHash ||
+            audit.GetProperty("mesh_set_matches").ValueKind != JsonValueKind.True ||
+            !HasExactProperties(audit.GetProperty("meshes"), components)) return false;
+        foreach (var component in components)
+        {
+            var mesh = audit.GetProperty("meshes").GetProperty(component);
+            if (!HasExactProperties(mesh, meshKeys) || mesh.GetProperty("pass").ValueKind != JsonValueKind.True ||
+                mesh.GetProperty("unmatched_export_triangles").GetInt32() != 0 ||
+                mesh.GetProperty("unmatched_source_triangles").GetInt32() != 0 ||
+                mesh.GetProperty("ambiguous_matches").GetInt32() != 0 ||
+                mesh.GetProperty("source_triangles").GetInt32() != mesh.GetProperty("export_triangles").GetInt32()) return false;
+            var errors = mesh.GetProperty("max_absolute_attribute_error");
+            string[] expectedErrors = component switch
+            {
+                "Body" => new[] { "TEXCOORD_0", "TEXCOORD_1", "COLOR_0" },
+                "Eyes" => new[] { "TEXCOORD_0", "TEXCOORD_1" },
+                _ => new[] { "TEXCOORD_0" },
+            };
+            if (!HasExactProperties(errors, expectedErrors)) return false;
+            foreach (var key in expectedErrors)
+            {
+                double value = errors.GetProperty(key).GetDouble();
+                double limit = key == "COLOR_0" ? 0.5 / 65535.0 + 1e-7 : 2e-6;
+                if (!double.IsFinite(value) || value < 0 || value > limit) return false;
+            }
+        }
+        reason = "";
+        return true;
+    }
+
+    private static bool TryValidateExportMorphAudit(JsonElement audit, string candidateBlendHash, string glbHash, out string reason)
+    {
+        reason = "rig-only Blender-to-GLB morph corner audit failed or is incomplete";
+        string[] components = { "Body", "Eyes", "Mane", "Tail" };
+        string[] targets = { "body_length", "chest_width", "neck_length", "muscle" };
+        string[] auditKeys = { "source_sha256", "glb_sha256", "meshes", "pass", "mesh_set_matches" };
+        string[] meshKeys = { "target_names", "source_triangles", "export_triangles", "unmatched_export_triangles", "unmatched_source_triangles", "ambiguous_matches", "max_position_delta_error", "pass" };
+        if (!HasExactProperties(audit, auditKeys) || audit.GetProperty("pass").ValueKind != JsonValueKind.True ||
+            audit.GetProperty("source_sha256").GetString() != candidateBlendHash ||
+            audit.GetProperty("glb_sha256").GetString() != glbHash ||
+            audit.GetProperty("mesh_set_matches").ValueKind != JsonValueKind.True ||
+            !HasExactProperties(audit.GetProperty("meshes"), components)) return false;
+        foreach (var component in components)
+        {
+            var mesh = audit.GetProperty("meshes").GetProperty(component);
+            if (!HasExactProperties(mesh, meshKeys) || mesh.GetProperty("pass").ValueKind != JsonValueKind.True ||
+                !ExactStringArray(mesh.GetProperty("target_names"), targets) ||
+                mesh.GetProperty("unmatched_export_triangles").GetInt32() != 0 ||
+                mesh.GetProperty("unmatched_source_triangles").GetInt32() != 0 ||
+                mesh.GetProperty("ambiguous_matches").GetInt32() != 0 ||
+                mesh.GetProperty("source_triangles").GetInt32() <= 0 || mesh.GetProperty("export_triangles").GetInt32() <= 0 ||
+                mesh.GetProperty("source_triangles").GetInt32() != mesh.GetProperty("export_triangles").GetInt32()) return false;
+            var errors = mesh.GetProperty("max_position_delta_error");
+            if (!HasExactProperties(errors, targets)) return false;
+            foreach (var target in targets)
+            {
+                double value = errors.GetProperty(target).GetDouble();
+                if (!double.IsFinite(value) || value < 0 || value > 2e-6) return false;
+            }
+        }
+        reason = "";
+        return true;
+    }
+
+    private static bool HasExactProperties(JsonElement node, IEnumerable<string> keys) =>
+        node.ValueKind == JsonValueKind.Object && node.EnumerateObject().Select(p => p.Name).OrderBy(x => x, StringComparer.Ordinal)
+            .SequenceEqual(keys.OrderBy(x => x, StringComparer.Ordinal), StringComparer.Ordinal);
+
+    private static bool ExactStringArray(JsonElement node, IReadOnlyList<string> expected) =>
+        node.ValueKind == JsonValueKind.Array && node.GetArrayLength() == expected.Count &&
+        node.EnumerateArray().Select(item => item.GetString()).SequenceEqual(expected);
 
     private static BodySignedDetail? DisableBodySignedDetail(string reason, out string? disabledReason)
     {

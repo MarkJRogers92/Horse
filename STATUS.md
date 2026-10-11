@@ -5,6 +5,42 @@
 The prior visual/animation freeze below is historical and remains true for the
 original checkout; new work is isolated here. No release-matrix promotion or main merge.
 
+
+## Checked Light walking horse and coats — local preview
+
+The owner's latest scope is the existing Meshy horse walking with working UV
+coats. The neutral Light preview now passes source, export and actual Godot
+checks. Editable master `art/derived/production/horse_light_walk.blend`
+(`3ef74172`) and game export `horse_light_walk.glb` (`13a678c5`) preserve the
+original four components, all four morph targets, indexed geometry, colors and
+UV maps. The accepted v5 atlas remains byte-for-byte unchanged. Rig/skin repairs
+use Mesh2Motion's CC0 horse rig and base timing; visible geometry is Meshy Light.
+
+The saved source passed all nine gates at 61 phases: maximum Body/collar edge
+stretch 1.584961/1.261744, stance slip 0.0711 mm and exact relative loop closure.
+Godot's imported Walk advances and loops with one actor speed of 0.749997 m/s.
+All 429 sole witnesses registered through actual Skin binds and passed 61-phase
+contact checks; maximum per-axis stance motion is 3.837 mm, minimum stance
+height -1.323 mm and central swing clearance at least 38.006 mm. Bay, chestnut
+and cremello show active signed detail at strength 1. Nine actual Apple M2
+captures were inspected, and native Sol found no blocker for this scope.
+
+The isolated scene is `res://scenes/tools/CoatedHorseWalk.tscn`, using
+`visual_catalog_light_walk_preview.json`. The delivered launcher, editable
+source, GLB, atlas, full report and images are in the local output package
+`horse-production-review/light-walk-and-coats`. Repository evidence is in
+`docs/visual/evidence/light-walk-and-coats-3ef74172`; hash-bound source/UV/coat
+and motion proofs are in `game/assets/horse/production/evidence/light-walk-v5-detail`.
+Warnings-as-errors build, candidate import, native preview and whitespace checks
+passed. All 16 protected files remain unchanged, including the nine foundation
+assets and the pre-existing dirty motion tool. The earlier frozen-spec validator
+passed; domain code and tests were unchanged.
+
+Acceptance covers neutral morphs at scale 1. Extreme morph gait, Stock/foal Walk,
+Graze and exact imported weight preservation remain unverified. Default
+production remains Idle only; no catalog promotion, push, main merge, paid
+generation or release is part of this checkpoint.
+
 Two private Meshy geometry sources are preserved: the adult source and a distinct
 juvenile source under `art/candidates/meshy/`. Actual website charges total 68
 credits (two references at 9 plus two geometry jobs at 25); automatic rewards

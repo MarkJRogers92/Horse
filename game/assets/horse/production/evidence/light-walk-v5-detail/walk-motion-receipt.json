@@ -1,0 +1,11 @@
+{
+  "schema": "horse.light_walk.motion_receipt.v1",
+  "candidateBlendSha256": "3ef7417273cd9baa9d68b406c2731e4bf7db4bd2bc3a56dde95e3a6471173573",
+  "sourceGlbSha256": "13a678c5fe5ddb20cd48a1b0b17d9e59ecf4a98b7d9599a160f6ee8ce3373219",
+  "motionProfilePath": "res://assets/horse/production/evidence/light-walk-v5-detail/walk-motion-profile.json",
+  "motionProfileSha256": "7f72b680dc658969235a200b32a834b1c1d69c946270cbbcc87973a433243d1f",
+  "cpuMotionAuditPath": "res://assets/horse/production/evidence/light-walk-v5-detail/neutral-motion-audit.json",
+  "cpuMotionAuditSha256": "face59f6bfae24d44d3e1c2bf10c3deea3b2983fba3356e625af74b6c0b83f61",
+  "neutralPhysicalGatesPassed": true,
+  "scope": "Neutral source physical gates only. Imported native contact and coat proof are separate runtime checks."
+}
