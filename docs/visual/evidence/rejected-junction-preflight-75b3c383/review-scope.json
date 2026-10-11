@@ -1,0 +1,128 @@
+{
+  "taskId": "rejected-junction-preflight-75b3c383",
+  "weightFieldAccepted": false,
+  "harmonicSolveRun": false,
+  "meshWeightsWritten": false,
+  "productionAssetsModified": false,
+  "sourceBlendSha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+  "contractSha256": "75b3c38385cd3d82a88941e9918179e0ad8fd94e680bdc4ac9a90f418bde2938",
+  "proceduralChecks": {
+    "immutablePermissions": true,
+    "zeroIllegalEmptyConflictingTraces": false,
+    "zeroMultiBranchAnchors": true,
+    "zeroWrongSideAnchors": true,
+    "fixedBoundaryStretchAllPoses": false
+  },
+  "rejectedSourceIntersections": {
+    "maneNodes": 194,
+    "bodyCaudalRootNodes": 25,
+    "total": 219
+  },
+  "fixedEdgeScope": {
+    "positiveEdges": 21051,
+    "poseCount": 63,
+    "walkMaximumStretch": 1.6094476597571123,
+    "mildNeckMaximumStretch": 3.1591020606853584,
+    "grazeStressMaximumStretch": 5.130875618357447
+  },
+  "independentReview": "Native Sol reviewed actual constructor, evidence and attachment classification: keep reviewed shell/contours; anchors-only correction insufficient. Repair attachment ownership and continuous parent-to-proximal traces. Keep unchanged Walk/mild-neck shape gates before another solve.",
+  "nextPackage": "One bounded constructor/attachment correction and preflight authorized; no solve before parent/independent review.",
+  "headLoweringScope": "The original brief permits grazing/head-lowering. Near-ground GrazeStress is retained as a reported diagnostic, not an absolute reach requirement. Any actual head-lowering clip must pass deformation, hoof-contact and visual acceptance.",
+  "limits": [
+    "Procedural immutable-permission checks do not accept anatomical ownership or weights.",
+    "Proposed shoulder/hip/neck junction widths remain provisional.",
+    "All63 pose checks apply only to fixed-fixed boundaries; no whole-body solved-field claim.",
+    "No Stock or morph expansion, runtime/imported motion, or owner art acceptance."
+  ],
+  "files": [
+    {
+      "file": "light_immutable_junction_contract.json.gz",
+      "sha256": "dd1f41d54fb692a0d52614735ca847ff54a52ebefe77c1f2705282c54579b528",
+      "bytes": 586840,
+      "uncompressedSha256": "75b3c38385cd3d82a88941e9918179e0ad8fd94e680bdc4ac9a90f418bde2938",
+      "uncompressedBytes": 6548400
+    },
+    {
+      "file": "light_immutable_junction_arrays.npz.gz",
+      "sha256": "90ba3ca128e8943ebcf2e5c2356bd8aa04a5d64c13f6b65a543582dbdd108147",
+      "bytes": 667528,
+      "uncompressedSha256": "bbfb8a9fe9dd85f39c2c4c39895c769f68d950c3a49ccfccc7d9cca97d219f27",
+      "uncompressedBytes": 12624114
+    },
+    {
+      "file": "light_immutable_junction_review.json",
+      "sha256": "870c511cc7ad97a02ce6ae8fdaccd47ef123a4dce2f3e275a645d233805294a0",
+      "bytes": 393915
+    },
+    {
+      "file": "README.txt",
+      "sha256": "11f425cb36d61ee2bc7e1cae50e928ddcfe15c2d85f97795be880fcc813d3231",
+      "bytes": 2394
+    },
+    {
+      "file": "light_corrected_junction_preflight.log",
+      "sha256": "5faba4b1510bdd1d42934aca8e0bee458bd4637d42d3c0235046142e99922fd9",
+      "bytes": 300
+    },
+    {
+      "file": "light_immutable_back_overlay.png",
+      "sha256": "6a6b2809878512adfa78c787dc31b87182a02c4b6e9a54491a80ab80ef5e350b",
+      "bytes": 655580
+    },
+    {
+      "file": "light_immutable_front_overlay.png",
+      "sha256": "60052e57bfc56a5a6ea11a731f27a0c1aff449892721537e770fe526e37c9b19",
+      "bytes": 657083
+    },
+    {
+      "file": "light_immutable_hip_back_overlay.png",
+      "sha256": "3428de57f3ace4e0a892075d365e3d3d6b91bcd0252f03bce145f3f85a56aa27",
+      "bytes": 697521
+    },
+    {
+      "file": "light_immutable_left_overlay.png",
+      "sha256": "1c7dd37c14648fb5b728efe342f8ab1a10c7c44ab1e4b0e9110b241dde7aa6f4",
+      "bytes": 680790
+    },
+    {
+      "file": "light_immutable_neck_q3_overlay.png",
+      "sha256": "a050d22a47f320a59aa79f6344c2cfad2702f7d78d14182f06ad0d5083a8903c",
+      "bytes": 724154
+    },
+    {
+      "file": "light_immutable_q3_overlay.png",
+      "sha256": "bd123d997ca7be912d64ed35555879fe4c4a7740a2e7169d0f3702ba13960491",
+      "bytes": 690414
+    },
+    {
+      "file": "light_immutable_right_overlay.png",
+      "sha256": "efb9c16555cb3cdda917fe2f7125880c2702a18f36b09646e83b37b54112f1b1",
+      "bytes": 682170
+    },
+    {
+      "file": "light_immutable_top_overlay.png",
+      "sha256": "6200a10bb16aab553ad9a04be208d208062ef64c0e7f540e8f141ae16857e7e2",
+      "bytes": 630640
+    },
+    {
+      "file": "corrected_junction_preflight_light.py",
+      "sha256": "6662dafafc02c3aaad517731ba85884a8f810ca72a36b195e87e2ec31331c355",
+      "bytes": 16404
+    },
+    {
+      "file": "render_junction_preflight_light.py",
+      "sha256": "0b0a85d426b9b48ee0b3472a408512733957c92e63592f314382374ccd9a7378",
+      "bytes": 5378
+    },
+    {
+      "file": "annotate_junction_preflight_light.py",
+      "sha256": "028f5e447ca906897deaf7ead8955887b2b1f47751a045a302444cc09815982c",
+      "bytes": 4523
+    },
+    {
+      "file": "consolidate_junction_preflight_light.py",
+      "sha256": "8bac3f644b6724d035a400e8b5b9a351f38aa8929f71e5ec6bc8516a01a99b8a",
+      "bytes": 9715
+    }
+  ]
+}

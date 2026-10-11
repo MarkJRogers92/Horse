@@ -1,0 +1,1 @@
+TASK adult_motion_specialist IMMUTABLE_JUNCTION_PREFLIGHT {'immutablePermissions': True, 'zeroIllegalEmptyConflictingTraces': False, 'zeroMultiBranchAnchors': True, 'zeroWrongSideAnchors': True, 'fixedBoundaryStretchAllPoses': False} rejections 219 wrongside 0 fixededges 21051 max 5.130875618357447

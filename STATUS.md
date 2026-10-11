@@ -99,11 +99,21 @@ unverified. No Meshy texture credits, main merge, push or complete library
 acceptance is claimed. Essential Walk/Graze candidate work remains isolated.
 This coherent foundation checkpoint preserves the accepted texture integration,
 genuine foal, corrected viewer controls and source-bound runtime proof.
-Adult candidate motion remains isolated. A native specialist is replacing the
-cervical support field and fitting Graze after independent review confirmed
-incompatible neck/shoulder weights. The previous Stock whole-collar Graze stretch
-was 3.660×; the 2.279× cutoff-only measurement is not a pass. No candidate Walk or
-Graze has been promoted to production.
+Adult candidate motion remains isolated. The first anatomical Light field was
+rejected for neck/chest/hip tears and incompatible prescribed boundary support.
+Its ground contact and protected-data checks do not accept deformation. A later
+immutable-permission preflight removed donor fallback, then rejected 219 source
+intersections and incompatible fixed traces before any new solve. Native Sol
+review requires coherent Mane/Body-root support, an explicit Pelvis/tail-root
+transition and continuous shared-parent boundaries. See
+`docs/visual/evidence/rejected-light-field-77f44226` and
+`docs/visual/evidence/rejected-junction-preflight-75b3c383`.
+One constructor/attachment correction and preflight is authorized. No further
+solve or production motion is accepted. The original brief permits a credible
+head-lowering clip; near-ground GrazeStress remains a reported diagnostic. Actual
+Walk/head-lowering must pass deformation, hoof-contact and visual checks. The
+previous Stock whole-collar Graze stretch was 3.660×; its 2.279× cutoff-only
+measurement is not a pass.
 The Light neck scaffold now has independently reviewed exact Body/Mane/Tail seam
 correspondence, nested cranial sections, complete skull/ear membership and explicit
 limb/caudal exclusions. Geometry, morphs, masks and rest rig match the frozen Light

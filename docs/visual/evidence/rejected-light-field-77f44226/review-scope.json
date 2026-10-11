@@ -1,0 +1,66 @@
+{
+  "taskId": "rejected-light-anatomical-field-77f44226",
+  "accepted": false,
+  "productionAssetsModified": false,
+  "productionAnimationStatus": "Idle only",
+  "candidateBlendSha256": "77f442261c01aa3163e8fd3f29b512e420ce53a42335da45933ff76999c25c1b",
+  "auditScope": "One neutral Light field solve; unchanged 61-frame Walk and fixed mild-neck/GrazeStress diagnostics. No Stock or morph expansion.",
+  "metrics": {
+    "walkWholeBodyMaximumEdgeStretch": 48.24220027654144,
+    "walkWholeCollarMaximumEdgeStretch": 12.31465058248004,
+    "mildNeckWholeBodyMaximumEdgeStretch": 7.118642097742286,
+    "grazeStressWholeBodyMaximumEdgeStretch": 60.08804914431062,
+    "grazeStressWholeCollarMaximumEdgeStretch": 55.7726896886216
+  },
+  "semanticFailures": {
+    "semanticNeckForbidden": 9,
+    "wrongSideBoundaryAnchors": 14,
+    "contralateralAnchoredEdges": 12
+  },
+  "independentReview": "Native Sol reviewed the constructor and actual reports; rejected unreviewed caudal neck growth, incompatible boundary anchors and first-donor fallback. Generated permissions were overwritten by anchors, so the original zero-forbidden claim was circular.",
+  "parentVisualReview": "Visible tears in neck/chest/hip proof views confirm rejection.",
+  "limits": [
+    "Ground contact, loop, seam parity and protected data passing do not accept deformation.",
+    "Micrometre-scale rest/skull precision gate failures are separately recorded; gross deformation and semantic failures are decisive.",
+    "GrazeStress is a diagnostic, not an accepted animation.",
+    "Candidate Blend stays in scratch; this evidence folder contains no usable production master."
+  ],
+  "files": [
+    {
+      "file": "light_anatomical_field_report.json.gz",
+      "sha256": "03b5ba5e4dd83cf444dba332e9f080ab8b5c51e56a42e57eaf8128d5859b304c",
+      "bytes": 605162,
+      "uncompressedSha256": "d5b7eb14cb3bba3799b1e9132f6a0fb483ee1347dcfa02228be6c0ecf6545dff",
+      "uncompressedBytes": 5378258
+    },
+    {
+      "file": "light_neutral_motion_audit.json.gz",
+      "sha256": "5eedc07fb73a094b446949f44069f19ff0cd81f476136e0ad0dfdccfdcfe8ae6",
+      "bytes": 124010,
+      "uncompressedSha256": "6ea56b25dc21d96cbdda17eeb4487410d9c54bcaa837031e615d2c534e17c1e1",
+      "uncompressedBytes": 885512
+    },
+    {
+      "file": "light_semantic_boundary_failure.json.gz",
+      "sha256": "b41fc3c9a8d45df9d673312a15c8bd42cf49120b5723099440bfa64c8ba4cf5f",
+      "bytes": 10590,
+      "uncompressedSha256": "6fa2f2f3c4bdc64ba8ecb8973796158ee08ae36ce4a7394d9c395ec5588c776a",
+      "uncompressedBytes": 59021
+    },
+    {
+      "file": "WalkWholeWorst_q3_proof.png",
+      "sha256": "accbcc5c40aeb6e6f9ddd0dded3b22c43deb89a11f7e49399607a6e0546eba78",
+      "bytes": 432563
+    },
+    {
+      "file": "MildNeckWorst_neck_q3_proof.png",
+      "sha256": "27175c5fe0925b732a244c9721316d87bc36c9d53f327c6ccb637ef2e883933f",
+      "bytes": 489667
+    },
+    {
+      "file": "GrazeStress_DIAGNOSTIC_side_proof.png",
+      "sha256": "7cdb312c2563c08f4acb7a7881559b9fac730b634a9d0f367579a73415170ae8",
+      "bytes": 411687
+    }
+  ]
+}

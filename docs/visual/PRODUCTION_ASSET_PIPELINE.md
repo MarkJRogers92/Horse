@@ -106,6 +106,17 @@ The analysis input's earlier weight changes are recorded explicitly; a new field
 must start from frozen production weights. See `evidence/light-neck-scaffold-9c2975ba`.
 This scaffold accepts geometry mapping, not shoulder weights, walking or grazing.
 
+A subsequent anatomical Light field and immutable boundary preflight were
+rejected; no candidate weights or clips were promoted. Immutable permissions
+removed silent donor fallback but exposed attached Mane/root support, caudal
+Pelvis/tail-root ownership and incompatible hard Chest boundaries. Native Sol
+requires one local constructor/attachment correction before another solve. See
+`evidence/rejected-light-field-77f44226` and
+`evidence/rejected-junction-preflight-75b3c383` for the original rejected evidence.
+The unchanged Walk and mild-neck shape gates remain. Deep GrazeStress is a
+reported diagnostic; an actual head-lowering clip is allowed by the brief and
+still requires deformation, hoof-contact and visual acceptance.
+
 An isolated eight-weight FLOAT export probe retains eight-wide Body/Mane buffers
 in Godot 4.7.2, matching 58 joint names, finite active weights, valid bone indices
 and nonempty generated LOD index buffers. Native Sol accepted this format scope.
