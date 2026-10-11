@@ -1,0 +1,50 @@
+{
+  "format": "cloverbrook.capture-report.v1",
+  "godot": "4.7.2-stable (official)",
+  "renderer": "Apple M2 / 4.1 Metal - 90.5",
+  "catalog": "reference-assets.v1",
+  "warning": "Stills prove materials, markings and composition only - not animation quality, not art approval.",
+  "failures": 0,
+  "meshFamilies": {
+    "horse.standard.adult.v1": {
+      "scene": "res://assets/horse/production/horse_light.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.compact.adult.v1": {
+      "scene": "res://assets/horse/production/horse_stock.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.standard.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    },
+    "horse.compact.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    }
+  },
+  "unavailableAnimations": [],
+  "animationTrackEvidence": [],
+  "foalRigEvidence": [],
+  "viewerPathEvidence": [
+    {
+      "selectedMarkingEntry": "Bay - test markings #0  (test)",
+      "selectedMarkingKey": "32ca7e8a1f0574ad1be5bd0f0d37550bc0c9dedf7fb1d01cc1630135761baf96",
+      "adultFamily": "horse.standard.adult.v1",
+      "foalFamily": "horse.standard.foal.v1",
+      "returnedAdultFamily": "horse.standard.adult.v1",
+      "markingKeyPreservedOnFoalToggle": true,
+      "markingKeyStableOnAdultReturn": true,
+      "probeFixtureIdAfterFoalToggle": "probe.grey",
+      "probeRemainsUnsupported": true
+    }
+  ],
+  "appearancePerformance": null,
+  "meshLodEvidence": [],
+  "signedDetailEvidence": [],
+  "images": []
+}

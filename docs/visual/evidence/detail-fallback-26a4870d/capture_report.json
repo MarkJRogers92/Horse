@@ -1,0 +1,279 @@
+{
+  "format": "cloverbrook.capture-report.v1",
+  "godot": "4.7.2-stable (official)",
+  "renderer": "Apple M2 / 4.1 Metal - 90.5",
+  "catalog": "reference-assets.v1",
+  "warning": "Stills prove materials, markings and composition only - not animation quality, not art approval.",
+  "failures": 0,
+  "meshFamilies": {
+    "horse.standard.adult.v1": {
+      "scene": "res://assets/horse/production/horse_light.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.compact.adult.v1": {
+      "scene": "res://assets/horse/production/horse_stock.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.standard.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    },
+    "horse.compact.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    }
+  },
+  "unavailableAnimations": [],
+  "animationTrackEvidence": [],
+  "foalRigEvidence": [],
+  "viewerPathEvidence": [],
+  "appearancePerformance": null,
+  "meshLodEvidence": [
+    {
+      "fixtureId": "light_racer.chestnut",
+      "component": "Body",
+      "surface": 0,
+      "baseIndexBytes": 130236,
+      "lodCount": 4,
+      "lods": [
+        {
+          "edgeLength": 0.009394572,
+          "indexDataBytes": 65112
+        },
+        {
+          "edgeLength": 0.020643326,
+          "indexDataBytes": 32556
+        },
+        {
+          "edgeLength": 0.046570685,
+          "indexDataBytes": 16272
+        },
+        {
+          "edgeLength": 0.44086498,
+          "indexDataBytes": 8136
+        }
+      ]
+    },
+    {
+      "fixtureId": "light_racer.chestnut",
+      "component": "Eyes",
+      "surface": 0,
+      "baseIndexBytes": 17664,
+      "lodCount": 9,
+      "lods": [
+        {
+          "edgeLength": 0.00042909084,
+          "indexDataBytes": 8832
+        },
+        {
+          "edgeLength": 0.00073024165,
+          "indexDataBytes": 4416
+        },
+        {
+          "edgeLength": 0.0011053141,
+          "indexDataBytes": 2208
+        },
+        {
+          "edgeLength": 0.0017878854,
+          "indexDataBytes": 1104
+        },
+        {
+          "edgeLength": 0.003796944,
+          "indexDataBytes": 552
+        },
+        {
+          "edgeLength": 0.0077390973,
+          "indexDataBytes": 276
+        },
+        {
+          "edgeLength": 0.011608646,
+          "indexDataBytes": 132
+        },
+        {
+          "edgeLength": 0.01741297,
+          "indexDataBytes": 60
+        },
+        {
+          "edgeLength": 0.026119454,
+          "indexDataBytes": 24
+        }
+      ]
+    },
+    {
+      "fixtureId": "light_racer.chestnut",
+      "component": "Mane",
+      "surface": 0,
+      "baseIndexBytes": 22512,
+      "lodCount": 4,
+      "lods": [
+        {
+          "edgeLength": 0.0055410713,
+          "indexDataBytes": 11256
+        },
+        {
+          "edgeLength": 0.009734357,
+          "indexDataBytes": 5628
+        },
+        {
+          "edgeLength": 0.0193346,
+          "indexDataBytes": 2808
+        },
+        {
+          "edgeLength": 0.06221008,
+          "indexDataBytes": 1404
+        }
+      ]
+    },
+    {
+      "fixtureId": "light_racer.chestnut",
+      "component": "Tail",
+      "surface": 0,
+      "baseIndexBytes": 27252,
+      "lodCount": 7,
+      "lods": [
+        {
+          "edgeLength": 0.008453954,
+          "indexDataBytes": 13620
+        },
+        {
+          "edgeLength": 0.015430788,
+          "indexDataBytes": 6804
+        },
+        {
+          "edgeLength": 0.030047515,
+          "indexDataBytes": 3396
+        },
+        {
+          "edgeLength": 0.061705194,
+          "indexDataBytes": 1692
+        },
+        {
+          "edgeLength": 0.12688053,
+          "indexDataBytes": 840
+        },
+        {
+          "edgeLength": 0.29034463,
+          "indexDataBytes": 420
+        },
+        {
+          "edgeLength": 0.7738075,
+          "indexDataBytes": 312
+        }
+      ]
+    }
+  ],
+  "signedDetailEvidence": [],
+  "signedDetailFallbackEvidence": [
+    {
+      "case": "unknown encoding",
+      "family": "horse.standard.adult.v1",
+      "disabledReason": "unknown encoding \u0027future-unknown-format\u0027",
+      "detailDisabled": true,
+      "detailEnabledShaderParam": false,
+      "detailStrength": 0,
+      "proceduralPhenotypeRenderable": true,
+      "passed": true
+    },
+    {
+      "case": "invalid strength",
+      "family": "horse.standard.adult.v1",
+      "disabledReason": "strength must be finite and between 0 and 1",
+      "detailDisabled": true,
+      "detailEnabledShaderParam": false,
+      "detailStrength": 0,
+      "proceduralPhenotypeRenderable": true,
+      "passed": true
+    },
+    {
+      "case": "stale atlas hash",
+      "family": "horse.standard.adult.v1",
+      "disabledReason": "detail atlas SHA-256 does not match family metadata",
+      "detailDisabled": true,
+      "detailEnabledShaderParam": false,
+      "detailStrength": 0,
+      "proceduralPhenotypeRenderable": true,
+      "passed": true
+    },
+    {
+      "case": "missing binding",
+      "family": "horse.standard.adult.v1",
+      "disabledReason": "UV reuse evidence paths or hashes are missing or malformed",
+      "detailDisabled": true,
+      "detailEnabledShaderParam": false,
+      "detailStrength": 0,
+      "proceduralPhenotypeRenderable": true,
+      "passed": true
+    },
+    {
+      "case": "stale binding",
+      "family": "horse.standard.adult.v1",
+      "disabledReason": "UV reuse handoff or binding SHA-256 does not match metadata",
+      "detailDisabled": true,
+      "detailEnabledShaderParam": false,
+      "detailStrength": 0,
+      "proceduralPhenotypeRenderable": true,
+      "passed": true
+    },
+    {
+      "case": "stale corpus",
+      "family": "horse.standard.adult.v1",
+      "disabledReason": "UV reuse handoff or binding content is malformed or incompatible",
+      "detailDisabled": true,
+      "detailEnabledShaderParam": false,
+      "detailStrength": 0,
+      "proceduralPhenotypeRenderable": true,
+      "passed": true
+    },
+    {
+      "case": "incompatible UV scope",
+      "family": "horse.standard.adult.v1",
+      "disabledReason": "UV reuse status is not the approved retained-subset plus neutral-recovered-skin scope",
+      "detailDisabled": true,
+      "detailEnabledShaderParam": false,
+      "detailStrength": 0,
+      "proceduralPhenotypeRenderable": true,
+      "passed": true
+    },
+    {
+      "case": "stale source GLB",
+      "family": "horse.standard.adult.v1",
+      "disabledReason": "source GLB SHA-256 does not match family metadata",
+      "detailDisabled": true,
+      "detailEnabledShaderParam": false,
+      "detailStrength": 0,
+      "proceduralPhenotypeRenderable": true,
+      "passed": true
+    },
+    {
+      "case": "wrong family",
+      "family": "horse.compact.adult.v1",
+      "disabledReason": "signed detail is currently supported only for the Light adult Body",
+      "detailDisabled": true,
+      "detailEnabledShaderParam": false,
+      "detailStrength": 0,
+      "proceduralPhenotypeRenderable": true,
+      "passed": true
+    }
+  ],
+  "images": [
+    {
+      "file": "detail_baseline/light_body_detail_off.png",
+      "set": "detail_baseline",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "explicit cloned material comparison: accepted detail map disabled and strength zero; every other recipe input unchanged",
+      "fixtureId": "light_racer.chestnut",
+      "coatClassId": "chestnut",
+      "label": "Light \u00B7 athletic \u00B7 Chestnut",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None, FL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    }
+  ]
+}

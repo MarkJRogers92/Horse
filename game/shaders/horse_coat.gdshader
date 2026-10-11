@@ -24,6 +24,10 @@ uniform float sheen = 0.55;
 uniform sampler2D coat_normal : hint_normal, filter_linear_mipmap;
 uniform bool use_coat_normal = false;
 uniform float coat_normal_depth = 0.35;
+// Optional Light-only data map. No source_color hint: RGB8 is linear data, not albedo.
+uniform sampler2D signed_detail_map : filter_linear_mipmap, repeat_disable;
+uniform bool use_signed_detail = false;
+uniform float signed_detail_strength = 0.0;
 // markings
 uniform int face_type = 0;          // FaceMarking enum
 uniform vec4 face_params = vec4(0.08, 0.15, 0.35, 0.07); // star, strip, blaze, snip
@@ -70,6 +74,14 @@ void fragment() {
 	vec2 nuv = UV * vec2(40.0, 22.0);
 	float hair_var = fbm(nuv * 3.0);
 	vec3 col = body_color;
+	// Encoding rgb8_signed_multiplier_v1: 1 + ((R*255 - 128)/127)*0.12.
+	// Apply only to base trunk coat, before point/skin/primitive/white/hoof layers.
+	if (use_signed_detail && is_trunk) {
+		float detail_code = texture(signed_detail_map, UV).r * 255.0;
+		float signed_detail = ((detail_code - 128.0) / 127.0) * 0.12;
+		float detail_mask = (1.0 - smoothstep(0.25, 0.7, m.r)) * (1.0 - smoothstep(0.2, 0.9, m.g));
+		col *= 1.0 + signed_detail * clamp(signed_detail_strength, 0.0, 1.0) * detail_mask;
+	}
 	// shading modifiers (artistic, labelled): soft dapples and sooty topline
 	float dap = smoothstep(0.45, 0.75, fbm(UV * vec2(26.0, 14.0) + 3.1)) * dapple * (is_trunk ? 1.0 : 0.3);
 	col = mix(col, col * 1.12 + vec3(0.01), dap * 0.35);

@@ -1,0 +1,767 @@
+{
+  "format": "cloverbrook.capture-report.v1",
+  "godot": "4.7.2-stable (official)",
+  "renderer": "Apple M2 / 4.1 Metal - 90.5",
+  "catalog": "reference-assets.v1",
+  "warning": "Stills prove materials, markings and composition only - not animation quality, not art approval.",
+  "failures": 0,
+  "meshFamilies": {
+    "horse.standard.adult.v1": {
+      "scene": "res://assets/horse/production/horse_light.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.compact.adult.v1": {
+      "scene": "res://assets/horse/production/horse_stock.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.standard.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    },
+    "horse.compact.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    }
+  },
+  "unavailableAnimations": [],
+  "animationTrackEvidence": [
+    {
+      "fixtureId": "chestnut.foal",
+      "meshFamilyId": "horse.standard.foal.v1",
+      "animationPlayerFound": true,
+      "tracks": [
+        "Idle"
+      ],
+      "requestedAnimation": "idle",
+      "resolvedAnimation": "Idle",
+      "isPlayingAfterFrames": true,
+      "positionBeforeFrames": 0,
+      "positionAfterFrames": 0.19327799999999995,
+      "clipLengthSeconds": 4.041666507720947,
+      "positionAdvanced": true,
+      "hasExactLowercaseIdle": false,
+      "hasExactUppercaseIdle": true,
+      "skeletonBoneCount": 64,
+      "skeletonBoneNames": [
+        "Chest",
+        "Ear_L",
+        "Ear_R",
+        "FoalSmart_Bone_002",
+        "FoalSmart_Bone_003",
+        "FoalSmart_Bone_012",
+        "FoalSmart_Bone_013",
+        "FoalSmart_Bone_014",
+        "FoalSmart_Bone_017",
+        "FoalSmart_Bone_041",
+        "FoalSmart_Bone_042",
+        "FoalSmart_Bone_043",
+        "FoalSmart_Bone_050",
+        "FoalSmart_Bone_051",
+        "FoalSmart_Bone_052",
+        "FoalSmart_Bone_053",
+        "FoalSmart_Bone_054",
+        "FoalSmart_Bone_055",
+        "FoalSmart_Bone_056",
+        "FoalSmart_Bone_057",
+        "FoalSmart_Bone_058",
+        "Front_L_Cannon",
+        "Front_L_Forearm",
+        "Front_L_Hoof",
+        "Front_L_Hoof_02",
+        "Front_L_Hoof_03",
+        "Front_L_Pastern",
+        "Front_L_Upper",
+        "Front_R_Cannon",
+        "Front_R_Forearm",
+        "Front_R_Hoof",
+        "Front_R_Hoof_02",
+        "Front_R_Hoof_03",
+        "Front_R_Pastern",
+        "Front_R_Upper",
+        "Head",
+        "Head_Base",
+        "Head_Nose",
+        "Hind_L_Cannon",
+        "Hind_L_Gaskin",
+        "Hind_L_Hock",
+        "Hind_L_Hoof",
+        "Hind_L_Hoof_02",
+        "Hind_L_Hoof_03",
+        "Hind_L_Pastern",
+        "Hind_L_Upper",
+        "Hind_R_Cannon",
+        "Hind_R_Gaskin",
+        "Hind_R_Hock",
+        "Hind_R_Hoof",
+        "Hind_R_Hoof_02",
+        "Hind_R_Hoof_03",
+        "Hind_R_Pastern",
+        "Hind_R_Upper",
+        "Jaw_Tip",
+        "Neck",
+        "Neck_Base",
+        "Pelvis",
+        "Pelvis_Root",
+        "Root",
+        "Spine_Base",
+        "Tail_01",
+        "Tail_02",
+        "Tail_03"
+      ],
+      "meshComponents": [
+        "Body",
+        "Eyes",
+        "Mane",
+        "Tail"
+      ]
+    },
+    {
+      "fixtureId": "light_racer.chestnut",
+      "meshFamilyId": "horse.standard.adult.v1",
+      "animationPlayerFound": true,
+      "tracks": [
+        "Idle"
+      ],
+      "requestedAnimation": "idle",
+      "resolvedAnimation": "Idle",
+      "isPlayingAfterFrames": true,
+      "positionBeforeFrames": 0,
+      "positionAfterFrames": 1.6149799999999968,
+      "clipLengthSeconds": 4.041666507720947,
+      "positionAdvanced": true,
+      "hasExactLowercaseIdle": false,
+      "hasExactUppercaseIdle": true,
+      "skeletonBoneCount": 58,
+      "skeletonBoneNames": [
+        "Chest",
+        "Ear_L",
+        "Ear_L_02",
+        "Ear_L_03",
+        "Ear_R",
+        "Ear_R_02",
+        "Ear_R_03",
+        "Front_L_Cannon",
+        "Front_L_Forearm",
+        "Front_L_Hoof",
+        "Front_L_Hoof_02",
+        "Front_L_Hoof_03",
+        "Front_L_Pastern",
+        "Front_L_Upper",
+        "Front_R_Cannon",
+        "Front_R_Forearm",
+        "Front_R_Hoof",
+        "Front_R_Hoof_02",
+        "Front_R_Hoof_03",
+        "Front_R_Pastern",
+        "Front_R_Upper",
+        "Head",
+        "Head_Base",
+        "Head_Nose",
+        "Head_Upper",
+        "Hind_L_Cannon",
+        "Hind_L_Gaskin",
+        "Hind_L_Hoof",
+        "Hind_L_Hoof_02",
+        "Hind_L_Pastern",
+        "Hind_L_Upper",
+        "Hind_R_Cannon",
+        "Hind_R_Gaskin",
+        "Hind_R_Hoof",
+        "Hind_R_Hoof_02",
+        "Hind_R_Pastern",
+        "Hind_R_Upper",
+        "Jaw_Mid",
+        "Jaw_Tip",
+        "Jaw_Upper",
+        "Neck",
+        "Neck_Base",
+        "Neck_Mid",
+        "Neck_Top",
+        "Neck_Upper",
+        "Pelvis",
+        "Pelvis_Root",
+        "Root",
+        "Spine",
+        "Spine_Mid",
+        "Spine_Upper",
+        "Tail_01",
+        "Tail_02",
+        "Tail_03",
+        "Tail_04",
+        "Tail_05",
+        "Tail_06",
+        "Tail_07"
+      ],
+      "meshComponents": [
+        "Body",
+        "Eyes",
+        "Mane",
+        "Tail"
+      ]
+    },
+    {
+      "fixtureId": "stock_muscular.black",
+      "meshFamilyId": "horse.compact.adult.v1",
+      "animationPlayerFound": true,
+      "tracks": [
+        "Idle"
+      ],
+      "requestedAnimation": "idle",
+      "resolvedAnimation": "Idle",
+      "isPlayingAfterFrames": true,
+      "positionBeforeFrames": 0,
+      "positionAfterFrames": 1.5335959999999977,
+      "clipLengthSeconds": 4.041666507720947,
+      "positionAdvanced": true,
+      "hasExactLowercaseIdle": false,
+      "hasExactUppercaseIdle": true,
+      "skeletonBoneCount": 58,
+      "skeletonBoneNames": [
+        "Chest",
+        "Ear_L",
+        "Ear_L_02",
+        "Ear_L_03",
+        "Ear_R",
+        "Ear_R_02",
+        "Ear_R_03",
+        "Front_L_Cannon",
+        "Front_L_Forearm",
+        "Front_L_Hoof",
+        "Front_L_Hoof_02",
+        "Front_L_Hoof_03",
+        "Front_L_Pastern",
+        "Front_L_Upper",
+        "Front_R_Cannon",
+        "Front_R_Forearm",
+        "Front_R_Hoof",
+        "Front_R_Hoof_02",
+        "Front_R_Hoof_03",
+        "Front_R_Pastern",
+        "Front_R_Upper",
+        "Head",
+        "Head_Base",
+        "Head_Nose",
+        "Head_Upper",
+        "Hind_L_Cannon",
+        "Hind_L_Gaskin",
+        "Hind_L_Hoof",
+        "Hind_L_Hoof_02",
+        "Hind_L_Pastern",
+        "Hind_L_Upper",
+        "Hind_R_Cannon",
+        "Hind_R_Gaskin",
+        "Hind_R_Hoof",
+        "Hind_R_Hoof_02",
+        "Hind_R_Pastern",
+        "Hind_R_Upper",
+        "Jaw_Mid",
+        "Jaw_Tip",
+        "Jaw_Upper",
+        "Neck",
+        "Neck_Base",
+        "Neck_Mid",
+        "Neck_Top",
+        "Neck_Upper",
+        "Pelvis",
+        "Pelvis_Root",
+        "Root",
+        "Spine",
+        "Spine_Mid",
+        "Spine_Upper",
+        "Tail_01",
+        "Tail_02",
+        "Tail_03",
+        "Tail_04",
+        "Tail_05",
+        "Tail_06",
+        "Tail_07"
+      ],
+      "meshComponents": [
+        "Body",
+        "Eyes",
+        "Mane",
+        "Tail"
+      ]
+    }
+  ],
+  "foalIdleEvidence": [
+    {
+      "fixtureId": "chestnut.foal",
+      "meshFamilyId": "horse.standard.foal.v1",
+      "resolvedAnimation": "Idle",
+      "tracks": [
+        "Idle"
+      ],
+      "importedTrackPaths": [
+        "Skeleton/Skeleton3D:FoalSmart_Bone_003",
+        "Skeleton/Skeleton3D:Hind_R_Hoof_02",
+        "Skeleton/Skeleton3D:Spine_Base",
+        "Skeleton/Skeleton3D:Neck",
+        "Skeleton/Skeleton3D:FoalSmart_Bone_043",
+        "Skeleton/Skeleton3D:FoalSmart_Bone_050",
+        "Skeleton/Skeleton3D:Head",
+        "Skeleton/Skeleton3D:Tail_01"
+      ],
+      "importedTrackSamples": [
+        {
+          "path": "Skeleton/Skeleton3D:FoalSmart_Bone_003",
+          "type": "Rotation3D",
+          "keyCount": 123,
+          "firstKeyTime": 0,
+          "middleKeyTime": 2.0333333015441895,
+          "lastKeyTime": 4.041666507720947,
+          "firstKeyValue": "(0.232286, -0.428746, -0.838625, 0.242752)",
+          "middleKeyValue": "(0.232286, -0.428746, -0.838625, 0.242752)",
+          "lastKeyValue": "(0.232286, -0.428746, -0.838625, 0.242752)"
+        },
+        {
+          "path": "Skeleton/Skeleton3D:Hind_R_Hoof_02",
+          "type": "Rotation3D",
+          "keyCount": 123,
+          "firstKeyTime": 0,
+          "middleKeyTime": 2.0333333015441895,
+          "lastKeyTime": 4.041666507720947,
+          "firstKeyValue": "(0.145937, 0.639286, -0.639287, 0.401657)",
+          "middleKeyValue": "(0.145937, 0.639286, -0.639287, 0.401657)",
+          "lastKeyValue": "(0.145937, 0.639286, -0.639287, 0.401657)"
+        },
+        {
+          "path": "Skeleton/Skeleton3D:Spine_Base",
+          "type": "Rotation3D",
+          "keyCount": 123,
+          "firstKeyTime": 0,
+          "middleKeyTime": 2.0333333015441895,
+          "lastKeyTime": 4.041666507720947,
+          "firstKeyValue": "(0.156083, -0.36997, -0.901096, 0.163664)",
+          "middleKeyValue": "(0.156173, -0.368875, -0.901617, 0.16318)",
+          "lastKeyValue": "(0.156083, -0.36997, -0.901096, 0.163664)"
+        },
+        {
+          "path": "Skeleton/Skeleton3D:Neck",
+          "type": "Rotation3D",
+          "keyCount": 123,
+          "firstKeyTime": 0,
+          "middleKeyTime": 2.0333333015441895,
+          "lastKeyTime": 4.041666507720947,
+          "firstKeyValue": "(0.503665, 0.471764, 0.284037, 0.665645)",
+          "middleKeyValue": "(0.502424, 0.472346, 0.283337, 0.666468)",
+          "lastKeyValue": "(0.503665, 0.471764, 0.284037, 0.665645)"
+        },
+        {
+          "path": "Skeleton/Skeleton3D:FoalSmart_Bone_043",
+          "type": "Rotation3D",
+          "keyCount": 123,
+          "firstKeyTime": 0,
+          "middleKeyTime": 2.0333333015441895,
+          "lastKeyTime": 4.041666507720947,
+          "firstKeyValue": "(-0.899429, -0.393027, -0.010297, 0.190921)",
+          "middleKeyValue": "(-0.899429, -0.393027, -0.010297, 0.190921)",
+          "lastKeyValue": "(-0.899429, -0.393027, -0.010297, 0.190921)"
+        },
+        {
+          "path": "Skeleton/Skeleton3D:FoalSmart_Bone_050",
+          "type": "Rotation3D",
+          "keyCount": 123,
+          "firstKeyTime": 0,
+          "middleKeyTime": 2.0333333015441895,
+          "lastKeyTime": 4.041666507720947,
+          "firstKeyValue": "(-0.623299, -0.458662, -0.557288, 0.300928)",
+          "middleKeyValue": "(-0.623299, -0.458662, -0.557288, 0.300928)",
+          "lastKeyValue": "(-0.623299, -0.458662, -0.557288, 0.300928)"
+        },
+        {
+          "path": "Skeleton/Skeleton3D:Head",
+          "type": "Rotation3D",
+          "keyCount": 123,
+          "firstKeyTime": 0,
+          "middleKeyTime": 2.0333333015441895,
+          "lastKeyTime": 4.041666507720947,
+          "firstKeyValue": "(-0.860214, -0.320812, -0.37887, 0.11649)",
+          "middleKeyValue": "(-0.859941, -0.321582, -0.37875, 0.116769)",
+          "lastKeyValue": "(-0.860214, -0.320812, -0.37887, 0.11649)"
+        },
+        {
+          "path": "Skeleton/Skeleton3D:Tail_01",
+          "type": "Scale3D",
+          "keyCount": 123,
+          "firstKeyTime": 0,
+          "middleKeyTime": 2.0333333015441895,
+          "lastKeyTime": 4.041666507720947,
+          "firstKeyValue": "(1.0, 1.0, 1.000022)",
+          "middleKeyValue": "(1.0, 1.0, 1.000022)",
+          "lastKeyValue": "(1.0, 1.0, 1.000022)"
+        }
+      ],
+      "animatorRootNode": "..",
+      "animatorRootResolvedPath": "/root/CaptureRunner/Stage/Horse/Model",
+      "modelPath": "/root/CaptureRunner/Stage/Horse/Model",
+      "animationPlayerPath": "/root/CaptureRunner/Stage/Horse/Model/AnimationPlayer",
+      "animationRootHasExpectedSkeleton": true,
+      "clipLengthSeconds": 4.041666507720947,
+      "playbackAdvanced": true,
+      "rootStayedFixed": true,
+      "headOrNeckPoseChanged": true,
+      "maximumHeadNeckPositionDelta": 0,
+      "maximumHeadNeckRotationDeltaRadians": 0.0033829133,
+      "headNeckPoseWithinSmallMotionBounds": true,
+      "samples": [
+        {
+          "sample": "quarter",
+          "timeSeconds": 1.0167020000000007,
+          "rootPositionDelta": 0,
+          "rootRotationDeltaRadians": 0,
+          "neckPositionDelta": 0,
+          "neckRotationDeltaRadians": 0.0016914561,
+          "headPositionDelta": 0,
+          "headRotationDeltaRadians": 0
+        },
+        {
+          "sample": "midpoint",
+          "timeSeconds": 2.0241026666666655,
+          "rootPositionDelta": 0,
+          "rootRotationDeltaRadians": 0,
+          "neckPositionDelta": 0,
+          "neckRotationDeltaRadians": 0.0033829133,
+          "headPositionDelta": 0,
+          "headRotationDeltaRadians": 0.001544081
+        }
+      ]
+    }
+  ],
+  "adultIdleImportEvidence": [
+    {
+      "fixtureId": "light_racer.chestnut",
+      "meshFamilyId": "horse.standard.adult.v1",
+      "resolvedAnimation": "Idle",
+      "clipLengthSeconds": 4.041666507720947,
+      "headTrackKeyCount": 21,
+      "leftEarTrackKeyCount": 53,
+      "playbackAdvanced": true,
+      "rootStayedFixed": true,
+      "headRotationDeltaRadians": 0.0039062523,
+      "headPoseChanged": true
+    },
+    {
+      "fixtureId": "stock_muscular.black",
+      "meshFamilyId": "horse.compact.adult.v1",
+      "resolvedAnimation": "Idle",
+      "clipLengthSeconds": 4.041666507720947,
+      "headTrackKeyCount": 21,
+      "leftEarTrackKeyCount": 53,
+      "playbackAdvanced": true,
+      "rootStayedFixed": true,
+      "headRotationDeltaRadians": 0.004784164,
+      "headPoseChanged": true
+    }
+  ],
+  "foalRigEvidence": [
+    {
+      "fixtureId": "chestnut.foal",
+      "meshFamilyId": "horse.standard.foal.v1",
+      "skeletonCount": 1,
+      "boneCount": 64,
+      "expectedSkinJointCount": 64,
+      "headParent": "Head_Base",
+      "headAncestry": [
+        "Head",
+        "Head_Base",
+        "FoalSmart_Bone_050",
+        "FoalSmart_Bone_051",
+        "FoalSmart_Bone_043",
+        "Neck",
+        "Neck_Base",
+        "Chest",
+        "Spine_Base",
+        "Pelvis",
+        "Pelvis_Root",
+        "Root"
+      ],
+      "headAncestryReachesNeck": true
+    }
+  ],
+  "viewerPathEvidence": [],
+  "appearancePerformance": null,
+  "meshLodEvidence": [
+    {
+      "fixtureId": "chestnut.foal",
+      "component": "Body",
+      "surface": 0,
+      "baseIndexBytes": 76908,
+      "lodCount": 5,
+      "lods": [
+        {
+          "edgeLength": 0.008173657,
+          "indexDataBytes": 38448
+        },
+        {
+          "edgeLength": 0.015973743,
+          "indexDataBytes": 19224
+        },
+        {
+          "edgeLength": 0.031345043,
+          "indexDataBytes": 9612
+        },
+        {
+          "edgeLength": 0.07123971,
+          "indexDataBytes": 4800
+        },
+        {
+          "edgeLength": 0.91965765,
+          "indexDataBytes": 2400
+        }
+      ]
+    },
+    {
+      "fixtureId": "chestnut.foal",
+      "component": "Eyes",
+      "surface": 0,
+      "baseIndexBytes": 8640,
+      "lodCount": 8,
+      "lods": [
+        {
+          "edgeLength": 0.00040725575,
+          "indexDataBytes": 4320
+        },
+        {
+          "edgeLength": 0.0007291851,
+          "indexDataBytes": 2160
+        },
+        {
+          "edgeLength": 0.0010937777,
+          "indexDataBytes": 1080
+        },
+        {
+          "edgeLength": 0.0024290774,
+          "indexDataBytes": 540
+        },
+        {
+          "edgeLength": 0.004482369,
+          "indexDataBytes": 264
+        },
+        {
+          "edgeLength": 0.010246214,
+          "indexDataBytes": 132
+        },
+        {
+          "edgeLength": 0.015369323,
+          "indexDataBytes": 60
+        },
+        {
+          "edgeLength": 0.10927436,
+          "indexDataBytes": 36
+        }
+      ]
+    },
+    {
+      "fixtureId": "chestnut.foal",
+      "component": "Mane",
+      "surface": 0,
+      "baseIndexBytes": 2424,
+      "lodCount": 3,
+      "lods": [
+        {
+          "edgeLength": 0.010410022,
+          "indexDataBytes": 1212
+        },
+        {
+          "edgeLength": 0.04241574,
+          "indexDataBytes": 600
+        },
+        {
+          "edgeLength": 0.16412559,
+          "indexDataBytes": 216
+        }
+      ]
+    },
+    {
+      "fixtureId": "chestnut.foal",
+      "component": "Tail",
+      "surface": 0,
+      "baseIndexBytes": 360,
+      "lodCount": 2,
+      "lods": [
+        {
+          "edgeLength": 0.024114816,
+          "indexDataBytes": 180
+        },
+        {
+          "edgeLength": 0.045952737,
+          "indexDataBytes": 132
+        }
+      ]
+    }
+  ],
+  "signedDetailEvidence": [],
+  "signedDetailFallbackEvidence": [],
+  "images": [
+    {
+      "file": "foal_idle/initial_head.png",
+      "set": "foal_idle",
+      "view": "initial_head",
+      "lighting": "Neutral",
+      "note": "neutral lighting during initial imported Idle playback; runtime contract evidence only",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal_idle/initial_front.png",
+      "set": "foal_idle",
+      "view": "initial_front",
+      "lighting": "Neutral",
+      "note": "neutral lighting during initial imported Idle playback; runtime contract evidence only",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal_idle/initial_side.png",
+      "set": "foal_idle",
+      "view": "initial_side",
+      "lighting": "Neutral",
+      "note": "neutral lighting during initial imported Idle playback; runtime contract evidence only",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal_idle/initial_q3.png",
+      "set": "foal_idle",
+      "view": "initial_q3",
+      "lighting": "Neutral",
+      "note": "neutral lighting during initial imported Idle playback; runtime contract evidence only",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal_idle/quarter_head.png",
+      "set": "foal_idle",
+      "view": "quarter_head",
+      "lighting": "Neutral",
+      "note": "neutral capture during advancing imported foal Idle playback; runtime contract evidence only",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal_idle/quarter_front.png",
+      "set": "foal_idle",
+      "view": "quarter_front",
+      "lighting": "Neutral",
+      "note": "neutral capture during advancing imported foal Idle playback; runtime contract evidence only",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal_idle/quarter_side.png",
+      "set": "foal_idle",
+      "view": "quarter_side",
+      "lighting": "Neutral",
+      "note": "neutral capture during advancing imported foal Idle playback; runtime contract evidence only",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal_idle/quarter_q3.png",
+      "set": "foal_idle",
+      "view": "quarter_q3",
+      "lighting": "Neutral",
+      "note": "neutral capture during advancing imported foal Idle playback; runtime contract evidence only",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal_idle/midpoint_head.png",
+      "set": "foal_idle",
+      "view": "midpoint_head",
+      "lighting": "Neutral",
+      "note": "neutral capture during advancing imported foal Idle playback; runtime contract evidence only",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal_idle/midpoint_front.png",
+      "set": "foal_idle",
+      "view": "midpoint_front",
+      "lighting": "Neutral",
+      "note": "neutral capture during advancing imported foal Idle playback; runtime contract evidence only",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal_idle/midpoint_side.png",
+      "set": "foal_idle",
+      "view": "midpoint_side",
+      "lighting": "Neutral",
+      "note": "neutral capture during advancing imported foal Idle playback; runtime contract evidence only",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    }
+  ]
+}

@@ -1,0 +1,1251 @@
+{
+  "schema": "horse-anatomy-landmarks.v1",
+  "taskId": "horse-production-20261011",
+  "status": "juvenile candidate; target and motion acceptance remain with independent review",
+  "asset": {
+    "familyId": "horse.foal",
+    "glb": "game/assets/horse/production/horse_foal.glb",
+    "glbSha256": "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a",
+    "blend": "art/derived/production/horse_foal.blend",
+    "blendSha256": "4322de7c3b97e6aa0e71111a6ab0de325f72f4f905424b4ff6e8d22df0ca041b",
+    "manifestSha256": "c77a3eb46cd93739ea0a414c6607dcb9f6d26b253c5b48e1846de7c77088acfe"
+  },
+  "coordinateSpace": {
+    "units": "metres",
+    "source": "Blender object-local XYZ; identity transform",
+    "godotXYZFromBlender": "(x,z,-y)",
+    "forward": "+X",
+    "left": "+Y",
+    "up": "+Z"
+  },
+  "headViewTarget_m": {
+    "godotXYZ": [
+      0.593083,
+      1.199694,
+      -0.00107
+    ],
+    "method": "componentwise midpoint of cached centered crown poll and muzzle surface points, transformed Blender XYZ to Godot XYZ"
+  },
+  "landmarks": [
+    {
+      "name": "ear_R_root",
+      "kind": "geometry_surface",
+      "confidence": "high",
+      "source": "Body ear-shell vertex sample",
+      "blenderXYZ_m": [
+        0.49823,
+        -0.04992,
+        1.37059
+      ],
+      "godotXYZ_m": [
+        0.49823,
+        1.37059,
+        0.04992
+      ]
+    },
+    {
+      "name": "ear_R_tip",
+      "kind": "geometry_surface",
+      "confidence": "high",
+      "source": "Body ear-shell vertex sample",
+      "blenderXYZ_m": [
+        0.52373,
+        -0.07362,
+        1.44568
+      ],
+      "godotXYZ_m": [
+        0.52373,
+        1.44568,
+        0.07362
+      ]
+    },
+    {
+      "name": "ear_L_root",
+      "kind": "geometry_surface",
+      "confidence": "high",
+      "source": "Body ear-shell vertex sample",
+      "blenderXYZ_m": [
+        0.48544,
+        0.09011,
+        1.37102
+      ],
+      "godotXYZ_m": [
+        0.48544,
+        1.37102,
+        -0.09011
+      ]
+    },
+    {
+      "name": "ear_L_tip",
+      "kind": "geometry_surface",
+      "confidence": "high",
+      "source": "Body ear-shell vertex sample",
+      "blenderXYZ_m": [
+        0.52274,
+        0.07101,
+        1.44612
+      ],
+      "godotXYZ_m": [
+        0.52274,
+        1.44612,
+        -0.07101
+      ]
+    },
+    {
+      "name": "eye_right_center",
+      "kind": "fitted_component_center",
+      "confidence": "medium",
+      "source": "Eyes sphere fit; runtime close-up required",
+      "blenderXYZ_m": [
+        0.55668,
+        -0.0778,
+        1.23288
+      ],
+      "godotXYZ_m": [
+        0.55668,
+        1.23288,
+        0.0778
+      ]
+    },
+    {
+      "name": "eye_left_center",
+      "kind": "fitted_component_center",
+      "confidence": "medium",
+      "source": "Eyes sphere fit; runtime close-up required",
+      "blenderXYZ_m": [
+        0.55691,
+        0.07689,
+        1.23248
+      ],
+      "godotXYZ_m": [
+        0.55691,
+        1.23248,
+        -0.07689
+      ]
+    },
+    {
+      "name": "nostril_R",
+      "kind": "geometry_surface_reference",
+      "confidence": "medium",
+      "source": "nearest Body surface to anatomical nostril probe; fit distance retained in build manifest",
+      "blenderXYZ_m": [
+        0.67262,
+        -0.03893,
+        1.09865
+      ],
+      "godotXYZ_m": [
+        0.67262,
+        1.09865,
+        0.03893
+      ]
+    },
+    {
+      "name": "nostril_L",
+      "kind": "geometry_surface_reference",
+      "confidence": "medium",
+      "source": "nearest Body surface to anatomical nostril probe; fit distance retained in build manifest",
+      "blenderXYZ_m": [
+        0.6725,
+        0.03879,
+        1.09807
+      ],
+      "godotXYZ_m": [
+        0.6725,
+        1.09807,
+        -0.03879
+      ]
+    },
+    {
+      "name": "poll_between_ears",
+      "kind": "geometry_surface",
+      "confidence": "medium",
+      "source": "source geometry head-axis poll ray; use alongside visible proof",
+      "blenderXYZ_m": [
+        0.49184,
+        0.0,
+        1.32256
+      ],
+      "godotXYZ_m": [
+        0.49184,
+        1.32256,
+        -0.0
+      ]
+    },
+    {
+      "name": "muzzle_tip",
+      "kind": "geometry_surface",
+      "confidence": "high",
+      "source": "source geometry muzzle-tip landmark",
+      "blenderXYZ_m": [
+        0.69433,
+        0.00214,
+        1.07683
+      ],
+      "godotXYZ_m": [
+        0.69433,
+        1.07683,
+        -0.00214
+      ]
+    },
+    {
+      "name": "neck_base_joint",
+      "kind": "bone_joint",
+      "confidence": "high",
+      "source": "Skeleton.Neck_Base head; not a surface point",
+      "blenderXYZ_m": [
+        -0.08754,
+        0.00282,
+        0.95734
+      ],
+      "godotXYZ_m": [
+        -0.08754,
+        0.95734,
+        -0.00282
+      ]
+    },
+    {
+      "name": "mane_poll_side_endpoint",
+      "kind": "geometry_surface",
+      "confidence": "medium",
+      "source": "Mane component endpoint on poll-side; measured x=0.515m, about 17-30mm forward of sampled ear roots on this foal, not behind the ears",
+      "blenderXYZ_m": [
+        0.515,
+        0.0,
+        1.33938
+      ],
+      "godotXYZ_m": [
+        0.515,
+        1.33938,
+        -0.0
+      ],
+      "note": "Actual current Mane endpoint position; it does not sit behind the ear-root landmarks."
+    },
+    {
+      "name": "mane_end_at_withers",
+      "kind": "geometry_surface",
+      "confidence": "medium",
+      "source": "Mane tube root at withers; legacy field maneStart_m",
+      "blenderXYZ_m": [
+        0.08,
+        0.0,
+        1.08312
+      ],
+      "godotXYZ_m": [
+        0.08,
+        1.08312,
+        -0.0
+      ]
+    },
+    {
+      "name": "tail_root_surface",
+      "kind": "geometry_surface",
+      "confidence": "medium",
+      "source": "authored Tail attachment surface point",
+      "blenderXYZ_m": [
+        -0.45459,
+        0.0,
+        1.04819
+      ],
+      "godotXYZ_m": [
+        -0.45459,
+        1.04819,
+        -0.0
+      ]
+    },
+    {
+      "name": "neck_mid_joint",
+      "kind": "bone_joint",
+      "confidence": "high",
+      "source": "Skeleton.Neck.head_local",
+      "blenderXYZ_m": [
+        0.076248,
+        0.002824,
+        0.940391
+      ],
+      "godotXYZ_m": [
+        0.076248,
+        0.940391,
+        -0.002824
+      ]
+    },
+    {
+      "name": "neck_joint_nearest_surface_projection",
+      "kind": "geometry_surface_projection",
+      "confidence": "projection_only",
+      "source": "Nearest Body surface to Skeleton.Neck joint; projection evidence only, not an anatomical surface label",
+      "blenderXYZ_m": [
+        0.056742,
+        0.082471,
+        0.999061
+      ],
+      "godotXYZ_m": [
+        0.056742,
+        0.999061,
+        -0.082471
+      ],
+      "surfaceDistance_m": 0.100828
+    },
+    {
+      "name": "head_neck_junction_joint",
+      "kind": "bone_joint",
+      "confidence": "high",
+      "source": "Skeleton.Head_Base.head_local",
+      "blenderXYZ_m": [
+        0.386888,
+        0.002824,
+        1.301863
+      ],
+      "godotXYZ_m": [
+        0.386888,
+        1.301863,
+        -0.002824
+      ]
+    },
+    {
+      "name": "head_base_joint_nearest_surface_projection",
+      "kind": "geometry_surface_projection",
+      "confidence": "projection_only",
+      "source": "Nearest Body surface to Skeleton.Head_Base joint; projection evidence only, not an independently measured junction",
+      "blenderXYZ_m": [
+        0.384763,
+        0.020145,
+        1.299165
+      ],
+      "godotXYZ_m": [
+        0.384763,
+        1.299165,
+        -0.020145
+      ],
+      "surfaceDistance_m": 0.017658
+    },
+    {
+      "name": "neck_base_joint_nearest_surface_projection",
+      "kind": "geometry_surface_projection",
+      "confidence": "projection_only",
+      "source": "Nearest Body surface to Skeleton.Neck_Base joint; this point lies behind the withers, not on the lower neck",
+      "blenderXYZ_m": [
+        -0.084755,
+        0.028941,
+        1.023046
+      ],
+      "godotXYZ_m": [
+        -0.084755,
+        1.023046,
+        -0.028941
+      ],
+      "surfaceDistance_m": 0.070762
+    },
+    {
+      "name": "middle_neck_R",
+      "kind": "body_lateral_ray_hit",
+      "confidence": "measured surface at named approximate probe station",
+      "source": "Lateral Body surface at approximate middle-neck station; ray hit on evaluated Body mesh, not projected from a bone",
+      "blenderXYZ_m": [
+        0.285,
+        -0.06788,
+        1.11
+      ],
+      "godotXYZ_m": [
+        0.285,
+        1.11,
+        0.06788
+      ],
+      "probeXZ_blender_m": [
+        0.285,
+        1.11
+      ],
+      "rayOrigin_blenderXYZ_m": [
+        0.285,
+        -0.6,
+        1.11
+      ],
+      "rayDirection_blenderXYZ": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "bodyFaceIndex": 4190,
+      "normal_blenderXYZ": [
+        0.084221,
+        -0.995688,
+        0.038889
+      ]
+    },
+    {
+      "name": "middle_neck_L",
+      "kind": "body_lateral_ray_hit",
+      "confidence": "measured surface at named approximate probe station",
+      "source": "Lateral Body surface at approximate middle-neck station; ray hit on evaluated Body mesh, not projected from a bone",
+      "blenderXYZ_m": [
+        0.285,
+        0.066836,
+        1.11
+      ],
+      "godotXYZ_m": [
+        0.285,
+        1.11,
+        -0.066836
+      ],
+      "probeXZ_blender_m": [
+        0.285,
+        1.11
+      ],
+      "rayOrigin_blenderXYZ_m": [
+        0.285,
+        0.6,
+        1.11
+      ],
+      "rayDirection_blenderXYZ": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "bodyFaceIndex": 8871,
+      "normal_blenderXYZ": [
+        0.054614,
+        0.995118,
+        0.082202
+      ]
+    },
+    {
+      "name": "neck_shoulder_transition_R",
+      "kind": "body_lateral_ray_hit",
+      "confidence": "measured surface at named approximate probe station",
+      "source": "Lateral Body surface at approximate neck-to-shoulder transition; ray hit on evaluated Body mesh, not projected from a bone",
+      "blenderXYZ_m": [
+        0.2,
+        -0.125219,
+        0.9
+      ],
+      "godotXYZ_m": [
+        0.2,
+        0.9,
+        0.125219
+      ],
+      "probeXZ_blender_m": [
+        0.2,
+        0.9
+      ],
+      "rayOrigin_blenderXYZ_m": [
+        0.2,
+        -0.6,
+        0.9
+      ],
+      "rayDirection_blenderXYZ": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "bodyFaceIndex": 980,
+      "normal_blenderXYZ": [
+        0.100128,
+        -0.988192,
+        0.115979
+      ]
+    },
+    {
+      "name": "neck_shoulder_transition_L",
+      "kind": "body_lateral_ray_hit",
+      "confidence": "measured surface at named approximate probe station",
+      "source": "Lateral Body surface at approximate neck-to-shoulder transition; ray hit on evaluated Body mesh, not projected from a bone",
+      "blenderXYZ_m": [
+        0.2,
+        0.124386,
+        0.9
+      ],
+      "godotXYZ_m": [
+        0.2,
+        0.9,
+        -0.124386
+      ],
+      "probeXZ_blender_m": [
+        0.2,
+        0.9
+      ],
+      "rayOrigin_blenderXYZ_m": [
+        0.2,
+        0.6,
+        0.9
+      ],
+      "rayDirection_blenderXYZ": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "bodyFaceIndex": 11850,
+      "normal_blenderXYZ": [
+        0.092224,
+        0.989541,
+        0.110918
+      ]
+    },
+    {
+      "name": "head_jaw_neck_transition_R",
+      "kind": "body_lateral_ray_hit",
+      "confidence": "measured surface at named approximate probe station",
+      "source": "Lateral Body surface at approximate head/jaw-to-neck transition; ray hit on evaluated Body mesh, not projected from a bone",
+      "blenderXYZ_m": [
+        0.46,
+        -0.066542,
+        1.14
+      ],
+      "godotXYZ_m": [
+        0.46,
+        1.14,
+        0.066542
+      ],
+      "probeXZ_blender_m": [
+        0.46,
+        1.14
+      ],
+      "rayOrigin_blenderXYZ_m": [
+        0.46,
+        -0.6,
+        1.14
+      ],
+      "rayDirection_blenderXYZ": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "bodyFaceIndex": 4007,
+      "normal_blenderXYZ": [
+        -0.155973,
+        -0.957413,
+        -0.242968
+      ]
+    },
+    {
+      "name": "head_jaw_neck_transition_L",
+      "kind": "body_lateral_ray_hit",
+      "confidence": "measured surface at named approximate probe station",
+      "source": "Lateral Body surface at approximate head/jaw-to-neck transition; ray hit on evaluated Body mesh, not projected from a bone",
+      "blenderXYZ_m": [
+        0.46,
+        0.065849,
+        1.14
+      ],
+      "godotXYZ_m": [
+        0.46,
+        1.14,
+        -0.065849
+      ],
+      "probeXZ_blender_m": [
+        0.46,
+        1.14
+      ],
+      "rayOrigin_blenderXYZ_m": [
+        0.46,
+        0.6,
+        1.14
+      ],
+      "rayDirection_blenderXYZ": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "bodyFaceIndex": 8931,
+      "normal_blenderXYZ": [
+        -0.136022,
+        0.952217,
+        -0.273461
+      ]
+    }
+  ],
+  "legacyManifestFields": {
+    "manePollSideEndpoint": "legacy anatomyLandmarks.manePollEnd_m; current endpoint is 16.77-29.56mm forward (+X) of sampled ear roots, not behind the ears",
+    "maneEndAtWithers": "legacy anatomyLandmarks.maneStart_m; withers-side Mane crest root",
+    "neckBase_m": "Skeleton.Neck_Base head joint; its nearest Body projection is behind the withers, not a lower-neck surface landmark",
+    "neckSurfaceReferences": "Bilateral lateral ray hits on evaluated Body at named approximate probe stations; face IDs, normals, origin, and direction are retained",
+    "jawTip_m": "Non-deforming semantic helper exactly aliases muzzle_m; not an independent jaw/head-neck surface measurement"
+  },
+  "surfaceProjectionCaveat": "Bone-to-surface nearest projections report computed geometric distances only. They are not independent anatomical labels; the Neck_Base projection is behind the withers.",
+  "proof": {
+    "projectionCalibration": {
+      "imageSize_px": [
+        900,
+        700
+      ],
+      "renderPercentage": 100,
+      "source": "rest camera settings at 100%; exact body-local coordinates projected with Blender world_to_camera_view"
+    },
+    "screenCoordinates": {
+      "front": [
+        {
+          "name": "ear_R_root",
+          "x_px": 427.5,
+          "y_px": 84.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "ear_R_tip",
+          "x_px": 416.9,
+          "y_px": 50.4,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "ear_L_root",
+          "x_px": 490.5,
+          "y_px": 84.0,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "ear_L_tip",
+          "x_px": 482.0,
+          "y_px": 50.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "eye_right_center",
+          "x_px": 415.0,
+          "y_px": 146.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "eye_left_center",
+          "x_px": 484.6,
+          "y_px": 146.4,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "nostril_R",
+          "x_px": 432.5,
+          "y_px": 206.6,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "nostril_L",
+          "x_px": 467.5,
+          "y_px": 206.9,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "poll_between_ears",
+          "x_px": 450.0,
+          "y_px": 105.8,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "muzzle_tip",
+          "x_px": 451.0,
+          "y_px": 216.4,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_base_joint",
+          "x_px": 451.3,
+          "y_px": 270.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "mane_poll_side_endpoint",
+          "x_px": 450.0,
+          "y_px": 98.3,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "mane_end_at_withers",
+          "x_px": 450.0,
+          "y_px": 213.6,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "tail_root_surface",
+          "x_px": 450.0,
+          "y_px": 229.3,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_mid_joint",
+          "x_px": 451.3,
+          "y_px": 277.8,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_joint_nearest_surface_projection",
+          "x_px": 487.1,
+          "y_px": 251.4,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_neck_junction_joint",
+          "x_px": 451.3,
+          "y_px": 115.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_base_joint_nearest_surface_projection",
+          "x_px": 459.1,
+          "y_px": 116.4,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_base_joint_nearest_surface_projection",
+          "x_px": 463.0,
+          "y_px": 240.6,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "middle_neck_R",
+          "x_px": 419.5,
+          "y_px": 201.5,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "middle_neck_L",
+          "x_px": 480.1,
+          "y_px": 201.5,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_shoulder_transition_R",
+          "x_px": 393.7,
+          "y_px": 296.0,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_shoulder_transition_L",
+          "x_px": 506.0,
+          "y_px": 296.0,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_jaw_neck_transition_R",
+          "x_px": 420.1,
+          "y_px": 188.0,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_jaw_neck_transition_L",
+          "x_px": 479.6,
+          "y_px": 188.0,
+          "inFrontOfCamera": true
+        }
+      ],
+      "near": [
+        {
+          "name": "ear_R_root",
+          "x_px": 651.7,
+          "y_px": 84.4,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "ear_R_tip",
+          "x_px": 663.2,
+          "y_px": 50.7,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "ear_L_root",
+          "x_px": 645.9,
+          "y_px": 83.8,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "ear_L_tip",
+          "x_px": 662.7,
+          "y_px": 50.0,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "eye_right_center",
+          "x_px": 678.0,
+          "y_px": 146.5,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "eye_left_center",
+          "x_px": 678.1,
+          "y_px": 146.1,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "nostril_R",
+          "x_px": 730.2,
+          "y_px": 206.7,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "nostril_L",
+          "x_px": 730.1,
+          "y_px": 206.7,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "poll_between_ears",
+          "x_px": 648.8,
+          "y_px": 105.9,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "muzzle_tip",
+          "x_px": 739.9,
+          "y_px": 216.4,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_base_joint",
+          "x_px": 388.1,
+          "y_px": 270.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "mane_poll_side_endpoint",
+          "x_px": 659.2,
+          "y_px": 98.3,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "mane_end_at_withers",
+          "x_px": 463.5,
+          "y_px": 213.6,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "tail_root_surface",
+          "x_px": 222.9,
+          "y_px": 229.3,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_mid_joint",
+          "x_px": 461.8,
+          "y_px": 277.8,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_joint_nearest_surface_projection",
+          "x_px": 453.0,
+          "y_px": 251.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_neck_junction_joint",
+          "x_px": 601.6,
+          "y_px": 115.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_base_joint_nearest_surface_projection",
+          "x_px": 600.6,
+          "y_px": 116.3,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_base_joint_nearest_surface_projection",
+          "x_px": 389.4,
+          "y_px": 240.5,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "middle_neck_R",
+          "x_px": 555.8,
+          "y_px": 201.7,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "middle_neck_L",
+          "x_px": 555.8,
+          "y_px": 201.3,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_shoulder_transition_R",
+          "x_px": 517.5,
+          "y_px": 296.4,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_shoulder_transition_L",
+          "x_px": 517.5,
+          "y_px": 295.6,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_jaw_neck_transition_R",
+          "x_px": 634.5,
+          "y_px": 188.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_jaw_neck_transition_L",
+          "x_px": 634.5,
+          "y_px": 187.8,
+          "inFrontOfCamera": true
+        }
+      ],
+      "far": [
+        {
+          "name": "ear_R_root",
+          "x_px": 248.3,
+          "y_px": 84.1,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "ear_R_tip",
+          "x_px": 236.8,
+          "y_px": 50.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "ear_L_root",
+          "x_px": 254.1,
+          "y_px": 84.3,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "ear_L_tip",
+          "x_px": 237.3,
+          "y_px": 50.5,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "eye_right_center",
+          "x_px": 222.0,
+          "y_px": 146.0,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "eye_left_center",
+          "x_px": 221.9,
+          "y_px": 146.6,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "nostril_R",
+          "x_px": 169.8,
+          "y_px": 206.5,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "nostril_L",
+          "x_px": 169.9,
+          "y_px": 207.0,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "poll_between_ears",
+          "x_px": 251.2,
+          "y_px": 105.9,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "muzzle_tip",
+          "x_px": 160.1,
+          "y_px": 216.4,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_base_joint",
+          "x_px": 511.9,
+          "y_px": 270.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "mane_poll_side_endpoint",
+          "x_px": 240.8,
+          "y_px": 98.3,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "mane_end_at_withers",
+          "x_px": 436.5,
+          "y_px": 213.6,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "tail_root_surface",
+          "x_px": 677.1,
+          "y_px": 229.3,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_mid_joint",
+          "x_px": 438.2,
+          "y_px": 277.8,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_joint_nearest_surface_projection",
+          "x_px": 447.0,
+          "y_px": 251.7,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_neck_junction_joint",
+          "x_px": 298.4,
+          "y_px": 115.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_base_joint_nearest_surface_projection",
+          "x_px": 299.4,
+          "y_px": 116.4,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_base_joint_nearest_surface_projection",
+          "x_px": 510.6,
+          "y_px": 240.7,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "middle_neck_R",
+          "x_px": 344.3,
+          "y_px": 201.3,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "middle_neck_L",
+          "x_px": 344.3,
+          "y_px": 201.7,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_shoulder_transition_R",
+          "x_px": 382.5,
+          "y_px": 295.6,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_shoulder_transition_L",
+          "x_px": 382.5,
+          "y_px": 296.4,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_jaw_neck_transition_R",
+          "x_px": 265.5,
+          "y_px": 187.8,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_jaw_neck_transition_L",
+          "x_px": 265.5,
+          "y_px": 188.2,
+          "inFrontOfCamera": true
+        }
+      ],
+      "q3": [
+        {
+          "name": "ear_R_root",
+          "x_px": 575.3,
+          "y_px": 127.4,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "ear_R_tip",
+          "x_px": 576.1,
+          "y_px": 98.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "ear_L_root",
+          "x_px": 614.3,
+          "y_px": 117.5,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "ear_L_tip",
+          "x_px": 620.2,
+          "y_px": 88.7,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "eye_right_center",
+          "x_px": 585.1,
+          "y_px": 192.0,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "eye_left_center",
+          "x_px": 632.7,
+          "y_px": 182.3,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "nostril_R",
+          "x_px": 633.4,
+          "y_px": 254.5,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "nostril_L",
+          "x_px": 657.3,
+          "y_px": 249.8,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "poll_between_ears",
+          "x_px": 588.7,
+          "y_px": 144.5,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "muzzle_tip",
+          "x_px": 652.9,
+          "y_px": 262.6,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_base_joint",
+          "x_px": 407.7,
+          "y_px": 265.0,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "mane_poll_side_endpoint",
+          "x_px": 595.9,
+          "y_px": 138.7,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "mane_end_at_withers",
+          "x_px": 459.4,
+          "y_px": 221.6,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "tail_root_surface",
+          "x_px": 291.6,
+          "y_px": 203.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_mid_joint",
+          "x_px": 459.1,
+          "y_px": 282.5,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_joint_nearest_surface_projection",
+          "x_px": 477.4,
+          "y_px": 251.0,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_neck_junction_joint",
+          "x_px": 556.6,
+          "y_px": 146.6,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_base_joint_nearest_surface_projection",
+          "x_px": 561.2,
+          "y_px": 146.5,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_base_joint_nearest_surface_projection",
+          "x_px": 416.6,
+          "y_px": 235.3,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "middle_neck_R",
+          "x_px": 502.9,
+          "y_px": 227.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "middle_neck_L",
+          "x_px": 544.3,
+          "y_px": 218.6,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_shoulder_transition_R",
+          "x_px": 458.6,
+          "y_px": 315.8,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "neck_shoulder_transition_L",
+          "x_px": 535.3,
+          "y_px": 299.9,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_jaw_neck_transition_R",
+          "x_px": 558.2,
+          "y_px": 225.2,
+          "inFrontOfCamera": true
+        },
+        {
+          "name": "head_jaw_neck_transition_L",
+          "x_px": 598.9,
+          "y_px": 216.7,
+          "inFrontOfCamera": true
+        }
+      ]
+    },
+    "images": {
+      "front": "art/derived/production/evidence/foal/idle/rest_front_landmarks.png",
+      "near": "art/derived/production/evidence/foal/idle/rest_near_landmarks.png",
+      "far": "art/derived/production/evidence/foal/idle/rest_far_landmarks.png",
+      "q3": "art/derived/production/evidence/foal/idle/rest_q3_landmarks.png"
+    },
+    "restRenderProvenance": {
+      "previousCandidateGLB": "189dc6574a7a5d54f30682d19b7f4939b3100e130dccc6241c406b2562439278",
+      "restViewsReused": true,
+      "geometryAndRestDataMatch": true,
+      "reason": "Idle-only edit; mesh, UV, color attributes, morphs, weights and rig rest hierarchy compare exactly to pre-Idle checkpoint"
+    },
+    "imageSha256": {
+      "front": "3f724d4fbdae48c4859d8c3ee77876a3102691cb986cd50be3ad01c7c001e581",
+      "near": "c2f3cb26164e26f590ff95b08dd0c8aac7e2e8e45ea20e44815439cbf0c601c1",
+      "far": "419e83355a0be601bdf4bf4ee26bcf76ad38a5bfcea1d9e0b22b15b3222d30e8",
+      "q3": "fbf6e1b16c612886c843e308add6705faf8650e235a389aa5abac1eec16e91ba"
+    },
+    "imageSize_px": [
+      900,
+      700
+    ]
+  },
+  "idleSummary": {
+    "clip": "Idle",
+    "fps": 24,
+    "frames": [
+      1,
+      97
+    ],
+    "varyingChannels": [
+      "Spine_Base",
+      "Neck",
+      "Head"
+    ],
+    "rootMotion": "none; Pelvis_Root has no keyed transform",
+    "supportAndLoopReport": "art/derived/production/evidence/foal/idle/foal_idle_target_validation.json"
+  },
+  "componentMorphs": {
+    "nodes": [
+      "Body",
+      "Eyes",
+      "Mane",
+      "Tail"
+    ],
+    "keys": [
+      "body_length",
+      "chest_width",
+      "neck_length",
+      "muscle"
+    ],
+    "neutral": 0.0,
+    "range": [
+      -1.0,
+      1.0
+    ]
+  },
+  "rig": {
+    "sourceRigBones": 60,
+    "afterAdapterBeforeMaskHelpers": 61,
+    "semanticMaskHelpersAdded": 3,
+    "semanticMaskHelperNames": [
+      "Ear_R",
+      "Ear_L",
+      "Jaw_Tip"
+    ],
+    "finalSkeletonBones": 64,
+    "exportedSkeletonBones": 64
+  }
+}

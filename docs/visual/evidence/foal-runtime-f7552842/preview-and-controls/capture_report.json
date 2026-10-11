@@ -1,0 +1,514 @@
+{
+  "format": "cloverbrook.capture-report.v1",
+  "godot": "4.7.2-stable (official)",
+  "renderer": "Apple M2 / 4.1 Metal - 90.5",
+  "catalog": "reference-assets.v1",
+  "warning": "Stills prove materials, markings and composition only - not animation quality, not art approval.",
+  "failures": 0,
+  "meshFamilies": {
+    "horse.standard.adult.v1": {
+      "scene": "res://assets/horse/production/horse_light.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.compact.adult.v1": {
+      "scene": "res://assets/horse/production/horse_stock.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.standard.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    },
+    "horse.compact.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    }
+  },
+  "unavailableAnimations": [],
+  "animationTrackEvidence": [
+    {
+      "fixtureId": "chestnut.foal",
+      "meshFamilyId": "horse.standard.foal.v1",
+      "animationPlayerFound": true,
+      "tracks": [
+        "Idle"
+      ],
+      "requestedAnimation": "",
+      "resolvedAnimation": "",
+      "isPlayingAfterFrames": false,
+      "positionBeforeFrames": 0,
+      "positionAfterFrames": 0,
+      "clipLengthSeconds": 0,
+      "positionAdvanced": false,
+      "hasExactLowercaseIdle": false,
+      "hasExactUppercaseIdle": true,
+      "skeletonBoneCount": 64,
+      "skeletonBoneNames": [
+        "Chest",
+        "Ear_L",
+        "Ear_R",
+        "FoalSmart_Bone_002",
+        "FoalSmart_Bone_003",
+        "FoalSmart_Bone_012",
+        "FoalSmart_Bone_013",
+        "FoalSmart_Bone_014",
+        "FoalSmart_Bone_017",
+        "FoalSmart_Bone_041",
+        "FoalSmart_Bone_042",
+        "FoalSmart_Bone_043",
+        "FoalSmart_Bone_050",
+        "FoalSmart_Bone_051",
+        "FoalSmart_Bone_052",
+        "FoalSmart_Bone_053",
+        "FoalSmart_Bone_054",
+        "FoalSmart_Bone_055",
+        "FoalSmart_Bone_056",
+        "FoalSmart_Bone_057",
+        "FoalSmart_Bone_058",
+        "Front_L_Cannon",
+        "Front_L_Forearm",
+        "Front_L_Hoof",
+        "Front_L_Hoof_02",
+        "Front_L_Hoof_03",
+        "Front_L_Pastern",
+        "Front_L_Upper",
+        "Front_R_Cannon",
+        "Front_R_Forearm",
+        "Front_R_Hoof",
+        "Front_R_Hoof_02",
+        "Front_R_Hoof_03",
+        "Front_R_Pastern",
+        "Front_R_Upper",
+        "Head",
+        "Head_Base",
+        "Head_Nose",
+        "Hind_L_Cannon",
+        "Hind_L_Gaskin",
+        "Hind_L_Hock",
+        "Hind_L_Hoof",
+        "Hind_L_Hoof_02",
+        "Hind_L_Hoof_03",
+        "Hind_L_Pastern",
+        "Hind_L_Upper",
+        "Hind_R_Cannon",
+        "Hind_R_Gaskin",
+        "Hind_R_Hock",
+        "Hind_R_Hoof",
+        "Hind_R_Hoof_02",
+        "Hind_R_Hoof_03",
+        "Hind_R_Pastern",
+        "Hind_R_Upper",
+        "Jaw_Tip",
+        "Neck",
+        "Neck_Base",
+        "Pelvis",
+        "Pelvis_Root",
+        "Root",
+        "Spine_Base",
+        "Tail_01",
+        "Tail_02",
+        "Tail_03"
+      ],
+      "meshComponents": [
+        "Body",
+        "Eyes",
+        "Mane",
+        "Tail"
+      ]
+    }
+  ],
+  "foalIdleEvidence": [],
+  "adultIdleImportEvidence": [],
+  "foalRigEvidence": [
+    {
+      "fixtureId": "chestnut.foal",
+      "meshFamilyId": "horse.standard.foal.v1",
+      "skeletonCount": 1,
+      "boneCount": 64,
+      "expectedSkinJointCount": 64,
+      "headParent": "Head_Base",
+      "headAncestry": [
+        "Head",
+        "Head_Base",
+        "FoalSmart_Bone_050",
+        "FoalSmart_Bone_051",
+        "FoalSmart_Bone_043",
+        "Neck",
+        "Neck_Base",
+        "Chest",
+        "Spine_Base",
+        "Pelvis",
+        "Pelvis_Root",
+        "Root"
+      ],
+      "headAncestryReachesNeck": true
+    }
+  ],
+  "viewerPathEvidence": [
+    {
+      "selectedMarkingEntry": "Bay - test markings #0  (test)",
+      "selectedMarkingKey": "32ca7e8a1f0574ad1be5bd0f0d37550bc0c9dedf7fb1d01cc1630135761baf96",
+      "adultFamily": "horse.standard.adult.v1",
+      "foalFamily": "horse.standard.foal.v1",
+      "returnedAdultFamily": "horse.standard.adult.v1",
+      "markingKeyPreservedOnFoalToggle": true,
+      "markingKeyStableOnAdultReturn": true,
+      "stillOptionIsLast": true,
+      "adultIdleAvailable": true,
+      "adultIdleResolvedAnimation": "Idle",
+      "adultIdleClipLengthSeconds": 4.041666507720947,
+      "adultIdlePlaybackAdvanced": true,
+      "adultGrazeUnavailableAndDisabled": true,
+      "foalIdleAvailable": true,
+      "foalIdleResolvedAnimation": "Idle",
+      "foalIdleClipLengthSeconds": 4.041666507720947,
+      "foalIdlePlaybackAdvanced": true,
+      "foalGrazeUnavailableAndDisabled": true,
+      "probeFixtureIdAfterFoalToggle": "probe.grey",
+      "probeRemainsUnsupported": true
+    }
+  ],
+  "appearancePerformance": null,
+  "meshLodEvidence": [
+    {
+      "fixtureId": "chestnut.foal",
+      "component": "Body",
+      "surface": 0,
+      "baseIndexBytes": 76908,
+      "lodCount": 5,
+      "lods": [
+        {
+          "edgeLength": 0.008173657,
+          "indexDataBytes": 38448
+        },
+        {
+          "edgeLength": 0.015973743,
+          "indexDataBytes": 19224
+        },
+        {
+          "edgeLength": 0.031345043,
+          "indexDataBytes": 9612
+        },
+        {
+          "edgeLength": 0.07123971,
+          "indexDataBytes": 4800
+        },
+        {
+          "edgeLength": 0.91965765,
+          "indexDataBytes": 2400
+        }
+      ]
+    },
+    {
+      "fixtureId": "chestnut.foal",
+      "component": "Eyes",
+      "surface": 0,
+      "baseIndexBytes": 8640,
+      "lodCount": 8,
+      "lods": [
+        {
+          "edgeLength": 0.00040725575,
+          "indexDataBytes": 4320
+        },
+        {
+          "edgeLength": 0.0007291851,
+          "indexDataBytes": 2160
+        },
+        {
+          "edgeLength": 0.0010937777,
+          "indexDataBytes": 1080
+        },
+        {
+          "edgeLength": 0.0024290774,
+          "indexDataBytes": 540
+        },
+        {
+          "edgeLength": 0.004482369,
+          "indexDataBytes": 264
+        },
+        {
+          "edgeLength": 0.010246214,
+          "indexDataBytes": 132
+        },
+        {
+          "edgeLength": 0.015369323,
+          "indexDataBytes": 60
+        },
+        {
+          "edgeLength": 0.10927436,
+          "indexDataBytes": 36
+        }
+      ]
+    },
+    {
+      "fixtureId": "chestnut.foal",
+      "component": "Mane",
+      "surface": 0,
+      "baseIndexBytes": 2424,
+      "lodCount": 3,
+      "lods": [
+        {
+          "edgeLength": 0.010410022,
+          "indexDataBytes": 1212
+        },
+        {
+          "edgeLength": 0.04241574,
+          "indexDataBytes": 600
+        },
+        {
+          "edgeLength": 0.16412559,
+          "indexDataBytes": 216
+        }
+      ]
+    },
+    {
+      "fixtureId": "chestnut.foal",
+      "component": "Tail",
+      "surface": 0,
+      "baseIndexBytes": 360,
+      "lodCount": 2,
+      "lods": [
+        {
+          "edgeLength": 0.024114816,
+          "indexDataBytes": 180
+        },
+        {
+          "edgeLength": 0.045952737,
+          "indexDataBytes": 132
+        }
+      ]
+    }
+  ],
+  "signedDetailEvidence": [],
+  "signedDetailFallbackEvidence": [],
+  "images": [
+    {
+      "file": "foal/chestnut.foal__head.png",
+      "set": "foal_preview",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "domain-exported phase-one foal descriptor shown on the production juvenile master",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal/chestnut.foal__front.png",
+      "set": "foal_preview",
+      "view": "front",
+      "lighting": "Neutral",
+      "note": "domain-exported phase-one foal descriptor shown on the production juvenile master",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal/chestnut.foal__side.png",
+      "set": "foal_preview",
+      "view": "side",
+      "lighting": "Neutral",
+      "note": "domain-exported phase-one foal descriptor shown on the production juvenile master",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal/chestnut.foal__side_left.png",
+      "set": "foal_preview",
+      "view": "side_left",
+      "lighting": "Neutral",
+      "note": "domain-exported phase-one foal descriptor shown on the production juvenile master",
+      "fixtureId": "chestnut.foal",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal/same_marking_key__adult_head.png",
+      "set": "foal_preview",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "TEST-ONLY shared markingRealizationKey comparison; no genetics claim",
+      "fixtureId": "chestnut.adult.markings-d2780b",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY adult with foal marking key",
+      "cacheKey": "3a08026d0dd04866c9817c7776591098605a54439ee6569f758bddc931836fe2",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "foal/same_marking_key__foal_head.png",
+      "set": "foal_preview",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "TEST-ONLY shared markingRealizationKey comparison; no genetics claim",
+      "fixtureId": "chestnut.foal.markings-d2780b",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY foal with adult marking key",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal/compact_shared_base__q3.png",
+      "set": "foal_preview",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "TEST-ONLY compact family uses shared juvenile master; catalog limitation discloses no distinct compact foal base",
+      "fixtureId": "foal_preview.compact_shared_base",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY compact family shared juvenile base",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: Shares the standard juvenile master; a separate compact foal base is not authored.; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.foal.v1"
+    },
+    {
+      "file": "foal/morph_body_length_-2000.png",
+      "set": "foal_preview",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "TEST-ONLY isolated descriptor morph endpoint; no offspring or genetics claim",
+      "fixtureId": "foal_preview.morph.body_length.-2000",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY foal body_length endpoint -2000",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal/morph_body_length_2000.png",
+      "set": "foal_preview",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "TEST-ONLY isolated descriptor morph endpoint; no offspring or genetics claim",
+      "fixtureId": "foal_preview.morph.body_length.2000",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY foal body_length endpoint 2000",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal/morph_chest_width_-2000.png",
+      "set": "foal_preview",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "TEST-ONLY isolated descriptor morph endpoint; no offspring or genetics claim",
+      "fixtureId": "foal_preview.morph.chest_width.-2000",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY foal chest_width endpoint -2000",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal/morph_chest_width_2000.png",
+      "set": "foal_preview",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "TEST-ONLY isolated descriptor morph endpoint; no offspring or genetics claim",
+      "fixtureId": "foal_preview.morph.chest_width.2000",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY foal chest_width endpoint 2000",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal/morph_neck_length_-2000.png",
+      "set": "foal_preview",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "TEST-ONLY isolated descriptor morph endpoint; no offspring or genetics claim",
+      "fixtureId": "foal_preview.morph.neck_length.-2000",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY foal neck_length endpoint -2000",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal/morph_neck_length_2000.png",
+      "set": "foal_preview",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "TEST-ONLY isolated descriptor morph endpoint; no offspring or genetics claim",
+      "fixtureId": "foal_preview.morph.neck_length.2000",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY foal neck_length endpoint 2000",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal/morph_muscle_-2000.png",
+      "set": "foal_preview",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "TEST-ONLY isolated descriptor morph endpoint; no offspring or genetics claim",
+      "fixtureId": "foal_preview.morph.muscle.-2000",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY foal muscle endpoint -2000",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    },
+    {
+      "file": "foal/morph_muscle_2000.png",
+      "set": "foal_preview",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "TEST-ONLY isolated descriptor morph endpoint; no offspring or genetics claim",
+      "fixtureId": "foal_preview.morph.muscle.2000",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY foal muscle endpoint 2000",
+      "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.foal.v1"
+    }
+  ]
+}

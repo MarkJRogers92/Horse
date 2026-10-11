@@ -53,21 +53,21 @@ public partial class HorseViewer : Node
         box.AddChild(_title);
         box.AddChild(CozyTheme.Title(StartInStable ? "The paddock" : "Horse viewer", 15));
 
-        _coat = new OptionButton();
+        _coat = new OptionButton { Name = "CoatSelector" };
         foreach (var e in _entries) _coat.AddItem(e.DisplayLabel + (e.TestOnly ? "  (test)" : ""));
         _coat.ItemSelected += _ => Refresh();
         box.AddChild(_coat);
 
-        _foal = new CheckButton { Text = "Foal" }; _foal.Toggled += _ => Refresh();
+        _foal = new CheckButton { Name = "FoalToggle", Text = "Foal" }; _foal.Toggled += _ => Refresh();
         _stable = new CheckButton { Text = "Stable lighting", ButtonPressed = StartInStable };
         _stable.Toggled += on => { _stage.SetMode(on ? LightingMode.Stable : LightingMode.Neutral); };
         _spin = new CheckButton { Text = "Turntable" }; _spin.Toggled += on => _stage.Camera.AutoRotate = on;
         var row = new HBoxContainer(); row.AddChild(_foal); row.AddChild(_stable); row.AddChild(_spin);
         box.AddChild(row);
 
-        _anim = new OptionButton();
-        foreach (var a in new[] { "idle", "breathe", "look", "walk", "trot", "(still)" }) _anim.AddItem(a);
-        _anim.ItemSelected += i => _stage.Presenter.Play(i < 5 ? _anim.GetItemText((int)i) : "");
+        _anim = new OptionButton { Name = "AnimationSelector" };
+        foreach (var a in new[] { "idle", "breathe", "look", "walk", "trot", "graze", "(still)" }) _anim.AddItem(a);
+        _anim.ItemSelected += i => _stage.Presenter.Play((int)i < _anim.ItemCount - 1 ? _anim.GetItemText((int)i) : "");
         box.AddChild(_anim);
 
         var views = new HBoxContainer();
@@ -101,17 +101,35 @@ public partial class HorseViewer : Node
     private void Refresh()
     {
         var d = _entries[_coat.Selected];
-        if (_foal.ButtonPressed && !d.FixtureId.StartsWith("probe") && !d.TestOnly)
-            d = FixtureLibrary.Get(d.FixtureId.Split('.')[0], true);
-        var support = _stage.Presenter.Present(d, _anim.Selected is >= 0 and < 5 ? _anim.GetItemText(_anim.Selected) : "");
-        for (int i = 0; i < 5; i++)
-            _anim.SetItemDisabled(i, _stage.Presenter.Animator?.HasAnimation(_anim.GetItemText(i)) != true);
-        if (_anim.Selected is >= 0 and < 5 && _anim.IsItemDisabled(_anim.Selected))
-            _anim.Select(5); // The authored reference has a rig but no motion clips yet.
+        if (_foal.ButtonPressed)
+            d = ResolveAgeVariant(d, foal: true);
+        string requestedAnimation = _anim.Selected >= 0 && _anim.Selected < _anim.ItemCount - 1
+            ? _anim.GetItemText(_anim.Selected)
+            : "";
+        var support = _stage.Presenter.Present(d, requestedAnimation);
+        for (int i = 0; i < _anim.ItemCount - 1; i++)
+            _anim.SetItemDisabled(i, !_stage.Presenter.IsAnimationAvailable(_anim.GetItemText(i)));
+        if (_anim.Selected >= 0 && _anim.Selected < _anim.ItemCount - 1 && _anim.IsItemDisabled(_anim.Selected))
+            _anim.Select(_anim.ItemCount - 1); // Keep unavailable clips disabled and select the final still option.
         _warning.Visible = !support.Supported;
         _warningText.Text = "This horse cannot be shown yet.\n" + support.Summary + "\n(No substitute coat is drawn.)";
         _status.Text = $"{d.DisplayLabel}\nclass {d.CoatClassId} · {d.MeshFamilyId}\nrecipe {d.CoatRecipe} · eyes {d.EyeRecipe} · skin {d.SkinRecipe}\n" +
                        (support.Supported ? "markings: " + _stage.Presenter.Markings!.Describe() + "\n" : "") + support.Summary;
         _stage.FrameView("q3");
+    }
+
+    private static VisualDescriptor ResolveAgeVariant(VisualDescriptor selected, bool foal)
+    {
+        // Unsupported diagnostics are deliberately never converted into valid family fixtures.
+        if (selected.FixtureId.StartsWith("probe.", System.StringComparison.Ordinal)) return selected;
+        var classId = selected.FixtureId.Split('.')[0];
+        if (!FixtureLibrary.ClassIds.Contains(classId, System.StringComparer.Ordinal)) return selected;
+
+        var ageVariant = FixtureLibrary.Get(classId, foal);
+        // Test-only marking variants still pair with their age-specific base, while
+        // retaining the exact deterministic marking key selected in the dropdown.
+        if (selected.FixtureId.Contains(".markings-", System.StringComparison.Ordinal))
+            ageVariant = ageVariant.WithTestMarkingKey(selected.MarkingRealizationKey, selected.DisplayLabel);
+        return ageVariant;
     }
 }

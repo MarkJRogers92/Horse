@@ -141,9 +141,51 @@ Parent visual acceptance includes lowered socket eyes, separate ears/hair/skin,
 and facial markings on bare skin with natural partial forelock occlusion. It does
 not establish a fully unobstructed forehead star or new owner art approval. The
 angular mane edge and clipped shoulder endpoint remain visual limitations.
-Walk and Graze are still rejected/excluded; cleaned foal validation and full
-motion acceptance remain outstanding. The distinct genuine juvenile mesh has a
-separate 64-joint adapter and the same four component morph names. Its first actual
-15-image preview passed harness contracts but exposed a close-up camera error;
-Head inheritance and scalp-only forelock fitting are confirmed repair targets.
-Pre-repair `b51f718f` Blend / `02491acb` GLB is preserved and is not final acceptance.
+Walk and Graze are still rejected/excluded. Candidate repairs and ground-reaching
+pose fitting remain outside the production masters until independent deformation,
+support, loop, morph-endpoint and actual game playback checks pass.
+
+The distinct genuine juvenile mesh has a separate 64-joint adapter and the same
+four component morph names. Rebuild with `tools/horse/build_foal_production.py`
+using background factory Blender. Its first actual 15-image preview passed harness
+contracts but exposed a close-up camera error. Local repairs now fit the forelock
+on the scalp rather than the ears, normalize orphaned skin group names, inherit
+Body weights at hair roots, parent Head to Head_Base and a measured cervical
+auxiliary chain to Neck. Rest endpoints and retained geometry remain unchanged.
+Native Sol accepted the `995b9223` hierarchy repair and reviewed small target poses
+for bounded Idle proof. This is not full animation or owner anatomy approval.
+
+One Godot editor import refreshed the stale foal cache; raw and import-sidecar
+digests then matched for all three masters. Actual foal inventory proves 64 bones,
+the repaired Head ancestry, components, morphs and generated LODs. The viewer age
+toggle preserves test marking keys; unsupported probes remain unsupported. These
+checks and nine actual-presenter optional-detail fallback cases passed independent
+game-diff review. See `evidence/foal-imported-rig-995b9223`,
+`evidence/viewer-age-toggle-7d622aa6` and `evidence/detail-fallback-26a4870d`.
+Final foal GLB `f7552842` preserves that repaired geometry/rig and adds a restrained
+four-second, 24 fps Idle. Its 97-frame Blender audit has finite geometry, exact
+loop endpoints, zero root motion, and greatest front-sole penetration 1.215 mm
+within the declared 2 mm tolerance. Native Sol accepted the bounded mechanical
+proof; this does not establish walking, grazing or new owner art approval.
+
+Godot initially optimized the tiny rotations to one constant key per imported
+track. Only this foal's `AnimationPlayer` disables the import optimizer through
+its `.glb.import` subresource settings, preserving 123 sampled keys in the Head
+and Neck tracks. Actual runtime pose changes, fixed Root, 15 refreshed preview
+images, morph/LOD checks and real viewer age/Idle controls pass. Light and Stock
+already retain changing Head/ear tracks and their import settings are unchanged;
+their Head pose changes were also measured. See `evidence/foal-runtime-f7552842`.
+The source GLB bytes remain frozen. Historical pre-repair, rejected pose, and
+collapsed-animation import evidence remain preserved. The anatomy companion and
+calibrated front/near/far/three-quarter overlays identify bilateral Body neck-region
+ray hits and separately label skeleton projections and the unmeasured Jaw_Tip
+muzzle alias. The crest's poll-side endpoint is 17–30 mm forward of the sampled
+ear roots on this asset; its legacy names are explained rather than treated as
+anatomical truth. Native Sol reviewed these corrections. Eight individual morph
+endpoints at Idle frame 49 pass finite geometry, the same sole tolerance and
+accessory-root drift checks; this is not all morph combinations across the loop.
+
+Frozen foal Blend SHA256 is `4322de7c3b97e6aa0e71111a6ab0de325f72f4f905424b4ff6e8d22df0ca041b`;
+GLB is `f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a`;
+metadata manifest is `c77a3eb46cd93739ea0a414c6607dcb9f6d26b253c5b48e1846de7c77088acfe`;
+anatomy companion is `77b5ffc2ece595e5e9c925665e6491d91a950692a248e3c7e1c462973a7221d5`.

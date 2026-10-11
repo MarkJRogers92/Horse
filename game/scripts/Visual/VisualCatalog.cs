@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text.Json;
 using Godot;
 
@@ -11,7 +12,17 @@ public sealed record CoatRecipe(string Label, Color Body, Color Points, float Po
 public sealed record HairRecipe(Color Color, Color Tip);
 public sealed record SkinRecipe(Color Color, float NoseAmount);
 public sealed record EyeRecipe(Color Iris, Color Ring);
-public sealed record MeshFamily(string Scene, bool Placeholder, string Age, string HairGeometry = "cards", string? Limitation = null, Vector3? HeadViewTarget = null);
+/// <summary>
+/// Optional Light Body-only RGB8 signed multiplier. Source bytes and accepted UV evidence
+/// are checked before import, then imported pixels are checked losslessly. Missing or
+/// incompatible inputs leave the coat procedural and this detail layer disabled.
+/// </summary>
+public sealed record BodySignedDetail(string Path, string Encoding, float Strength, string SourceGlbSha256, string TextureSha256,
+    string PixelSha256, string HandoffPath, string BindingPath, string CorpusSha256, float BakedStrength,
+    string UvReuseStatus, int RetainedTriangleCount, int NeutralRecoveredFaceCount, int NeutralRecoveredPixelCount,
+    string NeutralMaskPath, string NeutralMaskSha256, string HandoffSha256, string BindingSha256);
+public sealed record MeshFamily(string Scene, bool Placeholder, string Age, string HairGeometry = "cards", string? Limitation = null,
+    Vector3? HeadViewTarget = null, BodySignedDetail? BodySignedDetail = null, string? BodySignedDetailDisabledReason = null);
 
 /// <summary>Result of checking a descriptor against what this renderer can actually draw.</summary>
 public sealed record VisualSupport(bool Supported, IReadOnlyList<string> Problems, IReadOnlyList<string> Limitations)
@@ -44,6 +55,7 @@ public sealed class VisualCatalog
     public float BodyBlendShapeNormalization { get; private set; }
     public Dictionary<string, string> BodyBlendShapes { get; } = new(StringComparer.Ordinal);
     public Dictionary<string, Dictionary<string, string>> MeshBlendShapes { get; } = new(StringComparer.Ordinal);
+    public Dictionary<string, Dictionary<string, Dictionary<string, string>>> FamilyMeshBlendShapes { get; } = new(StringComparer.Ordinal);
     public List<string> ComponentMorphLimitations { get; } = new();
     public HashSet<string> UnsupportedMorphs { get; } = new(StringComparer.Ordinal);
 
@@ -57,12 +69,17 @@ public sealed class VisualCatalog
         var cat = new VisualCatalog { Version = r.GetProperty("visualAssetCatalogVersion").GetString()! };
         foreach (var l in r.GetProperty("implementedLayers").EnumerateArray()) cat.ImplementedLayers.Add(l.GetString()!);
         foreach (var m in r.GetProperty("meshFamilies").EnumerateObject())
-            cat.MeshFamilies[m.Name] = new MeshFamily(m.Value.GetProperty("scene").GetString()!, m.Value.GetProperty("placeholder").GetBoolean(),
+        {
+            string scene = m.Value.GetProperty("scene").GetString()!;
+            var detail = ParseBodySignedDetail(m.Value, m.Name, scene, out var detailDisabledReason);
+            cat.MeshFamilies[m.Name] = new MeshFamily(scene, m.Value.GetProperty("placeholder").GetBoolean(),
                 m.Value.GetProperty("age").GetString()!,
                 m.Value.TryGetProperty("hairGeometry", out var hairGeometry) ? hairGeometry.GetString()! : "cards",
                 m.Value.TryGetProperty("limitation", out var limitation) ? limitation.GetString() : null,
                 m.Value.TryGetProperty("headViewTarget", out var headTarget)
-                    ? new Vector3(headTarget[0].GetSingle(), headTarget[1].GetSingle(), headTarget[2].GetSingle()) : null);
+                    ? new Vector3(headTarget[0].GetSingle(), headTarget[1].GetSingle(), headTarget[2].GetSingle()) : null,
+                detail, detailDisabledReason);
+        }
         foreach (var c in r.GetProperty("coatRecipes").EnumerateObject())
         {
             var v = c.Value;
@@ -95,11 +112,249 @@ public sealed class VisualCatalog
             (declaredBody.Count != cat.BodyBlendShapes.Count || cat.BodyBlendShapes.Any(pair =>
                 !declaredBody.TryGetValue(pair.Key, out var shape) || !string.Equals(pair.Value, shape, StringComparison.Ordinal))))
             throw new JsonException("morphSupport.bodyBlendShapes must exactly match meshBlendShapes.Body");
+        if (!morph.TryGetProperty("familyMeshBlendShapes", out var familyMeshShapes))
+            throw new JsonException("morphSupport.familyMeshBlendShapes is required; declare each mesh family's actual shape channels");
+        foreach (var family in familyMeshShapes.EnumerateObject())
+        {
+            if (!cat.MeshFamilies.ContainsKey(family.Name))
+                throw new JsonException($"morphSupport.familyMeshBlendShapes references unknown mesh family '{family.Name}'");
+            var components = new Dictionary<string, Dictionary<string, string>>(StringComparer.Ordinal);
+            foreach (var mesh in family.Value.EnumerateObject())
+            {
+                var channels = new Dictionary<string, string>(StringComparer.Ordinal);
+                foreach (var shape in mesh.Value.EnumerateObject())
+                {
+                    if (!cat.BodyBlendShapes.ContainsKey(shape.Name))
+                        throw new JsonException($"morphSupport.familyMeshBlendShapes.{family.Name}.{mesh.Name} references unknown descriptor morph '{shape.Name}'");
+                    var shapeName = shape.Value.GetString()!;
+                    if (string.IsNullOrWhiteSpace(shapeName))
+                        throw new JsonException($"morphSupport.familyMeshBlendShapes.{family.Name}.{mesh.Name}.{shape.Name} has an empty shape key");
+                    channels[shape.Name] = shapeName;
+                }
+                if (channels.Values.Distinct(StringComparer.Ordinal).Count() != channels.Count)
+                    throw new JsonException($"morphSupport.familyMeshBlendShapes.{family.Name}.{mesh.Name} maps multiple descriptor morphs to one shape key");
+                components[mesh.Name] = channels;
+            }
+            var bodyChannels = components.TryGetValue("Body", out var bodyMap)
+                ? bodyMap.Keys.ToHashSet(StringComparer.Ordinal)
+                : new HashSet<string>(StringComparer.Ordinal);
+            foreach (var (component, channels) in components)
+            {
+                if (component == "Body") continue;
+                var accessoryOnly = channels.Keys.Where(channel => !bodyChannels.Contains(channel)).ToArray();
+                if (accessoryOnly.Length > 0)
+                    throw new JsonException($"morphSupport.familyMeshBlendShapes.{family.Name}.{component} declares channels absent from Body: {string.Join(", ", accessoryOnly)}");
+            }
+            cat.FamilyMeshBlendShapes[family.Name] = components;
+        }
+        foreach (var familyId in cat.MeshFamilies.Keys)
+            if (!cat.FamilyMeshBlendShapes.ContainsKey(familyId))
+                throw new JsonException($"morphSupport.familyMeshBlendShapes must explicitly declare '{familyId}' (use an empty object when no channels are supported)");
         if (morph.TryGetProperty("componentMorphLimitations", out var componentLimits))
             foreach (var item in componentLimits.EnumerateArray()) cat.ComponentMorphLimitations.Add(item.GetString()!);
         foreach (var u in morph.GetProperty("unsupported").EnumerateArray()) cat.UnsupportedMorphs.Add(u.GetString()!);
         return cat;
     }
+
+    private static BodySignedDetail? ParseBodySignedDetail(JsonElement family, string familyId, string scene, out string? disabledReason)
+    {
+        disabledReason = null;
+        if (!family.TryGetProperty("bodySignedDetail", out var detail)) return null;
+        if (detail.ValueKind != JsonValueKind.Object)
+        {
+            disabledReason = "metadata is not an object";
+            return null;
+        }
+        if (!detail.TryGetProperty("enabled", out var enabled) || enabled.ValueKind != JsonValueKind.True)
+        {
+            disabledReason = "disabled by family metadata";
+            return null;
+        }
+        string? path = ReadString(detail, "path");
+        string? encoding = ReadString(detail, "encoding");
+        string? sourceHash = ReadString(detail, "sourceGlbSha256");
+        string? textureHash = ReadString(detail, "textureSha256");
+        if (familyId != "horse.standard.adult.v1")
+            return DisableBodySignedDetail("signed detail is currently supported only for the Light adult Body", out disabledReason);
+        if (string.IsNullOrWhiteSpace(path) || !path.StartsWith("res://assets/horse/production/", StringComparison.Ordinal) ||
+            !path.EndsWith(".png", StringComparison.OrdinalIgnoreCase))
+            return DisableBodySignedDetail("detail path must be a production PNG resource", out disabledReason);
+        if (!string.Equals(encoding, "rgb8_signed_multiplier_v1", StringComparison.Ordinal))
+            return DisableBodySignedDetail($"unknown encoding '{encoding ?? ""}'", out disabledReason);
+        if (!detail.TryGetProperty("strength", out var strengthNode) || strengthNode.ValueKind != JsonValueKind.Number ||
+            !strengthNode.TryGetSingle(out float strength) || !float.IsFinite(strength) || strength < 0f || strength > 1f)
+            return DisableBodySignedDetail("strength must be finite and between 0 and 1", out disabledReason);
+        if (!IsSha256(sourceHash) || !IsSha256(textureHash))
+            return DisableBodySignedDetail("source and texture SHA-256 provenance hashes are required", out disabledReason);
+        if (!FileAccess.FileExists(scene)) return DisableBodySignedDetail("source GLB is unavailable for provenance checking", out disabledReason);
+        var sourceBytes = FileAccess.GetFileAsBytes(scene);
+        if (!string.Equals(Sha256(sourceBytes), sourceHash, StringComparison.Ordinal))
+            return DisableBodySignedDetail("source GLB SHA-256 does not match family metadata", out disabledReason);
+        if (!FileAccess.FileExists(path)) return DisableBodySignedDetail("declared detail atlas is missing", out disabledReason);
+        var textureBytes = FileAccess.GetFileAsBytes(path);
+        if (!string.Equals(Sha256(textureBytes), textureHash, StringComparison.Ordinal))
+            return DisableBodySignedDetail("detail atlas SHA-256 does not match family metadata", out disabledReason);
+
+        string? handoffPath = ReadString(detail, "handoffPath");
+        string? handoffHash = ReadString(detail, "handoffSha256");
+        string? bindingPath = ReadString(detail, "bindingPath");
+        string? bindingHash = ReadString(detail, "bindingSha256");
+        string? corpusHash = ReadString(detail, "corpusSha256");
+        string? neutralMaskPath = ReadString(detail, "neutralMaskPath");
+        string? neutralMaskHash = ReadString(detail, "neutralMaskSha256");
+        string? uvReuseStatus = ReadString(detail, "uvReuseStatus");
+        if (!IsProductionEvidencePath(handoffPath, "game-integration-handoff.json") ||
+            !IsProductionEvidencePath(bindingPath, "light-v5-uv-reuse-binding.json") ||
+            !IsProductionEvidencePath(neutralMaskPath, "ai-neutral-skin-mask.png") ||
+            !IsSha256(handoffHash) || !IsSha256(bindingHash) || !IsSha256(corpusHash) || !IsSha256(neutralMaskHash))
+            return DisableBodySignedDetail("UV reuse evidence paths or hashes are missing or malformed", out disabledReason);
+        if (uvReuseStatus != "retained-subset+neutral-recovered-skin")
+            return DisableBodySignedDetail("UV reuse status is not the approved retained-subset plus neutral-recovered-skin scope", out disabledReason);
+        if (!FileAccess.FileExists(handoffPath) || !FileAccess.FileExists(bindingPath) || !FileAccess.FileExists(neutralMaskPath))
+            return DisableBodySignedDetail("UV reuse handoff or binding evidence is missing", out disabledReason);
+        if (!string.Equals(Sha256(FileAccess.GetFileAsBytes(handoffPath)), handoffHash, StringComparison.Ordinal) ||
+            !string.Equals(Sha256(FileAccess.GetFileAsBytes(bindingPath)), bindingHash, StringComparison.Ordinal) ||
+            !string.Equals(Sha256(FileAccess.GetFileAsBytes(neutralMaskPath)), neutralMaskHash, StringComparison.Ordinal))
+            return DisableBodySignedDetail("UV reuse handoff or binding SHA-256 does not match metadata", out disabledReason);
+
+        if (!detail.TryGetProperty("bakedStrength", out var bakedNode) || bakedNode.ValueKind != JsonValueKind.Number ||
+            !bakedNode.TryGetSingle(out float bakedStrength) || !float.IsFinite(bakedStrength) || Mathf.Abs(bakedStrength - 0.3f) > 0.000001f ||
+            !TryReadPositiveInt(detail, "retainedTriangleCount", out int retainedTriangles) || retainedTriangles != 21253 ||
+            !TryReadPositiveInt(detail, "neutralRecoveredFaceCount", out int neutralFaces) || neutralFaces != 453 ||
+            !TryReadPositiveInt(detail, "neutralRecoveredPixelCount", out int neutralPixels) || neutralPixels != 14577)
+            return DisableBodySignedDetail("UV reuse compatibility counts or baked detail strength are incompatible", out disabledReason);
+
+        if (!TryValidateAcceptedEvidence(handoffPath!, bindingPath!, sourceHash!, textureHash!, handoffHash!, bindingHash!, corpusHash!, neutralMaskHash!,
+                retainedTriangles, neutralFaces, neutralPixels, out string evidenceReason))
+            return DisableBodySignedDetail(evidenceReason, out disabledReason);
+
+        var image = new Image();
+        if (image.LoadPngFromBuffer(textureBytes) != Error.Ok || image.GetWidth() != 2048 || image.GetHeight() != 2048 || image.GetFormat() != Image.Format.Rgb8)
+            return DisableBodySignedDetail("detail atlas must be a decodable 2048x2048 RGB8 PNG", out disabledReason);
+        var pixels = image.GetData();
+        byte minCode = byte.MaxValue, maxCode = byte.MinValue;
+        for (int i = 0; i + 2 < pixels.Length; i += 3)
+        {
+            if (pixels[i] != pixels[i + 1] || pixels[i] != pixels[i + 2])
+                return DisableBodySignedDetail("detail atlas RGB channels are not equal data values", out disabledReason);
+            minCode = Math.Min(minCode, pixels[i]);
+            maxCode = Math.Max(maxCode, pixels[i]);
+        }
+        if (minCode != 90 || maxCode != 166)
+            return DisableBodySignedDetail("detail atlas code range does not match accepted v5 evidence", out disabledReason);
+
+        var mask = new Image();
+        var maskBytes = FileAccess.GetFileAsBytes(neutralMaskPath);
+        if (mask.LoadPngFromBuffer(maskBytes) != Error.Ok || mask.GetWidth() != 2048 || mask.GetHeight() != 2048 || mask.GetFormat() != Image.Format.L8)
+            return DisableBodySignedDetail("neutral-skin evidence mask must be a decodable 2048x2048 grayscale PNG", out disabledReason);
+        var maskPixels = mask.GetData();
+        int neutralMaskCount = 0;
+        for (int i = 0; i < maskPixels.Length; i++)
+        {
+            if (maskPixels[i] != 255) continue;
+            neutralMaskCount++;
+            if (pixels[i * 3] != 128)
+                return DisableBodySignedDetail("accepted atlas is not neutral on recovered historical skin pixels", out disabledReason);
+        }
+        if (neutralMaskCount != neutralPixels)
+            return DisableBodySignedDetail("neutral recovered pixel count does not match the accepted mask", out disabledReason);
+
+        return new BodySignedDetail(path, encoding!, strength, sourceHash!, textureHash!, Sha256(pixels),
+            handoffPath!, bindingPath!, corpusHash!, bakedStrength, uvReuseStatus!, retainedTriangles, neutralFaces, neutralPixels,
+            neutralMaskPath!, neutralMaskHash!, handoffHash!, bindingHash!);
+    }
+
+    private static bool IsProductionEvidencePath(string? path, string fileName) =>
+        string.Equals(path, "res://assets/horse/production/evidence/light-v5-detail/" + fileName, StringComparison.Ordinal);
+
+    private static bool TryReadPositiveInt(JsonElement node, string key, out int value)
+    {
+        value = 0;
+        return node.TryGetProperty(key, out var item) && item.ValueKind == JsonValueKind.Number &&
+               item.TryGetInt32(out value) && value > 0;
+    }
+
+    private static bool TryValidateAcceptedEvidence(string handoffPath, string bindingPath, string sourceHash, string textureHash,
+        string handoffHash, string bindingHash, string corpusHash, string neutralMaskHash, int retainedTriangles, int neutralFaces, int neutralPixels,
+        out string reason)
+    {
+        reason = "UV reuse handoff or binding content is malformed or incompatible";
+        try
+        {
+            using var handoffDoc = JsonDocument.Parse(FileAccess.GetFileAsBytes(handoffPath));
+            using var bindingDoc = JsonDocument.Parse(FileAccess.GetFileAsBytes(bindingPath));
+            var handoff = handoffDoc.RootElement;
+            var binding = bindingDoc.RootElement;
+            var reference = handoff.GetProperty("reference");
+            var compatibility = reference.GetProperty("compatibility");
+            var reuse = handoff.GetProperty("reuse_proof");
+            var detail = handoff.GetProperty("detail");
+            var contract = handoff.GetProperty("runtime_contract");
+            var source = handoff.GetProperty("source");
+
+            if (handoff.GetProperty("status").GetString() != "ACCEPTED_LIGHT_DETAIL_READY_FOR_GAME" ||
+                handoff.GetProperty("family_scope").GetString() != "Light Body only" ||
+                source.GetProperty("glb_sha256").GetString() != sourceHash ||
+                detail.GetProperty("sha256").GetString() != textureHash ||
+                compatibility.GetProperty("default_whole_body_status").GetString() != "incompatible" ||
+                compatibility.GetProperty("binding_approved_status").GetString() != "retained-subset+neutral-recovered-skin" ||
+                compatibility.GetProperty("retained_body_compatibility").GetProperty("status").GetString() != "retained-subset" ||
+                compatibility.GetProperty("retained_body_compatibility").GetProperty("comparison_scope").GetString() != "exact primary-UV triangle footprints and multiplicities only" ||
+                compatibility.GetProperty("retained_body_compatibility").GetProperty("reference_triangle_count").GetInt32() != 25222 ||
+                compatibility.GetProperty("retained_body_compatibility").GetProperty("current_triangle_count").GetInt32() != retainedTriangles ||
+                compatibility.GetProperty("retained_body_compatibility").GetProperty("removed_triangle_count").GetInt32() != 3969 ||
+                reuse.GetProperty("binding_file").GetString() != "recipe/light-v5-uv-reuse-binding.json" ||
+                reuse.GetProperty("binding_sha256").GetString() != bindingHash ||
+                reuse.GetProperty("corpus_file").GetString() != "source/horse_light-v5-uv0-provenance.json" ||
+                reuse.GetProperty("corpus_sha256").GetString() != corpusHash ||
+                reuse.GetProperty("neutral_mask_file").GetString() != "ai-neutral-skin-mask.png" ||
+                reuse.GetProperty("neutral_mask_sha256").GetString() != neutralMaskHash ||
+                reuse.GetProperty("retained_triangles").GetInt32() != retainedTriangles ||
+                reuse.GetProperty("neutral_recovered_faces").GetInt32() != neutralFaces ||
+                reuse.GetProperty("neutral_recovered_pixels").GetInt32() != neutralPixels ||
+                detail.GetProperty("baked_detail_strength").GetDouble() != 0.3 ||
+                detail.GetProperty("code_bounds")[0].GetInt32() != 90 || detail.GetProperty("code_bounds")[1].GetInt32() != 166 ||
+                contract.GetProperty("integration_blend").GetDouble() != 1.0 ||
+                contract.GetProperty("disabled_blend").GetDouble() != 0.0 ||
+                contract.GetProperty("import").GetString() != "lossless" ||
+                contract.GetProperty("primary_uv").GetString() != "UVMap / Godot UV; keep normal PNG orientation" ||
+                contract.GetProperty("sampler").GetString() != "Non-Color/data; no source_color or sRGB decode" ||
+                contract.GetProperty("decode").GetString() != "1 + ((texture.r * 255 - 128) / 127) * 0.12")
+                return false;
+
+            if (binding.GetProperty("schema").GetString() != "horse_ai_uv_reuse_binding.v1" ||
+                binding.GetProperty("kind").GetString() != "neutral-only-recovered-skin" ||
+                binding.GetProperty("current_glb_sha256").GetString() != sourceHash ||
+                binding.GetProperty("corpus_sha256").GetString() != corpusHash ||
+                binding.GetProperty("corpus_relative_path").GetString() != "source/horse_light-v5-uv0-provenance.json" ||
+                binding.GetProperty("current_blend_sha256").GetString() != source.GetProperty("sha256").GetString() ||
+                binding.GetProperty("reference_blend_sha256").GetString() != reference.GetProperty("source_sha256").GetString() ||
+                binding.GetProperty("reference_triangle_count").GetInt32() != 25222 ||
+                binding.GetProperty("reference_uv_contract_sha256").GetString() != reference.GetProperty("uv_contract_sha256").GetString())
+                return false;
+
+            reason = "";
+            return true;
+        }
+        catch (Exception e)
+        {
+            reason = "UV reuse evidence could not be read: " + e.Message;
+            return false;
+        }
+    }
+
+    private static BodySignedDetail? DisableBodySignedDetail(string reason, out string? disabledReason)
+    {
+        disabledReason = reason;
+        return null;
+    }
+
+    private static string? ReadString(JsonElement node, string property) =>
+        node.TryGetProperty(property, out var value) && value.ValueKind == JsonValueKind.String ? value.GetString() : null;
+
+    private static bool IsSha256(string? value) => value is { Length: 64 } && value.All(Uri.IsHexDigit);
+
+    private static string Sha256(byte[] bytes) => Convert.ToHexString(SHA256.HashData(bytes)).ToLowerInvariant();
 
     private static Color Hex(JsonElement e, string name) => Color.FromHtml(e.GetProperty(name).GetString()!);
 
@@ -121,15 +376,21 @@ public sealed class VisualCatalog
         {
             if (family.Placeholder) limits.Add("TEMPORARY placeholder mesh");
             if (!string.IsNullOrEmpty(family.Limitation)) limits.Add(family.Limitation);
+            if (!string.IsNullOrEmpty(family.BodySignedDetailDisabledReason))
+                limits.Add("body signed detail disabled: " + family.BodySignedDetailDisabledReason);
+            if (family.BodySignedDetail is { } bodyDetail)
+                limits.Add($"Light Body signed detail UV scope: {bodyDetail.RetainedTriangleCount} retained triangles plus {bodyDetail.NeutralRecoveredFaceCount} recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed");
         }
         if (d.GrayAmount != 0 && !ImplementedLayers.Contains("grey_age")) problems.Add("grey progression is not implemented");
         if (d.LpPatternPresent || d.Patn1Coverage != 0) problems.Add("leopard complex / PATN1 is not implemented");
         if (d.PrimitiveMarkingStrength > 0 && Coats.TryGetValue(d.CoatRecipe, out var c) && c.Primitive is null && !d.CoatLayers.Contains("primitive_markings"))
             problems.Add("primitive markings requested without a primitive_markings layer");
         if (!string.IsNullOrEmpty(d.CosmeticLayer)) limits.Add($"cosmetic layer '{d.CosmeticLayer}' ignored (not implemented)");
-        var supportedMorphs = MeshBlendShapes.Values.SelectMany(channels => channels.Keys).ToHashSet(StringComparer.Ordinal);
+        var familyMorphs = FamilyMeshBlendShapes.TryGetValue(d.MeshFamilyId, out var familyShapes) && familyShapes.TryGetValue("Body", out var bodyShapes)
+            ? bodyShapes.Keys.ToHashSet(StringComparer.Ordinal)
+            : new HashSet<string>(StringComparer.Ordinal);
         var unappliedMorphs = d.MorphWeights.Where(kv => kv.Value != 0 &&
-            (UnsupportedMorphs.Contains(kv.Key) || (supportedMorphs.Contains(kv.Key) && d.IsFoal)))
+            (UnsupportedMorphs.Contains(kv.Key) || (kv.Key != "height" && !familyMorphs.Contains(kv.Key))))
             .Select(kv => kv.Key).ToArray();
         if (unappliedMorphs.Length > 0) limits.Add("morphs not applied: " + string.Join(",", unappliedMorphs));
         limits.AddRange(ComponentMorphLimitations);

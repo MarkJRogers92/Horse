@@ -1,0 +1,492 @@
+{
+  "cases": 8,
+  "morphs": [
+    "body_length",
+    "chest_width",
+    "neck_length",
+    "muscle"
+  ],
+  "values": [
+    -1.0,
+    1.0
+  ],
+  "pose": "Idle frame 49, after evaluating the static descriptor endpoint across Body/Eyes/Mane/Tail",
+  "allMeshesFinite": true,
+  "allSupportCasesWithinMinus2mm": true,
+  "results": [
+    {
+      "morph": "body_length",
+      "value": -1.0,
+      "idleFrame": 49,
+      "allMeshesFinite": true,
+      "maxVertexDeltaFromNeutralMidpoint_m": {
+        "Body": 0.015000025822534003,
+        "Eyes": 0.0,
+        "Mane": 0.014999981753737276,
+        "Tail": 0.00504400072580092
+      },
+      "support": {
+        "Front_R": {
+          "minSoleZ_m": -0.0010819053277373314,
+          "p05SoleZ_m": -0.0009838666301220655,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Front_L": {
+          "minSoleZ_m": -0.00121495989151299,
+          "p05SoleZ_m": -0.000993612571619451,
+          "vertexCount": 85,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_R": {
+          "minSoleZ_m": 0.00022934129810892045,
+          "p05SoleZ_m": 0.0006566017982549965,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_L": {
+          "minSoleZ_m": 0.00034337147371843457,
+          "p05SoleZ_m": 0.0005028290906921029,
+          "vertexCount": 90,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        }
+      },
+      "attachmentRoots": {
+        "forelock": {
+          "rootCount": 50,
+          "maxReferenceGap_m": 0.008427847967705893,
+          "maxGapDrift_m": 3.714168159363129e-05,
+          "p95GapDrift_m": 2.949315899904071e-05,
+          "maxPosedGap_m": 0.008428851712242655
+        },
+        "tail": {
+          "rootCount": 12,
+          "maxReferenceGap_m": 0.011892609252109993,
+          "maxGapDrift_m": 3.1134413667239627e-05,
+          "p95GapDrift_m": 3.1134413667239627e-05,
+          "maxPosedGap_m": 0.011892646381116371
+        }
+      }
+    },
+    {
+      "morph": "body_length",
+      "value": 1.0,
+      "idleFrame": 49,
+      "allMeshesFinite": true,
+      "maxVertexDeltaFromNeutralMidpoint_m": {
+        "Body": 0.0150000265496548,
+        "Eyes": 0.0,
+        "Mane": 0.014999982856500926,
+        "Tail": 0.005044030657531835
+      },
+      "support": {
+        "Front_R": {
+          "minSoleZ_m": -0.0010819053277373314,
+          "p05SoleZ_m": -0.0009838666301220655,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Front_L": {
+          "minSoleZ_m": -0.00121495989151299,
+          "p05SoleZ_m": -0.000993612571619451,
+          "vertexCount": 85,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_R": {
+          "minSoleZ_m": 0.00022934129810892045,
+          "p05SoleZ_m": 0.0006566017982549965,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_L": {
+          "minSoleZ_m": 0.00034337147371843457,
+          "p05SoleZ_m": 0.0005028290906921029,
+          "vertexCount": 90,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        }
+      },
+      "attachmentRoots": {
+        "forelock": {
+          "rootCount": 50,
+          "maxReferenceGap_m": 0.008447334340765219,
+          "maxGapDrift_m": 3.731451900702627e-05,
+          "p95GapDrift_m": 2.9730952047749015e-05,
+          "maxPosedGap_m": 0.008448482227531298
+        },
+        "tail": {
+          "rootCount": 12,
+          "maxReferenceGap_m": 0.011541575461015106,
+          "maxGapDrift_m": 3.0316111327527603e-05,
+          "p95GapDrift_m": 3.0316111327527603e-05,
+          "maxPosedGap_m": 0.011541742084734474
+        }
+      }
+    },
+    {
+      "morph": "chest_width",
+      "value": -1.0,
+      "idleFrame": 49,
+      "allMeshesFinite": true,
+      "maxVertexDeltaFromNeutralMidpoint_m": {
+        "Body": 0.0065794587564591495,
+        "Eyes": 0.0007459074138242355,
+        "Mane": 0.0004000300536132039,
+        "Tail": 1.085922122001648e-06
+      },
+      "support": {
+        "Front_R": {
+          "minSoleZ_m": -0.0010819053277373314,
+          "p05SoleZ_m": -0.0009838666301220655,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Front_L": {
+          "minSoleZ_m": -0.00121495989151299,
+          "p05SoleZ_m": -0.000993612571619451,
+          "vertexCount": 85,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_R": {
+          "minSoleZ_m": 0.00022934129810892045,
+          "p05SoleZ_m": 0.0006566017982549965,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_L": {
+          "minSoleZ_m": 0.00034337147371843457,
+          "p05SoleZ_m": 0.0005028290906921029,
+          "vertexCount": 90,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        }
+      },
+      "attachmentRoots": {
+        "forelock": {
+          "rootCount": 50,
+          "maxReferenceGap_m": 0.0084372751107076,
+          "maxGapDrift_m": 3.723960878441225e-05,
+          "p95GapDrift_m": 2.939736536327883e-05,
+          "maxPosedGap_m": 0.008438342339269017
+        },
+        "tail": {
+          "rootCount": 12,
+          "maxReferenceGap_m": 0.011733408641528397,
+          "maxGapDrift_m": 3.081629313409547e-05,
+          "p95GapDrift_m": 3.081629313409547e-05,
+          "maxPosedGap_m": 0.011733504491727458
+        }
+      }
+    },
+    {
+      "morph": "chest_width",
+      "value": 1.0,
+      "idleFrame": 49,
+      "allMeshesFinite": true,
+      "maxVertexDeltaFromNeutralMidpoint_m": {
+        "Body": 0.0065794587564591495,
+        "Eyes": 0.0007459074138242355,
+        "Mane": 0.0004000300536132039,
+        "Tail": 1.085922122001648e-06
+      },
+      "support": {
+        "Front_R": {
+          "minSoleZ_m": -0.0010819053277373314,
+          "p05SoleZ_m": -0.0009838666301220655,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Front_L": {
+          "minSoleZ_m": -0.00121495989151299,
+          "p05SoleZ_m": -0.000993612571619451,
+          "vertexCount": 85,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_R": {
+          "minSoleZ_m": 0.00022934129810892045,
+          "p05SoleZ_m": 0.0006566017982549965,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_L": {
+          "minSoleZ_m": 0.00034337147371843457,
+          "p05SoleZ_m": 0.0005028290906921029,
+          "vertexCount": 90,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        }
+      },
+      "attachmentRoots": {
+        "forelock": {
+          "rootCount": 50,
+          "maxReferenceGap_m": 0.00843790899570371,
+          "maxGapDrift_m": 3.72396087771337e-05,
+          "p95GapDrift_m": 3.202241430854682e-05,
+          "maxPosedGap_m": 0.008438975258130567
+        },
+        "tail": {
+          "rootCount": 12,
+          "maxReferenceGap_m": 0.011733300690652341,
+          "maxGapDrift_m": 3.084183300104953e-05,
+          "p95GapDrift_m": 3.084183300104953e-05,
+          "maxPosedGap_m": 0.011733516753248989
+        }
+      }
+    },
+    {
+      "morph": "neck_length",
+      "value": -1.0,
+      "idleFrame": 49,
+      "allMeshesFinite": true,
+      "maxVertexDeltaFromNeutralMidpoint_m": {
+        "Body": 0.03500012411948853,
+        "Eyes": 0.034991300095511664,
+        "Mane": 0.03500009209562937,
+        "Tail": 0.0
+      },
+      "support": {
+        "Front_R": {
+          "minSoleZ_m": -0.0010819053277373314,
+          "p05SoleZ_m": -0.0009838666301220655,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Front_L": {
+          "minSoleZ_m": -0.00121495989151299,
+          "p05SoleZ_m": -0.000993612571619451,
+          "vertexCount": 85,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_R": {
+          "minSoleZ_m": 0.00022934129810892045,
+          "p05SoleZ_m": 0.0006566017982549965,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_L": {
+          "minSoleZ_m": 0.00034337147371843457,
+          "p05SoleZ_m": 0.0005028290906921029,
+          "vertexCount": 90,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        }
+      },
+      "attachmentRoots": {
+        "forelock": {
+          "rootCount": 50,
+          "maxReferenceGap_m": 0.00852302736591774,
+          "maxGapDrift_m": 3.711378825388312e-05,
+          "p95GapDrift_m": 3.137588777197555e-05,
+          "maxPosedGap_m": 0.008523456862336446
+        },
+        "tail": {
+          "rootCount": 12,
+          "maxReferenceGap_m": 0.011733408322089,
+          "maxGapDrift_m": 3.081629309187616e-05,
+          "p95GapDrift_m": 3.081629309187616e-05,
+          "maxPosedGap_m": 0.011733504188943773
+        }
+      }
+    },
+    {
+      "morph": "neck_length",
+      "value": 1.0,
+      "idleFrame": 49,
+      "allMeshesFinite": true,
+      "maxVertexDeltaFromNeutralMidpoint_m": {
+        "Body": 0.03500007055364776,
+        "Eyes": 0.034991240209837786,
+        "Mane": 0.035000062160326875,
+        "Tail": 0.0
+      },
+      "support": {
+        "Front_R": {
+          "minSoleZ_m": -0.0010819053277373314,
+          "p05SoleZ_m": -0.0009838666301220655,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Front_L": {
+          "minSoleZ_m": -0.00121495989151299,
+          "p05SoleZ_m": -0.000993612571619451,
+          "vertexCount": 85,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_R": {
+          "minSoleZ_m": 0.00022934129810892045,
+          "p05SoleZ_m": 0.0006566017982549965,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_L": {
+          "minSoleZ_m": 0.00034337147371843457,
+          "p05SoleZ_m": 0.0005028290906921029,
+          "vertexCount": 90,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        }
+      },
+      "attachmentRoots": {
+        "forelock": {
+          "rootCount": 50,
+          "maxReferenceGap_m": 0.008353492784595119,
+          "maxGapDrift_m": 3.744196599803256e-05,
+          "p95GapDrift_m": 3.0018262555535828e-05,
+          "maxPosedGap_m": 0.008355282612394595
+        },
+        "tail": {
+          "rootCount": 12,
+          "maxReferenceGap_m": 0.011733408322089,
+          "maxGapDrift_m": 3.081629309187616e-05,
+          "p95GapDrift_m": 3.081629309187616e-05,
+          "maxPosedGap_m": 0.011733504188943773
+        }
+      }
+    },
+    {
+      "morph": "muscle",
+      "value": -1.0,
+      "idleFrame": 49,
+      "allMeshesFinite": true,
+      "maxVertexDeltaFromNeutralMidpoint_m": {
+        "Body": 0.009451663755252502,
+        "Eyes": 0.0013203569087436187,
+        "Mane": 0.007426783686089705,
+        "Tail": 0.0041712542759401745
+      },
+      "support": {
+        "Front_R": {
+          "minSoleZ_m": -0.0010819053277373314,
+          "p05SoleZ_m": -0.0009838666301220655,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Front_L": {
+          "minSoleZ_m": -0.00121495989151299,
+          "p05SoleZ_m": -0.000993612571619451,
+          "vertexCount": 85,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_R": {
+          "minSoleZ_m": 0.00022934129810892045,
+          "p05SoleZ_m": 0.0006566017982549965,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_L": {
+          "minSoleZ_m": 0.00034337147371843457,
+          "p05SoleZ_m": 0.0005028290906921029,
+          "vertexCount": 90,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        }
+      },
+      "attachmentRoots": {
+        "forelock": {
+          "rootCount": 50,
+          "maxReferenceGap_m": 0.008272196932794587,
+          "maxGapDrift_m": 3.6570643404697376e-05,
+          "p95GapDrift_m": 3.138501584890494e-05,
+          "maxPosedGap_m": 0.008273223441481797
+        },
+        "tail": {
+          "rootCount": 12,
+          "maxReferenceGap_m": 0.011384264969249191,
+          "maxGapDrift_m": 2.9761107086866998e-05,
+          "p95GapDrift_m": 2.9761107086866998e-05,
+          "maxPosedGap_m": 0.011384206661356516
+        }
+      }
+    },
+    {
+      "morph": "muscle",
+      "value": 1.0,
+      "idleFrame": 49,
+      "allMeshesFinite": true,
+      "maxVertexDeltaFromNeutralMidpoint_m": {
+        "Body": 0.00945178268969704,
+        "Eyes": 0.0013203566625425121,
+        "Mane": 0.0074269024234757935,
+        "Tail": 0.0041711349377766835
+      },
+      "support": {
+        "Front_R": {
+          "minSoleZ_m": -0.0010819053277373314,
+          "p05SoleZ_m": -0.0009838666301220655,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Front_L": {
+          "minSoleZ_m": -0.00121495989151299,
+          "p05SoleZ_m": -0.000993612571619451,
+          "vertexCount": 85,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_R": {
+          "minSoleZ_m": 0.00022934129810892045,
+          "p05SoleZ_m": 0.0006566017982549965,
+          "vertexCount": 84,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        },
+        "Hind_L": {
+          "minSoleZ_m": 0.00034337147371843457,
+          "p05SoleZ_m": 0.0005028290906921029,
+          "vertexCount": 90,
+          "minAtLeastMinus2mm": true,
+          "p05AtLeastMinus2mm": true
+        }
+      },
+      "attachmentRoots": {
+        "forelock": {
+          "rootCount": 50,
+          "maxReferenceGap_m": 0.008604940490211006,
+          "maxGapDrift_m": 3.7913719933060894e-05,
+          "p95GapDrift_m": 2.995363369675379e-05,
+          "maxPosedGap_m": 0.00860593373638873
+        },
+        "tail": {
+          "rootCount": 12,
+          "maxReferenceGap_m": 0.012076358857977634,
+          "maxGapDrift_m": 3.164081863996189e-05,
+          "p95GapDrift_m": 3.164081863996189e-05,
+          "maxPosedGap_m": 0.01207630517320162
+        }
+      }
+    }
+  ],
+  "assetHashesUnchanged": {
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/art/derived/production/horse_foal.blend": "4322de7c3b97e6aa0e71111a6ab0de325f72f4f905424b4ff6e8d22df0ca041b",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_foal.glb": "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_foal.manifest.json": "c77a3eb46cd93739ea0a414c6607dcb9f6d26b253c5b48e1846de7c77088acfe"
+  },
+  "metadataOnlyManifestUpdate": {
+    "currentManifestSha256": "c77a3eb46cd93739ea0a414c6607dcb9f6d26b253c5b48e1846de7c77088acfe",
+    "blendSha256Unchanged": true,
+    "glbSha256Unchanged": true
+  }
+}

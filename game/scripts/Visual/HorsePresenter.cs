@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using Godot;
 
 namespace Cloverbrook.Game.Visual;
@@ -17,6 +18,7 @@ public partial class HorsePresenter : Node3D
     private static readonly Shader EyeShader = GD.Load<Shader>("res://shaders/horse_eye.gdshader");
     private static readonly Shader HairShader = GD.Load<Shader>("res://shaders/horse_hair.gdshader");
     private static readonly Dictionary<string, PackedScene> SceneCache = new();
+    private static readonly Dictionary<string, bool> SignedDetailImportValidation = new(StringComparer.Ordinal);
 
     [Signal] public delegate void PresentedEventHandler(string summary, bool supported);
 
@@ -51,33 +53,13 @@ public partial class HorsePresenter : Node3D
         var meshGroups = FindAll<MeshInstance3D>(Model)
             .GroupBy(mesh => mesh.Name.ToString(), StringComparer.Ordinal)
             .ToDictionary(group => group.Key, group => group.ToArray(), StringComparer.Ordinal);
-        var bodyMatches = meshGroups.TryGetValue("Body", out var namedBodies) ? namedBodies : Array.Empty<MeshInstance3D>();
-        var body = bodyMatches.Length == 1 ? bodyMatches[0] : null;
-        if (!descriptor.IsFoal && catalog.BodyBlendShapes.Count > 0)
+        var familyMorphShapes = catalog.FamilyMeshBlendShapes[descriptor.MeshFamilyId];
+        // Every declared component/channel pair is an explicit family asset
+        // contract. It applies equally to juvenile masters; legacy families with
+        // an empty map intentionally leave those descriptor controls unapplied.
+        if (familyMorphShapes.Count > 0)
         {
-            var missing = bodyMatches.Length != 1
-                ? new[] { $"Body component expected exactly once; found {bodyMatches.Length}" }
-                : catalog.BodyBlendShapes.Values.Where(shape => body!.Mesh == null || !HasBlendShape(body, shape)).ToArray();
-            if (missing.Length > 0)
-            {
-                Support = Support with
-                {
-                    Supported = false,
-                    Problems = Support.Problems.Append("adult mesh is missing required body blend shapes: " + string.Join(", ", missing)).ToArray()
-                };
-                ClearModel();
-                GD.PushWarning($"[HorsePresenter] {descriptor.FixtureId}: {Support.Summary}");
-                EmitSignal(SignalName.Presented, Support.Summary, false);
-                return Support;
-            }
-        }
-
-        // A component/channel pair declared by the catalog is an explicit asset
-        // contract. Body channels are required; any additional declared component
-        // channels are also required so a head/coat part cannot silently detach.
-        if (!descriptor.IsFoal)
-        {
-            var missing = catalog.MeshBlendShapes
+            var missing = familyMorphShapes
                 .Where(pair => pair.Value.Count > 0)
                 .SelectMany(pair =>
                 {
@@ -93,7 +75,7 @@ public partial class HorsePresenter : Node3D
                 Support = Support with
                 {
                     Supported = false,
-                    Problems = Support.Problems.Append("adult mesh is missing declared component blend shapes: " + string.Join(", ", missing)).ToArray()
+                    Problems = Support.Problems.Append("mesh family is missing declared component blend shapes: " + string.Join(", ", missing)).ToArray()
                 };
                 ClearModel();
                 GD.PushWarning($"[HorsePresenter] {descriptor.FixtureId}: {Support.Summary}");
@@ -107,6 +89,14 @@ public partial class HorsePresenter : Node3D
         var skin = catalog.Skin[descriptor.SkinRecipe];
         var eye = catalog.Eyes[descriptor.EyeRecipe];
         Markings = Markings.FromKey(descriptor.MarkingRealizationKey);
+        Texture2D? bodySignedDetail = family.BodySignedDetail is { } detail
+            ? GD.Load<Texture2D>(detail.Path)
+            : null;
+        if (bodySignedDetail != null && family.BodySignedDetail is { } signedDetailMetadata &&
+            !ValidateImportedSignedDetail(bodySignedDetail, signedDetailMetadata))
+            bodySignedDetail = null;
+        if (family.BodySignedDetail != null && bodySignedDetail == null)
+            Support = Support with { Limitations = Support.Limitations.Append("body signed detail disabled: atlas could not be loaded losslessly or its imported pixels did not match provenance").ToArray() };
 
         var coatMat = new ShaderMaterial { Shader = CoatShader };
         coatMat.SetShaderParameter("body_color", coat.Body);
@@ -124,6 +114,16 @@ public partial class HorsePresenter : Node3D
         coatMat.SetShaderParameter("sooty", coat.Sooty);
         coatMat.SetShaderParameter("dapple", descriptor.CoatLayers.Contains("shading_modifiers") ? coat.Dapple : 0f);
         coatMat.SetShaderParameter("sheen", coat.Sheen);
+        // Data atlas is intentionally opt-in per family and remains off when its
+        // metadata is absent, invalid, stale, or fails Godot's texture import.
+        coatMat.SetShaderParameter("use_signed_detail", false);
+        coatMat.SetShaderParameter("signed_detail_strength", 0f);
+        if (bodySignedDetail != null && family.BodySignedDetail is { } signedDetail)
+        {
+            coatMat.SetShaderParameter("signed_detail_map", bodySignedDetail);
+            coatMat.SetShaderParameter("use_signed_detail", true);
+            coatMat.SetShaderParameter("signed_detail_strength", signedDetail.Strength);
+        }
         bool whiteMarkings = descriptor.CoatLayers.Contains("individual_white_markings");
         coatMat.SetShaderParameter("face_type", whiteMarkings ? (int)Markings.Face : 0);
         coatMat.SetShaderParameter("face_params", new Vector4(Markings.StarSize, Markings.StripWidth, Markings.BlazeWidth, Markings.SnipSize));
@@ -170,19 +170,16 @@ public partial class HorsePresenter : Node3D
         Model.Scale = Vector3.One * height;
         HeadViewTarget = family.HeadViewTarget * height;
 
-        if (!descriptor.IsFoal)
+        foreach (var (component, channels) in familyMorphShapes)
         {
-            foreach (var (component, channels) in catalog.MeshBlendShapes)
+            if (!meshGroups.TryGetValue(component, out var matches) || matches.Length != 1) continue;
+            var mesh = matches[0];
+            foreach (var (morph, shape) in channels)
             {
-                if (!meshGroups.TryGetValue(component, out var matches) || matches.Length != 1) continue;
-                var mesh = matches[0];
-                foreach (var (morph, shape) in channels)
-                {
-                    float normalized = descriptor.MorphWeights.TryGetValue(morph, out var weight)
-                        ? Mathf.Clamp(weight / catalog.BodyBlendShapeNormalization, -1f, 1f)
-                        : 0f;
-                    mesh.SetBlendShapeValue(mesh.FindBlendShapeByName(shape), normalized);
-                }
+                float normalized = descriptor.MorphWeights.TryGetValue(morph, out var weight)
+                    ? Mathf.Clamp(weight / catalog.BodyBlendShapeNormalization, -1f, 1f)
+                    : 0f;
+                mesh.SetBlendShapeValue(mesh.FindBlendShapeByName(shape), normalized);
             }
         }
 
@@ -197,6 +194,17 @@ public partial class HorsePresenter : Node3D
         return Support;
     }
 
+    private static bool ValidateImportedSignedDetail(Texture2D texture, BodySignedDetail metadata)
+    {
+        string key = metadata.Path + "|" + metadata.PixelSha256;
+        if (SignedDetailImportValidation.TryGetValue(key, out bool cached)) return cached;
+        var image = texture.GetImage();
+        bool valid = image.GetWidth() == 2048 && image.GetHeight() == 2048 && image.GetFormat() == Image.Format.Rgb8 &&
+                     string.Equals(Convert.ToHexString(SHA256.HashData(image.GetData())).ToLowerInvariant(), metadata.PixelSha256, StringComparison.Ordinal);
+        SignedDetailImportValidation[key] = valid;
+        return valid;
+    }
+
     public void Play(string animation)
     {
         CurrentAnimation = ResolveAnimation(animation) ?? "";
@@ -204,6 +212,9 @@ public partial class HorsePresenter : Node3D
         if (string.IsNullOrEmpty(CurrentAnimation)) { Animator.Stop(); return; }
         Animator.Play(CurrentAnimation);
     }
+
+    /// <summary>Returns true when the requested clip resolves using the presenter's exact-first alias rules.</summary>
+    public bool IsAnimationAvailable(string animation) => !string.IsNullOrEmpty(ResolveAnimation(animation));
 
     /// <summary>Freeze the current animation at a time (used for deterministic captures).</summary>
     public void Pose(string animation, double time)

@@ -1,0 +1,139 @@
+{
+  "schema": "horse.source-bound.runtime-review.v1",
+  "taskId": "horse-production-20261011",
+  "status": "accepted local runtime contract and scoped native Sol diff review; no new human art or Walk/Graze approval",
+  "glbSHA256": {
+    "light": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc",
+    "stock": "0b4f422d238e38ad32d2684ab0f0e55edb479aadb505e9c3542f3e1637066439",
+    "foal": "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a"
+  },
+  "workingTreeCodeSHA256": {
+    "game/scripts/Scenes/HorseViewer.cs": "3a19635bbe33eeca775350d6115555e4fdb01a108af32ab8c244ada0b70bf821",
+    "game/scripts/Visual/HorsePresenter.cs": "f765713e19b9ddcc00a9a2331e92cd50d931ffb5c604986385b77aab2feba7ac",
+    "game/scripts/Tools/CaptureRunner.cs": "05c42df483f9c2766a15f966ab00d2783dd74b5c9d48ffdaa2750dc644cf6459",
+    "game/scripts/Visual/VisualCatalog.cs": "c7732396d47d532a18ceaca8b2e9de1cb4b842f0b7a5721ab38587ae9ea8d5df",
+    "game/data/visual_catalog.json": "74d3913e2b4937c54284d41168213b8ef2b4b05e7f6f080321cfaf0e5b0be3a2",
+    "game/assets/horse/production/horse_foal.glb.import": "48e1c853ee01e4aeee60493dd73355e1335b272ef6f64a17e897bbe30f954b6d"
+  },
+  "files": [
+    {
+      "path": "preview-and-controls/capture_report.json",
+      "sha256": "fb69cdc10ebe286e096285ccc3d7b996702034bfeb43e172bc7a0377ddc0360d"
+    },
+    {
+      "path": "preview-and-controls/foal/chestnut.foal__front.png",
+      "sha256": "f9ab1b9ab74f29b25f82aa5780d61a692f6752e2a55f313e185e75800c752902"
+    },
+    {
+      "path": "preview-and-controls/foal/chestnut.foal__head.png",
+      "sha256": "a661687326d100b3bcb68bf6b081c48b844e7e3528b83a9a063b591c2dab6ee6"
+    },
+    {
+      "path": "preview-and-controls/foal/chestnut.foal__side.png",
+      "sha256": "f8fc70f966886046b309e9154fed343e1e91176c4c363e78f48d00ce504c869f"
+    },
+    {
+      "path": "preview-and-controls/foal/chestnut.foal__side_left.png",
+      "sha256": "dbc791e0024caefe1e0ddffcf3a2ddf01520cfea2bb0e44552d9359944fddeb1"
+    },
+    {
+      "path": "preview-and-controls/foal/compact_shared_base__q3.png",
+      "sha256": "988625cd15b70593c8de1110e02f6e95d6ff067e38ffef548668d62d9085356d"
+    },
+    {
+      "path": "preview-and-controls/foal/morph_body_length_-2000.png",
+      "sha256": "eff79c96f6845536d88ba356436e13f2f3cc755ea3aaf77e91b596d5560b1721"
+    },
+    {
+      "path": "preview-and-controls/foal/morph_body_length_2000.png",
+      "sha256": "afc0917c61cf1711bcbc41e7d7710219ad85d835740d8df19761ad7c36991e81"
+    },
+    {
+      "path": "preview-and-controls/foal/morph_chest_width_-2000.png",
+      "sha256": "296a12b6719b010e57385ad14561b44b621bb998f98763185369831e5fe52375"
+    },
+    {
+      "path": "preview-and-controls/foal/morph_chest_width_2000.png",
+      "sha256": "0f2839e4605fb85aac7e13fa2ed5415455b111858ccabe7fc163a7c91477ee28"
+    },
+    {
+      "path": "preview-and-controls/foal/morph_muscle_-2000.png",
+      "sha256": "2f873f151e516e9bd18bb01961bd9626a13a279e9c511311ba2eeb34d97fbbb3"
+    },
+    {
+      "path": "preview-and-controls/foal/morph_muscle_2000.png",
+      "sha256": "526aa7ffd4d809ac09d146cf2ce0c3046cfd65edc27672476d53b4abdd8d6845"
+    },
+    {
+      "path": "preview-and-controls/foal/morph_neck_length_-2000.png",
+      "sha256": "d851d49a0fcdbe46ce45b811e93094a17123ae138807aca620d3970adecdd049"
+    },
+    {
+      "path": "preview-and-controls/foal/morph_neck_length_2000.png",
+      "sha256": "7e58305466a391073efb3e0419d4968c13bb5666c736cca2e0bf0b1f0b139b68"
+    },
+    {
+      "path": "preview-and-controls/foal/same_marking_key__adult_head.png",
+      "sha256": "09c246e6844c5d7a2180589e4a595bdd8f7a31024b778b2b7870d93316e71b9d"
+    },
+    {
+      "path": "preview-and-controls/foal/same_marking_key__foal_head.png",
+      "sha256": "a661687326d100b3bcb68bf6b081c48b844e7e3528b83a9a063b591c2dab6ee6"
+    },
+    {
+      "path": "idle-and-adult-pose/capture_report.json",
+      "sha256": "f95a17add3b125afca6e363087daeb373d742326fbf6c73b075ce65cf0ae3df3"
+    },
+    {
+      "path": "idle-and-adult-pose/foal_idle/initial_front.png",
+      "sha256": "1acc7da05e2d2744ae23de0cd90d9e0566b52af0e84488f3fdb9ecc2a2531f16"
+    },
+    {
+      "path": "idle-and-adult-pose/foal_idle/initial_head.png",
+      "sha256": "1c0b61191045d03ff297b4b987e85e169962e1861e22bfdcd2d96fc1eb8d1273"
+    },
+    {
+      "path": "idle-and-adult-pose/foal_idle/initial_q3.png",
+      "sha256": "a4cbdcef655c345ac5a7658d9a97901c5ba12827eb0e67a3d224d2adea6ef57d"
+    },
+    {
+      "path": "idle-and-adult-pose/foal_idle/initial_side.png",
+      "sha256": "8705d3de4a4769bf9bf6c5a92e2071cdd4be52f79ae665a9a1150a6f96bb88c8"
+    },
+    {
+      "path": "idle-and-adult-pose/foal_idle/midpoint_front.png",
+      "sha256": "0dfc48a2731fbcb0a751c19c97acd7241bf6709aff343cd87e3a73cd2c732b03"
+    },
+    {
+      "path": "idle-and-adult-pose/foal_idle/midpoint_head.png",
+      "sha256": "9fa67834f12b4d66d93bcdc509482d4c035e5cc8ede758bde5a40d7925c579d6"
+    },
+    {
+      "path": "idle-and-adult-pose/foal_idle/midpoint_side.png",
+      "sha256": "24db9d9868d5eb9a248828258eadb6c6078fe80eda73e78347bde131d25c8288"
+    },
+    {
+      "path": "idle-and-adult-pose/foal_idle/quarter_front.png",
+      "sha256": "f43091eb4da8af918725d656d9b880b4a8606dbeaaebe4476fe4161b35a5965f"
+    },
+    {
+      "path": "idle-and-adult-pose/foal_idle/quarter_head.png",
+      "sha256": "e69e3776ba3cee2931e8298f6976915d93ec2dd29d0b7dcb7beab48e025a83a0"
+    },
+    {
+      "path": "idle-and-adult-pose/foal_idle/quarter_q3.png",
+      "sha256": "4d5c0a57b3589fc324c38372487bb9096354a02517f99ec42e4bcb5965e95c99"
+    },
+    {
+      "path": "idle-and-adult-pose/foal_idle/quarter_side.png",
+      "sha256": "10c2fb05af5287c42ed479c6131022ff57890b3b75bb944ecfee367444309a7d"
+    }
+  ],
+  "limits": [
+    "The 97-frame sole/skin/loop audit is independent Blender evidence, not a Godot surface-contact measurement.",
+    "Runtime checks verify advancing Idle, sampled Head/Neck or adult Head pose changes, fixed Root, imported rig, component morphs and LODs.",
+    "Foal-only AnimationPlayer optimizer is disabled to preserve tiny source rotations; adult import settings remain unchanged.",
+    "Preview images and same-key age selection are test fixtures, not live visual-release promotion.",
+    "Foal manifest landmark descriptions may be corrected without changing the captured source GLB bytes."
+  ]
+}

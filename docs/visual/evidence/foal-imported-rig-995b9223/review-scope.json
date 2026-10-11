@@ -1,0 +1,11 @@
+{
+  "scope": "Imported structure only after refreshing Godot cache. Current at capture: foal995b9223;64bones, Head\u2192Head_Base ancestry reaches Neck, fourcomponents/morphs/LODs. No pose or Idle acceptance.",
+  "reportSha256": "c02e7ff73cd3f7ef88d30986fed6ff6389ab230a1086d5fe3299a6c44fa1d3c3",
+  "reportedFailures": 0,
+  "independentReview": {
+    "role": "nativeSol",
+    "decision": "no blocker found",
+    "performed": "actualdiff and supporting evidence read; no new tests run"
+  },
+  "codeCheckpoint": "working tree after c30f362; coherent game-code commit awaits final foal Idle acceptance"
+}

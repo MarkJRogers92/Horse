@@ -1,0 +1,6411 @@
+{
+  "taskId": "horse-production-20261011",
+  "status": "candidate Idle target proof; independent review pending",
+  "hashes": {
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/art/derived/production/horse_foal.blend": "4322de7c3b97e6aa0e71111a6ab0de325f72f4f905424b4ff6e8d22df0ca041b",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_foal.glb": "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_foal.manifest.json": "c77a3eb46cd93739ea0a414c6607dcb9f6d26b253c5b48e1846de7c77088acfe"
+  },
+  "productionHashesUnchangedDuringVerification": true,
+  "preIdleGeometryRestHierarchyExact": {
+    "checkpoint": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/foal-checkpoints/pre-idle-995b9223/horse_foal.blend",
+    "baselineSignatures": {
+      "Body": "fa4661ddd43c2a3ad68091cddd7fd0754c6ecbde2f249813c09878ed1cb9bd57",
+      "Eyes": "e9dfe719bda8fbbe42d607d24b32aeefbff73a9f7cf3f3a78a93d10f4939e199",
+      "Mane": "2e0490f2f3b73020283246c20e2b3ca5fa89009e83d6a742dd29dd59bd5f91ac",
+      "Tail": "0ae50470dc8127fff27212fa9c939c31807093403241bbb9ed2f4ff21c944004"
+    },
+    "currentSignatures": {
+      "Body": "fa4661ddd43c2a3ad68091cddd7fd0754c6ecbde2f249813c09878ed1cb9bd57",
+      "Eyes": "e9dfe719bda8fbbe42d607d24b32aeefbff73a9f7cf3f3a78a93d10f4939e199",
+      "Mane": "2e0490f2f3b73020283246c20e2b3ca5fa89009e83d6a742dd29dd59bd5f91ac",
+      "Tail": "0ae50470dc8127fff27212fa9c939c31807093403241bbb9ed2f4ff21c944004"
+    },
+    "identical": true
+  },
+  "animation": {
+    "blendAction": "Idle",
+    "fps": 24,
+    "frames": [
+      1,
+      97
+    ],
+    "frameCount": 97,
+    "glb": [
+      {
+        "name": "Idle",
+        "channels": [
+          {
+            "node": "Root",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Root",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Root",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Pelvis_Root",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Pelvis_Root",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Pelvis_Root",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Pelvis",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Pelvis",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Pelvis",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_003",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_003",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_003",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_002",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_002",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_002",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Upper",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Upper",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Upper",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Gaskin",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Gaskin",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Gaskin",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_017",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_017",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_017",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Hock",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Hock",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Hock",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Cannon",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Cannon",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Cannon",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Pastern",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Pastern",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Pastern",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Hoof",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Hoof",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Hoof",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Hoof_02",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Hoof_02",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Hoof_02",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Hoof_03",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Hoof_03",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_L_Hoof_03",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Upper",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Upper",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Upper",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Gaskin",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Gaskin",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Gaskin",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_014",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_014",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_014",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Hock",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Hock",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Hock",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Cannon",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Cannon",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Cannon",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Pastern",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Pastern",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Pastern",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Hoof",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Hoof",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Hoof",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Hoof_02",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Hoof_02",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Hoof_02",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Hoof_03",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Hoof_03",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Hind_R_Hoof_03",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Spine_Base",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Spine_Base",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 97,
+            "interpolation": "LINEAR",
+            "maxOutputDelta": 0.0013090851585361584
+          },
+          {
+            "node": "Spine_Base",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Chest",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Chest",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Chest",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Upper",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Upper",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Upper",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Forearm",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Forearm",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Forearm",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Cannon",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Cannon",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Cannon",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Pastern",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Pastern",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Pastern",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Hoof",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Hoof",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Hoof",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Hoof_02",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Hoof_02",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Hoof_02",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Hoof_03",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Hoof_03",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_L_Hoof_03",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Upper",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Upper",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Upper",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Forearm",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Forearm",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Forearm",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Cannon",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Cannon",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Cannon",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Pastern",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Pastern",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Pastern",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Hoof",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Hoof",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Hoof",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Hoof_02",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Hoof_02",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Hoof_02",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Hoof_03",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Hoof_03",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Front_R_Hoof_03",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Neck_Base",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Neck_Base",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Neck_Base",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_042",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_042",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_042",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_041",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_041",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_041",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Neck",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Neck",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 97,
+            "interpolation": "LINEAR",
+            "maxOutputDelta": 0.0017453694477364914
+          },
+          {
+            "node": "Neck",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_013",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_013",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_013",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_012",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_012",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_012",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_043",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_043",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_043",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_051",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_051",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_051",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_050",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_050",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_050",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_055",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_055",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_055",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_054",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_054",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_054",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_057",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_057",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_057",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_056",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_056",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_056",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Head_Base",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Head_Base",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Head_Base",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_058",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_058",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_058",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Head",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Head",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 97,
+            "interpolation": "LINEAR",
+            "maxOutputDelta": 0.0008726503065638755
+          },
+          {
+            "node": "Head",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Ear_L",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Ear_L",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Ear_L",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Ear_R",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Ear_R",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Ear_R",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Head_Nose",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Head_Nose",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Head_Nose",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Jaw_Tip",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Jaw_Tip",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Jaw_Tip",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_053",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_053",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_053",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_052",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_052",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "FoalSmart_Bone_052",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Tail_01",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Tail_01",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Tail_01",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Tail_02",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Tail_02",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Tail_02",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Tail_03",
+            "path": "translation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Tail_03",
+            "path": "rotation",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          },
+          {
+            "node": "Tail_03",
+            "path": "scale",
+            "start_s": 0.0416666679084301,
+            "end_s": 4.041666507720947,
+            "duration_s": 3.999999839812517,
+            "keys": 2,
+            "interpolation": "STEP",
+            "maxOutputDelta": 0.0
+          }
+        ]
+      }
+    ],
+    "channels": [
+      {
+        "node": "Root",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Root",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Root",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Pelvis_Root",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Pelvis_Root",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Pelvis_Root",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Pelvis",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Pelvis",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Pelvis",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_003",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_003",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_003",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_002",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_002",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_002",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Upper",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Upper",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Upper",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Gaskin",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Gaskin",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Gaskin",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_017",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_017",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_017",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Hock",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Hock",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Hock",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Cannon",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Cannon",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Cannon",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Pastern",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Pastern",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Pastern",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Hoof",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Hoof",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Hoof",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Hoof_02",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Hoof_02",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Hoof_02",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Hoof_03",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Hoof_03",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_L_Hoof_03",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Upper",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Upper",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Upper",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Gaskin",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Gaskin",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Gaskin",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_014",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_014",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_014",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Hock",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Hock",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Hock",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Cannon",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Cannon",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Cannon",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Pastern",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Pastern",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Pastern",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Hoof",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Hoof",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Hoof",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Hoof_02",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Hoof_02",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Hoof_02",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Hoof_03",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Hoof_03",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Hind_R_Hoof_03",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Spine_Base",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Spine_Base",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 97,
+        "interpolation": "LINEAR",
+        "maxOutputDelta": 0.0013090851585361584
+      },
+      {
+        "node": "Spine_Base",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Chest",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Chest",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Chest",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Upper",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Upper",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Upper",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Forearm",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Forearm",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Forearm",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Cannon",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Cannon",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Cannon",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Pastern",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Pastern",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Pastern",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Hoof",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Hoof",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Hoof",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Hoof_02",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Hoof_02",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Hoof_02",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Hoof_03",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Hoof_03",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_L_Hoof_03",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Upper",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Upper",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Upper",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Forearm",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Forearm",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Forearm",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Cannon",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Cannon",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Cannon",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Pastern",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Pastern",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Pastern",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Hoof",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Hoof",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Hoof",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Hoof_02",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Hoof_02",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Hoof_02",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Hoof_03",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Hoof_03",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Front_R_Hoof_03",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Neck_Base",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Neck_Base",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Neck_Base",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_042",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_042",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_042",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_041",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_041",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_041",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Neck",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Neck",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 97,
+        "interpolation": "LINEAR",
+        "maxOutputDelta": 0.0017453694477364914
+      },
+      {
+        "node": "Neck",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_013",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_013",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_013",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_012",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_012",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_012",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_043",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_043",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_043",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_051",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_051",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_051",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_050",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_050",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_050",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_055",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_055",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_055",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_054",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_054",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_054",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_057",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_057",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_057",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_056",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_056",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_056",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Head_Base",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Head_Base",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Head_Base",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_058",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_058",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_058",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Head",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Head",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 97,
+        "interpolation": "LINEAR",
+        "maxOutputDelta": 0.0008726503065638755
+      },
+      {
+        "node": "Head",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Ear_L",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Ear_L",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Ear_L",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Ear_R",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Ear_R",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Ear_R",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Head_Nose",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Head_Nose",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Head_Nose",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Jaw_Tip",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Jaw_Tip",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Jaw_Tip",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_053",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_053",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_053",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_052",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_052",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "FoalSmart_Bone_052",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Tail_01",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Tail_01",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Tail_01",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Tail_02",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Tail_02",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Tail_02",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Tail_03",
+        "path": "translation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Tail_03",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      },
+      {
+        "node": "Tail_03",
+        "path": "scale",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 2,
+        "interpolation": "STEP",
+        "maxOutputDelta": 0.0
+      }
+    ],
+    "varyingChannels": [
+      {
+        "node": "Spine_Base",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 97,
+        "interpolation": "LINEAR",
+        "maxOutputDelta": 0.0013090851585361584
+      },
+      {
+        "node": "Neck",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 97,
+        "interpolation": "LINEAR",
+        "maxOutputDelta": 0.0017453694477364914
+      },
+      {
+        "node": "Head",
+        "path": "rotation",
+        "start_s": 0.0416666679084301,
+        "end_s": 4.041666507720947,
+        "duration_s": 3.999999839812517,
+        "keys": 97,
+        "interpolation": "LINEAR",
+        "maxOutputDelta": 0.0008726503065638755
+      }
+    ],
+    "onlyDeformingChannels": [
+      "Spine_Base",
+      "Neck",
+      "Head"
+    ],
+    "rootMotion": "none",
+    "endpointMaxVertexDelta_m": {
+      "Body": 0.0,
+      "Eyes": 0.0,
+      "Mane": 0.0,
+      "Tail": 0.0
+    },
+    "rootMatrixMaxDeviation_m": 0.0
+  },
+  "fullSkinnedFrameAudit": {
+    "framesTested": 97,
+    "allMeshesFinite": true,
+    "meshes": [
+      "Body",
+      "Eyes",
+      "Mane",
+      "Tail"
+    ],
+    "hoofSupport": {
+      "Front_R": {
+        "minSoleZ_m": -0.0010819053277373314,
+        "maxSoleZ_m": 0.0005411261226981878,
+        "minSoleZFrame": 49,
+        "maxSoleZFrame": 1,
+        "p05SoleZ_m": -0.0009838666301220655,
+        "p05SoleZFrame": 49,
+        "maxP05SoleZ_m": 0.0005817515775561333,
+        "meanSupportZRange_m": [
+          0.013442972035374538,
+          0.014982485179124134
+        ],
+        "supportSurfaceVertexCount": 84,
+        "supportSurfacePersistentVertexIds": [
+          219,
+          1170,
+          1357,
+          190,
+          405,
+          1293,
+          488,
+          420,
+          1110,
+          1488,
+          312,
+          1003,
+          1730,
+          1574,
+          665,
+          404,
+          233,
+          199,
+          742,
+          204,
+          1913,
+          461,
+          1353,
+          1044,
+          1791,
+          1856,
+          298,
+          1930,
+          175,
+          1645,
+          388,
+          174,
+          1545,
+          181,
+          287,
+          789,
+          1045,
+          201,
+          1385,
+          583,
+          1294,
+          358,
+          365,
+          1594,
+          279,
+          816,
+          1185,
+          1817,
+          173,
+          402,
+          1079,
+          752,
+          1802,
+          1542,
+          229,
+          1344,
+          2013,
+          567,
+          336,
+          965,
+          1927,
+          1764,
+          227,
+          160,
+          1310,
+          513,
+          167,
+          274,
+          1974,
+          2001,
+          2085,
+          176,
+          149,
+          2041,
+          178,
+          1794,
+          743,
+          237,
+          943,
+          150,
+          1375,
+          282,
+          1665,
+          544
+        ],
+        "lowest16DiagnosticVertexIds": [
+          219,
+          1170,
+          1357,
+          190,
+          405,
+          1293,
+          488,
+          420,
+          1110,
+          1488,
+          312,
+          1003,
+          1730,
+          1574,
+          665,
+          404
+        ],
+        "selectedBy": "total deform weight >=0.05 from side-specific *_Hoof groups and neutral local z < 0.04m"
+      },
+      "Front_L": {
+        "minSoleZ_m": -0.00121495989151299,
+        "maxSoleZ_m": 0.0002999102580361068,
+        "minSoleZFrame": 49,
+        "maxSoleZFrame": 1,
+        "p05SoleZ_m": -0.000993612571619451,
+        "p05SoleZFrame": 49,
+        "maxP05SoleZ_m": 0.0006362039130181074,
+        "meanSupportZRange_m": [
+          0.013825962669216096,
+          0.015364993175299949
+        ],
+        "supportSurfaceVertexCount": 85,
+        "supportSurfacePersistentVertexIds": [
+          6182,
+          4967,
+          5582,
+          5048,
+          4859,
+          4988,
+          6235,
+          5523,
+          5866,
+          4852,
+          4780,
+          5803,
+          6049,
+          5133,
+          6290,
+          4972,
+          5179,
+          5324,
+          5583,
+          4707,
+          5952,
+          4785,
+          6085,
+          6216,
+          5036,
+          5328,
+          4775,
+          6299,
+          4834,
+          6305,
+          4699,
+          6224,
+          6300,
+          6114,
+          5755,
+          5981,
+          5600,
+          5140,
+          6024,
+          5331,
+          4987,
+          6012,
+          4781,
+          5820,
+          6202,
+          5687,
+          5348,
+          5201,
+          4867,
+          4608,
+          5738,
+          5038,
+          6097,
+          4773,
+          6296,
+          5195,
+          5496,
+          6263,
+          4591,
+          5896,
+          5029,
+          4704,
+          6057,
+          6215,
+          6318,
+          4604,
+          6298,
+          4783,
+          4603,
+          4562,
+          5141,
+          6243,
+          6332,
+          6278,
+          4689,
+          5663,
+          5398,
+          6282,
+          5322,
+          4567,
+          6229,
+          5783,
+          5092,
+          4810,
+          6314
+        ],
+        "lowest16DiagnosticVertexIds": [
+          6182,
+          4967,
+          5582,
+          5048,
+          4859,
+          4988,
+          6235,
+          5523,
+          5866,
+          4852,
+          4780,
+          5803,
+          6049,
+          5133,
+          6290,
+          4972
+        ],
+        "selectedBy": "total deform weight >=0.05 from side-specific *_Hoof groups and neutral local z < 0.04m"
+      },
+      "Hind_R": {
+        "minSoleZ_m": 0.00022934129810892045,
+        "maxSoleZ_m": 0.00022934129810892045,
+        "minSoleZFrame": 1,
+        "maxSoleZFrame": 1,
+        "p05SoleZ_m": 0.0006566017982549965,
+        "p05SoleZFrame": 1,
+        "maxP05SoleZ_m": 0.0006566017982549965,
+        "meanSupportZRange_m": [
+          0.01465539024952921,
+          0.01465539024952921
+        ],
+        "supportSurfaceVertexCount": 84,
+        "supportSurfacePersistentVertexIds": [
+          564,
+          294,
+          61,
+          51,
+          295,
+          1111,
+          1093,
+          179,
+          1047,
+          136,
+          38,
+          70,
+          541,
+          1456,
+          36,
+          264,
+          682,
+          918,
+          74,
+          47,
+          202,
+          192,
+          1441,
+          1176,
+          1272,
+          85,
+          542,
+          1458,
+          1577,
+          32,
+          27,
+          1388,
+          49,
+          29,
+          220,
+          75,
+          1202,
+          934,
+          841,
+          328,
+          489,
+          901,
+          231,
+          1292,
+          1335,
+          99,
+          919,
+          1509,
+          509,
+          57,
+          297,
+          1231,
+          1403,
+          561,
+          1640,
+          1157,
+          119,
+          1022,
+          39,
+          82,
+          1590,
+          363,
+          724,
+          406,
+          1380,
+          228,
+          1593,
+          1519,
+          30,
+          48,
+          62,
+          1667,
+          1470,
+          22,
+          40,
+          1706,
+          26,
+          1244,
+          817,
+          58,
+          25,
+          1158,
+          593,
+          964
+        ],
+        "lowest16DiagnosticVertexIds": [
+          564,
+          294,
+          61,
+          51,
+          295,
+          1111,
+          1093,
+          179,
+          1047,
+          136,
+          38,
+          70,
+          541,
+          1456,
+          36,
+          264
+        ],
+        "selectedBy": "total deform weight >=0.05 from side-specific *_Hoof groups and neutral local z < 0.04m"
+      },
+      "Hind_L": {
+        "minSoleZ_m": 0.00034337147371843457,
+        "maxSoleZ_m": 0.00034337147371843457,
+        "minSoleZFrame": 1,
+        "maxSoleZFrame": 1,
+        "p05SoleZ_m": 0.0005028290906921029,
+        "p05SoleZFrame": 1,
+        "maxP05SoleZ_m": 0.0005028290906921029,
+        "meanSupportZRange_m": [
+          0.01535242899650863,
+          0.01535242899650863
+        ],
+        "supportSurfaceVertexCount": 90,
+        "supportSurfacePersistentVertexIds": [
+          5220,
+          5186,
+          5745,
+          5686,
+          6161,
+          5417,
+          5311,
+          6281,
+          6335,
+          6294,
+          5917,
+          5128,
+          5746,
+          6378,
+          5209,
+          5184,
+          5374,
+          5232,
+          5542,
+          6397,
+          5955,
+          5157,
+          5358,
+          6295,
+          6050,
+          6288,
+          6351,
+          5631,
+          6370,
+          5084,
+          6393,
+          5078,
+          5115,
+          6391,
+          5467,
+          6402,
+          5280,
+          5918,
+          5131,
+          6135,
+          5615,
+          6307,
+          5821,
+          5419,
+          5278,
+          6244,
+          5153,
+          6329,
+          5556,
+          5266,
+          5019,
+          5986,
+          6372,
+          6192,
+          5264,
+          5118,
+          6098,
+          5393,
+          5822,
+          6333,
+          5502,
+          5014,
+          6387,
+          5215,
+          6051,
+          5646,
+          5010,
+          6169,
+          5006,
+          6381,
+          5091,
+          4984,
+          6291,
+          5003,
+          6400,
+          6357,
+          5099,
+          4964,
+          6384,
+          6399,
+          5145,
+          4965,
+          4994,
+          6389,
+          6363,
+          5276,
+          5386,
+          6283,
+          5406,
+          5304
+        ],
+        "lowest16DiagnosticVertexIds": [
+          5220,
+          5186,
+          5745,
+          5686,
+          6161,
+          5417,
+          5311,
+          6281,
+          6335,
+          6294,
+          5917,
+          5128,
+          5746,
+          6378,
+          5209,
+          5184
+        ],
+        "selectedBy": "total deform weight >=0.05 from side-specific *_Hoof groups and neutral local z < 0.04m"
+      }
+    },
+    "hoofSupportGates": {
+      "Front_R": {
+        "minimumZAtLeastMinus2mm": true,
+        "p05ZAtLeastMinus2mm": true
+      },
+      "Front_L": {
+        "minimumZAtLeastMinus2mm": true,
+        "p05ZAtLeastMinus2mm": true
+      },
+      "Hind_R": {
+        "minimumZAtLeastMinus2mm": true,
+        "p05ZAtLeastMinus2mm": true
+      },
+      "Hind_L": {
+        "minimumZAtLeastMinus2mm": true,
+        "p05ZAtLeastMinus2mm": true
+      }
+    },
+    "accessoryRootsAtRestMidLoopEnd": {
+      "1": {
+        "forelock": {
+          "roots": 50,
+          "maxRestGap_m": 0.008437590584929695,
+          "maxGapDrift_m": 2.8204162762683183e-07,
+          "p95GapDrift_m": 1.336050319703616e-07,
+          "maxPosedGap_m": 0.008437590572508489
+        },
+        "tail": {
+          "roots": 12,
+          "maxRestGap_m": 0.011733382085487293,
+          "maxGapDrift_m": 1.2294185559155412e-07,
+          "p95GapDrift_m": 1.2288165240034868e-07,
+          "maxPosedGap_m": 0.01173338211455483
+        }
+      },
+      "49": {
+        "forelock": {
+          "roots": 50,
+          "maxRestGap_m": 0.008437590584929695,
+          "maxGapDrift_m": 3.72164070674178e-05,
+          "p95GapDrift_m": 2.5039360785562337e-05,
+          "maxPosedGap_m": 0.008438675310942494
+        },
+        "tail": {
+          "roots": 12,
+          "maxRestGap_m": 0.011733382085487293,
+          "maxGapDrift_m": 3.0789491646708316e-05,
+          "p95GapDrift_m": 3.052178346664931e-05,
+          "maxPosedGap_m": 0.011733491003766468
+        }
+      },
+      "97": {
+        "forelock": {
+          "roots": 50,
+          "maxRestGap_m": 0.008437590584929695,
+          "maxGapDrift_m": 2.8204162762683183e-07,
+          "p95GapDrift_m": 1.336050319703616e-07,
+          "maxPosedGap_m": 0.008437590572508489
+        },
+        "tail": {
+          "roots": 12,
+          "maxRestGap_m": 0.011733382085487293,
+          "maxGapDrift_m": 1.2294185559155412e-07,
+          "p95GapDrift_m": 1.2288165240034868e-07,
+          "maxPosedGap_m": 0.01173338211455483
+        }
+      }
+    }
+  },
+  "morphEndpoints": {
+    "Body": {
+      "body_length": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.4461157321929932,
+          "minZ_m": 0.00022934129810892045,
+          "vertexCount": 6411
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.4461157321929932,
+          "minZ_m": 0.00022934129810892045,
+          "vertexCount": 6411
+        }
+      ],
+      "chest_width": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.4461157321929932,
+          "minZ_m": 0.00022934129810892045,
+          "vertexCount": 6411
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.4461157321929932,
+          "minZ_m": 0.00022934129810892045,
+          "vertexCount": 6411
+        }
+      ],
+      "neck_length": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.4461157321929932,
+          "minZ_m": 0.00022934129810892045,
+          "vertexCount": 6411
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.4461157321929932,
+          "minZ_m": 0.00022934129810892045,
+          "vertexCount": 6411
+        }
+      ],
+      "muscle": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.4432120323181152,
+          "minZ_m": 0.00022934129810892045,
+          "vertexCount": 6411
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.449019432067871,
+          "minZ_m": 0.00022934129810892045,
+          "vertexCount": 6411
+        }
+      ]
+    },
+    "Eyes": {
+      "body_length": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.2378069162368774,
+          "minZ_m": 1.2275104522705078,
+          "vertexCount": 724
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.2378069162368774,
+          "minZ_m": 1.2275104522705078,
+          "vertexCount": 724
+        }
+      ],
+      "chest_width": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.2378069162368774,
+          "minZ_m": 1.2275104522705078,
+          "vertexCount": 724
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.2378069162368774,
+          "minZ_m": 1.2275104522705078,
+          "vertexCount": 724
+        }
+      ],
+      "neck_length": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.2378069162368774,
+          "minZ_m": 1.2275104522705078,
+          "vertexCount": 724
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.2378069162368774,
+          "minZ_m": 1.2275104522705078,
+          "vertexCount": 724
+        }
+      ],
+      "muscle": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.2366739511489868,
+          "minZ_m": 1.226398229598999,
+          "vertexCount": 724
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.238939881324768,
+          "minZ_m": 1.2286180257797241,
+          "vertexCount": 724
+        }
+      ]
+    },
+    "Mane": {
+      "body_length": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.3452390432357788,
+          "minZ_m": 1.082418441772461,
+          "vertexCount": 214
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.3452390432357788,
+          "minZ_m": 1.082418441772461,
+          "vertexCount": 214
+        }
+      ],
+      "chest_width": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.3452390432357788,
+          "minZ_m": 1.082418441772461,
+          "vertexCount": 214
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.3452390432357788,
+          "minZ_m": 1.082418441772461,
+          "vertexCount": 214
+        }
+      ],
+      "neck_length": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.3452390432357788,
+          "minZ_m": 1.082418441772461,
+          "vertexCount": 214
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.3452390432357788,
+          "minZ_m": 1.082418441772461,
+          "vertexCount": 214
+        }
+      ],
+      "muscle": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.342178463935852,
+          "minZ_m": 1.078519582748413,
+          "vertexCount": 214
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.3485472202301025,
+          "minZ_m": 1.0863173007965088,
+          "vertexCount": 214
+        }
+      ]
+    },
+    "Tail": {
+      "body_length": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.0590287446975708,
+          "minZ_m": 0.9787835478782654,
+          "vertexCount": 40
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.0590287446975708,
+          "minZ_m": 0.9787835478782654,
+          "vertexCount": 40
+        }
+      ],
+      "chest_width": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.0590287446975708,
+          "minZ_m": 0.9787835478782654,
+          "vertexCount": 40
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.0590287446975708,
+          "minZ_m": 0.9787835478782654,
+          "vertexCount": 40
+        }
+      ],
+      "neck_length": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.0590287446975708,
+          "minZ_m": 0.9787835478782654,
+          "vertexCount": 40
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.0590287446975708,
+          "minZ_m": 0.9787835478782654,
+          "vertexCount": 40
+        }
+      ],
+      "muscle": [
+        {
+          "value": -1.0,
+          "maxZ_m": 1.0548607110977173,
+          "minZ_m": 0.9777998328208923,
+          "vertexCount": 40
+        },
+        {
+          "value": 1.0,
+          "maxZ_m": 1.0631970167160034,
+          "minZ_m": 0.9797672629356384,
+          "vertexCount": 40
+        }
+      ]
+    }
+  },
+  "anatomyLandmarks": [
+    {
+      "name": "ear_R_root",
+      "kind": "geometry_surface",
+      "confidence": "high",
+      "source": "Body ear-shell vertex sample",
+      "blenderXYZ_m": [
+        0.49823,
+        -0.04992,
+        1.37059
+      ],
+      "godotXYZ_m": [
+        0.49823,
+        1.37059,
+        0.04992
+      ]
+    },
+    {
+      "name": "ear_R_tip",
+      "kind": "geometry_surface",
+      "confidence": "high",
+      "source": "Body ear-shell vertex sample",
+      "blenderXYZ_m": [
+        0.52373,
+        -0.07362,
+        1.44568
+      ],
+      "godotXYZ_m": [
+        0.52373,
+        1.44568,
+        0.07362
+      ]
+    },
+    {
+      "name": "ear_L_root",
+      "kind": "geometry_surface",
+      "confidence": "high",
+      "source": "Body ear-shell vertex sample",
+      "blenderXYZ_m": [
+        0.48544,
+        0.09011,
+        1.37102
+      ],
+      "godotXYZ_m": [
+        0.48544,
+        1.37102,
+        -0.09011
+      ]
+    },
+    {
+      "name": "ear_L_tip",
+      "kind": "geometry_surface",
+      "confidence": "high",
+      "source": "Body ear-shell vertex sample",
+      "blenderXYZ_m": [
+        0.52274,
+        0.07101,
+        1.44612
+      ],
+      "godotXYZ_m": [
+        0.52274,
+        1.44612,
+        -0.07101
+      ]
+    },
+    {
+      "name": "eye_right_center",
+      "kind": "fitted_component_center",
+      "confidence": "medium",
+      "source": "Eyes sphere fit; runtime close-up required",
+      "blenderXYZ_m": [
+        0.55668,
+        -0.0778,
+        1.23288
+      ],
+      "godotXYZ_m": [
+        0.55668,
+        1.23288,
+        0.0778
+      ]
+    },
+    {
+      "name": "eye_left_center",
+      "kind": "fitted_component_center",
+      "confidence": "medium",
+      "source": "Eyes sphere fit; runtime close-up required",
+      "blenderXYZ_m": [
+        0.55691,
+        0.07689,
+        1.23248
+      ],
+      "godotXYZ_m": [
+        0.55691,
+        1.23248,
+        -0.07689
+      ]
+    },
+    {
+      "name": "nostril_R",
+      "kind": "geometry_surface_reference",
+      "confidence": "medium",
+      "source": "nearest Body surface to anatomical nostril probe; fit distance retained in build manifest",
+      "blenderXYZ_m": [
+        0.67262,
+        -0.03893,
+        1.09865
+      ],
+      "godotXYZ_m": [
+        0.67262,
+        1.09865,
+        0.03893
+      ]
+    },
+    {
+      "name": "nostril_L",
+      "kind": "geometry_surface_reference",
+      "confidence": "medium",
+      "source": "nearest Body surface to anatomical nostril probe; fit distance retained in build manifest",
+      "blenderXYZ_m": [
+        0.6725,
+        0.03879,
+        1.09807
+      ],
+      "godotXYZ_m": [
+        0.6725,
+        1.09807,
+        -0.03879
+      ]
+    },
+    {
+      "name": "poll_between_ears",
+      "kind": "geometry_surface",
+      "confidence": "medium",
+      "source": "source geometry head-axis poll ray; use alongside visible proof",
+      "blenderXYZ_m": [
+        0.49184,
+        0.0,
+        1.32256
+      ],
+      "godotXYZ_m": [
+        0.49184,
+        1.32256,
+        -0.0
+      ]
+    },
+    {
+      "name": "muzzle_tip",
+      "kind": "geometry_surface",
+      "confidence": "high",
+      "source": "source geometry muzzle-tip landmark",
+      "blenderXYZ_m": [
+        0.69433,
+        0.00214,
+        1.07683
+      ],
+      "godotXYZ_m": [
+        0.69433,
+        1.07683,
+        -0.00214
+      ]
+    },
+    {
+      "name": "neck_base_joint",
+      "kind": "bone_joint",
+      "confidence": "high",
+      "source": "Skeleton.Neck_Base head; not a surface point",
+      "blenderXYZ_m": [
+        -0.08754,
+        0.00282,
+        0.95734
+      ],
+      "godotXYZ_m": [
+        -0.08754,
+        0.95734,
+        -0.00282
+      ]
+    },
+    {
+      "name": "mane_poll_side_endpoint",
+      "kind": "geometry_surface",
+      "confidence": "medium",
+      "source": "Mane component endpoint on poll-side; measured x=0.515m, about 17-30mm forward of sampled ear roots on this foal, not behind the ears",
+      "blenderXYZ_m": [
+        0.515,
+        0.0,
+        1.33938
+      ],
+      "godotXYZ_m": [
+        0.515,
+        1.33938,
+        -0.0
+      ],
+      "note": "Actual current Mane endpoint position; it does not sit behind the ear-root landmarks."
+    },
+    {
+      "name": "mane_end_at_withers",
+      "kind": "geometry_surface",
+      "confidence": "medium",
+      "source": "Mane tube root at withers; legacy field maneStart_m",
+      "blenderXYZ_m": [
+        0.08,
+        0.0,
+        1.08312
+      ],
+      "godotXYZ_m": [
+        0.08,
+        1.08312,
+        -0.0
+      ]
+    },
+    {
+      "name": "tail_root_surface",
+      "kind": "geometry_surface",
+      "confidence": "medium",
+      "source": "authored Tail attachment surface point",
+      "blenderXYZ_m": [
+        -0.45459,
+        0.0,
+        1.04819
+      ],
+      "godotXYZ_m": [
+        -0.45459,
+        1.04819,
+        -0.0
+      ]
+    },
+    {
+      "name": "neck_mid_joint",
+      "kind": "bone_joint",
+      "confidence": "high",
+      "source": "Skeleton.Neck.head_local",
+      "blenderXYZ_m": [
+        0.076248,
+        0.002824,
+        0.940391
+      ],
+      "godotXYZ_m": [
+        0.076248,
+        0.940391,
+        -0.002824
+      ]
+    },
+    {
+      "name": "neck_joint_nearest_surface_projection",
+      "kind": "geometry_surface_projection",
+      "confidence": "projection_only",
+      "source": "Nearest Body surface to Skeleton.Neck joint; projection evidence only, not an anatomical surface label",
+      "blenderXYZ_m": [
+        0.056742,
+        0.082471,
+        0.999061
+      ],
+      "godotXYZ_m": [
+        0.056742,
+        0.999061,
+        -0.082471
+      ],
+      "surfaceDistance_m": 0.100828
+    },
+    {
+      "name": "head_neck_junction_joint",
+      "kind": "bone_joint",
+      "confidence": "high",
+      "source": "Skeleton.Head_Base.head_local",
+      "blenderXYZ_m": [
+        0.386888,
+        0.002824,
+        1.301863
+      ],
+      "godotXYZ_m": [
+        0.386888,
+        1.301863,
+        -0.002824
+      ]
+    },
+    {
+      "name": "head_base_joint_nearest_surface_projection",
+      "kind": "geometry_surface_projection",
+      "confidence": "projection_only",
+      "source": "Nearest Body surface to Skeleton.Head_Base joint; projection evidence only, not an independently measured junction",
+      "blenderXYZ_m": [
+        0.384763,
+        0.020145,
+        1.299165
+      ],
+      "godotXYZ_m": [
+        0.384763,
+        1.299165,
+        -0.020145
+      ],
+      "surfaceDistance_m": 0.017658
+    },
+    {
+      "name": "neck_base_joint_nearest_surface_projection",
+      "kind": "geometry_surface_projection",
+      "confidence": "projection_only",
+      "source": "Nearest Body surface to Skeleton.Neck_Base joint; this point lies behind the withers, not on the lower neck",
+      "blenderXYZ_m": [
+        -0.084755,
+        0.028941,
+        1.023046
+      ],
+      "godotXYZ_m": [
+        -0.084755,
+        1.023046,
+        -0.028941
+      ],
+      "surfaceDistance_m": 0.070762
+    },
+    {
+      "name": "middle_neck_R",
+      "kind": "body_lateral_ray_hit",
+      "confidence": "measured surface at named approximate probe station",
+      "source": "Lateral Body surface at approximate middle-neck station; ray hit on evaluated Body mesh, not projected from a bone",
+      "blenderXYZ_m": [
+        0.285,
+        -0.06788,
+        1.11
+      ],
+      "godotXYZ_m": [
+        0.285,
+        1.11,
+        0.06788
+      ],
+      "probeXZ_blender_m": [
+        0.285,
+        1.11
+      ],
+      "rayOrigin_blenderXYZ_m": [
+        0.285,
+        -0.6,
+        1.11
+      ],
+      "rayDirection_blenderXYZ": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "bodyFaceIndex": 4190,
+      "normal_blenderXYZ": [
+        0.084221,
+        -0.995688,
+        0.038889
+      ]
+    },
+    {
+      "name": "middle_neck_L",
+      "kind": "body_lateral_ray_hit",
+      "confidence": "measured surface at named approximate probe station",
+      "source": "Lateral Body surface at approximate middle-neck station; ray hit on evaluated Body mesh, not projected from a bone",
+      "blenderXYZ_m": [
+        0.285,
+        0.066836,
+        1.11
+      ],
+      "godotXYZ_m": [
+        0.285,
+        1.11,
+        -0.066836
+      ],
+      "probeXZ_blender_m": [
+        0.285,
+        1.11
+      ],
+      "rayOrigin_blenderXYZ_m": [
+        0.285,
+        0.6,
+        1.11
+      ],
+      "rayDirection_blenderXYZ": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "bodyFaceIndex": 8871,
+      "normal_blenderXYZ": [
+        0.054614,
+        0.995118,
+        0.082202
+      ]
+    },
+    {
+      "name": "neck_shoulder_transition_R",
+      "kind": "body_lateral_ray_hit",
+      "confidence": "measured surface at named approximate probe station",
+      "source": "Lateral Body surface at approximate neck-to-shoulder transition; ray hit on evaluated Body mesh, not projected from a bone",
+      "blenderXYZ_m": [
+        0.2,
+        -0.125219,
+        0.9
+      ],
+      "godotXYZ_m": [
+        0.2,
+        0.9,
+        0.125219
+      ],
+      "probeXZ_blender_m": [
+        0.2,
+        0.9
+      ],
+      "rayOrigin_blenderXYZ_m": [
+        0.2,
+        -0.6,
+        0.9
+      ],
+      "rayDirection_blenderXYZ": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "bodyFaceIndex": 980,
+      "normal_blenderXYZ": [
+        0.100128,
+        -0.988192,
+        0.115979
+      ]
+    },
+    {
+      "name": "neck_shoulder_transition_L",
+      "kind": "body_lateral_ray_hit",
+      "confidence": "measured surface at named approximate probe station",
+      "source": "Lateral Body surface at approximate neck-to-shoulder transition; ray hit on evaluated Body mesh, not projected from a bone",
+      "blenderXYZ_m": [
+        0.2,
+        0.124386,
+        0.9
+      ],
+      "godotXYZ_m": [
+        0.2,
+        0.9,
+        -0.124386
+      ],
+      "probeXZ_blender_m": [
+        0.2,
+        0.9
+      ],
+      "rayOrigin_blenderXYZ_m": [
+        0.2,
+        0.6,
+        0.9
+      ],
+      "rayDirection_blenderXYZ": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "bodyFaceIndex": 11850,
+      "normal_blenderXYZ": [
+        0.092224,
+        0.989541,
+        0.110918
+      ]
+    },
+    {
+      "name": "head_jaw_neck_transition_R",
+      "kind": "body_lateral_ray_hit",
+      "confidence": "measured surface at named approximate probe station",
+      "source": "Lateral Body surface at approximate head/jaw-to-neck transition; ray hit on evaluated Body mesh, not projected from a bone",
+      "blenderXYZ_m": [
+        0.46,
+        -0.066542,
+        1.14
+      ],
+      "godotXYZ_m": [
+        0.46,
+        1.14,
+        0.066542
+      ],
+      "probeXZ_blender_m": [
+        0.46,
+        1.14
+      ],
+      "rayOrigin_blenderXYZ_m": [
+        0.46,
+        -0.6,
+        1.14
+      ],
+      "rayDirection_blenderXYZ": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "bodyFaceIndex": 4007,
+      "normal_blenderXYZ": [
+        -0.155973,
+        -0.957413,
+        -0.242968
+      ]
+    },
+    {
+      "name": "head_jaw_neck_transition_L",
+      "kind": "body_lateral_ray_hit",
+      "confidence": "measured surface at named approximate probe station",
+      "source": "Lateral Body surface at approximate head/jaw-to-neck transition; ray hit on evaluated Body mesh, not projected from a bone",
+      "blenderXYZ_m": [
+        0.46,
+        0.065849,
+        1.14
+      ],
+      "godotXYZ_m": [
+        0.46,
+        1.14,
+        -0.065849
+      ],
+      "probeXZ_blender_m": [
+        0.46,
+        1.14
+      ],
+      "rayOrigin_blenderXYZ_m": [
+        0.46,
+        0.6,
+        1.14
+      ],
+      "rayDirection_blenderXYZ": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "bodyFaceIndex": 8931,
+      "normal_blenderXYZ": [
+        -0.136022,
+        0.952217,
+        -0.273461
+      ]
+    }
+  ],
+  "landmarkScreenProjections": {
+    "front": [
+      {
+        "name": "ear_R_root",
+        "x_px": 427.5,
+        "y_px": 84.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "ear_R_tip",
+        "x_px": 416.9,
+        "y_px": 50.4,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "ear_L_root",
+        "x_px": 490.5,
+        "y_px": 84.0,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "ear_L_tip",
+        "x_px": 482.0,
+        "y_px": 50.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "eye_right_center",
+        "x_px": 415.0,
+        "y_px": 146.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "eye_left_center",
+        "x_px": 484.6,
+        "y_px": 146.4,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "nostril_R",
+        "x_px": 432.5,
+        "y_px": 206.6,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "nostril_L",
+        "x_px": 467.5,
+        "y_px": 206.9,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "poll_between_ears",
+        "x_px": 450.0,
+        "y_px": 105.8,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "muzzle_tip",
+        "x_px": 451.0,
+        "y_px": 216.4,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_base_joint",
+        "x_px": 451.3,
+        "y_px": 270.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "mane_poll_side_endpoint",
+        "x_px": 450.0,
+        "y_px": 98.3,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "mane_end_at_withers",
+        "x_px": 450.0,
+        "y_px": 213.6,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "tail_root_surface",
+        "x_px": 450.0,
+        "y_px": 229.3,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_mid_joint",
+        "x_px": 451.3,
+        "y_px": 277.8,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_joint_nearest_surface_projection",
+        "x_px": 487.1,
+        "y_px": 251.4,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_neck_junction_joint",
+        "x_px": 451.3,
+        "y_px": 115.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_base_joint_nearest_surface_projection",
+        "x_px": 459.1,
+        "y_px": 116.4,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_base_joint_nearest_surface_projection",
+        "x_px": 463.0,
+        "y_px": 240.6,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "middle_neck_R",
+        "x_px": 419.5,
+        "y_px": 201.5,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "middle_neck_L",
+        "x_px": 480.1,
+        "y_px": 201.5,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_shoulder_transition_R",
+        "x_px": 393.7,
+        "y_px": 296.0,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_shoulder_transition_L",
+        "x_px": 506.0,
+        "y_px": 296.0,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_jaw_neck_transition_R",
+        "x_px": 420.1,
+        "y_px": 188.0,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_jaw_neck_transition_L",
+        "x_px": 479.6,
+        "y_px": 188.0,
+        "inFrontOfCamera": true
+      }
+    ],
+    "near": [
+      {
+        "name": "ear_R_root",
+        "x_px": 651.7,
+        "y_px": 84.4,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "ear_R_tip",
+        "x_px": 663.2,
+        "y_px": 50.7,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "ear_L_root",
+        "x_px": 645.9,
+        "y_px": 83.8,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "ear_L_tip",
+        "x_px": 662.7,
+        "y_px": 50.0,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "eye_right_center",
+        "x_px": 678.0,
+        "y_px": 146.5,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "eye_left_center",
+        "x_px": 678.1,
+        "y_px": 146.1,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "nostril_R",
+        "x_px": 730.2,
+        "y_px": 206.7,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "nostril_L",
+        "x_px": 730.1,
+        "y_px": 206.7,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "poll_between_ears",
+        "x_px": 648.8,
+        "y_px": 105.9,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "muzzle_tip",
+        "x_px": 739.9,
+        "y_px": 216.4,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_base_joint",
+        "x_px": 388.1,
+        "y_px": 270.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "mane_poll_side_endpoint",
+        "x_px": 659.2,
+        "y_px": 98.3,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "mane_end_at_withers",
+        "x_px": 463.5,
+        "y_px": 213.6,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "tail_root_surface",
+        "x_px": 222.9,
+        "y_px": 229.3,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_mid_joint",
+        "x_px": 461.8,
+        "y_px": 277.8,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_joint_nearest_surface_projection",
+        "x_px": 453.0,
+        "y_px": 251.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_neck_junction_joint",
+        "x_px": 601.6,
+        "y_px": 115.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_base_joint_nearest_surface_projection",
+        "x_px": 600.6,
+        "y_px": 116.3,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_base_joint_nearest_surface_projection",
+        "x_px": 389.4,
+        "y_px": 240.5,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "middle_neck_R",
+        "x_px": 555.8,
+        "y_px": 201.7,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "middle_neck_L",
+        "x_px": 555.8,
+        "y_px": 201.3,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_shoulder_transition_R",
+        "x_px": 517.5,
+        "y_px": 296.4,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_shoulder_transition_L",
+        "x_px": 517.5,
+        "y_px": 295.6,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_jaw_neck_transition_R",
+        "x_px": 634.5,
+        "y_px": 188.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_jaw_neck_transition_L",
+        "x_px": 634.5,
+        "y_px": 187.8,
+        "inFrontOfCamera": true
+      }
+    ],
+    "far": [
+      {
+        "name": "ear_R_root",
+        "x_px": 248.3,
+        "y_px": 84.1,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "ear_R_tip",
+        "x_px": 236.8,
+        "y_px": 50.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "ear_L_root",
+        "x_px": 254.1,
+        "y_px": 84.3,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "ear_L_tip",
+        "x_px": 237.3,
+        "y_px": 50.5,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "eye_right_center",
+        "x_px": 222.0,
+        "y_px": 146.0,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "eye_left_center",
+        "x_px": 221.9,
+        "y_px": 146.6,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "nostril_R",
+        "x_px": 169.8,
+        "y_px": 206.5,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "nostril_L",
+        "x_px": 169.9,
+        "y_px": 207.0,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "poll_between_ears",
+        "x_px": 251.2,
+        "y_px": 105.9,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "muzzle_tip",
+        "x_px": 160.1,
+        "y_px": 216.4,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_base_joint",
+        "x_px": 511.9,
+        "y_px": 270.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "mane_poll_side_endpoint",
+        "x_px": 240.8,
+        "y_px": 98.3,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "mane_end_at_withers",
+        "x_px": 436.5,
+        "y_px": 213.6,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "tail_root_surface",
+        "x_px": 677.1,
+        "y_px": 229.3,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_mid_joint",
+        "x_px": 438.2,
+        "y_px": 277.8,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_joint_nearest_surface_projection",
+        "x_px": 447.0,
+        "y_px": 251.7,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_neck_junction_joint",
+        "x_px": 298.4,
+        "y_px": 115.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_base_joint_nearest_surface_projection",
+        "x_px": 299.4,
+        "y_px": 116.4,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_base_joint_nearest_surface_projection",
+        "x_px": 510.6,
+        "y_px": 240.7,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "middle_neck_R",
+        "x_px": 344.3,
+        "y_px": 201.3,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "middle_neck_L",
+        "x_px": 344.3,
+        "y_px": 201.7,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_shoulder_transition_R",
+        "x_px": 382.5,
+        "y_px": 295.6,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_shoulder_transition_L",
+        "x_px": 382.5,
+        "y_px": 296.4,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_jaw_neck_transition_R",
+        "x_px": 265.5,
+        "y_px": 187.8,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_jaw_neck_transition_L",
+        "x_px": 265.5,
+        "y_px": 188.2,
+        "inFrontOfCamera": true
+      }
+    ],
+    "q3": [
+      {
+        "name": "ear_R_root",
+        "x_px": 575.3,
+        "y_px": 127.4,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "ear_R_tip",
+        "x_px": 576.1,
+        "y_px": 98.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "ear_L_root",
+        "x_px": 614.3,
+        "y_px": 117.5,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "ear_L_tip",
+        "x_px": 620.2,
+        "y_px": 88.7,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "eye_right_center",
+        "x_px": 585.1,
+        "y_px": 192.0,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "eye_left_center",
+        "x_px": 632.7,
+        "y_px": 182.3,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "nostril_R",
+        "x_px": 633.4,
+        "y_px": 254.5,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "nostril_L",
+        "x_px": 657.3,
+        "y_px": 249.8,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "poll_between_ears",
+        "x_px": 588.7,
+        "y_px": 144.5,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "muzzle_tip",
+        "x_px": 652.9,
+        "y_px": 262.6,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_base_joint",
+        "x_px": 407.7,
+        "y_px": 265.0,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "mane_poll_side_endpoint",
+        "x_px": 595.9,
+        "y_px": 138.7,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "mane_end_at_withers",
+        "x_px": 459.4,
+        "y_px": 221.6,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "tail_root_surface",
+        "x_px": 291.6,
+        "y_px": 203.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_mid_joint",
+        "x_px": 459.1,
+        "y_px": 282.5,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_joint_nearest_surface_projection",
+        "x_px": 477.4,
+        "y_px": 251.0,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_neck_junction_joint",
+        "x_px": 556.6,
+        "y_px": 146.6,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_base_joint_nearest_surface_projection",
+        "x_px": 561.2,
+        "y_px": 146.5,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_base_joint_nearest_surface_projection",
+        "x_px": 416.6,
+        "y_px": 235.3,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "middle_neck_R",
+        "x_px": 502.9,
+        "y_px": 227.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "middle_neck_L",
+        "x_px": 544.3,
+        "y_px": 218.6,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_shoulder_transition_R",
+        "x_px": 458.6,
+        "y_px": 315.8,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "neck_shoulder_transition_L",
+        "x_px": 535.3,
+        "y_px": 299.9,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_jaw_neck_transition_R",
+        "x_px": 558.2,
+        "y_px": 225.2,
+        "inFrontOfCamera": true
+      },
+      {
+        "name": "head_jaw_neck_transition_L",
+        "x_px": 598.9,
+        "y_px": 216.7,
+        "inFrontOfCamera": true
+      }
+    ]
+  },
+  "renderEvidence": {
+    "rest_front": {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/foal-target-review/idle-proof/rest_front.png",
+      "sha256": "3336c015044614458f932f716063e26f88c7654e7032909ce23e3cadb1f3716b"
+    },
+    "rest_near": {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/foal-target-review/idle-proof/rest_near.png",
+      "sha256": "1714a7eedf4b5f8c81d64709eb8b74913623b56d22d3e46521444f43b20fd0cd"
+    },
+    "rest_far": {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/foal-target-review/idle-proof/rest_far.png",
+      "sha256": "7ce1ad67dae717d7f232b94746e15e144a5a86ee7384c8df4e5d0af24962810a"
+    },
+    "rest_q3": {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/foal-target-review/idle-proof/rest_q3.png",
+      "sha256": "65ee7f163758a9398d80ac076236dcde640c2f071eeeba5383990cf2c1b115c1"
+    },
+    "idle_mid_front": {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/foal-target-review/idle-proof/idle_mid_front.png",
+      "sha256": "04575a5b2e1a1d5430650884ae4acfae6db994821b93f5fcb8508a1fc0d566bf"
+    },
+    "idle_mid_near": {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/foal-target-review/idle-proof/idle_mid_near.png",
+      "sha256": "b1586baf773ac3e6b7fcd64fca275dd4c8bd42dc3368c5df95b19393389208ae"
+    },
+    "idle_mid_far": {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/foal-target-review/idle-proof/idle_mid_far.png",
+      "sha256": "54bf3b1fec95f5d3b840cb852ab0ab87cbe0aeeb654167c52eb5af4372c4cd0d"
+    },
+    "idle_mid_q3": {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/foal-target-review/idle-proof/idle_mid_q3.png",
+      "sha256": "e2f3be1b53df53efcff91e8039ed6722016ece8a226d9e397d756ba843ec904c"
+    }
+  },
+  "restRenderProvenance": {
+    "previousCandidateGLB": "189dc6574a7a5d54f30682d19b7f4939b3100e130dccc6241c406b2562439278",
+    "restViewsReused": true,
+    "geometryAndRestDataMatch": true,
+    "reason": "Idle-only edit; mesh, UV, color attributes, morphs, weights and rig rest hierarchy compare exactly to pre-Idle checkpoint"
+  },
+  "projectionCalibration": {
+    "imageSize_px": [
+      900,
+      700
+    ],
+    "renderPercentage": 100,
+    "source": "rest camera settings at 100%; exact body-local coordinates projected with Blender world_to_camera_view"
+  },
+  "notes": [
+    "Landmark coordinates are Blender XYZ metres; Godot XYZ mapping is (x,z,-y).",
+    "mane_poll_side_endpoint is the actual poll-side Mane endpoint at x=0.515m; it is 17\u201330mm forward of sampled ear-root points, not behind the ears. mane_end_at_withers is the withers-side endpoint.",
+    "Bone joints and nearest Body projections remain explicitly distinct; lateral neck stations are direct Body ray hits, and the Neck_Base nearest projection lies behind the withers.",
+    "Foal remains a candidate; this evidence does not establish animation or production-anatomy acceptance.",
+    "The four morph descriptors were each checked at -1 and +1 with the Idle midpoint (frame 49), using persistent full sole-support vertex IDs and Body-barycentric forelock/tail root pairs; this is eight cases, not an exhaustive 97-frame-by-morph sweep."
+  ],
+  "anatomyLandmarkConfidenceNote": "Lateral neck references are evaluated Body ray hits at stated approximate x/z probe stations with recorded face IDs and normals. Bone-to-surface nearest projections are explicitly projection-only and may land behind the withers. The poll-side Mane endpoint is in front of the ear roots on this foal. Jaw_Tip is a non-deforming semantic helper alias of the muzzle, not a separate anatomical observation.",
+  "metadataOnlyManifestUpdate": {
+    "previousManifestSha256": "e7d61d850a331b7ed8c902824fbae3e4e29d3471d5a93b7bae08612060b09136",
+    "currentManifestSha256": "c77a3eb46cd93739ea0a414c6607dcb9f6d26b253c5b48e1846de7c77088acfe",
+    "geometryAndRuntimeAssetsUnchanged": true,
+    "note": "Landmark descriptions and measured Body ray references only; Blend and GLB bytes preserved."
+  },
+  "idleMorphEndpointMidpointChecks": {
+    "cases": 8,
+    "morphs": [
+      "body_length",
+      "chest_width",
+      "neck_length",
+      "muscle"
+    ],
+    "values": [
+      -1.0,
+      1.0
+    ],
+    "pose": "Idle frame 49, after evaluating the static descriptor endpoint across Body/Eyes/Mane/Tail",
+    "allMeshesFinite": true,
+    "allSupportCasesWithinMinus2mm": true,
+    "results": [
+      {
+        "morph": "body_length",
+        "value": -1.0,
+        "idleFrame": 49,
+        "allMeshesFinite": true,
+        "maxVertexDeltaFromNeutralMidpoint_m": {
+          "Body": 0.015000025822534003,
+          "Eyes": 0.0,
+          "Mane": 0.014999981753737276,
+          "Tail": 0.00504400072580092
+        },
+        "support": {
+          "Front_R": {
+            "minSoleZ_m": -0.0010819053277373314,
+            "p05SoleZ_m": -0.0009838666301220655,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Front_L": {
+            "minSoleZ_m": -0.00121495989151299,
+            "p05SoleZ_m": -0.000993612571619451,
+            "vertexCount": 85,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_R": {
+            "minSoleZ_m": 0.00022934129810892045,
+            "p05SoleZ_m": 0.0006566017982549965,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_L": {
+            "minSoleZ_m": 0.00034337147371843457,
+            "p05SoleZ_m": 0.0005028290906921029,
+            "vertexCount": 90,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          }
+        },
+        "attachmentRoots": {
+          "forelock": {
+            "rootCount": 50,
+            "maxReferenceGap_m": 0.008427847967705893,
+            "maxGapDrift_m": 3.714168159363129e-05,
+            "p95GapDrift_m": 2.949315899904071e-05,
+            "maxPosedGap_m": 0.008428851712242655
+          },
+          "tail": {
+            "rootCount": 12,
+            "maxReferenceGap_m": 0.011892609252109993,
+            "maxGapDrift_m": 3.1134413667239627e-05,
+            "p95GapDrift_m": 3.1134413667239627e-05,
+            "maxPosedGap_m": 0.011892646381116371
+          }
+        }
+      },
+      {
+        "morph": "body_length",
+        "value": 1.0,
+        "idleFrame": 49,
+        "allMeshesFinite": true,
+        "maxVertexDeltaFromNeutralMidpoint_m": {
+          "Body": 0.0150000265496548,
+          "Eyes": 0.0,
+          "Mane": 0.014999982856500926,
+          "Tail": 0.005044030657531835
+        },
+        "support": {
+          "Front_R": {
+            "minSoleZ_m": -0.0010819053277373314,
+            "p05SoleZ_m": -0.0009838666301220655,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Front_L": {
+            "minSoleZ_m": -0.00121495989151299,
+            "p05SoleZ_m": -0.000993612571619451,
+            "vertexCount": 85,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_R": {
+            "minSoleZ_m": 0.00022934129810892045,
+            "p05SoleZ_m": 0.0006566017982549965,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_L": {
+            "minSoleZ_m": 0.00034337147371843457,
+            "p05SoleZ_m": 0.0005028290906921029,
+            "vertexCount": 90,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          }
+        },
+        "attachmentRoots": {
+          "forelock": {
+            "rootCount": 50,
+            "maxReferenceGap_m": 0.008447334340765219,
+            "maxGapDrift_m": 3.731451900702627e-05,
+            "p95GapDrift_m": 2.9730952047749015e-05,
+            "maxPosedGap_m": 0.008448482227531298
+          },
+          "tail": {
+            "rootCount": 12,
+            "maxReferenceGap_m": 0.011541575461015106,
+            "maxGapDrift_m": 3.0316111327527603e-05,
+            "p95GapDrift_m": 3.0316111327527603e-05,
+            "maxPosedGap_m": 0.011541742084734474
+          }
+        }
+      },
+      {
+        "morph": "chest_width",
+        "value": -1.0,
+        "idleFrame": 49,
+        "allMeshesFinite": true,
+        "maxVertexDeltaFromNeutralMidpoint_m": {
+          "Body": 0.0065794587564591495,
+          "Eyes": 0.0007459074138242355,
+          "Mane": 0.0004000300536132039,
+          "Tail": 1.085922122001648e-06
+        },
+        "support": {
+          "Front_R": {
+            "minSoleZ_m": -0.0010819053277373314,
+            "p05SoleZ_m": -0.0009838666301220655,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Front_L": {
+            "minSoleZ_m": -0.00121495989151299,
+            "p05SoleZ_m": -0.000993612571619451,
+            "vertexCount": 85,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_R": {
+            "minSoleZ_m": 0.00022934129810892045,
+            "p05SoleZ_m": 0.0006566017982549965,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_L": {
+            "minSoleZ_m": 0.00034337147371843457,
+            "p05SoleZ_m": 0.0005028290906921029,
+            "vertexCount": 90,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          }
+        },
+        "attachmentRoots": {
+          "forelock": {
+            "rootCount": 50,
+            "maxReferenceGap_m": 0.0084372751107076,
+            "maxGapDrift_m": 3.723960878441225e-05,
+            "p95GapDrift_m": 2.939736536327883e-05,
+            "maxPosedGap_m": 0.008438342339269017
+          },
+          "tail": {
+            "rootCount": 12,
+            "maxReferenceGap_m": 0.011733408641528397,
+            "maxGapDrift_m": 3.081629313409547e-05,
+            "p95GapDrift_m": 3.081629313409547e-05,
+            "maxPosedGap_m": 0.011733504491727458
+          }
+        }
+      },
+      {
+        "morph": "chest_width",
+        "value": 1.0,
+        "idleFrame": 49,
+        "allMeshesFinite": true,
+        "maxVertexDeltaFromNeutralMidpoint_m": {
+          "Body": 0.0065794587564591495,
+          "Eyes": 0.0007459074138242355,
+          "Mane": 0.0004000300536132039,
+          "Tail": 1.085922122001648e-06
+        },
+        "support": {
+          "Front_R": {
+            "minSoleZ_m": -0.0010819053277373314,
+            "p05SoleZ_m": -0.0009838666301220655,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Front_L": {
+            "minSoleZ_m": -0.00121495989151299,
+            "p05SoleZ_m": -0.000993612571619451,
+            "vertexCount": 85,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_R": {
+            "minSoleZ_m": 0.00022934129810892045,
+            "p05SoleZ_m": 0.0006566017982549965,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_L": {
+            "minSoleZ_m": 0.00034337147371843457,
+            "p05SoleZ_m": 0.0005028290906921029,
+            "vertexCount": 90,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          }
+        },
+        "attachmentRoots": {
+          "forelock": {
+            "rootCount": 50,
+            "maxReferenceGap_m": 0.00843790899570371,
+            "maxGapDrift_m": 3.72396087771337e-05,
+            "p95GapDrift_m": 3.202241430854682e-05,
+            "maxPosedGap_m": 0.008438975258130567
+          },
+          "tail": {
+            "rootCount": 12,
+            "maxReferenceGap_m": 0.011733300690652341,
+            "maxGapDrift_m": 3.084183300104953e-05,
+            "p95GapDrift_m": 3.084183300104953e-05,
+            "maxPosedGap_m": 0.011733516753248989
+          }
+        }
+      },
+      {
+        "morph": "neck_length",
+        "value": -1.0,
+        "idleFrame": 49,
+        "allMeshesFinite": true,
+        "maxVertexDeltaFromNeutralMidpoint_m": {
+          "Body": 0.03500012411948853,
+          "Eyes": 0.034991300095511664,
+          "Mane": 0.03500009209562937,
+          "Tail": 0.0
+        },
+        "support": {
+          "Front_R": {
+            "minSoleZ_m": -0.0010819053277373314,
+            "p05SoleZ_m": -0.0009838666301220655,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Front_L": {
+            "minSoleZ_m": -0.00121495989151299,
+            "p05SoleZ_m": -0.000993612571619451,
+            "vertexCount": 85,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_R": {
+            "minSoleZ_m": 0.00022934129810892045,
+            "p05SoleZ_m": 0.0006566017982549965,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_L": {
+            "minSoleZ_m": 0.00034337147371843457,
+            "p05SoleZ_m": 0.0005028290906921029,
+            "vertexCount": 90,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          }
+        },
+        "attachmentRoots": {
+          "forelock": {
+            "rootCount": 50,
+            "maxReferenceGap_m": 0.00852302736591774,
+            "maxGapDrift_m": 3.711378825388312e-05,
+            "p95GapDrift_m": 3.137588777197555e-05,
+            "maxPosedGap_m": 0.008523456862336446
+          },
+          "tail": {
+            "rootCount": 12,
+            "maxReferenceGap_m": 0.011733408322089,
+            "maxGapDrift_m": 3.081629309187616e-05,
+            "p95GapDrift_m": 3.081629309187616e-05,
+            "maxPosedGap_m": 0.011733504188943773
+          }
+        }
+      },
+      {
+        "morph": "neck_length",
+        "value": 1.0,
+        "idleFrame": 49,
+        "allMeshesFinite": true,
+        "maxVertexDeltaFromNeutralMidpoint_m": {
+          "Body": 0.03500007055364776,
+          "Eyes": 0.034991240209837786,
+          "Mane": 0.035000062160326875,
+          "Tail": 0.0
+        },
+        "support": {
+          "Front_R": {
+            "minSoleZ_m": -0.0010819053277373314,
+            "p05SoleZ_m": -0.0009838666301220655,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Front_L": {
+            "minSoleZ_m": -0.00121495989151299,
+            "p05SoleZ_m": -0.000993612571619451,
+            "vertexCount": 85,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_R": {
+            "minSoleZ_m": 0.00022934129810892045,
+            "p05SoleZ_m": 0.0006566017982549965,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_L": {
+            "minSoleZ_m": 0.00034337147371843457,
+            "p05SoleZ_m": 0.0005028290906921029,
+            "vertexCount": 90,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          }
+        },
+        "attachmentRoots": {
+          "forelock": {
+            "rootCount": 50,
+            "maxReferenceGap_m": 0.008353492784595119,
+            "maxGapDrift_m": 3.744196599803256e-05,
+            "p95GapDrift_m": 3.0018262555535828e-05,
+            "maxPosedGap_m": 0.008355282612394595
+          },
+          "tail": {
+            "rootCount": 12,
+            "maxReferenceGap_m": 0.011733408322089,
+            "maxGapDrift_m": 3.081629309187616e-05,
+            "p95GapDrift_m": 3.081629309187616e-05,
+            "maxPosedGap_m": 0.011733504188943773
+          }
+        }
+      },
+      {
+        "morph": "muscle",
+        "value": -1.0,
+        "idleFrame": 49,
+        "allMeshesFinite": true,
+        "maxVertexDeltaFromNeutralMidpoint_m": {
+          "Body": 0.009451663755252502,
+          "Eyes": 0.0013203569087436187,
+          "Mane": 0.007426783686089705,
+          "Tail": 0.0041712542759401745
+        },
+        "support": {
+          "Front_R": {
+            "minSoleZ_m": -0.0010819053277373314,
+            "p05SoleZ_m": -0.0009838666301220655,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Front_L": {
+            "minSoleZ_m": -0.00121495989151299,
+            "p05SoleZ_m": -0.000993612571619451,
+            "vertexCount": 85,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_R": {
+            "minSoleZ_m": 0.00022934129810892045,
+            "p05SoleZ_m": 0.0006566017982549965,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_L": {
+            "minSoleZ_m": 0.00034337147371843457,
+            "p05SoleZ_m": 0.0005028290906921029,
+            "vertexCount": 90,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          }
+        },
+        "attachmentRoots": {
+          "forelock": {
+            "rootCount": 50,
+            "maxReferenceGap_m": 0.008272196932794587,
+            "maxGapDrift_m": 3.6570643404697376e-05,
+            "p95GapDrift_m": 3.138501584890494e-05,
+            "maxPosedGap_m": 0.008273223441481797
+          },
+          "tail": {
+            "rootCount": 12,
+            "maxReferenceGap_m": 0.011384264969249191,
+            "maxGapDrift_m": 2.9761107086866998e-05,
+            "p95GapDrift_m": 2.9761107086866998e-05,
+            "maxPosedGap_m": 0.011384206661356516
+          }
+        }
+      },
+      {
+        "morph": "muscle",
+        "value": 1.0,
+        "idleFrame": 49,
+        "allMeshesFinite": true,
+        "maxVertexDeltaFromNeutralMidpoint_m": {
+          "Body": 0.00945178268969704,
+          "Eyes": 0.0013203566625425121,
+          "Mane": 0.0074269024234757935,
+          "Tail": 0.0041711349377766835
+        },
+        "support": {
+          "Front_R": {
+            "minSoleZ_m": -0.0010819053277373314,
+            "p05SoleZ_m": -0.0009838666301220655,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Front_L": {
+            "minSoleZ_m": -0.00121495989151299,
+            "p05SoleZ_m": -0.000993612571619451,
+            "vertexCount": 85,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_R": {
+            "minSoleZ_m": 0.00022934129810892045,
+            "p05SoleZ_m": 0.0006566017982549965,
+            "vertexCount": 84,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          },
+          "Hind_L": {
+            "minSoleZ_m": 0.00034337147371843457,
+            "p05SoleZ_m": 0.0005028290906921029,
+            "vertexCount": 90,
+            "minAtLeastMinus2mm": true,
+            "p05AtLeastMinus2mm": true
+          }
+        },
+        "attachmentRoots": {
+          "forelock": {
+            "rootCount": 50,
+            "maxReferenceGap_m": 0.008604940490211006,
+            "maxGapDrift_m": 3.7913719933060894e-05,
+            "p95GapDrift_m": 2.995363369675379e-05,
+            "maxPosedGap_m": 0.00860593373638873
+          },
+          "tail": {
+            "rootCount": 12,
+            "maxReferenceGap_m": 0.012076358857977634,
+            "maxGapDrift_m": 3.164081863996189e-05,
+            "p95GapDrift_m": 3.164081863996189e-05,
+            "maxPosedGap_m": 0.01207630517320162
+          }
+        }
+      }
+    ],
+    "assetHashesUnchanged": {
+      "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/art/derived/production/horse_foal.blend": "4322de7c3b97e6aa0e71111a6ab0de325f72f4f905424b4ff6e8d22df0ca041b",
+      "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_foal.glb": "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a",
+      "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_foal.manifest.json": "25dc165f34b0ccb3678e286b5d839d70b25c7bee875fdd698b7a596e09d5e49c"
+    }
+  }
+}

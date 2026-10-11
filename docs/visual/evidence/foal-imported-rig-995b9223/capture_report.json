@@ -1,0 +1,178 @@
+{
+  "format": "cloverbrook.capture-report.v1",
+  "godot": "4.7.2-stable (official)",
+  "renderer": "Apple M2 / 4.1 Metal - 90.5",
+  "catalog": "reference-assets.v1",
+  "warning": "Stills prove materials, markings and composition only - not animation quality, not art approval.",
+  "failures": 0,
+  "meshFamilies": {
+    "horse.standard.adult.v1": {
+      "scene": "res://assets/horse/production/horse_light.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.compact.adult.v1": {
+      "scene": "res://assets/horse/production/horse_stock.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.standard.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    },
+    "horse.compact.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    }
+  },
+  "unavailableAnimations": [],
+  "animationTrackEvidence": [],
+  "foalRigEvidence": [
+    {
+      "fixtureId": "chestnut.foal",
+      "meshFamilyId": "horse.standard.foal.v1",
+      "skeletonCount": 1,
+      "boneCount": 64,
+      "expectedSkinJointCount": 64,
+      "headParent": "Head_Base",
+      "headAncestry": [
+        "Head",
+        "Head_Base",
+        "FoalSmart_Bone_050",
+        "FoalSmart_Bone_051",
+        "FoalSmart_Bone_043",
+        "Neck",
+        "Neck_Base",
+        "Chest",
+        "Spine_Base",
+        "Pelvis",
+        "Pelvis_Root",
+        "Root"
+      ],
+      "headAncestryReachesNeck": true,
+      "components": [
+        "Body",
+        "Eyes",
+        "Mane",
+        "Tail"
+      ]
+    }
+  ],
+  "viewerPathEvidence": [],
+  "appearancePerformance": null,
+  "meshLodEvidence": [
+    {
+      "fixtureId": "chestnut.foal",
+      "component": "Body",
+      "surface": 0,
+      "baseIndexBytes": 76908,
+      "lodCount": 5,
+      "lods": [
+        {
+          "edgeLength": 0.008173657,
+          "indexDataBytes": 38448
+        },
+        {
+          "edgeLength": 0.015973743,
+          "indexDataBytes": 19224
+        },
+        {
+          "edgeLength": 0.031345043,
+          "indexDataBytes": 9612
+        },
+        {
+          "edgeLength": 0.07123971,
+          "indexDataBytes": 4800
+        },
+        {
+          "edgeLength": 0.91965765,
+          "indexDataBytes": 2400
+        }
+      ]
+    },
+    {
+      "fixtureId": "chestnut.foal",
+      "component": "Eyes",
+      "surface": 0,
+      "baseIndexBytes": 8640,
+      "lodCount": 8,
+      "lods": [
+        {
+          "edgeLength": 0.00040777033,
+          "indexDataBytes": 4320
+        },
+        {
+          "edgeLength": 0.0007300896,
+          "indexDataBytes": 2160
+        },
+        {
+          "edgeLength": 0.0011577788,
+          "indexDataBytes": 1080
+        },
+        {
+          "edgeLength": 0.0020702896,
+          "indexDataBytes": 540
+        },
+        {
+          "edgeLength": 0.004450971,
+          "indexDataBytes": 264
+        },
+        {
+          "edgeLength": 0.0068686297,
+          "indexDataBytes": 132
+        },
+        {
+          "edgeLength": 0.010302945,
+          "indexDataBytes": 60
+        },
+        {
+          "edgeLength": 0.015454417,
+          "indexDataBytes": 24
+        }
+      ]
+    },
+    {
+      "fixtureId": "chestnut.foal",
+      "component": "Mane",
+      "surface": 0,
+      "baseIndexBytes": 2424,
+      "lodCount": 3,
+      "lods": [
+        {
+          "edgeLength": 0.010410022,
+          "indexDataBytes": 1212
+        },
+        {
+          "edgeLength": 0.04241574,
+          "indexDataBytes": 600
+        },
+        {
+          "edgeLength": 0.16412559,
+          "indexDataBytes": 216
+        }
+      ]
+    },
+    {
+      "fixtureId": "chestnut.foal",
+      "component": "Tail",
+      "surface": 0,
+      "baseIndexBytes": 360,
+      "lodCount": 2,
+      "lods": [
+        {
+          "edgeLength": 0.024114816,
+          "indexDataBytes": 180
+        },
+        {
+          "edgeLength": 0.045952737,
+          "indexDataBytes": 132
+        }
+      ]
+    }
+  ],
+  "signedDetailEvidence": [],
+  "signedDetailFallbackEvidence": [],
+  "images": []
+}

@@ -1,0 +1,11 @@
+{
+  "scope": "Actual viewer selection signals: marked adult\u2192foal\u2192adult preserves marking key; unsupportedprobe remainsunsupported. Older foalimport used; confirms selectionlogic, not latestfoalappearance oranimation.",
+  "reportSha256": "2910f27527a0f908e37979946ba1e02e3c86044a350626b8f62d0b0cf1c43814",
+  "reportedFailures": 0,
+  "independentReview": {
+    "role": "nativeSol",
+    "decision": "no blocker found",
+    "performed": "actualdiff and supporting evidence read; no new tests run"
+  },
+  "codeCheckpoint": "working tree after c30f362; coherent game-code commit awaits final foal Idle acceptance"
+}

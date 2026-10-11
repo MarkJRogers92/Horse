@@ -37,19 +37,42 @@ Idle advancement, 58 bones, four component morphs and LOD checks also passed.
 Walk and Graze remain rejected/excluded; this is not complete library acceptance.
 
 The distinct foal adapter uses genuine juvenile geometry and the same semantic
-shape/coat interface. Source-rig isolated limb poses passed; final cleaned-target
-pose acceptance remains pending. Its guarded map is accepted as a removal boundary
-for generated fin/fuzz, with retained Body positions/UVs/normals checked. Short
-crest/forelock, one juvenile tail tuft and lower socket eyes replace the rejected
-first attempt. A 15-image actual Godot preview passed its harness, four component
-morphs, 64 exported joints and LOD checks, but its head camera aimed too low. The
-manifest now fixes the Vector midpoint to `[0.593083,1.199694,-0.001070]`.
-Independent final-target review found Head bypassing Neck through Pelvis and
-forelock rays hitting ear shells; these are confirmed blockers under local repair.
-Frozen pre-repair Blend `b51f718f` and GLB `02491acb` are preserved. Hair roots must
-inherit the underlying Body weights before target Head/Neck/Tail and limb checks.
-Family-specific morph contracts are implemented and reviewed; the corrected
-foal close-up, deformation and Idle checks remain outstanding.
+shape/coat interface. Its guarded map removes generated fin/fuzz while preserving
+retained Body positions/UVs/normals. Short crest/forelock, one juvenile tail tuft
+and lower socket eyes replace the rejected first attempt. The historical 15-image
+preview passed harness contracts but aimed its head camera too low. The current
+midpoint is `[0.593083,1.199694,-0.001070]`. Local repairs now keep forelock fitting
+inside the scalp corridor, match hair-root weights to Body, normalize orphaned
+source group names, parent Head to Head_Base and the measured cervical auxiliary
+chain to Neck, with unchanged rest endpoints. Frozen pre-repair and rejected
+neck-pose checkpoints are retained in the adjacent `../foal-checkpoints/` folder.
+
+Native Sol reviewed `995b9223`: the visible neck shelf is resolved, ear skin and
+eyes inherit the cervical chain, and the small target poses may advance to bounded
+Idle proof. This is hierarchy/small-pose acceptance, not full animation or new
+owner anatomy approval. Godot's stale foal import was refreshed once; all three
+raw GLB MD5s matched their imported sidecars. The actual no-image foal inventory
+passed 64 bones, Head→Head_Base ancestry reaching Neck, four component morphs and
+LODs. The real viewer's Foal toggle now preserves test marking keys and leaves
+unsupported probes unsupported. Final foal `f7552842` now passes the 97-frame
+Idle audit with exact loop endpoints and no root motion; the greatest front-sole
+penetration is 1.215 mm within the declared 2 mm tolerance. Native Sol accepted
+this bounded mechanical proof. Godot initially collapsed the tiny rotations to
+constant keys. A foal-only AnimationPlayer import optimizer override preserves
+them: actual sampled Head/Neck movement and a fixed Root now pass, alongside
+15 refreshed preview images, the real viewer controls, component morphs and LODs.
+Light/Stock Head movement also passed; their import settings remain unchanged.
+The final code and zero-failure reports passed independent native Sol review.
+See `docs/visual/evidence/foal-runtime-f7552842`. Final foal surface landmarks now
+separate exact bilateral neck-region ray hits from bone projections and accurately
+identify the crest's poll-side endpoint forward of the sampled ear roots. Eight
+individual morph endpoints pass finite/support/attachment checks at Idle midpoint;
+this does not cover every combination across the loop. Native Sol reviewed the
+corrections, and parent checked the final unobscured overlays. Blend `4322de7c`,
+GLB `f7552842`, metadata manifest `c77a3eb4` and landmark guide `77b5ffc2` are frozen.
+The user-facing `Horse Foal Foundation.zip` contains editable source, game export,
+guide and unchanged runtime reports. Both local preview launchers were executed
+and independently checked. This is not new owner art approval.
 The separate “Build horse coat texture pipeline” chat is authorized to coordinate
 and has immutable current Light `9c2975ba`/`26a4870d`. Strict UV checks match 21,253
 retained Body footprints; a lossless native full-shell UV/source-ID corpus now
@@ -63,11 +86,19 @@ Godot activation produced 12 images with zero failures; parent viewed the off/on
 head and phenotype close-ups and native Sol found no blocker in the enabled diff.
 Evidence is in `docs/visual/evidence/light-v5-detail-runtime-26a4870d`. Missing,
 invalid or stale detail falls back to the procedural phenotype; Stock and foal
-have no Light atlas binding. Exported-binary raw-resource availability remains
+have no Light atlas binding. Nine isolated fallback cases now check the actual
+presenter and each pass detail-disabled/strength-zero with procedural appearance
+still renderable; the new game diff and evidence passed native Sol review.
+Exported-binary raw-resource availability remains
 unverified. No Meshy texture credits, main merge, push or complete library
 acceptance is claimed. Essential Walk/Graze candidate work remains isolated.
-This evidence/input checkpoint preserves the accepted texture and current
-working-tree capture; the game-code checkpoint awaits the combined foal follow-up.
+This coherent foundation checkpoint preserves the accepted texture integration,
+genuine foal, corrected viewer controls and source-bound runtime proof.
+Adult candidate motion remains isolated. A native specialist is replacing the
+cervical support field and fitting Graze after independent review confirmed
+incompatible neck/shoulder weights. The previous Stock whole-collar Graze stretch
+was 3.660×; the 2.279× cutoff-only measurement is not a pass. No candidate Walk or
+Graze has been promoted to production.
 See D-007, `docs/visual/MESHY_CREDIT_LEDGER.json`, and the production evidence.
 
 ---
