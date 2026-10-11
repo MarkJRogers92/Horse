@@ -84,10 +84,260 @@ namespace Cloverbrook.Domain.Tests
             var ended = store.CommitEndDay(request, new StableDayService()); var savedBytes = File.ReadAllBytes(SavePath);
             var restarted = new AtomicSaveStore(SavePath).Load().State;
             Assert.Equal(11, restarted.Header.CalendarDay); Assert.Single(restarted.DailyState.Receipts);
-            Assert.Equal("stable.daily-care-root.v1-to-v2", restarted.Header.MigrationHistory.Single());
+            Assert.Equal(new[] { "stable.daily-care-root.v1-to-v2", "stable.lifecycle-events.v2-to-v3" }, restarted.Header.MigrationHistory);
             Assert.Equal(originalCommitHash, restarted.Conceptions.Single().Commit.CommitHash);
             Assert.Equal(ended.Receipt.ReceiptHash, restarted.DailyState.Receipts.Single().ReceiptHash);
             Assert.Equal(savedBytes, new StableSaveCodec().Encode(restarted));
+        }
+
+        [Theory]
+        [InlineData("old_care_day_v2.clvr", 11, 64, 1)]
+        [InlineData("old_pregnancy_care_v2.clvr", 13, 0, 3)]
+        [InlineData("old_born_foal_v2.clvr", 14, 50, 0)]
+        public void GenuineV2FixturesMigrateWithoutInventingLifecycleEvents(string filename, int day, long coins, int receipts)
+        {
+            var bytes = Fixture(filename); var original = (byte[])bytes.Clone(); var migrated = new StableSaveCodec().Decode(bytes);
+            Assert.Equal(original, bytes); Assert.Equal(StableSnapshot.SchemaVersion, migrated.Header.SchemaVersion);
+            Assert.Contains("stable.lifecycle-events.v2-to-v3", migrated.Header.MigrationHistory);
+            Assert.Equal(day, migrated.Header.CalendarDay); Assert.Equal(coins, migrated.Coins);
+            Assert.Equal(receipts, migrated.DailyState.Receipts.Count);
+            Assert.All(migrated.DailyState.Receipts, receipt => Assert.Empty(receipt.LifecycleEvents));
+            AssertOriginalRngStreams(migrated.Header.RngStreams, filename == "old_care_day_v2.clvr" ? 0UL : 1UL);
+            var currentBytes = new StableSaveCodec().Encode(migrated); var restarted = new StableSaveCodec().Decode(currentBytes);
+            Assert.Equal(currentBytes, new StableSaveCodec().Encode(restarted));
+
+            if (filename == "old_pregnancy_care_v2.clvr")
+            {
+                Assert.All(migrated.DailyState.Receipts, receipt => Assert.Equal(StableDailyPolicy.Version, receipt.Request.PolicyVersion));
+                Assert.Equal(LifeStage.Unborn, migrated.Horses.Single(h => h.OriginCommitId != null).LifeState.Stage);
+                Assert.Equal(14, migrated.Conceptions.Single().Commit.PlannedBirthDay);
+            }
+            if (filename == "old_born_foal_v2.clvr")
+            {
+                var foal = migrated.Horses.Single(h => h.OriginCommitId != null);
+                Assert.Equal(LifeStage.Foal, foal.LifeState.Stage); Assert.Equal(14, foal.BirthDay);
+                Assert.Equal(4, foal.LifeState.DaysSinceConception); Assert.Empty(migrated.DailyState.Receipts);
+                Assert.Single(migrated.LegacyLifecycleBaselines);
+                var mareId = migrated.Conceptions.Single().ParentAAtCommit.ReproductionState.Role == ReproductiveRole.Mare
+                    ? migrated.Conceptions.Single().Commit.ParentAId : migrated.Conceptions.Single().Commit.ParentBId;
+                Assert.Equal(16, migrated.Horses.Single(h => h.HorseId.Equals(mareId)).ReproductionState.RecoveryUntilDay);
+                Assert.False(migrated.LifecycleCapacity.Obligations.Single().CountsAsAdultHorse);
+                Assert.True(migrated.LifecycleCapacity.Obligations.Single().UsesConfirmedReservation);
+            }
+        }
+
+        [Fact]
+        public void MigratedBornFoalKeepsLegacyBaselineAndPublishesGrowthWithoutInventingBirth()
+        {
+            Directory.CreateDirectory(directory); File.WriteAllBytes(SavePath, Fixture("old_born_foal_v2.clvr"));
+            var store = new AtomicSaveStore(SavePath); var state = store.Load().State; var foalId = state.Horses.Single(h => h.OriginCommitId != null).HorseId;
+            DailyCareReceipt? growthReceipt = null;
+            while (state.Header.CalendarDay < 17)
+            {
+                var plan = Plan(state); var request = new EndDayRequest(new TransactionId(Guid.NewGuid()), state.PlayerOwnerId,
+                    state.Header.SaveRevision, state.Header.CalendarDay, plan, StableDailyPolicy.Version);
+                var result = store.CommitEndDay(request, new StableDayService());
+                if (state.Header.CalendarDay == 16) growthReceipt = result.Receipt;
+                state = result.State;
+            }
+            var grown = state.Horses.Single(h => h.HorseId.Equals(foalId));
+            Assert.Equal(LifeStage.Youngster, grown.LifeState.Stage); Assert.Equal(17, state.Header.CalendarDay);
+            Assert.DoesNotContain(state.DailyState.Receipts.SelectMany(r => r.LifecycleEvents), e => e.Kind == LifecycleEventKind.Birth);
+            Assert.Equal(LifecycleEventKind.FoalToYoungster, Assert.Single(growthReceipt!.LifecycleEvents).Kind);
+            var withoutGrowthEvent = new DailyCareReceipt(growthReceipt.Request, growthReceipt.FromDay, growthReceipt.ToDay,
+                growthReceipt.CareCostCoins, growthReceipt.OperationsCostCoins, growthReceipt.WalletDebitCoins, growthReceipt.AssistanceCoins,
+                growthReceipt.CostTransactionId, growthReceipt.HorseOutcomes);
+            var receiptsWithoutGrowth = state.DailyState.Receipts.Select(r => r.Request.OperationId.Equals(withoutGrowthEvent.Request.OperationId)
+                ? withoutGrowthEvent : r).ToArray();
+            var h = state.Header;
+            var tamperedHeader = new SaveHeader(h.SaveId, h.SaveMode, h.SchemaVersion, h.GameBuildVersion, h.SaveRevision, h.CalendarDay,
+                h.CalendarProfileVersion, h.CareMode, h.ActiveVariantCatalogVersion, h.ActiveInheritanceModelVersion,
+                h.DefaultOffspringResolverVersion, h.RetainedResolverVersions, h.RngStreams, h.LastCommittedBreedingEventIndex,
+                h.MigrationHistory, "unwritten");
+            Assert.Throws<SaveIntegrityException>(() => { _ = new StableSnapshot(tamperedHeader, state.PlayerOwnerId, state.Horses,
+                state.OpeningCoinBalance, state.CapacityRevision, state.Ledger, state.PendingCapacityPlans, state.Conceptions,
+                new StableDailyState(state.DailyState.HorseCare, receiptsWithoutGrowth), state.LegacyLifecycleBaselines); });
+            var reloaded = new AtomicSaveStore(SavePath).Load().State;
+            Assert.Equal(LifeStage.Youngster, reloaded.Horses.Single(h => h.HorseId.Equals(foalId)).LifeState.Stage);
+            Assert.Equal(state.DailyState.Receipts.Select(r => r.ReceiptHash), reloaded.DailyState.Receipts.Select(r => r.ReceiptHash));
+        }
+
+        [Fact]
+        public void PreviewAndCommitDeriveOffspringAgeFromTheConceptionAnchor()
+        {
+            Directory.CreateDirectory(directory);
+            var loaded = new StableSaveCodec().Decode(Fixture("old_pregnancy_care_v2.clvr"));
+            var child = loaded.Horses.Single(h => h.OriginCommitId != null);
+            var staleChild = new HorseRecord(child.HorseId, child.Name, child.Parentage, child.Genome, child.ResolverVersion, child.AppearanceSeed,
+                child.OwnerId, new LifeState(LifeStage.Unborn, 0, child.LifeState.VisualAge), child.ReproductionState, child.DevelopmentalFactors,
+                child.InheritedGamePotential, child.TrainingState, child.PlayerKnowledge, child.CosmeticState, child.HomeAssignment,
+                child.OriginRecord, child.OriginCommitId, child.BirthDay, child.Revision);
+            var state = loaded.WithHorses(loaded.Horses.Select(h => h.HorseId.Equals(child.HorseId) ? staleChild : h));
+            var plan = Plan(state); var preview = new StableDayService().Preview(state, plan);
+            Assert.True(preview.Allowed, preview.BlockReason); Assert.Equal(4, preview.ToDay - state.Conceptions.Single().Commit.ConceptionDay);
+            File.WriteAllBytes(SavePath, new StableSaveCodec().Encode(state));
+            var request = new EndDayRequest(new TransactionId(Guid.NewGuid()), state.PlayerOwnerId, state.Header.SaveRevision,
+                state.Header.CalendarDay, plan, StableDailyPolicy.Version);
+            var result = new AtomicSaveStore(SavePath).CommitEndDay(request, new StableDayService());
+            var born = result.State.Horses.Single(h => h.HorseId.Equals(child.HorseId));
+            Assert.Equal(4, born.LifeState.DaysSinceConception); Assert.Equal(14, born.BirthDay);
+        }
+
+        [Fact]
+        public void MigratedLegacyFoalCannotRewriteItsCapturedRoleStageOrAge()
+        {
+            var state = new StableSaveCodec().Decode(Fixture("old_born_foal_v2.clvr"));
+            var foal = state.Horses.Single(h => h.OriginCommitId != null);
+            HorseRecord Copy(LifeState life, ReproductiveRole role) => new HorseRecord(foal.HorseId, foal.Name, foal.Parentage, foal.Genome,
+                foal.ResolverVersion, foal.AppearanceSeed, foal.OwnerId, life,
+                new ReproductionState(role, foal.ReproductionState.PregnancyId, foal.ReproductionState.RecoveryUntilDay),
+                foal.DevelopmentalFactors, foal.InheritedGamePotential, foal.TrainingState, foal.PlayerKnowledge, foal.CosmeticState,
+                foal.HomeAssignment, foal.OriginRecord, foal.OriginCommitId, foal.BirthDay, foal.Revision);
+            Assert.Throws<SaveIntegrityException>(() => state.WithHorses(state.Horses.Select(h => h.HorseId.Equals(foal.HorseId)
+                ? Copy(new LifeState(LifeStage.Youngster, 4, VisualAge.Foal), foal.ReproductionState.Role) : h)));
+            Assert.Throws<SaveIntegrityException>(() => state.WithHorses(state.Horses.Select(h => h.HorseId.Equals(foal.HorseId)
+                ? Copy(new LifeState(LifeStage.Foal, 0, VisualAge.Foal), foal.ReproductionState.Role) : h)));
+            var newRole = foal.ReproductionState.Role == ReproductiveRole.Mare ? ReproductiveRole.Stallion : ReproductiveRole.Mare;
+            Assert.Throws<SaveIntegrityException>(() => state.WithHorses(state.Horses.Select(h => h.HorseId.Equals(foal.HorseId)
+                ? Copy(foal.LifeState, newRole) : h)));
+            var conception = state.Conceptions.Single(); var mareId = conception.ParentAAtCommit.ReproductionState.Role == ReproductiveRole.Mare
+                ? conception.Commit.ParentAId : conception.Commit.ParentBId;
+            var mare = state.Horses.Single(h => h.HorseId.Equals(mareId));
+            var recoveredTooSoon = new HorseRecord(mare.HorseId, mare.Name, mare.Parentage, mare.Genome, mare.ResolverVersion, mare.AppearanceSeed,
+                mare.OwnerId, mare.LifeState, new ReproductionState(mare.ReproductionState.Role, null, foal.BirthDay!.Value + 1),
+                mare.DevelopmentalFactors, mare.InheritedGamePotential, mare.TrainingState, mare.PlayerKnowledge, mare.CosmeticState,
+                mare.HomeAssignment, mare.OriginRecord, mare.OriginCommitId, mare.BirthDay, mare.Revision);
+            Assert.Throws<SaveIntegrityException>(() => state.WithHorses(state.Horses.Select(h => h.HorseId.Equals(mareId) ? recoveredTooSoon : h)));
+        }
+
+        [Fact]
+        public void GenericSameDaySaveCannotRewriteLegacyLifecycleProvenance()
+        {
+            Directory.CreateDirectory(directory); File.WriteAllBytes(SavePath, Fixture("old_born_foal_v2.clvr"));
+            var store = new AtomicSaveStore(SavePath); var state = store.Load().State; var baseline = Assert.Single(state.LegacyLifecycleBaselines);
+            var altered = new LegacyLifecycleBaseline(baseline.HorseId, baseline.Stage, baseline.AgeDays - 1,
+                baseline.RecordedDay - 1, baseline.BirthDay, baseline.Role, baseline.RecoveryUntilDay);
+            var h = state.Header;
+            var nextHeader = new SaveHeader(h.SaveId, h.SaveMode, h.SchemaVersion, h.GameBuildVersion, checked(h.SaveRevision + 1),
+                h.CalendarDay, h.CalendarProfileVersion, h.CareMode, h.ActiveVariantCatalogVersion, h.ActiveInheritanceModelVersion,
+                h.DefaultOffspringResolverVersion, h.RetainedResolverVersions, h.RngStreams, h.LastCommittedBreedingEventIndex,
+                h.MigrationHistory, "unwritten");
+            var replacement = new StableSnapshot(nextHeader, state.PlayerOwnerId, state.Horses, state.OpeningCoinBalance, state.CapacityRevision,
+                state.Ledger, state.PendingCapacityPlans, state.Conceptions, state.DailyState, new[] { altered });
+            Assert.Throws<SaveIntegrityException>(() => store.SaveSnapshot(replacement, h.SaveRevision));
+        }
+
+        [Fact]
+        public void LegacyBornAgeUsesItsCapturedCounterInsteadOfInventingConceptionElapsedDays()
+        {
+            Directory.CreateDirectory(directory); File.WriteAllBytes(SavePath, Fixture("old_born_foal_unaligned_v2.clvr"));
+            var store = new AtomicSaveStore(SavePath); var state = store.Load().State; var oldFoal = state.Horses.Single(h => h.OriginCommitId != null);
+            Assert.Equal(19, oldFoal.LifeState.DaysSinceConception); Assert.Single(state.LegacyLifecycleBaselines);
+            while (state.Header.CalendarDay < 17)
+            {
+                var request = new EndDayRequest(new TransactionId(Guid.NewGuid()), state.PlayerOwnerId, state.Header.SaveRevision,
+                    state.Header.CalendarDay, Plan(state), StableDailyPolicy.Version);
+                var preview = new StableDayService().Preview(state, request.Plan); Assert.True(preview.Allowed, preview.BlockReason);
+                state = store.CommitEndDay(request, new StableDayService()).State;
+            }
+            var grown = state.Horses.Single(h => h.HorseId.Equals(oldFoal.HorseId));
+            Assert.Equal(22, grown.LifeState.DaysSinceConception); Assert.Equal(LifeStage.Youngster, grown.LifeState.Stage);
+        }
+
+        [Fact]
+        public void LegacyBornMareCanConceiveAndFoalAgainWhileKeepingBothLifecycleHistories()
+        {
+            Directory.CreateDirectory(directory);
+            StableSnapshot? conceptionState = null;
+            HorseRecord? firstFoal = null;
+            var extraStallion = ForecastTestData.Horse(3, ForecastTestData.Genome(), ReproductiveRole.Stallion);
+            for (ulong seed = 1; seed < 128 && conceptionState == null; seed++)
+            {
+                var initial = SaveTestData.Initial(1000); var header = initial.Header;
+                var seededHeader = new SaveHeader(header.SaveId, header.SaveMode, header.SchemaVersion, header.GameBuildVersion,
+                    header.SaveRevision, header.CalendarDay, header.CalendarProfileVersion, header.CareMode, header.ActiveVariantCatalogVersion,
+                    header.ActiveInheritanceModelVersion, header.DefaultOffspringResolverVersion, header.RetainedResolverVersions,
+                    RngStreams.FromSeed(new Seed128(seed, seed + 1)), header.LastCommittedBreedingEventIndex, header.MigrationHistory, "unwritten");
+                var existingHold = initial.PendingCapacityPlans.Single();
+                var enlargedHold = new BreedingCapacityPlan(existingHold.BreedingId, existingHold.ReservationId, existingHold.CapacityRevision,
+                    existingHold.Windows.Select(w => new ReservedCapacityWindow(w.Stage, w.StartDay, w.EndDayExclusive, 5, 3, 0, true)));
+                var seeded = new StableSnapshot(seededHeader, initial.PlayerOwnerId, initial.Horses.Concat(new[] { extraStallion }),
+                    initial.OpeningCoinBalance, initial.CapacityRevision, initial.Ledger, new[] { enlargedHold }, initial.Conceptions, initial.DailyState);
+                var result = ConceptionTransaction.Apply(seeded, ConceptionTestData.Request(), ConceptionTestData.Service()).State;
+                var child = result.Horses.Single(h => h.OriginCommitId != null);
+                if (child.ReproductionState.Role != ReproductiveRole.Mare) continue;
+                conceptionState = result; firstFoal = child;
+            }
+            Assert.NotNull(conceptionState); Assert.NotNull(firstFoal);
+            var conceived = conceptionState!; var foal = firstFoal!;
+            var bornFoal = new HorseRecord(foal.HorseId, foal.Name, foal.Parentage, foal.Genome, foal.ResolverVersion, foal.AppearanceSeed,
+                foal.OwnerId, new LifeState(LifeStage.Foal, 4, VisualAge.Foal), new ReproductionState(ReproductiveRole.Mare),
+                foal.DevelopmentalFactors, foal.InheritedGamePotential, foal.TrainingState, foal.PlayerKnowledge, foal.CosmeticState,
+                foal.HomeAssignment, foal.OriginRecord, foal.OriginCommitId, 14, checked(foal.Revision + 1));
+            var mareId = conceived.Conceptions.Single().ParentAAtCommit.ReproductionState.Role == ReproductiveRole.Mare
+                ? conceived.Conceptions.Single().Commit.ParentAId : conceived.Conceptions.Single().Commit.ParentBId;
+            var pregnantMare = conceived.Horses.Single(h => h.HorseId.Equals(mareId));
+            var recoveredMare = new HorseRecord(pregnantMare.HorseId, pregnantMare.Name, pregnantMare.Parentage, pregnantMare.Genome,
+                pregnantMare.ResolverVersion, pregnantMare.AppearanceSeed, pregnantMare.OwnerId, pregnantMare.LifeState,
+                new ReproductionState(ReproductiveRole.Mare, null, 16), pregnantMare.DevelopmentalFactors, pregnantMare.InheritedGamePotential,
+                pregnantMare.TrainingState, pregnantMare.PlayerKnowledge, pregnantMare.CosmeticState, pregnantMare.HomeAssignment,
+                pregnantMare.OriginRecord, pregnantMare.OriginCommitId, pregnantMare.BirthDay, checked(pregnantMare.Revision + 1));
+            var day14Header = new SaveHeader(conceived.Header.SaveId, conceived.Header.SaveMode, conceived.Header.SchemaVersion,
+                conceived.Header.GameBuildVersion, conceived.Header.SaveRevision, 14, conceived.Header.CalendarProfileVersion,
+                conceived.Header.CareMode, conceived.Header.ActiveVariantCatalogVersion, conceived.Header.ActiveInheritanceModelVersion,
+                conceived.Header.DefaultOffspringResolverVersion, conceived.Header.RetainedResolverVersions, conceived.Header.RngStreams,
+                conceived.Header.LastCommittedBreedingEventIndex, conceived.Header.MigrationHistory, "unwritten");
+            var bornRecords = conceived.Horses.Select(h => h.HorseId.Equals(foal.HorseId) ? bornFoal
+                : h.HorseId.Equals(mareId) ? recoveredMare : h).ToArray();
+            var baseline = new LegacyLifecycleBaseline(foal.HorseId, LifeStage.Foal, 4, 14, 14, ReproductiveRole.Mare, 0);
+            var legacyBorn = new StableSnapshot(day14Header, conceived.PlayerOwnerId, bornRecords, conceived.OpeningCoinBalance,
+                conceived.CapacityRevision, conceived.Ledger, conceived.PendingCapacityPlans, conceived.Conceptions,
+                conceived.DailyState, new[] { baseline });
+            File.WriteAllBytes(SavePath, new StableSaveCodec().Encode(legacyBorn));
+            var store = new AtomicSaveStore(SavePath); var state = store.Load().State;
+            while (state.Header.CalendarDay < 22)
+            {
+                var request = new EndDayRequest(new TransactionId(Guid.NewGuid()), state.PlayerOwnerId, state.Header.SaveRevision,
+                    state.Header.CalendarDay, Plan(state), StableDailyPolicy.Version);
+                var preview = new StableDayService().Preview(state, request.Plan); Assert.True(preview.Allowed, preview.BlockReason);
+                state = store.CommitEndDay(request, new StableDayService()).State;
+            }
+            var grownMare = state.Horses.Single(h => h.HorseId.Equals(foal.HorseId));
+            Assert.Equal(LifeStage.Adult, grownMare.LifeState.Stage); Assert.Equal(12, grownMare.LifeState.DaysSinceConception);
+            var secondEvent = new BreedingCommitId(Guid.Parse("bc000000-0000-0000-0000-00000000000a"));
+            var secondReservation = new CapacityReservationId(Guid.Parse("bc000000-0000-0000-0000-00000000000b"));
+            var nextHold = new BreedingCapacityPlan(secondEvent, secondReservation, state.CapacityRevision, new[] {
+                new ReservedCapacityWindow(CapacityStage.Pregnancy, 22, 26, 5, 4, 0, true),
+                new ReservedCapacityWindow(CapacityStage.Foal, 26, 29, 5, 4, 0, true),
+                new ReservedCapacityWindow(CapacityStage.Youngster, 29, 32, 5, 4, 0, true),
+                new ReservedCapacityWindow(CapacityStage.Adult, 32, null, 5, 4, 0, true) });
+            var holdHeader = new SaveHeader(state.Header.SaveId, state.Header.SaveMode, state.Header.SchemaVersion, state.Header.GameBuildVersion,
+                checked(state.Header.SaveRevision + 1), state.Header.CalendarDay, state.Header.CalendarProfileVersion, state.Header.CareMode,
+                state.Header.ActiveVariantCatalogVersion, state.Header.ActiveInheritanceModelVersion, state.Header.DefaultOffspringResolverVersion,
+                state.Header.RetainedResolverVersions, state.Header.RngStreams, state.Header.LastCommittedBreedingEventIndex,
+                state.Header.MigrationHistory, "unwritten");
+            var holdReplacement = new StableSnapshot(holdHeader, state.PlayerOwnerId, state.Horses, state.OpeningCoinBalance, state.CapacityRevision,
+                state.Ledger, state.PendingCapacityPlans.Concat(new[] { nextHold }), state.Conceptions, state.DailyState,
+                state.LegacyLifecycleBaselines);
+            state = store.SaveSnapshot(holdReplacement, state.Header.SaveRevision);
+            grownMare = state.Horses.Single(h => h.HorseId.Equals(foal.HorseId));
+            var request2 = new ConceptionRequest(secondEvent, state.PlayerOwnerId, foal.HorseId, extraStallion.HorseId,
+                state.Header.SaveRevision, grownMare.Revision, state.Horses.Single(h => h.HorseId.Equals(extraStallion.HorseId)).Revision,
+                state.CapacityRevision, secondReservation, ConceptionTestData.Terms.Version);
+            state = new AtomicSaveStore(SavePath).CommitConception(request2, ConceptionTestData.Service()).State;
+            Assert.Equal(secondEvent, state.Horses.Single(h => h.HorseId.Equals(foal.HorseId)).ReproductionState.PregnancyId);
+            while (state.Header.CalendarDay < 26)
+            {
+                var request = new EndDayRequest(new TransactionId(Guid.NewGuid()), state.PlayerOwnerId, state.Header.SaveRevision,
+                    state.Header.CalendarDay, Plan(state), StableDailyPolicy.Version);
+                var result = store.CommitEndDay(request, new StableDayService()); state = result.State;
+            }
+            var foalingMare = state.Horses.Single(h => h.HorseId.Equals(foal.HorseId));
+            Assert.Null(foalingMare.ReproductionState.PregnancyId); Assert.Equal(28, foalingMare.ReproductionState.RecoveryUntilDay);
+            Assert.Equal(LifeStage.Foal, state.Horses.Single(h => h.OriginCommitId != null && !h.HorseId.Equals(foal.HorseId)).LifeState.Stage);
+            Assert.Equal(2, state.Conceptions.Count); Assert.Single(state.LegacyLifecycleBaselines);
+            Assert.Equal(1, state.DailyState.Receipts.SelectMany(r => r.LifecycleEvents).Count(e => e.Kind == LifecycleEventKind.Birth));
+            Assert.Equal(StableSnapshot.SchemaVersion, store.Load().State.Header.SchemaVersion);
         }
 
         [Fact]

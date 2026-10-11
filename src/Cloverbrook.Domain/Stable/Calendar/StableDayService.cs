@@ -39,14 +39,49 @@ namespace Cloverbrook.Domain
             }
 
             var commits = state.Conceptions.ToDictionary(c => c.Commit.OffspringHorseId);
+            var lifecycleEvents = new List<StableLifecycleEvent>();
             foreach (var horse in state.Horses)
             {
-                if (horse.Revision == ulong.MaxValue || horse.LifeState.DaysSinceConception == int.MaxValue)
+                if (horse.Revision == ulong.MaxValue || (horse.OriginCommitId == null && horse.LifeState.DaysSinceConception == int.MaxValue))
                     return Block(from, "A horse's age or record revision cannot advance beyond its supported range.");
+                if (horse.OriginCommitId != null)
+                {
+                    if (!commits.TryGetValue(horse.HorseId, out var ageOrigin)) return Block(from, "A committed foal has no reliable conception record.");
+                    if (ageOrigin.Commit.CalendarProfileVersion != calendar.ProfileVersion)
+                        return Block(from, "This horse was conceived under a calendar profile the current game cannot safely interpret.");
+                    if (ageOrigin.Commit.CompatibilityRuleVersion != "cozy.policy.v1")
+                        return Block(from, "This horse uses breeding rules the current game cannot safely interpret.");
+                    try
+                    {
+                        var baseline = state.LegacyLifecycleBaselines.SingleOrDefault(b => b.HorseId.Equals(horse.HorseId));
+                        var projectedAge = baseline == null ? checked(to - ageOrigin.Commit.ConceptionDay)
+                            : checked(baseline.AgeDays + checked(to - baseline.RecordedDay));
+                        if (projectedAge < 0 || (baseline == null && to < ageOrigin.Commit.ConceptionDay))
+                            return Block(from, "A committed foal's age anchor is inconsistent with the calendar.");
+                    }
+                    catch (OverflowException) { return Block(from, "A committed foal's age exceeds the supported range."); }
+                }
                 if (horse.LifeState.Stage == LifeStage.Unborn)
                 {
                     if (!commits.TryGetValue(horse.HorseId, out var origin)) return Block(from, "An unborn foal has no reliable conception record.");
-                    if (to >= origin.Commit.PlannedBirthDay) return Block(from, "A foal is due to be born; birth processing is not available yet.");
+                    if (to > origin.Commit.PlannedBirthDay) return Block(from, "This pregnancy is past its recorded due day; the game cannot safely backdate a birth.");
+                    if (to == origin.Commit.PlannedBirthDay)
+                    {
+                        var mareReference = Mare(origin);
+                        var mare = mareReference != null && horses.TryGetValue(mareReference.HorseId, out var currentMare) ? currentMare : null;
+                        if (mare == null || mare.ReproductionState.PregnancyId == null
+                            || !mare.ReproductionState.PregnancyId.Equals(origin.Commit.BreedingCommitId))
+                            return Block(from, "A due pregnancy no longer has its authoritative mare link.");
+                        if (mare.HomeAssignment != horse.HomeAssignment)
+                            return Block(from, "The mare and foal must be in the same home before birth can be processed.");
+                        if (!HasValidLifecycleCapacity(origin)) return Block(from, "The original foaling and growth reservation does not cover the saved lifecycle dates.");
+                        try { _ = checked(origin.Commit.PlannedBirthDay + 6); _ = checked(to - origin.Commit.ConceptionDay); }
+                        catch (OverflowException) { return Block(from, "The foal's saved age or growth schedule exceeds the supported range."); }
+                        lifecycleEvents.Add(new StableLifecycleEvent(LifecycleEventKind.Birth, horse.HorseId, to, LifeStage.Unborn,
+                            LifeStage.Foal, mare.HorseId, origin.Commit.BreedingCommitId));
+                        try { _ = checked(to + 2); }
+                        catch (OverflowException) { return Block(from, "The mare's recovery date exceeds the supported calendar range."); }
+                    }
                 }
                 else if (horse.LifeState.Stage == LifeStage.Foal || horse.LifeState.Stage == LifeStage.Youngster)
                 {
@@ -54,7 +89,16 @@ namespace Cloverbrook.Domain
                     int threshold;
                     try { threshold = checked(horse.BirthDay.Value + (horse.LifeState.Stage == LifeStage.Foal ? 3 : 6)); }
                     catch (OverflowException) { return Block(from, "A young horse's growth schedule exceeds the supported calendar range."); }
-                    if (to >= threshold) return Block(from, "A young horse is due to change life stage; growth processing is not available yet.");
+                    if (to > threshold) return Block(from, "This young horse is past a saved growth boundary; the game cannot safely skip a stage transition.");
+                    if (to == threshold)
+                    {
+                        var kind = horse.LifeState.Stage == LifeStage.Foal ? LifecycleEventKind.FoalToYoungster : LifecycleEventKind.YoungsterToAdult;
+                        var nextStage = horse.LifeState.Stage == LifeStage.Foal ? LifeStage.Youngster : LifeStage.Adult;
+                        if (horse.OriginCommitId != null && (!commits.TryGetValue(horse.HorseId, out var origin)
+                            || !HasValidLifecycleCapacity(origin)))
+                            return Block(from, "The original foaling and growth reservation is unavailable for this transition.");
+                        lifecycleEvents.Add(new StableLifecycleEvent(kind, horse.HorseId, to, horse.LifeState.Stage, nextStage));
+                    }
                 }
             }
 
@@ -76,8 +120,35 @@ namespace Cloverbrook.Domain
                 state.Header.SaveRevision.ToString(CultureInfo.InvariantCulture), from.ToString(CultureInfo.InvariantCulture), plan.RequestHash).Substring(0, 32), "N"));
             var request = new EndDayRequest(previewId, state.PlayerOwnerId, state.Header.SaveRevision, from, plan, StableDailyPolicy.Version);
             var costId = CostId(request.OperationId);
-            var receipt = new DailyCareReceipt(request, from, to, careCost, operationsCost, walletDebit, assistance, costId, outcomes);
-            return new DailyPreview(true, null, from, to, careCost, operationsCost, assistance, projectedCoins, outcomes, receipt);
+            var orderedLifecycleEvents = lifecycleEvents.OrderBy(e => e.HorseId.ToString(), StringComparer.Ordinal).ToArray();
+            var receipt = new DailyCareReceipt(request, from, to, careCost, operationsCost, walletDebit, assistance, costId, outcomes, orderedLifecycleEvents);
+            return new DailyPreview(true, null, from, to, careCost, operationsCost, assistance, projectedCoins, outcomes, receipt, orderedLifecycleEvents);
+        }
+
+        private static HorseRecord? Mare(PreparedConception conception)
+        {
+            if (conception.ParentAAtCommit.ReproductionState.Role == ReproductiveRole.Mare) return conception.ParentAAtCommit;
+            if (conception.ParentBAtCommit.ReproductionState.Role == ReproductiveRole.Mare) return conception.ParentBAtCommit;
+            return null;
+        }
+
+        private static bool HasValidLifecycleCapacity(PreparedConception conception)
+        {
+            var commit = conception.Commit;
+            int pregnancyDays;
+            try { pregnancyDays = checked(commit.PlannedBirthDay - commit.ConceptionDay); }
+            catch (OverflowException) { return false; }
+            if (pregnancyDays < 1) return false;
+            // The original reservation is rechecked against its recorded gestation and
+            // the supported three-day juvenile stages. It remains one obligation and
+            // is never consumed or re-reserved at birth or growth.
+            try
+            {
+                var validationPolicy = new BreedingPolicy("stable.lifecycle.capacity-check.v1", Rational.One, true,
+                    breedableDay: 12, pregnancyDays: pregnancyDays, foalDays: 3, youngsterDays: 3);
+                return conception.Capacity.Validate(commit.ConceptionDay, validationPolicy).Count == 0;
+            }
+            catch (OverflowException) { return false; }
         }
 
         internal DailyCareReceipt PrepareReceipt(StableSnapshot state, EndDayRequest request)
@@ -90,7 +161,7 @@ namespace Cloverbrook.Domain
             if (!preview.Allowed) throw new EndDayRejectedException("day_blocked", preview.BlockReason ?? "The calendar cannot advance.");
             var receipt = preview.Receipt!;
             return new DailyCareReceipt(request, receipt.FromDay, receipt.ToDay, receipt.CareCostCoins, receipt.OperationsCostCoins,
-                receipt.WalletDebitCoins, receipt.AssistanceCoins, CostId(request.OperationId), receipt.HorseOutcomes);
+                receipt.WalletDebitCoins, receipt.AssistanceCoins, CostId(request.OperationId), receipt.HorseOutcomes, receipt.LifecycleEvents);
         }
 
         internal static TransactionId CostId(TransactionId operationId) => new TransactionId(Guid.ParseExact(
@@ -127,17 +198,47 @@ namespace Cloverbrook.Domain
             foreach (var horse in state.Horses)
                 if (!care.ContainsKey(horse.HorseId)) care.Add(horse.HorseId, HorseCareState.Initial);
             foreach (var outcome in receipt.HorseOutcomes) care[outcome.HorseId] = outcome.After;
+            foreach (var lifecycleEvent in receipt.LifecycleEvents.Where(e => e.Kind == LifecycleEventKind.Birth))
+                if (!care.ContainsKey(lifecycleEvent.HorseId)) care.Add(lifecycleEvent.HorseId, HorseCareState.Initial);
             var nextDaily = new StableDailyState(care, state.DailyState.Receipts.Concat(new[] { receipt }));
-            var nextHorses = state.Horses.Select(h => new HorseRecord(h.HorseId, h.Name, h.Parentage, h.Genome, h.ResolverVersion, h.AppearanceSeed,
-                h.OwnerId, new LifeState(h.LifeState.Stage, checked(h.LifeState.DaysSinceConception + 1), h.LifeState.VisualAge), h.ReproductionState,
-                h.DevelopmentalFactors, h.InheritedGamePotential, h.TrainingState, h.PlayerKnowledge, h.CosmeticState, h.HomeAssignment,
-                h.OriginRecord, h.OriginCommitId, h.BirthDay, checked(h.Revision + 1))).ToArray();
+            var conceptionByHorse = state.Conceptions.ToDictionary(c => c.Commit.OffspringHorseId);
+            var birthByMare = receipt.LifecycleEvents.Where(e => e.Kind == LifecycleEventKind.Birth).ToDictionary(e => e.RelatedHorseId!);
+            var transitions = receipt.LifecycleEvents.ToDictionary(e => e.HorseId);
+            var nextHorses = state.Horses.Select(h =>
+            {
+                var stage = h.LifeState.Stage;
+                var visualAge = h.LifeState.VisualAge;
+                var reproduction = h.ReproductionState;
+                var birthDay = h.BirthDay;
+                var name = h.Name;
+                if (transitions.TryGetValue(h.HorseId, out var transition))
+                {
+                    stage = transition.ToStage;
+                    visualAge = transition.ToStage == LifeStage.Adult ? VisualAge.Adult : VisualAge.Foal;
+                    if (transition.Kind == LifecycleEventKind.Birth)
+                    {
+                        birthDay = transition.EffectiveDay;
+                        if (name == "Unborn foal") name = "New foal";
+                    }
+                }
+                if (birthByMare.TryGetValue(h.HorseId, out var foaling))
+                    reproduction = new ReproductionState(ReproductiveRole.Mare, null, checked(foaling.EffectiveDay + 2));
+                var legacyBaseline = state.LegacyLifecycleBaselines.SingleOrDefault(b => b.HorseId.Equals(h.HorseId));
+                var ageDays = legacyBaseline != null ? checked(legacyBaseline.AgeDays + checked(receipt.ToDay - legacyBaseline.RecordedDay))
+                    : conceptionByHorse.TryGetValue(h.HorseId, out var conception)
+                    ? checked(receipt.ToDay - conception.Commit.ConceptionDay)
+                    : checked(h.LifeState.DaysSinceConception + 1);
+                return new HorseRecord(h.HorseId, name, h.Parentage, h.Genome, h.ResolverVersion, h.AppearanceSeed,
+                    h.OwnerId, new LifeState(stage, ageDays, visualAge), reproduction,
+                    h.DevelopmentalFactors, h.InheritedGamePotential, h.TrainingState, h.PlayerKnowledge, h.CosmeticState, h.HomeAssignment,
+                    h.OriginRecord, h.OriginCommitId, birthDay, checked(h.Revision + 1));
+            }).ToList();
             var header = SaveHeaders.Copy(state.Header, revision: checked(state.Header.SaveRevision + 1), schema: StableSnapshot.SchemaVersion,
                 payloadHash: "unwritten", calendarDay: receipt.ToDay);
             var ledger = receipt.WalletDebitCoins == 0 ? state.Ledger : state.Ledger.Concat(new[]
             { new CoinLedgerEntry(receipt.CostTransactionId, -receipt.WalletDebitCoins, "stable-day") });
             var next = new StableSnapshot(header, state.PlayerOwnerId, nextHorses, state.OpeningCoinBalance, state.CapacityRevision,
-                ledger, state.PendingCapacityPlans, state.Conceptions, nextDaily);
+                ledger, state.PendingCapacityPlans, state.Conceptions, nextDaily, state.LegacyLifecycleBaselines);
             return new EndDayStateChange(next, receipt, false);
         }
     }

@@ -9,5 +9,6 @@
   <ItemGroup>
     <!-- The one shared domain (genetics, descriptors). The game never re-implements it. -->
     <ProjectReference Include="../src/Cloverbrook.Domain/Cloverbrook.Domain.csproj" />
+    <EmbeddedResource Include="data/stable/foaling_demo.clvr" LogicalName="Cloverbrook.Game.Stable.FoalingDemo" />
   </ItemGroup>
 </Project>

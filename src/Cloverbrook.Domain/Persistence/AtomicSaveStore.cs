@@ -126,25 +126,53 @@ namespace Cloverbrook.Domain
             return new StoredEndDay(saved, saved.DailyState.Receipts.Single(r => r.Request.OperationId.Equals(request.OperationId)), false);
         }
         // Trusted same-day updates for naming, training and confirmed capacity
-        // projections. Cannot advance the calendar or rewrite conception, wallet
-        // or daily-care history. Adoption/market commands need their own transitions.
+        // projections. Cannot advance the calendar or rewrite conception, wallet,
+        // daily-care or legacy lifecycle provenance. Adoption/market commands need transitions.
         public StableSnapshot SaveSnapshot(StableSnapshot replacement, ulong expectedRevision)
         {
             Check.NotNull(replacement, nameof(replacement)); using var held = Lock(); var current = RequirePrimary();
+            return SaveSnapshotUnlocked(current, replacement, expectedRevision);
+        }
+
+        public StableSnapshot RenameHorse(OwnerId requester, HorseId horseId, ulong expectedSaveRevision,
+            ulong expectedHorseRevision, string name)
+        {
+            Check.NotNull(requester, nameof(requester)); Check.NotNull(horseId, nameof(horseId));
+            var normalizedName = (name ?? throw new ArgumentNullException(nameof(name))).Trim();
+            if (normalizedName.Length == 0 || normalizedName.Length > 40)
+                throw new StableCommandRejectedException("invalid_name", "A horse name must contain between 1 and 40 characters.");
+            using var held = Lock(); var current = RequirePrimary();
+            if (!current.PlayerOwnerId.Equals(requester)) throw new StableCommandRejectedException("ownership", "Only the stable owner can rename this horse.");
+            if (current.Header.SaveRevision != expectedSaveRevision) throw new StableCommandRejectedException("stale_save", "The stable changed; reload before renaming.");
+            var horse = current.Horses.SingleOrDefault(h => h.HorseId.Equals(horseId));
+            if (horse == null) throw new StableCommandRejectedException("horse_missing", "This horse is no longer in the stable.");
+            if (!horse.OwnerId.Equals(requester)) throw new StableCommandRejectedException("ownership", "Only the horse's owner can rename it.");
+            if (horse.LifeState.Stage == LifeStage.Unborn) throw new StableCommandRejectedException("not_born", "A foal can be named after birth.");
+            if (horse.Revision != expectedHorseRevision) throw new StableCommandRejectedException("stale_horse", "This horse changed; reload before renaming.");
+            if (horse.Name == normalizedName) return current;
+            var horses = current.Horses.Select(h => h.HorseId.Equals(horseId) ? h.Rename(normalizedName) : h).ToArray();
+            var replacement = current.WithHorses(horses).WithHeader(SaveHeaders.Copy(current.Header,
+                revision: checked(current.Header.SaveRevision + 1), schema: StableSnapshot.SchemaVersion, payloadHash: "unwritten"));
+            return SaveSnapshotUnlocked(current, replacement, expectedSaveRevision);
+        }
+
+        private StableSnapshot SaveSnapshotUnlocked(StableSnapshot current, StableSnapshot replacement, ulong expectedRevision)
+        {
             if (current.Header.SaveRevision != expectedRevision) throw new ConceptionRejectedException("stale_save", "The on-disk revision changed; reload before saving.");
             if (!current.Header.SaveId.Equals(replacement.Header.SaveId) || !current.PlayerOwnerId.Equals(replacement.PlayerOwnerId)
                 || replacement.Header.SaveRevision != checked(expectedRevision + 1) || replacement.Header.CalendarDay != current.Header.CalendarDay
                 || replacement.CapacityRevision < current.CapacityRevision) throw new SaveIntegrityException("A replacement changed save identity or rewound a revision/calendar.");
             if (!current.Conceptions.Select(c => c.ReceiptHash).SequenceEqual(replacement.Conceptions.Select(c => c.ReceiptHash))
                 || current.OpeningCoinBalance != replacement.OpeningCoinBalance || LedgerKey(current) != LedgerKey(replacement)
-                || DailyKey(current.DailyState) != DailyKey(replacement.DailyState))
-                throw new SaveIntegrityException("Generic saves cannot create/rewrite conception, wallet or daily-care history.");
+                || DailyKey(current.DailyState) != DailyKey(replacement.DailyState)
+                || LifecycleBaselineKey(current) != LifecycleBaselineKey(replacement))
+                throw new SaveIntegrityException("Generic saves cannot rewrite conception, wallet, care or legacy lifecycle history.");
             var before = current.Header.RngStreams.Breeding; var after = replacement.Header.RngStreams.Breeding;
             if (before.Seed != after.Seed || before.EventCounter != after.EventCounter || before.AlgorithmVersion != after.AlgorithmVersion)
                 throw new SaveIntegrityException("Generic saves cannot advance or reseed breeding randomness.");
             var oldHorses = current.Horses.ToDictionary(h => h.HorseId);
             if (oldHorses.Count != replacement.Horses.Count || replacement.Horses.Any(h => !oldHorses.TryGetValue(h.HorseId, out var old)
-                    || !StableSnapshot.SameInheritedIdentity(old, h) || h.Revision < old.Revision))
+                    || !StableSnapshot.SameInheritedIdentity(old, h) || h.Revision < old.Revision || !StableSnapshot.SameLifecycleState(old, h)))
                 throw new SaveIntegrityException("Generic saves cannot add/remove horses, rewrite inheritance or rewind horse revisions.");
             return Publish(replacement, preserveCurrentAsBackup: true);
         }
@@ -154,6 +182,9 @@ namespace Cloverbrook.Domain
             daily.Receipts.Select(r => r.ReceiptHash).Concat(daily.HorseCare.Select(p => Canonical.Hash(p.Key.ToString(),
                 p.Value.Nutrition.ToString(CultureInfo.InvariantCulture), p.Value.Bedding.ToString(CultureInfo.InvariantCulture),
                 p.Value.Turnout.ToString(CultureInfo.InvariantCulture), p.Value.Grooming.ToString(CultureInfo.InvariantCulture)))));
+        private static string LifecycleBaselineKey(StableSnapshot state) => Canonical.Hash(state.LegacyLifecycleBaselines.Select(b => Canonical.Hash(
+            b.HorseId.ToString(), b.Stage.ToString(), b.AgeDays.ToString(CultureInfo.InvariantCulture), b.RecordedDay.ToString(CultureInfo.InvariantCulture),
+            b.BirthDay.ToString(CultureInfo.InvariantCulture), b.Role.ToString(), b.RecoveryUntilDay.ToString(CultureInfo.InvariantCulture))));
 
         public SaveLoadResult RecoverFromBackup(SaveId expectedSaveId, ulong expectedBackupRevision, string expectedPayloadHash)
         {

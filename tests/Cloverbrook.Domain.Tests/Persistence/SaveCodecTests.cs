@@ -85,7 +85,7 @@ namespace Cloverbrook.Domain.Tests
         public void FutureWireAndPayloadSchemasRequireCompatibilityNotBackupRollback()
         {
             var codec = new StableSaveCodec(); var bytes = codec.Encode(SaveTestData.Initial());
-            Assert.Throws<SaveCompatibilityException>(() => codec.Decode(Reframe(bytes, 3)));
+            Assert.Throws<SaveCompatibilityException>(() => codec.Decode(Reframe(bytes, checked(StableSaveCodec.WireVersion + 1))));
             var futurePayload = Reframe(bytes, alterPayload: p => {
                 var needle = Encoding.UTF8.GetBytes(StableSnapshot.SchemaVersion); var at = Enumerable.Range(0, p.Length - needle.Length + 1).First(i => p.AsSpan(i, needle.Length).SequenceEqual(needle));
                 p[at + needle.Length - 1] = (byte)'9'; });

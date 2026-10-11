@@ -13,6 +13,8 @@ namespace Cloverbrook.Game.Stable;
 public partial class StableDay : Node
 {
     private const string DefaultSavePath = "user://stable-management/stable.clvr";
+    private const string FoalingDemoSavePath = "user://stable-management/foaling-demo.clvr";
+    private const string FoalingDemoResourceName = "Cloverbrook.Game.Stable.FoalingDemo";
     private readonly StableDayService _service = new();
     private readonly Dictionary<HorseId, (bool Turnout, bool Grooming)> _optionalCare = new();
     private readonly List<CheckButton> _optionalToggles = new();
@@ -26,22 +28,27 @@ public partial class StableDay : Node
     private int? _reviewedDay;
     private bool _recoveryRequired;
     private bool _busy;
+    private bool _foalingDemoMode;
     private string? _captureOutput;
+    private string? _lifecycleCaptureOutput;
     private Label _season = null!, _wallet = null!, _status = null!;
     private VBoxContainer _roster = null!, _care = null!;
-    private Button _reviewButton = null!, _retryButton = null!, _reloadButton = null!, _backButton = null!;
+    private Button _reviewButton = null!, _retryButton = null!, _reloadButton = null!, _backButton = null!, _foalingDemoButton = null!;
     private Control _reviewOverlay = null!;
     private Label _reviewDetails = null!;
     private Button _confirmDayButton = null!;
     private ConfirmationDialog _recoveryDialog = null!;
     private SaveLoadResult? _recoveryCandidate;
+    private VBoxContainer _history = null!;
 
     public override void _Ready()
     {
-        _store = new AtomicSaveStore(ResolveSavePath(OS.GetCmdlineUserArgs()));
-        BuildUi();
         var args = OS.GetCmdlineUserArgs();
+        _foalingDemoMode = args.Contains("--foaling-demo") || args.Any(a => a.StartsWith("--stable-lifecycle-capture=", StringComparison.Ordinal));
+        _store = new AtomicSaveStore(ResolveSavePath(args, _foalingDemoMode));
+        BuildUi();
         _captureOutput = args.FirstOrDefault(a => a.StartsWith("--stable-day-capture=", StringComparison.Ordinal))?["--stable-day-capture=".Length..];
+        _lifecycleCaptureOutput = args.FirstOrDefault(a => a.StartsWith("--stable-lifecycle-capture=", StringComparison.Ordinal))?["--stable-lifecycle-capture=".Length..];
         if (args.Contains("--stable-day-smoke"))
         {
             _ = RunSmokeAsync();
@@ -50,9 +57,17 @@ public partial class StableDay : Node
 
         try
         {
+            if (_lifecycleCaptureOutput != null)
+            {
+                if (!args.Any(a => a == "--save-path" || a.StartsWith("--save-path=", StringComparison.Ordinal)))
+                    throw new InvalidOperationException("Lifecycle capture requires an explicit fresh --save-path so it cannot advance a real demo slot.");
+                if (File.Exists(_store.SavePath) || File.Exists(_store.BackupPath))
+                    throw new InvalidOperationException("Lifecycle capture save path already exists. Choose a new isolated path; existing saves are never replaced.");
+            }
             LoadOrCreate();
             Refresh();
-            if (_captureOutput != null) _ = RunCaptureAsync(_captureOutput);
+            if (_lifecycleCaptureOutput != null) _ = RunLifecycleCaptureAsync(_lifecycleCaptureOutput);
+            else if (_captureOutput != null) _ = RunCaptureAsync(_captureOutput);
         }
         catch (Exception ex)
         {
@@ -61,7 +76,7 @@ public partial class StableDay : Node
         }
     }
 
-    private static string ResolveSavePath(IReadOnlyList<string> args)
+    private static string ResolveSavePath(IReadOnlyList<string> args, bool foalingDemo)
     {
         for (var i = 0; i < args.Count; i++)
         {
@@ -70,7 +85,7 @@ public partial class StableDay : Node
             if (args[i] == "--save-path" && i + 1 < args.Count)
                 return Path.GetFullPath(args[i + 1]);
         }
-        return ProjectSettings.GlobalizePath(DefaultSavePath);
+        return ProjectSettings.GlobalizePath(foalingDemo ? FoalingDemoSavePath : DefaultSavePath);
     }
 
     private void LoadOrCreate()
@@ -78,6 +93,24 @@ public partial class StableDay : Node
         if (File.Exists(_store.SavePath) || File.Exists(_store.BackupPath))
         {
             ApplyLoadedState(_store.Load());
+            return;
+        }
+
+        if (_foalingDemoMode)
+        {
+            var fixtureBytes = ReadFoalingDemoFixture();
+            var fixture = new StableSaveCodec().Decode(fixtureBytes);
+            try
+            {
+                _state = _store.Initialize(fixture);
+                SetStatus("Foaling demo loaded into its own sandbox save. Your regular stable is unchanged.");
+            }
+            catch (InvalidOperationException)
+            {
+                // A second game instance may have created this dedicated demo slot.
+                // Load its exact primary/backup state rather than reseeding it.
+                ApplyLoadedState(_store.Load());
+            }
             return;
         }
 
@@ -93,6 +126,16 @@ public partial class StableDay : Node
         }
     }
 
+    private static byte[] ReadFoalingDemoFixture()
+    {
+        using var source = typeof(StableDay).Assembly.GetManifestResourceStream(FoalingDemoResourceName)
+            ?? throw new FileNotFoundException("The foaling demo sample is missing from this game build.");
+        using var bytes = new MemoryStream();
+        source.CopyTo(bytes);
+        if (bytes.Length == 0) throw new InvalidDataException("The foaling demo sample is empty.");
+        return bytes.ToArray();
+    }
+
     private void ApplyLoadedState(SaveLoadResult loaded)
     {
         _state = loaded.State;
@@ -106,6 +149,25 @@ public partial class StableDay : Node
         else SetStatus(loaded.Notice == "Primary save verified."
             ? "Your saved stable is loaded and ready."
             : loaded.Notice);
+    }
+
+    private void OpenFoalingDemo()
+    {
+        if (_busy || _pendingRequest != null || _recoveryRequired) return;
+        try
+        {
+            _foalingDemoMode = true;
+            _store = new AtomicSaveStore(ProjectSettings.GlobalizePath(FoalingDemoSavePath));
+            _state = null;
+            ClearReviewedPlan();
+            LoadOrCreate();
+            Refresh();
+            _foalingDemoButton.Disabled = true;
+        }
+        catch (Exception ex)
+        {
+            SetStatus("The foaling demo could not be opened. " + PlainError(ex));
+        }
     }
 
     private void BuildUi()
@@ -129,6 +191,9 @@ public partial class StableDay : Node
         var prototype = CozyTheme.Title("STABLE MANAGEMENT · PROTOTYPE", 13);
         prototype.VerticalAlignment = VerticalAlignment.Center;
         header.AddChild(prototype);
+        _foalingDemoButton = new Button { Text = _foalingDemoMode ? "Foaling demo · active" : "Foaling demo", CustomMinimumSize = new Vector2(190, 42), Disabled = _foalingDemoMode };
+        _foalingDemoButton.Pressed += OpenFoalingDemo;
+        header.AddChild(_foalingDemoButton);
         _backButton = new Button { Text = "Back to menu", CustomMinimumSize = new Vector2(150, 42) };
         _backButton.Pressed += () => GetTree().ChangeSceneToFile("res://scenes/main.tscn");
         header.AddChild(_backButton);
@@ -159,6 +224,16 @@ public partial class StableDay : Node
         _roster = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
         _roster.AddThemeConstantOverride("separation", 8);
         rosterScroll.AddChild(_roster);
+        _history = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
+        _history.AddThemeConstantOverride("separation", 5);
+        rosterBox.AddChild(CozyTheme.Title("Recent milestones", 18));
+        var historyScroll = new ScrollContainer
+        {
+            CustomMinimumSize = new Vector2(0, 96),
+            HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled
+        };
+        historyScroll.AddChild(_history);
+        rosterBox.AddChild(historyScroll);
 
         var carePanel = new PanelContainer(); columns.AddChild(carePanel);
         var careBox = new VBoxContainer(); careBox.AddThemeConstantOverride("separation", 8); carePanel.AddChild(careBox);
@@ -249,7 +324,9 @@ public partial class StableDay : Node
         _care.QueueFreeChildren();
         _optionalToggles.Clear();
         _turnoutButtons.Clear();
-        foreach (var horse in _state.Horses.OrderBy(h => h.Name, StringComparer.Ordinal))
+        foreach (var horse in _state.Horses
+                     .OrderBy(h => h.LifeState.Stage is LifeStage.Foal or LifeStage.Youngster ? 0 : h.LifeState.Stage == LifeStage.Adult ? 1 : 2)
+                     .ThenBy(h => h.Name, StringComparer.Ordinal))
         {
             var care = _state.DailyState.For(horse.HorseId);
             var card = new PanelContainer();
@@ -258,7 +335,51 @@ public partial class StableDay : Node
             content.AddChild(SmallText($"{StageName(horse.LifeState.Stage)} · {HomeName(horse.HomeAssignment)}"));
             content.AddChild(SmallText($"Condition: nutrition {Percent(care.Nutrition)} · bedding {Percent(care.Bedding)}"));
             content.AddChild(SmallText($"Comfort: turnout {Percent(care.Turnout)} · grooming {Percent(care.Grooming)}"));
+            var parents = ParentNames(horse);
+            if (parents.Length > 0) content.AddChild(SmallText("Parents: " + parents));
+            if (horse.ReproductionState.PregnancyId != null)
+            {
+                var unborn = _state.Horses.FirstOrDefault(candidate => candidate.LifeState.Stage == LifeStage.Unborn
+                    && (Equals(candidate.Parentage.ParentAId, horse.HorseId) || Equals(candidate.Parentage.ParentBId, horse.HorseId)));
+                var dueDay = unborn?.OriginCommitId == null ? (int?)null : _state.Conceptions
+                    .Where(c => c.Commit.BreedingCommitId.Equals(unborn.OriginCommitId)).Select(c => (int?)c.Commit.PlannedBirthDay).SingleOrDefault();
+                if (dueDay.HasValue)
+                {
+                    var remaining = Math.Max(0, dueDay.Value - _state.Header.CalendarDay);
+                    content.AddChild(SmallText($"Foal due in {remaining} {(remaining == 1 ? "day" : "days")} · planned calendar day {dueDay.Value + 1}."));
+                }
+            }
+            if (horse.ReproductionState.RecoveryUntilDay > _state.Header.CalendarDay)
+            {
+                var remaining = horse.ReproductionState.RecoveryUntilDay - _state.Header.CalendarDay;
+                content.AddChild(SmallText($"Mare recovery: {remaining} {(remaining == 1 ? "day" : "days")} remaining."));
+            }
+            if (horse.BirthDay.HasValue && horse.LifeState.Stage is LifeStage.Foal or LifeStage.Youngster)
+            {
+                var currentCalendarDay = _state.Header.CalendarDay;
+                var youngsterDay = horse.BirthDay.Value + 3;
+                var adultDay = horse.BirthDay.Value + 6;
+                var readyDay = horse.BirthDay.Value + 8;
+                if (horse.LifeState.Stage == LifeStage.Foal)
+                    content.AddChild(SmallText($"Youngster in {Math.Max(0, youngsterDay - currentCalendarDay)} days · adult in {Math.Max(0, adultDay - currentCalendarDay)} days · breeding-ready in {Math.Max(0, readyDay - currentCalendarDay)} days."));
+                else
+                    content.AddChild(SmallText($"Adult in {Math.Max(0, adultDay - currentCalendarDay)} days · breeding-ready in {Math.Max(0, readyDay - currentCalendarDay)} days."));
+            }
+            else if (horse.BirthDay.HasValue && horse.LifeState.Stage == LifeStage.Adult)
+            {
+                var daysUntilReadiness = Math.Max(0, horse.BirthDay.Value + 8 - _state.Header.CalendarDay);
+                content.AddChild(SmallText(daysUntilReadiness == 0 ? "Breeding-age milestone reached." : $"Breeding-age milestone in {daysUntilReadiness} days."));
+            }
             _roster.AddChild(card);
+
+            if (horse.OwnerId.Equals(_state.PlayerOwnerId) && horse.OriginCommitId != null && horse.LifeState.Stage != LifeStage.Unborn)
+            {
+                var renameRow = new HBoxContainer();
+                var nameInput = new LineEdit { PlaceholderText = "Choose a name", Text = horse.Name, MaxLength = 40, CustomMinimumSize = new Vector2(190, 38), SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
+                var rename = new Button { Text = horse.LifeState.Stage == LifeStage.Foal ? "Name foal" : "Rename horse", CustomMinimumSize = new Vector2(125, 38) };
+                rename.Pressed += () => _ = RenameFoalAsync(horse.HorseId, nameInput.Text);
+                renameRow.AddChild(nameInput); renameRow.AddChild(rename); _roster.AddChild(renameRow);
+            }
 
             if (!horse.OwnerId.Equals(_state.PlayerOwnerId) || horse.HomeAssignment != HomeKind.ActiveStable || horse.LifeState.Stage == LifeStage.Unborn) continue;
             if (!_optionalCare.ContainsKey(horse.HorseId)) _optionalCare[horse.HorseId] = (false, false);
@@ -283,6 +404,8 @@ public partial class StableDay : Node
             _care.AddChild(section);
         }
 
+        RefreshMilestoneHistory();
+
         if (_recoveryRequired) SetStatus("A verified backup needs your acknowledgment before the stable can be changed.");
         SetControlsEnabled(!_busy && !_recoveryRequired);
         _reviewButton.Disabled = _busy || _recoveryRequired || _pendingRequest != null || _state.Horses.Count == 0;
@@ -290,7 +413,50 @@ public partial class StableDay : Node
         _retryButton.Disabled = _busy || _recoveryRequired;
         _reloadButton.Disabled = _busy || _pendingRequest != null;
         foreach (var toggle in _optionalToggles) toggle.Disabled = _busy || _recoveryRequired;
+        _foalingDemoButton.Text = _foalingDemoMode ? "Foaling demo · active" : "Foaling demo";
+        _foalingDemoButton.Disabled = _busy || _foalingDemoMode || _pendingRequest != null || _recoveryRequired;
     }
+
+    private string ParentNames(HorseRecord horse)
+    {
+        var names = new[] { horse.Parentage.ParentAId, horse.Parentage.ParentBId }
+            .Where(id => id != null)
+            .Select(id => _state!.Horses.FirstOrDefault(parent => parent.HorseId.Equals(id))?.Name ?? "Unknown")
+            .ToArray();
+        return string.Join(" × ", names);
+    }
+
+    private void RefreshMilestoneHistory()
+    {
+        _history.QueueFreeChildren();
+        var events = _state!.DailyState.Receipts.SelectMany(receipt => receipt.LifecycleEvents)
+            .OrderByDescending(item => item.EffectiveDay).Take(5).ToArray();
+        if (events.Length == 0)
+        {
+            _history.AddChild(SmallText("No foal or growth milestones recorded yet."));
+            return;
+        }
+        foreach (var item in events)
+            _history.AddChild(SmallText($"Day {item.EffectiveDay + 1}: {LifecycleText(item, _state)}"));
+    }
+
+    private static string LifecycleText(StableLifecycleEvent item, StableSnapshot state)
+    {
+        var horse = state.Horses.FirstOrDefault(h => h.HorseId.Equals(item.HorseId));
+        var name = horse?.Name ?? "Foal";
+        var related = item.RelatedHorseId == null ? null : state.Horses.FirstOrDefault(h => h.HorseId.Equals(item.RelatedHorseId));
+        return item.Kind.ToString() switch
+        {
+            "Birth" => $"{name} was born{(related == null ? "" : $" to {related.Name}")}." + (horse == null ? "" : " Parents: " + ParentNamesFor(horse, state) + "."),
+            "FoalToYoungster" => $"{name} grew into a youngster.",
+            "YoungsterToAdult" => $"{name} reached adulthood.",
+            _ => $"{name} reached a new life stage."
+        };
+    }
+
+    private static string ParentNamesFor(HorseRecord horse, StableSnapshot state) => string.Join(" × ",
+        new[] { horse.Parentage.ParentAId, horse.Parentage.ParentBId }.Where(id => id != null)
+            .Select(id => state.Horses.FirstOrDefault(parent => parent.HorseId.Equals(id))?.Name ?? "Unknown"));
 
     private void SetOptional(HorseId id, bool? turnout, bool? grooming)
     {
@@ -361,6 +527,13 @@ public partial class StableDay : Node
                 var horse = _state.Horses.Single(h => h.HorseId.Equals(outcome.HorseId));
                 lines.Add($"{horse.Name}: nutrition {Percent(outcome.Before.Nutrition)} → {Percent(outcome.After.Nutrition)}, bedding {Percent(outcome.Before.Bedding)} → {Percent(outcome.After.Bedding)}, turnout {Percent(outcome.Before.Turnout)} → {Percent(outcome.After.Turnout)}, grooming {Percent(outcome.Before.Grooming)} → {Percent(outcome.After.Grooming)}.");
             }
+            if (_preview.LifecycleEvents.Count > 0)
+            {
+                lines.Add("");
+                lines.Add("Expected stable milestones:");
+                foreach (var item in _preview.LifecycleEvents)
+                    lines.Add("• " + LifecycleText(item, _state));
+            }
             if (!_preview.Allowed) lines.Add("\nThis day cannot be completed: " + (_preview.BlockReason ?? "The plan is not allowed."));
             _reviewDetails.Text = string.Join("\n", lines);
             _confirmDayButton.Disabled = !_preview.Allowed;
@@ -417,7 +590,9 @@ public partial class StableDay : Node
             _state = result.State;
             _pendingRequest = null;
             ClearReviewedPlan();
-            SetStatus(result.Replayed ? "That day was already saved. Your wallet and calendar are up to date." : "Day saved. Your horses' care and the calendar are up to date.");
+            var lifecycleNotice = result.Receipt.LifecycleEvents.Count == 0 ? "" : " " + string.Join(" ", result.Receipt.LifecycleEvents.Select(item => LifecycleText(item, _state)));
+            SetStatus(result.Replayed ? "That day was already saved. Your wallet and calendar are up to date." + lifecycleNotice
+                : "Day saved. Your horses' care and the calendar are up to date." + lifecycleNotice);
         }
         catch (Exception ex)
         {
@@ -475,6 +650,42 @@ public partial class StableDay : Node
         catch (Exception ex)
         {
             SetStatus("The saved stable could not be reloaded. " + PlainError(ex));
+        }
+    }
+
+    private async Task RenameFoalAsync(HorseId horseId, string requestedName)
+    {
+        if (_state == null || _busy || _recoveryRequired || _pendingRequest != null) return;
+        var name = requestedName.Trim();
+        if (name.Length == 0)
+        {
+            SetStatus("Enter a name for the foal first.");
+            return;
+        }
+        var horse = _state.Horses.SingleOrDefault(item => item.HorseId.Equals(horseId));
+        if (horse == null || !horse.OwnerId.Equals(_state.PlayerOwnerId) || horse.LifeState.Stage is LifeStage.Unborn)
+        {
+            SetStatus("Only a born horse in your stable can be named.");
+            return;
+        }
+        _busy = true;
+        Refresh();
+        try
+        {
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+            var replacement = await Task.Run(() => _store.RenameHorse(_state.PlayerOwnerId, horse.HorseId,
+                _state.Header.SaveRevision, horse.Revision, name));
+            _state = replacement;
+            SetStatus($"{name} is now recorded in the stable and pedigree.");
+        }
+        catch (Exception ex)
+        {
+            SetStatus("The foal's name was not saved. Reload the stable and try again. " + PlainError(ex));
+        }
+        finally
+        {
+            _busy = false;
+            Refresh();
         }
     }
 
@@ -554,6 +765,133 @@ public partial class StableDay : Node
         }
     }
 
+    private async Task RunLifecycleCaptureAsync(string output)
+    {
+        try
+        {
+            if (_state == null || _recoveryRequired || _state.Header.CalendarDay != 10 || _state.Coins != 450 || _state.DailyState.Receipts.Count != 0)
+                throw new InvalidOperationException("Lifecycle capture requires a fresh isolated save initialized from the foaling demo fixture.");
+            var mare = _state.Horses.Single(h => h.ReproductionState.PregnancyId != null);
+            var unborn = _state.Horses.Single(h => h.LifeState.Stage == LifeStage.Unborn);
+            var directory = Path.GetFullPath(output);
+            Directory.CreateDirectory(directory);
+            await CaptureFrame(Path.Combine(directory, "01_pregnancy.png"));
+            if (!ParentNames(unborn).Contains(mare.Name, StringComparison.Ordinal))
+                throw new InvalidOperationException("The foal roster does not show its canonical parents.");
+
+            var birthCaptured = false;
+            var youngsterCaptured = false;
+            var adultCaptured = false;
+            var renamed = false;
+            var captureStep = 0;
+            while (captureStep++ < 24)
+            {
+                var fromDay = _state.Header.CalendarDay;
+                _reviewButton.EmitSignal(BaseButton.SignalName.Pressed);
+                if (!_reviewOverlay.Visible || _preview?.Allowed != true)
+                    throw new InvalidOperationException("The actual Review day UI did not produce an allowed lifecycle preview.");
+                if (_preview.LifecycleEvents.Count > 0 && !birthCaptured)
+                    await CaptureFrame(Path.Combine(directory, "02_birth_review.png"));
+                var coinsBefore = _state.Coins;
+                var expectedWalletDebit = _preview.CareCostCoins + _preview.OperationsCostCoins - _preview.AssistanceCoins;
+                var receiptsBefore = _state.DailyState.Receipts.Count;
+                var debitsBefore = _state.Ledger.Count(entry => entry.Kind == "stable-day");
+                _confirmDayButton.EmitSignal(BaseButton.SignalName.Pressed);
+                for (var frame = 0; frame < 600 && _busy; frame++)
+                    await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                if (_busy || _pendingRequest != null || _state == null || _state.Header.CalendarDay != fromDay + 1)
+                    throw new InvalidOperationException("The real End day UI did not save exactly one calendar day.");
+
+                if (_state.DailyState.Receipts.Count != receiptsBefore + 1)
+                    throw new InvalidOperationException("A confirmed End day did not append exactly one durable receipt.");
+                var committedReceipt = _state.DailyState.Receipts.Last();
+                if (committedReceipt.FromDay != fromDay || committedReceipt.ToDay != fromDay + 1
+                    || committedReceipt.WalletDebitCoins != expectedWalletDebit
+                    || _state.Coins != coinsBefore - committedReceipt.WalletDebitCoins
+                    || _state.Ledger.Count(entry => entry.Kind == "stable-day") != debitsBefore + (committedReceipt.WalletDebitCoins > 0 ? 1 : 0))
+                    throw new InvalidOperationException("The confirmed day did not persist exactly its previewed wallet debit.");
+                var committedEvents = committedReceipt.LifecycleEvents;
+                if (committedEvents.Any(item => item.Kind.ToString() == "Birth"))
+                {
+                    var child = _state.Horses.Single(h => h.HorseId.Equals(committedEvents.Single(item => item.Kind.ToString() == "Birth").HorseId));
+                    if (child.LifeState.Stage != LifeStage.Foal || !child.BirthDay.HasValue)
+                        throw new InvalidOperationException("Birth did not create a born foal with a saved birth day.");
+                    var childParents = ParentNames(child);
+                    if (childParents.Length == 0 || child.ReproductionState.PregnancyId != null)
+                        throw new InvalidOperationException("The born foal's pedigree or pregnancy transition was not preserved.");
+                    var mother = _state.Horses.Single(h => h.HorseId.Equals(mare.HorseId));
+                    if (mother.ReproductionState.RecoveryUntilDay != child.BirthDay.Value + 2)
+                        throw new InvalidOperationException("The mare's two-day recovery date was not persisted.");
+                    await CaptureFrame(Path.Combine(directory, "03_birth_reveal.png"));
+                    if (!await NameFoalThroughUiAsync(child.HorseId, "Clover"))
+                        throw new InvalidOperationException("The actual foal naming controls did not save the chosen name.");
+                    renamed = true;
+                    _reloadButton.EmitSignal(BaseButton.SignalName.Pressed);
+                    await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                    if (_state.Horses.Single(h => h.HorseId.Equals(child.HorseId)).Name != "Clover")
+                        throw new InvalidOperationException("Foal naming did not survive a save reload.");
+                }
+                if (committedEvents.Any(item => item.Kind.ToString() == "FoalToYoungster"))
+                {
+                    youngsterCaptured = true;
+                    await CaptureFrame(Path.Combine(directory, "04_youngster.png"));
+                }
+                if (committedEvents.Any(item => item.Kind.ToString() == "YoungsterToAdult"))
+                {
+                    adultCaptured = true;
+                    await CaptureFrame(Path.Combine(directory, "05_adult.png"));
+                }
+
+                if (adultCaptured && _state.Horses.Any(h => h.Name == "Clover" && h.BirthDay.HasValue && _state.Header.CalendarDay >= h.BirthDay.Value + 8))
+                {
+                    var foal = _state.Horses.Single(h => h.Name == "Clover");
+                    var allEvents = _state.DailyState.Receipts.SelectMany(r => r.LifecycleEvents).ToArray();
+                    if (!renamed || !birthCaptured && !_state.DailyState.Receipts.SelectMany(r => r.LifecycleEvents).Any(e => e.Kind.ToString() == "Birth")
+                        || !youngsterCaptured || foal.LifeState.Stage != LifeStage.Adult)
+                        throw new InvalidOperationException("Saved birth, naming, or growth lifecycle did not complete exactly once.");
+                    if (allEvents.Count(e => e.Kind.ToString() == "Birth") != 1
+                        || allEvents.Count(e => e.Kind.ToString() == "FoalToYoungster") != 1
+                        || allEvents.Count(e => e.Kind.ToString() == "YoungsterToAdult") != 1)
+                        throw new InvalidOperationException("The saved history contains a missing or duplicate birth/growth event.");
+                    if (foal.BirthDay != null && _state.Header.CalendarDay < foal.BirthDay.Value + 6)
+                        throw new InvalidOperationException("The foal reached adulthood before its six-day growth interval.");
+                    if (!foal.BirthDay.HasValue || _state.Header.CalendarDay < foal.BirthDay.Value + 8)
+                        throw new InvalidOperationException("The capture ended before the eight-day breeding-age milestone.");
+                    _reloadButton.EmitSignal(BaseButton.SignalName.Pressed);
+                    await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                    if (_state.Horses.Single(h => h.HorseId.Equals(foal.HorseId)).LifeState.Stage != LifeStage.Adult)
+                        throw new InvalidOperationException("The adult stage did not survive a reload.");
+                    await CaptureFrame(Path.Combine(directory, "06_reloaded_adult.png"));
+                    await CaptureFrame(Path.Combine(directory, "07_breeding_age.png"));
+                    GD.Print($"[stable-lifecycle-capture] OK screenshots=7 day={_state.Header.CalendarDay} coins={_state.Coins} output={directory}");
+                    GetTree().Quit(0);
+                    return;
+                }
+                if (committedEvents.Any(item => item.Kind.ToString() == "Birth")) birthCaptured = true;
+            }
+            throw new InvalidOperationException("Capture did not reach the adult milestone within 24 days.");
+        }
+        catch (Exception ex)
+        {
+            GD.PushError("[stable-lifecycle-capture] FAILED " + ex);
+            GetTree().Quit(1);
+        }
+    }
+
+    private async Task<bool> NameFoalThroughUiAsync(HorseId horseId, string name)
+    {
+        var rows = _roster.GetChildren().OfType<HBoxContainer>().ToArray();
+        var renameButton = rows.SelectMany(row => row.GetChildren()).OfType<Button>().FirstOrDefault(button => button.Text == "Name foal");
+        var nameInput = rows.SelectMany(row => row.GetChildren()).OfType<LineEdit>().FirstOrDefault();
+        if (renameButton == null || nameInput == null) return false;
+        nameInput.Text = name;
+        renameButton.EmitSignal(BaseButton.SignalName.Pressed);
+        for (var frame = 0; frame < 600 && _busy; frame++)
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        var named = _state?.Horses.SingleOrDefault(h => h.HorseId.Equals(horseId));
+        return !_busy && named?.Name == name;
+    }
+
     private async Task CaptureFrame(string path)
     {
         await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
@@ -565,7 +903,7 @@ public partial class StableDay : Node
 
     private void SetControlsEnabled(bool enabled)
     {
-        foreach (var button in new[] { _reviewButton, _retryButton, _reloadButton, _backButton })
+        foreach (var button in new[] { _reviewButton, _retryButton, _reloadButton, _backButton, _foalingDemoButton })
             if (GodotObject.IsInstanceValid(button)) button.Disabled = !enabled;
         foreach (var toggle in _optionalToggles)
             if (GodotObject.IsInstanceValid(toggle)) toggle.Disabled = !enabled;

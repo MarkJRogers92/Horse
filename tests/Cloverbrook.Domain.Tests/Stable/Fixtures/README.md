@@ -37,3 +37,15 @@ Generated using the unmodified domain source and original v2 codec at `b541bc470
   }
 ]
 ```
+
+## Genuine v2 born-foal compatibility fixture
+
+`old_born_foal_v2.clvr` was validated and encoded by the same unmodified `b541bc4` v2 domain/codec. It retains the genuine historical conception and offspring identity, with the previously supported born snapshot fields: actual birth day 14, Foal stage, age counter 4, cleared maternal pregnancy and recovery through day 16. The snapshot calendar is 14 and save revision 5. It has no daily or lifecycle completion receipts; the old format accepted this state. This fixture tests preservation of pre-existing birth data, not a claim that the former management screen could process births.
+
+Size: 19307 bytes. Wire version: 2. SHA-256: `110227d2a9b6b7e1b56f626577f4f2f53f786a9f09e93b88098e52f737e0933b`.
+
+## Genuine v2 nonaligned age fixture
+
+`old_born_foal_unaligned_v2.clvr` was validated and encoded by the same original v2 source at `b541bc4`. It has the same historical born-foal conception, actual birth day 14 and calendar day 14, but its stored age counter is 19. The old format accepted this counter independently of the conception/calendar dates. This fixture verifies that migration captures and continues that old value, rather than accepting a save that fails on the next End Day. No genetics, parentage, conception or random streams were changed.
+
+Size: 19307 bytes. Wire version: 2. SHA-256: `fa345b45c0e4064611400a95e74d3af83763042dae854e40e04fefdceb3c9f24`.

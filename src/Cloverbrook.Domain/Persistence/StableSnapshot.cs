@@ -5,6 +5,27 @@ using System.Linq;
 
 namespace Cloverbrook.Domain
 {
+    public sealed class LegacyLifecycleBaseline
+    {
+        public LegacyLifecycleBaseline(HorseId horseId, LifeStage stage, int ageDays, int recordedDay, int birthDay,
+            ReproductiveRole role, int recoveryUntilDay)
+        {
+            HorseId = Check.NotNull(horseId, nameof(horseId));
+            if (stage == LifeStage.Unborn || !Enum.IsDefined(typeof(LifeStage), stage)) throw new ArgumentOutOfRangeException(nameof(stage));
+            Stage = stage; AgeDays = Check.NonNegative(ageDays, nameof(ageDays)); RecordedDay = Check.NonNegative(recordedDay, nameof(recordedDay));
+            BirthDay = Check.NonNegative(birthDay, nameof(birthDay));
+            if (!Enum.IsDefined(typeof(ReproductiveRole), role)) throw new ArgumentOutOfRangeException(nameof(role));
+            Role = role; RecoveryUntilDay = Check.NonNegative(recoveryUntilDay, nameof(recoveryUntilDay));
+        }
+        public HorseId HorseId { get; }
+        public LifeStage Stage { get; }
+        public int AgeDays { get; }
+        public int RecordedDay { get; }
+        public int BirthDay { get; }
+        public ReproductiveRole Role { get; }
+        public int RecoveryUntilDay { get; }
+    }
+
     public sealed class SaveIntegrityException : IOException
     {
         public SaveIntegrityException(string message) : base(message) { }
@@ -33,11 +54,11 @@ namespace Cloverbrook.Domain
     // trusted adapter; this slice is not a building/calendar capacity manager.
     public sealed class StableSnapshot
     {
-        public const string SchemaVersion = "cloverbrook.save.v2";
+        public const string SchemaVersion = "cloverbrook.save.v3";
         public StableSnapshot(SaveHeader header, OwnerId playerOwnerId, IEnumerable<HorseRecord> horses,
             long openingCoinBalance, ulong capacityRevision, IEnumerable<CoinLedgerEntry>? ledger = null,
             IEnumerable<BreedingCapacityPlan>? pendingCapacityPlans = null, IEnumerable<PreparedConception>? conceptions = null,
-            StableDailyState? dailyState = null)
+            StableDailyState? dailyState = null, IEnumerable<LegacyLifecycleBaseline>? legacyLifecycleBaselines = null)
         {
             Header = Check.NotNull(header, nameof(header)); PlayerOwnerId = Check.NotNull(playerOwnerId, nameof(playerOwnerId));
             Horses = Snapshot.List(Check.NotNull(horses, nameof(horses)).OrderBy(h => h.HorseId.ToString(), StringComparer.Ordinal));
@@ -47,6 +68,7 @@ namespace Cloverbrook.Domain
             PendingCapacityPlans = Snapshot.List((pendingCapacityPlans ?? Array.Empty<BreedingCapacityPlan>()).OrderBy(p => p.ReservationId.ToString(), StringComparer.Ordinal));
             Conceptions = Snapshot.List((conceptions ?? Array.Empty<PreparedConception>()).OrderBy(c => c.Commit.BreedingEventIndex));
             DailyState = dailyState ?? StableDailyState.Empty;
+            LegacyLifecycleBaselines = Snapshot.List((legacyLifecycleBaselines ?? Array.Empty<LegacyLifecycleBaseline>()).OrderBy(b => b.HorseId.ToString(), StringComparer.Ordinal));
             try { Coins = Ledger.Aggregate(openingCoinBalance, (coins, entry) => checked(coins + entry.DeltaCoins)); }
             catch (OverflowException e) { throw new SaveIntegrityException("The coin ledger overflows the supported integer balance.", e); }
             Validate();
@@ -61,9 +83,11 @@ namespace Cloverbrook.Domain
         public IReadOnlyList<BreedingCapacityPlan> PendingCapacityPlans { get; }
         public IReadOnlyList<PreparedConception> Conceptions { get; }
         public StableDailyState DailyState { get; }
-        public StableSnapshot WithHeader(SaveHeader header) => new StableSnapshot(header, PlayerOwnerId, Horses, OpeningCoinBalance, CapacityRevision, Ledger, PendingCapacityPlans, Conceptions, DailyState);
-        public StableSnapshot WithHorses(IEnumerable<HorseRecord> horses) => new StableSnapshot(Header, PlayerOwnerId, horses, OpeningCoinBalance, CapacityRevision, Ledger, PendingCapacityPlans, Conceptions, DailyState);
-        public StableSnapshot WithDailyState(StableDailyState dailyState) => new StableSnapshot(Header, PlayerOwnerId, Horses, OpeningCoinBalance, CapacityRevision, Ledger, PendingCapacityPlans, Conceptions, dailyState);
+        public IReadOnlyList<LegacyLifecycleBaseline> LegacyLifecycleBaselines { get; }
+        public StableLifecycleCapacityProjection LifecycleCapacity => StableLifecycleCapacityProjection.From(this);
+        public StableSnapshot WithHeader(SaveHeader header) => new StableSnapshot(header, PlayerOwnerId, Horses, OpeningCoinBalance, CapacityRevision, Ledger, PendingCapacityPlans, Conceptions, DailyState, LegacyLifecycleBaselines);
+        public StableSnapshot WithHorses(IEnumerable<HorseRecord> horses) => new StableSnapshot(Header, PlayerOwnerId, horses, OpeningCoinBalance, CapacityRevision, Ledger, PendingCapacityPlans, Conceptions, DailyState, LegacyLifecycleBaselines);
+        public StableSnapshot WithDailyState(StableDailyState dailyState) => new StableSnapshot(Header, PlayerOwnerId, Horses, OpeningCoinBalance, CapacityRevision, Ledger, PendingCapacityPlans, Conceptions, dailyState, LegacyLifecycleBaselines);
         private static void Require(bool condition, string message) { if (!condition) throw new SaveIntegrityException(message); }
         private void Validate()
         {
@@ -83,6 +107,8 @@ namespace Cloverbrook.Domain
                 && Conceptions.Select(c => c.Commit.OffspringHorseId).Distinct().Count() == Conceptions.Count
                 && Conceptions.Select(c => c.Commit.CostTransactionId).Distinct().Count() == Conceptions.Count
                 && Conceptions.Select(c => c.Capacity.ReservationId).Distinct().Count() == Conceptions.Count, "A conception identity, cost or hold was reused.");
+            Require(LegacyLifecycleBaselines.Select(b => b.HorseId).Distinct().Count() == LegacyLifecycleBaselines.Count,
+                "A legacy lifecycle baseline is duplicated.");
             Require(Header.RngStreams.Breeding.EventCounter == Header.LastCommittedBreedingEventIndex
                 && Header.LastCommittedBreedingEventIndex == (ulong)Conceptions.Count, "Breeding stream and durable conception sequence disagree.");
             Require(Header.SaveRevision >= (ulong)Conceptions.Count && CapacityRevision >= (ulong)Conceptions.Count, "Conception revisions cannot run ahead of the save.");
@@ -172,6 +198,9 @@ namespace Cloverbrook.Domain
                         && child.ReproductionState.Role == receipt.UnbornAtCommit.ReproductionState.Role, "An unborn foal must retain its pregnancy link and original role.");
                 else Require(child.BirthDay.HasValue && child.BirthDay.Value >= commit.PlannedBirthDay && child.BirthDay.Value <= Header.CalendarDay,
                     "A born offspring needs its actual nonpremature birth record.");
+                if (child.LifeState.Stage != LifeStage.Unborn)
+                    Require(child.ReproductionState.Role == receipt.UnbornAtCommit.ReproductionState.Role,
+                        "A born foal must retain its committed reproductive role.");
             }
             foreach (var horse in Horses)
             {
@@ -187,6 +216,12 @@ namespace Cloverbrook.Domain
                         "Pregnancy state does not belong to this mare and unborn foal.");
                 }
             }
+            foreach (var baseline in LegacyLifecycleBaselines)
+                Require(horses.TryGetValue(baseline.HorseId, out var baselineHorse) && baselineHorse.OriginCommitId != null
+                    && baselineHorse.BirthDay == baseline.BirthDay && baselineHorse.ReproductionState.Role == baseline.Role
+                    && baseline.RecordedDay <= Header.CalendarDay,
+                    "A legacy lifecycle baseline no longer matches its canonical born horse.");
+            ValidateLifecycleHistory(horses, receipts);
             foreach (var entry in Ledger.Where(l => l.Kind == "breeding"))
                 Require(entry.BreedingId != null && receipts.TryGetValue(entry.BreedingId, out var receipt) && receipt.Commit.CostTransactionId.Equals(entry.Id), "Orphan breeding debit.");
         }
@@ -197,8 +232,111 @@ namespace Cloverbrook.Domain
             && a.Parentage.FounderBackground?.AssumptionId == b.Parentage.FounderBackground?.AssumptionId
             && a.Parentage.FounderBackground?.InbreedingCoefficient == b.Parentage.FounderBackground?.InbreedingCoefficient
             && a.OriginRecord == b.OriginRecord && Equals(a.OriginCommitId, b.OriginCommitId);
+        internal static bool SameLifecycleState(HorseRecord a, HorseRecord b) => a.OwnerId.Equals(b.OwnerId)
+            && a.LifeState.Stage == b.LifeState.Stage && a.LifeState.DaysSinceConception == b.LifeState.DaysSinceConception
+            && a.LifeState.VisualAge == b.LifeState.VisualAge && a.BirthDay == b.BirthDay
+            && a.ReproductionState.Role == b.ReproductionState.Role
+            && Equals(a.ReproductionState.PregnancyId, b.ReproductionState.PregnancyId)
+            && a.ReproductionState.RecoveryUntilDay == b.ReproductionState.RecoveryUntilDay;
         private static bool SameCare(HorseCareState a, HorseCareState b) => a.Nutrition == b.Nutrition && a.Bedding == b.Bedding
             && a.Turnout == b.Turnout && a.Grooming == b.Grooming;
+
+        private void ValidateLifecycleHistory(IReadOnlyDictionary<HorseId, HorseRecord> horses,
+            IReadOnlyDictionary<BreedingCommitId, PreparedConception> conceptions)
+        {
+            var births = new Dictionary<HorseId, StableLifecycleEvent>();
+            var growth = new Dictionary<(HorseId, LifecycleEventKind), StableLifecycleEvent>();
+            foreach (var receipt in DailyState.Receipts)
+            foreach (var lifecycleEvent in receipt.LifecycleEvents)
+            {
+                Require(lifecycleEvent.EffectiveDay == receipt.ToDay, "A lifecycle event is outside its committed EndDay.");
+                if (lifecycleEvent.Kind == LifecycleEventKind.Birth)
+                {
+                    if (lifecycleEvent.BreedingEventId == null || !conceptions.TryGetValue(lifecycleEvent.BreedingEventId, out var conception))
+                        throw new SaveIntegrityException("A birth event does not match a known conception.");
+                    Require(conception.Commit.OffspringHorseId.Equals(lifecycleEvent.HorseId), "A birth event does not match its committed offspring.");
+                    var mareId = conception.ParentAAtCommit.ReproductionState.Role == ReproductiveRole.Mare
+                        ? conception.Commit.ParentAId : conception.Commit.ParentBId;
+                    Require(lifecycleEvent.RelatedHorseId!.Equals(mareId) && lifecycleEvent.EffectiveDay == conception.Commit.PlannedBirthDay,
+                        "A birth event does not match its committed mare or planned birth day.");
+                    Require(!births.ContainsKey(lifecycleEvent.HorseId), "A foal has more than one recorded birth.");
+                    births.Add(lifecycleEvent.HorseId, lifecycleEvent);
+                }
+                else
+                {
+                    var key = (lifecycleEvent.HorseId, lifecycleEvent.Kind);
+                    Require(!growth.ContainsKey(key), "A horse has a duplicate growth transition."); growth.Add(key, lifecycleEvent);
+                }
+            }
+            foreach (var conception in Conceptions)
+            {
+                var child = horses[conception.Commit.OffspringHorseId];
+                var hasBirth = births.ContainsKey(child.HorseId);
+                var hasGrowth = growth.Keys.Any(k => k.Item1.Equals(child.HorseId));
+                Require(child.LifeState.Stage != LifeStage.Unborn || (!hasBirth && !hasGrowth),
+                    "An unborn horse cannot retain birth or growth events.");
+            }
+            foreach (var conception in Conceptions)
+            {
+                var child = horses[conception.Commit.OffspringHorseId];
+                if (child.LifeState.Stage == LifeStage.Unborn) continue;
+                if (!births.TryGetValue(child.HorseId, out var birth))
+                {
+                    var baseline = LegacyLifecycleBaselines.SingleOrDefault(b => b.HorseId.Equals(child.HorseId));
+                    if (baseline == null && (Header.SchemaVersion == "cloverbrook.save.v1" || Header.SchemaVersion == "cloverbrook.save.v2"))
+                        continue; // Exact old decoder; migration captures this state before re-encoding.
+                    Require(baseline != null, "A born committed foal is missing its durable birth event or a captured legacy baseline.");
+                    // Genuine v2 saves could persist a canonical born HorseRecord
+                    // before lifecycle events existed. Preserve that exact per-horse
+                    // state; later growth still requires new lifecycle receipts.
+                    Require(child.BirthDay == baseline!.BirthDay && child.ReproductionState.Role == baseline.Role
+                        && child.ReproductionState.RecoveryUntilDay >= baseline.RecoveryUntilDay
+                        && child.LifeState.DaysSinceConception == checked(baseline.AgeDays + Header.CalendarDay - baseline.RecordedDay),
+                        "A legacy born foal no longer matches its captured age, birth or role baseline.");
+                    var legacyMareId = conception.ParentAAtCommit.ReproductionState.Role == ReproductiveRole.Mare
+                        ? conception.Commit.ParentAId : conception.Commit.ParentBId;
+                    Require(horses.TryGetValue(legacyMareId, out var legacyMare) && legacyMare.ReproductionState.Role == ReproductiveRole.Mare
+                        && legacyMare.ReproductionState.RecoveryUntilDay >= checked(baseline.BirthDay + 2),
+                        "A legacy foaling record is missing the mare's recovery boundary.");
+                    var youngsterDayLegacy = checked(child.BirthDay!.Value + 3); var adultDayLegacy = checked(child.BirthDay.Value + 6);
+                    var expectedLegacyStage = Header.CalendarDay < youngsterDayLegacy ? LifeStage.Foal
+                        : Header.CalendarDay < adultDayLegacy ? LifeStage.Youngster : LifeStage.Adult;
+                    Require(child.LifeState.Stage == expectedLegacyStage, "A legacy born foal's current stage does not match its saved birth anchor.");
+                    Require(growth.ContainsKey((child.HorseId, LifecycleEventKind.FoalToYoungster)) == (youngsterDayLegacy > baseline.RecordedDay && Header.CalendarDay >= youngsterDayLegacy)
+                        && growth.ContainsKey((child.HorseId, LifecycleEventKind.YoungsterToAdult)) == (adultDayLegacy > baseline.RecordedDay && Header.CalendarDay >= adultDayLegacy),
+                        "A legacy born foal's post-migration growth history is incomplete or premature.");
+                    continue;
+                }
+                Require(birth.EffectiveDay == child.BirthDay, "A born committed foal is missing its durable birth event.");
+                Require(child.LifeState.DaysSinceConception == checked(Header.CalendarDay - conception.Commit.ConceptionDay),
+                    "A committed offspring's age does not match its conception and calendar anchors.");
+                var youngsterDay = checked(child.BirthDay!.Value + 3); var adultDay = checked(child.BirthDay.Value + 6);
+                var expectedStage = Header.CalendarDay < youngsterDay ? LifeStage.Foal
+                    : Header.CalendarDay < adultDay ? LifeStage.Youngster : LifeStage.Adult;
+                Require(child.LifeState.Stage == expectedStage, "A born foal's saved stage is inconsistent with its recorded growth schedule.");
+                Require(growth.ContainsKey((child.HorseId, LifecycleEventKind.FoalToYoungster)) == (Header.CalendarDay >= youngsterDay)
+                    && growth.ContainsKey((child.HorseId, LifecycleEventKind.YoungsterToAdult)) == (Header.CalendarDay >= adultDay),
+                    "A born foal's growth history is incomplete or premature.");
+                Require(birth!.EffectiveDay >= conception.Commit.PlannedBirthDay, "A foal was born before its planned due day.");
+            }
+            foreach (var transition in growth.Values)
+            {
+                if (births.TryGetValue(transition.HorseId, out var birth))
+                    Require(horses[transition.HorseId].BirthDay == birth.EffectiveDay, "A growth transition's birth anchor disagrees with the horse record.");
+                else Require(horses.TryGetValue(transition.HorseId, out var legacyHorse) && legacyHorse.BirthDay.HasValue
+                    && (LegacyLifecycleBaselines.Any(b => b.HorseId.Equals(transition.HorseId)) || legacyHorse.OriginCommitId == null), "A growth transition has no recorded birth.");
+                var birthDay = birth?.EffectiveDay ?? horses[transition.HorseId].BirthDay!.Value;
+                var expectedDay = checked(birthDay + (transition.Kind == LifecycleEventKind.FoalToYoungster ? 3 : 6));
+                Require(transition.EffectiveDay == expectedDay, "A growth transition is outside its scheduled day.");
+            }
+            foreach (var mareBirths in births.Values.GroupBy(e => e.RelatedHorseId!))
+            {
+                var mareId = mareBirths.Key;
+                Require(horses.TryGetValue(mareId, out var mare) && mare.ReproductionState.Role == ReproductiveRole.Mare
+                    && mare.ReproductionState.RecoveryUntilDay >= checked(mareBirths.Max(e => e.EffectiveDay) + 2),
+                    "A birth history is missing the mare's saved recovery boundary.");
+            }
+        }
     }
 
     internal static class SaveHeaders
@@ -241,7 +379,8 @@ namespace Cloverbrook.Domain
                 new RngStreams(prepared.AfterBreedingStream, streams.Cosmetic, streams.World, streams.Competition), prepared.Commit.BreedingEventIndex, payloadHash: "unwritten");
             var next = new StableSnapshot(header, state.PlayerOwnerId, horses, state.OpeningCoinBalance, checked(state.CapacityRevision + 1),
                 state.Ledger.Concat(new[] { new CoinLedgerEntry(prepared.Commit.CostTransactionId, -prepared.Terms.CostCoins, "breeding", prepared.Commit.BreedingCommitId) }),
-                state.PendingCapacityPlans.Where(p => !p.ReservationId.Equals(request.ReservationId)), state.Conceptions.Concat(new[] { prepared }), state.DailyState);
+                state.PendingCapacityPlans.Where(p => !p.ReservationId.Equals(request.ReservationId)), state.Conceptions.Concat(new[] { prepared }), state.DailyState,
+                state.LegacyLifecycleBaselines);
             return new ConceptionStateChange(next, prepared, false);
         }
     }

@@ -115,7 +115,20 @@ namespace Cloverbrook.Domain
             if (parentA.Revision != expectedParentARevision || parentB.Revision != expectedParentBRevision) errors.Add(new EligibilityIssue("stale_parent", "A parent changed after this pairing was prepared; refresh the plan."));
             foreach (var horse in new[] { parentA, parentB })
             {
-                if (horse.LifeState.Stage != LifeStage.Adult || horse.LifeState.DaysSinceConception < policy.BreedableDay)
+                if (horse.LifeState.Stage != LifeStage.Adult)
+                    errors.Add(new EligibilityIssue("age", horse.Name + " has not reached adult breeding age."));
+                if (horse.BirthDay.HasValue)
+                {
+                    try
+                    {
+                        var daysAfterBirth = Math.Max(0, checked(policy.BreedableDay - policy.PregnancyDays));
+                        if (currentDay < checked(horse.BirthDay.Value + daysAfterBirth))
+                            errors.Add(new EligibilityIssue("age", horse.Name + " needs more time after birth before breeding eligibility."));
+                    }
+                    catch (OverflowException)
+                    { errors.Add(new EligibilityIssue("age", horse.Name + " has a breeding eligibility date outside the supported calendar range.")); }
+                }
+                else if (horse.LifeState.DaysSinceConception < policy.BreedableDay)
                     errors.Add(new EligibilityIssue("age", horse.Name + " has not reached breeding eligibility."));
                 if (horse.HomeAssignment != HomeKind.ActiveStable) errors.Add(new EligibilityIssue("home", horse.Name + " must return from cooperative pasture or lease before breeding."));
                 if (horse.ReproductionState.PregnancyId != null) errors.Add(new EligibilityIssue("pregnant", horse.Name + " already has a pending pregnancy."));

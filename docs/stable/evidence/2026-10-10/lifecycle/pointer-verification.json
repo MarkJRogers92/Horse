@@ -1,0 +1,16 @@
+{
+  "manualPointerChecks": "cancel/double-confirm/name/reload/menu/quit",
+  "calendarDay": 14,
+  "coins": 306,
+  "completedDays": 4,
+  "births": 1,
+  "childId": "71c06134-3cd7-ac5f-2523-bd7e21f84edd",
+  "childName": "Willow",
+  "stage": "Foal",
+  "birthDay": 14,
+  "recoveryUntil": 16,
+  "breedingFees": 1,
+  "dailyDebits": 4,
+  "inheritedIdentityPreserved": true,
+  "allFourRandomStreamsPreserved": true
+}
