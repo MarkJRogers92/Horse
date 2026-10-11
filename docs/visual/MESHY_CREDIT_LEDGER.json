@@ -157,6 +157,28 @@
         "art/candidates/meshy/foal_01/smart-rig-retry.glb"
       ],
       "sha256": "6b5961323edb18dc795f5d54a0b65bfdd9e47bc1661677fc2989f22e8a670d0a"
+    },
+    {
+      "taskId": "01a12b30-3854-7103-90d6-9ae2e874c8df",
+      "operation": "website Quadruped Dog rig and Walk candidate generation",
+      "generationModel": "Meshy website Quadruped Dog",
+      "source": "01a12976-b9b6-750a-aed0-e97cfc9a9f87 existing Light remesh",
+      "parameters": {
+        "height_m": 2,
+        "orientation": "face screen left",
+        "manualLandmarksPlaced": true
+      },
+      "creditsCharged": 0,
+      "chargeEvidence": "Trial receipt reports 0 API credits; website balance remained1132 before/after and no rigging debit or reward was observed.",
+      "result": "Candidate-only inspection found independent raw-source Walk edge stretch (7.846x at edge11559/11572, t=0.10s); scale/bind alarm withdrawn. Walk rejected; no anatomy or motion acceptance.",
+      "accepted": false,
+      "savedFiles": [
+        "/Users/markrogers/Documents/Codex/2026-10-11/con/outputs/horse-production-review/meshy-quadruped-trial/quadruped-rig.glb",
+        "/Users/markrogers/Documents/Codex/2026-10-11/con/outputs/horse-production-review/meshy-quadruped-trial/quadruped-walk.glb",
+        "/Users/markrogers/Documents/Codex/2026-10-11/con/outputs/horse-production-review/meshy-quadruped-trial/quadruped-walk-armature.glb",
+        "/Users/markrogers/Documents/Codex/2026-10-11/con/outputs/horse-production-review/meshy-quadruped-trial/review-scope.json"
+      ],
+      "reviewScopeSha256": "e5078f1bc208d881194fc6aed43c2dbf9411f542e51cfe1e3f3c3fbd3157b7d0"
     }
   ],
   "notes": [

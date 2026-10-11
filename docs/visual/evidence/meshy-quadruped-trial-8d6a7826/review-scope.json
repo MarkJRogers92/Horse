@@ -1,0 +1,111 @@
+{
+  "accepted": false,
+  "anatomyOrMotionAccepted": false,
+  "candidateTask": "01a12b30-3854-7103-90d6-9ae2e874c8df",
+  "creditDelta": 0,
+  "creditEvidence": {
+    "after": 1132,
+    "before": 1132,
+    "charged": 0
+  },
+  "fileCount": 15,
+  "files": {
+    "README.md": {
+      "bytes": 3138,
+      "sha256": "cf7671ff25e3f6bf2addd81fc4f1888c9f859d5c8f0ec7080b0644daabb4ba49"
+    },
+    "commands.txt": {
+      "bytes": 350,
+      "sha256": "6ad50f493525226d9755368d438937a1d59386ec67bbd472cce69d89f73d44c4"
+    },
+    "contact_sheet.png": {
+      "bytes": 1335265,
+      "sha256": "125d724d037f54ac01b7429698673887c1968b1acbb2d048c552b92e4effd984"
+    },
+    "exit_code_final.txt": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "inspect_isolated_walk.py": {
+      "bytes": 18941,
+      "sha256": "fd4526ca3ef107eb3e27742bc838146146e009c596587befd29b6eb52a9bdd2d"
+    },
+    "pose_1_side_0.00.png": {
+      "bytes": 228447,
+      "sha256": "be5566d70b389e3ce2c4bc472b5bce5d49c2cde3995397b089015d9cf1291e9d"
+    },
+    "pose_2_side_6.00.png": {
+      "bytes": 225120,
+      "sha256": "511143094afaa6db81988396cda0f869ad601a472e4044176fe9999c7d1547fc"
+    },
+    "pose_3_side_12.00.png": {
+      "bytes": 227554,
+      "sha256": "f7de6380e6ca22e11f62baf182281048764695131d25c2f42fb47219c97a1af7"
+    },
+    "pose_4_side_18.00.png": {
+      "bytes": 226567,
+      "sha256": "7478787536d8f5301e6d8e960130af6774f73fe92590705b9d2134496c58d920"
+    },
+    "pose_5_front_12.00.png": {
+      "bytes": 214695,
+      "sha256": "4041cc2633b7ccfd4170bf9d764edde7894457f3dc2f01b16dd1c04660a435ca"
+    },
+    "pose_6_quarter_18.00.png": {
+      "bytes": 242637,
+      "sha256": "e8df51cd735367bfffd347650c7f1a57ca1306bdcd16be13e8cf7cf645ba30fb"
+    },
+    "report.json": {
+      "bytes": 140958,
+      "sha256": "495979c0537224fb53b07bb57a1eacb3268cf12728b951dc142b6eee412e9dd9"
+    },
+    "report_observed_original.json": {
+      "bytes": 125053,
+      "sha256": "c41f66d422a82c0db4b7a109f1430d3061c3650fc9c7b9a7417819e8cd2770d5"
+    },
+    "stderr-final.log": {
+      "bytes": 316,
+      "sha256": "94a15f1fe032abe0faed381e56473bb812a06d5a2b81ab2254974ad42b5c0641"
+    },
+    "stdout-final.log": {
+      "bytes": 1181,
+      "sha256": "c9b6b1c22a8b83f16d0031cb380b2dc021a6bf3538a9517bea34b80c770c1501"
+    }
+  },
+  "inspection": {
+    "candidateRegions": "Four named leg-chain-weighted low-geometry candidate subsets; not validated sole/planted-contact regions.",
+    "engine": "Blender 5.2.1 LTS",
+    "exitCode": 0,
+    "geometryOrContactRecomputedForCorrection": false,
+    "pathCaveat": "Root-relative path does not establish world-space hoof sliding without an accepted forward-speed contract.",
+    "proximityCaveat": "2.5% mesh-height proximity threshold does not establish ground contact or planted stance.",
+    "rawSourceRejection": {
+      "finding": "Independent Native Sol CPU review reproduced 7.846x edge stretch at raw edge 11559/11572 at t=0.10 s.",
+      "scope": "Separate raw-source rejection; no repeat sweep in this package."
+    },
+    "scaleCaveat": "Factor estimated from pre-parent bounds before explicit scene update; source bind height not verified. Reported mesh dimensions are animated action-frame-0 evaluated dimensions.",
+    "uniformDisplayScaleFactor": 78.00354707844745,
+    "walkImportOnly": true,
+    "withdrawnConclusions": [
+      "scale/bind mismatch",
+      "exported stray Icosphere; the importer created a hidden non-skinned bone-display helper"
+    ],
+    "wordingCorrectionOnly": true
+  },
+  "inventoryExcludes": "review-scope.json itself",
+  "limits": [
+    "Candidate-only diagnostic; no gait suitability, anatomy acceptance, production promotion, or runtime integration.",
+    "First failed invocation and misframed intermediate run remain in the scratch directory and are summarized in README.",
+    "Original run report is retained separately; corrected report changes labels/interpretation only."
+  ],
+  "packagePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/docs/visual/evidence/meshy-quadruped-trial-8d6a7826",
+  "productionPromoted": false,
+  "route": "Meshy website Quadruped Dog rigging of prior Light remesh; existing trial receipt",
+  "schema": "horse.candidate-meshy-walk-review.v1",
+  "sourceHashes": {
+    "quadruped-rig.glb": "ac6fdcdde48ca0b491fb740cc4f68355411f0d0aba12c6fb7e5b61c588cf1a05",
+    "quadruped-walk-armature.glb": "64cba0bd62b0b5553fcd5b2699728f094a390c49d797984b2f1f7ec3bb2cde81",
+    "quadruped-walk.glb": "8d6a78260e5b911cb0a27eafd2c1482bec718548b4dc97eeff3a22e1b6d9a8ba"
+  },
+  "sourceTask": "01a12976-b9b6-750a-aed0-e97cfc9a9f87",
+  "walkAccepted": false
+}

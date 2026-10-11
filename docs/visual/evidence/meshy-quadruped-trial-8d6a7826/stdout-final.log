@@ -1,0 +1,15 @@
+09:01:24 | INFO: Data are loaded, start creating Blender stuff
+09:01:24 | INFO: Blender create Mesh node char1
+09:01:24 | INFO: glTF import finished in 0.11s
+00:06.201  render           | Saved: 'inspection-isolated/pose_1_side_0.00.png'
+00:07.047  render           | Saved: 'inspection-isolated/pose_2_side_6.00.png'
+00:07.890  render           | Saved: 'inspection-isolated/pose_3_side_12.00.png'
+00:08.749  render           | Saved: 'inspection-isolated/pose_4_side_18.00.png'
+00:09.538  render           | Saved: 'inspection-isolated/pose_5_front_12.00.png'
+00:10.426  render           | Saved: 'inspection-isolated/pose_6_quarter_18.00.png'
+Info: Saved as "quadruped_walk_isolated_scaled.blend"
+REPORT inspection-isolated/report.json
+VERIFICATION {"all_4_leg_sets_derived": true, "all_61_sampled_sole_trajectories": true, "no_source_edits": true, "no_whole_mesh_edge_sweep_repeated": true, "source_unchanged": true, "walk_sha256_actual": "8d6a78260e5b911cb0a27eafd2c1482bec718548b4dc97eeff3a22e1b6d9a8ba", "walk_sha256_expected": "8d6a78260e5b911cb0a27eafd2c1482bec718548b4dc97eeff3a22e1b6d9a8ba"}
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)
+
+Blender quit

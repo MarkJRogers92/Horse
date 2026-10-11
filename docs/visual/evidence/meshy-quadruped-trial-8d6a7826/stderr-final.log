@@ -1,0 +1,2 @@
+/Users/markrogers/Documents/Codex/2026-10-11/con/work/meshy-quadruped-trial/inspection-isolated/inspect_isolated_walk.py:45: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m=bpy.data.materials.get(name) or bpy.data.materials.new(name);m.diffuse_color=(*color,1);m.use_nodes=True

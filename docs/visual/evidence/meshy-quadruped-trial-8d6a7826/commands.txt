@@ -1,0 +1,4 @@
+Final corrected run:
+/Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --disable-autoexec --python inspection-isolated/inspect_isolated_walk.py -- /Users/markrogers/Documents/Codex/2026-10-11/con/work/meshy-quadruped-trial inspection-isolated
+Exit: 0 (inspection-isolated/exit_code_final.txt)
+Version: Blender 5.2.1 LTS
