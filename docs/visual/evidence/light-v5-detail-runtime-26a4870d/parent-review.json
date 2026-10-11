@@ -1,0 +1,52 @@
+{
+  "format": "horse.light_detail_parent_review.v1",
+  "scope": "Accepted local Godot Light Body v5 signed-detail integration at frozen source 26a4870d; does not accept foal or essential Walk/Graze",
+  "runtimeReportSha256": "78ebafe929f1e6f97fba7619292e66590996303cf1c9c3cc2516fb0d8ce1eac6",
+  "runtimeImageCount": 12,
+  "runtimeHarnessFailures": 0,
+  "parentViewed": [
+    "detail_baseline/light_body_detail_off.png",
+    "detail_runtime/light_chestnut_q3_enabled.png",
+    "detail_runtime/light_chestnut_head_front.png",
+    "detail_runtime/light_chestnut_head_side.png",
+    "detail_runtime/light_bay_legs.png",
+    "detail_runtime/light_cremello_head.png",
+    "detail_runtime/light_bay_dun_q3.png"
+  ],
+  "parentConclusion": "Bounded coat detail, seated eyes, and descriptor white markings, pigment points, muzzle skin and hooves visually preserved; existing angular mane boundaries remain",
+  "independentActualDiffReview": {
+    "agent": "adult_integration_review",
+    "model": "GPT-6.1 Sol",
+    "result": "No blocker in enabled local integration; hashes and evidence match; invalid inputs disable detail while procedural phenotype remains"
+  },
+  "validationOwnership": "Execution worker ran zero-warning/error game build, real Godot import and 12-image activation capture. Parent inspected actual report and images; Sol reviewed actual diff and supporting evidence. Parent did not rerun these unchanged tests.",
+  "reviewedCodeSha256": {
+    "game/data/visual_catalog.json": "45f79b02b0a08ca80b857b437de90ca6c024a535c301da93bff03ca6bf4f90a5",
+    "game/scripts/Tools/CaptureRunner.cs": "7ac4c242d904d8314671c83da24683897a5ff956c2312e25592f563e502eab3c",
+    "game/scripts/Visual/HorsePresenter.cs": "c8b405144b57f212d693f1c12e4d6353437e5237c10668049f78b030580c8b5b",
+    "game/scripts/Visual/VisualCatalog.cs": "c7732396d47d532a18ceaca8b2e9de1cb4b842f0b7a5721ab38587ae9ea8d5df",
+    "game/shaders/horse_coat.gdshader": "8d39d81f3b8e18fbf194b7d26f0076aced486a17f7cf935cdbbc4c3e862f3ea6"
+  },
+  "frozenEvidenceSha256": {
+    "capture_report.json": "78ebafe929f1e6f97fba7619292e66590996303cf1c9c3cc2516fb0d8ce1eac6",
+    "detail_baseline/light_body_detail_off.png": "fe6d06e7070de6e28767db30f43b3db0742570d3ec06af7276fbada87fc240e7",
+    "detail_runtime/light_chestnut_q3_enabled.png": "01d41405ddd5ada99337ffe9bbab1f1a724a539f6c2806a9274fc2154c5210c5",
+    "detail_runtime/light_chestnut_head_front.png": "e9edec0f500952f3cf31404005ed806af1e68bce032e2ac94aa11f370ed8bee8",
+    "detail_runtime/light_chestnut_head_side.png": "e1d029f29ef7a6d749e2639577cd409acc73b8538af3bd3daae7af3df249e6e4",
+    "detail_runtime/light_chestnut_head_side_left.png": "f54ff2920dd2e1785f1d8c1eaad3b7db19ba84e4f3c6d12aef31d7d1146f83b2",
+    "detail_runtime/light_bay_q3.png": "8bd33b224d6891f976f57ebd4d2a00d6fba0062ca56e0474811882ec895402e8",
+    "detail_runtime/light_bay_legs.png": "c491724589cdcaea45d04e33264a545146a2ad5b2e7148d6777b648ffd93b5f5",
+    "detail_runtime/light_cremello_head.png": "f8f3705c6cebedb0c194815d815e68c90104a4a7b02edac1b2bb9248a6557eed",
+    "detail_runtime/light_cremello_legs.png": "3071234c5360727d4dc45dd20c4e69fdf5089abd2fbae02ccad9bee0e5d6a5b2",
+    "detail_runtime/light_bay_dun_q3.png": "d8765b94a5845e0288b7ab5bd9b8c26f5450c520df0f131de64d17aff4ba3c94",
+    "detail_runtime/light_bay_dun_legs.png": "c293ac11aa85fd9bd5a21e038069acc5b8a1f18494ede48b82924789cc19fe29",
+    "detail_runtime/stock_detail_off_guard.png": "39b7416c5aa12a28fc9bfa53b0b33f0bfa74af3f54eda1699836f0d737817e52"
+  },
+  "limits": [
+    "Whole-Body UV identity is not claimed; explicit retained 21253 triangles plus 453 recovered historical skin faces forced neutral",
+    "Stock and foal have no accepted Light atlas binding",
+    "Runtime strength 1; recipe strength 0.30 already baked",
+    "Exported-binary raw resource hash availability remains unverified; no export presets exist",
+    "Any later geometry/UV/rig-export source hash change requires fresh binding before detail reactivation"
+  ]
+}

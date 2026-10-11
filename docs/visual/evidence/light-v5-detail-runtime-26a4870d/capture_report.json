@@ -1,0 +1,451 @@
+{
+  "format": "cloverbrook.capture-report.v1",
+  "godot": "4.7.2-stable (official)",
+  "renderer": "Apple M2 / 4.1 Metal - 90.5",
+  "catalog": "reference-assets.v1",
+  "warning": "Stills prove materials, markings and composition only - not animation quality, not art approval.",
+  "failures": 0,
+  "meshFamilies": {
+    "horse.standard.adult.v1": {
+      "scene": "res://assets/horse/production/horse_light.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.compact.adult.v1": {
+      "scene": "res://assets/horse/production/horse_stock.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.standard.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    },
+    "horse.compact.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    }
+  },
+  "unavailableAnimations": [],
+  "animationTrackEvidence": [],
+  "appearancePerformance": null,
+  "meshLodEvidence": [
+    {
+      "fixtureId": "light_racer.chestnut",
+      "component": "Body",
+      "surface": 0,
+      "baseIndexBytes": 130236,
+      "lodCount": 4,
+      "lods": [
+        {
+          "edgeLength": 0.009394572,
+          "indexDataBytes": 65112
+        },
+        {
+          "edgeLength": 0.020643326,
+          "indexDataBytes": 32556
+        },
+        {
+          "edgeLength": 0.046570685,
+          "indexDataBytes": 16272
+        },
+        {
+          "edgeLength": 0.44086498,
+          "indexDataBytes": 8136
+        }
+      ]
+    },
+    {
+      "fixtureId": "light_racer.chestnut",
+      "component": "Eyes",
+      "surface": 0,
+      "baseIndexBytes": 17664,
+      "lodCount": 9,
+      "lods": [
+        {
+          "edgeLength": 0.00042909084,
+          "indexDataBytes": 8832
+        },
+        {
+          "edgeLength": 0.00073024165,
+          "indexDataBytes": 4416
+        },
+        {
+          "edgeLength": 0.0011053141,
+          "indexDataBytes": 2208
+        },
+        {
+          "edgeLength": 0.0017878854,
+          "indexDataBytes": 1104
+        },
+        {
+          "edgeLength": 0.003796944,
+          "indexDataBytes": 552
+        },
+        {
+          "edgeLength": 0.0077390973,
+          "indexDataBytes": 276
+        },
+        {
+          "edgeLength": 0.011608646,
+          "indexDataBytes": 132
+        },
+        {
+          "edgeLength": 0.01741297,
+          "indexDataBytes": 60
+        },
+        {
+          "edgeLength": 0.026119454,
+          "indexDataBytes": 24
+        }
+      ]
+    },
+    {
+      "fixtureId": "light_racer.chestnut",
+      "component": "Mane",
+      "surface": 0,
+      "baseIndexBytes": 22512,
+      "lodCount": 4,
+      "lods": [
+        {
+          "edgeLength": 0.0055410713,
+          "indexDataBytes": 11256
+        },
+        {
+          "edgeLength": 0.009734357,
+          "indexDataBytes": 5628
+        },
+        {
+          "edgeLength": 0.0193346,
+          "indexDataBytes": 2808
+        },
+        {
+          "edgeLength": 0.06221008,
+          "indexDataBytes": 1404
+        }
+      ]
+    },
+    {
+      "fixtureId": "light_racer.chestnut",
+      "component": "Tail",
+      "surface": 0,
+      "baseIndexBytes": 27252,
+      "lodCount": 7,
+      "lods": [
+        {
+          "edgeLength": 0.008453954,
+          "indexDataBytes": 13620
+        },
+        {
+          "edgeLength": 0.015430788,
+          "indexDataBytes": 6804
+        },
+        {
+          "edgeLength": 0.030047515,
+          "indexDataBytes": 3396
+        },
+        {
+          "edgeLength": 0.061705194,
+          "indexDataBytes": 1692
+        },
+        {
+          "edgeLength": 0.12688053,
+          "indexDataBytes": 840
+        },
+        {
+          "edgeLength": 0.29034463,
+          "indexDataBytes": 420
+        },
+        {
+          "edgeLength": 0.7738075,
+          "indexDataBytes": 312
+        }
+      ]
+    }
+  ],
+  "signedDetailEvidence": [
+    {
+      "family": "horse.standard.adult.v1",
+      "enabled": true,
+      "bodyOnly": true,
+      "path": "res://assets/horse/production/horse_light_body_detail_v5.png",
+      "sourceGlbSha256": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc",
+      "atlasSha256": "56514e8a81871779ded06be790c3d1b9ba021ffb237cfa03af5b31973cdc5cfa",
+      "importedPixelSha256": "57139599864f8ca84d6bd299da4b0e4fccb068fa2e636c0d0f94d06b0fca3050",
+      "handoffSha256": "6410f515e3445726b0a1a652f7c6bfa096b25006c726d219ef3df91353d5f773",
+      "bindingSha256": "f81192626f5583179b46362c6ae4f1fbdc92341b25f697973f5524d0309db3eb",
+      "corpusSha256": "f1c6d2521a69f99256ddd165b66843d7db9e4acbea95e6eaacd11f83247d7f54",
+      "strength": 1,
+      "bakedStrength": 0.3,
+      "decodedMultiplierBounds": [
+        0.9640944881889764,
+        1.0359055118110236
+      ],
+      "codeBounds": [
+        90,
+        166
+      ],
+      "neutralCode": 128,
+      "neutralCodePixelCount": 3591565,
+      "neutralRecoveredMaskPixelCount": 14577,
+      "rgbChannelsEqual": true,
+      "losslessImport": true,
+      "nonColorSamplerNoSourceColor": true,
+      "uv": "UVMap / Godot UV; normal PNG orientation; no channel or image inversion",
+      "uvReuseScope": "retained-subset\u002Bneutral-recovered-skin",
+      "retainedTriangleCount": 21253,
+      "neutralRecoveredFaceCount": 453,
+      "wholeBodyCompatibilityClaimed": false,
+      "semanticLayers": [
+        "points",
+        "soft skin",
+        "white markings",
+        "hooves"
+      ]
+    },
+    {
+      "fixture": "bay.adult",
+      "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+      "skinRecipe": "pigmented",
+      "coatLayers": [
+        "base_pigment",
+        "individual_white_markings",
+        "shading_modifiers"
+      ],
+      "detailEnabled": true,
+      "detailStrength": 1,
+      "faceType": 0,
+      "pointsAmount": 1,
+      "noseAmount": 0.55,
+      "primitiveStrength": 0,
+      "legWhite": "(0, 0, 0, 0)"
+    },
+    {
+      "fixture": "cremello.adult",
+      "coatRecipe": "pheomelanin_full:cream_double",
+      "skinRecipe": "pink",
+      "coatLayers": [
+        "base_pigment",
+        "cream_double",
+        "individual_white_markings",
+        "shading_modifiers"
+      ],
+      "detailEnabled": true,
+      "detailStrength": 1,
+      "faceType": 0,
+      "pointsAmount": 0.3,
+      "noseAmount": 0.85,
+      "primitiveStrength": 0,
+      "legWhite": "(0, 0, 0, 0)"
+    },
+    {
+      "fixture": "bay_dun.adult",
+      "coatRecipe": "eumelanin_points_pheomelanin_body:none\u002Bdun",
+      "skinRecipe": "pigmented",
+      "coatLayers": [
+        "base_pigment",
+        "dun_dilution",
+        "primitive_markings",
+        "individual_white_markings",
+        "shading_modifiers"
+      ],
+      "detailEnabled": true,
+      "detailStrength": 1,
+      "faceType": 0,
+      "pointsAmount": 1,
+      "noseAmount": 0.55,
+      "primitiveStrength": 1,
+      "legWhite": "(0, 0, 0, 0)"
+    },
+    {
+      "family": "horse.compact.adult.v1",
+      "fixture": "stock_muscular.black",
+      "detailMetadataPresent": false,
+      "detailEnabled": false,
+      "detailStrength": 0
+    }
+  ],
+  "images": [
+    {
+      "file": "detail_baseline/light_body_detail_off.png",
+      "set": "detail_baseline",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "explicit cloned material comparison: accepted detail map disabled and strength zero; every other recipe input unchanged",
+      "fixtureId": "light_racer.chestnut",
+      "coatClassId": "chestnut",
+      "label": "Light \u00B7 athletic \u00B7 Chestnut",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None, FL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "detail_runtime/light_chestnut_q3_enabled.png",
+      "set": "detail_runtime",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "accepted Light v5 detail enabled at strength 1; descriptor pigment and semantic layers remain authoritative",
+      "fixtureId": "light_racer.chestnut",
+      "coatClassId": "chestnut",
+      "label": "Light \u00B7 athletic \u00B7 Chestnut",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None, FL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "detail_runtime/light_chestnut_head_front.png",
+      "set": "detail_runtime",
+      "view": "head_front",
+      "lighting": "Neutral",
+      "note": "accepted UV-matched Body detail; mane, face markings and skin remain separate descriptor/shader layers",
+      "fixtureId": "light_racer.chestnut",
+      "coatClassId": "chestnut",
+      "label": "Light \u00B7 athletic \u00B7 Chestnut",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None, FL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "detail_runtime/light_chestnut_head_side.png",
+      "set": "detail_runtime",
+      "view": "head_side",
+      "lighting": "Neutral",
+      "note": "accepted UV-matched Body detail; mane, face markings and skin remain separate descriptor/shader layers",
+      "fixtureId": "light_racer.chestnut",
+      "coatClassId": "chestnut",
+      "label": "Light \u00B7 athletic \u00B7 Chestnut",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None, FL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "detail_runtime/light_chestnut_head_side_left.png",
+      "set": "detail_runtime",
+      "view": "head_side_left",
+      "lighting": "Neutral",
+      "note": "accepted UV-matched Body detail; mane, face markings and skin remain separate descriptor/shader layers",
+      "fixtureId": "light_racer.chestnut",
+      "coatClassId": "chestnut",
+      "label": "Light \u00B7 athletic \u00B7 Chestnut",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None, FL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "detail_runtime/light_bay_q3.png",
+      "set": "detail_runtime",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "accepted Light detail beside descriptor pigmented skin, coat points, white and hoof layers",
+      "fixtureId": "bay.adult",
+      "coatClassId": "bay",
+      "label": "Bay",
+      "cacheKey": "f175bfbd5ebed080e9ccaf24bbf4257762393715b983e73e84817c29e06c7bb2",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "detail_runtime/light_bay_legs.png",
+      "set": "detail_runtime",
+      "view": "legs",
+      "lighting": "Neutral",
+      "note": "accepted Light detail beside descriptor pigmented skin, coat points, white and hoof layers",
+      "fixtureId": "bay.adult",
+      "coatClassId": "bay",
+      "label": "Bay",
+      "cacheKey": "f175bfbd5ebed080e9ccaf24bbf4257762393715b983e73e84817c29e06c7bb2",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "detail_runtime/light_cremello_head.png",
+      "set": "detail_runtime",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "accepted Light detail beside descriptor pink skin, coat points, white and hoof layers",
+      "fixtureId": "cremello.adult",
+      "coatClassId": "cremello",
+      "label": "Cremello",
+      "cacheKey": "f696a48a0cd924d28b8271a287eebcc7fc0c1aba0e091744aff6853303a2150c",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "detail_runtime/light_cremello_legs.png",
+      "set": "detail_runtime",
+      "view": "legs",
+      "lighting": "Neutral",
+      "note": "accepted Light detail beside descriptor pink skin, coat points, white and hoof layers",
+      "fixtureId": "cremello.adult",
+      "coatClassId": "cremello",
+      "label": "Cremello",
+      "cacheKey": "f696a48a0cd924d28b8271a287eebcc7fc0c1aba0e091744aff6853303a2150c",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "detail_runtime/light_bay_dun_q3.png",
+      "set": "detail_runtime",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "accepted Light detail beside descriptor pigmented skin, coat points, white and hoof layers",
+      "fixtureId": "bay_dun.adult",
+      "coatClassId": "bay_dun",
+      "label": "Bay dun",
+      "cacheKey": "0e3008b45362078fa394c9df7b74e4c6f2015185790aaa8e10764e24372f1b5c",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "detail_runtime/light_bay_dun_legs.png",
+      "set": "detail_runtime",
+      "view": "legs",
+      "lighting": "Neutral",
+      "note": "accepted Light detail beside descriptor pigmented skin, coat points, white and hoof layers",
+      "fixtureId": "bay_dun.adult",
+      "coatClassId": "bay_dun",
+      "label": "Bay dun",
+      "cacheKey": "0e3008b45362078fa394c9df7b74e4c6f2015185790aaa8e10764e24372f1b5c",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "detail_runtime/stock_detail_off_guard.png",
+      "set": "detail_runtime",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "Stock adult guard: no Light atlas metadata, shader detail remains false/zero",
+      "fixtureId": "stock_muscular.black",
+      "coatClassId": "black",
+      "label": "Stock \u00B7 muscular \u00B7 Black",
+      "cacheKey": "ab24cb93921c35fab23916519ab6e0906f47fef6ac58f63176645dc65922c394",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: Blaze, HR pastern",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.adult.v1"
+    }
+  ]
+}

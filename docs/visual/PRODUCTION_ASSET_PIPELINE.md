@@ -60,8 +60,9 @@ partition, preserving the historical atlas. The lossless source-ID/UV corpus is
 Independent native checks reproduce all 25,222 historical Body UV footprints and
 their multiplicities exactly. Current checks match 21,253 retained Body faces;
 453 recovered skin faces have historical hair provenance and require an explicit
-neutral-only detail path. This does not approve a final texture or prove geometry
-identity. The canonical anatomy mask remains on UV1/TEXCOORD_1 and the existing
+neutral-only detail path. The explicit v5 binding and local game integration are
+accepted within this scope; this does not prove whole-Body UV or geometry identity.
+The canonical anatomy mask remains on UV1/TEXCOORD_1 and the existing
 importer COLOR_0 channels retain the shader inputs. The adult head axis uses a
 geometry-projected upper-skull poll and centered muzzle-tip vertices cached on the
 intact shell before hair removal, validated against ear-root locations; it does
@@ -97,6 +98,26 @@ acceptance; rig and pose acceptance remains with the motion review.
 
 ## LOD and acceptance limits
 
+The Light Body detail texture is
+`game/assets/horse/production/horse_light_body_detail_v5.png`, SHA-256
+`56514e8a81871779ded06be790c3d1b9ba021ffb237cfa03af5b31973cdc5cfa`.
+The accepted handoff, explicit native UV binding and recovered-skin neutral mask
+live in `game/assets/horse/production/evidence/light-v5-detail/`. Catalog validation
+checks source/export, texture and evidence hashes, RGB8 data bounds and the neutral
+mask; the presenter also verifies Godot's imported lossless pixels. Invalid or
+missing data disables the optional detail while preserving procedural appearance.
+
+Use normal PNG orientation, primary UV0 and a linear data sampler without
+`source_color`. Decode `1 + ((sample.r * 255 - 128) / 127) * 0.12` and apply with
+runtime strength 1; the recipe strength 0.30 is already baked into the codes.
+Accepted codes 90..166 produce multipliers about 0.9641..1.0359. This layer modulates
+the Body base coat before semantic pigment points, skin, white markings and hooves.
+Eyes/Mane/Tail, Stock and foal do not bind this Light atlas. The 12-image actual
+Godot activation and native Sol/parent review are preserved under
+`evidence/light-v5-detail-runtime-26a4870d`. Exported-binary raw-file availability
+for provenance checks is still unverified; any future source hash or UV change
+requires a fresh accepted binding.
+
 The GLBs contain one source mesh level per node; no manually decimated LOD
 meshes are exported. Actual Godot 4.7.2 checks on the current Light and Stock
 exports found nonempty imported LOD index buffers: Body 4, Eyes 9, Mane 4,
@@ -120,5 +141,9 @@ Parent visual acceptance includes lowered socket eyes, separate ears/hair/skin,
 and facial markings on bare skin with natural partial forelock occlusion. It does
 not establish a fully unobstructed forehead star or new owner art approval. The
 angular mane edge and clipped shoulder endpoint remain visual limitations.
-Walk and Graze are still rejected/excluded; final texture integration, cleaned
-foal validation, and full motion acceptance remain outstanding.
+Walk and Graze are still rejected/excluded; cleaned foal validation and full
+motion acceptance remain outstanding. The distinct genuine juvenile mesh has a
+separate 64-joint adapter and the same four component morph names. Its first actual
+15-image preview passed harness contracts but exposed a close-up camera error;
+Head inheritance and scalp-only forelock fitting are confirmed repair targets.
+Pre-repair `b51f718f` Blend / `02491acb` GLB is preserved and is not final acceptance.

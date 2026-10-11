@@ -1,0 +1,106 @@
+{
+  "status": "ACCEPTED_LIGHT_DETAIL_READY_FOR_GAME",
+  "family_scope": "Light Body only",
+  "game_owner": "Build reusable horse asset pipeline",
+  "source": {
+    "file": "source/horse_light-v5.blend",
+    "sha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+    "body_fingerprint": "f9a81fe25d3b85e3df22aecad48f9e030816c3b3f1f0041a2e64d1ac59396adf",
+    "glb_sha256": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc"
+  },
+  "reference": {
+    "source_sha256": "03aeb3075098dfb963467272c06f1705d2459b4a53061d07641c4fede67504ef",
+    "uv_contract_file": "generation-reference/triangle-uv-contract.json",
+    "uv_contract_sha256": "9915bb04847c0dcb7dc65ef903bd4821c003e94cc26b775a75217cc1f71748fe",
+    "compatibility": {
+      "default_whole_body_status": "incompatible",
+      "binding_approved_status": "retained-subset+neutral-recovered-skin",
+      "retained_body_compatibility": {
+        "status": "retained-subset",
+        "reference_triangle_count": 25222,
+        "current_triangle_count": 21253,
+        "removed_triangle_count": 3969,
+        "comparison_scope": "exact primary-UV triangle footprints and multiplicities only"
+      },
+      "neutral_recovered_face_count": 453
+    }
+  },
+  "reuse_proof": {
+    "binding_file": "recipe/light-v5-uv-reuse-binding.json",
+    "binding_sha256": "f81192626f5583179b46362c6ae4f1fbdc92341b25f697973f5524d0309db3eb",
+    "corpus_file": "source/horse_light-v5-uv0-provenance.json",
+    "corpus_sha256": "f1c6d2521a69f99256ddd165b66843d7db9e4acbea95e6eaacd11f83247d7f54",
+    "retained_triangles": 21253,
+    "neutral_recovered_faces": 453,
+    "neutral_recovered_pixels": 14577,
+    "scope": "Exact source-face ID and primary-UV correspondence only; no geometry identity claim",
+    "neutral_mask_file": "ai-neutral-skin-mask.png",
+    "neutral_mask_sha256": "f78c9f8380ec6f244f855da9a130a9103f439937ca8d0ecea55e8efc5c4fa12e"
+  },
+  "detail": {
+    "file": "ai-detail.png",
+    "sha256": "56514e8a81871779ded06be790c3d1b9ba021ffb237cfa03af5b31973cdc5cfa",
+    "resolution": [
+      2048,
+      2048
+    ],
+    "filename": "ai-detail.png",
+    "encoding": "8-bit RGB equal channels; Non-Color/data; multiplier=1+((sample.r*255-128)/127)*0.12",
+    "baked_detail_strength": 0.3,
+    "code_bounds": [
+      90,
+      166
+    ],
+    "decoded_multiplier_bounds": [
+      0.9640944881889764,
+      1.0359055118110236
+    ],
+    "max_abs_quantization_error": 0.0004724406445120177,
+    "quantization_step": 0.0009448818897637795,
+    "protected_and_outside_code": 128
+  },
+  "runtime_contract": {
+    "decode": "1 + ((texture.r * 255 - 128) / 127) * 0.12",
+    "sampler": "Non-Color/data; no source_color or sRGB decode",
+    "primary_uv": "UVMap / Godot UV; keep normal PNG orientation",
+    "baked_strength": 0.3,
+    "integration_blend": 1.0,
+    "disabled_blend": 0.0,
+    "import": "lossless",
+    "authoritative_pigment": "HorseVisualDescriptor shader",
+    "exclude_detail_from": [
+      "points",
+      "white markings",
+      "runtime soft-nose and eye skin regions (COLOR.g), not ordinary hair-covered coat",
+      "hooves",
+      "recovered historical Mane/Tail skin pixels (exported neutral code 128)"
+    ],
+    "activation": "Only the frozen Light Body GLB and accepted detail hash; absent, stale, malformed or incompatible inputs keep detail disabled",
+    "skin_scope": "Ordinary hair-covered Body coat may receive bounded AI detail. Runtime skin_color/m.g masks retain authority for soft-nose/eye skin; the 453 recovered historical hair faces remain exactly neutral in the exported detail map."
+  },
+  "validation": {
+    "portable_report": "validation/portable-check.json",
+    "tests_log": "validation/tests-v5.log",
+    "preview_log": "validation/preview-v5.log",
+    "native_uv_proof": "validation/v5-uv-reuse-check.json",
+    "independent_export_review": "PASS",
+    "decoded_albedo_max_byte_error": 1,
+    "protected_pixels_byte_identical": 65407,
+    "neutral_recovered_pixels_independently_verified": 14577,
+    "live_Blender_preview": "validation/live-preview-v5.json"
+  },
+  "remaining_source_gate": null,
+  "remaining_visual_limits": [
+    "Angular mane-shell edge",
+    "Small coat-colored tail-root notch"
+  ],
+  "game_integration": {
+    "status": "PENDING_PRODUCTION_EVIDENCE",
+    "owner": "Build reusable horse asset pipeline"
+  },
+  "generation": {
+    "calls": 1,
+    "meshy_texture_credits": 0,
+    "saved_raw_sha256": "ffcd237283ac5404a702c5e2f8a4ba0d2f59260d376776d4c66e66a7e8dcfa46"
+  }
+}
