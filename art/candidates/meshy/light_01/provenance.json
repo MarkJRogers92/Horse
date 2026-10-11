@@ -1,0 +1,17 @@
+{
+  "geometryTaskId": "01a1296e-38cb-73d1-b67f-ce329aa619e0",
+  "referenceTaskId": "01a1296c-fa2c-7195-97a8-a1a4185192ab",
+  "generationModel": "Meshy 7.1",
+  "referenceModel": "Nano Banana Pro",
+  "licenseSetting": "Private",
+  "accountPlanVerified": "Pro",
+  "chargedCredits": 34,
+  "geometryChargedCredits": 25,
+  "referenceChargedCredits": 9,
+  "creditEvidence": "Website subscription App Usage History; API consumed_credits=0 conflicts with actual website debit",
+  "sourceGlbSha256": "eb050377a21d5e2e1b58fd6ccbe239df9c7d320ce545dcc42ef9e72946866367",
+  "status": "retained candidate, not production-approved",
+  "inspection": "Real GLB rendered in local Blender from four angles. Promising head/neck silhouette; thick shoulder/pectoral forms and limb deformation remain to resolve. Raw triangulated mesh has no rig, no morphs and requires production processing.",
+  "commercialBasis": "Owner Pro account; Private selected during generation. Meshy terms apply. No third-party horse image used; reference generated from authored prompt.",
+  "referencePrompt": "A single anatomically accurate light athletic riding horse, refined Thoroughbred build, natural straight profile head, elegant neck smoothly joining defined withers, deep chest, strong hips, slender but sturdy legs, correct knees hocks fetlocks and four solid hooves. Full body neutral square standing pose, all four legs clearly separated and visible, tail hanging away from hind legs, short neat mane. Front-left three-quarter view near side profile. High-quality stylized-realistic game sculpture, matte neutral gray clay, soft studio lighting, plain white background. No saddle, bridle, ground base, markings, ornaments, text or extra limbs. Convincing equine anatomy, not cartoon."
+}

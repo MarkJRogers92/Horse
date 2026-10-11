@@ -1,0 +1,59 @@
+{
+  "assignment": "horse-production-2026-10-11",
+  "startingCreditsReportedByOwner": 1100,
+  "startingCreditsVerified": 1100,
+  "spendingCeiling": 650,
+  "minimumRemainingCredits": 450,
+  "assessmentGates": [
+    150,
+    350,
+    450
+  ],
+  "creditsConsumedByThisAssignment": 34,
+  "remainingCreditsVerified": 1116,
+  "tasks": [
+    {
+      "taskId": "01a1296c-fa2c-7195-97a8-a1a4185192ab",
+      "operation": "website text-to-image",
+      "generationModel": "Nano Banana Pro",
+      "source": "authored Light athletic neutral clay anatomy prompt",
+      "parameters": {
+        "aspectRatio": "4:3",
+        "count": 1,
+        "multiView": false
+      },
+      "creditsCharged": 9,
+      "chargeEvidence": "website balance 1100 -> 1091 after one submission",
+      "result": "SUCCEEDED",
+      "accepted": true,
+      "savedFiles": [
+        "art/candidates/meshy/light_01/reference.webp"
+      ]
+    },
+    {
+      "taskId": "01a1296e-38cb-73d1-b67f-ce329aa619e0",
+      "operation": "website image-to-3d",
+      "generationModel": "Meshy 7.1",
+      "source": "01a1296c-fa2c-7195-97a8-a1a4185192ab",
+      "parameters": {
+        "should_texture": false,
+        "license": "Private",
+        "geometryResolution": "Standard selected in website popup; charge was 25, effective resolution not confirmed"
+      },
+      "creditsCharged": 25,
+      "chargeEvidence": "Subscription App Usage History: Model stage -25, balance1066; followed by automatic Onboarding reward +50, balance1116. API task misleadingly reports consumed_credits=0 for website task.",
+      "result": "SUCCEEDED, 326366 triangles; downloaded for anatomical review",
+      "accepted": false,
+      "savedFiles": [
+        "art/candidates/meshy/light_01/source.glb"
+      ]
+    }
+  ],
+  "notes": [
+    "Do not treat API consumed_credits=0 on website tasks as free. Use website usage history.",
+    "650 spending ceiling remains unchanged; onboarding reward does not expand authorization.",
+    "Website task IDs recovered from asset inventory can be retrieved/downloaded with CLI even though API list omits them.",
+    "Only one geometry job and one reference submitted. No paid textures or rerolls."
+  ],
+  "accountRewardsDuringAssignment": 50
+}

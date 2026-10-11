@@ -1,3 +1,26 @@
+# Horse production branch — 2026-10-11
+
+**Branch:** `codex/horse-production-library`, based on current visual `bedcca5`.
+**Active package:** D-007 reusable horse library, explicitly authorized by owner.
+The prior visual/animation freeze below is historical and remains true for the
+original checkout; new work is isolated here. No release-matrix promotion or main merge.
+
+Initial inspection complete. Blender MCP works; Meshy OAuth and 1,100 starting
+credits verified. One generated reference and one private untextured Meshy horse
+are preserved under `art/candidates/meshy/light_01/` with provenance and four-angle
+local Blender renders. Actual website charges: 9 + 25 = 34; automatic onboarding
+reward +50; balance 1,116. API task billing for website jobs reports zero and is
+not authoritative; use the website usage history and `MESHY_CREDIT_LEDGER.json`.
+
+The candidate has better proportions than the old cob source but is raw 326,366
+triangle geometry without UVs, rig or morphs. Candidate production adaptation,
+shared Light/Stock morphology, articulated rig pose proofs and canonical test-only
+appearance studio integration are underway. Existing CC0-derived work is retained
+as fallback. No new master or motion is accepted yet. See D-007 and
+`docs/visual/PRODUCTION_ASSESSMENT.md`.
+
+---
+
 # Project status / checkpoint
 
 **Last updated:** 2026-10-10 by GPT (P2-06 normal saved-stable breeding locally and CI verified).
