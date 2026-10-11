@@ -1,0 +1,157 @@
+{
+  "taskId": "preserve-rejected-proximal-preflight",
+  "packageId": "rejected-proximal-preflight-536dae2b",
+  "outcome": "Rejected constructor; independent native Sol review complete; no new weights accepted.",
+  "acceptance": {
+    "constructorAccepted": false,
+    "mainBodyFieldSolveRun": false,
+    "maneAttachmentSolvesRun": 0,
+    "meshWeightsWritten": false,
+    "sourceProductionFilesWritten": false,
+    "fieldOrMotionPromoted": false
+  },
+  "diagnostics": {
+    "fixedPositiveEdgesChecked": 24880,
+    "poseCount": 63,
+    "fixedAnchorCount": 8834,
+    "rejectedTraceCount": 261,
+    "provisionalWrongSideHindAnchorCount": 6,
+    "maximumFixedStretch": {
+      "Walk": 19.15515895240822,
+      "Mild": 8.398375047468717,
+      "Stress": 75.78747430559477
+    }
+  },
+  "interpretation": {
+    "twelveControlUnion": "The component-wide 12-control union correctly blocked this interpolation attempt. This does not show that every vertex inherently needs 12 controls.",
+    "restJointProximity": "Rest-joint proximity is an unaccepted ownership proposal.",
+    "shoulderOverlay": "Parent viewed the shoulder overlay and rejects promotion.",
+    "independentReview": "Native Sol independently reviewed the actual evidence and accepted the rejection, not any new weights. Rest-joint neighborhoods were rejected as ownership authority; constructor lines 135-136 classify non-distal exits as parent, including cervical exits. Ear/head colors establish no limb ownership. Mild 8.398x uses retained provisional targets, not a completed Mane solve. The 12-control union correctly blocked this component interpolation.",
+    "skullEarAndSourceIntegrity": "Worker-reported unchanged source/scaffold arrays and exact original skull/ear targets, not independently confirmed by this packaging check.",
+    "nextBoundedCorrection": "Explicit torso/own-shaft cap, lateral arc, and cervical attachment role manifest plus compatible overlapping Mane bands with at most eight controls. Main Body solve remains unauthorized."
+  },
+  "sourceIdentity": {
+    "blendSha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+    "glbSha256": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc",
+    "contractSha256": "536dae2b36fbf6cdc4ed0ea9740631717a27f6fceea75d0e1f2588129fc30687",
+    "arraysSha256": "ef0c85fe2f85079d92694fc47ffcab1e301397d3f2902188ed6dce3b0d71abfa",
+    "constructorSha256": "1c884fdca62db2e4e48be4b9fc6105d41d8443763b12c8d08de0daad24d42e71",
+    "handoffSha256": "3b523d1c5a633f031d49d980709852839df10e0c62bc475beb74bc71089e4f9b",
+    "sharedHelperSha256": "15c0198fdb60a88dd19c6615cd70f127b30239d38d9e2a09ddf6a9904fe33fb1",
+    "walkMatrixSha256": "e59fe908721c1c99c81f1b9fa42b42e67a392728d1f83d437cb38e2a830c5df4",
+    "grazeStressMatrixSha256": "2b97d52281ec48f42fda8d2bc671d9b2ddf75f467e6fd8acc902af28990e9fa2"
+  },
+  "files": [
+    {
+      "file": "light_rejected_proximal_handoff.json",
+      "bytes": 303400,
+      "sha256": "3b523d1c5a633f031d49d980709852839df10e0c62bc475beb74bc71089e4f9b",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/light_rejected_proximal_handoff.json"
+    },
+    {
+      "file": "annotate_proximal_interfaces.py",
+      "bytes": 3685,
+      "sha256": "9285e06a29d2be5e84c80e9a4aa1bef2d30b297187dc73a1d037521742233208",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/annotate_proximal_interfaces.py"
+    },
+    {
+      "file": "constructor_proximal_preflight.py",
+      "bytes": 27655,
+      "sha256": "1c884fdca62db2e4e48be4b9fc6105d41d8443763b12c8d08de0daad24d42e71",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/constructor_proximal_preflight.py"
+    },
+    {
+      "file": "render_proximal_interfaces.py",
+      "bytes": 5568,
+      "sha256": "264e01a3898bf2e215d80bbda6feab3cf5e1560cd31d5707eb8d3cd43e7524d0",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/render_proximal_interfaces.py"
+    },
+    {
+      "file": "serialize_rejected_handoff.py",
+      "bytes": 10604,
+      "sha256": "87e4e720b3bae4cd7522836ff8db63a80fb32695281a453cf6d4f8865837730f",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/serialize_rejected_handoff.py"
+    },
+    {
+      "file": "constructor_proximal_preflight.log",
+      "bytes": 1573,
+      "sha256": "e4ca8402323a85cb7faba01f500d1a352a726c1d16982c1b65e062d03d2f28dc",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/constructor_proximal_preflight.log"
+    },
+    {
+      "file": "light_proximal_hip_back_overlay.png",
+      "bytes": 700611,
+      "sha256": "5e8943ba9e0ab0b304378c17ba3819eab1862f8ade88fec50b65c4a05e7a51fc",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/light_proximal_hip_back_overlay.png"
+    },
+    {
+      "file": "light_proximal_left_context_overlay.png",
+      "bytes": 658294,
+      "sha256": "542d7b1084a232017c0673e41e3a861e1da16f99cfaf75e909f409ed069021c7",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/light_proximal_left_context_overlay.png"
+    },
+    {
+      "file": "light_proximal_q3_context_overlay.png",
+      "bytes": 667558,
+      "sha256": "8bd3f222b27907e30596d8c3cd69b0df0cad9afd0ea54523fab34fb16b05e00f",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/light_proximal_q3_context_overlay.png"
+    },
+    {
+      "file": "light_proximal_shoulder_q3_overlay.png",
+      "bytes": 726983,
+      "sha256": "e888e955159b0b41fa18e0a9ccdf3266b651b7b3466c977c3bd115b4e2a2e0f3",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/light_proximal_shoulder_q3_overlay.png"
+    },
+    {
+      "file": "light_attachment_hip_back_projection.json",
+      "bytes": 144390,
+      "sha256": "78df89f392356c344771169dcc10247effe116d246b6a852b86431b212e76fc1",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/light_attachment_hip_back_projection.json"
+    },
+    {
+      "file": "light_attachment_left_context_projection.json",
+      "bytes": 144789,
+      "sha256": "0cb57f35d732617a40f44831c85cb9f57652c051dd09b8494184d12e7cf6edec",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/light_attachment_left_context_projection.json"
+    },
+    {
+      "file": "light_attachment_q3_context_projection.json",
+      "bytes": 143704,
+      "sha256": "6e0e83efed5f920729f0dd7a22e6131e197b7e371961f666495ec77889e6b2fe",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/light_attachment_q3_context_projection.json"
+    },
+    {
+      "file": "light_attachment_shoulder_q3_projection.json",
+      "bytes": 144554,
+      "sha256": "80b0e600e54951e010044050d1780dc9cac19eec60df6b63922d15b8b69d66e4",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/light_attachment_shoulder_q3_projection.json"
+    },
+    {
+      "file": "light_attachment_contract.json.gz",
+      "bytes": 966121,
+      "sha256": "614ef7b5949fec5d188ecdfe5c076660077b238a00b7ecb0888ab447be6c0757",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/light_attachment_contract.json",
+      "sourceBytes": 10230852,
+      "sourceSha256": "536dae2b36fbf6cdc4ed0ea9740631717a27f6fceea75d0e1f2588129fc30687",
+      "uncompressedBytes": 10230852,
+      "uncompressedSha256": "536dae2b36fbf6cdc4ed0ea9740631717a27f6fceea75d0e1f2588129fc30687",
+      "compression": "gzip level 9, mtime 0"
+    },
+    {
+      "file": "light_attachment_contract_arrays.npz.gz",
+      "bytes": 780156,
+      "sha256": "575e9f57bae1907d7311080e24e623e70df33ac2fb8380252202bbcfa2dcfcc9",
+      "sourcePath": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/proximal-interface-preflight-light/light_attachment_contract_arrays.npz",
+      "sourceBytes": 12309472,
+      "sourceSha256": "ef0c85fe2f85079d92694fc47ffcab1e301397d3f2902188ed6dce3b0d71abfa",
+      "uncompressedBytes": 12309472,
+      "uncompressedSha256": "ef0c85fe2f85079d92694fc47ffcab1e301397d3f2902188ed6dce3b0d71abfa",
+      "compression": "gzip level 9, mtime 0"
+    },
+    {
+      "file": "README.md",
+      "bytes": 2076,
+      "sha256": "301753485da32f4088658e5cb65d26c4342552564c1730c237a2014a3b466cf1"
+    }
+  ]
+}

@@ -108,8 +108,15 @@ review requires coherent Mane/Body-root support, an explicit Pelvis/tail-root
 transition and continuous shared-parent boundaries. See
 `docs/visual/evidence/rejected-light-field-77f44226` and
 `docs/visual/evidence/rejected-junction-preflight-75b3c383`.
-One constructor/attachment correction and preflight is authorized. No further
-solve or production motion is accepted. The original brief permits a credible
+A further proximal constructor was also rejected before any field solve. Its
+rest-joint neighborhoods incorrectly labeled cervical and lateral exits as torso,
+leaving incompatible fixed traces; a component-wide Mane donor union blocked
+interpolation. Native Sol requires explicit torso/shaft caps, continuous lateral
+arcs, geometric review of all six hind-side witnesses and compatible overlapping
+cervical attachment bands. See
+`docs/visual/evidence/rejected-proximal-preflight-536dae2b`.
+One explicit boundary-role correction and preflight is authorized. No further
+Body solve or production motion is accepted. The original brief permits a credible
 head-lowering clip; near-ground GrazeStress remains a reported diagnostic. Actual
 Walk/head-lowering must pass deformation, hoof-contact and visual checks. The
 previous Stock whole-collar Graze stretch was 3.660×; its 2.279× cutoff-only

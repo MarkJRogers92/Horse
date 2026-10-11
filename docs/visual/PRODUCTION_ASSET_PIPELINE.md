@@ -117,6 +117,15 @@ The unchanged Walk and mild-neck shape gates remain. Deep GrazeStress is a
 reported diagnostic; an actual head-lowering clip is allowed by the brief and
 still requires deformation, hoof-contact and visual acceptance.
 
+A later proximal-interface constructor also failed before any Body or Mane solve.
+Native Sol rejected rest-joint proximity as ownership authority: non-distal exits
+included cervical and lateral boundaries incorrectly assigned to the torso.
+The next constructor must explicitly distinguish torso/shaft caps and continuous
+lateral arcs, review all six hind-side witnesses geometrically and use compatible
+overlapping cervical attachment bands. The rejected component's
+12-control union does not establish a universal per-vertex requirement. See
+`evidence/rejected-proximal-preflight-536dae2b`; no field or motion was promoted.
+
 An isolated eight-weight FLOAT export probe retains eight-wide Body/Mane buffers
 in Godot 4.7.2, matching 58 joint names, finite active weights, valid bone indices
 and nonempty generated LOD index buffers. Native Sol accepted this format scope.

@@ -1,0 +1,68 @@
+{
+  "taskId": "adult_motion_specialist",
+  "gates": {
+    "independentImmutablePermissions": true,
+    "zeroEmptyIllegalConflictingRejections": false,
+    "zeroWrongSideOrMultiBranchAnchors": false,
+    "originalSkullEarTargetsExact": true,
+    "atMost8AllowedInfluences": true,
+    "all61WalkFixedEdgesAtMost1_6": false,
+    "mildFixedEdgesAtMost1_6": false,
+    "grazeStressFixedEdgesAtMost1_6_DIAGNOSTIC": false
+  },
+  "rejectionCount": 261,
+  "fixedEdges": 24880,
+  "walkMax": 19.15515895240822,
+  "mildMax": 8.398375047468717,
+  "stressMax": 75.78747430559477,
+  "attachmentPaths": 194,
+  "arcKnots": {
+    "Front_L": [
+      0.0,
+      0.21984360193526875,
+      0.5217150594117987,
+      0.8656699041510236,
+      1.0797528526102902,
+      1.1690841274955852,
+      1.2416275012194533
+    ],
+    "Front_R": [
+      0.0,
+      0.2198436019352689,
+      0.5217150594117993,
+      0.8656699041510242,
+      1.0797528488928976,
+      1.1670077846730256,
+      1.2339861134616832
+    ],
+    "Hind_L": [
+      0.0,
+      0.34685022654733455,
+      0.6956861647567463,
+      0.9295577268317666,
+      1.013125131735522,
+      1.0788027919800938
+    ],
+    "Hind_R": [
+      0.0,
+      0.3468502265473342,
+      0.6956861647567449,
+      0.9295577194342566,
+      1.0044418234396648,
+      1.058584016358625
+    ],
+    "Neck": [
+      0.0,
+      0.16685667839680804,
+      0.22545444836431539,
+      0.28405221833182276,
+      0.34264998829933013,
+      0.40124775826683745,
+      0.4598455282343449
+    ],
+    "Pelvis_Tail": [
+      0,
+      0.1318554329638968
+    ]
+  }
+}
