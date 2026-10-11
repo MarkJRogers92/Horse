@@ -1,0 +1,15 @@
+{
+  "release": {
+    "name": "Godot_v4.7.2-stable_mono_export_templates.tpz",
+    "size": 1202598411,
+    "browser_download_url": "https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_mono_export_templates.tpz",
+    "digest": "sha256:92f8681e349ef1f90891b792da95e3b2b0bd1ed610b78018c58feb2d87e15a9d"
+  },
+  "download_mode": "Official ZIP member via HTTP ranges; member CRC verified",
+  "member": "templates/macos.zip",
+  "member_crc32": 1814899515,
+  "member_bytes": 123960003,
+  "download_sha256": "160fbe611e016d314bed09739d0560dc83ee4227d489ae9c9860d7220d073f5e",
+  "full_release_archive_sha256_verified": false,
+  "installed": "/Users/markrogers/Library/Application Support/Godot/export_templates/4.7.2.stable.mono/macos.zip"
+}

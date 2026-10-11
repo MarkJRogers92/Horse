@@ -1,0 +1,8 @@
+{
+  "command": [
+    "/private/tmp/cloverbrook-macos-unpack-fpa_jv1r/Cloverbrook Stables macOS/Cloverbrook Stables.app/Contents/MacOS/Cloverbrook Stables",
+    "--",
+    "--smoke-test"
+  ],
+  "exitCode": 0
+}

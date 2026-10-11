@@ -1,0 +1,32 @@
+{
+  "schema": "cloverbrook.macos.package_verification.v1",
+  "verifiedAtUtc": "2026-10-11T20:04:08.820648+00:00",
+  "archiveName": "Cloverbrook-Stables-macOS-2026-10-11.zip",
+  "archiveBytes": 144201711,
+  "archiveSha256": "2cf47cb414760e50430aae67b9efc91d7b14d015962d9f7ccc78b4e3ccbb13eb",
+  "sourceRevision": "70a7232feeb99d0be4251508a6bbec40d84d881a",
+  "sourceBranch": "codex/horse-production-library",
+  "appFileCount": 381,
+  "appContentSha256": "4dc5a567530aeafa917efa116c1d3edd9eaef04843eff4ab239403725975d61b",
+  "allUnpackedFilesSizesModesAndHashesMatchCheckedExport": true,
+  "unwantedArchiveMetadata": [],
+  "strictNativeSignatureExitCode": 0,
+  "unpackedAppSmokeExitCode": 0,
+  "testedDevice": "Apple M2",
+  "intelExecutionTested": false,
+  "notarized": false,
+  "unpackDirectory": "/private/tmp/cloverbrook-macos-unpack-fpa_jv1r",
+  "signatureCommand": [
+    "/usr/bin/codesign",
+    "--verify",
+    "--deep",
+    "--strict",
+    "--verbose=2",
+    "/private/tmp/cloverbrook-macos-unpack-fpa_jv1r/Cloverbrook Stables macOS/Cloverbrook Stables.app"
+  ],
+  "smokeCommand": [
+    "/private/tmp/cloverbrook-macos-unpack-fpa_jv1r/Cloverbrook Stables macOS/Cloverbrook Stables.app/Contents/MacOS/Cloverbrook Stables",
+    "--",
+    "--smoke-test"
+  ]
+}

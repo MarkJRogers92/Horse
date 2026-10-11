@@ -56,3 +56,19 @@ The app is ad hoc signed and **not Apple notarized**. A downloaded copy may
 require the owner's approval through macOS. Distribution with a Developer ID
 and notarization is a separate package and needs the owner's Apple setup.
 Official guidance: [Godot macOS export](https://docs.godotengine.org/en/4.7/tutorials/export/exporting_for_macos.html).
+
+## Checked downloadable package
+
+`Cloverbrook-Stables-macOS-2026-10-11.zip` contains the app, launch instructions,
+build manifest and license notices. Game source is commit
+`70a7232feeb99d0be4251508a6bbec40d84d881a`; later documentation checkpoints do
+not change its game code. The 144,201,711-byte archive has SHA-256
+`2cf47cb414760e50430aae67b9efc91d7b14d015962d9f7ccc78b4e3ccbb13eb`.
+
+The exported and freshly extracted apps passed actual runtime smoke checks on
+Apple M2. All 381 extracted app files matched the original hashes, sizes and
+executable modes, and strict native bundle signature verification passed.
+Normal exported-app interaction also checked coats, foal fallback, the walking
+head camera and switching back to Idle. Supporting logs, package receipt,
+preservation checks and review notes are saved in
+[`evidence/game-macos-70a7232`](evidence/game-macos-70a7232/README.md).

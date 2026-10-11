@@ -1,0 +1,118 @@
+{
+  "schema": "horse.game_macos.preservation.v1",
+  "checks": [
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/art/derived/production/horse_light.blend",
+      "beforeSha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+      "afterSha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_light.glb",
+      "beforeSha256": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc",
+      "afterSha256": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_light.manifest.json",
+      "beforeSha256": "5148b93a78ba4e2534c563fe7430a824a39ed86f781f738a09aafd3c3057ba91",
+      "afterSha256": "5148b93a78ba4e2534c563fe7430a824a39ed86f781f738a09aafd3c3057ba91",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/art/derived/production/horse_stock.blend",
+      "beforeSha256": "77b3f3d188a525f255b3d46adf0645f472ec81fd3b47dd750a52e216dd0f4627",
+      "afterSha256": "77b3f3d188a525f255b3d46adf0645f472ec81fd3b47dd750a52e216dd0f4627",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_stock.glb",
+      "beforeSha256": "0b4f422d238e38ad32d2684ab0f0e55edb479aadb505e9c3542f3e1637066439",
+      "afterSha256": "0b4f422d238e38ad32d2684ab0f0e55edb479aadb505e9c3542f3e1637066439",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_stock.manifest.json",
+      "beforeSha256": "21b057b5c4367a70c1c4e9ad645d3ac0cd7f2eedbe10beafebf7b55ad06a1831",
+      "afterSha256": "21b057b5c4367a70c1c4e9ad645d3ac0cd7f2eedbe10beafebf7b55ad06a1831",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/art/derived/production/horse_foal.blend",
+      "beforeSha256": "4322de7c3b97e6aa0e71111a6ab0de325f72f4f905424b4ff6e8d22df0ca041b",
+      "afterSha256": "4322de7c3b97e6aa0e71111a6ab0de325f72f4f905424b4ff6e8d22df0ca041b",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_foal.glb",
+      "beforeSha256": "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a",
+      "afterSha256": "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_foal.manifest.json",
+      "beforeSha256": "c77a3eb46cd93739ea0a414c6607dcb9f6d26b253c5b48e1846de7c77088acfe",
+      "afterSha256": "c77a3eb46cd93739ea0a414c6607dcb9f6d26b253c5b48e1846de7c77088acfe",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/data/visual_catalog.json",
+      "beforeSha256": "74d3913e2b4937c54284d41168213b8ef2b4b05e7f6f080321cfaf0e5b0be3a2",
+      "afterSha256": "a11e6045a2a687b59224f7dd1c01d6c76a652c6e54f829696d2e192fed4b7317",
+      "authorizedCatalogChange": true,
+      "unchanged": false
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/shaders/horse_coat.gdshader",
+      "beforeSha256": "8d39d81f3b8e18fbf194b7d26f0076aced486a17f7cf935cdbbc4c3e862f3ea6",
+      "afterSha256": "8d39d81f3b8e18fbf194b7d26f0076aced486a17f7cf935cdbbc4c3e862f3ea6",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/tools/horse/production_motion.py",
+      "beforeSha256": "15c0198fdb60a88dd19c6615cd70f127b30239d38d9e2a09ddf6a9904fe33fb1",
+      "afterSha256": "15c0198fdb60a88dd19c6615cd70f127b30239d38d9e2a09ddf6a9904fe33fb1",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_light_body_detail_v5.png",
+      "beforeSha256": "56514e8a81871779ded06be790c3d1b9ba021ffb237cfa03af5b31973cdc5cfa",
+      "afterSha256": "56514e8a81871779ded06be790c3d1b9ba021ffb237cfa03af5b31973cdc5cfa",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/evidence/light-v5-detail/light-v5-uv-reuse-binding.json",
+      "beforeSha256": "f81192626f5583179b46362c6ae4f1fbdc92341b25f697973f5524d0309db3eb",
+      "afterSha256": "f81192626f5583179b46362c6ae4f1fbdc92341b25f697973f5524d0309db3eb",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/evidence/light-v5-detail/game-integration-handoff.json",
+      "beforeSha256": "6410f515e3445726b0a1a652f7c6bfa096b25006c726d219ef3df91353d5f773",
+      "afterSha256": "6410f515e3445726b0a1a652f7c6bfa096b25006c726d219ef3df91353d5f773",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    },
+    {
+      "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/evidence/light-v5-detail/ai-neutral-skin-mask.png",
+      "beforeSha256": "f78c9f8380ec6f244f855da9a130a9103f439937ca8d0ecea55e8efc5c4fa12e",
+      "afterSha256": "f78c9f8380ec6f244f855da9a130a9103f439937ca8d0ecea55e8efc5c4fa12e",
+      "authorizedCatalogChange": false,
+      "unchanged": true
+    }
+  ],
+  "all15ProtectedFilesUnchanged": true
+}

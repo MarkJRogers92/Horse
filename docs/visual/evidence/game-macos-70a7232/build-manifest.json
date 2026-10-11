@@ -1,0 +1,73 @@
+{
+  "schema": "cloverbrook.macos.checked_build.v1",
+  "builtAtUtc": "2026-10-11T20:00:11.948102+00:00",
+  "sourceRepository": "https://github.com/MarkJRogers92/Horse",
+  "sourceBranch": "codex/horse-production-library",
+  "sourceRevision": "70a7232feeb99d0be4251508a6bbec40d84d881a",
+  "version": "0.1.0",
+  "bundleVersion": "20261011.1",
+  "nativeArchitectures": [
+    "arm64",
+    "x86_64"
+  ],
+  "testedArchitecture": "arm64",
+  "testedDevice": "Apple M2",
+  "intelExecutionTested": false,
+  "minimumMacOS": {
+    "arm64": "13.00",
+    "x86_64": "11.00"
+  },
+  "engineVersion": "4.7.2.stable.mono.official.ed1daf0bf",
+  "dotnetRuntime": "8.0.31",
+  "signing": "native Apple codesign ad hoc",
+  "notarized": false,
+  "normalEntryScene": "res://scenes/main.tscn",
+  "acceptedWalkScope": "Light adult neutral shapes at unit scale; profile-driven actor movement; original Idle shapes retained",
+  "walkGlbSha256": "13a678c5fe5ddb20cd48a1b0b17d9e59ecf4a98b7d9599a160f6ee8ce3373219",
+  "atlasSha256": "56514e8a81871779ded06be790c3d1b9ba021ffb237cfa03af5b31973cdc5cfa",
+  "sourceFilesSha256": {
+    "game/data/visual_catalog.json": "a11e6045a2a687b59224f7dd1c01d6c76a652c6e54f829696d2e192fed4b7317",
+    "game/project.godot": "03b864c3898e99b3ccbf1c798e252a6eb0b1bab83277f2a1ea69c645ae41f2ad",
+    "game/export_presets.cfg": "f792fc83a47bc42e19b6f821d9e968bec6d07b29563fdafff76eecba436a417c",
+    "game/addons/horse_asset_evidence/plugin.cfg": "a2d393ce8e32b62eb22f907ff3929bef641197210e61d9feb645dd5a9b34f64d",
+    "game/addons/horse_asset_evidence/plugin.gd": "5639fe5eb2e340ddbbaa15c28fca3ff7486419d12dd00bbf7be64e8d3862e023",
+    "game/scripts/Scenes/MainMenu.cs": "baca25b636a5fb52651a03a56e39e63fff87434a3a32a7b416dd182a0ccc3371",
+    "game/scripts/Scenes/HorseStage.cs": "915c64b41e646b7c2f748817f04728fd59ef274f80e84cf2c5f9fc8d56b1d5c6",
+    "game/scripts/Scenes/HorseViewer.cs": "02f20ae2e0f84e04982deb0b2cccd32f575d49bdfcdf4da52233737c4b7937c8",
+    "game/scripts/Visual/VisualCatalog.cs": "14f98997d14239351f8af0388ee8699815cd5b3f9c6be85e06194269f80f8b72",
+    "game/scripts/Visual/HorsePresenter.cs": "43d013c65e19080fe050277c6df925023b603e5758b4299b3cb39b2f08dab2db"
+  },
+  "appFileCount": 381,
+  "appContentSha256": "4dc5a567530aeafa917efa116c1d3edd9eaef04843eff4ab239403725975d61b",
+  "exportExitCode": 0,
+  "strictNativeSignatureExitCode": 0,
+  "exportedAppSmokeExitCode": 0,
+  "interactiveChecks": [
+    "normal menu and Horse viewer",
+    "Walk selection",
+    "bay, chestnut and cremello coats",
+    "star markings and head anatomy",
+    "foal toggle restores Idle and disables Walk",
+    "Walk head view includes muzzle",
+    "Walk to Idle selector restores standing asset"
+  ],
+  "expectedSmokeWarnings": [
+    "unsupported probe.grey intentionally refused"
+  ],
+  "protected15FilesUnchanged": true,
+  "templateProvenance": {
+    "release": {
+      "name": "Godot_v4.7.2-stable_mono_export_templates.tpz",
+      "size": 1202598411,
+      "browser_download_url": "https://github.com/godotengine/godot-builds/releases/download/4.7.2-stable/Godot_v4.7.2-stable_mono_export_templates.tpz",
+      "digest": "sha256:92f8681e349ef1f90891b792da95e3b2b0bd1ed610b78018c58feb2d87e15a9d"
+    },
+    "download_mode": "Official ZIP member via HTTP ranges; member CRC verified",
+    "member": "templates/macos.zip",
+    "member_crc32": 1814899515,
+    "member_bytes": 123960003,
+    "download_sha256": "160fbe611e016d314bed09739d0560dc83ee4227d489ae9c9860d7220d073f5e",
+    "full_release_archive_sha256_verified": false,
+    "installed": "/Users/markrogers/Library/Application Support/Godot/export_templates/4.7.2.stable.mono/macos.zip"
+  }
+}

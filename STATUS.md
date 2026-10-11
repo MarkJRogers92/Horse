@@ -33,7 +33,13 @@ Apple ad hoc signing and no notarization. The editor-only evidence export plugin
 keeps four exact raw source files beside their ordinary imported resources, so
 the existing runtime hash and lossless-pixel guards remain active in the app.
 See `docs/visual/MACOS_EXPORT.md` for reproduction and packaging limitations.
-Final ZIP creation and fresh-unpack verification are the remaining packaging step.
+The finished download is `Cloverbrook-Stables-macOS-2026-10-11.zip` (144,201,711
+bytes), built from `70a7232feeb99d0be4251508a6bbec40d84d881a`. A fresh extraction
+preserved all 381 app files, sizes, executable modes and hashes; strict native
+signature verification and the extracted-app smoke test both passed. ZIP SHA-256
+is `2cf47cb414760e50430aae67b9efc91d7b14d015962d9f7ccc78b4e3ccbb13eb`.
+Evidence is in `docs/visual/evidence/game-macos-70a7232`. This build was exercised
+on Apple M2; Intel execution is untested and the app is not Apple notarized.
 No main merge, public hosting or paid generation is part of this package.
 
 ## Checked Light walking horse and coats — local preview (earlier checkpoint)

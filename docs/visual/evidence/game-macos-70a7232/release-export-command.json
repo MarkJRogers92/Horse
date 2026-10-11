@@ -1,0 +1,9 @@
+[
+  "/Users/markrogers/Documents/Codex/2026-10-10/referenced-chatgpt-conversation-this-is-an/work/runtime/mono/Godot_mono.app/Contents/MacOS/Godot",
+  "--headless",
+  "--path",
+  "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game",
+  "--export-release",
+  "macOS",
+  "/private/tmp/cloverbrook-macos-release-pl8a7q3w/Cloverbrook Stables.app"
+]

@@ -1,0 +1,45 @@
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M2
+
+WARNING: [HorsePresenter] probe.grey: UNSUPPORTED: coat layer 'grey_age' has no renderer implementation; grey progression is not implemented
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (:0)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string)
+         [2] void Cloverbrook.Game.Scenes.MainMenu+<RunWalkVariantSmokeTest>d__1.MoveNext()
+         [3] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.ExecutionContextCallback(object)
+         [4] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [5] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [6] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext()
+         [7] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+         [8] void System.Threading.Tasks.Task.RunContinuations(object)
+         [9] bool System.Threading.Tasks.Task`1.TrySetResult(TResult)
+         [10] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.SetExistingTaskResult(System.Threading.Tasks.Task`1[TResult], TResult)
+         [11] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+         [12] void Cloverbrook.Game.Scenes.MainMenu+<WaitSeconds>d__2.MoveNext()
+         [13] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.ExecutionContextCallback(object)
+         [14] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [15] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [16] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext()
+         [17] void Godot.SignalAwaiter.SignalCallback(nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_bool*)
+[DomainBridge] domain resolver phenotype.v1; game links Cloverbrook.Domain
+[smoke] OK main scene presented a supported horse
+[smoke] OK checked Light adult Walk variant is available
+[smoke] OK Light Walk selector reports available
+[smoke] OK neutral Bay uses the checked Walk scene
+[smoke] OK Walk presentation applies all-zero morph weights at unit scale
+[smoke] OK Walk animation is playing
+[smoke] OK scene route uses the pinned profile speed
+[smoke] OK scene route uses the pinned profile period
+[smoke] OK Walk Body signed-detail shader is enabled at strength 1
+[smoke] OK actor advances at profile speed and camera follows (observed 0.750 m/s over 0.252s, expected 0.750)
+[smoke] OK posing Walk pauses actor route and camera
+[smoke] OK original Bay Idle scene and descriptor are restored
+[smoke] OK original Bay shape weights and height are restored
+[smoke] OK Idle route is stopped at its reset position
+[smoke] OK foal Walk remains unavailable
+[smoke] OK Stock Walk remains unavailable
+[smoke] OK unsupported probe remains refused
+[smoke] OK checked Light Walk variant, neutral shape and signed detail
+[smoke] OK profile-speed actor route, camera follow, and paused-pose behavior
+[smoke] OK original Bay Idle restoration; foal, Stock, and unsupported probes cannot select Walk
