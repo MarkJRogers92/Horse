@@ -1,0 +1,14 @@
+Input generation:
+python3 build_probe.py
+
+Godot import (exit captured in import.exit_code.txt; stdout/stderr in import.stdout.log and import.stderr.log):
+/Users/markrogers/Documents/Codex/2026-10-10/referenced-chatgpt-conversation-this-is-an/work/runtime/mono/Godot_mono.app/Contents/MacOS/Godot --headless --editor --path /Users/markrogers/Documents/Codex/2026-10-11/con/work/godot-eight-weight-renderer-proof --import
+
+Godot imported-scene buffer inspection (exit captured in inspect.exit_code.txt; stdout/stderr in inspect.stdout.log and inspect.stderr.log):
+/Users/markrogers/Documents/Codex/2026-10-10/referenced-chatgpt-conversation-this-is-an/work/runtime/mono/Godot_mono.app/Contents/MacOS/Godot --headless --path /Users/markrogers/Documents/Codex/2026-10-11/con/work/godot-eight-weight-renderer-proof --script res://inspect.gd
+
+Actual renderer capture, repeated with the four modes actual_rest, actual_pose, reference_expected, reference_first4; each mode's own stdout/stderr/exit are retained:
+/Users/markrogers/Documents/Codex/2026-10-10/referenced-chatgpt-conversation-this-is-an/work/runtime/mono/Godot_mono.app/Contents/MacOS/Godot --path /Users/markrogers/Documents/Codex/2026-10-11/con/work/godot-eight-weight-renderer-proof --rendering-method gl_compatibility --resolution 640x480 --script res://render_probe.gd -- MODE MODE.png
+
+Image checks (exit captured in analyze_render.exit_code.txt; stdout/stderr in analyze_render.stdout.log and analyze_render.stderr.log):
+python3 analyze_render.py

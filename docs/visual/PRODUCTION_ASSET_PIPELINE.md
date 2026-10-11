@@ -127,6 +127,15 @@ an individual-weight or deformation bound. Maximum imported sum drift is about
 the corrected inspector rerun has archived stdout/stderr, exit 0 and passing JSON.
 See `evidence/eight-weight-format-5e007c40`. This does not promote candidate motion.
 
+A separate synthetic renderer probe uses eight independent joints with equal
+FLOAT32 weights on one quad. Moving only joints 5–8 by +0.8 m produces a 74-pixel
+shift and exactly matches the independently constructed unskinned +0.4 m
+reference at 640×480. Actual Godot 4.7.2 OpenGL compatibility logs, four captures,
+source and exit codes are retained; parent source/evidence review accepted this
+bounded feature check. Imported weights are quantized and the pixel comparison
+does not establish subpixel or production deformation accuracy. See
+`evidence/eight-weight-renderer-75984e70`; no horse motion is accepted by this probe.
+
 ## LOD and acceptance limits
 
 The Light Body detail texture is

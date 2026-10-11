@@ -1,0 +1,222 @@
+{
+  "scope": "Synthetic eight-influence renderer support only; not horse anatomy, production weights, locomotion, contact, or performance acceptance.",
+  "engine": "Godot 4.7.2.stable.mono.official.ed1daf0bf; OpenGL API 4.1 Metal; Apple M2; compatibility renderer.",
+  "input": {
+    "file": "eight_weight_probe.gltf",
+    "sha256": "75984e703b112b4c930ec9f7cb8bedcc872f5762a1975b310feb6d77f69d9c99",
+    "geometry": "single 1m x 1m quad; four vertices; 8 independent joints; float32 weights .125 each; indices 0..7"
+  },
+  "projectSha256": "6b3800d44c3878c988879e73ac7eececadd9a2f836e2dec1345e73ef5297d2b6",
+  "renderSetup": "640x480; same orthographic camera and unshaded material for all four captures; only joints 5-8 translated +0.8m X in actual_pose; independent unskinned expected reference translated +0.4m X; independent first-four-only reference untranslated.",
+  "sourceAccessors": {
+    "JOINTS_0": {
+      "componentType": 5123,
+      "type": "VEC4",
+      "count": 4,
+      "expected_component": true,
+      "expected_vec4_count4": true
+    },
+    "JOINTS_1": {
+      "componentType": 5123,
+      "type": "VEC4",
+      "count": 4,
+      "expected_component": true,
+      "expected_vec4_count4": true
+    },
+    "WEIGHTS_0": {
+      "componentType": 5126,
+      "type": "VEC4",
+      "count": 4,
+      "expected_component": true,
+      "expected_vec4_count4": true
+    },
+    "WEIGHTS_1": {
+      "componentType": 5126,
+      "type": "VEC4",
+      "count": 4,
+      "expected_component": true,
+      "expected_vec4_count4": true
+    }
+  },
+  "importedBuffers": {
+    "skeletonBones": 8,
+    "boneNames": [
+      "Joint1",
+      "Joint2",
+      "Joint3",
+      "Joint4",
+      "Joint5",
+      "Joint6",
+      "Joint7",
+      "Joint8"
+    ],
+    "sourceInfluencesPerVertex": 8,
+    "importedBoneSlots": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "importedWeights": [
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957,
+      0.12498664855957
+    ],
+    "importedWeightsPerSlot": 0.12498664855957,
+    "importedSumPerVertex": 0.99989318847656
+  },
+  "importInspection": {
+    "exitCode": 0,
+    "stdoutSha256": "06d4ac1fd763e449e613a591c6760fe1909ae0692d996b754da338f44039894d",
+    "stderrBytes": 0,
+    "importExitCode": 0,
+    "importLogSha256": "5e27897f2e09ae7a929e2d87ee5ea0faf105e2f88f53e48b2844289b791e5604"
+  },
+  "testSourceSha256": "45cc7d5cea67c0b598dac84b2671c157c1fb01cf00d6f7e0b2070a2f2ac084aa",
+  "captures": {
+    "actual_rest": {
+      "pixelCount": 33856,
+      "centroidPx": [
+        319.5,
+        239.5
+      ],
+      "bboxPx": [
+        228,
+        148,
+        411,
+        331
+      ],
+      "sha256": "c0c061d17fa2163c2960be856b3cb68680ecf91713ace9cd91b90b0ae6254a7a",
+      "exitCode": 0
+    },
+    "actual_pose": {
+      "pixelCount": 33856,
+      "centroidPx": [
+        393.5,
+        239.5
+      ],
+      "bboxPx": [
+        302,
+        148,
+        485,
+        331
+      ],
+      "sha256": "9ceabecc1570cf962c281923d2a434b65573d5678ae08239752590bd1d656bb0",
+      "exitCode": 0
+    },
+    "reference_expected": {
+      "pixelCount": 33856,
+      "centroidPx": [
+        393.5,
+        239.5
+      ],
+      "bboxPx": [
+        302,
+        148,
+        485,
+        331
+      ],
+      "sha256": "9ceabecc1570cf962c281923d2a434b65573d5678ae08239752590bd1d656bb0",
+      "exitCode": 0
+    },
+    "reference_first4": {
+      "pixelCount": 33856,
+      "centroidPx": [
+        319.5,
+        239.5
+      ],
+      "bboxPx": [
+        228,
+        148,
+        411,
+        331
+      ],
+      "sha256": "c0c061d17fa2163c2960be856b3cb68680ecf91713ace9cd91b90b0ae6254a7a",
+      "exitCode": 0
+    }
+  },
+  "comparisons": {
+    "actualPoseVsExpected": {
+      "intersection": 33856,
+      "union": 33856,
+      "iou": 1.0,
+      "differentPixels": 0
+    },
+    "actualPoseVsFirstFourOnly": {
+      "intersection": 20240,
+      "union": 47472,
+      "iou": 0.4263565891472868,
+      "differentPixels": 27232
+    },
+    "centroidShiftPixels": 74.0
+  },
+  "checks": {
+    "allFourRendersHaveEqualPixelCounts": true,
+    "actualEightWeightPoseMatchesIndependentPlusPointFourReference": true,
+    "actualPoseShiftMatchesPointFourMetersAtCameraScale": true,
+    "actualPoseClearlyDiffersFromFirstFourOnlyOutcome": true,
+    "sourceUsesEightFloat32Influences": true,
+    "importedSceneHasExpectedEightSlotsAndNames": true,
+    "importAndInspectionExitedCleanly": true,
+    "allRendererRunsExitedZero": true,
+    "noRendererRunErrors": true
+  },
+  "passed": true
+}

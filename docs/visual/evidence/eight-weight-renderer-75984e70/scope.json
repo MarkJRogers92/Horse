@@ -1,0 +1,213 @@
+{
+  "taskId": "package-eight-weight-renderer-proof",
+  "evidenceScope": "Synthetic eight-influence GPU renderer support only.",
+  "acceptedFeatureOnly": true,
+  "horseMotionAccepted": false,
+  "acceptedClaims": [
+    "Godot 4.7.2 macOS gl_compatibility renderer uses influences in JOINTS_1/WEIGHTS_1 in this synthetic eight-joint probe."
+  ],
+  "explicitNonClaims": [
+    "No horse pose or deformation acceptance.",
+    "No precision bound for production assets.",
+    "No hoof contact, anatomy, locomotion, or animation acceptance.",
+    "No performance acceptance."
+  ],
+  "source": {
+    "path": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/godot-eight-weight-renderer-proof/eight_weight_probe.gltf",
+    "sha256": "75984e703b112b4c930ec9f7cb8bedcc872f5762a1975b310feb6d77f69d9c99",
+    "generatorScriptSha256": "ce2f258d2655aa5e007b99588e46f15865b1afeade564332cff9b6bb0bbd6019",
+    "renderScriptSha256": "45cc7d5cea67c0b598dac84b2671c157c1fb01cf00d6f7e0b2070a2f2ac084aa",
+    "analyzerSha256": "eaf9838078612203e58923b7af0aa86869cacefc4c2ee6e88f3e4913a7fb6e7e"
+  },
+  "report": {
+    "file": "renderer_report.json",
+    "sha256": "34d8c2d73d99469c26f846c35134a9b8fdbb05df35ea6e8a158f425f24666892"
+  },
+  "independentReview": {
+    "status": "Accepted by parent review for synthetic eight-influence GPU support only.",
+    "reviewEvidence": "Parent independently reviewed actual GDScript, analyzer, decoded source JOINTS/WEIGHTS and all eight identity binds/sibling nodes, actual OpenGL logs, capture hashes, and comparison image.",
+    "limits": "No horse pose, precision, contact, anatomy, or performance claim."
+  },
+  "renderer": "Godot 4.7.2.stable.mono.official.ed1daf0bf; OpenGL API 4.1 Metal; Apple M2; gl_compatibility.",
+  "measurementLimitations": {
+    "quantizedWeights": "Godot imported each nominal 0.125 source weight as 0.12498664855957; per-vertex sum is 0.99989318847656.",
+    "pixelResolution": "640x480 rasterization with an orthographic camera; expected +0.4 m displacement corresponds to about 73.85 px and was observed as a 74 px centroid shift. The exact pixel match is not a subpixel precision guarantee."
+  },
+  "files": [
+    {
+      "file": "build_probe.py",
+      "bytes": 2778,
+      "sha256": "ce2f258d2655aa5e007b99588e46f15865b1afeade564332cff9b6bb0bbd6019"
+    },
+    {
+      "file": "eight_weight_probe.gltf",
+      "bytes": 2982,
+      "sha256": "75984e703b112b4c930ec9f7cb8bedcc872f5762a1975b310feb6d77f69d9c99"
+    },
+    {
+      "file": "project.godot",
+      "bytes": 182,
+      "sha256": "6b3800d44c3878c988879e73ac7eececadd9a2f836e2dec1345e73ef5297d2b6"
+    },
+    {
+      "file": "inspect.gd",
+      "bytes": 1167,
+      "sha256": "0654d03b632028eca41c34d25398702b2560fae168603504317cd037c6300aee"
+    },
+    {
+      "file": "render_probe.gd",
+      "bytes": 5637,
+      "sha256": "45cc7d5cea67c0b598dac84b2671c157c1fb01cf00d6f7e0b2070a2f2ac084aa"
+    },
+    {
+      "file": "analyze_render.py",
+      "bytes": 5713,
+      "sha256": "eaf9838078612203e58923b7af0aa86869cacefc4c2ee6e88f3e4913a7fb6e7e"
+    },
+    {
+      "file": "commands.txt",
+      "bytes": 1509,
+      "sha256": "e017c12727575a3bdef7c0016ef6cd21fae02c152f7d5e1958583d4a160012ff"
+    },
+    {
+      "file": "README.md",
+      "bytes": 1449,
+      "sha256": "6751ef20e7a200992f1af9e6c5862502fb0915fcd04706d780fe83a27eb87b13"
+    },
+    {
+      "file": "renderer_report.json",
+      "bytes": 5442,
+      "sha256": "34d8c2d73d99469c26f846c35134a9b8fdbb05df35ea6e8a158f425f24666892"
+    },
+    {
+      "file": "renderer_comparison.png",
+      "bytes": 11148,
+      "sha256": "15dde348059b85b9819501cfe770c0b81015aaab932ace8693ba5e1a95a70aac"
+    },
+    {
+      "file": "actual_rest.png",
+      "bytes": 2351,
+      "sha256": "c0c061d17fa2163c2960be856b3cb68680ecf91713ace9cd91b90b0ae6254a7a"
+    },
+    {
+      "file": "actual_pose.png",
+      "bytes": 2350,
+      "sha256": "9ceabecc1570cf962c281923d2a434b65573d5678ae08239752590bd1d656bb0"
+    },
+    {
+      "file": "reference_expected.png",
+      "bytes": 2350,
+      "sha256": "9ceabecc1570cf962c281923d2a434b65573d5678ae08239752590bd1d656bb0"
+    },
+    {
+      "file": "reference_first4.png",
+      "bytes": 2351,
+      "sha256": "c0c061d17fa2163c2960be856b3cb68680ecf91713ace9cd91b90b0ae6254a7a"
+    },
+    {
+      "file": "import.stdout.log",
+      "bytes": 2708,
+      "sha256": "5e27897f2e09ae7a929e2d87ee5ea0faf105e2f88f53e48b2844289b791e5604"
+    },
+    {
+      "file": "import.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "import.exit_code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "inspect.stdout.log",
+      "bytes": 1286,
+      "sha256": "06d4ac1fd763e449e613a591c6760fe1909ae0692d996b754da338f44039894d"
+    },
+    {
+      "file": "inspect.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "inspect.exit_code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "actual_rest.stdout.log",
+      "bytes": 296,
+      "sha256": "87f563b61581f8a613fd7e5c7327c6e68e3ab313d52e2742aeeaa68c87c6a500"
+    },
+    {
+      "file": "actual_rest.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "actual_rest.exit_code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "actual_pose.stdout.log",
+      "bytes": 296,
+      "sha256": "962cab00cfbc473f2cd29e184f61a890efc96d25e9675c1b9a08b84481ecbd43"
+    },
+    {
+      "file": "actual_pose.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "actual_pose.exit_code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "reference_expected.stdout.log",
+      "bytes": 310,
+      "sha256": "317e858af25296f33318ba456ab8c2cbb04f3658ae1addacc55d9d9d6000b022"
+    },
+    {
+      "file": "reference_expected.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "reference_expected.exit_code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "reference_first4.stdout.log",
+      "bytes": 306,
+      "sha256": "0abfdc97a12c7f1f485d8f7825261de846612fe9eb70396e43c14693688ab5e9"
+    },
+    {
+      "file": "reference_first4.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "reference_first4.exit_code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "file": "analyze_render.stdout.log",
+      "bytes": 5442,
+      "sha256": "34d8c2d73d99469c26f846c35134a9b8fdbb05df35ea6e8a158f425f24666892"
+    },
+    {
+      "file": "analyze_render.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "analyze_render.exit_code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    }
+  ]
+}
