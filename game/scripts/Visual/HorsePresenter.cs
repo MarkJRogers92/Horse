@@ -18,6 +18,7 @@ public partial class HorsePresenter : Node3D
     private static readonly Shader EyeShader = GD.Load<Shader>("res://shaders/horse_eye.gdshader");
     private static readonly Shader HairShader = GD.Load<Shader>("res://shaders/horse_hair.gdshader");
     private static readonly Dictionary<string, PackedScene> SceneCache = new();
+    private static readonly Dictionary<string, bool> SceneAnimationAvailabilityCache = new(StringComparer.Ordinal);
     private static readonly Dictionary<string, bool> SignedDetailImportValidation = new(StringComparer.Ordinal);
 
     [Signal] public delegate void PresentedEventHandler(string summary, bool supported);
@@ -29,6 +30,9 @@ public partial class HorsePresenter : Node3D
     public AnimationPlayer? Animator { get; private set; }
     public string CurrentAnimation { get; private set; } = "";
     public Vector3? HeadViewTarget { get; private set; }
+    public double LocomotionSpeedMetersPerSecond { get; private set; }
+    public double LocomotionPeriodSeconds { get; private set; }
+    public bool UsesWalkVariant { get; private set; }
 
     public VisualSupport Present(VisualDescriptor descriptor, string animation = "idle")
     {
@@ -44,8 +48,23 @@ public partial class HorsePresenter : Node3D
         }
 
         var family = catalog.MeshFamilies[descriptor.MeshFamilyId];
-        if (!SceneCache.TryGetValue(family.Scene, out var packed))
-            SceneCache[family.Scene] = packed = GD.Load<PackedScene>(family.Scene);
+        bool requestedWalk = IsWalkRequest(animation);
+        bool useWalkVariant = requestedWalk && family.WalkVariant != null;
+        if (useWalkVariant && !HasNeutralWalkShape(descriptor, family, catalog))
+        {
+            Support = Support with
+            {
+                Supported = false,
+                Problems = Support.Problems.Append("Walk requires the checked neutral adult shape (all supported body morphs and height at zero)").ToArray()
+            };
+            GD.PushWarning($"[HorsePresenter] {descriptor.FixtureId}: {Support.Summary}");
+            EmitSignal(SignalName.Presented, Support.Summary, false);
+            return Support;
+        }
+
+        string scenePath = useWalkVariant ? family.WalkVariant!.Scene : family.Scene;
+        if (!SceneCache.TryGetValue(scenePath, out var packed))
+            SceneCache[scenePath] = packed = GD.Load<PackedScene>(scenePath);
         Model = packed.Instantiate<Node3D>();
         Model.Name = "Model";
         AddChild(Model);
@@ -89,13 +108,14 @@ public partial class HorsePresenter : Node3D
         var skin = catalog.Skin[descriptor.SkinRecipe];
         var eye = catalog.Eyes[descriptor.EyeRecipe];
         Markings = Markings.FromKey(descriptor.MarkingRealizationKey);
-        Texture2D? bodySignedDetail = family.BodySignedDetail is { } detail
+        var signedDetailMetadata = useWalkVariant ? family.WalkVariant!.BodySignedDetail : family.BodySignedDetail;
+        Texture2D? bodySignedDetail = signedDetailMetadata is { } detail
             ? GD.Load<Texture2D>(detail.Path)
             : null;
-        if (bodySignedDetail != null && family.BodySignedDetail is { } signedDetailMetadata &&
-            !ValidateImportedSignedDetail(bodySignedDetail, signedDetailMetadata))
+        if (bodySignedDetail != null && signedDetailMetadata is { } importedDetailMetadata &&
+            !ValidateImportedSignedDetail(bodySignedDetail, importedDetailMetadata))
             bodySignedDetail = null;
-        if (family.BodySignedDetail != null && bodySignedDetail == null)
+        if (signedDetailMetadata != null && bodySignedDetail == null)
             Support = Support with { Limitations = Support.Limitations.Append("body signed detail disabled: atlas could not be loaded losslessly or its imported pixels did not match provenance").ToArray() };
 
         var coatMat = new ShaderMaterial { Shader = CoatShader };
@@ -118,7 +138,7 @@ public partial class HorsePresenter : Node3D
         // metadata is absent, invalid, stale, or fails Godot's texture import.
         coatMat.SetShaderParameter("use_signed_detail", false);
         coatMat.SetShaderParameter("signed_detail_strength", 0f);
-        if (bodySignedDetail != null && family.BodySignedDetail is { } signedDetail)
+        if (bodySignedDetail != null && signedDetailMetadata is { } signedDetail)
         {
             coatMat.SetShaderParameter("signed_detail_map", bodySignedDetail);
             coatMat.SetShaderParameter("use_signed_detail", true);
@@ -187,7 +207,10 @@ public partial class HorsePresenter : Node3D
         if (Animator != null)
             foreach (var name in Animator.GetAnimationList())
                 Animator.GetAnimation(name).LoopMode = Animation.LoopModeEnum.Linear;
-        Play(animation);
+        UsesWalkVariant = useWalkVariant;
+        LocomotionSpeedMetersPerSecond = 0;
+        LocomotionPeriodSeconds = 0;
+        ApplyAnimation(animation);
         if (!string.IsNullOrEmpty(animation) && string.IsNullOrEmpty(ResolveAnimation(animation)))
             Support = Support with { Limitations = Support.Limitations.Append($"animation '{animation}' unavailable; static pose").ToArray() };
         EmitSignal(SignalName.Presented, Support.Summary, true);
@@ -207,14 +230,72 @@ public partial class HorsePresenter : Node3D
 
     public void Play(string animation)
     {
+        if (Descriptor != null && Support?.Supported == true &&
+            VisualCatalog.Instance.MeshFamilies.TryGetValue(Descriptor.MeshFamilyId, out var family))
+        {
+            bool wantsWalkVariant = IsWalkRequest(animation) && family.WalkVariant != null;
+            if (wantsWalkVariant != UsesWalkVariant)
+            {
+                Present(Descriptor, animation);
+                return;
+            }
+        }
+        ApplyAnimation(animation);
+    }
+
+    private void ApplyAnimation(string animation)
+    {
         CurrentAnimation = ResolveAnimation(animation) ?? "";
         if (Animator == null) return;
         if (string.IsNullOrEmpty(CurrentAnimation)) { Animator.Stop(); return; }
         Animator.Play(CurrentAnimation);
+        if (UsesWalkVariant && string.Equals(CurrentAnimation, "Walk", StringComparison.OrdinalIgnoreCase) &&
+            Descriptor != null && VisualCatalog.Instance.MeshFamilies.TryGetValue(Descriptor.MeshFamilyId, out var family) && family.WalkVariant is { } walk)
+        {
+            LocomotionSpeedMetersPerSecond = walk.ForwardSpeedMetersPerSecond;
+            LocomotionPeriodSeconds = (double)walk.PeriodFrames / walk.FramesPerSecond;
+        }
+        else
+        {
+            LocomotionSpeedMetersPerSecond = 0;
+            LocomotionPeriodSeconds = 0;
+        }
     }
 
-    /// <summary>Returns true when the requested clip resolves using the presenter's exact-first alias rules.</summary>
-    public bool IsAnimationAvailable(string animation) => !string.IsNullOrEmpty(ResolveAnimation(animation));
+    /// <summary>Returns true when the current clip resolves or the checked Light Walk variant can be selected.</summary>
+    public bool IsAnimationAvailable(string animation)
+    {
+        if (!string.IsNullOrEmpty(ResolveAnimation(animation))) return true;
+        if (Support?.Supported != true || Descriptor == null ||
+            !VisualCatalog.Instance.MeshFamilies.TryGetValue(Descriptor.MeshFamilyId, out var family)) return false;
+        if (IsWalkRequest(animation) && family.WalkVariant != null) return true;
+        return UsesWalkVariant && IsAnimationAvailableOnScene(family.Scene, animation);
+    }
+
+    private static bool IsAnimationAvailableOnScene(string scenePath, string animation)
+    {
+        string cacheKey = scenePath + "|" + animation.ToUpperInvariant();
+        if (SceneAnimationAvailabilityCache.TryGetValue(cacheKey, out bool available)) return available;
+        if (!SceneCache.TryGetValue(scenePath, out var packed))
+            SceneCache[scenePath] = packed = GD.Load<PackedScene>(scenePath);
+        var instance = packed?.Instantiate<Node3D>();
+        var player = instance == null ? null : FindAll<AnimationPlayer>(instance).FirstOrDefault();
+        available = !string.IsNullOrEmpty(ResolveAnimation(player, animation));
+        instance?.Free();
+        SceneAnimationAvailabilityCache[cacheKey] = available;
+        return available;
+    }
+
+    private static bool IsWalkRequest(string animation) => string.Equals(animation, "walk", StringComparison.OrdinalIgnoreCase);
+
+    private static bool HasNeutralWalkShape(VisualDescriptor descriptor, MeshFamily family, VisualCatalog catalog)
+    {
+        if (descriptor.IsFoal || family.WalkVariant == null || family.Age != "adult") return false;
+        if (descriptor.MorphWeights.TryGetValue("height", out int height) && height != 0) return false;
+        if (!catalog.FamilyMeshBlendShapes.TryGetValue(descriptor.MeshFamilyId, out var meshes) ||
+            !meshes.TryGetValue("Body", out var channels)) return false;
+        return channels.Keys.All(shape => !descriptor.MorphWeights.TryGetValue(shape, out int value) || value == 0);
+    }
 
     /// <summary>Freeze the current animation at a time (used for deterministic captures).</summary>
     public void Pose(string animation, double time)
@@ -233,9 +314,12 @@ public partial class HorsePresenter : Node3D
     /// Ambiguous aliases are rejected instead of choosing an arbitrary clip.
     /// </summary>
     private string? ResolveAnimation(string requested)
+        => ResolveAnimation(Animator, requested);
+
+    private static string? ResolveAnimation(AnimationPlayer? animator, string requested)
     {
-        if (Animator == null || string.IsNullOrEmpty(requested)) return null;
-        var names = Animator.GetAnimationList();
+        if (animator == null || string.IsNullOrEmpty(requested)) return null;
+        var names = animator.GetAnimationList();
         if (names.Contains(requested, StringComparer.Ordinal)) return requested;
         var matches = names.Where(name => string.Equals(name, requested, StringComparison.OrdinalIgnoreCase))
             .Take(2).ToArray();
@@ -259,7 +343,8 @@ public partial class HorsePresenter : Node3D
     private void ClearModel()
     {
         if (Model != null) { RemoveChild(Model); Model.QueueFree(); }
-        Model = null; Animator = null; HeadViewTarget = null;
+        Model = null; Animator = null; HeadViewTarget = null; CurrentAnimation = "";
+        UsesWalkVariant = false; LocomotionSpeedMetersPerSecond = 0; LocomotionPeriodSeconds = 0;
     }
 
     private static IEnumerable<T> FindAll<T>(Node root) where T : Node

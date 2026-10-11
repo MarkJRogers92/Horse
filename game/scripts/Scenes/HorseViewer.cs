@@ -11,6 +11,7 @@ namespace Cloverbrook.Game.Scenes;
 public partial class HorseViewer : Node
 {
     [Export] public bool StartInStable;
+    private static readonly string[] AnimationChoices = { "idle", "breathe", "look", "walk", "trot", "graze" };
 
     private HorseStage _stage = null!;
     private readonly List<VisualDescriptor> _entries = new();
@@ -19,6 +20,7 @@ public partial class HorseViewer : Node
     private Label _status = null!, _title = null!;
     private PanelContainer _warning = null!;
     private Label _warningText = null!;
+    private string _currentView = "q3";
 
     public override void _Ready()
     {
@@ -66,14 +68,16 @@ public partial class HorseViewer : Node
         box.AddChild(row);
 
         _anim = new OptionButton { Name = "AnimationSelector" };
-        foreach (var a in new[] { "idle", "breathe", "look", "walk", "trot", "graze", "(still)" }) _anim.AddItem(a);
-        _anim.ItemSelected += i => _stage.Presenter.Play((int)i < _anim.ItemCount - 1 ? _anim.GetItemText((int)i) : "");
+        foreach (var a in AnimationChoices) _anim.AddItem(a);
+        _anim.AddItem("(still)");
+        _anim.ItemSelected += _ => Refresh(resetView: false);
+        _anim.Select(0);
         box.AddChild(_anim);
 
         var views = new HBoxContainer();
         foreach (var v in new[] { "q3", "side", "front", "head", "legs" })
         {
-            var b = new Button { Text = v }; b.Pressed += () => _stage.FrameView(v); views.AddChild(b);
+            var b = new Button { Text = v }; b.Pressed += () => { _currentView = v; _stage.FrameView(v); }; views.AddChild(b);
         }
         box.AddChild(views);
 
@@ -98,7 +102,7 @@ public partial class HorseViewer : Node
         root.AddChild(help);
     }
 
-    private void Refresh()
+    private void Refresh(bool resetView = true)
     {
         var d = _entries[_coat.Selected];
         if (_foal.ButtonPressed)
@@ -106,16 +110,65 @@ public partial class HorseViewer : Node
         string requestedAnimation = _anim.Selected >= 0 && _anim.Selected < _anim.ItemCount - 1
             ? _anim.GetItemText(_anim.Selected)
             : "";
+
+        bool walkShapeOverride = false;
+        if (string.Equals(requestedAnimation, "walk", System.StringComparison.OrdinalIgnoreCase))
+        {
+            if (CanUseCheckedLightWalk(d))
+            {
+                d = WithNeutralWalkShape(d);
+                walkShapeOverride = true;
+            }
+            else
+            {
+                // Keep the selected descriptor's default family/shape when Walk is not supported.
+                int idleIndex = FindAnimationItem("idle");
+                if (idleIndex >= 0) _anim.Select(idleIndex);
+                requestedAnimation = "idle";
+            }
+        }
+
         var support = _stage.Presenter.Present(d, requestedAnimation);
         for (int i = 0; i < _anim.ItemCount - 1; i++)
             _anim.SetItemDisabled(i, !_stage.Presenter.IsAnimationAvailable(_anim.GetItemText(i)));
         if (_anim.Selected >= 0 && _anim.Selected < _anim.ItemCount - 1 && _anim.IsItemDisabled(_anim.Selected))
-            _anim.Select(_anim.ItemCount - 1); // Keep unavailable clips disabled and select the final still option.
+        {
+            int fallback = FindAnimationItem("idle");
+            _anim.Select(fallback >= 0 && !_anim.IsItemDisabled(fallback) ? fallback : _anim.ItemCount - 1);
+        }
         _warning.Visible = !support.Supported;
         _warningText.Text = "This horse cannot be shown yet.\n" + support.Summary + "\n(No substitute coat is drawn.)";
         _status.Text = $"{d.DisplayLabel}\nclass {d.CoatClassId} · {d.MeshFamilyId}\nrecipe {d.CoatRecipe} · eyes {d.EyeRecipe} · skin {d.SkinRecipe}\n" +
-                       (support.Supported ? "markings: " + _stage.Presenter.Markings!.Describe() + "\n" : "") + support.Summary;
-        _stage.FrameView("q3");
+                       (support.Supported ? "markings: " + _stage.Presenter.Markings!.Describe() + "\n" : "") +
+                       (walkShapeOverride ? "Walk uses the checked base adult shape.\n" : "") + support.Summary;
+        if (resetView) _currentView = "q3";
+        _stage.FrameView(_currentView);
+    }
+
+    private static int FindAnimationItem(string animation)
+    {
+        // The final option is the explicit still pose, not an animation.
+        for (int i = 0; i < AnimationChoices.Length; i++)
+            if (string.Equals(AnimationChoices[i], animation, System.StringComparison.OrdinalIgnoreCase))
+                return i;
+        return -1;
+    }
+
+    private static bool CanUseCheckedLightWalk(VisualDescriptor descriptor)
+    {
+        if (descriptor.FixtureId.StartsWith("probe.", System.StringComparison.Ordinal) || descriptor.IsFoal ||
+            descriptor.MeshFamilyId != "horse.standard.adult.v1") return false;
+        var catalog = VisualCatalog.Instance;
+        return catalog.Check(descriptor).Supported && catalog.MeshFamilies.TryGetValue(descriptor.MeshFamilyId, out var family) &&
+               family.Age == "adult" && family.WalkVariant != null;
+    }
+
+    private static VisualDescriptor WithNeutralWalkShape(VisualDescriptor descriptor)
+    {
+        var neutralWeights = descriptor.MorphWeights.ToDictionary(pair => pair.Key, _ => 0, System.StringComparer.Ordinal);
+        foreach (string channel in new[] { "body_length", "chest_width", "neck_length", "muscle", "height", "mane_density", "tail_density" })
+            neutralWeights[channel] = 0;
+        return descriptor with { MorphWeights = neutralWeights };
     }
 
     private static VisualDescriptor ResolveAgeVariant(VisualDescriptor selected, bool foal)

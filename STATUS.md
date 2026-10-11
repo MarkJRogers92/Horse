@@ -6,7 +6,37 @@ The prior visual/animation freeze below is historical and remains true for the
 original checkout; new work is isolated here. No release-matrix promotion or main merge.
 
 
-## Checked Light walking horse and coats — local preview
+## Light Walk in the game and macOS export — 2026-10-11
+
+The owner authorized integrating the checked horse/coats into the game, creating
+a downloadable Mac build, and committing/pushing this project branch. The normal
+Horse viewer and stable presentation now offer the optional checked Light adult
+Walk. Walk explicitly uses the neutral base shape; Idle restores the original
+descriptor and morphs. Stock, foal and unsupported probes cannot select Walk.
+The scene applies one profile-bound actor speed with camera follow, a four-cycle
+bounded route, and no route movement while posed/paused. The walking head view
+uses a wider camera distance so the muzzle remains visible.
+
+The normal main-entry `--smoke-test` now verifies actual zero morphs/unit scale,
+signed detail at strength 1, playing Walk, profile-speed movement/camera follow,
+pause behavior, original Idle shape restoration and unsupported-family guards.
+The latest standalone macOS release passed this test on Apple M2 with Godot
+4.7.2 .NET Compatibility, as well as native Apple ad hoc signature verification.
+Manual exported-app checks cover animation selection, bay/chestnut/cremello
+coats, star markings, foal fallback, the walking head view and return to Idle.
+Targeted warnings-as-errors build and frozen-spec validation passed. The fifteen
+protected foundation/shader/atlas/evidence/tool files remain byte-identical;
+only the previously protected default catalog has an authorized change.
+
+`game/export_presets.cfg` selects the official universal macOS template, native
+Apple ad hoc signing and no notarization. The editor-only evidence export plugin
+keeps four exact raw source files beside their ordinary imported resources, so
+the existing runtime hash and lossless-pixel guards remain active in the app.
+See `docs/visual/MACOS_EXPORT.md` for reproduction and packaging limitations.
+Final ZIP creation and fresh-unpack verification are the remaining packaging step.
+No main merge, public hosting or paid generation is part of this package.
+
+## Checked Light walking horse and coats — local preview (earlier checkpoint)
 
 The owner's latest scope is the existing Meshy horse walking with working UV
 coats. The neutral Light preview now passes source, export and actual Godot

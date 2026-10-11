@@ -25,8 +25,13 @@ public sealed record BodySignedDetail(string Path, string Encoding, float Streng
 public sealed record RigOnlyDerivationEvidence(string PreservationReportPath, string PreservationReportSha256,
     string BaselineBlendSha256, string BaselineGlbSha256, string CandidateBlendSha256, string CandidateGlbSha256,
     string ParentBindingSha256, string ParentHandoffSha256);
+public sealed record WalkAnimationVariant(string Scene, string SourceGlbSha256, string CandidateBlendSha256,
+    string MotionProfilePath, string MotionProfileSha256, string ReceiptPath, string ReceiptSha256,
+    string CpuMotionAuditPath, string CpuMotionAuditSha256, double ForwardSpeedMetersPerSecond,
+    int PeriodFrames, int FramesPerSecond, float DutyFactor, BodySignedDetail BodySignedDetail);
 public sealed record MeshFamily(string Scene, bool Placeholder, string Age, string HairGeometry = "cards", string? Limitation = null,
-    Vector3? HeadViewTarget = null, BodySignedDetail? BodySignedDetail = null, string? BodySignedDetailDisabledReason = null);
+    Vector3? HeadViewTarget = null, BodySignedDetail? BodySignedDetail = null, string? BodySignedDetailDisabledReason = null,
+    WalkAnimationVariant? WalkVariant = null, string? WalkVariantDisabledReason = null);
 
 /// <summary>Result of checking a descriptor against what this renderer can actually draw.</summary>
 public sealed record VisualSupport(bool Supported, IReadOnlyList<string> Problems, IReadOnlyList<string> Limitations)
@@ -76,13 +81,15 @@ public sealed class VisualCatalog
         {
             string scene = m.Value.GetProperty("scene").GetString()!;
             var detail = ParseBodySignedDetail(m.Value, m.Name, scene, out var detailDisabledReason);
+            var walkVariant = ParseWalkAnimationVariant(m.Value, m.Name,
+                m.Value.GetProperty("age").GetString()!, out var walkVariantDisabledReason);
             cat.MeshFamilies[m.Name] = new MeshFamily(scene, m.Value.GetProperty("placeholder").GetBoolean(),
                 m.Value.GetProperty("age").GetString()!,
                 m.Value.TryGetProperty("hairGeometry", out var hairGeometry) ? hairGeometry.GetString()! : "cards",
                 m.Value.TryGetProperty("limitation", out var limitation) ? limitation.GetString() : null,
                 m.Value.TryGetProperty("headViewTarget", out var headTarget)
                     ? new Vector3(headTarget[0].GetSingle(), headTarget[1].GetSingle(), headTarget[2].GetSingle()) : null,
-                detail, detailDisabledReason);
+                detail, detailDisabledReason, walkVariant, walkVariantDisabledReason);
         }
         foreach (var c in r.GetProperty("coatRecipes").EnumerateObject())
         {
@@ -269,6 +276,117 @@ public sealed class VisualCatalog
         return new BodySignedDetail(path, encoding!, strength, sourceHash!, textureHash!, Sha256(pixels),
             handoffPath!, bindingPath!, corpusHash!, bakedStrength, uvReuseStatus!, retainedTriangles, neutralFaces, neutralPixels,
             neutralMaskPath!, neutralMaskHash!, handoffHash!, bindingHash!, rigOnlyDerivation);
+    }
+
+    private static WalkAnimationVariant? ParseWalkAnimationVariant(JsonElement family, string familyId, string age,
+        out string? disabledReason)
+    {
+        disabledReason = null;
+        if (!family.TryGetProperty("walkVariant", out var variant)) return null;
+        disabledReason = "Walk variant metadata is malformed or incompatible";
+        try
+        {
+            if (variant.ValueKind != JsonValueKind.Object) return null;
+            const string expectedFamily = "horse.standard.adult.v1";
+            const string expectedScene = "res://assets/horse/production/horse_light_walk.glb";
+            const string expectedGlb = "13a678c5fe5ddb20cd48a1b0b17d9e59ecf4a98b7d9599a160f6ee8ce3373219";
+            const string expectedBlend = "3ef7417273cd9baa9d68b406c2731e4bf7db4bd2bc3a56dde95e3a6471173573";
+            const string expectedEvidenceRoot = "res://assets/horse/production/evidence/light-walk-v5-detail/";
+            const string expectedProfileSha = "7f72b680dc658969235a200b32a834b1c1d69c946270cbbcc87973a433243d1f";
+            const string expectedReceiptSha = "81e769bed3d6bac22fa6ce4021f04f28506ba6422fe0fa1a08cf05765297c29f";
+            const string expectedAuditSha = "face59f6bfae24d44d3e1c2bf10c3deea3b2983fba3356e625af74b6c0b83f61";
+            const double expectedSpeed = 0.749997329711914;
+
+            string scene = ReadString(variant, "scene") ?? "";
+            string sourceGlb = ReadString(variant, "sourceGlbSha256") ?? "";
+            string candidateBlend = ReadString(variant, "candidateBlendSha256") ?? "";
+            string profilePath = ReadString(variant, "motionProfilePath") ?? "";
+            string profileSha = ReadString(variant, "motionProfileSha256") ?? "";
+            string receiptPath = ReadString(variant, "receiptPath") ?? "";
+            string receiptSha = ReadString(variant, "receiptSha256") ?? "";
+            string auditPath = ReadString(variant, "cpuMotionAuditPath") ?? "";
+            string auditSha = ReadString(variant, "cpuMotionAuditSha256") ?? "";
+            if (familyId != expectedFamily || age != "adult" ||
+                scene != expectedScene || sourceGlb != expectedGlb || candidateBlend != expectedBlend ||
+                profilePath != expectedEvidenceRoot + "walk-motion-profile.json" || profileSha != expectedProfileSha ||
+                receiptPath != expectedEvidenceRoot + "walk-motion-receipt.json" || receiptSha != expectedReceiptSha ||
+                auditPath != expectedEvidenceRoot + "neutral-motion-audit.json" || auditSha != expectedAuditSha)
+                return null;
+
+            if (!variant.TryGetProperty("forwardSpeedMetersPerSecond", out var speedNode) ||
+                speedNode.ValueKind != JsonValueKind.Number || !speedNode.TryGetDouble(out var speed) ||
+                !double.IsFinite(speed) || Math.Abs(speed - expectedSpeed) > 1e-12 ||
+                !variant.TryGetProperty("periodFrames", out var periodNode) || !periodNode.TryGetInt32(out int period) || period != 29 ||
+                !variant.TryGetProperty("fps", out var fpsNode) || !fpsNode.TryGetInt32(out int fps) || fps != 30 ||
+                !variant.TryGetProperty("dutyFactor", out var dutyNode) || !dutyNode.TryGetDouble(out double duty) ||
+                !double.IsFinite(duty) || Math.Abs(duty - 0.6) > 1e-6 ||
+                !FileAccess.FileExists(scene) || Sha256(FileAccess.GetFileAsBytes(scene)) != expectedGlb)
+                return null;
+
+            // The body detail is separately validated against the derived GLB and the exact
+            // rig-only UV preservation evidence. The ordinary family keeps its original scene
+            // and original, independently validated signed-detail metadata.
+            var walkDetail = ParseBodySignedDetail(variant, familyId, scene, out _);
+            if (walkDetail == null || walkDetail.SourceGlbSha256 != expectedGlb) return null;
+
+            if (!FileAccess.FileExists(profilePath) || !FileAccess.FileExists(receiptPath) || !FileAccess.FileExists(auditPath))
+                return null;
+            byte[] profileBytes = FileAccess.GetFileAsBytes(profilePath);
+            byte[] receiptBytes = FileAccess.GetFileAsBytes(receiptPath);
+            byte[] auditBytes = FileAccess.GetFileAsBytes(auditPath);
+            if (Sha256(profileBytes) != profileSha || Sha256(receiptBytes) != receiptSha || Sha256(auditBytes) != auditSha)
+                return null;
+
+            using var profileDoc = JsonDocument.Parse(profileBytes);
+            using var receiptDoc = JsonDocument.Parse(receiptBytes);
+            using var auditDoc = JsonDocument.Parse(auditBytes);
+            var profile = profileDoc.RootElement;
+            var receipt = receiptDoc.RootElement;
+            var audit = auditDoc.RootElement;
+            if (profile.GetProperty("schema").GetString() != "horse.light_walk.motion_profile.v1" ||
+                profile.GetProperty("candidateBlendSha256").GetString() != expectedBlend ||
+                profile.GetProperty("sourceGlbSha256").GetString() != expectedGlb ||
+                profile.GetProperty("periodFrames").GetInt32() != period || profile.GetProperty("fps").GetInt32() != fps ||
+                Math.Abs(profile.GetProperty("forwardSpeedMetersPerSecond").GetDouble() - speed) > 1e-12 ||
+                Math.Abs(profile.GetProperty("dutyFactor").GetDouble() - duty) > 1e-6 ||
+                profile.GetProperty("sourceRootInPlace").ValueKind != JsonValueKind.True ||
+                receipt.GetProperty("schema").GetString() != "horse.light_walk.motion_receipt.v1" ||
+                receipt.GetProperty("candidateBlendSha256").GetString() != expectedBlend ||
+                receipt.GetProperty("sourceGlbSha256").GetString() != expectedGlb ||
+                receipt.GetProperty("motionProfilePath").GetString() != profilePath ||
+                receipt.GetProperty("motionProfileSha256").GetString() != profileSha ||
+                receipt.GetProperty("cpuMotionAuditPath").GetString() != auditPath ||
+                receipt.GetProperty("cpuMotionAuditSha256").GetString() != auditSha ||
+                receipt.GetProperty("neutralPhysicalGatesPassed").ValueKind != JsonValueKind.True ||
+                audit.GetProperty("stage").GetString() != "footplant_neutral_61_phase_audit" ||
+                audit.GetProperty("candidate_sha256").GetString() != expectedBlend ||
+                audit.GetProperty("accepted_cpu_neutral").ValueKind != JsonValueKind.True ||
+                audit.GetProperty("fps").GetInt32() != fps || Math.Abs(audit.GetProperty("period_frames").GetDouble() - period) > 1e-9 ||
+                Math.Abs(audit.GetProperty("duty_factor").GetDouble() - duty) > 1e-9 ||
+                Math.Abs(audit.GetProperty("shared_speed_mps").GetDouble() - speed) > 1e-12 ||
+                audit.GetProperty("sampled_frames").GetArrayLength() != 61)
+                return null;
+
+            string[] requiredGates =
+            {
+                "normalized_weights", "whole_body_stretch_le_1_6", "collar_stretch_le_1_6",
+                "loop_root_relative_le_1mm", "stance_slip_le_5mm", "sole_min_z_ge_minus_2mm",
+                "stance_p05_z_le_3mm", "swing_middle_clearance_ge_30mm", "endpoint_target_mismatch_le_2mm"
+            };
+            var metricGates = audit.GetProperty("metric_gates");
+            foreach (string gate in requiredGates)
+                if (!metricGates.TryGetProperty(gate, out var passed) || passed.ValueKind != JsonValueKind.True)
+                    return null;
+
+            disabledReason = null;
+            return new WalkAnimationVariant(scene, sourceGlb, candidateBlend, profilePath, profileSha,
+                receiptPath, receiptSha, auditPath, auditSha, speed, period, fps, (float)duty, walkDetail);
+        }
+        catch (Exception e)
+        {
+            disabledReason = "Walk variant validation failed: " + e.Message;
+            return null;
+        }
     }
 
     private static bool IsProductionEvidencePath(string? path, string fileName) =>
@@ -594,6 +712,7 @@ public sealed class VisualCatalog
         {
             if (family.Placeholder) limits.Add("TEMPORARY placeholder mesh");
             if (!string.IsNullOrEmpty(family.Limitation)) limits.Add(family.Limitation);
+            if (!string.IsNullOrEmpty(family.WalkVariantDisabledReason)) limits.Add("checked Walk variant disabled: " + family.WalkVariantDisabledReason);
             if (!string.IsNullOrEmpty(family.BodySignedDetailDisabledReason))
                 limits.Add("body signed detail disabled: " + family.BodySignedDetailDisabledReason);
             if (family.BodySignedDetail is { } bodyDetail)
