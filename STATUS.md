@@ -11,7 +11,7 @@ credits (two references at 9 plus two geometry jobs at 25); automatic rewards
 added 100, leaving 1,132. The free foal rig retry has separate limb chains;
 the first incomplete foal rig is rejected and retained as evidence.
 
-Current Light and Stock exports each have 32,944 triangles, four component-wide
+The last checked Light and Stock exports each have 32,944 triangles, four component-wide
 body morphs, provisional primary UVs and anatomical masks, and 58-bone rigs.
 The eight-horse/four-preset test-only appearance studio is implemented. Targeted
 Godot verification on Light `2d282d40` and Stock `88cef2c3` produced 41 images with
@@ -19,12 +19,20 @@ zero harness failures, playing/advancing Idle on both, and actual generated LOD
 buffers. Eye placement was lowered into the sculpted sockets and checked on
 both sides, including independently in the coat workflow. Walk and Graze remain
 rejected and excluded. These are candidate checkpoints, not complete production
-acceptance: the owner has requested explicit ear, nose, neck and mane landmark
-verification; the forelock and hanging mane partition are confirmed incomplete and are being corrected.
+acceptance. Geometry-ray front/side checks now verify the visible ear attachments,
+nostrils/muzzle, behind-jaw neck transition and poll/withers mane anchors.
+The new fixed-source face map follows the asymmetric sculpted mane and curved
+forelock while retaining the ears and exposed neck as Body. Parent reviewed the
+actual neutral/colored boundaries; 30,000 source faces and primary UV corners are
+preserved. Light is being rebuilt with this map and a narrow hoof-support fix;
+refreshed runtime, coat and foot-contact checks are still pending.
 
-The distinct foal adapter is next, using genuine juvenile geometry, locally
-repaired rig hierarchy, and the same semantic shape/coat interface. Source-rig
-isolated limb poses passed, but skin transfer to the cleaned foal remains unverified.
+The distinct foal adapter uses genuine juvenile geometry, locally repaired rig
+hierarchy, and the same semantic shape/coat interface. Source-rig isolated limb
+poses passed. The first derived foal has rejected eye/hair/tail placement and is
+preserved before cleanup; its skin transfer and cleaned runtime remain unverified.
+Family-specific morph contracts and targeted foal capture checks are implemented
+and built, with independent review corrections applied; runtime checks are pending.
 The separate “Build horse coat texture pipeline” chat is authorized to coordinate
 and has the immutable Light snapshot `30507e2e` with matching UVs. No main merge,
 push, paid texture generation, or complete asset-library acceptance has occurred.

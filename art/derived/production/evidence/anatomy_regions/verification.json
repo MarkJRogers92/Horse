@@ -1,0 +1,55 @@
+{
+  "freshImportDecimation": {
+    "sourceTriangles": 326366,
+    "exportTargetTriangles": 30000,
+    "collapseRatio": 0.091921
+  },
+  "regionReport": {
+    "dataset": "anatomy_regions_meshy_light_01.json",
+    "sourceTopology": {
+      "vertexCount": 14962,
+      "polygonCount": 30000,
+      "indexSha256": "732fac6a5beffc9c88a46b6989cf51cd329ed6c48c9a53cd10221e364e856fdc",
+      "positionSha256": "80470152356f5cedcd5d7fc06a9ee8ad556f321d03c85bdc7cc7a624762e65fe",
+      "positionQuantizationDecimals": 6,
+      "blenderVersion": "5.2.1 LTS",
+      "decimator": "COLLAPSE 30000 / 326366; no preceding modifiers"
+    },
+    "regionIdsSha256": "cc9be7671729e7b2e25eae9ee319187dcb016c417d8a3dae68590ed9b0f466f5",
+    "sourceFaces": 30000,
+    "bodyFaces": 21706,
+    "maneFaces": 3752,
+    "forelockFaces": 407,
+    "tailFaces": 4542,
+    "forelockIsManeSubset": true,
+    "hairRegionsDisjoint": true,
+    "classifiedBeforeFamilyWarp": true,
+    "method": "Independent fixed-camera visible-surface face-ID traces, asymmetric hanging-side/opposite crest; enclosed source-surface gaps filled; disconnected islands and seam tips removed. No mirror, remesh, caps, or added geometry."
+  },
+  "topologyGuardRejectedChangedIndex": true,
+  "coordinateGuardRejectedWarpedSource": true,
+  "sourceFacesConserved": 30000,
+  "partitionFaces": {
+    "Body": 21706,
+    "Mane": 3752,
+    "Tail": 4542
+  },
+  "forelockManeVertexCount": 239,
+  "vertexMaxError": 0.0,
+  "cornerUvMaxError": 0.0,
+  "cornerNormalMaxError": 0.00022402347823797942,
+  "cornerNormalMaxAngleDegrees": 0.01783156084808155,
+  "cornerNormalAcceptanceAngleDegrees": 0.05,
+  "customNormalRoundTripIsBitExact": false,
+  "splitSeamReport": {
+    "sourceFaces": 30000,
+    "bodyFaces": 21706,
+    "maneFaces": 3752,
+    "tailFaces": 4542,
+    "sharedSeamEdges": 222,
+    "facePartitionConserved": true,
+    "loopNormalsPreservedFromWeldedSource": true
+  },
+  "noAddedGeometry": true,
+  "productionMastersRebuilt": false
+}

@@ -1,0 +1,116 @@
+{
+  "diagnostic": "foal_eye_socket_image_rays.v1",
+  "source": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/art/derived/production/horse_foal.blend",
+  "sourceSha256": "bb8a12258c4a680a6c8168bd20dbd0101cad26a4863f9beae3b9236ff04d7ca4",
+  "sourceImagePaths": [
+    "/tmp/foal-closeup/front.png",
+    "/tmp/foal-closeup/side_near.png",
+    "/tmp/foal-closeup/side_far.png"
+  ],
+  "cameraSource": "/tmp/foal_closeup.py",
+  "resolution": [
+    1200,
+    900
+  ],
+  "orthoScale": 0.72,
+  "focus": [
+    0.57,
+    0,
+    1.29
+  ],
+  "scope": "Read-only visible surface anchors selected in socket recesses; coordinates are surface points for builder fitting, not final eyeball centers. All rays must hit Body.",
+  "landmarks": [
+    {
+      "view": "front",
+      "key": "horse_right_socket",
+      "pixelTopLeft": [
+        478,
+        508
+      ],
+      "coordinate_m": [
+        0.574829,
+        -0.0729,
+        1.2549
+      ],
+      "normal": [
+        0.64383,
+        -0.763677,
+        0.047747
+      ],
+      "hitObject": "Body",
+      "faceIndex": 3658,
+      "method": "orthographic rendered-image pixel ray cast to frontmost evaluated scene geometry",
+      "confidence": "visual socket-recess surface anchor",
+      "note": "Chosen inside visible sculpted almond socket recess; use as fitting anchor, not exact eyeball center."
+    },
+    {
+      "view": "front",
+      "key": "horse_left_socket",
+      "pixelTopLeft": [
+        722,
+        508
+      ],
+      "coordinate_m": [
+        0.573082,
+        0.0735,
+        1.2549
+      ],
+      "normal": [
+        0.464264,
+        0.885283,
+        0.027064
+      ],
+      "hitObject": "Body",
+      "faceIndex": 13514,
+      "method": "orthographic rendered-image pixel ray cast to frontmost evaluated scene geometry",
+      "confidence": "visual socket-recess surface anchor",
+      "note": "Chosen inside visible sculpted almond socket recess; use as fitting anchor, not exact eyeball center."
+    },
+    {
+      "view": "side_near",
+      "key": "horse_right_socket",
+      "pixelTopLeft": [
+        600,
+        530
+      ],
+      "coordinate_m": [
+        0.5703,
+        -0.071728,
+        1.2417
+      ],
+      "normal": [
+        0.236383,
+        -0.905998,
+        -0.351127
+      ],
+      "hitObject": "Body",
+      "faceIndex": 3615,
+      "method": "orthographic rendered-image pixel ray cast to frontmost evaluated scene geometry",
+      "confidence": "visual socket-recess surface anchor",
+      "note": "Chosen inside visible sculpted almond socket recess; use as fitting anchor, not exact eyeball center."
+    },
+    {
+      "view": "side_far",
+      "key": "horse_left_socket",
+      "pixelTopLeft": [
+        600,
+        530
+      ],
+      "coordinate_m": [
+        0.5697,
+        0.071058,
+        1.2417
+      ],
+      "normal": [
+        0.540437,
+        0.798033,
+        -0.266592
+      ],
+      "hitObject": "Body",
+      "faceIndex": 13407,
+      "method": "orthographic rendered-image pixel ray cast to frontmost evaluated scene geometry",
+      "confidence": "visual socket-recess surface anchor",
+      "note": "Chosen inside visible sculpted almond socket recess; use as fitting anchor, not exact eyeball center."
+    }
+  ]
+}
