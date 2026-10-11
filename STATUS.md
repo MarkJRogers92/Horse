@@ -1,7 +1,7 @@
 # Project status / checkpoint
 
 **Last updated:** 2026-10-10 by GPT (P2-02 stable-day prototype implemented and locally verified).
-**Phase:** P2-02 calendar, daily care, operating costs, and saved End Day are implemented as a bounded playable slice. Full domain suite passed 165/165 locally; GitHub verification is pending for this checkpoint. P1-01 static adult/foal integration and P1-07/P1-09 remain preserved.
+**Phase:** P2-02 calendar, daily care, operating costs, and saved End Day are implemented as a bounded playable slice. Full domain suite passed 165/165 locally and in GitHub CI at `00aa158`; the game build/import/startup and new stable-day screen check passed there. The longer horse-image batch is still running. P1-01 static adult/foal integration and P1-07/P1-09 remain preserved.
 **Branch:** `claude/godot-horse-visual-pilot` (domain checkpoint history below originated on `claude/great-euler-hq83x3`).
 
 ## Current gameplay state — stable day prototype
@@ -11,6 +11,8 @@ The main menu now offers **Manage stable**, a sandbox management slot with Junip
 Save wire/schema v2 explicitly migrates genuine v1 saves without rerolling horses, pregnancies, wallet history, capacity, or any RNG stream. Exact retries cannot charge twice. Generic saves cannot advance the calendar or rewrite daily history. Due births and juvenile growth boundaries are visibly blocked until their lifecycle tasks are implemented. Inventory, training/readiness effects, income, adoption, and racing remain later work.
 
 Local acceptance: 165/165 full Release tests, 34/34 parent-run focused Stable tests, one final guard test, warnings-as-errors game build, validator, three actual Metal screen captures, and real mouse cancel/double-click/reload/navigation checks. Independent Sol persistence and Luna UI reviews were completed. Evidence: `docs/stable/evidence/2026-10-10/`. Horse visuals and animation development stayed frozen.
+
+GitHub at `00aa15840a02faebaa28c35e8d87c72280284733`: [domain run 38107022812](https://github.com/MarkJRogers92/Horse/actions/runs/38107022812) succeeded; its downloaded TRX confirms 165/165 with no skips. [Game/visual run 38107022813](https://github.com/MarkJRogers92/Horse/actions/runs/38107022813) passed the build, import, main-scene smoke and new rendered stable review/End Day/reload check. The existing full horse evidence stage was still running when recorded; this is not a claim that the entire visual job had completed. Exact step metadata and TRX are saved with the local evidence.
 
 ## Current visual state — static adult and foal restored
 
@@ -32,7 +34,7 @@ Remote evidence: [visual run 38099550595](https://github.com/MarkJRogers92/Horse
 | P1-09 snapshot + codec + atomic store | Verified in final combined suite: 147/147 on macOS and Linux CI |
 | P1-09 numeric/rolling-backup regressions | 51f26128 preserved: 138/138 CI; final suite 147/147 |
 | Public query API + integration/performance | Complete: a15266e3, 147/147 in CI run 38094410593 and local macOS |
-| P2-02 calendar / care / operating-cost prototype | Implemented bounded slice; 165/165 full local tests, 34/34 focused tests, real Godot screen and pointer checks; CI pending |
+| P2-02 calendar / care / operating-cost prototype | Bounded slice verified: 165/165 local + Linux CI; real Godot screen/pointer checks; CI build/import/startup/stable-day checks passed at 00aa158 |
 
 ## Coordination / accepted decisions
 Mark leads integration. Concurrent persistence checkpoints c8d4eb93/714e92d9/30bee9ea/51f26128 and unified forecasts fa67666b are preserved. The public query API uses that single codec/store. Use expected-head non-forced pushes and read current STATUS. One canonical horse/RNG/resolver/save system.
@@ -106,4 +108,4 @@ Latest verified descriptor artifact: 11685376690 (run 38094410593). Initial P1-0
 - Added the sandbox Manage stable screen, review/confirm, saved reload, same-request retry, and explicit verified-backup restoration. A new CI check renders three screen states and checks saved day, wallet, care, receipt, and ledger.
 - Validation: core full Release 165/165; parent focused Stable 34/34; final strengthened guard 1/1; game build 0 warnings/errors; import, frozen-spec validator and whitespace check passed. Three actual Metal screenshots and real pointer cancel/double-click/reload/menu-navigation checks passed. Native Sol persistence and independent UI reviews found no remaining implementation blocker after corrections.
 - Limits: care has four modest prototype scores, with no training/readiness/race effects. Daily purchased care is consumed without an inventory. Birth and growth boundaries block rather than skip their future transactions. No live-catalog release, horse visual change, animation work, frozen handoff edit, purchase, force push, or other-branch merge.
-- GitHub domain and game workflow status will be recorded after this checkpoint is pushed.
+- GitHub code checkpoint: `00aa158`. Domain run 38107022812 passed 165/165; game run 38107022813 passed build/import/main smoke and the stable-day capture/save assertions. The remaining full horse-image batch was still running at this documentation checkpoint. Downloaded TRX and exact game-step metadata are committed with the evidence.

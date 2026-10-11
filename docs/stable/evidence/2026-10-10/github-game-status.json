@@ -1,0 +1,44 @@
+{
+  "recorded_utc": "2026-10-11T03:06:49.056205+00:00",
+  "run_url": "https://github.com/MarkJRogers92/Horse/actions/runs/38107022813",
+  "head_sha": "00aa15840a02faebaa28c35e8d87c72280284733",
+  "workflow_status": "in_progress",
+  "workflow_conclusion": "",
+  "verified_gameplay_steps": [
+    {
+      "completedAt": "2026-10-11T03:04:54Z",
+      "conclusion": "success",
+      "name": "Build game C#",
+      "number": 12,
+      "startedAt": "2026-10-11T03:04:51Z",
+      "status": "completed"
+    },
+    {
+      "completedAt": "2026-10-11T03:04:59Z",
+      "conclusion": "success",
+      "name": "Import project",
+      "number": 13,
+      "startedAt": "2026-10-11T03:04:54Z",
+      "status": "completed"
+    },
+    {
+      "completedAt": "2026-10-11T03:05:26Z",
+      "conclusion": "success",
+      "name": "Smoke test main scene (boots, links domain, presents a horse)",
+      "number": 14,
+      "startedAt": "2026-10-11T03:04:59Z",
+      "status": "completed"
+    },
+    {
+      "completedAt": "2026-10-11T03:05:27Z",
+      "conclusion": "success",
+      "name": "Verify stable review, End Day, and saved reload",
+      "number": 15,
+      "startedAt": "2026-10-11T03:05:26Z",
+      "status": "completed"
+    }
+  ],
+  "remaining_active_steps": [
+    "Render evidence"
+  ]
+}
