@@ -26,9 +26,17 @@
     "side.png",
     "rear.png",
     "three_quarter.png",
-    "smart-rig.glb"
+    "smart-rig.glb",
+    "smart-rig-retry.glb"
   ],
   "rigTaskId": "01a129a7-6958-770d-98c8-24ca9f456058",
   "rigSourceSha256": "5b23d0140fb7f56a0f15ca4ca686010355891563de4611c6e868c97fe22c7172",
-  "rigStatus": "Unverified Smart Rig candidate; no accepted animations"
+  "rigStatus": "First Smart Rig rejected: no paired hindlimb chains; no accepted animations",
+  "rigRetry": {
+    "taskId": "01a129af-74fb-7323-b99f-3b7300b2a22b",
+    "file": "smart-rig-retry.glb",
+    "sha256": "6b5961323edb18dc795f5d54a0b65bfdd9e47bc1661677fc2989f22e8a670d0a",
+    "creditsCharged": 0,
+    "status": "60 weighted joints with paired limb weights; disconnected distal hierarchy requires local repair and four-leg pose validation; not accepted"
+  }
 }

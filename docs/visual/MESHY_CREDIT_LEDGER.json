@@ -138,12 +138,25 @@
       "source": "01a129a5-4f11-7639-a945-58fa9abe92f8",
       "creditsCharged": 0,
       "chargeEvidence": "Websitebalance1132 unchanged; API reports0",
-      "result": "SUCCEEDED; downloaded for local rig assessment",
+      "result": "Service SUCCEEDED; REJECTED locally: no paired hindlimb chains, hind limb vertices weighted entirely to centerline Bone011",
       "accepted": false,
       "savedFiles": [
         "art/candidates/meshy/foal_01/smart-rig.glb"
       ],
       "sha256": "5b23d0140fb7f56a0f15ca4ca686010355891563de4611c6e868c97fe22c7172"
+    },
+    {
+      "taskId": "01a129af-74fb-7323-b99f-3b7300b2a22b",
+      "operation": "website foal Smart Rig Beta free retry",
+      "source": "01a129a5-4f11-7639-a945-58fa9abe92f8",
+      "creditsCharged": 0,
+      "chargeEvidence": "Website balance 1132 unchanged after retry completion",
+      "result": "Service SUCCEEDED; local audit finds 60 weighted joints and paired limb weights, but disconnected distal limb hierarchy needs repair and four-leg pose validation before acceptance",
+      "accepted": false,
+      "savedFiles": [
+        "art/candidates/meshy/foal_01/smart-rig-retry.glb"
+      ],
+      "sha256": "6b5961323edb18dc795f5d54a0b65bfdd9e47bc1661677fc2989f22e8a670d0a"
     }
   ],
   "notes": [
