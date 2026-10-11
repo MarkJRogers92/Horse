@@ -1,0 +1,918 @@
+{
+  "taskId": "adult_motion_specialist",
+  "outcome": "Exact geometric cranial scaffold accepted by parent-relayed native Sol review; no weight solve authorized or run.",
+  "candidateOnly": true,
+  "fieldAccepted": false,
+  "solveRun": false,
+  "weightsChangedByPreflight": false,
+  "source": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/light/horse_light_motion_candidate.blend",
+  "sourceSha256": "b2cff126e8af50088290a7c58d92f56e99c750181302c33a07254299d294ff8e",
+  "currentProductionBinding": {
+    "report": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_current_production_correspondence.json",
+    "fullProtectedSourceCorrespondence": true,
+    "canonicalRestRigExact": true,
+    "originalSkullMembershipExactlyEqual": true,
+    "originalEarControlsExactlyEqual": true,
+    "existingWeightDifferences": {
+      "Body": {
+        "changedVertexCount": 1837,
+        "changedControls": [
+          "Chest",
+          "Front_L_Forearm",
+          "Front_L_Upper",
+          "Front_R_Forearm",
+          "Front_R_Upper",
+          "Head_Base",
+          "Neck",
+          "Neck_Base",
+          "Neck_Mid",
+          "Neck_Top",
+          "Neck_Upper",
+          "Spine_Upper"
+        ],
+        "groupNamesEqual": false
+      },
+      "Eyes": {
+        "changedVertexCount": 0,
+        "changedControls": [],
+        "groupNamesEqual": true
+      },
+      "Mane": {
+        "changedVertexCount": 66,
+        "changedControls": [
+          "Chest",
+          "Front_L_Upper",
+          "Front_R_Upper",
+          "Neck",
+          "Neck_Base",
+          "Neck_Mid",
+          "Neck_Top",
+          "Neck_Upper"
+        ],
+        "groupNamesEqual": false
+      },
+      "Tail": {
+        "changedVertexCount": 0,
+        "changedControls": [],
+        "groupNamesEqual": true
+      }
+    },
+    "motionDifference": "Additional Walk_Diagnostic; production Idle curves are identical.",
+    "productionSha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295"
+  },
+  "shell": {
+    "parts": {
+      "Body": {
+        "vertices": 10924,
+        "sourcePolygons": 21706,
+        "derivedTriangles": 21706,
+        "boundaryEdges": 222,
+        "nonmanifoldOriginalEdges": []
+      },
+      "Mane": {
+        "vertices": 1963,
+        "sourcePolygons": 3752,
+        "derivedTriangles": 3752,
+        "boundaryEdges": 172,
+        "nonmanifoldOriginalEdges": []
+      },
+      "Tail": {
+        "vertices": 2297,
+        "sourcePolygons": 4542,
+        "derivedTriangles": 4542,
+        "boundaryEdges": 50,
+        "nonmanifoldOriginalEdges": []
+      }
+    },
+    "exactBoundaryEdgePairs": 222,
+    "pairTypes": {
+      "Body/Mane": 172,
+      "Body/Tail": 50
+    },
+    "pairProblems": 0,
+    "virtualVertices": 14962,
+    "existingFaceTriangles": 30000,
+    "virtualEdges": 45000,
+    "badIncidence": 0,
+    "badWinding": 0,
+    "exactAcrossBasisAndAllFourMorphs": true,
+    "newFacesOrMeshWeld": false,
+    "noCoordinateToleranceOrAveraging": true
+  },
+  "cuts": [
+    {
+      "x_m": 0.7,
+      "planeOrigin": [
+        0.7,
+        0.0,
+        0.0
+      ],
+      "planeNormal": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "virtualNodeCount": 3617,
+      "sourceVertexCounts": {
+        "Body": 3107,
+        "Mane": 591,
+        "Tail": 0
+      },
+      "bounds": [
+        [
+          0.7001473307609558,
+          -0.12562856078147888,
+          1.3671315908432007
+        ],
+        [
+          1.2317531108856201,
+          0.12379482388496399,
+          1.9704848527908325
+        ]
+      ],
+      "closed": true,
+      "containsPrevious": true,
+      "containsWholeOriginalSkull": true,
+      "containedOriginalEarRecords": 911,
+      "excludedLimbContainedIds": {
+        "Front_L": [],
+        "Front_R": [],
+        "Hind_L": [],
+        "Hind_R": []
+      },
+      "caudalTorsoContainedIds": [],
+      "provisionalWitnessContainedIds": [],
+      "exactSeamPairCrossings": 2,
+      "seamCrossingSourceEdges": [
+        [
+          {
+            "component": "Body",
+            "sourceEdgeId": 25652,
+            "sourceFaceId": 5784,
+            "orientedVertexIds": [
+              2814,
+              2850
+            ],
+            "globalVertexIds": [
+              2814,
+              2850
+            ],
+            "positions": [
+              [
+                0.7071786522865295,
+                -0.0970817431807518,
+                1.6380572319030762
+              ],
+              [
+                0.69277024269104,
+                -0.09779626131057739,
+                1.6222909688949585
+              ]
+            ]
+          },
+          {
+            "component": "Mane",
+            "sourceEdgeId": 2438,
+            "sourceFaceId": 1498,
+            "orientedVertexIds": [
+              723,
+              707
+            ],
+            "globalVertexIds": [
+              11647,
+              11631
+            ],
+            "positions": [
+              [
+                0.69277024269104,
+                -0.09779626131057739,
+                1.6222909688949585
+              ],
+              [
+                0.7071786522865295,
+                -0.0970817431807518,
+                1.6380572319030762
+              ]
+            ]
+          }
+        ],
+        [
+          {
+            "component": "Body",
+            "sourceEdgeId": 14858,
+            "sourceFaceId": 13890,
+            "orientedVertexIds": [
+              6978,
+              6715
+            ],
+            "globalVertexIds": [
+              6978,
+              6715
+            ],
+            "positions": [
+              [
+                0.699927568435669,
+                0.06187079846858978,
+                1.7776318788528442
+              ],
+              [
+                0.73090660572052,
+                0.053849298506975174,
+                1.8020319938659668
+              ]
+            ]
+          },
+          {
+            "component": "Mane",
+            "sourceEdgeId": 2865,
+            "sourceFaceId": 3738,
+            "orientedVertexIds": [
+              1955,
+              1959
+            ],
+            "globalVertexIds": [
+              12879,
+              12883
+            ],
+            "positions": [
+              [
+                0.73090660572052,
+                0.053849298506975174,
+                1.8020319938659668
+              ],
+              [
+                0.699927568435669,
+                0.06187079846858978,
+                1.7776318788528442
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "x_m": 0.65,
+      "planeOrigin": [
+        0.65,
+        0.0,
+        0.0
+      ],
+      "planeNormal": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "virtualNodeCount": 3781,
+      "sourceVertexCounts": {
+        "Body": 3153,
+        "Mane": 716,
+        "Tail": 0
+      },
+      "bounds": [
+        [
+          0.6503140330314636,
+          -0.12562856078147888,
+          1.308013677597046
+        ],
+        [
+          1.2317531108856201,
+          0.12379482388496399,
+          1.9704848527908325
+        ]
+      ],
+      "closed": true,
+      "containsPrevious": true,
+      "containsWholeOriginalSkull": true,
+      "containedOriginalEarRecords": 911,
+      "excludedLimbContainedIds": {
+        "Front_L": [],
+        "Front_R": [],
+        "Hind_L": [],
+        "Hind_R": []
+      },
+      "caudalTorsoContainedIds": [],
+      "provisionalWitnessContainedIds": [],
+      "exactSeamPairCrossings": 4,
+      "seamCrossingSourceEdges": [
+        [
+          {
+            "component": "Body",
+            "sourceEdgeId": 21435,
+            "sourceFaceId": 5274,
+            "orientedVertexIds": [
+              2805,
+              2883
+            ],
+            "globalVertexIds": [
+              2805,
+              2883
+            ],
+            "positions": [
+              [
+                0.6434953808784485,
+                -0.0994323194026947,
+                1.5915911197662354
+              ],
+              [
+                0.6574839353561401,
+                -0.09979981184005737,
+                1.5987228155136108
+              ]
+            ]
+          },
+          {
+            "component": "Mane",
+            "sourceEdgeId": 4566,
+            "sourceFaceId": 1407,
+            "orientedVertexIds": [
+              741,
+              702
+            ],
+            "globalVertexIds": [
+              11665,
+              11626
+            ],
+            "positions": [
+              [
+                0.6574839353561401,
+                -0.09979981184005737,
+                1.5987228155136108
+              ],
+              [
+                0.6434953808784485,
+                -0.0994323194026947,
+                1.5915911197662354
+              ]
+            ]
+          }
+        ],
+        [
+          {
+            "component": "Body",
+            "sourceEdgeId": 5125,
+            "sourceFaceId": 5274,
+            "orientedVertexIds": [
+              2883,
+              2569
+            ],
+            "globalVertexIds": [
+              2883,
+              2569
+            ],
+            "positions": [
+              [
+                0.6574839353561401,
+                -0.09979981184005737,
+                1.5987228155136108
+              ],
+              [
+                0.6427692174911499,
+                -0.1092851310968399,
+                1.5920366048812866
+              ]
+            ]
+          },
+          {
+            "component": "Mane",
+            "sourceEdgeId": 926,
+            "sourceFaceId": 1227,
+            "orientedVertexIds": [
+              593,
+              741
+            ],
+            "globalVertexIds": [
+              11517,
+              11665
+            ],
+            "positions": [
+              [
+                0.6427692174911499,
+                -0.1092851310968399,
+                1.5920366048812866
+              ],
+              [
+                0.6574839353561401,
+                -0.09979981184005737,
+                1.5987228155136108
+              ]
+            ]
+          }
+        ],
+        [
+          {
+            "component": "Body",
+            "sourceEdgeId": 1149,
+            "sourceFaceId": 5963,
+            "orientedVertexIds": [
+              3108,
+              3024
+            ],
+            "globalVertexIds": [
+              3108,
+              3024
+            ],
+            "positions": [
+              [
+                0.6791915893554688,
+                -0.09353385865688324,
+                1.5974903106689453
+              ],
+              [
+                0.6337407231330872,
+                -0.09791996330022812,
+                1.583986759185791
+              ]
+            ]
+          },
+          {
+            "component": "Mane",
+            "sourceEdgeId": 4595,
+            "sourceFaceId": 1540,
+            "orientedVertexIds": [
+              806,
+              849
+            ],
+            "globalVertexIds": [
+              11730,
+              11773
+            ],
+            "positions": [
+              [
+                0.6337407231330872,
+                -0.09791996330022812,
+                1.583986759185791
+              ],
+              [
+                0.6791915893554688,
+                -0.09353385865688324,
+                1.5974903106689453
+              ]
+            ]
+          }
+        ],
+        [
+          {
+            "component": "Body",
+            "sourceEdgeId": 10661,
+            "sourceFaceId": 13536,
+            "orientedVertexIds": [
+              6674,
+              6746
+            ],
+            "globalVertexIds": [
+              6674,
+              6746
+            ],
+            "positions": [
+              [
+                0.634760856628418,
+                0.049365054816007614,
+                1.742263674736023
+              ],
+              [
+                0.6541414856910706,
+                0.049495257437229156,
+                1.7544163465499878
+              ]
+            ]
+          },
+          {
+            "component": "Mane",
+            "sourceEdgeId": 1391,
+            "sourceFaceId": 3735,
+            "orientedVertexIds": [
+              1956,
+              1953
+            ],
+            "globalVertexIds": [
+              12880,
+              12877
+            ],
+            "positions": [
+              [
+                0.6541414856910706,
+                0.049495257437229156,
+                1.7544163465499878
+              ],
+              [
+                0.634760856628418,
+                0.049365054816007614,
+                1.742263674736023
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "x_m": 0.6,
+      "planeOrigin": [
+        0.6,
+        0.0,
+        0.0
+      ],
+      "planeNormal": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "virtualNodeCount": 3943,
+      "sourceVertexCounts": {
+        "Body": 3201,
+        "Mane": 838,
+        "Tail": 0
+      },
+      "bounds": [
+        [
+          0.6000059247016907,
+          -0.12562856078147888,
+          1.2316410541534424
+        ],
+        [
+          1.2317531108856201,
+          0.12379482388496399,
+          1.9704848527908325
+        ]
+      ],
+      "closed": true,
+      "containsPrevious": true,
+      "containsWholeOriginalSkull": true,
+      "containedOriginalEarRecords": 911,
+      "excludedLimbContainedIds": {
+        "Front_L": [],
+        "Front_R": [],
+        "Hind_L": [],
+        "Hind_R": []
+      },
+      "caudalTorsoContainedIds": [],
+      "provisionalWitnessContainedIds": [],
+      "exactSeamPairCrossings": 2,
+      "seamCrossingSourceEdges": [
+        [
+          {
+            "component": "Body",
+            "sourceEdgeId": 21395,
+            "sourceFaceId": 5010,
+            "orientedVertexIds": [
+              2429,
+              2466
+            ],
+            "globalVertexIds": [
+              2429,
+              2466
+            ],
+            "positions": [
+              [
+                0.6098427772521973,
+                -0.10935404151678085,
+                1.5649853944778442
+              ],
+              [
+                0.5994964241981506,
+                -0.10954032838344574,
+                1.5583909749984741
+              ]
+            ]
+          },
+          {
+            "component": "Mane",
+            "sourceEdgeId": 1593,
+            "sourceFaceId": 957,
+            "orientedVertexIds": [
+              545,
+              522
+            ],
+            "globalVertexIds": [
+              11469,
+              11446
+            ],
+            "positions": [
+              [
+                0.5994964241981506,
+                -0.10954032838344574,
+                1.5583909749984741
+              ],
+              [
+                0.6098427772521973,
+                -0.10935404151678085,
+                1.5649853944778442
+              ]
+            ]
+          }
+        ],
+        [
+          {
+            "component": "Body",
+            "sourceEdgeId": 18857,
+            "sourceFaceId": 13281,
+            "orientedVertexIds": [
+              6500,
+              6747
+            ],
+            "globalVertexIds": [
+              6500,
+              6747
+            ],
+            "positions": [
+              [
+                0.564350962638855,
+                0.04557052254676819,
+                1.7125548124313354
+              ],
+              [
+                0.6133319735527039,
+                0.05135254189372063,
+                1.7251299619674683
+              ]
+            ]
+          },
+          {
+            "component": "Mane",
+            "sourceEdgeId": 1392,
+            "sourceFaceId": 3739,
+            "orientedVertexIds": [
+              1957,
+              1937
+            ],
+            "globalVertexIds": [
+              12881,
+              12861
+            ],
+            "positions": [
+              [
+                0.6133319735527039,
+                0.05135254189372063,
+                1.7251299619674683
+              ],
+              [
+                0.564350962638855,
+                0.04557052254676819,
+                1.7125548124313354
+              ]
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "x_m": 0.55,
+      "planeOrigin": [
+        0.55,
+        0.0,
+        0.0
+      ],
+      "planeNormal": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "virtualNodeCount": 4154,
+      "sourceVertexCounts": {
+        "Body": 3294,
+        "Mane": 962,
+        "Tail": 0
+      },
+      "bounds": [
+        [
+          0.5501152873039246,
+          -0.12579232454299927,
+          1.077867031097412
+        ],
+        [
+          1.2317531108856201,
+          0.12379482388496399,
+          1.9704848527908325
+        ]
+      ],
+      "closed": true,
+      "containsPrevious": true,
+      "containsWholeOriginalSkull": true,
+      "containedOriginalEarRecords": 911,
+      "excludedLimbContainedIds": {
+        "Front_L": [],
+        "Front_R": [],
+        "Hind_L": [],
+        "Hind_R": []
+      },
+      "caudalTorsoContainedIds": [],
+      "provisionalWitnessContainedIds": [],
+      "exactSeamPairCrossings": 2,
+      "seamCrossingSourceEdges": [
+        [
+          {
+            "component": "Body",
+            "sourceEdgeId": 25523,
+            "sourceFaceId": 5008,
+            "orientedVertexIds": [
+              2350,
+              2588
+            ],
+            "globalVertexIds": [
+              2350,
+              2588
+            ],
+            "positions": [
+              [
+                0.5551955103874207,
+                -0.11367085576057434,
+                1.5119447708129883
+              ],
+              [
+                0.5389733910560608,
+                -0.10734951496124268,
+                1.4930307865142822
+              ]
+            ]
+          },
+          {
+            "component": "Mane",
+            "sourceEdgeId": 895,
+            "sourceFaceId": 1066,
+            "orientedVertexIds": [
+              599,
+              473
+            ],
+            "globalVertexIds": [
+              11523,
+              11397
+            ],
+            "positions": [
+              [
+                0.5389733910560608,
+                -0.10734951496124268,
+                1.4930307865142822
+              ],
+              [
+                0.5551955103874207,
+                -0.11367085576057434,
+                1.5119447708129883
+              ]
+            ]
+          }
+        ],
+        [
+          {
+            "component": "Body",
+            "sourceEdgeId": 18903,
+            "sourceFaceId": 13535,
+            "orientedVertexIds": [
+              6629,
+              6500
+            ],
+            "globalVertexIds": [
+              6629,
+              6500
+            ],
+            "positions": [
+              [
+                0.5374855399131775,
+                0.0507720448076725,
+                1.6864365339279175
+              ],
+              [
+                0.564350962638855,
+                0.04557052254676819,
+                1.7125548124313354
+              ]
+            ]
+          },
+          {
+            "component": "Mane",
+            "sourceEdgeId": 1386,
+            "sourceFaceId": 3710,
+            "orientedVertexIds": [
+              1937,
+              1951
+            ],
+            "globalVertexIds": [
+              12861,
+              12875
+            ],
+            "positions": [
+              [
+                0.564350962638855,
+                0.04557052254676819,
+                1.7125548124313354
+              ],
+              [
+                0.5374855399131775,
+                0.0507720448076725,
+                1.6864365339279175
+              ]
+            ]
+          }
+        ]
+      ]
+    }
+  ],
+  "originalSkullBodyCount": 2931,
+  "originalSkullBounds": [
+    [
+      0.7609496116638184,
+      -0.12562856078147888,
+      1.3671315908432007
+    ],
+    [
+      1.2317531108856201,
+      0.12379482388496399,
+      1.9704848527908325
+    ]
+  ],
+  "exclusionCounts": {
+    "limbs": {
+      "Front_L": 802,
+      "Front_R": 813,
+      "Hind_L": 1149,
+      "Hind_R": 1096
+    },
+    "caudalBodyXLE0": 4234
+  },
+  "ears": {
+    "uniqueOriginalRecords": 911,
+    "perComponent": {
+      "Body": 840,
+      "Mane": 71
+    },
+    "perControlOverlappingCounts": {
+      "Ear_L": {
+        "vertexCount": 556,
+        "maximumMass": 0.9843137264251709
+      },
+      "Ear_L_02": {
+        "vertexCount": 218,
+        "maximumMass": 0.9764705896377563
+      },
+      "Ear_L_03": {
+        "vertexCount": 83,
+        "maximumMass": 1.0
+      },
+      "Ear_R": {
+        "vertexCount": 592,
+        "maximumMass": 0.9647058844566345
+      },
+      "Ear_R_02": {
+        "vertexCount": 265,
+        "maximumMass": 0.9921568632125854
+      },
+      "Ear_R_03": {
+        "vertexCount": 92,
+        "maximumMass": 0.9529411792755127
+      }
+    },
+    "recordsAndExactWeights": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_shell_neck_contours.json",
+    "controlsRetained": true,
+    "newEarMotionImplemented": false
+  },
+  "parentRelayedReview": {
+    "cranialScaffoldAccepted": true,
+    "correction": "The lowest x=.55 contour ventral extension is a Chest/cervical junction; do not assign the complete cranial domain cervical-only.",
+    "earConstraint": "Preserve original legitimate ear controls and coherence under common head/neck deformation.",
+    "frontDistalBoundaryOnly": true,
+    "futureFieldTrialAuthorized": false
+  },
+  "views": {
+    "front": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_front_overlay.png",
+    "back": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_back_overlay.png",
+    "left": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_left_overlay.png",
+    "right": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_right_overlay.png",
+    "top": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_top_overlay.png",
+    "q3": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_q3_overlay.png",
+    "left_context": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_left_context_overlay.png",
+    "q3_context": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_q3_context_overlay.png"
+  },
+  "fullPlanesContainmentIdsPositions": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_shell_neck_contours.json",
+  "exactSourceNodeFaceMap": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_node_source_refs.json",
+  "protectedDataUnchanged": true,
+  "artifactHashes": {
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_left_context_overlay.png": "127edbccfba44c6e7f006c14957d0983b9be8b25bed45d1030a2113d07f4edfc",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_q3_context_raw.png": "7b7f19c832303d0d6516296fdc909cbe7decdedbe08e7e379515c5ec2f7fab79",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_preflight_identity_serialization.json": "b19f65dd96010fb839f4bdc56917cadc6fcd6862fdd078870b8139ef42a430d5",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_front_projection.json": "ea0d9f5217489d68277bb8b00868f88e63f59afca95c0f39a2c56b007a701ec4",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_current_production_correspondence.json": "10d8138d170619b3d20e8dc21d0be6978d8813e1e9cd7e048e2150a60ecf3d18",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_left_projection.json": "9919cf00a4e6a4bffc7ba99fa51919c11df8e8f31c8473263a8986ab1a5ff86c",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_q3_context_overlay.png": "91e90d35083fe8d32e30099d3834339351a4136ebe14b6a98ee62a8be53eb3a1",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_back_raw.png": "b3da8d396736ca62d9439feb28caced48db3f992052745dfb6244f9b3cd06794",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_top_overlay.png": "8ad64ed896e18e8981b1f6d3a7e735d6d1dbeafd94c3e76c9909cccc7cb21eed",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_back_overlay.png": "809f216972505773af5479b54ae081e6cfb6e8d9f999ecd634d2f67c009f29ec",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_q3_raw.png": "eae8b307b1a5f693297974e5590ea9eb226fd35dd5cd7992d85ff8af53124041",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_production_identity_serialization.json": "f34764816a262e199333f3bec8a3a7447e7dc1f11438c148b024d8b2e75c9e33",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_right_projection.json": "5ec4e4a3fc6fc71f60b38c58b90035a9e7f5513bf0adb49884d9458383150f9f",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_shell_neck_contours.json": "4e7594d85d1fb5b4b1908e2fdee14436c80346d4392714ac864564958b98aa80",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_front_overlay.png": "47d55fbe6f845bca862e3e563e6eed87092959a716798b84fa8ee2ab7341a6e2",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_right_overlay.png": "8cae152fb088ef1c751e9d9f074395b7372dce6ec6ce36d608b65c614f2c3563",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_back_projection.json": "d2af4f0e8d5d53c18c5390dfd516396f177be237387e8b3fedf7c37a9ed649c1",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_left_raw.png": "3e54f77740ceda9f89d8cff0d49147ad04371ff9c5326fbccbb73592b6fdddb8",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_top_raw.png": "d449126e88032130d8d8ed03cffcea5bd7d6d144d1d68dedcd59641d1077f792",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_q3_overlay.png": "bc738006747af32bc8bf583bfdbb72cd5b51e89837de2ace93aaa764339d8d45",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_front_raw.png": "c62bf25d795e5f2e43aa5bb47464fc0f3c689986fae9f6ef23b566cbae5008a8",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_left_overlay.png": "38eba922cad12dd17cc7369308844031de3c1decd3c5466dcea2e0e2164d2748",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_left_context_projection.json": "e4198653aa1f0d0057b15119760bcf7202c240d506578051f1cc680ae644f0bf",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_shell_arrays.npz": "3a158ace228ae3625d7621f9e1221283ceb7a46d123c165cff682aa6e4a51e09",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_top_projection.json": "45bd4f24d63ff6aa4ff2d14a6f0d30582ae8bac35be9c8876d0c1ad92337b4dc",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_right_raw.png": "db38a94f3dd602f487ccd85e424cbe711c0e6ae28e44d07ea030c1319ed02c07",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_q3_projection.json": "df1b5f863349b7bb08da0c42c57942e06f9c383b993438ca24b05e7947225550",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_q3_context_projection.json": "7d73e51144b6827fb1cb8c565d2f8f461dbaec95a25630ad70e277e5eded036e",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_node_source_refs.json": "a1068580fa26ef12f992f77c6d1d0f9ada34942015f1c50864a97be7047c0596",
+    "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/virtual-shell-neck-light/light_virtual_neck_left_context_raw.png": "222363eb6a7e8fe44eaf34dfe1de25629a4ac95261c921d30d953d5cca52ea18"
+  }
+}

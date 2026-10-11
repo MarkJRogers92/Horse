@@ -104,6 +104,12 @@ cervical support field and fitting Graze after independent review confirmed
 incompatible neck/shoulder weights. The previous Stock whole-collar Graze stretch
 was 3.660×; the 2.279× cutoff-only measurement is not a pass. No candidate Walk or
 Graze has been promoted to production.
+The Light neck scaffold now has independently reviewed exact Body/Mane/Tail seam
+correspondence, nested cranial sections, complete skull/ear membership and explicit
+limb/caudal exclusions. Geometry, morphs, masks and rest rig match the frozen Light
+source exactly; candidate weight differences are recorded separately. The lowest
+neck section joins the chest. This accepts geometry mapping, not a new weight
+field or motion. See `docs/visual/evidence/light-neck-scaffold-9c2975ba`.
 A separate Blender/Godot eight-weight probe passed independent native Sol review
 for imported buffers, joint order and generated LOD indices. Its headless inspector
 did not render or measure posed accuracy, and its source field is anatomically

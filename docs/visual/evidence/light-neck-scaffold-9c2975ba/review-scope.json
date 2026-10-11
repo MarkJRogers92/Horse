@@ -1,0 +1,201 @@
+{
+  "schema": "horse.anatomical-scaffold.review-scope.v1",
+  "status": "accepted geometric neck scaffold and protected-data correspondence after independent native Sol review",
+  "productionBlendSha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+  "candidateBlendSha256": "b2cff126e8af50088290a7c58d92f56e99c750181302c33a07254299d294ff8e",
+  "scope": [
+    "222 exact opposing-winding seam pairs across Basis/all four morphs",
+    "Four nested closed cranial sets with complete original skull and ear membership",
+    "Declared limb and caudal torso exclusions",
+    "Exact current indexed geometry/morph/UV/mask/object/rest-rig correspondence",
+    "2931 skull IDs and all911 original ear-control records equal"
+  ],
+  "reviewer": "motion_foundation_consult",
+  "parentViewed": [
+    "front",
+    "left_context",
+    "q3_context"
+  ],
+  "requiredJunctionCorrection": "Lowest x=.55 ventral extension is a Chest/cervical junction; do not label its whole cranial set cervical-only.",
+  "preserve": "Original ear controls and common head-motion coherence",
+  "productionChangedByPreflight": false,
+  "motionOrWeightFieldAccepted": false,
+  "limits": [
+    "Geometric scaffold does not establish deformation acceptance or grazing reach.",
+    "Front-leg evidence establishes distal domains; shoulder junction blend width remains unverified.",
+    "Candidate input differs from production by1837 Body and66 Mane weight vectors and added Walk_Diagnostic; differences are explicit.",
+    "Any new trial must start from frozen production weights, not inherit the rejected candidate field."
+  ],
+  "files": [
+    {
+      "path": "annotate_virtual_neck_preflight.py",
+      "sha256": "05dee8b37661154e681dd7360392a40625635b90a2fc719ebb0b2f33f0ee60a8",
+      "bytes": 2801
+    },
+    {
+      "path": "compare_light_preflight_source.py",
+      "sha256": "3692d0b13dd108d96c07df6f739a611fb54dfdac56fc213684bc094f86e20367",
+      "bytes": 8382
+    },
+    {
+      "path": "light_current_production_correspondence.log",
+      "sha256": "88bbe0d29f1535c7eb1defd662f6072631eb7fa39411534218ef2d430514d4dc",
+      "bytes": 1276
+    },
+    {
+      "path": "light_virtual_shell_neck.log",
+      "sha256": "78d935c79e697e6af7fe78a01c225a333fb9dea8f21ae6c3a1811a39ca2e3255",
+      "bytes": 1287
+    },
+    {
+      "path": "render_virtual_neck_preflight.py",
+      "sha256": "195d4d70125fcc61bb08d00dc6611bd0efa6a037f93dac1f01bb18a03d761a1d",
+      "bytes": 4492
+    },
+    {
+      "path": "summarize_virtual_neck_preflight.py",
+      "sha256": "5c5b1e4d929ab4bcd6d244b793babe8bf5496ddb8897b088feb36ad81043940e",
+      "bytes": 5137
+    },
+    {
+      "path": "VIRTUAL_NECK_PREFLIGHT_SUMMARY.json",
+      "sha256": "ea0396dea66dc6dac338636712ce22fe6812f3eadf6688688b050bdacbce6feb",
+      "bytes": 30140
+    },
+    {
+      "path": "light_current_production_correspondence.json.gz",
+      "uncompressedPath": "light_current_production_correspondence.json",
+      "uncompressedSha256": "10d8138d170619b3d20e8dc21d0be6978d8813e1e9cd7e048e2150a60ecf3d18",
+      "uncompressedBytes": 1206899,
+      "sha256": "30f3d02e3db9d0dd76fab6e7781deed966f45943b755031efea21f071fae63df",
+      "bytes": 154629,
+      "encoding": "gzip; exact original bytes after decompression"
+    },
+    {
+      "path": "light_preflight_identity_serialization.json.gz",
+      "uncompressedPath": "light_preflight_identity_serialization.json",
+      "uncompressedSha256": "b19f65dd96010fb839f4bdc56917cadc6fcd6862fdd078870b8139ef42a430d5",
+      "uncompressedBytes": 28368517,
+      "sha256": "60d4d98772d65f69c8122f2fa299da04f60b66633a7ccbe854a09e4fc9607eab",
+      "bytes": 6650458,
+      "encoding": "gzip; exact original bytes after decompression"
+    },
+    {
+      "path": "light_production_identity_serialization.json.gz",
+      "uncompressedPath": "light_production_identity_serialization.json",
+      "uncompressedSha256": "f34764816a262e199333f3bec8a3a7447e7dc1f11438c148b024d8b2e75c9e33",
+      "uncompressedBytes": 28407125,
+      "sha256": "2d806fd3e6a3249053819c69aa11f3ea85707c7eb75672b08c9b682f68aa35e8",
+      "bytes": 6653910,
+      "encoding": "gzip; exact original bytes after decompression"
+    },
+    {
+      "path": "light_virtual_neck_back_overlay.png",
+      "sha256": "809f216972505773af5479b54ae081e6cfb6e8d9f999ecd634d2f67c009f29ec",
+      "bytes": 643506
+    },
+    {
+      "path": "light_virtual_neck_back_projection.json",
+      "sha256": "d2af4f0e8d5d53c18c5390dfd516396f177be237387e8b3fedf7c37a9ed649c1",
+      "bytes": 48996
+    },
+    {
+      "path": "light_virtual_neck_front_overlay.png",
+      "sha256": "47d55fbe6f845bca862e3e563e6eed87092959a716798b84fa8ee2ab7341a6e2",
+      "bytes": 648397
+    },
+    {
+      "path": "light_virtual_neck_front_projection.json",
+      "sha256": "ea0d9f5217489d68277bb8b00868f88e63f59afca95c0f39a2c56b007a701ec4",
+      "bytes": 49067
+    },
+    {
+      "path": "light_virtual_neck_left_context_overlay.png",
+      "sha256": "127edbccfba44c6e7f006c14957d0983b9be8b25bed45d1030a2113d07f4edfc",
+      "bytes": 648629
+    },
+    {
+      "path": "light_virtual_neck_left_context_projection.json",
+      "sha256": "e4198653aa1f0d0057b15119760bcf7202c240d506578051f1cc680ae644f0bf",
+      "bytes": 49333
+    },
+    {
+      "path": "light_virtual_neck_left_overlay.png",
+      "sha256": "38eba922cad12dd17cc7369308844031de3c1decd3c5466dcea2e0e2164d2748",
+      "bytes": 650463
+    },
+    {
+      "path": "light_virtual_neck_left_projection.json",
+      "sha256": "9919cf00a4e6a4bffc7ba99fa51919c11df8e8f31c8473263a8986ab1a5ff86c",
+      "bytes": 48876
+    },
+    {
+      "path": "light_virtual_neck_q3_context_overlay.png",
+      "sha256": "91e90d35083fe8d32e30099d3834339351a4136ebe14b6a98ee62a8be53eb3a1",
+      "bytes": 657245
+    },
+    {
+      "path": "light_virtual_neck_q3_context_projection.json",
+      "sha256": "7d73e51144b6827fb1cb8c565d2f8f461dbaec95a25630ad70e277e5eded036e",
+      "bytes": 49041
+    },
+    {
+      "path": "light_virtual_neck_q3_overlay.png",
+      "sha256": "bc738006747af32bc8bf583bfdbb72cd5b51e89837de2ace93aaa764339d8d45",
+      "bytes": 662603
+    },
+    {
+      "path": "light_virtual_neck_q3_projection.json",
+      "sha256": "df1b5f863349b7bb08da0c42c57942e06f9c383b993438ca24b05e7947225550",
+      "bytes": 49150
+    },
+    {
+      "path": "light_virtual_neck_right_overlay.png",
+      "sha256": "8cae152fb088ef1c751e9d9f074395b7372dce6ec6ce36d608b65c614f2c3563",
+      "bytes": 652679
+    },
+    {
+      "path": "light_virtual_neck_right_projection.json",
+      "sha256": "5ec4e4a3fc6fc71f60b38c58b90035a9e7f5513bf0adb49884d9458383150f9f",
+      "bytes": 49245
+    },
+    {
+      "path": "light_virtual_neck_top_overlay.png",
+      "sha256": "8ad64ed896e18e8981b1f6d3a7e735d6d1dbeafd94c3e76c9909cccc7cb21eed",
+      "bytes": 633559
+    },
+    {
+      "path": "light_virtual_neck_top_projection.json",
+      "sha256": "45bd4f24d63ff6aa4ff2d14a6f0d30582ae8bac35be9c8876d0c1ad92337b4dc",
+      "bytes": 49265
+    },
+    {
+      "path": "light_virtual_node_source_refs.json.gz",
+      "uncompressedPath": "light_virtual_node_source_refs.json",
+      "uncompressedSha256": "a1068580fa26ef12f992f77c6d1d0f9ada34942015f1c50864a97be7047c0596",
+      "uncompressedBytes": 6492184,
+      "sha256": "2400ae48f198461b2ae49b0394a2f156c9042d296f9668dc4dc1b57c334e160d",
+      "bytes": 742526,
+      "encoding": "gzip; exact original bytes after decompression"
+    },
+    {
+      "path": "light_virtual_shell_arrays.npz",
+      "sha256": "3a158ace228ae3625d7621f9e1221283ceb7a46d123c165cff682aa6e4a51e09",
+      "bytes": 2286260
+    },
+    {
+      "path": "light_virtual_shell_neck_contours.json.gz",
+      "uncompressedPath": "light_virtual_shell_neck_contours.json",
+      "uncompressedSha256": "4e7594d85d1fb5b4b1908e2fdee14436c80346d4392714ac864564958b98aa80",
+      "uncompressedBytes": 3486140,
+      "sha256": "89b6b9d7c36439b57c6ad0bf1faaf84c325c2df8bc230548375d6ab7fab01f4b",
+      "bytes": 598678,
+      "encoding": "gzip; exact original bytes after decompression"
+    },
+    {
+      "path": "virtual_shell_neck_preflight_light.py",
+      "sha256": "4a664e38889aba8ee110948705411208bf30779d7180c8bdd1323ac217219f11",
+      "bytes": 13433
+    }
+  ]
+}

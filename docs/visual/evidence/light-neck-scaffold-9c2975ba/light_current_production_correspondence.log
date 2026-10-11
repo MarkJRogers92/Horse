@@ -1,0 +1,10 @@
+00:00.441  blend            | Read blend: "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/art/derived/production/horse_light.blend"
+/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/compare_light_preflight_source.py:25: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  return {'name':mat.name,'diffuseColor':list(mat.diffuse_color),'useNodes':mat.use_nodes,
+/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/adjacent-support/compare_light_preflight_source.py:26: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  'imageNodes':{n.name:image_source(n.image) if n.image else None for n in mat.node_tree.nodes if n.type=='TEX_IMAGE'} if mat.use_nodes else {}}
+00:02.362  blend            | Read blend: "/Users/markrogers/Documents/Codex/2026-10-11/con/work/motion-candidates/light/horse_light_motion_candidate.blend"
+TASK adult_motion_specialist CURRENT_PRODUCTION_CORRESPONDENCE True rest True unequalProtectedFields [] weightChanges {'Body': 1837, 'Eyes': 0, 'Mane': 66, 'Tail': 0} actions {'production': ['Idle'], 'preflight': ['Idle', 'Walk_Diagnostic']}
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 01:35:57)
+
+Blender quit

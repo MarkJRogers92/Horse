@@ -92,9 +92,19 @@ The rig is based on the local Smart Rig candidate. Its source hierarchy is
 transformed with the family geometry, extended with the canonical root, and
 four-influence weights are transferred to each production mesh. Each manifest
 records the rig source hash, bone mapping, transfer statistics, and rest pose.
-The builder exports only the subtle `Idle` candidate clip; Walk and Graze remain
-gated and rejected reference clips were not copied. Idle is not animation
-acceptance; rig and pose acceptance remains with the motion review.
+The builder exports the subtle `Idle` clip. Its bounded contact, loop and actual
+game-pose evidence is accepted; Walk and Graze remain gated and rejected reference
+clips were not copied. This does not establish full gait or owner art approval.
+
+The reviewed Light geometric neck scaffold uses 222 exact opposing-winding
+Body/Mane/Tail seam pairs, with no production weld or new faces. Four nested
+cranial sections retain the complete original skull and ear membership while
+excluding the declared limb and caudal torso domains. The lowest section's
+ventral extension is a Chest/cervical junction. Protected indexed geometry,
+morphs, UVs, masks, object transforms and rest rig match the frozen Light source.
+The analysis input's earlier weight changes are recorded explicitly; a new field
+must start from frozen production weights. See `evidence/light-neck-scaffold-9c2975ba`.
+This scaffold accepts geometry mapping, not shoulder weights, walking or grazing.
 
 An isolated eight-weight FLOAT export probe retains eight-wide Body/Mane buffers
 in Godot 4.7.2, matching 58 joint names, finite active weights, valid bone indices
