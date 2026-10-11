@@ -9,8 +9,8 @@
     350,
     450
   ],
-  "creditsConsumedByThisAssignment": 34,
-  "remainingCreditsVerified": 1166,
+  "creditsConsumedByThisAssignment": 68,
+  "remainingCreditsVerified": 1132,
   "tasks": [
     {
       "taskId": "01a1296c-fa2c-7195-97a8-a1a4185192ab",
@@ -80,14 +80,78 @@
         "art/candidates/meshy/light_01/smart-rig.glb"
       ],
       "sha256": "16b0e02194f31907f63e362c7aa3ff75504b1b6ffb0a7681cbcb4f52dda1d989"
+    },
+    {
+      "taskId": "01a1299e-926c-72cf-8e05-9caabbe19fb7",
+      "operation": "website text-to-image",
+      "generationModel": "Nano Banana Pro",
+      "source": "authored two-month-old foal neutral clay anatomy prompt",
+      "parameters": {
+        "aspectRatio": "4:3",
+        "count": 1,
+        "multiView": false
+      },
+      "creditsCharged": 9,
+      "chargeEvidence": "website balance 1166 -> 1157 after one submission",
+      "result": "SUCCEEDED; juvenile anatomy reference selected for geometry",
+      "accepted": true,
+      "savedFiles": [
+        "art/candidates/meshy/foal_01/reference.webp"
+      ]
+    },
+    {
+      "taskId": "01a129a0-f5b0-7490-8c44-e56e5ac69d90",
+      "operation": "website image-to-3d",
+      "generationModel": "Meshy 7.1",
+      "source": "01a1299e-926c-72cf-8e05-9caabbe19fb7",
+      "parameters": {
+        "should_texture": false,
+        "license": "Private",
+        "geometryResolution": "Standard selected in website popup; charge25, effective resolution unconfirmed"
+      },
+      "creditsCharged": 25,
+      "chargeEvidence": "Website balance1157 ->1132 after one submission, Queued model visible",
+      "result": "SUCCEEDED;427266 triangles, juvenile local cleanup candidate",
+      "accepted": false,
+      "savedFiles": [
+        "art/candidates/meshy/foal_01/source.glb"
+      ],
+      "sha256": "4d22bf01696cf916f919d1c58d95c4a0e90512fd912fa18adb605e898092c695"
+    },
+    {
+      "taskId": "01a129a5-4f11-7639-a945-58fa9abe92f8",
+      "operation": "website foal rig preparation remesh",
+      "source": "01a129a0-f5b0-7490-8c44-e56e5ac69d90",
+      "parameters": {
+        "topology": "triangle",
+        "targetPolygons": 30000
+      },
+      "creditsCharged": 0,
+      "chargeEvidence": "Confirmation showed0; websitebalance1132 unchanged",
+      "result": "SUCCEEDED; website30400faces",
+      "accepted": false,
+      "savedFiles": []
+    },
+    {
+      "taskId": "01a129a7-6958-770d-98c8-24ca9f456058",
+      "operation": "website foal Smart Rig Beta",
+      "source": "01a129a5-4f11-7639-a945-58fa9abe92f8",
+      "creditsCharged": 0,
+      "chargeEvidence": "Websitebalance1132 unchanged; API reports0",
+      "result": "SUCCEEDED; downloaded for local rig assessment",
+      "accepted": false,
+      "savedFiles": [
+        "art/candidates/meshy/foal_01/smart-rig.glb"
+      ],
+      "sha256": "5b23d0140fb7f56a0f15ca4ca686010355891563de4611c6e868c97fe22c7172"
     }
   ],
   "notes": [
     "Do not treat API consumed_credits=0 on website tasks as free. Use website usage history.",
     "650 spending ceiling remains unchanged; onboarding reward does not expand authorization.",
     "Website task IDs recovered from asset inventory can be retrieved/downloaded with CLI even though API list omits them.",
-    "Only one geometry job and one reference submitted. No paid textures or rerolls.",
-    "Two automatic +50 onboarding rewards;1100-34+100=1166. No credits purchased."
+    "Two references and two geometry jobs submitted. No paid textures or rerolls.",
+    "Two automatic +50 onboarding rewards;1100-68+100=1132. No credits purchased."
   ],
   "accountRewardsDuringAssignment": 100
 }

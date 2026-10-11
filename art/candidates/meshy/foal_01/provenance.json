@@ -1,0 +1,34 @@
+{
+  "asset": "private juvenile horse anatomy candidate",
+  "referenceTaskId": "01a1299e-926c-72cf-8e05-9caabbe19fb7",
+  "geometryTaskId": "01a129a0-f5b0-7490-8c44-e56e5ac69d90",
+  "geometryModel": "Meshy 7.1",
+  "privacy": "Private",
+  "textured": false,
+  "sourceSha256": "4d22bf01696cf916f919d1c58d95c4a0e90512fd912fa18adb605e898092c695",
+  "status": "Unrigged candidate; juvenile proportions selected for local adaptation, not production accepted",
+  "localReview": "Four Blender renders confirm short trunk and long legs; exaggerated chest/haunch grooves and rib ripples require localized softening. Eyes, UVs, rig and runtime masks not yet authored.",
+  "input": "Owner-authored text prompt created the reference; no third-party image upload",
+  "accountPlan": "Pro observed in account UI",
+  "termsSources": [
+    "https://help.meshy.ai/en/articles/9992001-can-i-use-meshy-assets-commercially-license-copyright-explained",
+    "https://help.meshy.ai/en/articles/10137554-what-is-the-ownership-of-the-generated-models"
+  ],
+  "credits": {
+    "reference": 9,
+    "geometry": 25
+  },
+  "files": [
+    "source.glb",
+    "reference.webp",
+    "inspection.json",
+    "front.png",
+    "side.png",
+    "rear.png",
+    "three_quarter.png",
+    "smart-rig.glb"
+  ],
+  "rigTaskId": "01a129a7-6958-770d-98c8-24ca9f456058",
+  "rigSourceSha256": "5b23d0140fb7f56a0f15ca4ca686010355891563de4611c6e868c97fe22c7172",
+  "rigStatus": "Unverified Smart Rig candidate; no accepted animations"
+}

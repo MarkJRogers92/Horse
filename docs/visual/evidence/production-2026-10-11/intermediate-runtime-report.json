@@ -1,0 +1,508 @@
+{
+  "format": "cloverbrook.capture-report.v1",
+  "godot": "4.7.2-stable (official)",
+  "renderer": "Apple M2 / 4.1 Metal - 90.5",
+  "catalog": "reference-assets.v1",
+  "warning": "Stills prove materials, markings and composition only - not animation quality, not art approval.",
+  "failures": 0,
+  "meshFamilies": {
+    "horse.standard.adult.v1": {
+      "scene": "res://assets/horse/production/horse_light.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.compact.adult.v1": {
+      "scene": "res://assets/horse/production/horse_stock.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.standard.foal.v1": {
+      "scene": "res://assets/horse/reference/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    },
+    "horse.compact.foal.v1": {
+      "scene": "res://assets/horse/reference/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    }
+  },
+  "unavailableAnimations": [],
+  "appearancePerformance": {
+    "scene": "eight adult horses, two rows of four; production mesh and materials",
+    "sampleFrames": 120,
+    "averageFrameIntervalMs": 9.527975000000001,
+    "p95FrameIntervalMs": 13.402,
+    "maxFrameIntervalMs": 47.69,
+    "averageObservedFps": 104.95409570239215,
+    "fpsLastSecond": 107,
+    "renderObjectsLastFrame": 70,
+    "renderDrawCallsLastFrame": 70,
+    "renderer": "Apple M2 / 4.1 Metal - 90.5"
+  },
+  "meshLodEvidence": [
+    {
+      "fixtureId": "light_racer.chestnut",
+      "component": "Body",
+      "surface": 0,
+      "baseIndexBytes": 151332,
+      "lodCount": 4,
+      "lods": [
+        {
+          "edgeLength": 0.008654796,
+          "indexDataBytes": 75660
+        },
+        {
+          "edgeLength": 0.01922774,
+          "indexDataBytes": 37824
+        },
+        {
+          "edgeLength": 0.03951795,
+          "indexDataBytes": 18912
+        },
+        {
+          "edgeLength": 0.17663726,
+          "indexDataBytes": 9456
+        }
+      ]
+    },
+    {
+      "fixtureId": "light_racer.chestnut",
+      "component": "Eyes",
+      "surface": 0,
+      "baseIndexBytes": 8640,
+      "lodCount": 8,
+      "lods": [
+        {
+          "edgeLength": 0.0017036236,
+          "indexDataBytes": 4320
+        },
+        {
+          "edgeLength": 0.0026761072,
+          "indexDataBytes": 2160
+        },
+        {
+          "edgeLength": 0.004144519,
+          "indexDataBytes": 1080
+        },
+        {
+          "edgeLength": 0.007909344,
+          "indexDataBytes": 540
+        },
+        {
+          "edgeLength": 0.018743584,
+          "indexDataBytes": 264
+        },
+        {
+          "edgeLength": 0.028115375,
+          "indexDataBytes": 132
+        },
+        {
+          "edgeLength": 0.04217306,
+          "indexDataBytes": 60
+        },
+        {
+          "edgeLength": 0.063259594,
+          "indexDataBytes": 24
+        }
+      ]
+    },
+    {
+      "fixtureId": "light_racer.chestnut",
+      "component": "Mane",
+      "surface": 0,
+      "baseIndexBytes": 1992,
+      "lodCount": 3,
+      "lods": [
+        {
+          "edgeLength": 0.0047758906,
+          "indexDataBytes": 996
+        },
+        {
+          "edgeLength": 0.009804904,
+          "indexDataBytes": 492
+        },
+        {
+          "edgeLength": 0.08119332,
+          "indexDataBytes": 252
+        }
+      ]
+    },
+    {
+      "fixtureId": "light_racer.chestnut",
+      "component": "Tail",
+      "surface": 0,
+      "baseIndexBytes": 26676,
+      "lodCount": 5,
+      "lods": [
+        {
+          "edgeLength": 0.008372611,
+          "indexDataBytes": 13332
+        },
+        {
+          "edgeLength": 0.01705808,
+          "indexDataBytes": 6660
+        },
+        {
+          "edgeLength": 0.03451307,
+          "indexDataBytes": 3324
+        },
+        {
+          "edgeLength": 0.09073017,
+          "indexDataBytes": 1656
+        },
+        {
+          "edgeLength": 0.6400607,
+          "indexDataBytes": 888
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "file": "appearance/light_racer.chestnut__q3.png",
+      "set": "appearance",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "canonical resolver test fixture; not live stock",
+      "fixtureId": "light_racer.chestnut",
+      "coatClassId": "chestnut",
+      "label": "Light \u00B7 athletic \u00B7 Chestnut",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: None, FL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "appearance/light_racer.chestnut__head.png",
+      "set": "appearance",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "close inspection of the same supported fixture",
+      "fixtureId": "light_racer.chestnut",
+      "coatClassId": "chestnut",
+      "label": "Light \u00B7 athletic \u00B7 Chestnut",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: None, FL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "appearance/light_racer.palomino__q3.png",
+      "set": "appearance",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "canonical resolver test fixture; not live stock",
+      "fixtureId": "light_racer.palomino",
+      "coatClassId": "palomino",
+      "label": "Light \u00B7 athletic \u00B7 Palomino",
+      "cacheKey": "6e6dea39ffcdcd83140f501003733571a2b43a621e36f621033b9414fa880c3f",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: StarStrip, HL stocking",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "appearance/light_racer.palomino__head.png",
+      "set": "appearance",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "close inspection of the same supported fixture",
+      "fixtureId": "light_racer.palomino",
+      "coatClassId": "palomino",
+      "label": "Light \u00B7 athletic \u00B7 Palomino",
+      "cacheKey": "6e6dea39ffcdcd83140f501003733571a2b43a621e36f621033b9414fa880c3f",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: StarStrip, HL stocking",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "appearance/light_endurance.bay__q3.png",
+      "set": "appearance",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "canonical resolver test fixture; not live stock",
+      "fixtureId": "light_endurance.bay",
+      "coatClassId": "bay",
+      "label": "Light \u00B7 long-stride \u00B7 Bay",
+      "cacheKey": "90aa874e351df15a6222a7c0396e41a89aa9acd8dc55fe5cdae4780e5ef45ee0",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: Star, FL sock, HR coronet",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "appearance/light_endurance.bay__head.png",
+      "set": "appearance",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "close inspection of the same supported fixture",
+      "fixtureId": "light_endurance.bay",
+      "coatClassId": "bay",
+      "label": "Light \u00B7 long-stride \u00B7 Bay",
+      "cacheKey": "90aa874e351df15a6222a7c0396e41a89aa9acd8dc55fe5cdae4780e5ef45ee0",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: Star, FL sock, HR coronet",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "appearance/light_endurance.buckskin__q3.png",
+      "set": "appearance",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "canonical resolver test fixture; not live stock",
+      "fixtureId": "light_endurance.buckskin",
+      "coatClassId": "buckskin",
+      "label": "Light \u00B7 long-stride \u00B7 Buckskin",
+      "cacheKey": "9ab2f6f6f1a159cce218ef1ba7c53b8662b6acd12d38160c624f279fdea9c5d6",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: Star, FL pastern, FR pastern",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "appearance/light_endurance.buckskin__head.png",
+      "set": "appearance",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "close inspection of the same supported fixture",
+      "fixtureId": "light_endurance.buckskin",
+      "coatClassId": "buckskin",
+      "label": "Light \u00B7 long-stride \u00B7 Buckskin",
+      "cacheKey": "9ab2f6f6f1a159cce218ef1ba7c53b8662b6acd12d38160c624f279fdea9c5d6",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: Star, FL pastern, FR pastern",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "appearance/stock_muscular.black__q3.png",
+      "set": "appearance",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "canonical resolver test fixture; not live stock",
+      "fixtureId": "stock_muscular.black",
+      "coatClassId": "black",
+      "label": "Stock \u00B7 muscular \u00B7 Black",
+      "cacheKey": "ab24cb93921c35fab23916519ab6e0906f47fef6ac58f63176645dc65922c394",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: Blaze, HR pastern",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.adult.v1"
+    },
+    {
+      "file": "appearance/stock_muscular.black__head.png",
+      "set": "appearance",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "close inspection of the same supported fixture",
+      "fixtureId": "stock_muscular.black",
+      "coatClassId": "black",
+      "label": "Stock \u00B7 muscular \u00B7 Black",
+      "cacheKey": "ab24cb93921c35fab23916519ab6e0906f47fef6ac58f63176645dc65922c394",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: Blaze, HR pastern",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.adult.v1"
+    },
+    {
+      "file": "appearance/stock_muscular.smoky_black__q3.png",
+      "set": "appearance",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "canonical resolver test fixture; not live stock",
+      "fixtureId": "stock_muscular.smoky_black",
+      "coatClassId": "smoky_black",
+      "label": "Stock \u00B7 muscular \u00B7 Smoky black",
+      "cacheKey": "32a6f52a95c4ed407a30efc0a5e312ab12e2626502a65bb8f29c56b20bba9819",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.adult.v1"
+    },
+    {
+      "file": "appearance/stock_muscular.smoky_black__head.png",
+      "set": "appearance",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "close inspection of the same supported fixture",
+      "fixtureId": "stock_muscular.smoky_black",
+      "coatClassId": "smoky_black",
+      "label": "Stock \u00B7 muscular \u00B7 Smoky black",
+      "cacheKey": "32a6f52a95c4ed407a30efc0a5e312ab12e2626502a65bb8f29c56b20bba9819",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.adult.v1"
+    },
+    {
+      "file": "appearance/stock_cob.red_dun__q3.png",
+      "set": "appearance",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "canonical resolver test fixture; not live stock",
+      "fixtureId": "stock_cob.red_dun",
+      "coatClassId": "red_dun",
+      "label": "Stock \u00B7 cob-influenced \u00B7 Red dun",
+      "cacheKey": "074db70fffeda3b38e940e15e14c93ea1a2aecb25e0f45e707c38007558e95cd",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: Blaze, HL coronet",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.adult.v1"
+    },
+    {
+      "file": "appearance/stock_cob.red_dun__head.png",
+      "set": "appearance",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "close inspection of the same supported fixture",
+      "fixtureId": "stock_cob.red_dun",
+      "coatClassId": "red_dun",
+      "label": "Stock \u00B7 cob-influenced \u00B7 Red dun",
+      "cacheKey": "074db70fffeda3b38e940e15e14c93ea1a2aecb25e0f45e707c38007558e95cd",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: Blaze, HL coronet",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.adult.v1"
+    },
+    {
+      "file": "appearance/stock_cob.bay_dun__q3.png",
+      "set": "appearance",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "canonical resolver test fixture; not live stock",
+      "fixtureId": "stock_cob.bay_dun",
+      "coatClassId": "bay_dun",
+      "label": "Stock \u00B7 cob-influenced \u00B7 Bay dun",
+      "cacheKey": "320c6cc18313835d7c1b2f51178b8427594cd3081fae2c9cdb25b8c6fe074b9e",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: Bald, FL coronet, FR sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.adult.v1"
+    },
+    {
+      "file": "appearance/stock_cob.bay_dun__head.png",
+      "set": "appearance",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "close inspection of the same supported fixture",
+      "fixtureId": "stock_cob.bay_dun",
+      "coatClassId": "bay_dun",
+      "label": "Stock \u00B7 cob-influenced \u00B7 Bay dun",
+      "cacheKey": "320c6cc18313835d7c1b2f51178b8427594cd3081fae2c9cdb25b8c6fe074b9e",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: Bald, FL coronet, FR sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.adult.v1"
+    },
+    {
+      "file": "appearance/overview_all_eight.png",
+      "set": "appearance",
+      "view": "overview",
+      "lighting": "Neutral",
+      "note": "all eight canonical resolver art-test fixtures arranged as a 2 by 4 inspection grid",
+      "fixtureId": null,
+      "coatClassId": null,
+      "label": null,
+      "cacheKey": null,
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: Bald, FL coronet, FR sock",
+      "testOnly": null,
+      "meshFamilyId": null
+    },
+    {
+      "file": "appearance/boundary__horse-standard-adult-v1_-2000.png",
+      "set": "appearance",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "renderer boundary probe only; synthetic descriptor weights, not a resolved horse or player save",
+      "fixtureId": "renderer-boundary.horse.standard.adult.v1.-2000",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY renderer morph probe -2000",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: None, FL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "appearance/boundary__horse-standard-adult-v1_0.png",
+      "set": "appearance",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "renderer boundary probe only; synthetic descriptor weights, not a resolved horse or player save",
+      "fixtureId": "renderer-boundary.horse.standard.adult.v1.0",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY renderer morph probe 0",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: None, FL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "appearance/boundary__horse-standard-adult-v1_2000.png",
+      "set": "appearance",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "renderer boundary probe only; synthetic descriptor weights, not a resolved horse or player save",
+      "fixtureId": "renderer-boundary.horse.standard.adult.v1.2000",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY renderer morph probe 2000",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: None, FL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "appearance/boundary__horse-compact-adult-v1_-2000.png",
+      "set": "appearance",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "renderer boundary probe only; synthetic descriptor weights, not a resolved horse or player save",
+      "fixtureId": "renderer-boundary.horse.compact.adult.v1.-2000",
+      "coatClassId": "black",
+      "label": "TEST ONLY renderer morph probe -2000",
+      "cacheKey": "ab24cb93921c35fab23916519ab6e0906f47fef6ac58f63176645dc65922c394",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: Blaze, HR pastern",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.adult.v1"
+    },
+    {
+      "file": "appearance/boundary__horse-compact-adult-v1_0.png",
+      "set": "appearance",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "renderer boundary probe only; synthetic descriptor weights, not a resolved horse or player save",
+      "fixtureId": "renderer-boundary.horse.compact.adult.v1.0",
+      "coatClassId": "black",
+      "label": "TEST ONLY renderer morph probe 0",
+      "cacheKey": "ab24cb93921c35fab23916519ab6e0906f47fef6ac58f63176645dc65922c394",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: Blaze, HR pastern",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.adult.v1"
+    },
+    {
+      "file": "appearance/boundary__horse-compact-adult-v1_2000.png",
+      "set": "appearance",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "renderer boundary probe only; synthetic descriptor weights, not a resolved horse or player save",
+      "fixtureId": "renderer-boundary.horse.compact.adult.v1.2000",
+      "coatClassId": "black",
+      "label": "TEST ONLY renderer morph probe 2000",
+      "cacheKey": "ab24cb93921c35fab23916519ab6e0906f47fef6ac58f63176645dc65922c394",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor; animation \u0027idle\u0027 unavailable; static pose",
+      "markings": "face: Blaze, HR pastern",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.adult.v1"
+    }
+  ]
+}

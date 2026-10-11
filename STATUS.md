@@ -8,15 +8,23 @@ original checkout; new work is isolated here. No release-matrix promotion or mai
 Initial inspection complete. Blender MCP works; Meshy OAuth and 1,100 starting
 credits verified. One generated reference and one private untextured Meshy horse
 are preserved under `art/candidates/meshy/light_01/` with provenance and four-angle
-local Blender renders. Actual website charges: 9 + 25 = 34; automatic onboarding
-reward +50; balance 1,116. API task billing for website jobs reports zero and is
+local Blender renders. Actual website charges: 9 + 25 + 9 + 25 = 68; automatic onboarding
+rewards +100; balance 1,132. A separate juvenile geometry and free rig candidate are preserved. API task billing for website jobs reports zero and is
 not authoritative; use the website usage history and `MESHY_CREDIT_LEDGER.json`.
 
-The candidate has better proportions than the old cob source but is raw 326,366
-triangle geometry without UVs, rig or morphs. Candidate production adaptation,
-shared Light/Stock morphology, articulated rig pose proofs and canonical test-only
-appearance studio integration are underway. Existing CC0-derived work is retained
-as fallback. No new master or motion is accepted yet. See D-007 and
+The immutable source has 326,366 triangles. Derived Light and Stock candidates
+now have 31,440 triangles each, shared base topology, four component-wide body
+morphs, provisional UVs/anatomical masks, and a transferred 58-bone rig. The
+canonical test-only appearance studio displays eight horses from four presets.
+The .NET Godot build/import and targeted captures pass; actual runtime LOD
+buffers exist. Those checks do not establish visual acceptance: eye fit,
+surface/lighting artifacts, and marking boundaries are still being resolved.
+Idle has a closed Blender preview loop; Walk and Graze remain rejected and
+excluded from production exports. Existing CC0-derived work is retained as
+fallback. The owner has prioritized a proper foal next, before finalizing the
+procedural mesh workflow. The separate “Build horse coat texture pipeline” chat
+is authorized to coordinate and is waiting for a stable source snapshot.
+No new master or motion is accepted as final. See D-007 and
 `docs/visual/PRODUCTION_ASSESSMENT.md`.
 
 ---
