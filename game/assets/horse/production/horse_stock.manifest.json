@@ -2,7 +2,7 @@
   "assetVersion": "horse-production.meshy.v1.stock",
   "familyId": "horse.compact",
   "profile": "Meshy compact stock adult",
-  "status": "Candidate-derived static master for visual and importer review; not approved production anatomy",
+  "status": "Candidate rigged master for visual, appearance, and deformation review; not approved production anatomy",
   "source": {
     "file": "art/candidates/meshy/light_01/source.glb",
     "sha256": "eb050377a21d5e2e1b58fd6ccbe239df9c7d320ce545dcc42ef9e72946866367",
@@ -47,20 +47,20 @@
   "triangleCount": 32944,
   "trianglesByMesh": {
     "Body": {
-      "vertices": 19056,
-      "triangles": 25222,
-      "color_0": 19056,
-      "texcoord_1": 19056,
-      "weights_0": 19056
+      "vertices": 16441,
+      "triangles": 21706,
+      "color_0": 16441,
+      "texcoord_1": 16441,
+      "weights_0": 16441
     },
     "Eyes": {
       "triangles": 2944
     },
     "Mane": {
-      "triangles": 332
+      "triangles": 3752
     },
     "Tail": {
-      "triangles": 4446
+      "triangles": 4542
     }
   },
   "decimation": {
@@ -71,12 +71,103 @@
   "sharedTopologyIndexSha256": "732fac6a5beffc9c88a46b6989cf51cd329ed6c48c9a53cd10221e364e856fdc",
   "hairPartition": {
     "sourceFaces": 30000,
-    "bodyFaces": 25222,
-    "maneFaces": 332,
-    "tailFaces": 4446,
-    "sharedSeamEdges": 186,
+    "bodyFaces": 21706,
+    "maneFaces": 3752,
+    "tailFaces": 4542,
+    "sharedSeamEdges": 222,
     "facePartitionConserved": true,
-    "loopNormalsPreservedFromWeldedSource": true
+    "loopNormalsPreservedFromWeldedSource": true,
+    "bodyManeSharedVertices": 172,
+    "bodyTailSharedVertices": 50,
+    "sourceFaceMap": {
+      "dataset": "anatomy_regions_meshy_light_01.json",
+      "sourceTopology": {
+        "vertexCount": 14962,
+        "polygonCount": 30000,
+        "indexSha256": "732fac6a5beffc9c88a46b6989cf51cd329ed6c48c9a53cd10221e364e856fdc",
+        "positionSha256": "80470152356f5cedcd5d7fc06a9ee8ad556f321d03c85bdc7cc7a624762e65fe",
+        "positionQuantizationDecimals": 6,
+        "blenderVersion": "5.2.1 LTS",
+        "decimator": "COLLAPSE 30000 / 326366; no preceding modifiers"
+      },
+      "regionIdsSha256": "cc9be7671729e7b2e25eae9ee319187dcb016c417d8a3dae68590ed9b0f466f5",
+      "sourceFaces": 30000,
+      "bodyFaces": 21706,
+      "maneFaces": 3752,
+      "forelockFaces": 407,
+      "tailFaces": 4542,
+      "forelockIsManeSubset": true,
+      "hairRegionsDisjoint": true,
+      "classifiedBeforeFamilyWarp": true,
+      "method": "Independent fixed-camera visible-surface face-ID traces, asymmetric hanging-side/opposite crest; enclosed source-surface gaps filled; disconnected islands and seam tips removed. No mirror, remesh, caps, or added geometry."
+    },
+    "forelockManeVertices": 239,
+    "weightContinuity": {
+      "method": "exact source-vertex correspondence; Body weights copied to duplicated Mane/Tail seam vertices",
+      "copiedBoundaryVertices": {
+        "Body_Mane": 172,
+        "Body_Tail": 50
+      },
+      "forelockInteriorVertices": 183,
+      "forelockBoundaryVerticesKeepBodyWeights": 56,
+      "forelockInteriorWeights": {
+        "Head": 0.75,
+        "Head_Base": 0.25
+      },
+      "maximumWeightDelta": 0.0,
+      "maximumWeightSumError": 5e-08,
+      "maximumInfluences": 4
+    }
+  },
+  "hoofSupportCorrection": {
+    "method": "per-foot lower support band, bounded 8 mm vertical correction after UV projection; foot warp is identity",
+    "targetPlane_m": 0.001,
+    "maxCorrection_m": 0.008,
+    "movedVertices": 377,
+    "before": {
+      "Front_R": {
+        "samples": 75,
+        "minimum_m": 0.006514413747936487,
+        "p05_m": 0.0080831004306674
+      },
+      "Front_L": {
+        "samples": 74,
+        "minimum_m": 0.007431923411786556,
+        "p05_m": 0.00809791311621666
+      },
+      "Hind_R": {
+        "samples": 117,
+        "minimum_m": -0.00025234618806280196,
+        "p05_m": 0.003889963962137699
+      },
+      "Hind_L": {
+        "samples": 116,
+        "minimum_m": 6.215499888639897e-05,
+        "p05_m": 0.0014689560048282146
+      }
+    },
+    "after": {
+      "Front_R": {
+        "samples": 75,
+        "minimum_m": 0.0010000000474974513,
+        "p05_m": 0.0010000000474974513
+      },
+      "Front_L": {
+        "samples": 74,
+        "minimum_m": 0.0010000000474974513,
+        "p05_m": 0.0010000000474974513
+      },
+      "Hind_R": {
+        "samples": 117,
+        "minimum_m": -0.00025234618806280196,
+        "p05_m": 0.0010000000474974513
+      },
+      "Hind_L": {
+        "samples": 116,
+        "minimum_m": 6.215499888639897e-05,
+        "p05_m": 0.0010000000474974513
+      }
+    }
   },
   "bodyShapeKeys": {
     "body_length": {
@@ -88,8 +179,8 @@
       "nodes": {
         "Body": 0.04088,
         "Eyes": 0.0,
-        "Mane": 0.0,
-        "Tail": 0.00482
+        "Mane": 0.02757,
+        "Tail": 0.00114
       }
     },
     "chest_width": {
@@ -100,9 +191,9 @@
       ],
       "nodes": {
         "Body": 0.04044,
-        "Eyes": 0.00061,
-        "Mane": 0.00467,
-        "Tail": 0.00214
+        "Eyes": 0.00062,
+        "Mane": 0.01901,
+        "Tail": 0.00057
       }
     },
     "neck_length": {
@@ -114,7 +205,7 @@
       "nodes": {
         "Body": 0.075,
         "Eyes": 0.075,
-        "Mane": 0.05753,
+        "Mane": 0.075,
         "Tail": 0.0
       }
     },
@@ -127,8 +218,8 @@
       "nodes": {
         "Body": 0.02753,
         "Eyes": 0.0041,
-        "Mane": 0.02035,
-        "Tail": 0.00354
+        "Mane": 0.02095,
+        "Tail": 0.0018
       }
     }
   },
@@ -138,35 +229,45 @@
     "canonicalUV1": "existing importer anatomy helper"
   },
   "maskCoverage": {
-    "vertex_count": 12664,
-    "head_poll_loops": 2736,
-    "head_muzzle_loops": 6107,
-    "head_front_loops": 6878,
-    "forehead_front_loops": 3080,
+    "vertex_count": 10924,
+    "head_poll_loops": 2722,
+    "head_muzzle_loops": 6149,
+    "head_front_loops": 5756,
+    "forehead_front_loops": 1811,
     "leg_loops": {
       "Front_L": 6513,
       "Front_R": 6789,
       "Hind_L": 4437,
       "Hind_R": 4347
     },
-    "sentinel_loops": 33945,
-    "head_half_width_m": 0.1171
+    "sentinel_loops": 26820,
+    "head_half_width_m": 0.11829
   },
   "maskBoundaryRepair": {
     "method": "per-corner mask projection on majority-classified head/limb polygons",
-    "headBoundaryLoopsReevaluated": 542,
+    "headBoundaryLoopsReevaluated": 367,
     "legBoundaryLoopsReevaluated": 973,
-    "checkedHeadLoops": 19635,
+    "checkedHeadLoops": 16212,
     "checkedLegLoops": 22086,
     "maxHeadUvError": 6e-08,
     "maxLegHeightError": 6e-08
   },
   "canonicalHeadAxis": {
-    "method": "poll projected from ear-root midpoint shifted back/up onto upper skull; muzzle from centered forward-most nose-tip vertices",
+    "method": "poll projected onto intact source shell from the reviewed centered behind-ear crown ray; muzzle from centered forward-most nose vertices",
+    "earRootMidpoint_m": [
+      0.80886,
+      0.00081,
+      1.8494
+    ],
+    "pollEstimate_m": [
+      0.77386,
+      0.00081,
+      1.8934
+    ],
     "poll_m": [
-      0.66609,
-      0.00392,
-      1.87544
+      0.77377,
+      0.00082,
+      1.89362
     ],
     "muzzle_m": [
       1.09053,
@@ -174,25 +275,17 @@
       1.43979
     ],
     "direction": [
-      0.69782,
-      -0.00606,
-      -0.71625
+      0.57235,
+      -0.00106,
+      -0.82001
     ],
-    "horizontalForwardXY": 0.99996,
+    "horizontalForwardXY": 1.0,
+    "muzzleCandidateCount": 50,
     "canonicalS0_30World_m": [
-      0.79342,
-      0.00281,
-      1.74475
-    ],
-    "landmarkValidation": {
-      "earRootMidpoint_m": [
-        0.77345,
-        0.00468,
-        1.83525
-      ],
-      "pollToEarMidpoint_m": 0.11464,
-      "muzzleTipCandidateCount": 50
-    }
+      0.86879,
+      0.00064,
+      1.75747
+    ]
   },
   "eyeFit": {
     "method": "BVH orbital surface fit with partially recessed horizontal almond geometry",
@@ -215,14 +308,14 @@
           1.71445
         ],
         "outwardNormal": [
-          0.49971,
-          -0.80169,
-          -0.32801
+          0.6278,
+          -0.77556,
+          0.06613
         ],
         "center_m": [
-          0.89557,
-          -0.10706,
-          1.71576
+          0.89506,
+          -0.10717,
+          1.71418
         ],
         "surfaceRecess_m": 0.004,
         "maxSurfaceProtrusion_m": 0.0025,
@@ -415,10 +508,10 @@
     "weighting": [
       {
         "mesh": "Body",
-        "vertices": 12664,
-        "groups": 54,
+        "vertices": 10924,
+        "groups": 53,
         "maxInfluences": 4,
-        "maxProjectionDistance_m": 0.006037,
+        "maxProjectionDistance_m": 0.006572,
         "weightMethod": "nearest Smart Rig triangle, barycentric 4-influence transfer, exact-sum 8-bit weights",
         "localization": "rest-segment attenuation for forelimb and neck/head weights on Body"
       },
@@ -433,16 +526,16 @@
       },
       {
         "mesh": "Mane",
-        "vertices": 189,
-        "groups": 5,
+        "vertices": 1963,
+        "groups": 7,
         "maxInfluences": 4,
-        "maxProjectionDistance_m": 0.001665,
+        "maxProjectionDistance_m": 0.002138,
         "weightMethod": "nearest Smart Rig triangle, barycentric 4-influence transfer, exact-sum 8-bit weights",
         "localization": "none; source surface weights preserved"
       },
       {
         "mesh": "Tail",
-        "vertices": 2295,
+        "vertices": 2297,
         "groups": 7,
         "maxInfluences": 4,
         "maxProjectionDistance_m": 0.002253,
@@ -472,9 +565,9 @@
     ]
   },
   "headViewTarget_m": [
-    0.83861,
-    1.63441,
-    0.0181
+    0.91146,
+    1.65942,
+    -0.00058
   ],
   "glbValidation": {
     "mesh_names": [
@@ -555,20 +648,20 @@
     "triangles": 32944,
     "primitives": {
       "Body": {
-        "vertices": 19056,
-        "triangles": 25222,
-        "color_0": 19056,
-        "texcoord_1": 19056,
-        "weights_0": 19056
+        "vertices": 16441,
+        "triangles": 21706,
+        "color_0": 16441,
+        "texcoord_1": 16441,
+        "weights_0": 16441
       },
       "Eyes": {
         "triangles": 2944
       },
       "Mane": {
-        "triangles": 332
+        "triangles": 3752
       },
       "Tail": {
-        "triangles": 4446
+        "triangles": 4542
       }
     },
     "attributes": {
@@ -617,7 +710,7 @@
     "max_skin_weight_sum_error": 9.778887033462524e-08,
     "skin_weights_by_mesh": {
       "Body": {
-        "vertices": 19056,
+        "vertices": 16441,
         "max_sum_error": 9.778887033462524e-08
       },
       "Eyes": {
@@ -625,11 +718,11 @@
         "max_sum_error": 1.1175870895385742e-08
       },
       "Mane": {
-        "vertices": 189,
-        "max_sum_error": 7.078051567077637e-08
+        "vertices": 1963,
+        "max_sum_error": 9.685754776000977e-08
       },
       "Tail": {
-        "vertices": 2295,
+        "vertices": 2297,
         "max_sum_error": 9.406358003616333e-08
       }
     },
@@ -637,23 +730,23 @@
     "body_has_descriptor_attributes": true,
     "body_has_skin": true,
     "exported_head_direction_muzzle_minus_poll": [
-      0.68296,
-      -0.72786,
-      -0.06155
+      0.4492,
+      -0.8934,
+      0.00725
     ],
     "exported_horizontal_forward_XZ": [
-      0.99596,
-      -0.08976
+      0.99987,
+      0.01613
     ],
     "exported_poll_center_m": [
-      0.65286,
-      1.83237,
-      0.03484
+      0.79931,
+      1.88249,
+      -0.00239
     ],
     "exported_muzzle_center_m": [
-      1.02436,
-      1.43644,
-      0.00136
+      1.02362,
+      1.43635,
+      0.00123
     ]
   },
   "glbMorphTargets": {
@@ -684,7 +777,7 @@
   },
   "geometryQuality": {
     "Body": {
-      "nonmanifold_edges": 186,
+      "nonmanifold_edges": 222,
       "zero_area_faces": 0,
       "loose_vertices": 0
     },
@@ -694,12 +787,12 @@
       "loose_vertices": 0
     },
     "Mane": {
-      "nonmanifold_edges": 44,
+      "nonmanifold_edges": 172,
       "zero_area_faces": 0,
       "loose_vertices": 0
     },
     "Tail": {
-      "nonmanifold_edges": 142,
+      "nonmanifold_edges": 50,
       "zero_area_faces": 0,
       "loose_vertices": 0
     }

@@ -1,0 +1,563 @@
+{
+  "taskId": "adult-game-validation-26a4870d",
+  "godot": "4.7.2-stable (official)",
+  "renderer": "Apple M2 / 4.1 Metal - 90.5",
+  "asset": {
+    "path": "game/assets/horse/production/horse_light.glb",
+    "sha256": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc"
+  },
+  "manifest": {
+    "path": "game/assets/horse/production/horse_light.manifest.json",
+    "sha256": "dcc04138259ce99a8ccc59252fbe17f69cc26a3dc36e6d06acdb1da76b06973c",
+    "headViewTarget_m": [
+      1.04377,
+      1.66139,
+      -0.00332
+    ],
+    "exportedPollCenter_m": [
+      0.93687,
+      1.8836,
+      -0.00581
+    ],
+    "exportedMuzzleCenter_m": [
+      1.15068,
+      1.43918,
+      -0.00083
+    ]
+  },
+  "catalog": {
+    "path": "game/data/visual_catalog.json",
+    "sha256": "e75c769a1c7e7bc191aef3ea6e9ba736d970c93a8c2e2304c4bc1e5667ec0007",
+    "lightHeadViewTarget": [
+      1.04377,
+      1.66139,
+      -0.00332
+    ],
+    "lightFamilyMorphs": {
+      "Body": {
+        "body_length": "body_length",
+        "chest_width": "chest_width",
+        "neck_length": "neck_length",
+        "muscle": "muscle"
+      },
+      "Eyes": {
+        "body_length": "body_length",
+        "chest_width": "chest_width",
+        "neck_length": "neck_length",
+        "muscle": "muscle"
+      },
+      "Mane": {
+        "body_length": "body_length",
+        "chest_width": "chest_width",
+        "neck_length": "neck_length",
+        "muscle": "muscle"
+      },
+      "Tail": {
+        "body_length": "body_length",
+        "chest_width": "chest_width",
+        "neck_length": "neck_length",
+        "muscle": "muscle"
+      }
+    }
+  },
+  "targetedRuntime": {
+    "captureReport": "capture_report.json",
+    "failures": 0,
+    "imageCount": 8,
+    "markings": "face: Star, FL stocking, HL sock",
+    "animation": {
+      "fixtureId": "light_racer.chestnut.markings-1e5f00",
+      "meshFamilyId": "horse.standard.adult.v1",
+      "animationPlayerFound": true,
+      "tracks": [
+        "Idle"
+      ],
+      "requestedAnimation": "idle",
+      "resolvedAnimation": "Idle",
+      "isPlayingAfterFrames": true,
+      "positionBeforeFrames": 0,
+      "positionAfterFrames": 0.21166199999999988,
+      "clipLengthSeconds": 4.041666507720947,
+      "positionAdvanced": true,
+      "hasExactLowercaseIdle": false,
+      "hasExactUppercaseIdle": true,
+      "skeletonBoneCount": 58,
+      "skeletonBoneNames": [
+        "Chest",
+        "Ear_L",
+        "Ear_L_02",
+        "Ear_L_03",
+        "Ear_R",
+        "Ear_R_02",
+        "Ear_R_03",
+        "Front_L_Cannon",
+        "Front_L_Forearm",
+        "Front_L_Hoof",
+        "Front_L_Hoof_02",
+        "Front_L_Hoof_03",
+        "Front_L_Pastern",
+        "Front_L_Upper",
+        "Front_R_Cannon",
+        "Front_R_Forearm",
+        "Front_R_Hoof",
+        "Front_R_Hoof_02",
+        "Front_R_Hoof_03",
+        "Front_R_Pastern",
+        "Front_R_Upper",
+        "Head",
+        "Head_Base",
+        "Head_Nose",
+        "Head_Upper",
+        "Hind_L_Cannon",
+        "Hind_L_Gaskin",
+        "Hind_L_Hoof",
+        "Hind_L_Hoof_02",
+        "Hind_L_Pastern",
+        "Hind_L_Upper",
+        "Hind_R_Cannon",
+        "Hind_R_Gaskin",
+        "Hind_R_Hoof",
+        "Hind_R_Hoof_02",
+        "Hind_R_Pastern",
+        "Hind_R_Upper",
+        "Jaw_Mid",
+        "Jaw_Tip",
+        "Jaw_Upper",
+        "Neck",
+        "Neck_Base",
+        "Neck_Mid",
+        "Neck_Top",
+        "Neck_Upper",
+        "Pelvis",
+        "Pelvis_Root",
+        "Root",
+        "Spine",
+        "Spine_Mid",
+        "Spine_Upper",
+        "Tail_01",
+        "Tail_02",
+        "Tail_03",
+        "Tail_04",
+        "Tail_05",
+        "Tail_06",
+        "Tail_07"
+      ],
+      "meshComponents": [
+        "Body",
+        "Eyes",
+        "Mane",
+        "Tail"
+      ]
+    },
+    "meshLodEvidence": [
+      {
+        "fixtureId": "light_racer.chestnut.markings-1e5f00",
+        "component": "Body",
+        "surface": 0,
+        "baseIndexBytes": 130236,
+        "lodCount": 4,
+        "lods": [
+          {
+            "edgeLength": 0.009394572,
+            "indexDataBytes": 65112
+          },
+          {
+            "edgeLength": 0.020643326,
+            "indexDataBytes": 32556
+          },
+          {
+            "edgeLength": 0.046570685,
+            "indexDataBytes": 16272
+          },
+          {
+            "edgeLength": 0.44086498,
+            "indexDataBytes": 8136
+          }
+        ]
+      },
+      {
+        "fixtureId": "light_racer.chestnut.markings-1e5f00",
+        "component": "Eyes",
+        "surface": 0,
+        "baseIndexBytes": 17664,
+        "lodCount": 9,
+        "lods": [
+          {
+            "edgeLength": 0.00042909084,
+            "indexDataBytes": 8832
+          },
+          {
+            "edgeLength": 0.00073024165,
+            "indexDataBytes": 4416
+          },
+          {
+            "edgeLength": 0.0011053141,
+            "indexDataBytes": 2208
+          },
+          {
+            "edgeLength": 0.0017878854,
+            "indexDataBytes": 1104
+          },
+          {
+            "edgeLength": 0.003796944,
+            "indexDataBytes": 552
+          },
+          {
+            "edgeLength": 0.0077390973,
+            "indexDataBytes": 276
+          },
+          {
+            "edgeLength": 0.011608646,
+            "indexDataBytes": 132
+          },
+          {
+            "edgeLength": 0.01741297,
+            "indexDataBytes": 60
+          },
+          {
+            "edgeLength": 0.026119454,
+            "indexDataBytes": 24
+          }
+        ]
+      },
+      {
+        "fixtureId": "light_racer.chestnut.markings-1e5f00",
+        "component": "Mane",
+        "surface": 0,
+        "baseIndexBytes": 22512,
+        "lodCount": 4,
+        "lods": [
+          {
+            "edgeLength": 0.0055410713,
+            "indexDataBytes": 11256
+          },
+          {
+            "edgeLength": 0.009734357,
+            "indexDataBytes": 5628
+          },
+          {
+            "edgeLength": 0.0193346,
+            "indexDataBytes": 2808
+          },
+          {
+            "edgeLength": 0.06221008,
+            "indexDataBytes": 1404
+          }
+        ]
+      },
+      {
+        "fixtureId": "light_racer.chestnut.markings-1e5f00",
+        "component": "Tail",
+        "surface": 0,
+        "baseIndexBytes": 27252,
+        "lodCount": 7,
+        "lods": [
+          {
+            "edgeLength": 0.008453954,
+            "indexDataBytes": 13620
+          },
+          {
+            "edgeLength": 0.015430788,
+            "indexDataBytes": 6804
+          },
+          {
+            "edgeLength": 0.030047515,
+            "indexDataBytes": 3396
+          },
+          {
+            "edgeLength": 0.061705194,
+            "indexDataBytes": 1692
+          },
+          {
+            "edgeLength": 0.12688053,
+            "indexDataBytes": 840
+          },
+          {
+            "edgeLength": 0.29034463,
+            "indexDataBytes": 420
+          },
+          {
+            "edgeLength": 0.7738075,
+            "indexDataBytes": 312
+          }
+        ]
+      }
+    ]
+  },
+  "appearanceStudioSmoke": {
+    "captureReport": "appearance/capture_report.json",
+    "failures": 0,
+    "imageCount": 23,
+    "performance": {
+      "scene": "eight adult horses, two rows of four; production mesh and materials",
+      "sampleFrames": 120,
+      "averageFrameIntervalMs": 8.3024,
+      "p95FrameIntervalMs": 9.7,
+      "maxFrameIntervalMs": 11.413,
+      "averageObservedFps": 120.4470996338408,
+      "fpsLastSecond": 73,
+      "renderObjectsLastFrame": 70,
+      "renderDrawCallsLastFrame": 70,
+      "renderer": "Apple M2 / 4.1 Metal - 90.5"
+    },
+    "meshLodEvidence": [
+      {
+        "fixtureId": "light_racer.chestnut",
+        "component": "Body",
+        "surface": 0,
+        "baseIndexBytes": 130236,
+        "lodCount": 4,
+        "lods": [
+          {
+            "edgeLength": 0.009394572,
+            "indexDataBytes": 65112
+          },
+          {
+            "edgeLength": 0.020643326,
+            "indexDataBytes": 32556
+          },
+          {
+            "edgeLength": 0.046570685,
+            "indexDataBytes": 16272
+          },
+          {
+            "edgeLength": 0.44086498,
+            "indexDataBytes": 8136
+          }
+        ]
+      },
+      {
+        "fixtureId": "light_racer.chestnut",
+        "component": "Eyes",
+        "surface": 0,
+        "baseIndexBytes": 17664,
+        "lodCount": 9,
+        "lods": [
+          {
+            "edgeLength": 0.00042909084,
+            "indexDataBytes": 8832
+          },
+          {
+            "edgeLength": 0.00073024165,
+            "indexDataBytes": 4416
+          },
+          {
+            "edgeLength": 0.0011053141,
+            "indexDataBytes": 2208
+          },
+          {
+            "edgeLength": 0.0017878854,
+            "indexDataBytes": 1104
+          },
+          {
+            "edgeLength": 0.003796944,
+            "indexDataBytes": 552
+          },
+          {
+            "edgeLength": 0.0077390973,
+            "indexDataBytes": 276
+          },
+          {
+            "edgeLength": 0.011608646,
+            "indexDataBytes": 132
+          },
+          {
+            "edgeLength": 0.01741297,
+            "indexDataBytes": 60
+          },
+          {
+            "edgeLength": 0.026119454,
+            "indexDataBytes": 24
+          }
+        ]
+      },
+      {
+        "fixtureId": "light_racer.chestnut",
+        "component": "Mane",
+        "surface": 0,
+        "baseIndexBytes": 22512,
+        "lodCount": 4,
+        "lods": [
+          {
+            "edgeLength": 0.0055410713,
+            "indexDataBytes": 11256
+          },
+          {
+            "edgeLength": 0.009734357,
+            "indexDataBytes": 5628
+          },
+          {
+            "edgeLength": 0.0193346,
+            "indexDataBytes": 2808
+          },
+          {
+            "edgeLength": 0.06221008,
+            "indexDataBytes": 1404
+          }
+        ]
+      },
+      {
+        "fixtureId": "light_racer.chestnut",
+        "component": "Tail",
+        "surface": 0,
+        "baseIndexBytes": 27252,
+        "lodCount": 7,
+        "lods": [
+          {
+            "edgeLength": 0.008453954,
+            "indexDataBytes": 13620
+          },
+          {
+            "edgeLength": 0.015430788,
+            "indexDataBytes": 6804
+          },
+          {
+            "edgeLength": 0.030047515,
+            "indexDataBytes": 3396
+          },
+          {
+            "edgeLength": 0.061705194,
+            "indexDataBytes": 1692
+          },
+          {
+            "edgeLength": 0.12688053,
+            "indexDataBytes": 840
+          },
+          {
+            "edgeLength": 0.29034463,
+            "indexDataBytes": 420
+          },
+          {
+            "edgeLength": 0.7738075,
+            "indexDataBytes": 312
+          }
+        ]
+      },
+      {
+        "fixtureId": "stock_muscular.black",
+        "component": "Body",
+        "surface": 0,
+        "baseIndexBytes": 151332,
+        "lodCount": 4,
+        "lods": [
+          {
+            "edgeLength": 0.009085458,
+            "indexDataBytes": 75660
+          },
+          {
+            "edgeLength": 0.020022538,
+            "indexDataBytes": 37824
+          },
+          {
+            "edgeLength": 0.044609047,
+            "indexDataBytes": 18912
+          },
+          {
+            "edgeLength": 1.3625729,
+            "indexDataBytes": 9960
+          }
+        ]
+      },
+      {
+        "fixtureId": "stock_muscular.black",
+        "component": "Eyes",
+        "surface": 0,
+        "baseIndexBytes": 17664,
+        "lodCount": 9,
+        "lods": [
+          {
+            "edgeLength": 0.00042817276,
+            "indexDataBytes": 8832
+          },
+          {
+            "edgeLength": 0.0007265786,
+            "indexDataBytes": 4416
+          },
+          {
+            "edgeLength": 0.0010898679,
+            "indexDataBytes": 2208
+          },
+          {
+            "edgeLength": 0.0020917421,
+            "indexDataBytes": 1104
+          },
+          {
+            "edgeLength": 0.0034846363,
+            "indexDataBytes": 552
+          },
+          {
+            "edgeLength": 0.008111105,
+            "indexDataBytes": 276
+          },
+          {
+            "edgeLength": 0.018251684,
+            "indexDataBytes": 132
+          },
+          {
+            "edgeLength": 0.027377525,
+            "indexDataBytes": 60
+          },
+          {
+            "edgeLength": 0.041066285,
+            "indexDataBytes": 24
+          }
+        ]
+      },
+      {
+        "fixtureId": "stock_muscular.black",
+        "component": "Mane",
+        "surface": 0,
+        "baseIndexBytes": 1992,
+        "lodCount": 3,
+        "lods": [
+          {
+            "edgeLength": 0.0044811377,
+            "indexDataBytes": 996
+          },
+          {
+            "edgeLength": 0.008156614,
+            "indexDataBytes": 492
+          },
+          {
+            "edgeLength": 0.08636779,
+            "indexDataBytes": 252
+          }
+        ]
+      },
+      {
+        "fixtureId": "stock_muscular.black",
+        "component": "Tail",
+        "surface": 0,
+        "baseIndexBytes": 26676,
+        "lodCount": 5,
+        "lods": [
+          {
+            "edgeLength": 0.00862739,
+            "indexDataBytes": 13332
+          },
+          {
+            "edgeLength": 0.016919324,
+            "indexDataBytes": 6660
+          },
+          {
+            "edgeLength": 0.034815352,
+            "indexDataBytes": 3324
+          },
+          {
+            "edgeLength": 0.094747104,
+            "indexDataBytes": 1656
+          },
+          {
+            "edgeLength": 0.7808698,
+            "indexDataBytes": 876
+          }
+        ]
+      }
+    ]
+  },
+  "provenanceCaveat": {
+    "hoofCorrection": "per-foot lower support band, bounded 8 mm vertical correction after UV projection; foot warp is identity",
+    "movedVertices": 377,
+    "rigChanges": "Cloud contact review reports three hind-hoof bone endpoint edits and 92/1267 lower-foot weight-record edits; this package does not claim rig identity."
+  }
+}

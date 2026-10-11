@@ -1,0 +1,23 @@
+{
+  "taskId": "light-detail-preparation-26a4870d",
+  "hashes": {
+    "art/derived/production/horse_light.blend": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+    "art/derived/production/horse_stock.blend": "77b3f3d188a525f255b3d46adf0645f472ec81fd3b47dd750a52e216dd0f4627",
+    "game/assets/horse/production/horse_light.glb": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc",
+    "game/assets/horse/production/horse_stock.glb": "0b4f422d238e38ad32d2684ab0f0e55edb479aadb505e9c3542f3e1637066439",
+    "game/assets/horse/production/horse_light.manifest.json": "5148b93a78ba4e2534c563fe7430a824a39ed86f781f738a09aafd3c3057ba91",
+    "game/assets/horse/production/horse_stock.manifest.json": "21b057b5c4367a70c1c4e9ad645d3ac0cd7f2eedbe10beafebf7b55ad06a1831",
+    "art/derived/production/evidence/horse_light_uv0_provenance.json": "f1c6d2521a69f99256ddd165b66843d7db9e4acbea95e6eaacd11f83247d7f54"
+  },
+  "captureFailures": 0,
+  "detailEnabled": false,
+  "stockIdleAdvanced": true,
+  "stockSkeletonBones": 58,
+  "stockLODCounts": {
+    "Body": 4,
+    "Eyes": 9,
+    "Mane": 4,
+    "Tail": 7
+  },
+  "limitation": "Default-disabled detail only; no accepted PNG has been copied. Enabled mode and exported raw-source availability require separate validation."
+}

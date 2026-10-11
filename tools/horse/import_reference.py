@@ -638,7 +638,7 @@ def gltf_matrix(values: list[float]) -> Matrix:
     return Matrix(((values[0],values[4],values[8],values[12]),(values[1],values[5],values[9],values[13]),(values[2],values[6],values[10],values[14]),(values[3],values[7],values[11],values[15])))
 
 
-def inspect_glb(path: Path, blender_report: dict) -> dict:
+def inspect_glb(path: Path, blender_report: dict, allow_animations: bool=False) -> dict:
     doc,bin_data=glb_chunks(path)
     mesh_names={m.get("name") for m in doc.get("meshes",[])}
     if mesh_names!=EXPECTED_MESHES:
@@ -646,7 +646,8 @@ def inspect_glb(path: Path, blender_report: dict) -> dict:
     node_names=[n.get("name","") for n in doc.get("nodes",[])]
     if "Skeleton" not in node_names:
         raise RuntimeError("GLB scene has no Skeleton node")
-    if doc.get("animations"):
+    animation_names=[animation.get("name", "") for animation in doc.get("animations", [])]
+    if animation_names and not allow_animations:
         raise RuntimeError("Reference model must not export invented animations")
     total_triangles=0;primitives={};attribute_report={};weight_sum_error=0.0;bad_normals=0;nonfinite=0;bad_categories=0;skin_weights_by_mesh={}
     for mesh in doc["meshes"]:
@@ -719,7 +720,7 @@ def inspect_glb(path: Path, blender_report: dict) -> dict:
     horizontal_len=math.hypot(forward.x,forward.z)
     horizontal_forward=(forward.x/horizontal_len,forward.z/horizontal_len) if horizontal_len>1e-8 else (0.0,0.0)
     if horizontal_forward[0]<0.9:raise RuntimeError(f"Exported GLB muzzle does not face horizontal +X: direction={tuple(round(v,5) for v in forward)}")
-    return {"mesh_names":sorted(mesh_names),"node_names":node_names,"animations":len(doc.get("animations",[])),"triangles":total_triangles,"primitives":primitives,"attributes":attribute_report,"normal_unit_failures":bad_normals,"nonfinite_values":nonfinite,"max_skin_weight_sum_error":weight_sum_error,"skin_weights_by_mesh":skin_weights_by_mesh,"mixed_canonical_category_triangles":bad_categories,"body_has_descriptor_attributes":True,"body_has_skin":True,"exported_head_direction_muzzle_minus_poll":[round(v,5) for v in forward],"exported_horizontal_forward_XZ":[round(v,5) for v in horizontal_forward],"exported_poll_center_m":[round(v,5) for v in poll_center],"exported_muzzle_center_m":[round(v,5) for v in muzzle_center]}
+    return {"mesh_names":sorted(mesh_names),"node_names":node_names,"animations":len(animation_names),"animationNames":animation_names,"triangles":total_triangles,"primitives":primitives,"attributes":attribute_report,"normal_unit_failures":bad_normals,"nonfinite_values":nonfinite,"max_skin_weight_sum_error":weight_sum_error,"skin_weights_by_mesh":skin_weights_by_mesh,"mixed_canonical_category_triangles":bad_categories,"body_has_descriptor_attributes":True,"body_has_skin":True,"exported_head_direction_muzzle_minus_poll":[round(v,5) for v in forward],"exported_horizontal_forward_XZ":[round(v,5) for v in horizontal_forward],"exported_poll_center_m":[round(v,5) for v in poll_center],"exported_muzzle_center_m":[round(v,5) for v in muzzle_center]}
 
 
 def model_bounds(objects: list[bpy.types.Object]) -> dict:

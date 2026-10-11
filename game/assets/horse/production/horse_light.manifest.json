@@ -2,7 +2,7 @@
   "assetVersion": "horse-production.meshy.v1.light",
   "familyId": "horse.standard",
   "profile": "Meshy refined light adult",
-  "status": "Candidate-derived static master for visual and importer review; not approved production anatomy",
+  "status": "Candidate rigged master for visual, appearance, and deformation review; not approved production anatomy",
   "source": {
     "file": "art/candidates/meshy/light_01/source.glb",
     "sha256": "eb050377a21d5e2e1b58fd6ccbe239df9c7d320ce545dcc42ef9e72946866367",
@@ -47,20 +47,20 @@
   "triangleCount": 32944,
   "trianglesByMesh": {
     "Body": {
-      "vertices": 18089,
-      "triangles": 25222,
-      "color_0": 18089,
-      "texcoord_1": 18089,
-      "weights_0": 18089
+      "vertices": 15674,
+      "triangles": 21706,
+      "color_0": 15674,
+      "texcoord_1": 15674,
+      "weights_0": 15674
     },
     "Eyes": {
       "triangles": 2944
     },
     "Mane": {
-      "triangles": 332
+      "triangles": 3752
     },
     "Tail": {
-      "triangles": 4446
+      "triangles": 4542
     }
   },
   "decimation": {
@@ -71,12 +71,103 @@
   "sharedTopologyIndexSha256": "732fac6a5beffc9c88a46b6989cf51cd329ed6c48c9a53cd10221e364e856fdc",
   "hairPartition": {
     "sourceFaces": 30000,
-    "bodyFaces": 25222,
-    "maneFaces": 332,
-    "tailFaces": 4446,
-    "sharedSeamEdges": 186,
+    "bodyFaces": 21706,
+    "maneFaces": 3752,
+    "tailFaces": 4542,
+    "sharedSeamEdges": 222,
     "facePartitionConserved": true,
-    "loopNormalsPreservedFromWeldedSource": true
+    "loopNormalsPreservedFromWeldedSource": true,
+    "bodyManeSharedVertices": 172,
+    "bodyTailSharedVertices": 50,
+    "sourceFaceMap": {
+      "dataset": "anatomy_regions_meshy_light_01.json",
+      "sourceTopology": {
+        "vertexCount": 14962,
+        "polygonCount": 30000,
+        "indexSha256": "732fac6a5beffc9c88a46b6989cf51cd329ed6c48c9a53cd10221e364e856fdc",
+        "positionSha256": "80470152356f5cedcd5d7fc06a9ee8ad556f321d03c85bdc7cc7a624762e65fe",
+        "positionQuantizationDecimals": 6,
+        "blenderVersion": "5.2.1 LTS",
+        "decimator": "COLLAPSE 30000 / 326366; no preceding modifiers"
+      },
+      "regionIdsSha256": "cc9be7671729e7b2e25eae9ee319187dcb016c417d8a3dae68590ed9b0f466f5",
+      "sourceFaces": 30000,
+      "bodyFaces": 21706,
+      "maneFaces": 3752,
+      "forelockFaces": 407,
+      "tailFaces": 4542,
+      "forelockIsManeSubset": true,
+      "hairRegionsDisjoint": true,
+      "classifiedBeforeFamilyWarp": true,
+      "method": "Independent fixed-camera visible-surface face-ID traces, asymmetric hanging-side/opposite crest; enclosed source-surface gaps filled; disconnected islands and seam tips removed. No mirror, remesh, caps, or added geometry."
+    },
+    "forelockManeVertices": 239,
+    "weightContinuity": {
+      "method": "exact source-vertex correspondence; Body weights copied to duplicated Mane/Tail seam vertices",
+      "copiedBoundaryVertices": {
+        "Body_Mane": 172,
+        "Body_Tail": 50
+      },
+      "forelockInteriorVertices": 183,
+      "forelockBoundaryVerticesKeepBodyWeights": 56,
+      "forelockInteriorWeights": {
+        "Head": 0.75,
+        "Head_Base": 0.25
+      },
+      "maximumWeightDelta": 0.0,
+      "maximumWeightSumError": 5e-08,
+      "maximumInfluences": 4
+    }
+  },
+  "hoofSupportCorrection": {
+    "method": "per-foot lower support band, bounded 8 mm vertical correction after UV projection; foot warp is identity",
+    "targetPlane_m": 0.001,
+    "maxCorrection_m": 0.008,
+    "movedVertices": 377,
+    "before": {
+      "Front_R": {
+        "samples": 75,
+        "minimum_m": 0.006514413747936487,
+        "p05_m": 0.0080831004306674
+      },
+      "Front_L": {
+        "samples": 74,
+        "minimum_m": 0.007431923411786556,
+        "p05_m": 0.00809791311621666
+      },
+      "Hind_R": {
+        "samples": 117,
+        "minimum_m": -0.00025234618806280196,
+        "p05_m": 0.003889963962137699
+      },
+      "Hind_L": {
+        "samples": 116,
+        "minimum_m": 6.215499888639897e-05,
+        "p05_m": 0.0014689560048282146
+      }
+    },
+    "after": {
+      "Front_R": {
+        "samples": 75,
+        "minimum_m": 0.0010000000474974513,
+        "p05_m": 0.0010000000474974513
+      },
+      "Front_L": {
+        "samples": 74,
+        "minimum_m": 0.0010000000474974513,
+        "p05_m": 0.0010000000474974513
+      },
+      "Hind_R": {
+        "samples": 117,
+        "minimum_m": -0.00025234618806280196,
+        "p05_m": 0.0010000000474974513
+      },
+      "Hind_L": {
+        "samples": 116,
+        "minimum_m": 6.215499888639897e-05,
+        "p05_m": 0.0010000000474974513
+      }
+    }
   },
   "bodyShapeKeys": {
     "body_length": {
@@ -88,8 +179,8 @@
       "nodes": {
         "Body": 0.04088,
         "Eyes": 0.0,
-        "Mane": 0.0,
-        "Tail": 0.0041
+        "Mane": 0.02277,
+        "Tail": 0.00104
       }
     },
     "chest_width": {
@@ -100,9 +191,9 @@
       ],
       "nodes": {
         "Body": 0.03437,
-        "Eyes": 0.0002,
-        "Mane": 0.00276,
-        "Tail": 0.00174
+        "Eyes": 0.00021,
+        "Mane": 0.01424,
+        "Tail": 0.00051
       }
     },
     "neck_length": {
@@ -127,8 +218,8 @@
       "nodes": {
         "Body": 0.02433,
         "Eyes": 0.00202,
-        "Mane": 0.01612,
-        "Tail": 0.00284
+        "Mane": 0.01849,
+        "Tail": 0.00167
       }
     }
   },
@@ -138,35 +229,45 @@
     "canonicalUV1": "existing importer anatomy helper"
   },
   "maskCoverage": {
-    "vertex_count": 12664,
-    "head_poll_loops": 2626,
-    "head_muzzle_loops": 6555,
-    "head_front_loops": 6733,
-    "forehead_front_loops": 2994,
+    "vertex_count": 10924,
+    "head_poll_loops": 2672,
+    "head_muzzle_loops": 6561,
+    "head_front_loops": 5555,
+    "forehead_front_loops": 1753,
     "leg_loops": {
       "Front_L": 6675,
       "Front_R": 7053,
       "Hind_L": 4437,
       "Hind_R": 4347
     },
-    "sentinel_loops": 33624,
-    "head_half_width_m": 0.11691
+    "sentinel_loops": 26586,
+    "head_half_width_m": 0.11783
   },
   "maskBoundaryRepair": {
     "method": "per-corner mask projection on majority-classified head/limb polygons",
-    "headBoundaryLoopsReevaluated": 577,
+    "headBoundaryLoopsReevaluated": 387,
     "legBoundaryLoopsReevaluated": 894,
-    "checkedHeadLoops": 19530,
+    "checkedHeadLoops": 16020,
     "checkedLegLoops": 22512,
     "maxHeadUvError": 6e-08,
     "maxLegHeightError": 6e-08
   },
   "canonicalHeadAxis": {
-    "method": "poll projected from ear-root midpoint shifted back/up onto upper skull; muzzle from centered forward-most nose-tip vertices",
+    "method": "poll projected onto intact source shell from the reviewed centered behind-ear crown ray; muzzle from centered forward-most nose vertices",
+    "earRootMidpoint_m": [
+      0.94886,
+      0.0008,
+      1.8494
+    ],
+    "pollEstimate_m": [
+      0.91386,
+      0.0008,
+      1.89339
+    ],
     "poll_m": [
-      0.80609,
-      0.00386,
-      1.87537
+      0.91377,
+      0.00081,
+      1.89362
     ],
     "muzzle_m": [
       1.22598,
@@ -174,25 +275,17 @@
       1.46807
     ],
     "direction": [
-      0.71777,
-      -0.00732,
-      -0.69624
+      0.59154,
+      -0.00233,
+      -0.80627
     ],
-    "horizontalForwardXY": 0.99995,
+    "horizontalForwardXY": 0.99999,
+    "muzzleCandidateCount": 39,
     "canonicalS0_30World_m": [
-      0.93205,
-      0.00258,
-      1.75318
-    ],
-    "landmarkValidation": {
-      "earRootMidpoint_m": [
-        0.91345,
-        0.00464,
-        1.83524
-      ],
-      "pollToEarMidpoint_m": 0.11462,
-      "muzzleTipCandidateCount": 39
-    }
+      1.00743,
+      0.00044,
+      1.76595
+    ]
   },
   "eyeFit": {
     "method": "BVH orbital surface fit with partially recessed horizontal almond geometry",
@@ -215,14 +308,14 @@
           1.71445
         ],
         "outwardNormal": [
-          0.49752,
-          -0.80316,
-          -0.32774
+          0.62575,
+          -0.77722,
+          0.06612
         ],
         "center_m": [
-          1.03558,
-          -0.10676,
-          1.71576
+          1.03507,
+          -0.10687,
+          1.71418
         ],
         "surfaceRecess_m": 0.004,
         "maxSurfaceProtrusion_m": 0.0025,
@@ -415,10 +508,10 @@
     "weighting": [
       {
         "mesh": "Body",
-        "vertices": 12664,
-        "groups": 54,
+        "vertices": 10924,
+        "groups": 53,
         "maxInfluences": 4,
-        "maxProjectionDistance_m": 0.005883,
+        "maxProjectionDistance_m": 0.006572,
         "weightMethod": "nearest Smart Rig triangle, barycentric 4-influence transfer, exact-sum 8-bit weights",
         "localization": "rest-segment attenuation for forelimb and neck/head weights on Body"
       },
@@ -429,25 +522,25 @@
         "maxInfluences": 4,
         "maxProjectionDistance_m": 0.011109,
         "weightMethod": "nearest Smart Rig triangle, barycentric 4-influence transfer, exact-sum 8-bit weights",
-        "localization": "rest-segment attenuation for forelimb and neck/head weights on Body"
+        "localization": "none; source surface weights preserved"
       },
       {
         "mesh": "Mane",
-        "vertices": 189,
-        "groups": 5,
+        "vertices": 1963,
+        "groups": 7,
         "maxInfluences": 4,
-        "maxProjectionDistance_m": 0.001652,
+        "maxProjectionDistance_m": 0.002137,
         "weightMethod": "nearest Smart Rig triangle, barycentric 4-influence transfer, exact-sum 8-bit weights",
-        "localization": "rest-segment attenuation for forelimb and neck/head weights on Body"
+        "localization": "none; source surface weights preserved"
       },
       {
         "mesh": "Tail",
-        "vertices": 2295,
+        "vertices": 2297,
         "groups": 7,
         "maxInfluences": 4,
         "maxProjectionDistance_m": 0.002253,
         "weightMethod": "nearest Smart Rig triangle, barycentric 4-influence transfer, exact-sum 8-bit weights",
-        "localization": "rest-segment attenuation for forelimb and neck/head weights on Body"
+        "localization": "none; source surface weights preserved"
       }
     ],
     "skinInfluenceLimit": 4,
@@ -472,9 +565,9 @@
     ]
   },
   "headViewTarget_m": [
-    0.9607,
-    1.63043,
-    0.01846
+    1.04377,
+    1.66139,
+    -0.00332
   ],
   "glbValidation": {
     "mesh_names": [
@@ -555,20 +648,20 @@
     "triangles": 32944,
     "primitives": {
       "Body": {
-        "vertices": 18089,
-        "triangles": 25222,
-        "color_0": 18089,
-        "texcoord_1": 18089,
-        "weights_0": 18089
+        "vertices": 15674,
+        "triangles": 21706,
+        "color_0": 15674,
+        "texcoord_1": 15674,
+        "weights_0": 15674
       },
       "Eyes": {
         "triangles": 2944
       },
       "Mane": {
-        "triangles": 332
+        "triangles": 3752
       },
       "Tail": {
-        "triangles": 4446
+        "triangles": 4542
       }
     },
     "attributes": {
@@ -617,7 +710,7 @@
     "max_skin_weight_sum_error": 9.778887033462524e-08,
     "skin_weights_by_mesh": {
       "Body": {
-        "vertices": 18089,
+        "vertices": 15674,
         "max_sum_error": 9.778887033462524e-08
       },
       "Eyes": {
@@ -625,11 +718,11 @@
         "max_sum_error": 1.1175870895385742e-08
       },
       "Mane": {
-        "vertices": 189,
-        "max_sum_error": 7.078051567077637e-08
+        "vertices": 1963,
+        "max_sum_error": 9.685754776000977e-08
       },
       "Tail": {
-        "vertices": 2295,
+        "vertices": 2297,
         "max_sum_error": 9.406358003616333e-08
       }
     },
@@ -637,23 +730,23 @@
     "body_has_descriptor_attributes": true,
     "body_has_skin": true,
     "exported_head_direction_muzzle_minus_poll": [
-      0.70512,
-      -0.70553,
-      -0.07096
+      0.4335,
+      -0.9011,
+      0.01009
     ],
     "exported_horizontal_forward_XZ": [
-      0.99497,
-      -0.10013
+      0.99973,
+      0.02326
     ],
     "exported_poll_center_m": [
-      0.76969,
-      1.82155,
-      0.03768
+      0.93687,
+      1.8836,
+      -0.00581
     ],
     "exported_muzzle_center_m": [
-      1.15171,
-      1.43932,
-      -0.00076
+      1.15068,
+      1.43918,
+      -0.00083
     ]
   },
   "glbMorphTargets": {
@@ -684,7 +777,7 @@
   },
   "geometryQuality": {
     "Body": {
-      "nonmanifold_edges": 186,
+      "nonmanifold_edges": 222,
       "zero_area_faces": 0,
       "loose_vertices": 0
     },
@@ -694,12 +787,12 @@
       "loose_vertices": 0
     },
     "Mane": {
-      "nonmanifold_edges": 44,
+      "nonmanifold_edges": 172,
       "zero_area_faces": 0,
       "loose_vertices": 0
     },
     "Tail": {
-      "nonmanifold_edges": 142,
+      "nonmanifold_edges": 50,
       "zero_area_faces": 0,
       "loose_vertices": 0
     }
@@ -715,5 +808,23 @@
     "Meshy source was one welded mesh with no UV, skin, morphs, or named components.",
     "Eyes are newly authored UV spheres. Existing sculpted Mane and Tail faces were partitioned into named meshes; seam edges are shared and verified.",
     "Idle is a subtle candidate clip; walk/graze remain excluded, and no animation or final anatomy acceptance is claimed."
-  ]
+  ],
+  "uvProvenance": {
+    "sidecar": "art/derived/production/evidence/horse_light_uv0_provenance.json",
+    "sidecarSha256": "f1c6d2521a69f99256ddd165b66843d7db9e4acbea95e6eaacd11f83247d7f54",
+    "fullShellUV0Sha256": "5fad9b0a9d62576ab6a1a975476d9009018399c2b46c213b638061436171bd2c",
+    "currentComponentSourceFaceIds": {
+      "Body": 21706,
+      "Mane": 3752,
+      "Tail": 4542
+    },
+    "referenceGlbSha256": "2d282d40a4354e5cabba80bd89be4dd4e64a1bb675daecbf2696f71cce400cee",
+    "currentGlbSha256": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc",
+    "referenceBodyFacesComparedToFullShell": 25222,
+    "currentBodyFacesComparedToFullShell": 21706,
+    "retainedBodyFacesCompared": 21253,
+    "maxHistoricalUVDelta": 2.9802322387695312e-08,
+    "maxCurrentGLBUVDelta": 2.9802322387695312e-08,
+    "mappingLimit": "Ambiguous/unmatched imported corners fail closed; exact current source IDs and full-shell UVs are in the sidecar."
+  }
 }

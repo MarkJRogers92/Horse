@@ -1,0 +1,374 @@
+{
+  "format": "cloverbrook.capture-report.v1",
+  "godot": "4.7.2-stable (official)",
+  "renderer": "Apple M2 / 4.1 Metal - 90.5",
+  "catalog": "reference-assets.v1",
+  "warning": "Stills prove materials, markings and composition only - not animation quality, not art approval.",
+  "failures": 0,
+  "meshFamilies": {
+    "horse.standard.adult.v1": {
+      "scene": "res://assets/horse/production/horse_light.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.compact.adult.v1": {
+      "scene": "res://assets/horse/production/horse_stock.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.standard.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    },
+    "horse.compact.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    }
+  },
+  "unavailableAnimations": [],
+  "animationTrackEvidence": [
+    {
+      "fixtureId": "light_racer.chestnut.markings-1e5f00",
+      "meshFamilyId": "horse.standard.adult.v1",
+      "animationPlayerFound": true,
+      "tracks": [
+        "Idle"
+      ],
+      "requestedAnimation": "idle",
+      "resolvedAnimation": "Idle",
+      "isPlayingAfterFrames": true,
+      "positionBeforeFrames": 0,
+      "positionAfterFrames": 0.21166199999999988,
+      "clipLengthSeconds": 4.041666507720947,
+      "positionAdvanced": true,
+      "hasExactLowercaseIdle": false,
+      "hasExactUppercaseIdle": true,
+      "skeletonBoneCount": 58,
+      "skeletonBoneNames": [
+        "Chest",
+        "Ear_L",
+        "Ear_L_02",
+        "Ear_L_03",
+        "Ear_R",
+        "Ear_R_02",
+        "Ear_R_03",
+        "Front_L_Cannon",
+        "Front_L_Forearm",
+        "Front_L_Hoof",
+        "Front_L_Hoof_02",
+        "Front_L_Hoof_03",
+        "Front_L_Pastern",
+        "Front_L_Upper",
+        "Front_R_Cannon",
+        "Front_R_Forearm",
+        "Front_R_Hoof",
+        "Front_R_Hoof_02",
+        "Front_R_Hoof_03",
+        "Front_R_Pastern",
+        "Front_R_Upper",
+        "Head",
+        "Head_Base",
+        "Head_Nose",
+        "Head_Upper",
+        "Hind_L_Cannon",
+        "Hind_L_Gaskin",
+        "Hind_L_Hoof",
+        "Hind_L_Hoof_02",
+        "Hind_L_Pastern",
+        "Hind_L_Upper",
+        "Hind_R_Cannon",
+        "Hind_R_Gaskin",
+        "Hind_R_Hoof",
+        "Hind_R_Hoof_02",
+        "Hind_R_Pastern",
+        "Hind_R_Upper",
+        "Jaw_Mid",
+        "Jaw_Tip",
+        "Jaw_Upper",
+        "Neck",
+        "Neck_Base",
+        "Neck_Mid",
+        "Neck_Top",
+        "Neck_Upper",
+        "Pelvis",
+        "Pelvis_Root",
+        "Root",
+        "Spine",
+        "Spine_Mid",
+        "Spine_Upper",
+        "Tail_01",
+        "Tail_02",
+        "Tail_03",
+        "Tail_04",
+        "Tail_05",
+        "Tail_06",
+        "Tail_07"
+      ],
+      "meshComponents": [
+        "Body",
+        "Eyes",
+        "Mane",
+        "Tail"
+      ]
+    }
+  ],
+  "appearancePerformance": null,
+  "meshLodEvidence": [
+    {
+      "fixtureId": "light_racer.chestnut.markings-1e5f00",
+      "component": "Body",
+      "surface": 0,
+      "baseIndexBytes": 130236,
+      "lodCount": 4,
+      "lods": [
+        {
+          "edgeLength": 0.009394572,
+          "indexDataBytes": 65112
+        },
+        {
+          "edgeLength": 0.020643326,
+          "indexDataBytes": 32556
+        },
+        {
+          "edgeLength": 0.046570685,
+          "indexDataBytes": 16272
+        },
+        {
+          "edgeLength": 0.44086498,
+          "indexDataBytes": 8136
+        }
+      ]
+    },
+    {
+      "fixtureId": "light_racer.chestnut.markings-1e5f00",
+      "component": "Eyes",
+      "surface": 0,
+      "baseIndexBytes": 17664,
+      "lodCount": 9,
+      "lods": [
+        {
+          "edgeLength": 0.00042909084,
+          "indexDataBytes": 8832
+        },
+        {
+          "edgeLength": 0.00073024165,
+          "indexDataBytes": 4416
+        },
+        {
+          "edgeLength": 0.0011053141,
+          "indexDataBytes": 2208
+        },
+        {
+          "edgeLength": 0.0017878854,
+          "indexDataBytes": 1104
+        },
+        {
+          "edgeLength": 0.003796944,
+          "indexDataBytes": 552
+        },
+        {
+          "edgeLength": 0.0077390973,
+          "indexDataBytes": 276
+        },
+        {
+          "edgeLength": 0.011608646,
+          "indexDataBytes": 132
+        },
+        {
+          "edgeLength": 0.01741297,
+          "indexDataBytes": 60
+        },
+        {
+          "edgeLength": 0.026119454,
+          "indexDataBytes": 24
+        }
+      ]
+    },
+    {
+      "fixtureId": "light_racer.chestnut.markings-1e5f00",
+      "component": "Mane",
+      "surface": 0,
+      "baseIndexBytes": 22512,
+      "lodCount": 4,
+      "lods": [
+        {
+          "edgeLength": 0.0055410713,
+          "indexDataBytes": 11256
+        },
+        {
+          "edgeLength": 0.009734357,
+          "indexDataBytes": 5628
+        },
+        {
+          "edgeLength": 0.0193346,
+          "indexDataBytes": 2808
+        },
+        {
+          "edgeLength": 0.06221008,
+          "indexDataBytes": 1404
+        }
+      ]
+    },
+    {
+      "fixtureId": "light_racer.chestnut.markings-1e5f00",
+      "component": "Tail",
+      "surface": 0,
+      "baseIndexBytes": 27252,
+      "lodCount": 7,
+      "lods": [
+        {
+          "edgeLength": 0.008453954,
+          "indexDataBytes": 13620
+        },
+        {
+          "edgeLength": 0.015430788,
+          "indexDataBytes": 6804
+        },
+        {
+          "edgeLength": 0.030047515,
+          "indexDataBytes": 3396
+        },
+        {
+          "edgeLength": 0.061705194,
+          "indexDataBytes": 1692
+        },
+        {
+          "edgeLength": 0.12688053,
+          "indexDataBytes": 840
+        },
+        {
+          "edgeLength": 0.29034463,
+          "indexDataBytes": 420
+        },
+        {
+          "edgeLength": 0.7738075,
+          "indexDataBytes": 312
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "file": "adult_runtime/light_head.png",
+      "set": "adult_runtime",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "test-only forehead star on the appearance-studio coat and hair recipe; current Light GLB under neutral lighting; head target from manifest",
+      "fixtureId": "light_racer.chestnut.markings-1e5f00",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY Light forehead star",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: Star, FL stocking, HL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "adult_runtime/light_front.png",
+      "set": "adult_runtime",
+      "view": "front",
+      "lighting": "Neutral",
+      "note": "test-only forehead star on the appearance-studio coat and hair recipe; current Light GLB under neutral lighting; head target from manifest",
+      "fixtureId": "light_racer.chestnut.markings-1e5f00",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY Light forehead star",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: Star, FL stocking, HL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "adult_runtime/light_side.png",
+      "set": "adult_runtime",
+      "view": "side",
+      "lighting": "Neutral",
+      "note": "test-only forehead star on the appearance-studio coat and hair recipe; current Light GLB under neutral lighting; head target from manifest",
+      "fixtureId": "light_racer.chestnut.markings-1e5f00",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY Light forehead star",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: Star, FL stocking, HL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "adult_runtime/light_side_left.png",
+      "set": "adult_runtime",
+      "view": "side_left",
+      "lighting": "Neutral",
+      "note": "test-only forehead star on the appearance-studio coat and hair recipe; current Light GLB under neutral lighting; head target from manifest",
+      "fixtureId": "light_racer.chestnut.markings-1e5f00",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY Light forehead star",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: Star, FL stocking, HL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "adult_runtime/light_q3.png",
+      "set": "adult_runtime",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "test-only forehead star on the appearance-studio coat and hair recipe; current Light GLB under neutral lighting; head target from manifest",
+      "fixtureId": "light_racer.chestnut.markings-1e5f00",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY Light forehead star",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: Star, FL stocking, HL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "adult_runtime/light_head_front.png",
+      "set": "adult_runtime",
+      "view": "head_front",
+      "lighting": "Neutral",
+      "note": "close view of ears, eye, muzzle, forehead star and mane attachment under neutral lighting",
+      "fixtureId": "light_racer.chestnut.markings-1e5f00",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY Light forehead star",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: Star, FL stocking, HL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "adult_runtime/light_head_side.png",
+      "set": "adult_runtime",
+      "view": "head_side",
+      "lighting": "Neutral",
+      "note": "close view of ears, eye, muzzle, forehead star and mane attachment under neutral lighting",
+      "fixtureId": "light_racer.chestnut.markings-1e5f00",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY Light forehead star",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: Star, FL stocking, HL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "adult_runtime/light_head_side_left.png",
+      "set": "adult_runtime",
+      "view": "head_side_left",
+      "lighting": "Neutral",
+      "note": "close view of ears, eye, muzzle, forehead star and mane attachment under neutral lighting",
+      "fixtureId": "light_racer.chestnut.markings-1e5f00",
+      "coatClassId": "chestnut",
+      "label": "TEST ONLY Light forehead star",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: Star, FL stocking, HL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    }
+  ]
+}

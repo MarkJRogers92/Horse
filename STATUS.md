@@ -11,30 +11,50 @@ credits (two references at 9 plus two geometry jobs at 25); automatic rewards
 added 100, leaving 1,132. The free foal rig retry has separate limb chains;
 the first incomplete foal rig is rejected and retained as evidence.
 
-The last checked Light and Stock exports each have 32,944 triangles, four component-wide
-body morphs, provisional primary UVs and anatomical masks, and 58-bone rigs.
-The eight-horse/four-preset test-only appearance studio is implemented. Targeted
-Godot verification on Light `2d282d40` and Stock `88cef2c3` produced 41 images with
-zero harness failures, playing/advancing Idle on both, and actual generated LOD
-buffers. Eye placement was lowered into the sculpted sockets and checked on
-both sides, including independently in the coat workflow. Walk and Graze remain
-rejected and excluded. These are candidate checkpoints, not complete production
-acceptance. Geometry-ray front/side checks now verify the visible ear attachments,
-nostrils/muzzle, behind-jaw neck transition and poll/withers mane anchors.
-The new fixed-source face map follows the asymmetric sculpted mane and curved
-forelock while retaining the ears and exposed neck as Body. Parent reviewed the
-actual neutral/colored boundaries; 30,000 source faces and primary UV corners are
-preserved. Light is being rebuilt with this map and a narrow hoof-support fix;
-refreshed runtime, coat and foot-contact checks are still pending.
+Current Light `26a4870d` and rebuilt Stock `0b4f422d` each have 32,944 triangles,
+four component-wide body morphs, provisional primary UVs/anatomical masks, and
+58-bone rigs. Current Light geometry-ray front/side checks identify ear attachments,
+nostrils/muzzle, the behind-jaw neck transition, and poll/withers mane anchors.
+The guarded face map separates asymmetric mane/forelock while retaining ears and
+bare neck as Body. Its crown reference is cached on the intact centered shell;
+UV projection precedes the bounded hoof-support correction. Duplicate Body/Mane
+and Body/Tail boundary positions, skin weights and four morph deltas match exactly.
+Forelock seam clearance measured zero at rest, Idle midpoint, Head +5° and Neck +5°.
+
+Current Light actual Godot checks produced 8 focused images plus 23 studio images
+with zero harness failures, advancing Idle, all 58 bones, four components/morphs,
+and generated LOD buffers. The test-only studio covers eight coats/four presets.
+Parent visual review accepts the diagnostic white on bare forehead skin with
+natural partial forelock occlusion; it does not establish a fully visible star.
+Lowered socket eye fits are preserved. The coat workflow also reviewed the new
+source and reported seated eyes and separate hair/skin; the angular crest edge
+and clipped shoulder endpoint remain source-boundary visual limitations.
+Independent scoped contact QA passed practical support and all 97 Idle frames;
+current Light matches its contact intermediate exactly. A tiny unchanged right-hind
+penetration, three deliberately support-warped hind bone endpoints and 92 altered
+lower-foot weight records remain documented. Current Stock focused head/front,
+Idle advancement, 58 bones, four component morphs and LOD checks also passed.
+Walk and Graze remain rejected/excluded; this is not complete library acceptance.
 
 The distinct foal adapter uses genuine juvenile geometry, locally repaired rig
 hierarchy, and the same semantic shape/coat interface. Source-rig isolated limb
 poses passed. The first derived foal has rejected eye/hair/tail placement and is
-preserved before cleanup; its skin transfer and cleaned runtime remain unverified.
+preserved before cleanup. A foal-specific guarded map now identifies the generated
+fin/fuzz for removal; parent accepted it as a reference/removal boundary only.
+Retained Body positions/UVs/normals passed; two discarded Mane normal corners failed
+their strict check and are recorded. Authored short crest/forelock, one attached
+juvenile tuft and lower socket eyes are being fitted; cleaned target poses/runtime
+remain unverified.
 Family-specific morph contracts and targeted foal capture checks are implemented
 and built, with independent review corrections applied; runtime checks are pending.
 The separate “Build horse coat texture pipeline” chat is authorized to coordinate
-and has the immutable Light snapshot `30507e2e` with matching UVs. No main merge,
+and has immutable current Light `9c2975ba`/`26a4870d`. Strict UV checks match 21,253
+retained Body footprints; a lossless native full-shell UV/source-ID corpus now
+maps all 25,222 historical and 21,706 current Body faces. Independent native
+UV/source-ID checks now pass the retained subset and all 453 recovered skin faces;
+these require an explicit neutral-only path. Final texture review/portable checks
+remain pending. The game's signed-detail hook is default-disabled and under
+independent review; no atlas has been activated. No main merge,
 push, paid texture generation, or complete asset-library acceptance has occurred.
 See D-007, `docs/visual/MESHY_CREDIT_LEDGER.json`, and the production evidence.
 

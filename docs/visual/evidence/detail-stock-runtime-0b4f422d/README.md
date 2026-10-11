@@ -1,0 +1,5 @@
+# Current Stock focused runtime and disabled-detail evidence
+
+Godot 4.7.2 imported Stock 0b4f422d and rendered head/front views with zero capture failures. Idle advanced from 0 to 0.150 seconds, with 58 skeleton bones, four named components and declared morphs, and nonempty Body/Eyes/Mane/Tail LOD buffers (4/9/4/7). The parent viewed both images and accepted the seated eyes and facial blaze on bare skin with natural upper forelock occlusion. These stills do not establish full motion quality.
+
+The Light detail baseline is disabled, with no atlas or enabling family metadata. Malformed/stale metadata probes passed in this run; independent review found that the stale-atlas probe used an untracked fallback fixture and requested a reproducible replacement. The probe now creates its own temporary neutral PNG and removes it in finally. Its targeted rerun passed zero failures; see `detail-baseline-rerun-report.json`. The original report is retained as historical evidence. The independent reviewer accepted the owned-fixture correction for local project use. Enabled rendering and exported raw GLB/PNG provenance availability remain unverified.

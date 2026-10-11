@@ -1,0 +1,299 @@
+{
+  "format": "cloverbrook.capture-report.v1",
+  "godot": "4.7.2-stable (official)",
+  "renderer": "Apple M2 / 4.1 Metal - 90.5",
+  "catalog": "reference-assets.v1",
+  "warning": "Stills prove materials, markings and composition only - not animation quality, not art approval.",
+  "failures": 0,
+  "meshFamilies": {
+    "horse.standard.adult.v1": {
+      "scene": "res://assets/horse/production/horse_light.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.compact.adult.v1": {
+      "scene": "res://assets/horse/production/horse_stock.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.standard.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    },
+    "horse.compact.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    }
+  },
+  "unavailableAnimations": [],
+  "animationTrackEvidence": [
+    {
+      "fixtureId": "stock_muscular.black",
+      "meshFamilyId": "horse.compact.adult.v1",
+      "animationPlayerFound": true,
+      "tracks": [
+        "Idle"
+      ],
+      "requestedAnimation": "idle",
+      "resolvedAnimation": "Idle",
+      "isPlayingAfterFrames": true,
+      "positionBeforeFrames": 0,
+      "positionAfterFrames": 0.1500222222222223,
+      "clipLengthSeconds": 4.041666507720947,
+      "positionAdvanced": true,
+      "hasExactLowercaseIdle": false,
+      "hasExactUppercaseIdle": true,
+      "skeletonBoneCount": 58,
+      "skeletonBoneNames": [
+        "Chest",
+        "Ear_L",
+        "Ear_L_02",
+        "Ear_L_03",
+        "Ear_R",
+        "Ear_R_02",
+        "Ear_R_03",
+        "Front_L_Cannon",
+        "Front_L_Forearm",
+        "Front_L_Hoof",
+        "Front_L_Hoof_02",
+        "Front_L_Hoof_03",
+        "Front_L_Pastern",
+        "Front_L_Upper",
+        "Front_R_Cannon",
+        "Front_R_Forearm",
+        "Front_R_Hoof",
+        "Front_R_Hoof_02",
+        "Front_R_Hoof_03",
+        "Front_R_Pastern",
+        "Front_R_Upper",
+        "Head",
+        "Head_Base",
+        "Head_Nose",
+        "Head_Upper",
+        "Hind_L_Cannon",
+        "Hind_L_Gaskin",
+        "Hind_L_Hoof",
+        "Hind_L_Hoof_02",
+        "Hind_L_Pastern",
+        "Hind_L_Upper",
+        "Hind_R_Cannon",
+        "Hind_R_Gaskin",
+        "Hind_R_Hoof",
+        "Hind_R_Hoof_02",
+        "Hind_R_Pastern",
+        "Hind_R_Upper",
+        "Jaw_Mid",
+        "Jaw_Tip",
+        "Jaw_Upper",
+        "Neck",
+        "Neck_Base",
+        "Neck_Mid",
+        "Neck_Top",
+        "Neck_Upper",
+        "Pelvis",
+        "Pelvis_Root",
+        "Root",
+        "Spine",
+        "Spine_Mid",
+        "Spine_Upper",
+        "Tail_01",
+        "Tail_02",
+        "Tail_03",
+        "Tail_04",
+        "Tail_05",
+        "Tail_06",
+        "Tail_07"
+      ],
+      "meshComponents": [
+        "Body",
+        "Eyes",
+        "Mane",
+        "Tail"
+      ]
+    }
+  ],
+  "appearancePerformance": null,
+  "meshLodEvidence": [
+    {
+      "fixtureId": "stock_muscular.black",
+      "component": "Body",
+      "surface": 0,
+      "baseIndexBytes": 130236,
+      "lodCount": 4,
+      "lods": [
+        {
+          "edgeLength": 0.00978856,
+          "indexDataBytes": 65112
+        },
+        {
+          "edgeLength": 0.021704912,
+          "indexDataBytes": 32556
+        },
+        {
+          "edgeLength": 0.055641383,
+          "indexDataBytes": 16272
+        },
+        {
+          "edgeLength": 0.94846994,
+          "indexDataBytes": 9456
+        }
+      ]
+    },
+    {
+      "fixtureId": "stock_muscular.black",
+      "component": "Eyes",
+      "surface": 0,
+      "baseIndexBytes": 17664,
+      "lodCount": 9,
+      "lods": [
+        {
+          "edgeLength": 0.00041501285,
+          "indexDataBytes": 8832
+        },
+        {
+          "edgeLength": 0.00070500094,
+          "indexDataBytes": 4416
+        },
+        {
+          "edgeLength": 0.0011062962,
+          "indexDataBytes": 2208
+        },
+        {
+          "edgeLength": 0.0017948666,
+          "indexDataBytes": 1104
+        },
+        {
+          "edgeLength": 0.0035174969,
+          "indexDataBytes": 552
+        },
+        {
+          "edgeLength": 0.006077706,
+          "indexDataBytes": 276
+        },
+        {
+          "edgeLength": 0.011531489,
+          "indexDataBytes": 132
+        },
+        {
+          "edgeLength": 0.017297234,
+          "indexDataBytes": 60
+        },
+        {
+          "edgeLength": 0.02594585,
+          "indexDataBytes": 24
+        }
+      ]
+    },
+    {
+      "fixtureId": "stock_muscular.black",
+      "component": "Mane",
+      "surface": 0,
+      "baseIndexBytes": 22512,
+      "lodCount": 4,
+      "lods": [
+        {
+          "edgeLength": 0.005532884,
+          "indexDataBytes": 11256
+        },
+        {
+          "edgeLength": 0.010297955,
+          "indexDataBytes": 5628
+        },
+        {
+          "edgeLength": 0.020959701,
+          "indexDataBytes": 2808
+        },
+        {
+          "edgeLength": 0.0700481,
+          "indexDataBytes": 1404
+        }
+      ]
+    },
+    {
+      "fixtureId": "stock_muscular.black",
+      "component": "Tail",
+      "surface": 0,
+      "baseIndexBytes": 27252,
+      "lodCount": 7,
+      "lods": [
+        {
+          "edgeLength": 0.008490937,
+          "indexDataBytes": 13620
+        },
+        {
+          "edgeLength": 0.01578714,
+          "indexDataBytes": 6804
+        },
+        {
+          "edgeLength": 0.032463055,
+          "indexDataBytes": 3396
+        },
+        {
+          "edgeLength": 0.06495906,
+          "indexDataBytes": 1692
+        },
+        {
+          "edgeLength": 0.1258105,
+          "indexDataBytes": 840
+        },
+        {
+          "edgeLength": 0.48887983,
+          "indexDataBytes": 420
+        },
+        {
+          "edgeLength": 0.8833456,
+          "indexDataBytes": 312
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "file": "detail_baseline/light_body_detail_off.png",
+      "set": "detail_baseline",
+      "view": "q3",
+      "lighting": "Neutral",
+      "note": "baseline catalog has no detail map; shader detail boolean and strength are both disabled/zero",
+      "fixtureId": "light_racer.chestnut",
+      "coatClassId": "chestnut",
+      "label": "Light \u00B7 athletic \u00B7 Chestnut",
+      "cacheKey": "000706f75f190f15b68a994f1b90ab872242fa8c51033065cc459f9cbb5d133b",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None, FL sock",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "stock_runtime/stock_head.png",
+      "set": "stock_runtime",
+      "view": "head",
+      "lighting": "Neutral",
+      "note": "compact adult current manifest target; focused capture and Idle/morph/LOD inventory",
+      "fixtureId": "stock_muscular.black",
+      "coatClassId": "black",
+      "label": "Stock \u00B7 muscular \u00B7 Black",
+      "cacheKey": "ab24cb93921c35fab23916519ab6e0906f47fef6ac58f63176645dc65922c394",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: Blaze, HR pastern",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.adult.v1"
+    },
+    {
+      "file": "stock_runtime/stock_front.png",
+      "set": "stock_runtime",
+      "view": "front",
+      "lighting": "Neutral",
+      "note": "compact adult current manifest target; focused capture and Idle/morph/LOD inventory",
+      "fixtureId": "stock_muscular.black",
+      "coatClassId": "black",
+      "label": "Stock \u00B7 muscular \u00B7 Black",
+      "cacheKey": "ab24cb93921c35fab23916519ab6e0906f47fef6ac58f63176645dc65922c394",
+      "support": "Supported with limitations: morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: Blaze, HR pastern",
+      "testOnly": true,
+      "meshFamilyId": "horse.compact.adult.v1"
+    }
+  ]
+}
