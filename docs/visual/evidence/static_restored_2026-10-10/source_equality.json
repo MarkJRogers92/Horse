@@ -1,0 +1,62 @@
+{
+  "baseline": "74f5094bc05681479c15887ca08591793034eeb9",
+  "checks": [
+    {
+      "file": ".github/workflows/visual.yml",
+      "matchesStaticCheckpoint": true,
+      "sha256": "2a984c24b8d1526c3b29526e1a833b210d3231da8c443a9d0094916e65a4238b"
+    },
+    {
+      "file": "tools/horse/import_reference.py",
+      "matchesStaticCheckpoint": true,
+      "sha256": "c6b308ddec6a9387de3f6cbf94615c50fa4df36175d5874c25b63e178a501929"
+    },
+    {
+      "file": "game/scripts/Tools/CaptureRunner.cs",
+      "matchesStaticCheckpoint": true,
+      "sha256": "784aa60a8676bb86a0e3091a67252e428dc0f2ce72e8f6201994fd73aed1d743"
+    },
+    {
+      "file": "game/scripts/Visual/HorsePresenter.cs",
+      "matchesStaticCheckpoint": true,
+      "sha256": "a6d70db9a3f9fdd9f09a055b2e4b6c607c9db1b6fd6cc5200c9828177c0b8f74"
+    },
+    {
+      "file": "tools/visual/contact_sheets.py",
+      "matchesStaticCheckpoint": true,
+      "sha256": "ad6d68616deb046b8637141bf0b6aacd8f43c297929508fb33514e6a15b52a4b"
+    },
+    {
+      "file": "art/derived/Horse_Reference/horse_adult.blend",
+      "matchesStaticCheckpoint": true,
+      "sha256": "352c8e4b8e33a6f5171a28550f881641214d4017624c1d52de2997cedf684914"
+    },
+    {
+      "file": "game/assets/horse/reference/horse_adult.glb",
+      "matchesStaticCheckpoint": true,
+      "sha256": "9b71116a62aa0f15f00f9ecf234d0b6e26fdbe382d49e3fbdf4bf68037e93ef3"
+    },
+    {
+      "file": "game/assets/horse/reference/horse_adult.manifest.json",
+      "matchesStaticCheckpoint": true,
+      "sha256": "5806f2ec9267a762d7954d7ba2451de6ea6b41c7fcca9971d6b4573e9b721f37"
+    },
+    {
+      "file": "art/derived/Horse_Reference/horse_foal.blend",
+      "matchesStaticCheckpoint": true,
+      "sha256": "accd18a828938935e83ea19cfd738e14b4b2c0b1fa901aa0cdc3aa7395b3f9ea"
+    },
+    {
+      "file": "game/assets/horse/reference/horse_foal.glb",
+      "matchesStaticCheckpoint": true,
+      "sha256": "6033cbec7da02d8ef6f7e8927c848897aa734a78e0b4d42c48f468b05451c116"
+    },
+    {
+      "file": "game/assets/horse/reference/horse_foal.manifest.json",
+      "matchesStaticCheckpoint": true,
+      "sha256": "596f8eff90ad1f7a042a8d3d970fdad60d01eb1dda1a6ad794032428c3103aa7"
+    }
+  ],
+  "glbAnimationCountBothAges": 0,
+  "boneCountBothAges": 27
+}

@@ -1,0 +1,48 @@
+{
+  "animationClips": [],
+  "errors": [],
+  "godot": "4.7.2-stable (official)",
+  "meshes": {
+    "Body": {
+      "color_count": 15027,
+      "normal_detail": true,
+      "skin": true,
+      "surfaces": 1,
+      "uv2_count": 15027
+    },
+    "Eyes": {
+      "color_count": 0,
+      "normal_detail": false,
+      "skin": true,
+      "surfaces": 1,
+      "uv2_count": 0
+    },
+    "Mane": {
+      "color_count": 0,
+      "normal_detail": false,
+      "skin": true,
+      "surfaces": 1,
+      "uv2_count": 0
+    },
+    "Tail": {
+      "color_count": 0,
+      "normal_detail": false,
+      "skin": true,
+      "surfaces": 1,
+      "uv2_count": 0
+    }
+  },
+  "passed": true,
+  "profile": "foal",
+  "skeletons": [
+    {
+      "bones": 27,
+      "name": "Skeleton3D",
+      "origin": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}

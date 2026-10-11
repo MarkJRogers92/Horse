@@ -4,17 +4,13 @@
 **Owner:** Mark leads integration; GPT adapted the selected horse. Claude's visual foundation is retained.
 **Last updated:** 2026-10-10
 
-## Paused animation checkpoint — 2026-10-10
+## Current result — static adult and foal restored
 
-**Animation work is stopped at the owner's request. This is a preservation checkpoint, not an accepted animation release.** The subsequent request explicitly authorizes saving and pushing the unfinished work.
+The active game assets and their build/runtime pipeline have been restored byte-for-byte from the known-good static checkpoint `74f5094bc05681479c15887ca08591793034eeb9`. Adult and foal are both static reference models with no animation clips. Fresh local verification passed: C# build with zero warnings/errors, both Godot imports with 27 bones and no clips, and 16 Metal clay/pair captures with zero failures. See [restoration evidence](evidence/static_restored_2026-10-10/README.md). Earlier full CI evidence below belongs to the original static asset checkpoint.
 
-- The owner rejected the walk/trot deformation: knees and upper legs form sharp shelves, with chest and hindquarter creasing. Numeric playback/loop checks did not establish visual quality.
-- The working tree contains experimental idle/walk/trot generation, source motion samples, capture tooling, Blender files and GLBs. Adult and foal are at different repair stages; the final source edits and saved binaries have not been regenerated and verified together. Do not treat this as a reproducible, accepted final pair.
-- The original static reference package is unchanged. The last verified static game checkpoint is `74f5094bc05681479c15887ca08591793034eeb9` (asset implementation `f0c5b101765bb764d3108d379031c7474e44326e`). Use that revision in a separate checkout when the known static game is needed.
-- Evidence is in `docs/visual/evidence/animation_paused_2026-10-10/`. Those images deliberately document the rejected result. Source benchmark renders do not depict our game mesh.
-- No animation quality approval, full P1-02 completion, coat-matrix promotion, domain change, purchase or merge is claimed. Do not resume animation work without a new owner request.
+Rejected animation experiments are preserved on branch [`archive/horse-animation-experiments-2026-10-10`](https://github.com/MarkJRogers92/Horse/tree/archive/horse-animation-experiments-2026-10-10), checkpoint `674e7908d706ae0309b5b93f0beb3ab73846fa23`. That archive contains the experimental Blender/GLB files, authoring and capture code, and workflow changes. The rejected knee images and source comparison remain in `docs/visual/evidence/animation_paused_2026-10-10/` here for context. The animation branch is not the active runtime. No animation quality approval or P1-02 completion is claimed.
 
-## Last verified static result — authored adult and foal
+## Static result — authored adult and foal (checkpoint evidence)
 
 The owner-selected CC0 horse replaces the runtime placeholder for **both ages**. The original package in `art/reference/Horse_Reference/` stays intact. The foal is a separate juvenile adaptation with a shorter, shallower barrel, relatively long legs and large head, shorter muzzle, smaller hooves and short mane/tail. Independent peer review checked its new silhouette against the rejected first pass.
 
@@ -25,7 +21,7 @@ The owner-selected CC0 horse replaces the runtime placeholder for **both ages**.
 | Coats | Original fur normal detail connects to the procedural shader; fixed chestnut/blaze/socks are absent from exported albedo. All 26 fixtures (13 classes × two ages) rendered locally. Claude's descriptor recipes and deterministic marks remain the source of colour/markings. |
 | Hair | Authored solid clumps use matte shading. Foal mane/forelock is shortened from the crest/poll; tail and tail bones shorten together from the dock. |
 | Shapes | Adult and foal differ anatomically. Standard and compact share the same cob build within each age; compact reports this limitation. Only descriptor height is applied; other body/hair morphs remain unapplied. |
-| Motion | Authored assets have no clips. Missing viewer options are disabled and capture skips them. Old placeholder skeleton/clips remain available for later retargeting; no gait quality is claimed. |
+| Motion | Active authored assets are static and have no clips. Missing viewer options are disabled and capture skips them. Rejected motion experiments are preserved on the separate archive branch; no gait quality is claimed. |
 | Local verification | Game build 0 warnings/errors; both actual Godot imports retained skin, masks/UV2 and normal detail; main-scene smoke passed; real Metal capture produced **131 images, 0 failures** with correct unsupported refusals. |
 | CI | Integration `f0c5b10`: [visual run 38099550595](https://github.com/MarkJRogers92/Horse/actions/runs/38099550595) passed build/import/smoke and **131 images, 0 capture failures**; [domain run 38099550598](https://github.com/MarkJRogers92/Horse/actions/runs/38099550598) passed **147/147 tests**. Downloaded logs/artifacts and actual sheets were inspected. |
 | Reference views | `art/derived/Horse_Reference/Foal_Turnaround.png`: six orthographic views of the same mesh/rest pose at one scale. Calibration and a bounded Blender FK posing report are alongside it. |

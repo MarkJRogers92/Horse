@@ -22,8 +22,6 @@ import bpy
 import bmesh
 from mathutils import Matrix, Quaternion, Vector
 from mathutils.bvhtree import BVHTree
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import reference_animation as gait
 
 ASSET_VERSION = "horse-reference.v1"
 EXPECTED_MESHES = {"Body", "Eyes", "Mane", "Tail"}
@@ -640,7 +638,7 @@ def gltf_matrix(values: list[float]) -> Matrix:
     return Matrix(((values[0],values[4],values[8],values[12]),(values[1],values[5],values[9],values[13]),(values[2],values[6],values[10],values[14]),(values[3],values[7],values[11],values[15])))
 
 
-def inspect_glb(path: Path, blender_report: dict, expected_durations: dict[str, float] | None = None) -> dict:
+def inspect_glb(path: Path, blender_report: dict) -> dict:
     doc,bin_data=glb_chunks(path)
     mesh_names={m.get("name") for m in doc.get("meshes",[])}
     if mesh_names!=EXPECTED_MESHES:
@@ -648,56 +646,8 @@ def inspect_glb(path: Path, blender_report: dict, expected_durations: dict[str, 
     node_names=[n.get("name","") for n in doc.get("nodes",[])]
     if "Skeleton" not in node_names:
         raise RuntimeError("GLB scene has no Skeleton node")
-    animations = doc.get("animations", [])
-    animation_report = []
-    if animations:
-        if {a.get("name") for a in animations} != {"idle", "walk", "trot"}:
-            raise RuntimeError(f"Expected only named idle/walk/trot clips, got {[a.get('name') for a in animations]}")
-        node_names_by_index = [n.get("name", "") for n in doc.get("nodes", [])]
-        for animation in animations:
-            name = animation.get("name", "")
-            sampler_reports = []
-            sampler_ranges = {}
-            for sampler in animation.get("samplers", []):
-                times = read_accessor(doc, bin_data, sampler["input"])
-                values = read_accessor(doc, bin_data, sampler["output"])
-                if not times or not values or any(not math.isfinite(x) for row in times + values for x in row):
-                    raise RuntimeError(f"Animation {name} contains empty/non-finite samples")
-                start_time = times[0][0]; end_time = times[-1][0]
-                delta = max(abs(a-b) for a,b in zip(values[0], values[-1])) if len(values[0]) == len(values[-1]) else float("inf")
-                if delta > 0.002:
-                    # Quaternion signs may differ while representing the same rotation.
-                    if len(values[0]) == 4 and max(abs(a+b) for a,b in zip(values[0], values[-1])) <= 0.002:
-                        delta = 0.0
-                    else:
-                        raise RuntimeError(f"Animation {name} seam differs by {delta:.5f}")
-                sampler_ranges[len(sampler_reports)] = max((max(row[i] for row in values)-min(row[i] for row in values) for i in range(len(values[0]))),default=0.0)
-                sampler_reports.append({"start_s":round(start_time,6),"end_s":round(end_time,6),"samples":len(times),"seamMaxComponentError":round(delta,7)})
-            if not animation.get("channels") or not sampler_reports:
-                raise RuntimeError(f"Animation {name} has no channels/samples")
-            targets = [channel.get("target", {}) for channel in animation["channels"]]
-            if any(target.get("node") is not None and node_names_by_index[target["node"]] == "Skeleton" for target in targets):
-                raise RuntimeError(f"Animation {name} translates/rotates the whole Skeleton root")
-            animated_nodes = sorted({node_names_by_index[target["node"]] for target in targets if target.get("node") is not None})
-            changing_nodes = sorted({node_names_by_index[channel["target"]["node"]] for channel in animation["channels"]
-                                     if channel["target"].get("node") is not None and sampler_ranges.get(channel["sampler"],0.0)>1e-4})
-            start_time = min((sampler["start_s"] for sampler in sampler_reports), default=0.0)
-            end_time = max((sampler["end_s"] for sampler in sampler_reports), default=0.0)
-            if abs(start_time) > 0.001:
-                raise RuntimeError(f"Animation {name} must start at zero, got {start_time:.6f} s")
-            if expected_durations and name in expected_durations and abs((end_time-start_time)-expected_durations[name]) > 0.002:
-                raise RuntimeError(f"Animation {name} duration mismatch: exported {end_time-start_time:.6f}, expected {expected_durations[name]:.6f} s")
-            needed = {"Head", "Hind_L_Shin", "Hind_R_Shin", "Front_L_Cannon", "Front_R_Cannon"}
-            if not needed.issubset(animated_nodes):
-                raise RuntimeError(f"Animation {name} is missing authored joint channels: {sorted(needed-set(animated_nodes))}")
-            moving_required = {"Head", "Hind_L_Shin", "Hind_R_Shin"}
-            if name in {"walk","trot"}:
-                moving_required|={"Front_L_Cannon","Front_R_Cannon"}
-            if not moving_required.issubset(changing_nodes):
-                raise RuntimeError(f"Animation {name} has static/incomplete gait channels: {sorted(moving_required-set(changing_nodes))}")
-            animation_report.append({"name":name,"channels":len(animation["channels"]),"animatedNodes":animated_nodes,"changingNodes":changing_nodes,"start_s":round(start_time,6),"end_s":round(end_time,6),"duration_s":round(end_time-start_time,6),"samplers":sampler_reports})
-    elif path.stat().st_size:
-        raise RuntimeError("Expected authored idle/walk/trot animation clips in GLB")
+    if doc.get("animations"):
+        raise RuntimeError("Reference model must not export invented animations")
     total_triangles=0;primitives={};attribute_report={};weight_sum_error=0.0;bad_normals=0;nonfinite=0;bad_categories=0;skin_weights_by_mesh={}
     for mesh in doc["meshes"]:
         name=mesh["name"];tri_count=0;attrs=[]
@@ -769,7 +719,7 @@ def inspect_glb(path: Path, blender_report: dict, expected_durations: dict[str, 
     horizontal_len=math.hypot(forward.x,forward.z)
     horizontal_forward=(forward.x/horizontal_len,forward.z/horizontal_len) if horizontal_len>1e-8 else (0.0,0.0)
     if horizontal_forward[0]<0.9:raise RuntimeError(f"Exported GLB muzzle does not face horizontal +X: direction={tuple(round(v,5) for v in forward)}")
-    return {"mesh_names":sorted(mesh_names),"node_names":node_names,"animations":animation_report,"triangles":total_triangles,"primitives":primitives,"attributes":attribute_report,"normal_unit_failures":bad_normals,"nonfinite_values":nonfinite,"max_skin_weight_sum_error":weight_sum_error,"skin_weights_by_mesh":skin_weights_by_mesh,"mixed_canonical_category_triangles":bad_categories,"body_has_descriptor_attributes":True,"body_has_skin":True,"exported_head_direction_muzzle_minus_poll":[round(v,5) for v in forward],"exported_horizontal_forward_XZ":[round(v,5) for v in horizontal_forward],"exported_poll_center_m":[round(v,5) for v in poll_center],"exported_muzzle_center_m":[round(v,5) for v in muzzle_center]}
+    return {"mesh_names":sorted(mesh_names),"node_names":node_names,"animations":len(doc.get("animations",[])),"triangles":total_triangles,"primitives":primitives,"attributes":attribute_report,"normal_unit_failures":bad_normals,"nonfinite_values":nonfinite,"max_skin_weight_sum_error":weight_sum_error,"skin_weights_by_mesh":skin_weights_by_mesh,"mixed_canonical_category_triangles":bad_categories,"body_has_descriptor_attributes":True,"body_has_skin":True,"exported_head_direction_muzzle_minus_poll":[round(v,5) for v in forward],"exported_horizontal_forward_XZ":[round(v,5) for v in horizontal_forward],"exported_poll_center_m":[round(v,5) for v in poll_center],"exported_muzzle_center_m":[round(v,5) for v in muzzle_center]}
 
 
 def model_bounds(objects: list[bpy.types.Object]) -> dict:
@@ -806,17 +756,14 @@ def build_profile(profile: str, repo: Path, source: Path, out_dir: Path, blend_d
     if rig is None or rig.type!="ARMATURE":raise RuntimeError("Accepted reference has no Horse_Rig armature")
     body,hooves,eyes,mane,tail=rename_source_objects(rig)
     source_bounds=model_bounds([body,*hooves,*eyes,mane,tail])
-    set_root_and_axis(rig)
-    gait_rig_report=gait.prepare_gait_rig(rig)
     deformation_report={"profile":"adult","withers_m":1.6,"regionalScales":{"barrel_axial":1.0,"barrel_lateral":1.0,"barrel_vertical":1.0,"legs_vertical":1.0,"head_relative":1.0}}
     if profile=="foal":
         deformation_report=apply_foal_deformation(rig,[body,*hooves,*eyes,mane,tail])
         deformation_report["hairShortening"]={"mane":shorten_mane_from_crest(mane,body,rig),"tail":shorten_tail_with_rig(tail,rig,0.30)}
-    gait.reset_ground_root(rig)
+    set_root_and_axis(rig)
     body.name="Body"
     body.data.name="Body"
     normalize_group_names(body,rig)
-    weight_repair_report=gait.repair_body_weights(body,rig,profile)
     for poly in body.data.polygons:poly.use_smooth=True
     eyes_ob=join_eyes(eyes,create_neutral_material("Eye_Descriptor_Neutral"))
     eyes_ob.data.name="Eyes"
@@ -858,7 +805,6 @@ def build_profile(profile: str, repo: Path, source: Path, out_dir: Path, blend_d
     for mat in list(bpy.data.materials):
         if mat not in {coat_mat,hair_mat,eyes_ob.data.materials[0]}:bpy.data.materials.remove(mat)
     bpy.context.scene.unit_settings.system="METRIC";bpy.context.scene.unit_settings.scale_length=1.0
-    animation_metadata=gait.author_actions(rig,profile,hooves)
     # The armature's object origin is the shared ground root. Keep the editable scene free of cameras/lights.
     for obj in list(bpy.data.objects):
         if obj.type in {"CAMERA","LIGHT"}:bpy.data.objects.remove(obj,do_unlink=True)
@@ -880,15 +826,13 @@ def build_profile(profile: str, repo: Path, source: Path, out_dir: Path, blend_d
     bpy.ops.object.select_all(action="DESELECT")
     for ob in (rig,export_body,eyes_ob,mane,tail):ob.select_set(True)
     bpy.context.view_layer.objects.active=rig
-    bpy.ops.export_scene.gltf(filepath=str(glb_path),export_format="GLB",use_selection=True,export_yup=True,export_apply=False,export_texcoords=True,export_normals=True,export_skins=True,export_vertex_color="ACTIVE",export_all_vertex_colors=True,export_animations=True,export_animation_mode="ACTIONS",export_nla_strips=False,export_frame_range=False,export_frame_step=1,export_force_sampling=True,export_anim_single_armature=True,export_optimize_animation_size=False,export_cameras=False,export_lights=False,export_materials="EXPORT",export_image_format="AUTO")
+    bpy.ops.export_scene.gltf(filepath=str(glb_path),export_format="GLB",use_selection=True,export_yup=True,export_apply=False,export_texcoords=True,export_normals=True,export_skins=True,export_vertex_color="ACTIVE",export_all_vertex_colors=True,export_animations=False,export_cameras=False,export_lights=False,export_materials="EXPORT",export_image_format="AUTO")
     geometry_collection.objects.link(body)
     body.name=original_name
     bpy.data.objects.remove(export_body,do_unlink=True)
-    expected_durations={"idle":3.0,"walk":gait.PROFILES[profile]["walk_duration"],"trot":gait.PROFILES[profile]["trot_duration"]}
-    glb_report=inspect_glb(glb_path,{},expected_durations)
+    glb_report=inspect_glb(glb_path,{})
     if glb_report["mesh_names"]!=sorted(EXPECTED_MESHES):raise RuntimeError("Mesh node names do not match contract")
     if "Skeleton" not in glb_report["node_names"]:raise RuntimeError("Missing Skeleton scene node after export")
-    if {clip["name"] for clip in glb_report["animations"]}!={"idle","walk","trot"}:raise RuntimeError("GLB does not contain exactly idle/walk/trot")
     if not glb_report["body_has_descriptor_attributes"] or glb_report["mixed_canonical_category_triangles"]:raise RuntimeError("GLB canonical attribute validation failed")
 
     centroids={}
@@ -911,10 +855,7 @@ def build_profile(profile: str, repo: Path, source: Path, out_dir: Path, blend_d
         "assetVersion":f"{ASSET_VERSION}.{profile}","profile":profile,"status":"CC0 authored reference adapted for Cloverbrook procedural presentation",
         "source":{"author":"Lyndon Daniels","submission":"Realtime Rancher's 3D Model Pack; Rigged Horse submitted by ChadM","license":"CC0 1.0 Universal","sourceUrl":"https://opengameart.org/content/rigged-horse","sourceBlend":"art/reference/Horse_Reference/Horse_Reference.blend","sha256":source_sha(source)},
         "units":"1 Blender unit = 1 metre; Blender Z up and +X forward; glTF +Y up and +X forward; ground root at origin; anatomical left Blender +Y / glTF -Z",
-        "meshNodes":sorted(EXPECTED_MESHES),"rigNode":"Skeleton","animations":animation_metadata,
-        "animationReferenceNotes":["Walk and trot bone trajectories are retargeted from evaluated CC0 clips of Horse Rigged All Gaits by fdoss001 (original mesh credit Tarnyloo), scaled to the target rig and grounded against its hoof meshes.","Walk footfalls follow the four-beat lateral sequence HL, FL, HR, FR described by Kentucky Equine Extension and UGA Extension.","Trot footfalls use diagonal pairs FL+HR and FR+HL as described by Kentucky Equine Extension; idle is separately authored because the source package has no idle clip."],
-        "animationReferences":["https://horses.extension.org/horse-walk/","https://horses.extension.org/horse-trot/","https://extension.uga.edu/publications/detail.html?number=B1401&title=evaluating-common-equine-performance-classes"],
-        "gaitRigAdaptation":{"newHindShinBones":gait_rig_report,"bodyWeightRepair":weight_repair_report},
+        "meshNodes":sorted(EXPECTED_MESHES),"rigNode":"Skeleton","animations":[],
         "triangles":glb_report["primitives"],"totalTriangles":glb_report["triangles"],"bones":[b["name"] for b in bones],
         "attributes":{"Body.COLOR_0":"linear float vec4: r points (lower limbs/ear tips), g soft muzzle and eye skin, b trunk/neck dorsal line and front-facing head, a underside countershade","Body.TEXCOORD_0":"retained source UV detail coordinates; glTF V is flipped by export","Body.TEXCOORD_1":"head=(s=0 poll to 1 muzzle, t lateral -1..1); legs=(10+FL0/FR1/HL2/HR3, h ground0 to knee/hock1, hoof<0.165); other=(-10,50), authored in Blender UV space","Eyes.TEXCOORD_0":"U 0 centre-facing pole to 1 outward pole; V vertical 0 bottom to 1 top (glTF V flip)","Mane/Tail.TEXCOORD_0":"U lateral across clump; V root0 to tips1 in Blender UV space (glTF V flip); parent shader should read 1-UV.y"},
         "bodyMaskCoverage":body_mask_stats,"exportMaskCoverage":export_mask_stats,"geometryQuality":{"editable":editable_quality,"export":export_geo["quality"]},"eyeCentroids_m":centroids,"bounds":bounds,"bonesRestWorld":bones,
@@ -927,7 +868,7 @@ def build_profile(profile: str, repo: Path, source: Path, out_dir: Path, blend_d
         "hairGeometry":"solid authored sculpted clump meshes; retain opaque/solid-clump hair shading rather than card alpha clipping",
         "limitations":[
             ("Adult retains the authored source proportions and topology; it is an adaptation, not a new anatomical sculpt." if profile=="adult" else "Foal adapts the source authored anatomy and topology with intentionally changed juvenile proportions; it is not a new anatomical sculpt."),
-            "The gait clips are authored in-place reference loops with baked IK-like FK bone motion, not a complete production locomotion/controller rig; no runtime IK constraints are required.",
+            "The rig is a basic FK posing rig only; no animation clips, including gait, are supplied.",
             "The existing hair meshes are dense sculpted clumps rather than cards; UVs are projected across width/root-to-tip and the presentation shader must avoid card-shaped alpha clipping."
         ],
         "buildSeconds":round(time.time()-started,2),

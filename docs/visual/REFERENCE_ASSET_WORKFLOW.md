@@ -1,6 +1,6 @@
 # CC0 horse: editable source and procedural coats
 
-**Checkpoint notice:** the static workflow below describes the verified `74f5094` revision. Current animation edits are an unfinished preservation checkpoint; see `VISUAL_STATUS.md`. Do not assume the current generated files retain the static 27-bone rig or accepted deformation.
+**Current state:** the static adult and foal files below are restored byte-for-byte from the known-good `74f5094bc05681479c15887ca08591793034eeb9` checkpoint. Rejected animation experiments are preserved separately on `archive/horse-animation-experiments-2026-10-10` (`674e7908d706ae0309b5b93f0beb3ab73846fa23`); they are not part of the active game pipeline. Fresh build, both Godot imports and 16 Metal clay/pair captures passed; restoration evidence is linked from VISUAL_STATUS.md. See `VISUAL_STATUS.md`.
 
 The pilot uses the authored horse from `art/reference/Horse_Reference/` for both ages. The original package stays intact. The anatomy and source topology are by Lyndon Daniels, from [Realtime Rancher's 3D Model Pack](https://opengameart.org/content/realtime-ranchers-3d-model-pack), downloaded through ChadM's [Rigged Horse](https://opengameart.org/content/rigged-horse) submission. Both listings identify CC0. Our reference adaptation adds materials, hooves, a basic rig and inspection views; the game adaptation adds the required masks and canonical marking coordinates.
 
