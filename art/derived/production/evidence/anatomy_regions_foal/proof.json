@@ -1,0 +1,308 @@
+{
+  "taskId": "anatomy_segmentation",
+  "status": "Parent accepted boundary as removal/reference ONLY; rejected source fin/bristles as final juvenile hair",
+  "faceData": "tools/horse/anatomy_regions_meshy_foal_01.json",
+  "faceDataSha256": "2a7fa59de7384231782fdee440a5b55e248b47bc7c97613f215e23fe9f2c3e6d",
+  "sourceFile": {
+    "path": "art/candidates/meshy/foal_01/source.glb",
+    "sha256": "4d22bf01696cf916f919d1c58d95c4a0e90512fd912fa18adb605e898092c695"
+  },
+  "sourceTopology": {
+    "vertexCount": 14596,
+    "polygonCount": 30000,
+    "indexSha256": "f011603cec8fbe001f3c5aa6c9ff57ac9aa50d847f89cbbf8ff5ab31ff63211d",
+    "positionSha256": "5c2201e18409c92b0bceab325599042da549951aa74962808de2082f4342ee61",
+    "positionQuantizationDecimals": 6,
+    "blenderVersion": "5.2.1 LTS",
+    "decimator": "COLLAPSE 30000 / 427266; source_to_world baked before decimator; no preceding modifiers"
+  },
+  "regionIdsSha256": "78ffec016607a5836c4827feb80634fffcc3e4ed8259108b794a53779f7fe874",
+  "faceCounts": {
+    "Mane": 16974,
+    "Forelock": 1792
+  },
+  "method": "Independent locked-camera frontmost source-face traces on both sides, front, q3 and top; explicit ear-shell Body exclusions; enclosed hidden crest faces filled; disconnected islands and seam tips removed. No mirror, remesh, caps, or vertex edits.",
+  "cameraFiles": {
+    "side": {
+      "center": [
+        0.3499999940395355,
+        0.0,
+        1.2699999809265137
+      ],
+      "direction": [
+        0.0,
+        -0.9998000264167786,
+        0.019996000453829765
+      ],
+      "ortho_scale": 1.35,
+      "resolution": [
+        1400,
+        1000
+      ],
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.3499999940395355
+        ],
+        [
+          0.0,
+          0.019995981827378273,
+          -0.9998000860214233,
+          -9.998000144958496
+        ],
+        [
+          0.0,
+          0.9998000860214233,
+          0.019995981827378273,
+          1.4699599742889404
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "opposite": {
+      "center": [
+        0.3499999940395355,
+        0.0,
+        1.2699999809265137
+      ],
+      "direction": [
+        0.0,
+        0.9998000264167786,
+        0.019996000453829765
+      ],
+      "ortho_scale": 1.35,
+      "resolution": [
+        1400,
+        1000
+      ],
+      "matrix": [
+        [
+          -1.0,
+          1.53954687220903e-07,
+          -1.4794693470321363e-07,
+          0.3499999940395355
+        ],
+        [
+          -1.5099580252808664e-07,
+          -0.01999574340879917,
+          0.9998000860214233,
+          9.998000144958496
+        ],
+        [
+          1.5096559025096212e-07,
+          0.9998000860214233,
+          0.01999574340879917,
+          1.4699599742889404
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "front": {
+      "center": [
+        0.6399999856948853,
+        0.0,
+        1.399999976158142
+      ],
+      "direction": [
+        0.9987523555755615,
+        0.0,
+        0.049937617033720016
+      ],
+      "ortho_scale": 0.67,
+      "resolution": [
+        1400,
+        1000
+      ],
+      "matrix": [
+        [
+          -4.371138828673793e-08,
+          -0.049937643110752106,
+          0.9987523555755615,
+          10.627524375915527
+        ],
+        [
+          1.0,
+          -3.2682130779448926e-08,
+          4.2131887312280014e-08,
+          0.0
+        ],
+        [
+          3.0537385953266494e-08,
+          0.9987523555755615,
+          0.049937643110752106,
+          1.8993761539459229
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "top": {
+      "center": [
+        0.3499999940395355,
+        0.0,
+        1.3200000524520874
+      ],
+      "direction": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "ortho_scale": 1.35,
+      "resolution": [
+        1400,
+        1000
+      ],
+      "matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.3499999940395355
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          11.319999694824219
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "q3": {
+      "center": [
+        0.5099999904632568,
+        0.0,
+        1.350000023841858
+      ],
+      "direction": [
+        0.6764311194419861,
+        -0.6957577466964722,
+        0.24158254265785217
+      ],
+      "ortho_scale": 1.15,
+      "resolution": [
+        1400,
+        1000
+      ],
+      "matrix": [
+        [
+          0.7169949412345886,
+          -0.16840195655822754,
+          0.6764311194419861,
+          7.274311065673828
+        ],
+        [
+          0.6970783472061157,
+          0.1732134222984314,
+          -0.6957577466964722,
+          -6.957577705383301
+        ],
+        [
+          1.989497633303472e-08,
+          0.9703803062438965,
+          0.24158251285552979,
+          3.7658252716064453
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  },
+  "proofCrops": {
+    "front": [
+      450,
+      385,
+      950,
+      740
+    ],
+    "side": [
+      330,
+      295,
+      1080,
+      775
+    ],
+    "opposite": [
+      320,
+      295,
+      1070,
+      775
+    ],
+    "top": [
+      335,
+      370,
+      985,
+      640
+    ]
+  },
+  "sourceHairProductionRecommended": false,
+  "recommendation": {
+    "finding": "A thin ruler-straight fin supports dense pin-like generated fuzz; front is a rigid ragged stump. Source-specific face partition isolates the anatomy but preserves this malformed silhouette.",
+    "maneShareOfDecimatedFaces": 0.5658,
+    "recommendation": "Use the guarded map as a removal/reference boundary and replace source fin/fuzz with an authored coherent juvenile crest and tiny forelock after parent approval. Authored tail remains builder-local.",
+    "limitations": "No geometry was replaced here. This source-specific map is not an adult mask or a rule for any future regenerated foal."
+  },
+  "validationCommand": "/Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --disable-autoexec --python-exit-code 1 --python /tmp/foal-anatomy/verify.py",
+  "rawValidationLog": "/tmp/foal-anatomy/verification.log",
+  "parentReview": {
+    "authority": "Parent orchestrator",
+    "boundaryAccepted": true,
+    "usage": "removal/reference only",
+    "generatedHairProductionAccepted": false,
+    "replacementDecision": "Builder-authored coherent short juvenile crest and tiny forelock",
+    "acceptedSurfaces": [
+      "ear shells stay Body",
+      "visible fin/stump boundary isolated on front, both sides and top"
+    ],
+    "conditions": [
+      "Evaluate and cache source IDs/root remaps immediately after fixed import/decimation, before torso smoothing or any vertex position edits",
+      "Do not retain generated ruler-fin/bristles as final juvenile hair",
+      "Retained Body extraction must preserve positions, UV corners and source corner-normal directions",
+      "Authored tail remains builder-local and excluded from this map"
+    ],
+    "productionAcceptance": false
+  },
+  "remainingAcceptance": [
+    "Builder-owned authored hair replacement and integration seam/coat/animation checks"
+  ],
+  "productionMastersRebuilt": false,
+  "tailGeometryTouched": false,
+  "verification": "verification.json",
+  "rootBoundary": "root-boundary.json",
+  "normalTransferFinding": "Builder corrected smooth/custom-normal order. Retained Body maximum direction error0.01718degrees; rejected source Mane has2corners above0.05degrees(max0.48569), so full Mane0.05check failed.",
+  "rootBoundaryDegreeHistogram": {
+    "2": 104,
+    "4": 1
+  },
+  "rootBoundaryCaution": "106original cut edges on105vertices include one degree4source junction; do not assume a single simple loop."
+}

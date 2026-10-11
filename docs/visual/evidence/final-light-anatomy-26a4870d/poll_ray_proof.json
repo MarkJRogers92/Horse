@@ -1,0 +1,87 @@
+{
+  "diagnostic": "final_light_centered_poll_ray_proof.v1",
+  "blendSha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+  "manifestSha256": "dcc04138259ce99a8ccc59252fbe17f69cc26a3dc36e6d06acdb1da76b06973c",
+  "manifestPoll_m": [
+    0.91377,
+    0.00081,
+    1.89362
+  ],
+  "rayHit_m": [
+    0.914083,
+    0.000283,
+    1.893765
+  ],
+  "rayHitObject": "Mane",
+  "rayHitFace": 3075,
+  "topRayPixelTopLeft": [
+    642,
+    449
+  ],
+  "rayVsManifestDistance_m": 0.0006297,
+  "surfaceNormal": [
+    -0.37269,
+    0.035624,
+    0.927272
+  ],
+  "views": [
+    {
+      "name": "top",
+      "camera": [
+        0.8899999856948853,
+        0,
+        4.3
+      ],
+      "target": [
+        0.8899999856948853,
+        0.0,
+        1.840000033378601
+      ],
+      "orthographicWidth_m": 0.68,
+      "projectedPixelTopLeft": [
+        642.5,
+        449.5
+      ],
+      "image": "poll_top.png"
+    },
+    {
+      "name": "front",
+      "camera": [
+        3.6,
+        0,
+        1.95
+      ],
+      "target": [
+        0.8899999856948853,
+        0.0,
+        1.840000033378601
+      ],
+      "orthographicWidth_m": 0.68,
+      "projectedPixelTopLeft": [
+        600.5,
+        356.92
+      ],
+      "image": "poll_front.png"
+    },
+    {
+      "name": "side",
+      "camera": [
+        0.8899999856948853,
+        3.2,
+        1.95
+      ],
+      "target": [
+        0.8899999856948853,
+        0.0,
+        1.840000033378601
+      ],
+      "orthographicWidth_m": 0.68,
+      "projectedPixelTopLeft": [
+        557.5,
+        355.2
+      ],
+      "image": "poll_side.png"
+    }
+  ],
+  "note": "Current axis report poll is projected from the intact full shell. This re-ray intersects the corresponding visible object in the final split scene; report the actual hit object."
+}

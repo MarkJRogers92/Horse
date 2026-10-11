@@ -1,0 +1,388 @@
+{
+  "diagnostic": "final_horse_light_anatomy_landmarks.v1",
+  "source": {
+    "blend": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/art/derived/production/horse_light.blend",
+    "blend_sha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+    "manifest": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_light.manifest.json",
+    "manifest_sha256": "dcc04138259ce99a8ccc59252fbe17f69cc26a3dc36e6d06acdb1da76b06973c",
+    "asset_version": "horse-production.meshy.v1.light",
+    "coordinate_convention": {
+      "rawToBlender": "(x,y,z)->(-y,x,z+0.79319394)*1.25; baked into vertices",
+      "forward": "+X",
+      "left": "+Y",
+      "up": "+Z",
+      "floor_z_m": 0.0,
+      "family": {
+        "length": 0.035,
+        "width": 1.0,
+        "haunch": 1.0,
+        "shoulder": 1.0,
+        "muscle": 0.0,
+        "neck": 0.045,
+        "profile": "Meshy refined light adult"
+      },
+      "familyWarp": "trunk length; localized chest/haunch/shoulder lateral profile and muscle bulge; localized neck shift"
+    }
+  },
+  "landmarks": {
+    "left_ear_base": {
+      "legend_id": 1,
+      "key": "left_ear_base",
+      "label": "Horse-left ear base (+Y)",
+      "view_pixel_xy_top_left": [
+        640,
+        320
+      ],
+      "coordinate_m": [
+        0.948856,
+        0.105369,
+        1.849386
+      ],
+      "surface_normal": [
+        0.694867,
+        0.276045,
+        -0.664048
+      ],
+      "hit_object": "Body",
+      "face_index": 16848,
+      "method": "rendered-image pixel ray cast to frontmost evaluated scene geometry",
+      "confidence": "visible surface point",
+      "note": "Picked on the rendered attachment outside the forelock; horse-left is +Y.",
+      "view": "front"
+    },
+    "right_ear_base": {
+      "legend_id": 2,
+      "key": "right_ear_base",
+      "label": "Horse-right ear base (-Y)",
+      "view_pixel_xy_top_left": [
+        510,
+        320
+      ],
+      "coordinate_m": [
+        0.950764,
+        -0.103761,
+        1.849405
+      ],
+      "surface_normal": [
+        0.693408,
+        -0.185784,
+        -0.696182
+      ],
+      "hit_object": "Body",
+      "face_index": 5275,
+      "method": "rendered-image pixel ray cast to frontmost evaluated scene geometry",
+      "confidence": "visible surface point",
+      "note": "Picked on the rendered attachment outside the forelock; horse-right is -Y.",
+      "view": "front"
+    },
+    "forelock_between_ears": {
+      "legend_id": 3,
+      "key": "forelock_between_ears",
+      "label": "Forelock between ears",
+      "view_pixel_xy_top_left": [
+        574,
+        300
+      ],
+      "coordinate_m": [
+        0.994457,
+        -0.000805,
+        1.882011
+      ],
+      "surface_normal": [
+        0.459523,
+        -0.026461,
+        0.887772
+      ],
+      "hit_object": "Mane",
+      "face_index": 3120,
+      "method": "rendered-image pixel ray cast to frontmost evaluated scene geometry",
+      "confidence": "visible surface point",
+      "note": "Visual anchor only; hair-face partition boundaries are owned by the separate hair mapping.",
+      "view": "front"
+    },
+    "left_nostril": {
+      "legend_id": 4,
+      "key": "left_nostril",
+      "label": "Horse-left nostril (+Y)",
+      "view_pixel_xy_top_left": [
+        610,
+        550
+      ],
+      "coordinate_m": [
+        1.207001,
+        0.057108,
+        1.481912
+      ],
+      "surface_normal": [
+        0.476918,
+        -0.311202,
+        -0.822011
+      ],
+      "hit_object": "Body",
+      "face_index": 13528,
+      "method": "rendered-image pixel ray cast to frontmost evaluated scene geometry",
+      "confidence": "visible depression point",
+      "note": "Picked at the visible nostril depression in the frontal render; not a separate mesh boundary.",
+      "view": "front"
+    },
+    "right_nostril": {
+      "legend_id": 5,
+      "key": "right_nostril",
+      "label": "Horse-right nostril (-Y)",
+      "view_pixel_xy_top_left": [
+        540,
+        550
+      ],
+      "coordinate_m": [
+        1.203026,
+        -0.0555,
+        1.481873
+      ],
+      "surface_normal": [
+        0.471544,
+        0.638662,
+        -0.608076
+      ],
+      "hit_object": "Body",
+      "face_index": 8059,
+      "method": "rendered-image pixel ray cast to frontmost evaluated scene geometry",
+      "confidence": "visible depression point",
+      "note": "Picked at the visible nostril depression in the frontal render; not a separate mesh boundary.",
+      "view": "front"
+    },
+    "muzzle_nose_tip": {
+      "legend_id": 6,
+      "key": "muzzle_nose_tip",
+      "label": "Muzzle / nose tip",
+      "view_pixel_xy_top_left": [
+        575,
+        555
+      ],
+      "coordinate_m": [
+        1.228755,
+        0.000804,
+        1.474082
+      ],
+      "surface_normal": [
+        0.993727,
+        -0.110669,
+        0.016078
+      ],
+      "hit_object": "Body",
+      "face_index": 11518,
+      "method": "rendered-image pixel ray cast to frontmost evaluated scene geometry",
+      "confidence": "visible surface point",
+      "note": "Centered near the forward-most muzzle surface.",
+      "view": "front"
+    },
+    "jaw_head_neck_transition": {
+      "legend_id": 1,
+      "key": "jaw_head_neck_transition",
+      "label": "Behind jaw: head / neck transition",
+      "view_pixel_xy_top_left": [
+        552,
+        469
+      ],
+      "coordinate_m": [
+        0.823904,
+        0.054508,
+        1.5753
+      ],
+      "surface_normal": [
+        -0.38739,
+        0.835912,
+        -0.388819
+      ],
+      "hit_object": "Body",
+      "face_index": 13692,
+      "method": "rendered-image pixel ray cast to frontmost evaluated scene geometry",
+      "confidence": "visible surface anchor",
+      "note": "Pixel mirrors the reviewed behind-jaw location from the opposite flank; continuous sculpt, not a sharp seam.",
+      "view": "side"
+    },
+    "mane_root_behind_ears_poll_end": {
+      "legend_id": 2,
+      "key": "mane_root_behind_ears_poll_end",
+      "label": "Mane root behind ears (poll end)",
+      "view_pixel_xy_top_left": [
+        520,
+        315
+      ],
+      "coordinate_m": [
+        0.884797,
+        0.033346,
+        1.869759
+      ],
+      "surface_normal": [
+        -0.158688,
+        0.56135,
+        0.812222
+      ],
+      "hit_object": "Mane",
+      "face_index": 3630,
+      "method": "rendered-image pixel ray cast to frontmost evaluated scene geometry",
+      "confidence": "visual crest anchor",
+      "note": "A visible crest point behind the ears; hair boundary remains subject to the separate hair-segmentation map.",
+      "view": "side"
+    },
+    "mane_end_near_withers": {
+      "legend_id": 3,
+      "key": "mane_end_near_withers",
+      "label": "Mane end near withers",
+      "view_pixel_xy_top_left": [
+        706,
+        378
+      ],
+      "coordinate_m": [
+        0.528321,
+        -0.005262,
+        1.748887
+      ],
+      "surface_normal": [
+        -0.722353,
+        0.074793,
+        0.687468
+      ],
+      "hit_object": "Mane",
+      "face_index": 2993,
+      "method": "rendered-image pixel ray cast to frontmost evaluated scene geometry",
+      "confidence": "visual crest anchor",
+      "note": "Visible crest endpoint near withers; do not treat the old separate Mane-object bounds as full mane anatomy.",
+      "view": "side"
+    }
+  },
+  "views": [
+    {
+      "name": "front",
+      "camera": {
+        "location": [
+          2.85,
+          0,
+          1.7
+        ],
+        "target": [
+          0.82,
+          0,
+          1.68
+        ],
+        "orthographic_width": 1.85
+      },
+      "clean_render": "horse_light_anatomy_front_clean.png",
+      "annotated_render": "horse_light_anatomy_front.png"
+    },
+    {
+      "name": "side",
+      "camera": {
+        "location": [
+          0.82,
+          2.55,
+          1.68
+        ],
+        "target": [
+          0.78,
+          0,
+          1.66
+        ],
+        "orthographic_width": 2.2
+      },
+      "clean_render": "horse_light_anatomy_side_clean.png",
+      "annotated_render": "horse_light_anatomy_side.png"
+    }
+  ],
+  "scope_note": "Image-selected surface anchors are ray-cast onto visible evaluated geometry. The corrected centered skull poll is a separate top-view ray described in poll_ray_proof.json; the Mane hit is intentional because the full evaluated Mane surface occludes Body at the crown. Mane root/end labels identify visible hair surface anchors, not exact hair segmentation boundaries.",
+  "canonical_poll": {
+    "manifest_poll_m": [
+      0.91377,
+      0.00081,
+      1.89362
+    ],
+    "ray_hit_m": [
+      0.914083,
+      0.000283,
+      1.893765
+    ],
+    "hit_object": "Mane",
+    "hit_face": 3075,
+    "ray_pixel_top_left": [
+      642,
+      449
+    ],
+    "ray_vs_manifest_distance_m": 0.0006297,
+    "proof_views": [
+      "poll_top.png",
+      "poll_front.png",
+      "poll_side.png"
+    ]
+  },
+  "actual_rig_bone_names": [
+    "Chest",
+    "Ear_L",
+    "Ear_L_02",
+    "Ear_L_03",
+    "Ear_R",
+    "Ear_R_02",
+    "Ear_R_03",
+    "Front_L_Cannon",
+    "Front_L_Forearm",
+    "Front_L_Hoof",
+    "Front_L_Hoof_02",
+    "Front_L_Hoof_03",
+    "Front_L_Pastern",
+    "Front_L_Upper",
+    "Front_R_Cannon",
+    "Front_R_Forearm",
+    "Front_R_Hoof",
+    "Front_R_Hoof_02",
+    "Front_R_Hoof_03",
+    "Front_R_Pastern",
+    "Front_R_Upper",
+    "Head",
+    "Head_Base",
+    "Head_Nose",
+    "Head_Upper",
+    "Hind_L_Cannon",
+    "Hind_L_Gaskin",
+    "Hind_L_Hoof",
+    "Hind_L_Hoof_02",
+    "Hind_L_Pastern",
+    "Hind_L_Upper",
+    "Hind_R_Cannon",
+    "Hind_R_Gaskin",
+    "Hind_R_Hoof",
+    "Hind_R_Hoof_02",
+    "Hind_R_Pastern",
+    "Hind_R_Upper",
+    "Jaw_Mid",
+    "Jaw_Tip",
+    "Jaw_Upper",
+    "Neck",
+    "Neck_Base",
+    "Neck_Mid",
+    "Neck_Top",
+    "Neck_Upper",
+    "Pelvis",
+    "Pelvis_Root",
+    "Root",
+    "Spine",
+    "Spine_Mid",
+    "Spine_Upper",
+    "Tail_01",
+    "Tail_02",
+    "Tail_03",
+    "Tail_04",
+    "Tail_05",
+    "Tail_06",
+    "Tail_07"
+  ],
+  "landmark_object_identification": {
+    "left_ear_base": "Body",
+    "right_ear_base": "Body",
+    "forelock_between_ears": "Mane",
+    "left_nostril": "Body",
+    "right_nostril": "Body",
+    "muzzle_nose_tip": "Body",
+    "jaw_head_neck_transition": "Body",
+    "mane_root_behind_ears_poll_end": "Mane",
+    "mane_end_near_withers": "Mane"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "sourceBlend": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/art/derived/production/horse_light.blend",
+  "sourceBlendSha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+  "sourceManifest": "/Users/markrogers/Documents/Codex/2026-10-11/con/work/Horse/game/assets/horse/production/horse_light.manifest.json",
+  "sourceManifestSha256": "dcc04138259ce99a8ccc59252fbe17f69cc26a3dc36e6d06acdb1da76b06973c",
+  "bodyManeTailSourceVertexPairs": {
+    "Mane": {
+      "shared_vertex_pair_count": 172,
+      "max_base_position_delta_m": 0.0,
+      "max_bone_weight_delta": 0.0,
+      "max_weight_sum_error": 5.21540641784668e-08,
+      "shape_key_boundary_deltas": {
+        "body_length": {
+          "max_delta_difference_m": 0.0,
+          "max_body_delta_m": 0.022770061866390908,
+          "max_hair_delta_m": 0.022770061866390908
+        },
+        "chest_width": {
+          "max_delta_difference_m": 0.0,
+          "max_body_delta_m": 0.014072492665988093,
+          "max_hair_delta_m": 0.014072492665988093
+        },
+        "neck_length": {
+          "max_delta_difference_m": 0.0,
+          "max_body_delta_m": 0.07500004805622945,
+          "max_hair_delta_m": 0.07500004805622945
+        },
+        "muscle": {
+          "max_delta_difference_m": 0.0,
+          "max_body_delta_m": 0.01593563311398076,
+          "max_hair_delta_m": 0.01593563311398076
+        }
+      }
+    },
+    "Tail": {
+      "shared_vertex_pair_count": 50,
+      "max_base_position_delta_m": 0.0,
+      "max_bone_weight_delta": 0.0,
+      "max_weight_sum_error": 4.842877388000488e-08,
+      "shape_key_boundary_deltas": {
+        "body_length": {
+          "max_delta_difference_m": 0.0,
+          "max_body_delta_m": 0.0010435580934921515,
+          "max_hair_delta_m": 0.0010435580934921515
+        },
+        "chest_width": {
+          "max_delta_difference_m": 0.0,
+          "max_body_delta_m": 0.0005073994378424479,
+          "max_hair_delta_m": 0.0005073994378424479
+        },
+        "neck_length": {
+          "max_delta_difference_m": 0.0,
+          "max_body_delta_m": 0.0,
+          "max_hair_delta_m": 0.0
+        },
+        "muscle": {
+          "max_delta_difference_m": 0.0,
+          "max_body_delta_m": 0.0014766331416008328,
+          "max_hair_delta_m": 0.0014766331416008328
+        }
+      }
+    }
+  },
+  "forelockCutBoundaryDefinition": "topological Mane boundary vertices in cap box 0.77<=x<=1.10, z>=1.76, |y|<=0.18",
+  "forelockCutBoundaryVertexCount": 70,
+  "forelockCutBoundaryPoseGaps": [
+    {
+      "pose": "rest",
+      "count": 70,
+      "max_body_mane_cut_gap_m": 0.0,
+      "p95_gap_m": 0.0,
+      "median_gap_m": 0.0,
+      "within_1mm": 70,
+      "within_3mm": 70,
+      "within_5mm": 70
+    },
+    {
+      "pose": "Idle frame 49",
+      "count": 70,
+      "max_body_mane_cut_gap_m": 0.0,
+      "p95_gap_m": 0.0,
+      "median_gap_m": 0.0,
+      "within_1mm": 70,
+      "within_3mm": 70,
+      "within_5mm": 70
+    },
+    {
+      "pose": "Head_localX_plus5deg",
+      "count": 70,
+      "max_body_mane_cut_gap_m": 0.0,
+      "p95_gap_m": 0.0,
+      "median_gap_m": 0.0,
+      "within_1mm": 70,
+      "within_3mm": 70,
+      "within_5mm": 70
+    },
+    {
+      "pose": "Neck_localX_plus5deg",
+      "count": 70,
+      "max_body_mane_cut_gap_m": 0.0,
+      "p95_gap_m": 0.0,
+      "median_gap_m": 0.0,
+      "within_1mm": 70,
+      "within_3mm": 70,
+      "within_5mm": 70
+    }
+  ],
+  "checks": [
+    "base shared vertex positions",
+    "bone-group skin weights at shared vertices",
+    "four morph deltas at shared vertices",
+    "rest/Idle midpoint/isolated Head+5\u00b0/Neck+5\u00b0 cut seam clearance"
+  ]
+}

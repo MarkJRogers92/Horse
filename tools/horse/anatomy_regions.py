@@ -1,4 +1,4 @@
-"""Fixed source-face regions for the inspected Meshy light_01 adult.
+"""Fixed source-face regions for inspected Meshy adult and foal sources.
 
 Call ``classify_source_hair_faces(body)`` immediately after the fixed 30k
 decimation, before any family warp or face extraction. Mane includes Forelock;
@@ -19,6 +19,7 @@ import struct
 
 ROOT = Path(__file__).resolve().parents[2]
 REGION_DATA = Path(__file__).with_name("anatomy_regions_meshy_light_01.json")
+FOAL_REGION_DATA = Path(__file__).with_name("anatomy_regions_meshy_foal_01.json")
 
 
 def _mesh(body):
@@ -48,7 +49,8 @@ def _region_sha256(regions: dict) -> str:
     return hashlib.sha256(serialized.encode("utf-8")).hexdigest()
 
 
-def _read_guarded_regions(body, data_path: Path | None = None) -> tuple[dict, dict[str, set[int]]]:
+def _read_guarded_regions(body, data_path: Path | None = None, *,
+                          expected_regions=frozenset({"Mane", "Forelock", "Tail"})) -> tuple[dict, dict[str, set[int]]]:
     data = json.loads(Path(data_path or REGION_DATA).read_text())
     if data.get("schemaVersion") != 1:
         raise RuntimeError("Unsupported Meshy anatomical-region schema")
@@ -59,12 +61,13 @@ def _read_guarded_regions(body, data_path: Path | None = None) -> tuple[dict, di
     if topology_index_sha256(mesh) != expected["indexSha256"]:
         raise RuntimeError("Meshy anatomical face IDs do not match this topology/order")
     if source_position_sha256(mesh) != expected["positionSha256"]:
-        raise RuntimeError("Classify Meshy anatomical faces before the family warp; source coordinates differ")
+        stage = "the family warp" if "Tail" in expected_regions else "localized softening or geometry edits"
+        raise RuntimeError(f"Classify Meshy anatomical faces before {stage}; source coordinates differ")
     source = ROOT / data["sourceFile"]["path"]
     if hashlib.sha256(source.read_bytes()).hexdigest() != data["sourceFile"]["sha256"]:
         raise RuntimeError("Meshy anatomical face IDs refer to a different immutable source GLB")
     stored = data["regions"]
-    if set(stored) != {"Mane", "Forelock", "Tail"} or _region_sha256(stored) != data["regionIdsSha256"]:
+    if set(stored) != expected_regions or _region_sha256(stored) != data["regionIdsSha256"]:
         raise RuntimeError("Meshy anatomical face-ID data failed its integrity guard")
     regions = {}
     for name, ids in stored.items():
@@ -72,7 +75,7 @@ def _read_guarded_regions(body, data_path: Path | None = None) -> tuple[dict, di
                 or ids != sorted(set(ids)) or len(ids) != data["faceCounts"][name]):
             raise RuntimeError(f"Invalid source face IDs in {name}")
         regions[name] = set(ids)
-    if not regions["Forelock"] <= regions["Mane"] or regions["Mane"] & regions["Tail"]:
+    if not regions["Forelock"] <= regions["Mane"] or regions["Mane"] & regions.get("Tail", set()):
         raise RuntimeError("Forelock must be a Mane subset, and Mane/Tail must be disjoint")
     return data, regions
 
@@ -113,5 +116,73 @@ def region_report(body) -> dict:
         "forelockIsManeSubset": True,
         "hairRegionsDisjoint": True,
         "classifiedBeforeFamilyWarp": True,
+        "method": data["method"],
+    }
+
+
+def classify_foal_source_hair_faces(body, *, data_path: Path | None = None) -> dict[str, set[int]]:
+    """Return foal-only crest/stump IDs immediately after fixed decimation.
+
+    Call before localized softening, UV generation or extraction. No Tail is
+    included: the builder's authored juvenile tuft has its own geometry. This
+    isolates the generated fin/fuzz; it does not repair that source silhouette.
+    """
+    return _read_guarded_regions(body, data_path or FOAL_REGION_DATA,
+                                 expected_regions=frozenset({"Mane", "Forelock"}))[1]
+
+
+def partition_foal_forelock_vertex_indices(body, partitions: dict[str, set[int]] | None = None) -> set[int]:
+    """Future foal Mane indices under sorted-source-vertex face extraction."""
+    regions = classify_foal_source_hair_faces(body) if partitions is None else partitions
+    return partition_forelock_vertex_indices(body, regions)
+
+
+def foal_mane_root_boundary(body, partitions: dict[str, set[int]] | None = None) -> dict:
+    """Original cut edges and their indices in future Body/Mane partitions.
+
+    Evaluate on the intact fixed source. This describes the retained source
+    root only; construction of any authored replacement is builder-owned.
+    Vertex mappings match ``split_mesh_faces`` sorted-source-vertex order.
+    """
+    regions = classify_foal_source_hair_faces(body) if partitions is None else partitions
+    mesh = _mesh(body)
+    mane = regions["Mane"]
+    owners = {}
+    for face in mesh.polygons:
+        vertices = list(face.vertices)
+        for a, b in zip(vertices, vertices[1:] + vertices[:1]):
+            owners.setdefault(tuple(sorted((int(a), int(b)))), []).append(face.index)
+    if any(len(faces) != 2 for faces in owners.values()):
+        raise RuntimeError("Foal root boundary requires the intact welded source shell")
+    edges = sorted(edge for edge, faces in owners.items()
+                   if (faces[0] in mane) != (faces[1] in mane))
+    vertices = sorted({index for edge in edges for index in edge})
+    mappings = {}
+    for name, selected in (("Body", set(range(len(mesh.polygons))) - mane), ("Mane", mane)):
+        used = sorted({index for face in selected for index in mesh.polygons[face].vertices})
+        remap = {source: output for output, source in enumerate(used)}
+        mappings[name] = [remap[index] for index in vertices]
+    return {"sourceEdges": [list(edge) for edge in edges], "sourceVertices": vertices,
+            "bodyVertexIndices": mappings["Body"], "maneVertexIndices": mappings["Mane"],
+            "sourceCoordinates": [[float(value) for value in mesh.vertices[index].co] for index in vertices]}
+
+
+def foal_region_report(body) -> dict:
+    """Foal boundary evidence; classification is distinct from art approval."""
+    data, regions = _read_guarded_regions(body, FOAL_REGION_DATA,
+                                         expected_regions=frozenset({"Mane", "Forelock"}))
+    return {
+        "dataset": FOAL_REGION_DATA.name,
+        "sourceTopology": data["sourceTopology"],
+        "regionIdsSha256": data["regionIdsSha256"],
+        "sourceFaces": len(_mesh(body).polygons),
+        "bodyFaces": len(_mesh(body).polygons) - len(regions["Mane"]),
+        "maneFaces": len(regions["Mane"]),
+        "forelockFaces": len(regions["Forelock"]),
+        "forelockIsManeSubset": True,
+        "tailExcluded": True,
+        "classifiedBeforeGeometryEdits": True,
+        "reviewStatus": data["reviewStatus"],
+        "sourceHairProductionRecommended": data["sourceHairProductionRecommended"],
         "method": data["method"],
     }

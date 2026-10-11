@@ -1,0 +1,109 @@
+{
+  "taskId": "anatomy_segmentation",
+  "freshImportDecimation": {
+    "sourceTriangles": 427266,
+    "exportTargetTriangles": 30000,
+    "collapseRatio": 0.070214
+  },
+  "regionReport": {
+    "dataset": "anatomy_regions_meshy_foal_01.json",
+    "sourceTopology": {
+      "vertexCount": 14596,
+      "polygonCount": 30000,
+      "indexSha256": "f011603cec8fbe001f3c5aa6c9ff57ac9aa50d847f89cbbf8ff5ab31ff63211d",
+      "positionSha256": "5c2201e18409c92b0bceab325599042da549951aa74962808de2082f4342ee61",
+      "positionQuantizationDecimals": 6,
+      "blenderVersion": "5.2.1 LTS",
+      "decimator": "COLLAPSE 30000 / 427266; source_to_world baked before decimator; no preceding modifiers"
+    },
+    "regionIdsSha256": "78ffec016607a5836c4827feb80634fffcc3e4ed8259108b794a53779f7fe874",
+    "sourceFaces": 30000,
+    "bodyFaces": 13026,
+    "maneFaces": 16974,
+    "forelockFaces": 1792,
+    "forelockIsManeSubset": true,
+    "tailExcluded": true,
+    "classifiedBeforeGeometryEdits": true,
+    "reviewStatus": "Parent independent boundary review accepted as removal/reference ONLY; generated fin/bristles rejected as final juvenile hair",
+    "sourceHairProductionRecommended": false,
+    "method": "Independent locked-camera frontmost source-face traces on both sides, front, q3 and top; explicit ear-shell Body exclusions; enclosed hidden crest faces filled; disconnected islands and seam tips removed. No mirror, remesh, caps, or vertex edits."
+  },
+  "positionGuardRejectedChangedCoordinates": true,
+  "topologyGuardRejectedChangedIndex": true,
+  "sourceFacesConserved": 30000,
+  "partitionFaces": {
+    "Body": 13026,
+    "Mane": 16974
+  },
+  "forelockManeVertexCount": 911,
+  "rootBoundarySourceVertexCount": 105,
+  "rootBoundaryRemapVerified": true,
+  "validationScope": "Parent-accepted removal/reference map; retained Body preservation, not rejected generated Mane art acceptance",
+  "vertexMaxError": 0,
+  "cornerUvMaxError": 0,
+  "cornerNormalMaxError": 0.008475233199830231,
+  "cornerNormalMaxAngleDegrees": 0.4856896598993125,
+  "cornerNormalPoint05DegreeCheckPassed": false,
+  "cornerNormalDiagnostics": {
+    "Body": {
+      "maxAngleDegrees": 0.017176566142803256,
+      "maxCutVertexAngleDegrees": 0.017176566142803256,
+      "overPoint05DegreeCorners": 0,
+      "cornerCount": 39078,
+      "worst": {
+        "face": 6545,
+        "loop": 19637,
+        "angleDegrees": 0.017176566142803256,
+        "vectorDifference": 3.185445960183467e-05,
+        "sourceNormal": [
+          0.7692713737487793,
+          0.056511737406253815,
+          0.6364181041717529
+        ],
+        "outNormal": [
+          0.7692813277244568,
+          0.05648300051689148,
+          0.6364086270332336
+        ],
+        "sourcePosition": [
+          0.460142582654953,
+          -0.015265367925167084,
+          1.3984975814819336
+        ]
+      }
+    },
+    "Mane": {
+      "maxAngleDegrees": 0.4856896598993125,
+      "maxCutVertexAngleDegrees": 0.4856896598993125,
+      "overPoint05DegreeCorners": 2,
+      "cornerCount": 50922,
+      "worst": {
+        "face": 6367,
+        "loop": 19102,
+        "angleDegrees": 0.4856896598993125,
+        "vectorDifference": 0.008475233199830231,
+        "sourceNormal": [
+          0.16719134151935577,
+          -0.7277775406837463,
+          0.6651216745376587
+        ],
+        "outNormal": [
+          0.17367155849933624,
+          -0.7233350276947021,
+          0.6682997941970825
+        ],
+        "sourcePosition": [
+          0.4332713186740875,
+          -0.015305755659937859,
+          1.3859845399856567
+        ]
+      }
+    }
+  },
+  "customNormalRoundTripIsBitExact": false,
+  "pairedOpenSeamEdges": 106,
+  "unpairedOpenSeamEdges": 0,
+  "noAddedGeometry": true,
+  "productionMastersRebuilt": false,
+  "tailGeometryTouched": false
+}
