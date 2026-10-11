@@ -1,0 +1,428 @@
+{
+  "schema": "horse.stock_walk.candidate.v1",
+  "scope": "Neutral shape only. Isolated candidate; original Stock/Light/foal and game guard unchanged.",
+  "sourceBlendSha256": "77b3f3d188a525f255b3d46adf0645f472ec81fd3b47dd750a52e216dd0f4627",
+  "donorBlendSha256": "3ef7417273cd9baa9d68b406c2731e4bf7db4bd2bc3a56dde95e3a6471173573",
+  "candidateBlendSha256": "a601c3c79ced2d92c056f74d9cd8bdf7fabef94460fb00565f81da3645c825f8",
+  "protectedMeshData": {
+    "Body": {
+      "vertices": 10924,
+      "faces": 21706,
+      "positions": "1b43c23dcb55e4ca1f7f6790c3e7f41a2e3c068fcc7859c6ceebca05d43fac7c",
+      "normals": "a7c80bedbe2bceceb7e890ab313d7777d3e90843e8a1e8fb66a73f9d04fd3ccb",
+      "topology": "7921b3c0aa05a8bd2c785c0fab67926f7070f0b80993ca5b474ff2ad61206639",
+      "polygonRanges": "f28b26f107afa5d9ecbab2af6bbca34a868d3994d1ed4b9b981a5d952af52b2b",
+      "uv": {
+        "UVMap": "8ad42a28bdd62be757883c9f0d51ccb19955f59038f1449a603568da4b683e47",
+        "Canonical": "aa3abb37d5ee952a131681692d9f2448467f803264f86b8e0b04ddfe6a757015"
+      },
+      "colors": {
+        "Color": {
+          "domain": "CORNER",
+          "type": "FLOAT_COLOR",
+          "data": "188684560eaaa052379afb8bc90f7af230d8194b6a94968d6ae9c9b3155ad2de"
+        }
+      },
+      "morphs": {
+        "Basis": "1b43c23dcb55e4ca1f7f6790c3e7f41a2e3c068fcc7859c6ceebca05d43fac7c",
+        "body_length": "0e986272dfe7363a2647298c2de5bc9d64648f539711fed1773ba6786a295958",
+        "chest_width": "c9b4e711764863ef73af6fb9c0f8918113f0a3fca8d45cf3dd2389bcf1e7399e",
+        "neck_length": "20873c2f4362f0fef9045c09096a1815718887ca7f0a9ea6c54ac508f484060e",
+        "muscle": "8cf0051c270c251744d54004035f57c3e074bc1b8d4afb26418cae91e37fdbd3"
+      }
+    },
+    "Eyes": {
+      "vertices": 1476,
+      "faces": 1536,
+      "positions": "8029b92f1ef9402fe9aa8b5c9f60eebe89a2859867e9060b1551f3422792b6c0",
+      "normals": "df9a17bbc331e33d1091a680e470e440387fd3d1a29cee63664ae644a3babd34",
+      "topology": "db9d17077b3cf7801ff19b1fbd825ca9258bf9468aac3780b3122c5dfeb7bed5",
+      "polygonRanges": "9b3d208f1ff4fca877b72578b6ba9372870fd6020ebf02f70506073063e700ca",
+      "uv": {
+        "UVMap": "98e43720def3dfd3137ccefaf2231d3f7c77398b06c52f957dd4702178bd6974",
+        "UVMap.001": "80174acddd1dcae677af854e561179adc9855276363cfcbafd861d4e03153c0d"
+      },
+      "colors": {},
+      "morphs": {
+        "Basis": "8029b92f1ef9402fe9aa8b5c9f60eebe89a2859867e9060b1551f3422792b6c0",
+        "body_length": "8029b92f1ef9402fe9aa8b5c9f60eebe89a2859867e9060b1551f3422792b6c0",
+        "chest_width": "7a49d38b034e5ae56ce7f896bba6d05f5cc32945f8f7795aeb66747f20343556",
+        "neck_length": "7bffe44294657053378b52eaa2c7b4802ece9e5c8d5393d7f7f3cbbfa2e60a2c",
+        "muscle": "453b03f381f0d073c2e48d4cd8a5f09bef9a13cf4c113a2e6195b6d0b7301391"
+      }
+    },
+    "Mane": {
+      "vertices": 1963,
+      "faces": 3752,
+      "positions": "909e30fdb8ced1feed8181b0579d536f615057ec03f71591bea5ff8a0da6a433",
+      "normals": "9a38c94d65c8e8ab55ea06291ea7e5067ce2c9be2d096bc244b6fe5b73fc3b28",
+      "topology": "33241e2617960f8d7821807fa10d4d8935759018570c043199ac55b55ea43375",
+      "polygonRanges": "a6bc7b2d2733f54ff7d1dba68d16ce094c9df78062ec8c472e5a605e0b4ff7a5",
+      "uv": {
+        "UVMap": "2a053ba939214ee4658905e3e072cd08e50183ad1345e577939319060a42f092"
+      },
+      "colors": {},
+      "morphs": {
+        "Basis": "909e30fdb8ced1feed8181b0579d536f615057ec03f71591bea5ff8a0da6a433",
+        "body_length": "2b996f5b69af3c334c6059fa2f02f944ecd416d8771d1c53a5948b883495fd4f",
+        "chest_width": "61771322bd939895d25633ff2c337053a3086a72a569607f8f510d39207526c8",
+        "neck_length": "64bf2ff772228bfe19589ced6c6c3d2003ccdaf594c8748be68dfb05532b51e4",
+        "muscle": "ca3b3095505d4ce32b8814ec87a09d51e915c2e4f84c44b1ed7a3608a68f37fc"
+      }
+    },
+    "Tail": {
+      "vertices": 2297,
+      "faces": 4542,
+      "positions": "92719ff2263e8b0ff36574ea19ff25d0a93a1399d076f125b1368f2aaa633d9a",
+      "normals": "ca9ed61c23af403fc5a15130ba95d3ea2d65b1ddf49fb7c26f9c0a06817fbef4",
+      "topology": "6faca5a9ff9aeb464322511f5b42b920cdb4e18f8430481a2dc27297846c3362",
+      "polygonRanges": "223b366813b5f22addc92d6eb56e9a5ac3b34f003f9b22a14a68567272f20b16",
+      "uv": {
+        "UVMap": "14baf5fd4b70c47dc7d0fb46942131b05e9e7406ef521b0862040137a63ef3e9"
+      },
+      "colors": {},
+      "morphs": {
+        "Basis": "92719ff2263e8b0ff36574ea19ff25d0a93a1399d076f125b1368f2aaa633d9a",
+        "body_length": "d8b23b73a7317bcdda654aff11785c2182d675a8a5d107f94e6b3b3b61fe8bd3",
+        "chest_width": "2ae72330261c8eca735df37c9ee4e30cbd9286d70c5e46473d883e9846a9c5b2",
+        "neck_length": "92719ff2263e8b0ff36574ea19ff25d0a93a1399d076f125b1368f2aaa633d9a",
+        "muscle": "cec27c6e514c84d48d252077024c610ec63086abb661b8a22c6e2e3352f50cca"
+      }
+    }
+  },
+  "protectedMeshDataExact": true,
+  "reusedLightAtlas": false,
+  "periodFrames": 29,
+  "fps": 30,
+  "forwardSpeedMetersPerSecond": 0.749997329711914,
+  "sampleCount": 61,
+  "soleSourceMaxDifferenceM": 0,
+  "bodyMaxEdgeStretch": 1.470871090888977,
+  "seamPairCounts": {
+    "Mane": 172,
+    "Tail": 50
+  },
+  "maxSeamGapM": 0.0,
+  "loopMaxVertexDeltaM": 0.0,
+  "midCycleMaxVertexMotionM": 0.37854117155075073,
+  "contacts": {
+    "fore_l": {
+      "soleCount": 100,
+      "stanceAdjacentMaxMotionM": 1.0849446880456526e-05,
+      "minStanceHeightM": 2.478261012583971e-05,
+      "maxStanceP05HeightM": 0.0005760918720625341,
+      "minMiddleSwingClearanceM": 0.05060804262757301,
+      "stanceComparisons": 35
+    },
+    "hind_r": {
+      "soleCount": 115,
+      "stanceAdjacentMaxMotionM": 1.4707435184391215e-05,
+      "minStanceHeightM": -1.308225910179317e-05,
+      "maxStanceP05HeightM": 0.0013334226096048951,
+      "minMiddleSwingClearanceM": 0.05054350569844246,
+      "stanceComparisons": 35
+    },
+    "fore_r": {
+      "soleCount": 100,
+      "stanceAdjacentMaxMotionM": 2.1805268261232413e-05,
+      "minStanceHeightM": -2.3753265850245953e-05,
+      "maxStanceP05HeightM": 0.0006674948381260037,
+      "minMiddleSwingClearanceM": 0.05060257017612457,
+      "stanceComparisons": 35
+    },
+    "hind_l": {
+      "soleCount": 114,
+      "stanceAdjacentMaxMotionM": 2.4420978661510162e-05,
+      "minStanceHeightM": -8.995993994176388e-07,
+      "maxStanceP05HeightM": 0.0010174133349210024,
+      "minMiddleSwingClearanceM": 0.05053536593914032,
+      "stanceComparisons": 35
+    }
+  },
+  "rigFitMethod": "Known Light-to-Stock family warp at rest pivots; sampled donor global transforms translated by the same offsets. Distal foot offsets remain zero.",
+  "rigPivotOffsets": {
+    "root": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "hips": [
+      0.03708815574645996,
+      0.0012962971813976765,
+      0.044993042945861816
+    ],
+    "spine_1": [
+      0.05192697048187256,
+      0.0010263207368552685,
+      0.026702046394348145
+    ],
+    "spine_2": [
+      0.0252322256565094,
+      0.0007098629139363766,
+      0.00663602352142334
+    ],
+    "spine_3": [
+      -0.011175528168678284,
+      0.0007606996223330498,
+      0.003195047378540039
+    ],
+    "ribcage_middle": [
+      0.015099763870239258,
+      0.000621928833425045,
+      0.004276394844055176
+    ],
+    "ribcage_leaf": [
+      0.015762418508529663,
+      0.0004305127076804638,
+      0.006029009819030762
+    ],
+    "spine_4": [
+      -0.022197186946868896,
+      0.0014256625436246395,
+      0.04434382915496826
+    ],
+    "spine_5": [
+      -0.04305359721183777,
+      0.0006493781693279743,
+      0.01947641372680664
+    ],
+    "spine_6": [
+      -0.09223246574401855,
+      0.0003949222154915333,
+      0.00971364974975586
+    ],
+    "head": [
+      -0.14000004529953003,
+      5.090702325105667e-05,
+      9.429454803466797e-05
+    ],
+    "ear_1_r": [
+      -0.14000004529953003,
+      -0.0006048604846000671,
+      1.3589859008789062e-05
+    ],
+    "ear_2_r": [
+      -0.14000004529953003,
+      -0.0005370080471038818,
+      8.344650268554688e-06
+    ],
+    "ear_leaf_r": [
+      -0.14000004529953003,
+      -0.0004758089780807495,
+      4.887580871582031e-06
+    ],
+    "ear_1_l": [
+      -0.14000004529953003,
+      0.0006685256958007812,
+      1.3589859008789062e-05
+    ],
+    "ear_2_l": [
+      -0.14000004529953003,
+      0.0005958899855613708,
+      8.344650268554688e-06
+    ],
+    "ear_leaf_l": [
+      -0.14000004529953003,
+      0.0005302503705024719,
+      4.887580871582031e-06
+    ],
+    "nose": [
+      -0.13999998569488525,
+      1.1736992746591568e-05,
+      8.344650268554688e-07
+    ],
+    "head_leaf": [
+      -0.1396404504776001,
+      1.0490475688129663e-07,
+      0.0
+    ],
+    "mouth": [
+      -0.1399962306022644,
+      6.938818842172623e-06,
+      1.1920928955078125e-07
+    ],
+    "mouth_tip": [
+      -0.1311081051826477,
+      6.140675395727158e-06,
+      1.1920928955078125e-07
+    ],
+    "front_scapula_l": [
+      -0.026505351066589355,
+      0.03567229211330414,
+      0.04296731948852539
+    ],
+    "front_humerus_l": [
+      -0.0005939900875091553,
+      0.015772119164466858,
+      0.01947641372680664
+    ],
+    "front_leg_upper_l": [
+      -0.0013531744480133057,
+      0.012357354164123535,
+      0.01962590217590332
+    ],
+    "front_leg_lower_l": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "front_leg_ankle_l": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "front_leg_foot_l": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "front_leg_leaf_l": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "front_scapula_r": [
+      -0.026505351066589355,
+      -0.0328185111284256,
+      0.04296731948852539
+    ],
+    "front_humerus_r": [
+      -0.0005939900875091553,
+      -0.014510348439216614,
+      0.01947641372680664
+    ],
+    "front_leg_upper_r": [
+      -0.0013531744480133057,
+      -0.011368773877620697,
+      0.01962590217590332
+    ],
+    "front_leg_lower_r": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "front_leg_ankle_r": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "front_leg_foot_r": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "front_leg_leaf_r": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "ribcage_front": [
+      0.0,
+      0.0005563958548009396,
+      0.019656360149383545
+    ],
+    "ribcage_front_leaf": [
+      0.0,
+      0.000337822362780571,
+      0.011526346206665039
+    ],
+    "tail_1": [
+      0.0006589889526367188,
+      0.000642857514321804,
+      0.023925423622131348
+    ],
+    "tail_2": [
+      0.0,
+      0.0002833842299878597,
+      0.010526061058044434
+    ],
+    "tail_3": [
+      0.0,
+      0.00019427016377449036,
+      0.007195949554443359
+    ],
+    "tail_4": [
+      0.0,
+      0.00014339713379740715,
+      0.005399465560913086
+    ],
+    "tail_leaf": [
+      0.0,
+      4.764646291732788e-05,
+      0.0018101930618286133
+    ],
+    "back_leg_pelvis_l": [
+      0.027486085891723633,
+      0.0012290501035749912,
+      0.04382205009460449
+    ],
+    "back_leg_upper_l": [
+      0.027486085891723633,
+      0.038100555539131165,
+      0.04382205009460449
+    ],
+    "back_leg_lower_l": [
+      0.009359955787658691,
+      0.013133615255355835,
+      0.015389561653137207
+    ],
+    "back_leg_ankle_l": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "back_leg_foot_l": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "back_leg_toe_l": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "back_leg_leaf_l": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "back_leg_pelvis_r": [
+      0.027486085891723633,
+      0.0012290501035749912,
+      0.04382205009460449
+    ],
+    "back_leg_upper_r": [
+      0.027486085891723633,
+      -0.035642459988594055,
+      0.04382205009460449
+    ],
+    "back_leg_lower_r": [
+      0.009359955787658691,
+      -0.012286290526390076,
+      0.015389561653137207
+    ],
+    "back_leg_ankle_r": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "back_leg_foot_r": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "back_leg_toe_r": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "back_leg_leaf_r": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "runtimeTested": false,
+  "visualReview": "pending",
+  "candidateGlbSha256": "911cc1362efab493f0e57a17b14cbdd636bc032cba1f59647c8fdf39b3c9823e"
+}

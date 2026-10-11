@@ -1,0 +1,31 @@
+{
+  "candidateBlendSha256": "795e82b7aaf9a80a5e18e58d892c0763ffe4542212bb64d520b2bb46f1c16d6b",
+  "sampleCount": 581,
+  "bodyMaxEdgeStretch": 1.9909311532974243,
+  "worstEdge": {
+    "ratio": 1.9909311532974243,
+    "frame": 49.5,
+    "edge": [
+      4178,
+      4268
+    ],
+    "restPoints": [
+      [
+        0.21594969928264618,
+        0.0552717000246048,
+        0.5531409978866577
+      ],
+      [
+        0.22594840824604034,
+        0.06358680129051208,
+        0.5413509607315063
+      ]
+    ]
+  },
+  "minimumEdgeRatio": 0.25509312748908997,
+  "maximumInfluences": 5,
+  "maximumWeightSumError": 4.662433639168739e-08,
+  "bodyStretchLimit": 2.0,
+  "bodyStretchPass": true,
+  "scope": "Neutral shape only; dense source deformation check supplementary to runtime/visual gates."
+}

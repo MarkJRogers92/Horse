@@ -1,0 +1,62 @@
+{
+  "schema": "horse.remaining_walks.integration_staging.v1",
+  "activeCatalogChanged": false,
+  "gameRuntimeVerified": false,
+  "macBuildChanged": false,
+  "variants": [
+    {
+      "familyIds": [
+        "horse.compact.adult.v1"
+      ],
+      "enabled": false,
+      "scope": "neutral-shape staging, not game activation",
+      "sourceScene": "art/derived/production/candidates/stock-walk-polish/horse_stock_walk.glb",
+      "suggestedGameScene": "res://assets/horse/production/horse_stock_walk.glb",
+      "sourceGlbSha256": "3850db293a2b50d084fc9a4c2359c751e71f5456ba01219bf2dd1449dbda2e9e",
+      "candidateBlendSha256": "4efbbb61a865c08367d7bcdba8b7c756cf2100a8ad1ec90125e1641a7bc1d5b0",
+      "motionProfilePath": "art/derived/production/candidates/stock-walk-polish/walk-motion-profile.json",
+      "motionProfileSha256": "337be1230a74561a667e925f051c7a4c03bcae800ff5308816804dfd22ef25bf",
+      "sourceAuditSha256": "f9c67068d6204abb0d97c87cc3c1581fbe52a453fc59dfe596bb0c6949db2993",
+      "runtimeReportSha256": "0b88e2a1b5aab88c162be1a3a2ff50801163b09cd7fcd01ecd35f87e3a1cb985",
+      "surfaceReportSha256": "a1537671ae465410a83a56dd91fa530f6051a2f3a3aaa7f2d9fb58b46e916992",
+      "periodFrames": 58,
+      "fps": 60,
+      "dutyFactor": 0.6,
+      "forwardSpeedMetersPerSecond": 0.749997329711914,
+      "godotImportAnimationFps": 60,
+      "animationName": "Walk",
+      "loopMode": "linear",
+      "sourceRootInPlace": true,
+      "bodySignedDetail": null,
+      "coatPolicy": "preserve native family UV and masks; no Light atlas"
+    },
+    {
+      "familyIds": [
+        "horse.standard.foal.v1",
+        "horse.compact.foal.v1"
+      ],
+      "enabled": false,
+      "scope": "neutral-shape staging, not game activation",
+      "sourceScene": "art/derived/production/candidates/foal-walk-polish/horse_foal_walk.glb",
+      "suggestedGameScene": "res://assets/horse/production/horse_foal_walk.glb",
+      "sourceGlbSha256": "219061fb162cfb227a9c0a6e025e12c83c8af6e834ba8517e3754ac8e3dd0769",
+      "candidateBlendSha256": "5f94f6d90946d6a899c57239861ec79ef17f27767dd318e039938f5ed70cc96d",
+      "motionProfilePath": "art/derived/production/candidates/foal-walk-polish/walk-motion-profile.json",
+      "motionProfileSha256": "f525314057884aba7d8dd8f5836f7bbb083825227ce551dc12f4c3248fd6f762",
+      "sourceAuditSha256": "6e4b23cc2c1218ad1164efd2326361fa75e7253dcde938b8eacd010b546b7f61",
+      "runtimeReportSha256": "4d59b1e33f29943e68984a65d8fbc77163439d3ef7a2f06735943d357cd043ec",
+      "surfaceReportSha256": "6050eab92558e1cd54fdb1618509d4ce0d259ba71e0f3b2a15d19de3535d6237",
+      "periodFrames": 58,
+      "fps": 60,
+      "dutyFactor": 0.6,
+      "forwardSpeedMetersPerSecond": 0.3448275862068966,
+      "godotImportAnimationFps": 60,
+      "animationName": "Walk",
+      "loopMode": "linear",
+      "sourceRootInPlace": true,
+      "bodySignedDetail": null,
+      "coatPolicy": "preserve native family UV and masks; no Light atlas"
+    }
+  ],
+  "activationChecklist": "docs/visual/REMAINING_WALKS_INTEGRATION_PREP.md"
+}

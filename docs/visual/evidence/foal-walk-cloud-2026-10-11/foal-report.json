@@ -1,0 +1,131 @@
+{
+  "animations": [
+    {
+      "boneMovementMeters": 0.166666686534882,
+      "endpointTranslationErrorMeters": 3.72529029846191e-08,
+      "importLoopMode": 0,
+      "length": 0.966666638851166,
+      "name": "Walk",
+      "tracks": 34
+    }
+  ],
+  "contact": {
+    "failures": [],
+    "limbs": {
+      "fore_l": {
+        "centralSwingMinimumMeters": 0.0413654036819935,
+        "maxPerAxisStanceMotionMeters": 0.000956445932388306,
+        "maxStanceSoleMinimumMeters": 3.66691092494875e-05,
+        "minStanceHeightMeters": -5.03967748954892e-06,
+        "registered": 42
+      },
+      "fore_r": {
+        "centralSwingMinimumMeters": 0.0413645319640636,
+        "maxPerAxisStanceMotionMeters": 0.000956594944000244,
+        "maxStanceSoleMinimumMeters": 3.65263549610972e-05,
+        "minStanceHeightMeters": -5.11674443259835e-06,
+        "registered": 44
+      },
+      "hind_l": {
+        "centralSwingMinimumMeters": 0.0414518192410469,
+        "maxPerAxisStanceMotionMeters": 0.00294096767902374,
+        "maxStanceSoleMinimumMeters": 0.000176801957422867,
+        "minStanceHeightMeters": -2.00500071514398e-05,
+        "registered": 46
+      },
+      "hind_r": {
+        "centralSwingMinimumMeters": 0.0414519421756268,
+        "maxPerAxisStanceMotionMeters": 0.0029410719871521,
+        "maxStanceSoleMinimumMeters": 0.000177270936546847,
+        "minStanceHeightMeters": -1.97936169570312e-05,
+        "registered": 44
+      }
+    },
+    "registered": 176
+  },
+  "engine": {
+    "build": "official",
+    "hash": "7d41c59c457bd5a245092b4e7eb2d833e3b3f8c3",
+    "hex": 263683,
+    "major": 4,
+    "minor": 6,
+    "patch": 3,
+    "status": "stable",
+    "string": "4.6.3-stable (official)",
+    "timestamp": 0
+  },
+  "failures": [],
+  "file": "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/foal-walk/horse_foal_walk.glb",
+  "importBakeFps": 60.0,
+  "meshCount": 4,
+  "meshes": [
+    {
+      "blendShapes": 4,
+      "name": "Body",
+      "skinBinds": 64,
+      "surfaceArrays": [
+        {
+          "colors": 8867,
+          "uv0": 8867,
+          "uv1": 8867,
+          "vertices": 8867
+        }
+      ],
+      "surfaces": 1
+    },
+    {
+      "blendShapes": 4,
+      "name": "Eyes",
+      "skinBinds": 64,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 846,
+          "uv1": 846,
+          "vertices": 846
+        }
+      ],
+      "surfaces": 1
+    },
+    {
+      "blendShapes": 4,
+      "name": "Mane",
+      "skinBinds": 64,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 364,
+          "uv1": 0,
+          "vertices": 364
+        }
+      ],
+      "surfaces": 1
+    },
+    {
+      "blendShapes": 4,
+      "name": "Tail",
+      "skinBinds": 64,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 58,
+          "uv1": 0,
+          "vertices": 58
+        }
+      ],
+      "surfaces": 1
+    }
+  ],
+  "skeletons": 1,
+  "skinDeformation": {
+    "failures": [],
+    "maxBodyEdgeStretch": 1.98921293793789,
+    "samples": 61,
+    "worstEdge": [
+      5809,
+      5947
+    ],
+    "worstPhase": 0.85
+  },
+  "candidateGlbSha256": "a625881fa184cbdc1347bc48c4a7ed8f51ebeed06cd4a8555e146e6ce667a730"
+}

@@ -1,0 +1,154 @@
+{
+  "schema": "horse.foal_walk.candidate.v1",
+  "sourceBlendSha256": "4322de7c3b97e6aa0e71111a6ab0de325f72f4f905424b4ff6e8d22df0ca041b",
+  "candidateBlendSha256": "795e82b7aaf9a80a5e18e58d892c0763ffe4542212bb64d520b2bb46f1c16d6b",
+  "protectedMeshData": {
+    "Body": {
+      "vertices": 6411,
+      "faces": 12818,
+      "positions": "2dd784116d8d6e7d5c4900c3b9a48950eed2e9c09b06b9d0f1d09495f6cd45ee",
+      "normals": "d90aaccffe4d74b1b8f4d74740232243cdc0df9da98d0325b94d01a62be771f9",
+      "topology": "6147e524790aaa9bdbc12c476b3a444e530ba16fc6975c59aff376280d67eac6",
+      "polygonRanges": "0623d0e3a71b23c9d124d91ddd02e8a90f712095e47702cdafa684e69da878e9",
+      "uv": {
+        "UVMap": "de9ebbf3414279906543db03ad6a9d43455fd1c08205a7289a70ab19670c352b",
+        "Canonical": "1c60052c7648e9157eb1138cb101ccf4f9483ca45f2eacb176cc3e09604d0dbe"
+      },
+      "colors": {
+        "Color": {
+          "domain": "CORNER",
+          "type": "FLOAT_COLOR",
+          "data": "06f5b170d6ff650065563830edc5c77f51bf105bb88018bed81736e8e7a09f22"
+        }
+      },
+      "morphs": {
+        "Basis": "2dd784116d8d6e7d5c4900c3b9a48950eed2e9c09b06b9d0f1d09495f6cd45ee",
+        "body_length": "d0745e22e0a78e79632543d8e35a885a52d8ef891a2e96a7f5e980d91521de85",
+        "chest_width": "a437d47fe88896a55893e3a7dca801feaaaf508933df510742edcb4b6ad0e20a",
+        "neck_length": "9bb717c7dc775baac06358788d9194746c2c0f4165ad79bb2fdf856924d32457",
+        "muscle": "f0a59b34aef1357ba8ab199ff2ba787dab8a461d5e10953a11d7f69051a88467"
+      }
+    },
+    "Eyes": {
+      "vertices": 724,
+      "faces": 768,
+      "positions": "aaeabd96c77cb89c54dab02189050b2a3f75694dfff754f07770d7e8d76cfdc8",
+      "normals": "2449eaf0d19ae93f980f42adef8a76ee0eab51fc18fbebce5534eb971a7a1d7f",
+      "topology": "5270de2f9e6642be1e44e3a2fdcee474a4f0c1d5c830f08cb764873d05ea451a",
+      "polygonRanges": "cd7417e4147ec891fdd885411601e1ef91afde204717105d15d5554c1dccc6c7",
+      "uv": {
+        "UVMap": "e99da62d4b4ff939a033e05f923a7e28de2e0395aad3bf182df36a2e070d2e45",
+        "UVMap.001": "e99da62d4b4ff939a033e05f923a7e28de2e0395aad3bf182df36a2e070d2e45"
+      },
+      "colors": {},
+      "morphs": {
+        "Basis": "aaeabd96c77cb89c54dab02189050b2a3f75694dfff754f07770d7e8d76cfdc8",
+        "body_length": "aaeabd96c77cb89c54dab02189050b2a3f75694dfff754f07770d7e8d76cfdc8",
+        "chest_width": "5f5c9ac5e06b0330499440c37f99a623917e8780bf549774a0329c60a290d733",
+        "neck_length": "7d782a83e16da8223085217b8574fb71f015ea2ae87792ab3ef10621b7e9c37e",
+        "muscle": "c478fe50e6e23fee99347f068d20d2878a343116be635acf12ab34f6a38fa835"
+      }
+    },
+    "Mane": {
+      "vertices": 214,
+      "faces": 202,
+      "positions": "c847536291d5ba5fa6a7f98edf0451b9eab60b5719b525581d84803e3a6f1b99",
+      "normals": "9182f8dea4b758a4874a46d2dc3d332f8d75fad273bda1cc937faeb0bc3b5170",
+      "topology": "105b5329665007f4d1a9668bd07089149f1b53bb885360dda68dce4e5ac55a4d",
+      "polygonRanges": "e130c8bf59776d6137901d2a58747d2782987713863ce0df372c853de3a5944a",
+      "uv": {
+        "UVMap": "a39b0e30c41c080a9acf7b15eb839c84efee3aaf98a568576e1295b0bbe659a2"
+      },
+      "colors": {},
+      "morphs": {
+        "Basis": "c847536291d5ba5fa6a7f98edf0451b9eab60b5719b525581d84803e3a6f1b99",
+        "body_length": "5cdb4752d848bb6135109de23fac5b5ce93cfa8a95b2aba66ffe65caa9494815",
+        "chest_width": "c6d2e58c9298fec5b5c8365be57c675b140c58f338537e8eb2f7ba2dd1ba206d",
+        "neck_length": "ecd2fa6116c23f3c0638fdb991764e38872afff322b35c4151cdbf25116962d2",
+        "muscle": "49cb1d81e2adf678156ad38a5300ed5cf6ce6c4554016aa4040e3b65447c2d82"
+      }
+    },
+    "Tail": {
+      "vertices": 40,
+      "faces": 30,
+      "positions": "9c2ebfdce5ae5624dc3e3b3f038374d904c77faed0fc9833cfd29a024ae8b3d1",
+      "normals": "2e76813891b9031a8860da2709a4560092185f4775b957e9083ac007e651327d",
+      "topology": "e90d178b78420335f2d26d082633676632b6bcb2644c67ee9d4b39cc76c4a969",
+      "polygonRanges": "1d70cc532e733b016d23ad6232902d773ce51a3a6307b00adbdf7ee27fe78814",
+      "uv": {
+        "UVMap": "6d7c94651a5005757dcd609ee7d7356bfd5bbeb4dbff44870e1cc1abaa9b0c61"
+      },
+      "colors": {},
+      "morphs": {
+        "Basis": "9c2ebfdce5ae5624dc3e3b3f038374d904c77faed0fc9833cfd29a024ae8b3d1",
+        "body_length": "d68f6ef6da1e475389bad1bb132aac77ee00b9a9547331ad8455600ead56fafc",
+        "chest_width": "a7f8cb4bcd275e83fa21b5c2b12422995bc0bd99e31de96b445e72bc63fdcb68",
+        "neck_length": "9c2ebfdce5ae5624dc3e3b3f038374d904c77faed0fc9833cfd29a024ae8b3d1",
+        "muscle": "1d92f6a87860a8f4beb244f119e137e1ef52dfa3df2f995878571364e61de376"
+      }
+    }
+  },
+  "protectedMeshDataExact": true,
+  "reusedLightAtlas": false,
+  "sampleCount": 61,
+  "fps": 60,
+  "periodFrames": 58,
+  "forwardSpeedMetersPerSecond": 0.3448275862068966,
+  "bodyMaxEdgeStretch": 1.9901034832000732,
+  "worstEdge": {
+    "ratio": 1.9901034832000732,
+    "frame": 49.3,
+    "edge": [
+      4178,
+      4268
+    ],
+    "restPoints": [
+      [
+        0.21594969928264618,
+        0.0552717000246048,
+        0.5531409978866577
+      ],
+      [
+        0.22594840824604034,
+        0.06358680129051208,
+        0.5413509607315063
+      ]
+    ]
+  },
+  "maxLimbReachRatio": 0.9810267256659635,
+  "loopMaxVertexDeltaM": 0.0,
+  "midCycleMaxVertexMotionM": 0.17024022340774536,
+  "contacts": {
+    "fore_l": {
+      "soleCount": 42,
+      "stanceAdjacentMaxMotionM": 7.335585223700036e-07,
+      "minStanceHeightM": -1.4593824744224548e-06,
+      "maxStanceP05HeightM": 0.00016729971684981138,
+      "minMiddleSwingClearanceM": 0.032978590577840805
+    },
+    "hind_r": {
+      "soleCount": 44,
+      "stanceAdjacentMaxMotionM": 1.3667241773873684e-06,
+      "minStanceHeightM": -4.742934834212065e-06,
+      "maxStanceP05HeightM": 0.0002236011205241084,
+      "minMiddleSwingClearanceM": 0.03298518806695938
+    },
+    "fore_r": {
+      "soleCount": 44,
+      "stanceAdjacentMaxMotionM": 7.261941163960728e-07,
+      "minStanceHeightM": -1.385807991027832e-06,
+      "maxStanceP05HeightM": 9.059916919795796e-06,
+      "minMiddleSwingClearanceM": 0.03297806903719902
+    },
+    "hind_l": {
+      "soleCount": 46,
+      "stanceAdjacentMaxMotionM": 1.58330044541799e-06,
+      "minStanceHeightM": -4.485045792534947e-06,
+      "maxStanceP05HeightM": 3.300426760688424e-05,
+      "minMiddleSwingClearanceM": 0.03298518806695938
+    }
+  },
+  "runtimeTested": false,
+  "visualReview": "pending",
+  "candidateGlbSha256": "a625881fa184cbdc1347bc48c4a7ed8f51ebeed06cd4a8555e146e6ce667a730"
+}

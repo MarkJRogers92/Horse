@@ -1,0 +1,23 @@
+{
+  "candidateBlendSha256": "795e82b7aaf9a80a5e18e58d892c0763ffe4542212bb64d520b2bb46f1c16d6b",
+  "candidateGlbSha256": "a625881fa184cbdc1347bc48c4a7ed8f51ebeed06cd4a8555e146e6ce667a730",
+  "scope": "Checked neutral Walk preview; remaining soft shoulder/knee compression; no game integration or morph-gait acceptance",
+  "sourceSamples": 581,
+  "runtimeSamples": 61,
+  "runtimeBakeFps": 60,
+  "sourceBodyStretchLimit": 2.0,
+  "runtimeStanceMotionLimitMeters": 0.005,
+  "allRuntimeAndSurfaceGatesPassed": true,
+  "renders": {
+    "quarter_1.png": "5a488addafa8114555c2a70d7011e292fcdb243ca365125a933dae7f4f6d7a34",
+    "side_1.png": "0ffcb93556f2e01007d83cbc8c92f44fe393127434e3860268699358d083c3d7",
+    "chest_4.png": "cebca770ddfa49fd59ce71e70cdda0940833939d1c6b3ebaacb2bf7a01e3ef8a",
+    "side_0.png": "73acb1e5dec3cb4230d46af05d1e4a22858806fdb391cf01b16d34afd8c71d4a",
+    "chest_5.png": "cf4870ba5c0d10e88fb4cfe7d038ace79979c267502abf4d870771580884e175",
+    "chest_3.png": "d0788e66f34e8d12e129a56a8f081cc6936c27478086ef05a9533a4ccc2be732",
+    "chest_0.png": "e589106b533effe585ed7a1f345ef22612fcd85e420009e818c3f4b56d27df65",
+    "quarter_0.png": "3ef244b103f4d5aa65726c7035e0da9a67cbc74af82851b571f6f9a61ae827aa",
+    "chest_2.png": "74016b7cfbf9d5d5f1527e488b095b7963eca8f15b2a43a4f130c0b5c8c4f4c1",
+    "chest_1.png": "d4883ef89e6759c87c02df55640e7bda9a8371790af3c4a178bc8269f57552ea"
+  }
+}

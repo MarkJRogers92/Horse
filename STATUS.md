@@ -6,6 +6,108 @@ The prior visual/animation freeze below is historical and remains true for the
 original checkout; new work is isolated here. No release-matrix promotion or main merge.
 
 
+## Completed neutral Walk polish and inactive integration preparation — 2026-10-11
+
+The owner requested polishing both remaining models and preparing integration.
+Separate final candidates are in `art/derived/production/candidates/stock-walk-polish/`
+and `foal-walk-polish/`: Stock GLB `3850db29`, blend `4efbbb61`; foal GLB
+`219061fb`, blend `5f94f6d9`. These supersede the initial previews below.
+
+Stock now uses 60 fps, fixes eight inherited unweighted Tail points and smooths
+Mane weight discontinuities while locking all 172 exact Mane roots. All 222
+Body/hair joins remain closed. Foal hinge placement, four midpoint knee helpers
+and velocity-continuous swing improve shoulders/knees and planting without
+reducing full stride. Original geometry/normals, all four morphs, native UVs and
+coat colors remain exact at every exported corner; no Light atlas was copied.
+
+Actual standard Godot 4.6.3 imported-Skin checks pass for all four components,
+all 429/176 sole witnesses, nonzero normalized weights, floor contact, movement
+and exact looping. Maximum stance motion: Stock 1.0922 mm, foal 0.4910 mm.
+Imported Body stretch: 1.46198x / 1.64670x; dense 581-phase source checks are
+1.47090x / 1.64878x. Hair/eye checks also pass; Stock's discovered Mane/Tail
+strain was repaired rather than hidden behind the Body-only gate.
+
+Final-hash smooth loop previews, audits and reproducible harnesses are in
+`docs/visual/evidence/walk-polish-cloud-2026-10-11/`. Integration preparation
+includes a disabled, hash-bound manifest generator and fail-closed tests, plus
+`docs/visual/REMAINING_WALKS_INTEGRATION_PREP.md`. Both require 60 fps import,
+explicit linear looping, neutral morphs/unit scale and one profile-speed actor
+translation. Final source/syntax, manifest tests, validator and whitespace
+checks passed. Full .NET game/coats/UI/Idle/Mac integration remains untested;
+the existing game guards, accepted Light Walk and foundation assets are intact.
+No paid generation, user-computer work, main merge or public release occurred.
+
+## Foal neutral Walk preview checked on the dot cloud computer — 2026-10-11
+
+The remaining genuine foal now has a separate walking preview in
+`art/derived/production/candidates/foal-walk/`: blend `795e82b7`, GLB `a625881f`.
+Original geometry, normals, all four morphs, primary/Canonical UVs and coat-mask
+colors compare exactly, corner by corner, with the original foal export.
+
+The juvenile uses its own limb proportions and a solved four-beat walk with
+20 cm stance travel, 66 mm peak lift and one actor speed of 0.3448275862068966 m/s.
+A source discontinuity at the inner chest was rejected, then repaired with
+geometry-local limb-membership smoothing and medial/opposite-limb attenuation.
+The unchanged Body-stretch limit remains 2.0: 581 source phases peak at 1.990931,
+and actual Godot Skin evaluation peaks at 1.989213 over 61 phases. The small margin
+and visible soft knee/shoulder compression limit this to a neutral Walk preview;
+this is not finished animation polish, extreme-morph gait or owner art approval.
+
+All 176 rigid sole witnesses resolve through imported Skin binds. Actual Godot
+4.6.3 contact checks pass with maximum stance motion 2.942 mm, floor penetration
+about 0.021 mm, central swing clearance above 41.36 mm and endpoint error below
+0.00004 mm. Import must use 60 fps for the 58-frame / 0.966667-second clip; the
+30 fps default was caught exceeding the unchanged 5 mm slip gate. The reusable
+GDScript harness reads this required rate from the motion profile. Explicit
+looping, neutral morphs and unit scale remain required.
+
+A further 235 fixed hair-to-Body triangle witnesses show at most 0.030 mm gap
+drift over 61 phases. Final-hash full-body and six chest-closeup renders were
+inspected. Reports, scripts, exact hashes and scope are in
+`docs/visual/evidence/foal-walk-cloud-2026-10-11/`. `Foal Horse Walk Preview.zip`
+contains the editable model, GLB and complete evidence. The original foal,
+accepted Light Walk, Stock foundations, game guards and Mac build are unchanged.
+No paid generation, local-computer access, new work chat, main merge or public
+release occurred. Source syntax, frozen-spec validator and whitespace checks
+passed; .NET gameplay tests were not run because this cloud toolchain has no
+.NET runtime and no gameplay code changed.
+
+## Stock adult Walk checked on the dot cloud computer — 2026-10-11
+
+The owner requested walking for the remaining models here without another work
+chat, local computer access or paid generation. A separate neutral Stock Walk is
+now checked and delivered as `Stock Horse Walk.zip`. The accepted Light Walk,
+Stock/foal foundations, procedural coat code, Light atlas and normal-game guards
+remain byte-for-byte unchanged; no new Mac build or catalog activation is claimed.
+
+`art/derived/production/candidates/stock-walk/horse_stock_walk.blend` (`a601c3c7`)
+and `.glb` (`911cc136`) retain exact Stock indexed geometry, all four morphs,
+normals, primary and Canonical UVs, and coat-mask colors. The checked Light skin
+and four-beat timing are fitted to Stock rest pivots with the original family
+warp; direct Light head pivots were rejected because Stock's neck is 140 mm
+shorter. Baking fitted global transforms resolves the ear stretch. The exporter
+explicitly selects the named Color attribute; its default material-based export
+was caught producing white masks and was corrected before delivery.
+
+Blender 5.2.2 proof covers 61 phases, maximum Body edge stretch 1.470871, exact
+loop closure, 222 closed Body/hair joins and unchanged 429 sole witnesses.
+Actual standard Godot 4.6.3 imports and advances Walk, retains four components
+and four morphs each, resolves all sole witnesses through Skin binds, and passes
+61-phase contact: maximum per-axis stance motion 3.837 mm, minimum stance height
+about -1.30 mm and central swing clearance about 60 mm. An independent raw-GLB
+comparison finds zero error at every exported corner for geometry, normals,
+UVs, colors and every morph position/normal. Side and quarter frames were rendered
+and inspected. Evidence and the reusable GDScript harness are in
+`docs/visual/evidence/stock-walk-cloud-2026-10-11/`.
+
+Use neutral morphs/unit scale, explicit looping, and one +X actor speed of
+0.749997329711914 m/s for a 29/30-second cycle. Full .NET game integration and
+application coat rendering are untested in this cloud environment. Morph gait
+extremes remain unaccepted. Foal work remains a separate bounded candidate until
+its shoulder/chest skin passes deformation; contact/loop success alone is not
+acceptance. No main merge, public release, external generation or local computer
+access occurred.
+
 ## Light Walk in the game and macOS export — 2026-10-11
 
 The owner authorized integrating the checked horse/coats into the game, creating
