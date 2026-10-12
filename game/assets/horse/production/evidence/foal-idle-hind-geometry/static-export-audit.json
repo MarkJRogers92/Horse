@@ -1,0 +1,271 @@
+{
+  "schema": "horse.foal_idle.static_export.v1",
+  "candidateGlbSha256": "422d320d4c976411e3f6d4346d74202b606f438bade44111b325686575c86291",
+  "candidateBlendSha256": "bef2fe3a18f2d742d0a5e4976dd25d489959be381e408214bfd4323bd725fe31",
+  "validatorSha256": "170fcf9e3f4ee7fba034ba23631d2656b6cba58563ce6d24e3a9d57b3ca74fcd",
+  "dependencySha256": {
+    "audit_foal_geometry_region.py": "a62b894f0192b7319a3ce068be118d3f9c360c9f786689b61921931a950c6c6a",
+    "import_reference.py": "6494bbdac7ef57e9602d7b0ae811b9b5c9e4614b6e2337c1739df0043f2d1004",
+    "build_foal_production.py": "0801527902854996ccafb612894dbfca85dfb1dca36182c69422ae7c1366e149"
+  },
+  "glbAudit": {
+    "mesh_names": [
+      "Body",
+      "Eyes",
+      "Mane",
+      "Tail"
+    ],
+    "node_names": [
+      "FoalSmart_Bone_002",
+      "FoalSmart_Bone_003",
+      "FoalSmart_Bone_017",
+      "Hind_L_Hoof_03",
+      "Hind_L_Hoof_02",
+      "Hind_L_Hoof",
+      "Hind_L_Pastern",
+      "Hind_L_Cannon",
+      "Hind_L_Hock",
+      "Hind_L_Gaskin",
+      "Hind_L_Upper",
+      "FoalSmart_Bone_014",
+      "Hind_R_Hoof_03",
+      "Hind_R_Hoof_02",
+      "Hind_R_Hoof",
+      "Hind_R_Pastern",
+      "Hind_R_Cannon",
+      "Hind_R_Hock",
+      "Hind_R_Gaskin",
+      "Hind_R_Upper",
+      "Front_L_Hoof_03",
+      "Front_L_Hoof_02",
+      "Front_L_Hoof",
+      "Front_L_Pastern",
+      "Front_L_Cannon",
+      "Front_L_Forearm",
+      "Front_L_Upper",
+      "Front_R_Hoof_03",
+      "Front_R_Hoof_02",
+      "Front_R_Hoof",
+      "Front_R_Pastern",
+      "Front_R_Cannon",
+      "Front_R_Forearm",
+      "Front_R_Upper",
+      "FoalSmart_Bone_041",
+      "FoalSmart_Bone_042",
+      "FoalSmart_Bone_012",
+      "FoalSmart_Bone_013",
+      "FoalSmart_Bone_054",
+      "FoalSmart_Bone_055",
+      "FoalSmart_Bone_056",
+      "FoalSmart_Bone_057",
+      "FoalSmart_Bone_058",
+      "Ear_L",
+      "Ear_R",
+      "Head_Nose",
+      "Jaw_Tip",
+      "Head",
+      "Head_Base",
+      "FoalSmart_Bone_050",
+      "FoalSmart_Bone_051",
+      "FoalSmart_Bone_052",
+      "FoalSmart_Bone_053",
+      "FoalSmart_Bone_043",
+      "Neck",
+      "Neck_Base",
+      "Tail_03",
+      "Tail_02",
+      "Tail_01",
+      "Chest",
+      "Spine_Base",
+      "Pelvis",
+      "Pelvis_Root",
+      "Root",
+      "Body",
+      "Eyes",
+      "Mane",
+      "Tail",
+      "Skeleton"
+    ],
+    "animations": 1,
+    "animationNames": [
+      "Idle"
+    ],
+    "triangles": 14722,
+    "primitives": {
+      "Body": {
+        "vertices": 8867,
+        "triangles": 12818,
+        "color_0": 8867,
+        "texcoord_1": 8867,
+        "weights_0": 8867
+      },
+      "Eyes": {
+        "triangles": 1440
+      },
+      "Mane": {
+        "triangles": 404
+      },
+      "Tail": {
+        "triangles": 60
+      }
+    },
+    "attributes": {
+      "Body": [
+        [
+          "COLOR_0",
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "TEXCOORD_1",
+          "WEIGHTS_0"
+        ]
+      ],
+      "Eyes": [
+        [
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "TEXCOORD_1",
+          "WEIGHTS_0"
+        ]
+      ],
+      "Mane": [
+        [
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "WEIGHTS_0"
+        ]
+      ],
+      "Tail": [
+        [
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "WEIGHTS_0"
+        ]
+      ]
+    },
+    "normal_unit_failures": 0,
+    "nonfinite_values": 0,
+    "max_skin_weight_sum_error": 1.1175870895385742e-07,
+    "max_skin_influences": 4,
+    "max_active_skin_influences": 4,
+    "skin_weights_by_mesh": {
+      "Body": {
+        "vertices": 8867,
+        "max_sum_error": 9.685754776000977e-08,
+        "max_active_influences": 4,
+        "primitive_count": 1
+      },
+      "Eyes": {
+        "vertices": 846,
+        "max_sum_error": 3.725290298461914e-09,
+        "max_active_influences": 2,
+        "primitive_count": 1
+      },
+      "Mane": {
+        "vertices": 364,
+        "max_sum_error": 1.1175870895385742e-07,
+        "max_active_influences": 4,
+        "primitive_count": 1
+      },
+      "Tail": {
+        "vertices": 58,
+        "max_sum_error": 8.568167686462402e-08,
+        "max_active_influences": 4,
+        "primitive_count": 1
+      }
+    },
+    "mixed_canonical_category_triangles": 0,
+    "body_has_descriptor_attributes": true,
+    "body_has_skin": true,
+    "exported_head_direction_muzzle_minus_poll": [
+      0.591,
+      -0.80665,
+      -0.00629
+    ],
+    "exported_horizontal_forward_XZ": [
+      0.99994,
+      -0.01064
+    ],
+    "exported_poll_center_m": [
+      0.4625,
+      1.34411,
+      0.0028
+    ],
+    "exported_muzzle_center_m": [
+      0.66607,
+      1.06625,
+      0.00064
+    ]
+  },
+  "idleExportAudit": {
+    "clip": "Idle",
+    "channelCount": 192,
+    "varyingChannelCount": 3,
+    "staticRestChannelCount": 189,
+    "varyingChannels": [
+      {
+        "node": "Spine_Base",
+        "path": "rotation",
+        "startSeconds": 0.04166667,
+        "durationSeconds": 3.99999984,
+        "keys": 97,
+        "interpolation": "LINEAR",
+        "maxOutputDelta": 0.0013090851585361584
+      },
+      {
+        "node": "Neck",
+        "path": "rotation",
+        "startSeconds": 0.04166667,
+        "durationSeconds": 3.99999984,
+        "keys": 97,
+        "interpolation": "LINEAR",
+        "maxOutputDelta": 0.0017453694477364914
+      },
+      {
+        "node": "Head",
+        "path": "rotation",
+        "startSeconds": 0.04166667,
+        "durationSeconds": 3.99999984,
+        "keys": 97,
+        "interpolation": "LINEAR",
+        "maxOutputDelta": 0.0008726503065638755
+      }
+    ],
+    "rootMotion": "none; Root and Pelvis_Root tracks are static",
+    "exporterBehavior": "Blender glTF emits constant rest tracks for otherwise unkeyed bones"
+  },
+  "morphTargetsByComponent": {
+    "Body": [
+      "body_length",
+      "chest_width",
+      "neck_length",
+      "muscle"
+    ],
+    "Eyes": [
+      "body_length",
+      "chest_width",
+      "neck_length",
+      "muscle"
+    ],
+    "Mane": [
+      "body_length",
+      "chest_width",
+      "neck_length",
+      "muscle"
+    ],
+    "Tail": [
+      "body_length",
+      "chest_width",
+      "neck_length",
+      "muscle"
+    ]
+  },
+  "pass": true
+}

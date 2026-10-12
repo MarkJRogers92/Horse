@@ -1,0 +1,24 @@
+Failed to create secure directory (/home/agent/.local/run/pulse): Read-only file system
+socket(): Operation not permitted
+00:00.414  blend            | Read blend: "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/foal-walk-stifle/horse_foal_walk.blend"
+00:00.469  blend            | Read blend: "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/foal-walk-hind-geometry/horse_foal_walk.blend"
+00:00.518  blend            | Read blend: "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/horse_foal.blend"
+00:00.618  image.write      | ERROR OpenImageIO write failed: Could not open file "/home/agent/.cache/thumbnails/large/blender_6_b24767bb64667ac97958d0fcfe206989.png.png"
+Info: Saved as "horse_foal.blend"
+INFO Draco is available, use library at /workspace/scratch/46c24ac297cd/horse-walk-cloud/toolchain/blender-5.2.2-linux-x64/lib/libbf_intern_draco_bridge.so
+INFO MeshOptimizer is available, use library at /workspace/scratch/46c24ac297cd/horse-walk-cloud/toolchain/blender-5.2.2-linux-x64/lib/libbf_intern_meshopt_bridge.so
+23:15:16 | INFO: Starting glTF 2.0 export
+23:15:16 | INFO: Extracting primitive: Body
+23:15:16 | INFO: Primitives created: 1
+23:15:16 | INFO: Extracting primitive: Eyes
+23:15:16 | INFO: Primitives created: 1
+23:15:16 | INFO: Extracting primitive: Mane
+23:15:16 | INFO: Primitives created: 1
+23:15:16 | INFO: Extracting primitive: Tail
+23:15:16 | INFO: Primitives created: 1
+23:15:16 | INFO: Finished glTF 2.0 export in 0.39583730697631836 s
+
+{"schema": "horse.foal_idle.geometry_transfer.v1", "sourceBlendSha256": "4322de7c3b97e6aa0e71111a6ab0de325f72f4f905424b4ff6e8d22df0ca041b", "acceptedWalkBlendSha256": "6183af14b955d9fa20636deabaf38ca8aa1527e4a13af6216653ede6152bfcca", "candidateBlendSha256": "bef2fe3a18f2d742d0a5e4976dd25d489959be381e408214bfd4323bd725fe31", "candidateGlbSha256": "422d320d4c976411e3f6d4346d74202b606f438bade44111b325686575c86291", "meshPositionsAndAllShapeKeysTakenExactlyFromAcceptedWalk": true, "originalIdleRigWeightsAndAnimationRetained": true, "independentAuditRequired": true}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:34:58)
+
+Blender quit

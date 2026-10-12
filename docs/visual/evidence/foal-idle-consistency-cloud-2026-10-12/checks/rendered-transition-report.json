@@ -1,0 +1,634 @@
+{
+  "checks": 3552,
+  "failures": [],
+  "measurements": [
+    {
+      "label": "horse.standard.foal.v1 idle-to-walk",
+      "fps": 60,
+      "frames": 34,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.012182937,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.2821414,
+        "Eyes:0": 1.0005356,
+        "Mane:0": 1.0285903,
+        "Tail:0": 1.0061265
+      },
+      "minimumBodyHeightMeters": -0.0015000002,
+      "maximumTemporaryModelLiftMeters": 0.0056704395,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "horse.standard.foal.v1 walk-to-idle",
+      "fps": 60,
+      "frames": 34,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.0150099145,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.5103254,
+        "Eyes:0": 1.0004321,
+        "Mane:0": 1.0285759,
+        "Tail:0": 1.0061265
+      },
+      "minimumBodyHeightMeters": -0.0015,
+      "maximumTemporaryModelLiftMeters": 0.0034680387,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "horse.standard.foal.v1 latest-reversal-to-idle",
+      "fps": 60,
+      "frames": 34,
+      "maxSkinSwapGapMeters": 0,
+      "maxNormalizedSkinSwapGapMeters": 0,
+      "maxFrameVertexStepMeters": 0.0032270397,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 0
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.0030676,
+        "Eyes:0": 1.0004321,
+        "Mane:0": 1.0285904,
+        "Tail:0": 1.006145
+      },
+      "minimumBodyHeightMeters": 0.00022904653,
+      "maximumTemporaryModelLiftMeters": 0,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "horse.standard.foal.v1 idle-to-walk",
+      "fps": 120,
+      "frames": 68,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.0061020055,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.2821414,
+        "Eyes:0": 1.0006373,
+        "Mane:0": 1.0286784,
+        "Tail:0": 1.0061452
+      },
+      "minimumBodyHeightMeters": -0.0015000002,
+      "maximumTemporaryModelLiftMeters": 0.0057167895,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "horse.standard.foal.v1 walk-to-idle",
+      "fps": 120,
+      "frames": 68,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.0075275395,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.5103254,
+        "Eyes:0": 1.0004321,
+        "Mane:0": 1.0286307,
+        "Tail:0": 1.0061333
+      },
+      "minimumBodyHeightMeters": -0.0015,
+      "maximumTemporaryModelLiftMeters": 0.003502202,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "horse.standard.foal.v1 latest-reversal-to-idle",
+      "fps": 120,
+      "frames": 68,
+      "maxSkinSwapGapMeters": 0,
+      "maxNormalizedSkinSwapGapMeters": 0,
+      "maxFrameVertexStepMeters": 0.0016143682,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 0
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.0030676,
+        "Eyes:0": 1.0004321,
+        "Mane:0": 1.0286307,
+        "Tail:0": 1.006145
+      },
+      "minimumBodyHeightMeters": 0.00022904653,
+      "maximumTemporaryModelLiftMeters": 0,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "horse.compact.foal.v1 idle-to-walk",
+      "fps": 60,
+      "frames": 34,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.012182937,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.2821414,
+        "Eyes:0": 1.0005356,
+        "Mane:0": 1.0285903,
+        "Tail:0": 1.0061265
+      },
+      "minimumBodyHeightMeters": -0.0015000002,
+      "maximumTemporaryModelLiftMeters": 0.0056704395,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "horse.compact.foal.v1 walk-to-idle",
+      "fps": 60,
+      "frames": 34,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.0150099145,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.5103254,
+        "Eyes:0": 1.0004321,
+        "Mane:0": 1.0285759,
+        "Tail:0": 1.0061265
+      },
+      "minimumBodyHeightMeters": -0.0015,
+      "maximumTemporaryModelLiftMeters": 0.0034680387,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "horse.compact.foal.v1 latest-reversal-to-idle",
+      "fps": 60,
+      "frames": 34,
+      "maxSkinSwapGapMeters": 0,
+      "maxNormalizedSkinSwapGapMeters": 0,
+      "maxFrameVertexStepMeters": 0.0032270397,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 0
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.0030676,
+        "Eyes:0": 1.0004321,
+        "Mane:0": 1.0285904,
+        "Tail:0": 1.006145
+      },
+      "minimumBodyHeightMeters": 0.00022904653,
+      "maximumTemporaryModelLiftMeters": 0,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "horse.compact.foal.v1 idle-to-walk",
+      "fps": 120,
+      "frames": 68,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.0061020055,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.2821414,
+        "Eyes:0": 1.0006373,
+        "Mane:0": 1.0286784,
+        "Tail:0": 1.0061452
+      },
+      "minimumBodyHeightMeters": -0.0015000002,
+      "maximumTemporaryModelLiftMeters": 0.0057167895,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "horse.compact.foal.v1 walk-to-idle",
+      "fps": 120,
+      "frames": 68,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.0075275395,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.5103254,
+        "Eyes:0": 1.0004321,
+        "Mane:0": 1.0286307,
+        "Tail:0": 1.0061333
+      },
+      "minimumBodyHeightMeters": -0.0015,
+      "maximumTemporaryModelLiftMeters": 0.003502202,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "horse.compact.foal.v1 latest-reversal-to-idle",
+      "fps": 120,
+      "frames": 68,
+      "maxSkinSwapGapMeters": 0,
+      "maxNormalizedSkinSwapGapMeters": 0,
+      "maxFrameVertexStepMeters": 0.0016143682,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 0
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.0030676,
+        "Eyes:0": 1.0004321,
+        "Mane:0": 1.0286307,
+        "Tail:0": 1.006145
+      },
+      "minimumBodyHeightMeters": 0.00022904653,
+      "maximumTemporaryModelLiftMeters": 0,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "walk stop phase 0",
+      "fps": 60,
+      "frames": 34,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.0121927215,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.2821414,
+        "Eyes:0": 1.0004468,
+        "Mane:0": 1.029031,
+        "Tail:0": 1.0062572
+      },
+      "minimumBodyHeightMeters": -0.0015000002,
+      "maximumTemporaryModelLiftMeters": 0.005688213,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "walk stop phase 0.125",
+      "fps": 60,
+      "frames": 34,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.016808204,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.3364234,
+        "Eyes:0": 1.0004468,
+        "Mane:0": 1.029031,
+        "Tail:0": 1.006412
+      },
+      "minimumBodyHeightMeters": -0.0015,
+      "maximumTemporaryModelLiftMeters": 0.0026501368,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "walk stop phase 0.25",
+      "fps": 60,
+      "frames": 34,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.020656953,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.6684273,
+        "Eyes:0": 1.0004468,
+        "Mane:0": 1.029031,
+        "Tail:0": 1.0063334
+      },
+      "minimumBodyHeightMeters": -0.0015000002,
+      "maximumTemporaryModelLiftMeters": 0.006234252,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "walk stop phase 0.5",
+      "fps": 60,
+      "frames": 34,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.0121900365,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.2541034,
+        "Eyes:0": 1.0004468,
+        "Mane:0": 1.029031,
+        "Tail:0": 1.0062572
+      },
+      "minimumBodyHeightMeters": -0.0015000002,
+      "maximumTemporaryModelLiftMeters": 0.00557952,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "walk stop phase 0.625",
+      "fps": 60,
+      "frames": 34,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.01681593,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.3190354,
+        "Eyes:0": 1.0004468,
+        "Mane:0": 1.029031,
+        "Tail:0": 1.0062572
+      },
+      "minimumBodyHeightMeters": -0.0015,
+      "maximumTemporaryModelLiftMeters": 0.0025415479,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "walk stop phase 0.75",
+      "fps": 60,
+      "frames": 34,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.020656837,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.626769,
+        "Eyes:0": 1.0004468,
+        "Mane:0": 1.029031,
+        "Tail:0": 1.0062572
+      },
+      "minimumBodyHeightMeters": -0.0015000002,
+      "maximumTemporaryModelLiftMeters": 0.0061361846,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    },
+    {
+      "label": "walk stop phase 0.875",
+      "fps": 60,
+      "frames": 34,
+      "maxSkinSwapGapMeters": 7.3560084E-05,
+      "maxNormalizedSkinSwapGapMeters": 7.7385675E-07,
+      "maxFrameVertexStepMeters": 0.015338241,
+      "skinPrecision": [
+        {
+          "outgoing": {
+            "maxWeightSumError": 9.1671944E-05,
+            "maxBindRestTranslationErrorMeters": 8.693985E-07,
+            "maxBindRestBasisError": 2.0973757E-06
+          },
+          "incoming": {
+            "maxWeightSumError": 4.5835972E-05,
+            "maxBindRestTranslationErrorMeters": 1.015081E-06,
+            "maxBindRestBasisError": 1.425794E-06
+          },
+          "normalizedGapMeters": 7.7385675E-07
+        }
+      ],
+      "maxEdgeStretchByComponent": {
+        "Body:0": 1.4892627,
+        "Eyes:0": 1.0004468,
+        "Mane:0": 1.029031,
+        "Tail:0": 1.0063145
+      },
+      "minimumBodyHeightMeters": -0.0015,
+      "maximumTemporaryModelLiftMeters": 0.003529467,
+      "edgeStretchBaseline": "Corresponding unskinned corrected surface at the same current morph values and height; edges longer than 1 micrometre",
+      "contactScope": "Minimum actual Body height measured throughout; bridge repositions legs, with no steady Walk or locomotion until completion"
+    }
+  ],
+  "scope": "Corrected foal Idle/Walk rest-surface swaps, reversible shape/height bridges, real viewer selection and cancellation. Direct Present and adult semantics unchanged."
+}

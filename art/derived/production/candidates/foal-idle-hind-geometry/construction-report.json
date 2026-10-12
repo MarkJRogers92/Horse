@@ -1,0 +1,10 @@
+{
+  "schema": "horse.foal_idle.geometry_transfer.v1",
+  "sourceBlendSha256": "4322de7c3b97e6aa0e71111a6ab0de325f72f4f905424b4ff6e8d22df0ca041b",
+  "acceptedWalkBlendSha256": "6183af14b955d9fa20636deabaf38ca8aa1527e4a13af6216653ede6152bfcca",
+  "candidateBlendSha256": "bef2fe3a18f2d742d0a5e4976dd25d489959be381e408214bfd4323bd725fe31",
+  "candidateGlbSha256": "422d320d4c976411e3f6d4346d74202b606f438bade44111b325686575c86291",
+  "meshPositionsAndAllShapeKeysTakenExactlyFromAcceptedWalk": true,
+  "originalIdleRigWeightsAndAnimationRetained": true,
+  "independentAuditRequired": true
+}

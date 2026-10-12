@@ -36,6 +36,12 @@ public partial class HorsePresenter : Node3D
 
     public VisualSupport Present(VisualDescriptor descriptor, string animation = "idle")
     {
+        CancelFoalTransition();
+        return PresentModel(descriptor, animation);
+    }
+
+    private VisualSupport PresentModel(VisualDescriptor descriptor, string animation)
+    {
         var catalog = VisualCatalog.Instance;
         Descriptor = descriptor;
         Support = catalog.Check(descriptor);
@@ -230,6 +236,14 @@ public partial class HorsePresenter : Node3D
 
     public void Play(string animation)
     {
+        if (IsTransitioning && _transitionDescriptor != null)
+        {
+            // Explicit playback APIs retain their immediate behavior, but must
+            // apply/validate the complete intended shape before resuming a clip.
+            Present(_transitionDescriptor, animation);
+            return;
+        }
+        CancelFoalTransition();
         if (Descriptor != null && Support?.Supported == true &&
             VisualCatalog.Instance.MeshFamilies.TryGetValue(Descriptor.MeshFamilyId, out var family))
         {
@@ -301,6 +315,9 @@ public partial class HorsePresenter : Node3D
     /// <summary>Freeze the current animation at a time (used for deterministic captures).</summary>
     public void Pose(string animation, double time)
     {
+        if (IsTransitioning && _transitionDescriptor != null)
+            Present(_transitionDescriptor, animation);
+        CancelFoalTransition();
         var resolved = ResolveAnimation(animation);
         if (Animator == null || string.IsNullOrEmpty(resolved)) return;
         CurrentAnimation = resolved;

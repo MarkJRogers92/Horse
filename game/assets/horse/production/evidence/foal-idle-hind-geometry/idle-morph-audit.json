@@ -1,0 +1,597 @@
+{
+  "schema": "horse.foal_idle.morph_deformation.v1",
+  "candidateBlendSha256": "bef2fe3a18f2d742d0a5e4976dd25d489959be381e408214bfd4323bd725fe31",
+  "sampleCountPerCase": 121,
+  "caseCount": 25,
+  "limits": {
+    "maximumStretch": 2.0,
+    "minimumSoleHeightM": -0.002,
+    "maximumSoleMinimumHeightM": 0.003,
+    "maximumFootMotionM": 0.005,
+    "maximumAttachmentDriftM": 0.002,
+    "maximumLoopErrorM": 0.001
+  },
+  "cases": [
+    {
+      "morphs": {
+        "body_length": 0.0,
+        "chest_width": 0.0,
+        "neck_length": 0.0,
+        "muscle": 0.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0290662050247192,
+        "Eyes": 1.0004507303237915,
+        "Mane": 1.0030527114868164,
+        "Tail": 1.0004901885986328
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.000469655472633868,
+        "Tail": 3.082607104490952e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": -1.0,
+        "chest_width": 0.0,
+        "neck_length": 0.0,
+        "muscle": 0.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0289040803909302,
+        "Eyes": 1.0004507303237915,
+        "Mane": 1.003164529800415,
+        "Tail": 1.0004901885986328
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.00047411995977747717,
+        "Tail": 3.125985132873408e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 1.0,
+        "chest_width": 0.0,
+        "neck_length": 0.0,
+        "muscle": 0.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0291839838027954,
+        "Eyes": 1.0004507303237915,
+        "Mane": 1.0029298067092896,
+        "Tail": 1.0004901885986328
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.000465364470917845,
+        "Tail": 3.0367131524306053e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 0.0,
+        "chest_width": -1.0,
+        "neck_length": 0.0,
+        "muscle": 0.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0290662050247192,
+        "Eyes": 1.0004496574401855,
+        "Mane": 1.0030527114868164,
+        "Tail": 1.0004901885986328
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.0004696554726342713,
+        "Tail": 3.082607104490952e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 0.0,
+        "chest_width": 1.0,
+        "neck_length": 0.0,
+        "muscle": 0.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0290662050247192,
+        "Eyes": 1.000451683998108,
+        "Mane": 1.0030527114868164,
+        "Tail": 1.0004903078079224
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.000469655472633868,
+        "Tail": 3.082607104490952e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 0.0,
+        "chest_width": 0.0,
+        "neck_length": -1.0,
+        "muscle": 0.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0290662050247192,
+        "Eyes": 1.0005106925964355,
+        "Mane": 1.0031064748764038,
+        "Tail": 1.0004901885986328
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.0004350475063354213,
+        "Tail": 3.082607104490952e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 0.0,
+        "chest_width": 0.0,
+        "neck_length": 1.0,
+        "muscle": 0.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0290662050247192,
+        "Eyes": 1.0005378723144531,
+        "Mane": 1.0029714107513428,
+        "Tail": 1.0004901885986328
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.0005064665498422565,
+        "Tail": 3.082607104490952e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 0.0,
+        "chest_width": 0.0,
+        "neck_length": 0.0,
+        "muscle": -1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0290662050247192,
+        "Eyes": 1.000436544418335,
+        "Mane": 1.0028611421585083,
+        "Tail": 1.000455379486084
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.00047114208497674257,
+        "Tail": 2.9877625587365445e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 0.0,
+        "chest_width": 0.0,
+        "neck_length": 0.0,
+        "muscle": 1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0290662050247192,
+        "Eyes": 1.0004489421844482,
+        "Mane": 1.0032471418380737,
+        "Tail": 1.0003260374069214
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.0004683484235137082,
+        "Tail": 3.170369907872383e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": -1.0,
+        "chest_width": -1.0,
+        "neck_length": -1.0,
+        "muscle": -1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0289040803909302,
+        "Eyes": 1.0004868507385254,
+        "Mane": 1.0030449628829956,
+        "Tail": 1.0004554986953735
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.0004405945904005227,
+        "Tail": 3.0304451177726025e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": -1.0,
+        "chest_width": -1.0,
+        "neck_length": -1.0,
+        "muscle": 1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0289040803909302,
+        "Eyes": 1.0004408359527588,
+        "Mane": 1.003456711769104,
+        "Tail": 1.0003260374069214
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.00043765931965504,
+        "Tail": 3.2108618735480276e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": -1.0,
+        "chest_width": -1.0,
+        "neck_length": 1.0,
+        "muscle": -1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0289040803909302,
+        "Eyes": 1.0004926919937134,
+        "Mane": 1.0028891563415527,
+        "Tail": 1.0004554986953735
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.0005123009316669251,
+        "Tail": 3.0304451177726025e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": -1.0,
+        "chest_width": -1.0,
+        "neck_length": 1.0,
+        "muscle": 1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0289040803909302,
+        "Eyes": 1.0004090070724487,
+        "Mane": 1.0032325983047485,
+        "Tail": 1.0003260374069214
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.0005097870399986383,
+        "Tail": 3.2108618735480276e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": -1.0,
+        "chest_width": 1.0,
+        "neck_length": -1.0,
+        "muscle": -1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0289040803909302,
+        "Eyes": 1.0004855394363403,
+        "Mane": 1.003044843673706,
+        "Tail": 1.0004554986953735
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.000440594590402313,
+        "Tail": 3.0304451177726025e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": -1.0,
+        "chest_width": 1.0,
+        "neck_length": -1.0,
+        "muscle": 1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0289040803909302,
+        "Eyes": 1.0004428625106812,
+        "Mane": 1.003456711769104,
+        "Tail": 1.0003260374069214
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.00043765931965465937,
+        "Tail": 3.2108618735480276e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": -1.0,
+        "chest_width": 1.0,
+        "neck_length": 1.0,
+        "muscle": -1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0289040803909302,
+        "Eyes": 1.0004916191101074,
+        "Mane": 1.0028891563415527,
+        "Tail": 1.0004554986953735
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.000512300931668623,
+        "Tail": 3.0304451177726025e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": -1.0,
+        "chest_width": 1.0,
+        "neck_length": 1.0,
+        "muscle": 1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0289040803909302,
+        "Eyes": 1.0004109144210815,
+        "Mane": 1.0032325983047485,
+        "Tail": 1.0003260374069214
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.0005097870399983357,
+        "Tail": 3.2108618735480276e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 1.0,
+        "chest_width": -1.0,
+        "neck_length": -1.0,
+        "muscle": -1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0291839838027954,
+        "Eyes": 1.0004868507385254,
+        "Mane": 1.0027316808700562,
+        "Tail": 1.0004554986953735
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.00043241530839965115,
+        "Tail": 2.9387487024257574e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 1.0,
+        "chest_width": -1.0,
+        "neck_length": -1.0,
+        "muscle": 1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0291839838027954,
+        "Eyes": 1.0004408359527588,
+        "Mane": 1.0031687021255493,
+        "Tail": 1.0003260374069214
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.00042941385549289323,
+        "Tail": 3.125891123550813e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 1.0,
+        "chest_width": -1.0,
+        "neck_length": 1.0,
+        "muscle": -1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0291839838027954,
+        "Eyes": 1.0004926919937134,
+        "Mane": 1.0026938915252686,
+        "Tail": 1.0004554986953735
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.0005031209047903953,
+        "Tail": 2.9387487024257574e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 1.0,
+        "chest_width": -1.0,
+        "neck_length": 1.0,
+        "muscle": 1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0291839838027954,
+        "Eyes": 1.0004090070724487,
+        "Mane": 1.0030566453933716,
+        "Tail": 1.0003260374069214
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.0005005521021547737,
+        "Tail": 3.125891123550813e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 1.0,
+        "chest_width": 1.0,
+        "neck_length": -1.0,
+        "muscle": -1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0291839838027954,
+        "Eyes": 1.0004855394363403,
+        "Mane": 1.0027318000793457,
+        "Tail": 1.0004554986953735
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.0004324153084025787,
+        "Tail": 2.9387487024257574e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 1.0,
+        "chest_width": 1.0,
+        "neck_length": -1.0,
+        "muscle": 1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0291839838027954,
+        "Eyes": 1.0004428625106812,
+        "Mane": 1.0031687021255493,
+        "Tail": 1.0003260374069214
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.00042941385549520735,
+        "Tail": 3.125891123550813e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 1.0,
+        "chest_width": 1.0,
+        "neck_length": 1.0,
+        "muscle": -1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0291839838027954,
+        "Eyes": 1.0004916191101074,
+        "Mane": 1.0026938915252686,
+        "Tail": 1.0004554986953735
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.0005031209047927519,
+        "Tail": 2.9387487024257574e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    },
+    {
+      "morphs": {
+        "body_length": 1.0,
+        "chest_width": 1.0,
+        "neck_length": 1.0,
+        "muscle": 1.0
+      },
+      "maxEdgeStretch": {
+        "Body": 1.0291839838027954,
+        "Eyes": 1.0004109144210815,
+        "Mane": 1.0030566453933716,
+        "Tail": 1.0003260374069214
+      },
+      "minimumSoleHeightM": -0.00121495989151299,
+      "maximumSoleMinimumHeightM": 0.0005411243182606995,
+      "maximumFootMotionM": 0.0022561848163604736,
+      "maxAttachmentDriftM": {
+        "Mane": 0.0005005521021547737,
+        "Tail": 3.125891123550813e-05
+      },
+      "maximumLoopErrorM": 0.0,
+      "allFinite": true
+    }
+  ],
+  "failures": [],
+  "attachmentWitnessCounts": {
+    "Mane": 211,
+    "Tail": 24
+  },
+  "pass": true
+}

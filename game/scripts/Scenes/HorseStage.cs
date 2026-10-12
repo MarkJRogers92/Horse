@@ -30,12 +30,13 @@ public partial class HorseStage : Node3D
     public override void _Process(double delta)
     {
         if (Presenter == null || Camera == null) return;
+        if (Presenter.IsTransitioning) return;
         double speed = Presenter.LocomotionSpeedMetersPerSecond;
         double period = Presenter.LocomotionPeriodSeconds;
         if (!Presenter.UsesWalkVariant || !string.Equals(Presenter.CurrentAnimation, "Walk", System.StringComparison.OrdinalIgnoreCase) ||
             !double.IsFinite(speed) || speed <= 0 || !double.IsFinite(period) || period <= 0)
         {
-            ResetWalkRoute();
+            if (!Presenter.PreserveRoutePlacement) ResetWalkRoute();
             return;
         }
         if (Presenter.Animator?.IsPlaying() != true) return;
@@ -50,7 +51,10 @@ public partial class HorseStage : Node3D
         Camera.Target += Vector3.Right * deltaX;
     }
 
-    private void OnHorsePresented(string summary, bool supported) => ResetWalkRoute();
+    private void OnHorsePresented(string summary, bool supported)
+    {
+        if (!Presenter.IsTransitioning || !supported) ResetWalkRoute();
+    }
 
     private void ResetWalkRoute()
     {

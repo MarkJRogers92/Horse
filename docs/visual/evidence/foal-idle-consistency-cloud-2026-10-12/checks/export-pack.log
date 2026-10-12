@@ -1,0 +1,172 @@
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mdotnet_publish_project[22m | Started Publishing .NET project... (1 steps)[39m[0m
+[   0% ] [90m[1mdotnet_publish_project[22m | Running dotnet publish[39m[0m
+[92m[ DONE ][39m [1mdotnet_publish_project[22m
+[0m
+[   0% ] [90m[1mdotnet_publish_project[22m | Started Publishing .NET project... (1 steps)[39m[0m
+[   0% ] [90m[1mdotnet_publish_project[22m | Running dotnet publish[39m[0m
+[92m[ DONE ][39m [1mdotnet_publish_project[22m
+[0m
+[   0% ] [90m[1msavepack[22m | Started Packing (102 steps)[39m[0m
+[   1% ] [90m[1msavepack[22m | Storing File: res://scripts/World/Lighting.cs[39m[0m
+[   1% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/horse_adult.glb-27d2b2a337069666cb593e09d0789489.scn[39m[0m
+[   1% ] [90m[1msavepack[22m | Storing File: res://assets/horse/placeholder/horse_adult.glb.import[39m[0m
+[   2% ] [90m[1msavepack[22m | Storing File: res://assets/horse/placeholder/horse_adult.manifest.json[39m[0m
+[   3% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/horse_foal.glb-a1cff3608a7ce81db9b4ca1973a1f890.scn[39m[0m
+[   3% ] [90m[1msavepack[22m | Storing File: res://assets/horse/placeholder/horse_foal.glb.import[39m[0m
+[   4% ] [90m[1msavepack[22m | Storing File: res://assets/horse/placeholder/horse_foal.manifest.json[39m[0m
+[   5% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-idle-hind-geometry/bounded-geometry-audit.json[39m[0m
+[   5% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-idle-hind-geometry/dense-idle-audit.json[39m[0m
+[   6% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-import-profile.json[39m[0m
+[   7% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-morph-audit.json[39m[0m
+[   8% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-walk-consistency.json[39m[0m
+[   9% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-idle-hind-geometry/native-idle-report.json[39m[0m
+[  10% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-idle-hind-geometry/static-export-audit.json[39m[0m
+[  10% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-anatomy/anatomy-report.json[39m[0m
+[  11% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-anatomy/attachment-audit.json[39m[0m
+[  12% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-anatomy/dense-deformation-audit.json[39m[0m
+[  13% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-anatomy/game-import-report.json[39m[0m
+[  14% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-anatomy/native-anatomy-report.json[39m[0m
+[  15% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-anatomy/native-hind-report.json[39m[0m
+[  15% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-anatomy/placement-report.json[39m[0m
+[  16% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-anatomy/report.json[39m[0m
+[  17% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-anatomy/source-audit.json[39m[0m
+[  18% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-anatomy/surface-report.json[39m[0m
+[  19% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-anatomy/walk-motion-profile.json[39m[0m
+[  20% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-polish/attachment-audit.json[39m[0m
+[  20% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-polish/dense-deformation-audit.json[39m[0m
+[  21% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-polish/game-import-report.json[39m[0m
+[  22% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-polish/report.json[39m[0m
+[  23% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-polish/source-audit.json[39m[0m
+[  24% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-polish/surface-report.json[39m[0m
+[  24% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/foal-walk-polish/walk-motion-profile.json[39m[0m
+[  25% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-v5-detail/ai-neutral-skin-mask.png[39m[0m
+[  25% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/ai-neutral-skin-mask.png-18d2964000844e94b1fa9e005ce04a3a.ctex[39m[0m
+[  25% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-v5-detail/ai-neutral-skin-mask.png.import[39m[0m
+[  26% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-v5-detail/game-integration-handoff.json[39m[0m
+[  27% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-v5-detail/light-v5-uv-reuse-binding.json[39m[0m
+[  28% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v5-detail/game-integration-handoff.json[39m[0m
+[  29% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v5-detail/geometry-uv-preservation.json[39m[0m
+[  29% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v5-detail/light-v5-uv-reuse-binding.json[39m[0m
+[  30% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v5-detail/neutral-motion-audit.json[39m[0m
+[  31% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v5-detail/walk-motion-profile.json[39m[0m
+[  32% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v5-detail/walk-motion-receipt.json[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v6-anatomy/anatomy-report.json[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v6-anatomy/dense-deformation-audit.json[39m[0m
+[  33% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v6-anatomy/game-import-report.json[39m[0m
+[  34% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v6-anatomy/game-integration-handoff.json[39m[0m
+[  35% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v6-anatomy/geometry-uv-preservation.json[39m[0m
+[  36% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v6-anatomy/light-v5-uv-reuse-binding.json[39m[0m
+[  37% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v6-anatomy/native-anatomy-report.json[39m[0m
+[  38% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v6-anatomy/neutral-motion-audit.json[39m[0m
+[  38% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v6-anatomy/report.json[39m[0m
+[  39% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v6-anatomy/source-audit.json[39m[0m
+[  40% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v6-anatomy/surface-report.json[39m[0m
+[  41% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v6-anatomy/walk-motion-profile.json[39m[0m
+[  42% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/light-walk-v6-anatomy/walk-motion-receipt.json[39m[0m
+[  42% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/stock-walk-anatomy/anatomy-report.json[39m[0m
+[  43% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/stock-walk-anatomy/dense-deformation-audit.json[39m[0m
+[  44% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/stock-walk-anatomy/game-import-report.json[39m[0m
+[  45% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/stock-walk-anatomy/native-anatomy-report.json[39m[0m
+[  46% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/stock-walk-anatomy/report.json[39m[0m
+[  47% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/stock-walk-anatomy/source-audit.json[39m[0m
+[  47% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/stock-walk-anatomy/surface-report.json[39m[0m
+[  48% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/stock-walk-anatomy/walk-motion-profile.json[39m[0m
+[  49% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/stock-walk-polish/dense-deformation-audit.json[39m[0m
+[  50% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/stock-walk-polish/game-import-report.json[39m[0m
+[  51% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/stock-walk-polish/report.json[39m[0m
+[  52% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/stock-walk-polish/source-audit.json[39m[0m
+[  52% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/stock-walk-polish/surface-report.json[39m[0m
+[  53% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/evidence/stock-walk-polish/walk-motion-profile.json[39m[0m
+[  54% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_foal.glb[39m[0m
+[  54% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/horse_foal.glb-f4d4027de9516d8a1100b19226b3bac6.scn[39m[0m
+[  54% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_foal.glb.import[39m[0m
+[  55% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_foal.manifest.json[39m[0m
+[  56% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_foal_walk.glb[39m[0m
+[  56% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/horse_foal_walk.glb-14f17570e8742ed2b4023d789a95347c.scn[39m[0m
+[  56% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_foal_walk.glb.import[39m[0m
+[  57% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_light.glb[39m[0m
+[  57% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/horse_light.glb-b018157f49fd7bf5d65f088122c1f53e.scn[39m[0m
+[  57% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_light.glb.import[39m[0m
+[  57% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_light.manifest.json[39m[0m
+[  58% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_light_body_detail_v5.png[39m[0m
+[  58% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/horse_light_body_detail_v5.png-07e0b027f7129b46ed54f2d9f1addaf0.ctex[39m[0m
+[  58% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_light_body_detail_v5.png.import[39m[0m
+[  59% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_light_walk.glb[39m[0m
+[  59% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/horse_light_walk.glb-f264ba12f1f237b99d429e51a8204c7b.scn[39m[0m
+[  59% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_light_walk.glb.import[39m[0m
+[  60% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/horse_stock.glb-4f15c26bac560f0932fba1f55c960bd9.scn[39m[0m
+[  60% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_stock.glb.import[39m[0m
+[  61% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_stock.manifest.json[39m[0m
+[  61% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_stock_walk.glb[39m[0m
+[  61% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/horse_stock_walk.glb-fad3ac94d12402de648fb149e41600bd.scn[39m[0m
+[  61% ] [90m[1msavepack[22m | Storing File: res://assets/horse/production/horse_stock_walk.glb.import[39m[0m
+[  62% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/horse_adult.glb-ea9030356caeb06d96911dffb7b5bcef.scn[39m[0m
+[  62% ] [90m[1msavepack[22m | Storing File: res://assets/horse/reference/horse_adult.glb.import[39m[0m
+[  63% ] [90m[1msavepack[22m | Storing File: res://assets/horse/reference/horse_adult.manifest.json[39m[0m
+[  64% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/horse_adult_Horse_Coat_Normal.png-2b68a52a73c0503150391559cf0384b5.ctex[39m[0m
+[  64% ] [90m[1msavepack[22m | Storing File: res://assets/horse/reference/horse_adult_Horse_Coat_Normal.png.import[39m[0m
+[  65% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/horse_foal.glb-75af5cffae6647fffc23d4885cfb41da.scn[39m[0m
+[  65% ] [90m[1msavepack[22m | Storing File: res://assets/horse/reference/horse_foal.glb.import[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://assets/horse/reference/horse_foal.manifest.json[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://.godot/imported/horse_foal_Horse_Coat_Normal.png-2c57c4bf2d94430f7b3d29ee8451a3bb.ctex[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://assets/horse/reference/horse_foal_Horse_Coat_Normal.png.import[39m[0m
+[  66% ] [90m[1msavepack[22m | Storing File: res://shaders/grass_ground.gdshader[39m[0m
+[  67% ] [90m[1msavepack[22m | Storing File: res://data/fixtures/appearance-studio.json[39m[0m
+[  68% ] [90m[1msavepack[22m | Storing File: res://data/fixtures/visual-descriptor-fixtures.json[39m[0m
+[  69% ] [90m[1msavepack[22m | Storing File: res://data/visual_catalog.json[39m[0m
+[  70% ] [90m[1msavepack[22m | Storing File: res://scripts/World/Sets.cs[39m[0m
+[  70% ] [90m[1msavepack[22m | Storing File: res://shaders/horse_hair.gdshader[39m[0m
+[  71% ] [90m[1msavepack[22m | Storing File: res://shaders/horse_eye.gdshader[39m[0m
+[  72% ] [90m[1msavepack[22m | Storing File: res://shaders/horse_coat.gdshader[39m[0m
+[  73% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-f154a081e0bceee01753be381a69f269-appearance_demo.scn[39m[0m
+[  74% ] [90m[1msavepack[22m | Storing File: res://data/stable/foaling_demo.clvr[39m[0m
+[  75% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn[39m[0m
+[  75% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-affcd8dd3cf516353f2ac6d60a195651-stable.scn[39m[0m
+[  76% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-8ccf8b080be3dd9a2831f0a2c4e658f3-stable_day.scn[39m[0m
+[  77% ] [90m[1msavepack[22m | Storing File: res://.godot/exported/133200997/export-c0f3380079bb238f5a2e8ce169662963-viewer.scn[39m[0m
+[  78% ] [90m[1msavepack[22m | Storing File: res://scripts/Camera/OrbitCamera.cs[39m[0m
+[  79% ] [90m[1msavepack[22m | Storing File: res://scripts/Domain/DomainBridge.cs[39m[0m
+[  79% ] [90m[1msavepack[22m | Storing File: res://scripts/Scenes/HorseAppearanceDemo.cs[39m[0m
+[  80% ] [90m[1msavepack[22m | Storing File: res://scripts/Scenes/HorseStage.cs[39m[0m
+[  81% ] [90m[1msavepack[22m | Storing File: res://scripts/Scenes/HorseViewer.cs[39m[0m
+[  82% ] [90m[1msavepack[22m | Storing File: res://scripts/Scenes/MainMenu.cs[39m[0m
+[  83% ] [90m[1msavepack[22m | Storing File: res://scripts/Scenes/WalkIntegrationSmoke.cs[39m[0m
+[  84% ] [90m[1msavepack[22m | Storing File: res://scripts/Stable/StableDay.Breeding.cs[39m[0m
+[  84% ] [90m[1msavepack[22m | Storing File: res://scripts/Stable/StableDay.cs[39m[0m
+[  85% ] [90m[1msavepack[22m | Storing File: res://scripts/Stable/StableDayBootstrap.cs[39m[0m
+[  86% ] [90m[1msavepack[22m | Storing File: res://scripts/Tools/CaptureRunner.cs[39m[0m
+[  87% ] [90m[1msavepack[22m | Storing File: res://scripts/Tools/CoatedHorseWalk.cs[39m[0m
+[  88% ] [90m[1msavepack[22m | Storing File: res://scripts/Tools/FoalTransitionProbe.cs[39m[0m
+[  89% ] [90m[1msavepack[22m | Storing File: res://scripts/Tools/TemporaryDonorWalk.cs[39m[0m
+[  89% ] [90m[1msavepack[22m | Storing File: res://scripts/UI/CozyTheme.cs[39m[0m
+[  90% ] [90m[1msavepack[22m | Storing File: res://scripts/Visual/FixtureLibrary.cs[39m[0m
+[  91% ] [90m[1msavepack[22m | Storing File: res://scripts/Visual/FoalRestGeometryEvidence.cs[39m[0m
+[  92% ] [90m[1msavepack[22m | Storing File: res://scripts/Visual/HorsePresenter.cs[39m[0m
+[  93% ] [90m[1msavepack[22m | Storing File: res://scripts/Visual/HorsePresenter.TransitionFloor.cs[39m[0m
+[  94% ] [90m[1msavepack[22m | Storing File: res://scripts/Visual/HorsePresenter.Transitions.cs[39m[0m
+[  94% ] [90m[1msavepack[22m | Storing File: res://scripts/Visual/MarkingRealizer.cs[39m[0m
+[  95% ] [90m[1msavepack[22m | Storing File: res://scripts/Visual/RemainingWalkEvidence.cs[39m[0m
+[  96% ] [90m[1msavepack[22m | Storing File: res://scripts/Visual/VisualCatalog.cs[39m[0m
+[  97% ] [90m[1msavepack[22m | Storing File: res://scripts/Visual/VisualDescriptor.cs[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scripts/Visual/WalkAnatomyEvidence.cs[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scenes/appearance_demo.tscn.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scenes/main.tscn.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scenes/stable.tscn.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scenes/stable_day.tscn.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://scenes/viewer.tscn.remap[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://.godot/global_script_class_cache.cfg[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://.godot/uid_cache.bin[39m[0m
+[  98% ] [90m[1msavepack[22m | Storing File: res://project.binary[39m[0m
+[92m[ DONE ][39m [1msavepack[22m
+[0m

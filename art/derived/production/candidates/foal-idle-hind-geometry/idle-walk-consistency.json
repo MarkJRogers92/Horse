@@ -1,0 +1,563 @@
+{
+  "schema": "horse.foal_idle.walk_consistency.v1",
+  "validatorSha256": "170fcf9e3f4ee7fba034ba23631d2656b6cba58563ce6d24e3a9d57b3ca74fcd",
+  "dependencySha256": {
+    "audit_foal_geometry_region.py": "a62b894f0192b7319a3ce068be118d3f9c360c9f786689b61921931a950c6c6a",
+    "import_reference.py": "6494bbdac7ef57e9602d7b0ae811b9b5c9e4614b6e2337c1739df0043f2d1004",
+    "build_foal_production.py": "0801527902854996ccafb612894dbfca85dfb1dca36182c69422ae7c1366e149"
+  },
+  "morphPositionToleranceM": 1e-07,
+  "scope": "Corrected Idle and accepted Walk have identical rest surfaces and authored morph endpoints. Original Idle nodes, rig, weights, materials and animation are preserved. Cross-mode rig/skin/animation equality is intentionally excluded. Bounded-edit authorization and posed gait/physical gates remain separate.",
+  "correspondence": "Original indexed corner order; no position sorting, nearest-neighbor matching or construction-report flags.",
+  "failures": [],
+  "sourceBlendSha256": "4322de7c3b97e6aa0e71111a6ab0de325f72f4f905424b4ff6e8d22df0ca041b",
+  "sourceGlbSha256": "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a",
+  "candidateBlendSha256": "bef2fe3a18f2d742d0a5e4976dd25d489959be381e408214bfd4323bd725fe31",
+  "candidateGlbSha256": "422d320d4c976411e3f6d4346d74202b606f438bade44111b325686575c86291",
+  "acceptedWalkBlendSha256": "6183af14b955d9fa20636deabaf38ca8aa1527e4a13af6216653ede6152bfcca",
+  "acceptedWalkGlbSha256": "5f302d885e7a331de7cbc7f494846becac5eceae062e8ffed805ab2ff31beddc",
+  "sourcePaths": {
+    "sourceBlend": "art/derived/production/horse_foal.blend",
+    "sourceGlb": "art/derived/production/candidates/foal-idle-foundation/horse_foal.glb",
+    "candidateBlend": "art/derived/production/candidates/foal-idle-hind-geometry/horse_foal.blend",
+    "candidateGlb": "art/derived/production/candidates/foal-idle-hind-geometry/horse_foal.glb",
+    "acceptedWalkBlend": "art/derived/production/candidates/foal-walk-hind-geometry/horse_foal_walk.blend",
+    "acceptedWalkGlb": "art/derived/production/candidates/foal-walk-hind-geometry/horse_foal_walk.glb"
+  },
+  "glbAudit": {
+    "schema": "horse.foal_idle.walk_consistency.v1.glb",
+    "failures": [],
+    "meshes": {
+      "Body": {
+        "failures": [],
+        "surfaceAttributeSetExact": true,
+        "indexedTopologyExact": true,
+        "restPositionsExact": true,
+        "uvExact": true,
+        "colorsExact": true,
+        "normalsExact": true,
+        "morphTargetsPreserved": true,
+        "morphNormalsExact": true,
+        "morphPositionsExact": true,
+        "maxMorphPositionDifferenceM": {
+          "body_length": 0.0,
+          "chest_width": 0.0,
+          "neck_length": 0.0,
+          "muscle": 0.0
+        },
+        "cornerCount": 38454,
+        "triangleCount": 12818,
+        "indexedCornerSha256": {
+          "COLOR_0": "e56fcc153ddddf40ef47065d19b4a0cd1042b6bfb5b52e632ecba6605ee682f6",
+          "NORMAL": "ac0e6b35ad825f4c23bf7a1c88a7b09d2937cc6800fd6f3793c0a79c0f61a019",
+          "POSITION": "bbbcd5e8ba2029592942f3fa5ef2d5cf7d01621c92c66ffaf00d68e368e365b9",
+          "TEXCOORD_0": "1ca3b37d9cfaf200b7c1354cb910fe3478a6b99b727a3a730b5623b1c2890530",
+          "TEXCOORD_1": "b078b3e9e7ce6e07a76a62ca20fa3020deaa9636735f7a5ec9586d6c1dfa08a7"
+        },
+        "morphTargetSha256": [
+          {
+            "POSITION": "06b4bb89ef51b43b78d5ca1cc0688f51ca1b0682ee044cc37212fee92c15a9e7",
+            "NORMAL": "8ec8e9155ff074dc7bfed07a2f96f81b7210cc7454ca8b45eaab014aff08b67b"
+          },
+          {
+            "POSITION": "97ff0122f9a6f033cea7e55fb11221716642c96f7244c2feb44d3c677a3e8ac2",
+            "NORMAL": "b6174ad191aaee0e688b88ed53d9d083fc2c03eb84e599ee5a5c1026c9ae87f2"
+          },
+          {
+            "POSITION": "376e692ced88305bcd1431df7ac0ff218b7a176bd3af18d118ab65bbdc7df41f",
+            "NORMAL": "7598265fcb9bcbc7ec800c056d1eaf8040f6e03cd19322dc4bcf2199511338ea"
+          },
+          {
+            "POSITION": "94a1ac520b2e4365c0802f5b72c1683cb6358759561f1f5d1db3be8c44d4bd47",
+            "NORMAL": "e94033a4561d899511b441f5e94f288fea374f9220868afb4b58936c7182af7a"
+          }
+        ],
+        "pass": true
+      },
+      "Eyes": {
+        "failures": [],
+        "surfaceAttributeSetExact": true,
+        "indexedTopologyExact": true,
+        "restPositionsExact": true,
+        "uvExact": true,
+        "colorsExact": true,
+        "normalsExact": true,
+        "morphTargetsPreserved": true,
+        "morphNormalsExact": true,
+        "morphPositionsExact": true,
+        "maxMorphPositionDifferenceM": {
+          "body_length": 0.0,
+          "chest_width": 0.0,
+          "neck_length": 0.0,
+          "muscle": 0.0
+        },
+        "cornerCount": 4320,
+        "triangleCount": 1440,
+        "indexedCornerSha256": {
+          "NORMAL": "170907813aab4b54e0be3abfa2d053e4a9ae40c3d03bfa1d46baee3a0fcbfe2d",
+          "POSITION": "62135756462e93024c4b3ab044c40d572842a9904685f3ad80377947bd983227",
+          "TEXCOORD_0": "be29f4378408d6c58dcc806f91ea4ec09be406874c9392ba6048e50ebef2afdf",
+          "TEXCOORD_1": "be29f4378408d6c58dcc806f91ea4ec09be406874c9392ba6048e50ebef2afdf"
+        },
+        "morphTargetSha256": [
+          {
+            "POSITION": "6cb95215568ae1ae7aff0bdf787514598f8041ccd8463ade3a295c0ee0d33bd2",
+            "NORMAL": "19313e4503d0e29a769ae88c5c3444403a82f8c81d6f1c590468f5c2c97a8d18"
+          },
+          {
+            "POSITION": "efa453b9d3c6ace76ffa839c94977950bdf15a3cfc35bc871b73637c53aab9be",
+            "NORMAL": "94cdb6138816f1ac242639e76ff03871d0965afd40dd8b211f78dab095ba9c9f"
+          },
+          {
+            "POSITION": "1fd138652044a645ca2a53f5bbf0a04d07a40e7176f83ad8ed7a1c7ae9daeabc",
+            "NORMAL": "7756014a3451e41282c6ba6bedda52767f269ee7423d27cfaab26fffa9187320"
+          },
+          {
+            "POSITION": "e5c7e838b1c22e7dfcb444414e6c8f41e239f4b2d6b03a2d877eec485402efef",
+            "NORMAL": "3b9681fd0009bc6ef3de980dac6352c9de77006357e4f4de50a7240105271036"
+          }
+        ],
+        "pass": true
+      },
+      "Mane": {
+        "failures": [],
+        "surfaceAttributeSetExact": true,
+        "indexedTopologyExact": true,
+        "restPositionsExact": true,
+        "uvExact": true,
+        "colorsExact": true,
+        "normalsExact": true,
+        "morphTargetsPreserved": true,
+        "morphNormalsExact": true,
+        "morphPositionsExact": true,
+        "maxMorphPositionDifferenceM": {
+          "body_length": 0.0,
+          "chest_width": 0.0,
+          "neck_length": 0.0,
+          "muscle": 0.0
+        },
+        "cornerCount": 1212,
+        "triangleCount": 404,
+        "indexedCornerSha256": {
+          "NORMAL": "7805ad46da5a766a0819fb8afafa184a55361b0ce5f1956d9d3199a5d5b98926",
+          "POSITION": "23274aa92097e9bd0b8d99be85f9ffb89ad224658d2581900f3f4ed8e835aca2",
+          "TEXCOORD_0": "cdb7a38f5b015d435ef971384170713baf566d4afe2c32fcfafa47a0ee26cfc9"
+        },
+        "morphTargetSha256": [
+          {
+            "POSITION": "f591ba64fab1b9c154476ff04d7eebbe0dad6e577e789793fa44353a8aad724e",
+            "NORMAL": "bf2fd2fea65f805073c93e899e106db128be040be77ef4c1c0e02e56c4b734c0"
+          },
+          {
+            "POSITION": "e3af77f5c6dce2a0fb04a3cbc6ea386f4dd3ac995544683f7168e9d4331ea8cd",
+            "NORMAL": "f43ac438cbedcd07810831ec15a80a1981a8737c8c4c89aa0696c157c232299e"
+          },
+          {
+            "POSITION": "34b9708f96720de7d04fbd0f756427e05417795260c92f0386296352b669a6f5",
+            "NORMAL": "af4931429821f487aeac84a1f3df30eb0d8a269580fb94f03fe36724e641fa6b"
+          },
+          {
+            "POSITION": "a58dc995e31b2d2eeb419d2c0ac67887b59a6d5619aa0ac3d59b0fe9de86d657",
+            "NORMAL": "e0da2166bbb2eedbfe201c634cbc3beb27128d616a83c8fe173af29a622c26dd"
+          }
+        ],
+        "pass": true
+      },
+      "Tail": {
+        "failures": [],
+        "surfaceAttributeSetExact": true,
+        "indexedTopologyExact": true,
+        "restPositionsExact": true,
+        "uvExact": true,
+        "colorsExact": true,
+        "normalsExact": true,
+        "morphTargetsPreserved": true,
+        "morphNormalsExact": true,
+        "morphPositionsExact": true,
+        "maxMorphPositionDifferenceM": {
+          "body_length": 0.0,
+          "chest_width": 0.0,
+          "neck_length": 0.0,
+          "muscle": 0.0
+        },
+        "cornerCount": 180,
+        "triangleCount": 60,
+        "indexedCornerSha256": {
+          "NORMAL": "0d62ea52183f5f41b594bf94860e17f3b8481b7799d8f56f3217137fb4a2199c",
+          "POSITION": "5a9d8423561257551d29424d96b4798fc146ad01408e7480573e732a7f5f72d6",
+          "TEXCOORD_0": "9e636f4124a1d82e40426b0ee64792a58134e33a4c08bae5e1a278b83d1c0e05"
+        },
+        "morphTargetSha256": [
+          {
+            "POSITION": "f9f6417033f00a930dba96d77134b53cb88a3cc727f63e961eedfcbbebf76f8d",
+            "NORMAL": "849cf15f7362def4b31c3636215c8108fa331fbc15654fe1c4d7ad0b8f2d1066"
+          },
+          {
+            "POSITION": "ab1b7e3f328cfd9dae6a859a02b7f2e821f0c8db74fa763e3742d7c6c94517a2",
+            "NORMAL": "ecbf6fd31cf0eb6d85104f4f04f4a347a6b9c825624ed34148cbef7deae9d92e"
+          },
+          {
+            "POSITION": "7bf70c89d1c8be18cecf7c1a8c5a487e1e6e63bad5e6cb13d925e830a5d17a19",
+            "NORMAL": "ad2ed4faad1cc7770aba8d786b6e82130f4ee1796588869d1010e12711d200d7"
+          },
+          {
+            "POSITION": "379898dfb2e8c55c613b954f8cce4f79b19993040e64b40013b53bd0d538b20e",
+            "NORMAL": "3f1efe9c2773cf0ef1b02078096aaa79f315220665a1e3cea367ea2d826621c1"
+          }
+        ],
+        "pass": true
+      }
+    },
+    "scope": "Live exported data only; full Blend proof requires the full auditor.",
+    "staticPreservation": {
+      "nodesAndMatricesExact": true,
+      "materialsExact": true,
+      "skinStructureExact": true,
+      "meshStructureExact": true,
+      "idleAnimationStructureExact": true,
+      "idleAnimationPresent": true,
+      "inverseBindMatricesExact": true,
+      "idleAnimationArraysExact": true,
+      "skinAttributesExact": true,
+      "pass_": true,
+      "idleAnimationArrayCount": 384,
+      "idleAnimationArraysSha256": "a5f5da7f1b54df6267cd9e364cd3c788d6e159080cb42079639dbdd0e7e27f82",
+      "sourceProtectedMetadataSha256": "cd92e391f62e0508eef45cf01adecbe55cb1fb41060bad3e24c48d3b5278fda4"
+    },
+    "glbRestPositionsExact": true,
+    "glbIndexedTopologyExact": true,
+    "glbUvExact": true,
+    "glbColorsExact": true,
+    "glbNormalsExact": true,
+    "glbMorphTargetsPreserved": true,
+    "crossModeMaterialsExact": true,
+    "sourceGlbSha256": "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a",
+    "candidateGlbSha256": "422d320d4c976411e3f6d4346d74202b606f438bade44111b325686575c86291",
+    "acceptedWalkGlbSha256": "5f302d885e7a331de7cbc7f494846becac5eceae062e8ffed805ab2ff31beddc",
+    "pass": true
+  },
+  "blendAudit": {
+    "meshes": {
+      "Body": {
+        "restPositionsExact": true,
+        "topologyExact": true,
+        "shapeEndpointsExact": true,
+        "uvExact": true,
+        "colorsExact": true,
+        "normalsExact": true,
+        "staticWeightsExact": true,
+        "objectTransformsExact": true,
+        "vertexCount": 6411,
+        "shapeEndpointSha256": {
+          "Basis": "5c3911ce13aeb87b97ad4d6f6b48f96b9bdead73dae7a297c5b7c7e540bfe927",
+          "body_length": "d822e5b3bc0b7a5386490e0b9c591def647e04e8d7525d458d79a08e6be26e76",
+          "chest_width": "7c0199915f809a348a6e3162261a9f013e5177b2e04924b070a50fa08a7aa945",
+          "neck_length": "5ae6fbe93ad01426006bf5538637c1f1c6bd4bb7b1f7db49d21ec48c74fb6fd1",
+          "muscle": "8bfbff4c7879848761061583ea25e0e97652876f75e36388b63a14ec46c295ba"
+        }
+      },
+      "Eyes": {
+        "restPositionsExact": true,
+        "topologyExact": true,
+        "shapeEndpointsExact": true,
+        "uvExact": true,
+        "colorsExact": true,
+        "normalsExact": true,
+        "staticWeightsExact": true,
+        "objectTransformsExact": true,
+        "vertexCount": 724,
+        "shapeEndpointSha256": {
+          "Basis": "12ba1cfc922c8164680771aa5f4780bdf26c3a0cb5871500627cdf5b065d93fd",
+          "body_length": "12ba1cfc922c8164680771aa5f4780bdf26c3a0cb5871500627cdf5b065d93fd",
+          "chest_width": "4f9d87c6f3e2a7d84599bcad1a1102055b8075fcac510b8ae43d0618ac0e0e60",
+          "neck_length": "86416dec612906bcc562f2f54066f367b2ccb0245f3a547986cea077013bdeb6",
+          "muscle": "f5844fa1847b99de6e14ab6db46d1b6188771117bb2e025ea870240d53688110"
+        }
+      },
+      "Mane": {
+        "restPositionsExact": true,
+        "topologyExact": true,
+        "shapeEndpointsExact": true,
+        "uvExact": true,
+        "colorsExact": true,
+        "normalsExact": true,
+        "staticWeightsExact": true,
+        "objectTransformsExact": true,
+        "vertexCount": 214,
+        "shapeEndpointSha256": {
+          "Basis": "8159a8f88282a8f31829382b389c1bc17a2d8dd1e5ab598e78a9de8484dd4be9",
+          "body_length": "6b9dc9eb86ab959819d38c1ce060b931413964f3bac518e51a439b56018c323c",
+          "chest_width": "48f7cbbfea73fcdd043b2ba7bb883a263be103339d92e6d4ee39bdd903a792ca",
+          "neck_length": "71c65b02d7de5c643e095dc55f99add8caa6919bcfd4e19d1ca374042718600e",
+          "muscle": "c354628c956092d7185f24ba2d1984d1f2b17b95f397e6c3718d2bf562594c28"
+        }
+      },
+      "Tail": {
+        "restPositionsExact": true,
+        "topologyExact": true,
+        "shapeEndpointsExact": true,
+        "uvExact": true,
+        "colorsExact": true,
+        "normalsExact": true,
+        "staticWeightsExact": true,
+        "objectTransformsExact": true,
+        "vertexCount": 40,
+        "shapeEndpointSha256": {
+          "Basis": "fa2493c29fcd8d2851f3c3f954f4969d993fc4a8eef25bdc8c0efce37615f121",
+          "body_length": "f20c54dbeadde47792084bbe3ff32abbf7c26546566006478820eb2ce5d4e08f",
+          "chest_width": "faddc1bb3bbfb615888806cc2f9e6a781b53a7bf1b0c0f3edb01388f40084046",
+          "neck_length": "fa2493c29fcd8d2851f3c3f954f4969d993fc4a8eef25bdc8c0efce37615f121",
+          "muscle": "ab8caebd3c5a918126e5097d70a463128352afbd619638539cfa5d140a7694eb"
+        }
+      }
+    },
+    "failures": [],
+    "blendRestPositionsExact": true,
+    "blendTopologyExact": true,
+    "blendShapeEndpointsExact": true,
+    "blendUvExact": true,
+    "blendColorsExact": true,
+    "blendNormalsExact": true,
+    "staticRigAndWeightsExact": true,
+    "staticNodesAndMatricesExact": true,
+    "staticMaterialsExact": true,
+    "idleAnimationExact": true,
+    "unusedMaterialDatablocks": {
+      "source": [
+        "Material"
+      ],
+      "candidate": [],
+      "scope": "Unassigned orphan material datablocks are disclosed, not part of assigned/exported material equality. Blender session_uid values are transient per-load counters and excluded."
+    },
+    "protectedSourceHashes": {
+      "nodes": "be09af48e634efb7b8d0fdcc6112d35c53f9b5b068fdb6cd30378a8f06be3219",
+      "rigs": "5acabc1c669cc3f5efb1b6c8d315d0dc5962e5ae3723bb6db0f90e0f2adb8acd",
+      "materials": "e2f905fbe550883eb54822a459df788ca89e12331920cf2dcfe25dbed094fd98",
+      "animation": "9eb8a137a0ea88095d832b32f0bff58f7de7cd14508e9cedf6791a94837cb2e3",
+      "unusedMaterialDatablocks": "f916f7c83d4fb3055a8145dfc6f70ac61518c490540f2f522595abb245133545"
+    },
+    "protectedCandidateHashes": {
+      "nodes": "be09af48e634efb7b8d0fdcc6112d35c53f9b5b068fdb6cd30378a8f06be3219",
+      "rigs": "5acabc1c669cc3f5efb1b6c8d315d0dc5962e5ae3723bb6db0f90e0f2adb8acd",
+      "materials": "e2f905fbe550883eb54822a459df788ca89e12331920cf2dcfe25dbed094fd98",
+      "animation": "9eb8a137a0ea88095d832b32f0bff58f7de7cd14508e9cedf6791a94837cb2e3",
+      "unusedMaterialDatablocks": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "pass": true
+  },
+  "glbRestPositionsExact": true,
+  "glbIndexedTopologyExact": true,
+  "glbUvExact": true,
+  "glbColorsExact": true,
+  "glbNormalsExact": true,
+  "glbMorphTargetsPreserved": true,
+  "blendRestPositionsExact": true,
+  "blendTopologyExact": true,
+  "blendShapeEndpointsExact": true,
+  "blendUvExact": true,
+  "blendColorsExact": true,
+  "blendNormalsExact": true,
+  "staticRigAndWeightsExact": true,
+  "staticNodesAndMatricesExact": true,
+  "staticMaterialsExact": true,
+  "idleAnimationExact": true,
+  "staticImportInspection": {
+    "mesh_names": [
+      "Body",
+      "Eyes",
+      "Mane",
+      "Tail"
+    ],
+    "node_names": [
+      "FoalSmart_Bone_002",
+      "FoalSmart_Bone_003",
+      "FoalSmart_Bone_017",
+      "Hind_L_Hoof_03",
+      "Hind_L_Hoof_02",
+      "Hind_L_Hoof",
+      "Hind_L_Pastern",
+      "Hind_L_Cannon",
+      "Hind_L_Hock",
+      "Hind_L_Gaskin",
+      "Hind_L_Upper",
+      "FoalSmart_Bone_014",
+      "Hind_R_Hoof_03",
+      "Hind_R_Hoof_02",
+      "Hind_R_Hoof",
+      "Hind_R_Pastern",
+      "Hind_R_Cannon",
+      "Hind_R_Hock",
+      "Hind_R_Gaskin",
+      "Hind_R_Upper",
+      "Front_L_Hoof_03",
+      "Front_L_Hoof_02",
+      "Front_L_Hoof",
+      "Front_L_Pastern",
+      "Front_L_Cannon",
+      "Front_L_Forearm",
+      "Front_L_Upper",
+      "Front_R_Hoof_03",
+      "Front_R_Hoof_02",
+      "Front_R_Hoof",
+      "Front_R_Pastern",
+      "Front_R_Cannon",
+      "Front_R_Forearm",
+      "Front_R_Upper",
+      "FoalSmart_Bone_041",
+      "FoalSmart_Bone_042",
+      "FoalSmart_Bone_012",
+      "FoalSmart_Bone_013",
+      "FoalSmart_Bone_054",
+      "FoalSmart_Bone_055",
+      "FoalSmart_Bone_056",
+      "FoalSmart_Bone_057",
+      "FoalSmart_Bone_058",
+      "Ear_L",
+      "Ear_R",
+      "Head_Nose",
+      "Jaw_Tip",
+      "Head",
+      "Head_Base",
+      "FoalSmart_Bone_050",
+      "FoalSmart_Bone_051",
+      "FoalSmart_Bone_052",
+      "FoalSmart_Bone_053",
+      "FoalSmart_Bone_043",
+      "Neck",
+      "Neck_Base",
+      "Tail_03",
+      "Tail_02",
+      "Tail_01",
+      "Chest",
+      "Spine_Base",
+      "Pelvis",
+      "Pelvis_Root",
+      "Root",
+      "Body",
+      "Eyes",
+      "Mane",
+      "Tail",
+      "Skeleton"
+    ],
+    "animations": 1,
+    "animationNames": [
+      "Idle"
+    ],
+    "triangles": 14722,
+    "primitives": {
+      "Body": {
+        "vertices": 8867,
+        "triangles": 12818,
+        "color_0": 8867,
+        "texcoord_1": 8867,
+        "weights_0": 8867
+      },
+      "Eyes": {
+        "triangles": 1440
+      },
+      "Mane": {
+        "triangles": 404
+      },
+      "Tail": {
+        "triangles": 60
+      }
+    },
+    "attributes": {
+      "Body": [
+        [
+          "COLOR_0",
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "TEXCOORD_1",
+          "WEIGHTS_0"
+        ]
+      ],
+      "Eyes": [
+        [
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "TEXCOORD_1",
+          "WEIGHTS_0"
+        ]
+      ],
+      "Mane": [
+        [
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "WEIGHTS_0"
+        ]
+      ],
+      "Tail": [
+        [
+          "JOINTS_0",
+          "NORMAL",
+          "POSITION",
+          "TEXCOORD_0",
+          "WEIGHTS_0"
+        ]
+      ]
+    },
+    "normal_unit_failures": 0,
+    "nonfinite_values": 0,
+    "max_skin_weight_sum_error": 1.1175870895385742e-07,
+    "max_skin_influences": 4,
+    "max_active_skin_influences": 4,
+    "skin_weights_by_mesh": {
+      "Body": {
+        "vertices": 8867,
+        "max_sum_error": 9.685754776000977e-08,
+        "max_active_influences": 4,
+        "primitive_count": 1
+      },
+      "Eyes": {
+        "vertices": 846,
+        "max_sum_error": 3.725290298461914e-09,
+        "max_active_influences": 2,
+        "primitive_count": 1
+      },
+      "Mane": {
+        "vertices": 364,
+        "max_sum_error": 1.1175870895385742e-07,
+        "max_active_influences": 4,
+        "primitive_count": 1
+      },
+      "Tail": {
+        "vertices": 58,
+        "max_sum_error": 8.568167686462402e-08,
+        "max_active_influences": 4,
+        "primitive_count": 1
+      }
+    },
+    "mixed_canonical_category_triangles": 0,
+    "body_has_descriptor_attributes": true,
+    "body_has_skin": true,
+    "exported_head_direction_muzzle_minus_poll": [
+      0.591,
+      -0.80665,
+      -0.00629
+    ],
+    "exported_horizontal_forward_XZ": [
+      0.99994,
+      -0.01064
+    ],
+    "exported_poll_center_m": [
+      0.4625,
+      1.34411,
+      0.0028
+    ],
+    "exported_muzzle_center_m": [
+      0.66607,
+      1.06625,
+      0.00064
+    ]
+  },
+  "staticDefaultFourInfluenceInspectionPass": true,
+  "inputsUnchanged": true,
+  "pass": true
+}

@@ -10,6 +10,7 @@ class HorseAssetEvidenceExport extends EditorExportPlugin:
 		"res://assets/horse/production/horse_light_walk.glb",
 		"res://assets/horse/production/horse_stock_walk.glb",
 		"res://assets/horse/production/horse_foal_walk.glb",
+		"res://assets/horse/production/horse_foal.glb",
 		"res://assets/horse/production/horse_light_body_detail_v5.png",
 		"res://assets/horse/production/evidence/light-v5-detail/ai-neutral-skin-mask.png",
 	]
@@ -22,6 +23,7 @@ class HorseAssetEvidenceExport extends EditorExportPlugin:
 			path.begins_with("res://assets/horse/production/evidence/light-walk-v6-anatomy/") or
 			path.begins_with("res://assets/horse/production/evidence/stock-walk-anatomy/") or
 			path.begins_with("res://assets/horse/production/evidence/foal-walk-anatomy/") or
+			path.begins_with("res://assets/horse/production/evidence/foal-idle-hind-geometry/") or
 			path.begins_with("res://assets/horse/production/evidence/stock-walk-polish/") or
 			path.begins_with("res://assets/horse/production/evidence/foal-walk-polish/"))):
 			add_file(path, FileAccess.get_file_as_bytes(path), false)

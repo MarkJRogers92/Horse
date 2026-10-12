@@ -31,7 +31,7 @@ public sealed record WalkAnimationVariant(string Scene, string SourceGlbSha256, 
     int PeriodFrames, int FramesPerSecond, float DutyFactor, BodySignedDetail? BodySignedDetail);
 public sealed record MeshFamily(string Scene, bool Placeholder, string Age, string HairGeometry = "cards", string? Limitation = null,
     Vector3? HeadViewTarget = null, BodySignedDetail? BodySignedDetail = null, string? BodySignedDetailDisabledReason = null,
-    WalkAnimationVariant? WalkVariant = null, string? WalkVariantDisabledReason = null);
+    WalkAnimationVariant? WalkVariant = null, string? WalkVariantDisabledReason = null, string? RestGeometryDisabledReason = null);
 
 /// <summary>Result of checking a descriptor against what this renderer can actually draw.</summary>
 public sealed record VisualSupport(bool Supported, IReadOnlyList<string> Problems, IReadOnlyList<string> Limitations)
@@ -89,7 +89,8 @@ public sealed class VisualCatalog
                 m.Value.TryGetProperty("limitation", out var limitation) ? limitation.GetString() : null,
                 m.Value.TryGetProperty("headViewTarget", out var headTarget)
                     ? new Vector3(headTarget[0].GetSingle(), headTarget[1].GetSingle(), headTarget[2].GetSingle()) : null,
-                detail, detailDisabledReason, walkVariant, walkVariantDisabledReason);
+                detail, detailDisabledReason, walkVariant, walkVariantDisabledReason,
+                FoalRestGeometryEvidence.DisabledReason(m.Value, m.Name, scene));
         }
         foreach (var c in r.GetProperty("coatRecipes").EnumerateObject())
         {
@@ -733,6 +734,7 @@ public sealed class VisualCatalog
         if (!MeshFamilies.TryGetValue(d.MeshFamilyId, out var family)) problems.Add($"mesh family '{d.MeshFamilyId}' has no asset");
         else
         {
+            if (!string.IsNullOrEmpty(family.RestGeometryDisabledReason)) problems.Add(family.RestGeometryDisabledReason);
             if (family.Placeholder) limits.Add("TEMPORARY placeholder mesh");
             if (!string.IsNullOrEmpty(family.Limitation)) limits.Add(family.Limitation);
             if (!string.IsNullOrEmpty(family.WalkVariantDisabledReason)) limits.Add("checked Walk variant disabled: " + family.WalkVariantDisabledReason);

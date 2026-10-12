@@ -136,7 +136,11 @@ public partial class HorseViewer : Node
             }
         }
 
-        var support = _stage.Presenter.Present(d, requestedAnimation);
+        // Only explicit animation changes opt into the corrected-foal bridge.
+        // Coat/family/age changes retain immediate presentation and cancel stale work.
+        var support = resetView
+            ? _stage.Presenter.Present(d, requestedAnimation)
+            : _stage.Presenter.TransitionTo(d, requestedAnimation);
         for (int i = 0; i < _anim.ItemCount - 1; i++)
             _anim.SetItemDisabled(i, !_stage.Presenter.IsAnimationAvailable(_anim.GetItemText(i)));
         if (_anim.Selected >= 0 && _anim.Selected < _anim.ItemCount - 1 && _anim.IsItemDisabled(_anim.Selected))
@@ -150,7 +154,8 @@ public partial class HorseViewer : Node
                        (support.Supported ? "markings: " + _stage.Presenter.Markings!.Describe() + "\n" : "") +
                        (walkShapeOverride ? "Walk uses the checked neutral family shape.\n" : "") + support.Summary;
         if (resetView) _currentView = "q3";
-        _stage.FrameView(_currentView);
+        // Do not undo the user's orbit/zoom or teleport the route during a bridge.
+        if (!_stage.Presenter.IsTransitioning) _stage.FrameView(_currentView);
     }
 
     private static int FindAnimationItem(string animation)

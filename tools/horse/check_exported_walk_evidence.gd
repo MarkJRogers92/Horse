@@ -9,6 +9,7 @@ func _initialize() -> void:
 	var catalog = JSON.parse_string(FileAccess.get_file_as_string("res://data/visual_catalog.json"))
 	var failures = []
 	var checked = []
+	var imported_scenes = []
 	for family_id in catalog.meshFamilies:
 		var family = catalog.meshFamilies[family_id]
 		if not family.has("walkVariant"): continue
@@ -37,19 +38,37 @@ func _initialize() -> void:
 				failures.append("Missing foal placement proof")
 			if family.age == "foal" and not FileAccess.file_exists(directory+"/native-hind-report.json"):
 				failures.append("Missing foal hind articulation proof")
+		if family.age == "foal":
+			if not family.has("restGeometry"):
+				failures.append("Missing corrected foal rest binding")
+			else:
+				var rest = family.restGeometry
+				files[family.scene] = rest.sourceGlbSha256
+				for proof in ["region", "consistency", "morph", "import"]:
+					files[rest[proof+"ProofPath"]] = rest[proof+"ProofSha256"]
 		for path in files:
 			var hash = FileAccess.get_sha256(path)
 			if hash != files[path]: failures.append("Missing or altered raw file "+path)
 			checked.append({"path":path,"sha256":hash})
-		var scene = load(variant.scene)
-		if scene == null:
-			failures.append("Missing imported scene "+variant.scene)
-			continue
-		var model = scene.instantiate()
-		if model.find_children("*","MeshInstance3D",true,false).size() != 4:
-			failures.append("Missing imported components "+variant.scene)
-		model.free()
-	var report = {"engine":Engine.get_version_info(),"pack":args[0],"rawFiles":checked,"failures":failures}
+		var scene_paths = [variant.scene]
+		if family.age == "foal": scene_paths.append(family.scene)
+		for scene_path in scene_paths:
+			var scene = load(scene_path)
+			if scene == null:
+				failures.append("Missing imported scene "+scene_path)
+				continue
+			var model = scene.instantiate()
+			var meshes = model.find_children("*","MeshInstance3D",true,false)
+			if meshes.size() != 4: failures.append("Missing imported components "+scene_path)
+			if family.age == "foal" and scene_path == family.scene:
+				for mesh in meshes:
+					if mesh.get_blend_shape_count() != 4: failures.append("Missing static foal morphs "+str(mesh.name))
+				var players = model.find_children("*","AnimationPlayer",true,false)
+				if players.size() != 1 or not players[0].has_animation("Idle"):
+					failures.append("Missing packaged foal Idle animation")
+			imported_scenes.append(scene_path)
+			model.free()
+	var report = {"engine":Engine.get_version_info(),"pack":args[0],"rawFiles":checked,"importedScenes":imported_scenes,"failures":failures}
 	if args.size()>1:
 		var out = FileAccess.open(args[1],FileAccess.WRITE)
 		out.store_string(JSON.stringify(report,"  "))

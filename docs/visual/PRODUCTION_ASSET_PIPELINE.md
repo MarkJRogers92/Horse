@@ -1,5 +1,41 @@
 # Horse production asset pipeline
 
+## Current corrected foal sources — 2026-10-12
+
+The active foal Idle/morph master is now
+`art/derived/production/candidates/foal-idle-hind-geometry/horse_foal.blend`.
+The accepted Walk master remains
+`art/derived/production/candidates/foal-walk-hind-geometry/horse_foal_walk.blend`.
+They have exactly matching rest positions, indexed topology, UV0/UV1, coat masks,
+normals and four morph endpoints, with deliberately different animation rigs.
+Both juvenile family IDs use these corrected sources. The active static manifest
+is `game/assets/horse/production/horse_foal.manifest.json`; it points to the editable
+master and separately bound source/UV/morph/import proofs.
+
+`art/derived/production/horse_foal.blend` and `foal-idle-foundation` are immutable
+historical inputs, not the current editing master. Do not rebuild the old
+`build_foal_production.py` output directly over the active game asset: it recreates
+the original hind shape. The current correction is reproduced by
+`derive_foal_idle_geometry.py`, which transfers the reviewed Walk rest geometry
+and every shape-key endpoint to the preserved Idle rig. It writes a separate
+candidate; proof regeneration and integration are deliberate subsequent steps.
+
+UV0 remains the surface texture layout; UV1/TEXCOORD_1 and COLOR_0 remain the
+procedural coat/marking coordinates. No unwrap or landmark regeneration was
+needed for this bounded geometry change. Paint/edit against the current source,
+retain vertex/corner correspondence, and keep surface changes synchronized across
+Idle and Walk. The fail-closed evidence bindings intentionally need regeneration
+if a mesh/UV/morph edit is made; changing hashes alone is not acceptance.
+
+The original four morph channels are supported in Idle. Walk still requires the
+checked neutral shape and unit scale; interactive foal toggles interpolate pose,
+morphs and height through the common corrected rest shape rather than restoring
+the former hind geometry or hard-cutting between the distinct rigs. Adult assets
+and motion are unchanged. See `evidence/foal-idle-consistency-cloud-2026-10-12/`.
+
+The following sections retain the prior foundation-generation and adult pipeline
+context; they are not a command to replace the current reviewed foal sources.
+
 This document describes the editable Meshy-derived adult horse candidates.
 They are candidate rigged masters for appearance and deformation review;
 anatomy, markings, and animation have not been accepted as final.

@@ -1,0 +1,175 @@
+{
+  "allComponentDeformation": {
+    "Body": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.03062773459416,
+      "samples": 61,
+      "worstEdge": [
+        356,
+        7275
+      ],
+      "worstPhase": 0.5
+    },
+    "Eyes": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.0004156890203,
+      "samples": 61,
+      "worstEdge": [
+        186,
+        345
+      ],
+      "worstPhase": 0.716666666666667
+    },
+    "Mane": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.0289614238572,
+      "samples": 61,
+      "worstEdge": [
+        3,
+        4
+      ],
+      "worstPhase": 0.483333333333333
+    },
+    "Tail": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.00617358365885,
+      "samples": 61,
+      "worstEdge": [
+        2,
+        41
+      ],
+      "worstPhase": 0.8
+    }
+  },
+  "animationOptimizerEnabled": false,
+  "animations": [
+    {
+      "boneMovementMeters": 0.00453173415735364,
+      "endpointBasisError": 0.0,
+      "endpointTranslationErrorMeters": 0.0,
+      "importLoopMode": 0,
+      "length": 4.04166650772095,
+      "name": "Idle",
+      "tracks": 8
+    }
+  ],
+  "attachments": {
+    "components": {
+      "Mane": {
+        "maximumGapDriftMeters": 0.000449184299213812,
+        "witnessCount": 361
+      },
+      "Tail": {
+        "maximumGapDriftMeters": 0.0000556356972083449,
+        "witnessCount": 34
+      }
+    },
+    "failures": [],
+    "method": "Fixed closest rest-triangle barycentrics, imported Skin binds",
+    "samples": 61
+  },
+  "candidateGlbSha256": "422d320d4c976411e3f6d4346d74202b606f438bade44111b325686575c86291",
+  "engine": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "failures": [],
+  "file": "res://assets/horse/production/horse_foal.glb",
+  "importBakeFps": 30.0,
+  "meshCount": 4,
+  "meshes": [
+    {
+      "blendShapes": 4,
+      "name": "Body",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 64,
+      "surfaceArrays": [
+        {
+          "colors": 8867,
+          "uv0": 8867,
+          "uv1": 8867,
+          "vertices": 8867
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    },
+    {
+      "blendShapes": 4,
+      "name": "Eyes",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 64,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 846,
+          "uv1": 846,
+          "vertices": 846
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    },
+    {
+      "blendShapes": 4,
+      "name": "Mane",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 64,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 364,
+          "uv1": 0,
+          "vertices": 364
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    },
+    {
+      "blendShapes": 4,
+      "name": "Tail",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 64,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 58,
+          "uv1": 0,
+          "vertices": 58
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    }
+  ],
+  "projectImportFps": 30,
+  "skeletons": 1,
+  "skinDeformation": {
+    "failures": [],
+    "maxBodyEdgeStretch": 1.03062773459416,
+    "samples": 61,
+    "worstEdge": [
+      356,
+      7275
+    ],
+    "worstPhase": 0.5
+  },
+  "soleSupport": {
+    "failures": [],
+    "loopErrorM": 0.0,
+    "maximumFrameSoleMinimumM": 0.000229145589401014,
+    "maximumPointMotionM": 0.00280458899214864,
+    "minimumHeightM": -0.00121450226288289,
+    "sampleCount": 121,
+    "soleVertexCount": 227
+  },
+  "usesProjectImport": true
+}

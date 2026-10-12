@@ -92,6 +92,12 @@ jobs:
           "$G" --headless --path game --script "$PWD/tools/horse/check_imported_foal_hind.gd" -- \
             "res://assets/horse/production/horse_foal_walk.glb" \
             "$PWD/evidence/walk-import/foal-hind.json"
+          "$G" --headless --path game --script "$PWD/tools/horse/check_imported_foal_idle.gd" -- \
+            "res://assets/horse/production/horse_foal.glb" \
+            "$PWD/evidence/walk-import/foal-idle.json" \
+            "res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-import-profile.json" --imported
+          "$G" --headless --path game res://scenes/tools/FoalTransitionProbe.tscn -- \
+            --out="$PWD/evidence/foal-transitions"
 
       - name: Smoke test main scene (checked family Walk, coats, and viewer controls)
         env:

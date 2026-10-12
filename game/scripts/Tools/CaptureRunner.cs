@@ -813,6 +813,11 @@ public partial class CaptureRunner : Node
             return;
         }
 
+        // Playback advancement was verified above. Sample pose evidence at exact
+        // clip times: screenshot I/O can span most of this subtle four-second loop.
+        // Waiting for a wall-clock threshold after capture can miss both extrema.
+        _stage.Presenter.Pose("idle", 0);
+        skeleton.ForceUpdateAllBoneTransforms();
         var rootPositionAtStart = skeleton.GetBonePosePosition(rootIndex);
         var rootRotationAtStart = skeleton.GetBonePoseRotation(rootIndex);
         var neckPositionAtStart = skeleton.GetBonePosePosition(neckIndex);
@@ -828,21 +833,17 @@ public partial class CaptureRunner : Node
         {
             _stage.FrameView(view);
             await Shot($"foal_idle/initial_{view}.png", "foal_idle", foal, $"initial_{view}",
-                "neutral lighting during initial imported Idle playback; runtime contract evidence only");
+                "neutral lighting at exact imported Idle time zero; real playback advancement was checked separately");
         }
         foreach (var (name, fraction) in new[] { ("quarter", 0.25), ("midpoint", 0.5) })
         {
             double targetTime = length * fraction;
-            int waitedFrames = 0;
-            while (player.IsPlaying() && player.CurrentAnimationPosition + 0.0001 < targetTime && waitedFrames < 180)
-            {
-                await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-                waitedFrames++;
-            }
-            if (player.CurrentAnimationPosition + 0.0001 < targetTime)
+            _stage.Presenter.Pose("idle", targetTime);
+            skeleton.ForceUpdateAllBoneTransforms();
+            if (Math.Abs(player.CurrentAnimationPosition-targetTime)>0.0001)
             {
                 _failures++;
-                GD.PushError($"[capture] foal Idle playback did not reach {name} sample time {targetTime}; stopped at {player.CurrentAnimationPosition}");
+                GD.PushError($"[capture] foal Idle exact pose sample failed: {name}, target {targetTime}, actual {player.CurrentAnimationPosition}");
                 return;
             }
             var rootPosition = skeleton.GetBonePosePosition(rootIndex);
@@ -878,13 +879,13 @@ public partial class CaptureRunner : Node
             {
                 _stage.FrameView(view);
                 await Shot($"foal_idle/{name}_{view}.png", "foal_idle", foal, $"{name}_{view}",
-                    "neutral capture during advancing imported foal Idle playback; runtime contract evidence only");
+                    "neutral capture at the exact paused imported Idle sample time; real playback advancement checked separately");
             }
             if (name == "quarter")
             {
                 _stage.FrameView("q3");
                 await Shot("foal_idle/quarter_q3.png", "foal_idle", foal, "quarter_q3",
-                    "neutral capture during advancing imported foal Idle playback; runtime contract evidence only");
+                    "neutral capture at the exact paused imported Idle sample time; real playback advancement checked separately");
             }
         }
 

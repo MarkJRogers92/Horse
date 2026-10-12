@@ -165,16 +165,19 @@ public partial class MainMenu
             body.Select(bodyIndex); body.EmitSignal(OptionButton.SignalName.ItemSelected, bodyIndex);
             foal.ButtonPressed = juvenile;
             animation.Select(3); animation.EmitSignal(OptionButton.SignalName.ItemSelected, 3);
+            await WaitForViewerTransition(stage);
             Check(stage.Presenter.UsesWalkVariant && stage.Presenter.Descriptor!.IsFoal == juvenile &&
                   stage.Presenter.Descriptor.MeshFamilyId.Contains(bodyIndex == 0 ? ".standard." : ".compact.", StringComparison.Ordinal), "viewer selects family Walk");
             coat.Select(0); coat.EmitSignal(OptionButton.SignalName.ItemSelected, 0);
             Check(stage.Presenter.UsesWalkVariant && stage.Presenter.Descriptor!.CoatRecipe == FixtureLibrary.Get("chestnut", juvenile).CoatRecipe, "viewer changes coat during Walk");
             animation.Select(0); animation.EmitSignal(OptionButton.SignalName.ItemSelected, 0);
+            await WaitForViewerTransition(stage);
             var restored = stage.Presenter.Descriptor!;
             Check(!stage.Presenter.UsesWalkVariant && stage.Presenter.CurrentAnimation == "Idle" &&
                   OriginalDescriptorValuesMatch(stage.Presenter, restored, VisualCatalog.Instance) &&
                   restored.MorphWeights.OrderBy(p => p.Key).SequenceEqual(FixtureLibrary.Get("chestnut", juvenile).MorphWeights.OrderBy(p => p.Key)), "viewer Idle restores selected shape");
             animation.Select(3); animation.EmitSignal(OptionButton.SignalName.ItemSelected, 3);
+            await WaitForViewerTransition(stage);
             await WaitSeconds(0.1); await CaptureWalk(evidence, "viewer-" + stage.Presenter.Descriptor!.MeshFamilyId);
         }
         coat.Select(coat.ItemCount-1); coat.EmitSignal(OptionButton.SignalName.ItemSelected, coat.ItemCount-1);
@@ -197,6 +200,14 @@ public partial class MainMenu
     private async System.Threading.Tasks.Task WaitSeconds(double seconds)
     {
         await ToSignal(GetTree().CreateTimer(seconds), SceneTreeTimer.SignalName.Timeout);
+    }
+
+    private async System.Threading.Tasks.Task WaitForViewerTransition(HorseStage stage)
+    {
+        double deadline = Time.GetTicksMsec() + 3000;
+        while (stage.Presenter.IsTransitioning && Time.GetTicksMsec() < deadline)
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        Check(!stage.Presenter.IsTransitioning, "viewer transition completed");
     }
 
     private static void Check(bool condition, string message)

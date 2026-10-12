@@ -1,0 +1,32 @@
+{
+  "schema": "horse.foal_idle.final_checks.v1",
+  "baselineCommit": "ab34e605a6f620d4095805ee8acf9cbe6f581659",
+  "pythonTests": 56,
+  "domainTests": 190,
+  "gameBuildWarnings": 0,
+  "gameBuildErrors": 0,
+  "headlessTransitionChecks": 2111,
+  "renderedTransitionChecks": 3552,
+  "measuredBridges": 19,
+  "renderedFrames": 1440,
+  "regressionImages": 50,
+  "regressionFailures": 0,
+  "mainGameCoatImages": 24,
+  "packageRawEntries": 29,
+  "packageImportedSceneEntries": 6,
+  "packageFailures": [],
+  "packageSha256": "6fd9005b5af7b3229251e8958c941d5b084804e1af63f25ba1b504bc5d97cf98",
+  "protectedHistoricalFiles": 214,
+  "protectedHistoricalFilesExact": true,
+  "adultCatalogEntriesExact": true,
+  "candidateBlendSha256": "bef2fe3a18f2d742d0a5e4976dd25d489959be381e408214bfd4323bd725fe31",
+  "staticGlbSha256": "422d320d4c976411e3f6d4346d74202b606f438bade44111b325686575c86291",
+  "walkGlbSha256": "5f302d885e7a331de7cbc7f494846becac5eceae062e8ffed805ab2ff31beddc",
+  "finalArtifactNotes": [
+    "All eight full transition frame sequences inspected in side/front/rear/quarter contact sheets.",
+    "Actual game chestnut/bay/cremello and face/leg marking closeups inspected.",
+    "Raw static surface/morph arrays exact between Idle and Walk. Different imported rigs retain measured 0.073560 mm swap residual.",
+    "First wall-clock Idle capture missed intended extrema; final deterministic exact-time pose capture preserves original bounds and passes.",
+    "No Mac launch or publication by this worker."
+  ]
+}

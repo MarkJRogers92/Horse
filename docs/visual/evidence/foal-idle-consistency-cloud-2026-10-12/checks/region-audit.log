@@ -1,0 +1,13 @@
+Failed to create secure directory (/home/agent/.local/run/pulse): Read-only file system
+socket(): Operation not permitted
+00:00.433  blend            | Read blend: "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/horse_foal.blend"
+00:00.549  blend            | Read blend: "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/foal-idle-hind-geometry/horse_foal.blend"
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:34:58)
+{
+  "schema": "horse.foal_walk.bounded_geometry.v1",
+  "pass": true,
+  "allPositionsExact": false,
+  "changedVertexCount": 1361,
+  "maxOffsetM": 0.050000011920928955,
+  "failures": []
+}

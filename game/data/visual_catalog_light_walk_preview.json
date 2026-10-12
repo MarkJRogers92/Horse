@@ -55,29 +55,8 @@
         -0.00058
       ]
     },
-    "horse.standard.foal.v1": {
-      "scene": "res://assets/horse/production/horse_foal.glb",
-      "placeholder": false,
-      "age": "foal",
-      "hairGeometry": "solid_clumps",
-      "headViewTarget": [
-        0.593083,
-        1.199694,
-        -0.00107
-      ]
-    },
-    "horse.compact.foal.v1": {
-      "scene": "res://assets/horse/production/horse_foal.glb",
-      "placeholder": false,
-      "age": "foal",
-      "hairGeometry": "solid_clumps",
-      "headViewTarget": [
-        0.593083,
-        1.199694,
-        -0.00107
-      ],
-      "limitation": "Shares the standard juvenile master; a separate compact foal base is not authored."
-    }
+    "horse.standard.foal.v1": {"scene":"res://assets/horse/production/horse_foal.glb","placeholder":false,"age":"foal","hairGeometry":"solid_clumps","headViewTarget":[0.593083,1.199694,-0.00107],"restGeometry":{"sourceGlbSha256":"422d320d4c976411e3f6d4346d74202b606f438bade44111b325686575c86291","candidateBlendSha256":"bef2fe3a18f2d742d0a5e4976dd25d489959be381e408214bfd4323bd725fe31","regionProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/bounded-geometry-audit.json","regionProofSha256":"50f85deb4e88d0f980ea822c2f57224ce747fb2eea7ed58ba6769ae117a70248","consistencyProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-walk-consistency.json","consistencyProofSha256":"a92ec0d29757f49d744db1f0e03ca7c3046fa75389dc39f3e78b61b6bb297650","morphProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-morph-audit.json","morphProofSha256":"b0db735a0b20d8a4d5a6c5ba08cb48595e2b9d5be6edee6dc02b14bbc02d8051","importProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/native-idle-report.json","importProofSha256":"827a0951b71246006b373f4f1e4cebdffd65f1af76424f8c98ea829c27ea9d42"}},
+    "horse.compact.foal.v1": {"scene":"res://assets/horse/production/horse_foal.glb","placeholder":false,"age":"foal","hairGeometry":"solid_clumps","headViewTarget":[0.593083,1.199694,-0.00107],"limitation":"Shares the standard juvenile master; a separate compact foal base is not authored.","restGeometry":{"sourceGlbSha256":"422d320d4c976411e3f6d4346d74202b606f438bade44111b325686575c86291","candidateBlendSha256":"bef2fe3a18f2d742d0a5e4976dd25d489959be381e408214bfd4323bd725fe31","regionProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/bounded-geometry-audit.json","regionProofSha256":"50f85deb4e88d0f980ea822c2f57224ce747fb2eea7ed58ba6769ae117a70248","consistencyProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-walk-consistency.json","consistencyProofSha256":"a92ec0d29757f49d744db1f0e03ca7c3046fa75389dc39f3e78b61b6bb297650","morphProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-morph-audit.json","morphProofSha256":"b0db735a0b20d8a4d5a6c5ba08cb48595e2b9d5be6edee6dc02b14bbc02d8051","importProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/native-idle-report.json","importProofSha256":"827a0951b71246006b373f4f1e4cebdffd65f1af76424f8c98ea829c27ea9d42"}}
   },
   "coatRecipes": {
     "pheomelanin_full:none": {
