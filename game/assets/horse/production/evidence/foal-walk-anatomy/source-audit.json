@@ -1,7 +1,7 @@
 {
   "schema": "horse.foal_walk.candidate.v1",
   "sourceBlendSha256": "4322de7c3b97e6aa0e71111a6ab0de325f72f4f905424b4ff6e8d22df0ca041b",
-  "candidateBlendSha256": "80d28ab85ab32bb658a0b2f8b6e3adf7776ebc939a99378cc9e9772b0dcc03c6",
+  "candidateBlendSha256": "ac23bb9241663b6129faf5cac89e33ad68a67db59deca3d000508e8eb1057109",
   "protectedMeshData": {
     "Body": {
       "vertices": 6411,
@@ -93,63 +93,63 @@
   "sampleCount": 61,
   "fps": 60,
   "periodFrames": 58,
-  "forwardSpeedMetersPerSecond": 0.3448275862068966,
-  "bodyMaxEdgeStretch": 1.7390773296356201,
+  "forwardSpeedMetersPerSecond": 0.48275862068965525,
+  "bodyMaxEdgeStretch": 1.6839841604232788,
   "worstEdge": {
-    "ratio": 1.7390773296356201,
-    "frame": 47.36666666666667,
+    "ratio": 1.6839841604232788,
+    "frame": 16.433333333333334,
     "edge": [
-      4004,
-      4142
+      1191,
+      1610
     ],
     "restPoints": [
       [
-        0.2168743759393692,
-        0.05135144665837288,
-        0.49143701791763306
+        0.252055823802948,
+        -0.09295815974473953,
+        0.6640005111694336
       ],
       [
-        0.2226189821958542,
-        0.05648259073495865,
-        0.4841972291469574
+        0.25057950615882874,
+        -0.07850331813097,
+        0.6558703184127808
       ]
     ]
   },
-  "maxLimbReachRatio": 0.9990560604482048,
+  "maxLimbReachRatio": 0.9990560718811289,
   "loopMaxVertexDeltaM": 0.0,
-  "midCycleMaxVertexMotionM": 0.17014747858047485,
+  "midCycleMaxVertexMotionM": 0.23831777274608612,
   "contacts": {
     "fore_l": {
       "soleCount": 42,
-      "stanceAdjacentMaxMotionM": 7.147219776015845e-07,
-      "minStanceHeightM": -1.8881692085415125e-06,
-      "maxStanceP05HeightM": 0.00016699355910532176,
-      "minMiddleSwingClearanceM": 0.03310618922114372
+      "stanceAdjacentMaxMotionM": 1.1021461432392243e-06,
+      "minStanceHeightM": -3.987050149589777e-06,
+      "maxStanceP05HeightM": 0.00016688475443515927,
+      "minMiddleSwingClearanceM": 0.03338083624839783
     },
     "hind_r": {
       "soleCount": 44,
-      "stanceAdjacentMaxMotionM": 1.3606659194920212e-06,
-      "minStanceHeightM": -4.7689100028946996e-06,
-      "maxStanceP05HeightM": 0.00022353399253915995,
-      "minMiddleSwingClearanceM": 0.03298226743936539
+      "stanceAdjacentMaxMotionM": 1.1228216862946283e-06,
+      "minStanceHeightM": -4.188725142739713e-06,
+      "maxStanceP05HeightM": 0.00022368528880178928,
+      "minMiddleSwingClearanceM": 0.03298194706439972
     },
     "fore_r": {
       "soleCount": 44,
-      "stanceAdjacentMaxMotionM": 6.551764499818091e-07,
-      "minStanceHeightM": -1.8934370018541813e-06,
-      "maxStanceP05HeightM": 9.022707672556862e-06,
-      "minMiddleSwingClearanceM": 0.03295719623565674
+      "stanceAdjacentMaxMotionM": 1.208483467962651e-06,
+      "minStanceHeightM": -4.1710445657372475e-06,
+      "maxStanceP05HeightM": 8.950495612225495e-06,
+      "minMiddleSwingClearanceM": 0.033249445259571075
     },
     "hind_l": {
       "soleCount": 46,
-      "stanceAdjacentMaxMotionM": 1.4048735010874225e-06,
-      "minStanceHeightM": -4.404282663017511e-06,
-      "maxStanceP05HeightM": 3.302974801044911e-05,
-      "minMiddleSwingClearanceM": 0.03298242762684822
+      "stanceAdjacentMaxMotionM": 1.1267771924394765e-06,
+      "minStanceHeightM": -4.279718268662691e-06,
+      "maxStanceP05HeightM": 3.29227332258597e-05,
+      "minMiddleSwingClearanceM": 0.032982274889945984
     }
   },
-  "polish": "Independent proximal forelimb solve gives 5-degree planted carpus flexion and forward swing flexion; 25-degree toe-pivot recovery fold. Virtual elbow/fetlock markers expose actual solved joint positions. Geometry, full stance travel and physical gates unchanged.",
+  "polish": "Foal-only adult-style trajectory: 28 cm stance travel, forefoot tracks narrowed by 55 mm per side and shifted 20 mm caudal; hind tracks narrowed 35 mm per side and shifted 80 mm cranial. Front recovery fold reduced to 40 degrees with 40-degree toe-pivot hoof recovery. Original mesh/UV/morph data unchanged. Independent gates and visual approval required.",
   "runtimeTested": false,
   "visualReview": "pending",
-  "candidateGlbSha256": "a37ff181d158517c6297c97655d8c2218ff2810a2fe48694510901a4ee82dbd8"
+  "candidateGlbSha256": "7a3a78e1eb0cb30ec2fe989218f82bc429cc369acc60f70d471676025099b188"
 }

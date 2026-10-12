@@ -23,7 +23,7 @@ class IntegratedWalkTests(unittest.TestCase):
                 self.assertEqual(variant['periodFrames'],58)
                 asset=resource(variant['scene'])
                 self.assertEqual(sha(asset),variant['sourceGlbSha256'])
-                self.assertEqual(asset.read_bytes(),(ROOT/f'art/derived/production/candidates/{name}-walk-anatomy/horse_{name}_walk.glb').read_bytes())
+                self.assertEqual(asset.read_bytes(),(ROOT/f'art/derived/production/candidates/{name}-walk-{"refined" if name=="foal" else "anatomy"}/horse_{name}_walk.glb').read_bytes())
                 for field in ['motionProfile','receipt','cpuMotionAudit']:
                     self.assertEqual(sha(resource(variant[field+'Path'])),variant[field+'Sha256'])
                 evidence=resource(variant['motionProfilePath']).parent

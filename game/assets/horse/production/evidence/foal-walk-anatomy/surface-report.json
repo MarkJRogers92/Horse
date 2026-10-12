@@ -1,6 +1,6 @@
 {
   "source": "game/assets/horse/production/horse_foal.glb",
-  "candidate": "art/derived/production/candidates/foal-walk-anatomy/horse_foal_walk.glb",
+  "candidate": "art/derived/production/candidates/foal-walk-refined/horse_foal_walk.glb",
   "components": {
     "Body": {
       "POSITION": {
@@ -200,6 +200,6 @@
     }
   },
   "failures": [],
-  "candidateGlbSha256": "a37ff181d158517c6297c97655d8c2218ff2810a2fe48694510901a4ee82dbd8",
+  "candidateGlbSha256": "7a3a78e1eb0cb30ec2fe989218f82bc429cc369acc60f70d471676025099b188",
   "sourceGlbSha256": "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a"
 }

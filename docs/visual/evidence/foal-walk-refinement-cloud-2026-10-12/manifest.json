@@ -1,0 +1,271 @@
+{
+  "baseCommit": "9e35daa3343dd2e2f89109151b34842e788cdec7",
+  "scope": "Foal-only adult-style motion refinement; local checks, owner visual review pending; no publication or Mac execution",
+  "files": [
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/anatomy-report.json",
+      "sha256": "f3da8f56e4e267afba99886c6620551adfde14080812b59de361ad41af2bd681",
+      "bytes": 161546
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/attachment-audit.json",
+      "sha256": "a1f9cbe3b394ca38a44e600ee176b24f0e5602a912e15d53976d1511cd617851",
+      "bytes": 678
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/dense-deformation-audit.json",
+      "sha256": "247ec052662f491620f8844a9b740dfba42fa33ab7454c1d56fd42cfc6eaee7a",
+      "bytes": 1254
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/horse_foal_walk.blend",
+      "sha256": "ac23bb9241663b6129faf5cac89e33ad68a67db59deca3d000508e8eb1057109",
+      "bytes": 1558206
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/horse_foal_walk.glb",
+      "sha256": "7a3a78e1eb0cb30ec2fe989218f82bc429cc369acc60f70d471676025099b188",
+      "bytes": 1628952
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/placement-report.json",
+      "sha256": "b591ccebabd465d4432fca494e80e3daa7af1f2736b61d9833993eb9fda29e31",
+      "bytes": 69249
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/source-audit.json",
+      "sha256": "e04e0d1a6848365ce6552e11194acb6ec6a35bac99dcd1f9c7a1c27b43653f51",
+      "bytes": 6940
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/walk-motion-profile.json",
+      "sha256": "8a595f6e879c02eb79e4bd36337d90fa14fb6897eceeed84debaeeb6b07c34d9",
+      "bytes": 35333
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/README.md",
+      "sha256": "01e111417420238b3660e6c3afd61e8a89bd3270aefdbeffb0e93fcb13985b6d",
+      "bytes": 6679
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/build.log",
+      "sha256": "0c9ffba2bc6185be8f6ef545400ecb1cabdfb8bd8ff2adfea7b1b60ce0e4f52b",
+      "bytes": 625
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/domain.log",
+      "sha256": "7d6965c4a50937ab540ac6581ed69bcd4b05903885ef1d2a91040d53b15b7f3b",
+      "bytes": 819
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/export-evidence-report.json",
+      "sha256": "9345cf73802172e529c0c55c87c1933082b31f04ddd455b02bbd7c0fdf7a9253",
+      "bytes": 3904
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/foal-front-before-after.mp4",
+      "sha256": "6fef63ac353b1ac10be00a2288a6127351a328ff46ca4cf16c0db4dfc9025371",
+      "bytes": 227279
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/foal-side-and-front-before-after.mp4",
+      "sha256": "5fa48f3e62bfef75b733af8b0fe87ca99fbdf561bd15522458666565400f915b",
+      "bytes": 862980
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/foal-side-before-after.mp4",
+      "sha256": "b69ac3f76e5842dde6860a6d025f0244c7ff190a96847a8ba948effc06deb7b6",
+      "bytes": 636494
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/front-loop.jpg",
+      "sha256": "8cfbfb107acb85c64c22a51074787db48d5a13892f541a4c03ca3cfe7ba67909",
+      "bytes": 189874
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/game-import-check.log",
+      "sha256": "3f1bc1981fbcb6b9ba4683f9ff256c52d460cda17000db166465d0e768f6b003",
+      "bytes": 3388
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/horse.standard.foal.v1-bay-moving.png",
+      "sha256": "25d3ec91a2c4480c0b4e1f8038590453dd611d48c20032a79c80207981d9f595",
+      "bytes": 539089
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/horse.standard.foal.v1-cremello-moving.png",
+      "sha256": "76808f9cc21f48223890235f629d0f272b51bddc0e8b8a2308906132601a614a",
+      "bytes": 510827
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/horse.standard.foal.v1-markings-head.png",
+      "sha256": "cb135b6edc5f03b8d127fb8aa3b5ea60e6d83598d64d770e640318cc59d1835e",
+      "bytes": 697232
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/horse.standard.foal.v1-markings-legs.png",
+      "sha256": "3aa09cf7154953e3f812b3c1dc0c47f2a6c008d0a82629afff556456ede31a6d",
+      "bytes": 589251
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/native-anatomy-check.log",
+      "sha256": "0ab7bcd8d224e2a2d983060c1c39097f9511d6deff6421a2e13c749ae79e4231",
+      "bytes": 1255
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/preservation-report.json",
+      "sha256": "b8774c67ef3142ab25264b154ca7ddeb5f3331bbec89c80b0f8a79ddbe4d3d44",
+      "bytes": 18754
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/python-tests.log",
+      "sha256": "b2ab8edd9a024eeda4958ce9c282506209058fdcdd3635c35d91f29e88d4702d",
+      "bytes": 192
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/quarter-loop.jpg",
+      "sha256": "1a7029047c7974bf800ab9794762a35fa283bd4355b2933124c0fd0765f3f997",
+      "bytes": 278819
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/rear-loop.jpg",
+      "sha256": "54f82c9287fe87c2bf6d21678fc60bba245e3ba5ce53748cb71ec6693b9fb05b",
+      "bytes": 187405
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/reference-review.md",
+      "sha256": "d4b6aa3ec0b31f820aa838d1af141f5a8188d397e95bda0e3514025752cfd684",
+      "bytes": 4256
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/regression-report.json",
+      "sha256": "aa996698324ec0c79413792d833468df372b2f13e3030b406244bfacd3153c11",
+      "bytes": 66185
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/render-manifest.json",
+      "sha256": "e50ba6b3883c18427107510eae063fab4df1ef72ca6d3da945bad05bb878f3fe",
+      "bytes": 350
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/side-loop.jpg",
+      "sha256": "be3c6d5c74e9984cc606a0af1eb23806f986afa1ec5be86ae8e1e2824dba2010",
+      "bytes": 253249
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/smoke-headless.log",
+      "sha256": "06f2226f2a330be10d8f9cf5735e8501080bca58698575d0b04c6662b858f7f3",
+      "bytes": 39331
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/smoke-rendered.log",
+      "sha256": "eeed03dc2c6ec82df1ea3e5a3c5532b7350cf77f03cd4f5f39f14620e6bb0304",
+      "bytes": 40999
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/spec.log",
+      "sha256": "7d1d37ac6843f676a03e9908b7b010dce6b53cc19a73f9c6468729675a4687df",
+      "bytes": 103
+    },
+    {
+      "path": "docs/visual/evidence/foal-walk-refinement-cloud-2026-10-12/trajectory-comparison.json",
+      "sha256": "2ce2da586573b7a78b373bb5f255f6c1ddce45f3fcdb18485724d05dd36d0f17",
+      "bytes": 1745
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/anatomy-report.json",
+      "sha256": "f3da8f56e4e267afba99886c6620551adfde14080812b59de361ad41af2bd681",
+      "bytes": 161546
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/attachment-audit.json",
+      "sha256": "a1f9cbe3b394ca38a44e600ee176b24f0e5602a912e15d53976d1511cd617851",
+      "bytes": 678
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/dense-deformation-audit.json",
+      "sha256": "247ec052662f491620f8844a9b740dfba42fa33ab7454c1d56fd42cfc6eaee7a",
+      "bytes": 1254
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/game-import-report.json",
+      "sha256": "c3953140d461c93a685dde9201bc48de94226ef1f775522bf803c105c94831e6",
+      "bytes": 4806
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/native-anatomy-report.json",
+      "sha256": "0932b2d92927766f1ff7a29c0d29435421d44be75cc84878aee841ef948fad80",
+      "bytes": 1379
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/placement-report.json",
+      "sha256": "b591ccebabd465d4432fca494e80e3daa7af1f2736b61d9833993eb9fda29e31",
+      "bytes": 69249
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/report.json",
+      "sha256": "bf51ff728f80eedfee982640c9dde3b44b7222659c727de4ff7b40e88cea153b",
+      "bytes": 4821
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/source-audit.json",
+      "sha256": "e04e0d1a6848365ce6552e11194acb6ec6a35bac99dcd1f9c7a1c27b43653f51",
+      "bytes": 6940
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/surface-report.json",
+      "sha256": "91c931a489b41128d2ddf3dbf424e5e89e96f41eac2df985abe3b07391cabc19",
+      "bytes": 4692
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/walk-motion-profile.json",
+      "sha256": "8a595f6e879c02eb79e4bd36337d90fa14fb6897eceeed84debaeeb6b07c34d9",
+      "bytes": 35333
+    },
+    {
+      "path": "game/assets/horse/production/horse_foal_walk.glb",
+      "sha256": "7a3a78e1eb0cb30ec2fe989218f82bc429cc369acc60f70d471676025099b188",
+      "bytes": 1628952
+    },
+    {
+      "path": "game/data/visual_catalog.json",
+      "sha256": "00222dc8bfcec07ebc364189305baf89a9cc4ffb27f52c321a01c2088e6822a7",
+      "bytes": 14100
+    },
+    {
+      "path": "game/scripts/Visual/RemainingWalkEvidence.cs",
+      "sha256": "6dbf139d4d99000673af066df3d9048274129fc02a3bf4a282272e527049eccc",
+      "bytes": 12476
+    },
+    {
+      "path": "tools/horse/audit_exported_walk_anatomy.py",
+      "sha256": "07574ee2168a492c11bc546b53392bff7a280814a7fb70b345fa53ccbb6562df",
+      "bytes": 8244
+    },
+    {
+      "path": "tools/horse/check_exported_walk_evidence.gd",
+      "sha256": "055daef7a2888d701c7552c5975e7a010e2b797fc9cfdf3ef794e516226a97df",
+      "bytes": 2776
+    },
+    {
+      "path": "tools/horse/derive_foal_refined_walk.py",
+      "sha256": "9ecaca373088ab2d41d59c9c96b5c9ba94410e54c094a1a2ea42121df2486c71",
+      "bytes": 15549
+    },
+    {
+      "path": "tools/horse/test_foal_walk_refinement.py",
+      "sha256": "55741513a9951ab5ace68b35ee7a0868c5b2e9f0d6b483b3f2d0795e8229785f",
+      "bytes": 4257
+    },
+    {
+      "path": "tools/horse/test_integrated_walk_assets.py",
+      "sha256": "7f66ef620dd3a860cb757e1d2d277cfa56b206ecab5eac1de34a5afef37fbc9c",
+      "bytes": 5077
+    },
+    {
+      "path": "tools/horse/test_walk_anatomy.py",
+      "sha256": "76bb7eccdafa944b04951023594e39f6e33f5512248aa9de7a39fffab1ff13d8",
+      "bytes": 7697
+    }
+  ]
+}

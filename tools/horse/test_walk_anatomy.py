@@ -25,7 +25,7 @@ def assert_report_matches(actual, expected, path=()):
   for index,(a,b) in enumerate(zip(actual,expected)):assert_report_matches(a,b,path+(index,))
  elif isinstance(expected,float):
   if not math.isfinite(actual) or not math.isfinite(expected):raise AssertionError(f'{location}: non-finite measurement')
-  measured = path and path[0] in ('durationSeconds','limbs','phases')
+  measured = path and path[0] in ('durationSeconds','limbs','phases','metrics')
   if not (math.isclose(actual,expected,rel_tol=0,abs_tol=MEASUREMENT_ABS_TOLERANCE) if measured else actual==expected):
    raise AssertionError(f'{location}: {actual!r} != {expected!r}')
  elif actual!=expected:
@@ -39,7 +39,7 @@ class AnatomyReportComparisonTests(unittest.TestCase):
   def perturb(value,path=()):
    if isinstance(value,dict):return {k:perturb(v,path+(k,)) for k,v in value.items()}
    if isinstance(value,list):return [perturb(v,path+(i,)) for i,v in enumerate(value)]
-   if isinstance(value,float) and path and path[0] in ('durationSeconds','limbs','phases'):
+   if isinstance(value,float) and path and path[0] in ('durationSeconds','limbs','phases','metrics'):
     return value+MEASUREMENT_ABS_TOLERANCE/4
    return value
   assert_report_matches(perturb(self.report),self.report)
@@ -81,7 +81,7 @@ class WalkAnatomyTests(unittest.TestCase):
   for family,f in [('horse.standard.adult.v1','light'),('horse.compact.adult.v1','stock'),('horse.standard.foal.v1','foal')]:
    with self.subTest(family=family):
     v=catalog['meshFamilies'][family]['walkVariant'];e=ROOT/'game'/v['motionProfilePath'].removeprefix('res://');p=e;e=e.parent
-    glb=ROOT/'game'/v['scene'].removeprefix('res://');candidate=ROOT/f'art/derived/production/candidates/{f}-walk-anatomy/horse_{f}_walk.glb'
+    glb=ROOT/'game'/v['scene'].removeprefix('res://');candidate=ROOT/f'art/derived/production/candidates/{f}-walk-{"refined" if f=="foal" else "anatomy"}/horse_{f}_walk.glb'
     self.assertEqual(glb.read_bytes(),candidate.read_bytes())
     with tempfile.TemporaryDirectory() as out:
      dest=Path(out)/'anatomy.json';run=subprocess.run([sys.executable,str(ROOT/'tools/horse/audit_exported_walk_anatomy.py'),str(glb),str(p),'--out',str(dest)],capture_output=True,text=True)

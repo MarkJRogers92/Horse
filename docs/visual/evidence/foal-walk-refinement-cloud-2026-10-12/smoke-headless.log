@@ -1,0 +1,361 @@
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+
+[DomainBridge] domain resolver phenotype.v1; game links Cloverbrook.Domain
+[smoke] OK main scene presented a supported horse
+[smoke] OK horse.standard.adult.v1 has checked Walk evidence: 
+[smoke] OK horse.standard.adult.v1 offers Walk from Idle
+WARNING: [HorsePresenter] bay.adult: UNSUPPORTED: Walk requires the checked neutral family shape (all supported body morphs and height at zero)
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:60)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:60)
+         [2] void Cloverbrook.Game.Scenes.MainMenu+<RunWalkVariantSmokeTest>d__2.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:37)
+         [3] void System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start<TStateMachine>(TStateMachine&)
+         [4] System.Threading.Tasks.Task Cloverbrook.Game.Scenes.MainMenu.RunWalkVariantSmokeTest(Cloverbrook.Game.Scenes.HorseStage)
+         [5] void Cloverbrook.Game.Scenes.MainMenu._Ready() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/MainMenu.cs:43)
+         [6] bool Godot.Node.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/GodotObjects/Node.cs:2660)
+         [7] bool Cloverbrook.Game.Scenes.MainMenu.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Godot.SourceGenerators/Godot.SourceGenerators.ScriptMethodsGenerator/Cloverbrook.Game.Scenes.MainMenu_ScriptMethods.generated.cs:80)
+         [8] Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/CSharpInstanceBridge.cs:24)
+[smoke] OK horse.standard.adult.v1 refuses direct nonneutral Walk
+[smoke] OK horse.standard.adult.v1 Walk applies neutral morphs and unit scale
+[smoke] OK horse.standard.adult.v1 plays looping Walk
+[smoke] OK horse.standard.adult.v1 uses its exact profile speed and duration
+[smoke] OK horse.standard.adult.v1 moves once at profile speed with camera follow
+[smoke] OK horse.standard.adult.v1 pause stops route and camera
+[smoke] OK horse.standard.adult.v1 resumes Walk
+[smoke] OK horse.standard.adult.v1 restores original Idle descriptor, all component morphs and height
+[smoke] OK horse.standard.adult.v1 Idle resets route
+[smoke] OK horse.standard.adult.v1 Walk applies neutral morphs and unit scale
+[smoke] OK horse.standard.adult.v1 plays looping Walk
+[smoke] OK horse.standard.adult.v1 uses its exact profile speed and duration
+[smoke] OK horse.standard.adult.v1 moves once at profile speed with camera follow
+[smoke] OK horse.standard.adult.v1 pause stops route and camera
+[smoke] OK horse.standard.adult.v1 resumes Walk
+[smoke] OK horse.standard.adult.v1 restores original Idle descriptor, all component morphs and height
+[smoke] OK horse.standard.adult.v1 Idle resets route
+[smoke] OK horse.standard.adult.v1 four-cycle route stays bounded and camera wraps with actor
+[smoke] OK horse.standard.adult.v1 moving bay coat
+[smoke] OK horse.standard.adult.v1 retains accepted Light detail
+[smoke] OK horse.standard.adult.v1 binds selected coat recipe
+[smoke] OK horse.standard.adult.v1 moving chestnut coat
+[smoke] OK horse.standard.adult.v1 retains accepted Light detail
+[smoke] OK horse.standard.adult.v1 binds selected coat recipe
+[smoke] OK horse.standard.adult.v1 moving cremello coat
+[smoke] OK horse.standard.adult.v1 retains accepted Light detail
+[smoke] OK horse.standard.adult.v1 binds selected coat recipe
+[smoke] OK horse.standard.adult.v1 binds star and leg whites
+[smoke] OK horse.compact.adult.v1 has checked Walk evidence: 
+[smoke] OK horse.compact.adult.v1 offers Walk from Idle
+WARNING: [HorsePresenter] bay.adult: UNSUPPORTED: Walk requires the checked neutral family shape (all supported body morphs and height at zero)
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:60)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:60)
+         [2] void Cloverbrook.Game.Scenes.MainMenu+<RunWalkVariantSmokeTest>d__2.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:37)
+         [3] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [4] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [5] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+         [6] void System.Threading.Tasks.Task.RunContinuations(object)
+         [7] bool System.Threading.Tasks.Task`1.TrySetResult(TResult)
+         [8] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.SetExistingTaskResult(System.Threading.Tasks.Task`1[TResult], TResult)
+         [9] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+         [10] void Cloverbrook.Game.Scenes.MainMenu+<WaitSeconds>d__8.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:200)
+         [11] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [12] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [13] void Godot.SignalAwaiter.SignalCallback(nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_bool*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/SignalAwaiter.cs:65)
+[smoke] OK horse.compact.adult.v1 refuses direct nonneutral Walk
+[smoke] OK horse.compact.adult.v1 Walk applies neutral morphs and unit scale
+[smoke] OK horse.compact.adult.v1 plays looping Walk
+[smoke] OK horse.compact.adult.v1 uses its exact profile speed and duration
+[smoke] OK horse.compact.adult.v1 moves once at profile speed with camera follow
+[smoke] OK horse.compact.adult.v1 pause stops route and camera
+[smoke] OK horse.compact.adult.v1 resumes Walk
+[smoke] OK horse.compact.adult.v1 restores original Idle descriptor, all component morphs and height
+[smoke] OK horse.compact.adult.v1 Idle resets route
+[smoke] OK horse.compact.adult.v1 Walk applies neutral morphs and unit scale
+[smoke] OK horse.compact.adult.v1 plays looping Walk
+[smoke] OK horse.compact.adult.v1 uses its exact profile speed and duration
+[smoke] OK horse.compact.adult.v1 moves once at profile speed with camera follow
+[smoke] OK horse.compact.adult.v1 pause stops route and camera
+[smoke] OK horse.compact.adult.v1 resumes Walk
+[smoke] OK horse.compact.adult.v1 restores original Idle descriptor, all component morphs and height
+[smoke] OK horse.compact.adult.v1 Idle resets route
+[smoke] OK horse.compact.adult.v1 four-cycle route stays bounded and camera wraps with actor
+[smoke] OK horse.compact.adult.v1 moving bay coat
+[smoke] OK horse.compact.adult.v1 uses its own procedural coat without Light atlas
+[smoke] OK horse.compact.adult.v1 binds selected coat recipe
+[smoke] OK horse.compact.adult.v1 moving chestnut coat
+[smoke] OK horse.compact.adult.v1 uses its own procedural coat without Light atlas
+[smoke] OK horse.compact.adult.v1 binds selected coat recipe
+[smoke] OK horse.compact.adult.v1 moving cremello coat
+[smoke] OK horse.compact.adult.v1 uses its own procedural coat without Light atlas
+[smoke] OK horse.compact.adult.v1 binds selected coat recipe
+[smoke] OK horse.compact.adult.v1 binds star and leg whites
+[smoke] OK horse.standard.foal.v1 has checked Walk evidence: 
+[smoke] OK horse.standard.foal.v1 offers Walk from Idle
+WARNING: [HorsePresenter] bay.foal: UNSUPPORTED: Walk requires the checked neutral family shape (all supported body morphs and height at zero)
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:60)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:60)
+         [2] void Cloverbrook.Game.Scenes.MainMenu+<RunWalkVariantSmokeTest>d__2.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:37)
+         [3] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [4] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [5] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+         [6] void System.Threading.Tasks.Task.RunContinuations(object)
+         [7] bool System.Threading.Tasks.Task`1.TrySetResult(TResult)
+         [8] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.SetExistingTaskResult(System.Threading.Tasks.Task`1[TResult], TResult)
+         [9] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+         [10] void Cloverbrook.Game.Scenes.MainMenu+<WaitSeconds>d__8.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:200)
+         [11] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [12] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [13] void Godot.SignalAwaiter.SignalCallback(nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_bool*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/SignalAwaiter.cs:65)
+[smoke] OK horse.standard.foal.v1 refuses direct nonneutral Walk
+[smoke] OK horse.standard.foal.v1 Walk applies neutral morphs and unit scale
+[smoke] OK horse.standard.foal.v1 plays looping Walk
+[smoke] OK horse.standard.foal.v1 uses its exact profile speed and duration
+[smoke] OK horse.standard.foal.v1 moves once at profile speed with camera follow
+[smoke] OK horse.standard.foal.v1 pause stops route and camera
+[smoke] OK horse.standard.foal.v1 resumes Walk
+[smoke] OK horse.standard.foal.v1 restores original Idle descriptor, all component morphs and height
+[smoke] OK horse.standard.foal.v1 Idle resets route
+[smoke] OK horse.standard.foal.v1 Walk applies neutral morphs and unit scale
+[smoke] OK horse.standard.foal.v1 plays looping Walk
+[smoke] OK horse.standard.foal.v1 uses its exact profile speed and duration
+[smoke] OK horse.standard.foal.v1 moves once at profile speed with camera follow
+[smoke] OK horse.standard.foal.v1 pause stops route and camera
+[smoke] OK horse.standard.foal.v1 resumes Walk
+[smoke] OK horse.standard.foal.v1 restores original Idle descriptor, all component morphs and height
+[smoke] OK horse.standard.foal.v1 Idle resets route
+[smoke] OK horse.standard.foal.v1 four-cycle route stays bounded and camera wraps with actor
+[smoke] OK horse.standard.foal.v1 moving bay coat
+[smoke] OK horse.standard.foal.v1 uses its own procedural coat without Light atlas
+[smoke] OK horse.standard.foal.v1 binds selected coat recipe
+[smoke] OK horse.standard.foal.v1 moving chestnut coat
+[smoke] OK horse.standard.foal.v1 uses its own procedural coat without Light atlas
+[smoke] OK horse.standard.foal.v1 binds selected coat recipe
+[smoke] OK horse.standard.foal.v1 moving cremello coat
+[smoke] OK horse.standard.foal.v1 uses its own procedural coat without Light atlas
+[smoke] OK horse.standard.foal.v1 binds selected coat recipe
+[smoke] OK horse.standard.foal.v1 binds star and leg whites
+[smoke] OK horse.compact.foal.v1 has checked Walk evidence: 
+[smoke] OK horse.compact.foal.v1 offers Walk from Idle
+WARNING: [HorsePresenter] bay.foal: UNSUPPORTED: Walk requires the checked neutral family shape (all supported body morphs and height at zero)
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:60)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:60)
+         [2] void Cloverbrook.Game.Scenes.MainMenu+<RunWalkVariantSmokeTest>d__2.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:37)
+         [3] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [4] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [5] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+         [6] void System.Threading.Tasks.Task.RunContinuations(object)
+         [7] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.SetExistingTaskResult(System.Threading.Tasks.Task`1[TResult], TResult)
+         [8] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+         [9] void Cloverbrook.Game.Scenes.MainMenu+<WaitSeconds>d__8.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:200)
+         [10] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [11] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [12] void Godot.SignalAwaiter.SignalCallback(nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_bool*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/SignalAwaiter.cs:65)
+[smoke] OK horse.compact.foal.v1 refuses direct nonneutral Walk
+[smoke] OK horse.compact.foal.v1 Walk applies neutral morphs and unit scale
+[smoke] OK horse.compact.foal.v1 plays looping Walk
+[smoke] OK horse.compact.foal.v1 uses its exact profile speed and duration
+[smoke] OK horse.compact.foal.v1 moves once at profile speed with camera follow
+[smoke] OK horse.compact.foal.v1 pause stops route and camera
+[smoke] OK horse.compact.foal.v1 resumes Walk
+[smoke] OK horse.compact.foal.v1 restores original Idle descriptor, all component morphs and height
+[smoke] OK horse.compact.foal.v1 Idle resets route
+[smoke] OK horse.compact.foal.v1 Walk applies neutral morphs and unit scale
+[smoke] OK horse.compact.foal.v1 plays looping Walk
+[smoke] OK horse.compact.foal.v1 uses its exact profile speed and duration
+[smoke] OK horse.compact.foal.v1 moves once at profile speed with camera follow
+[smoke] OK horse.compact.foal.v1 pause stops route and camera
+[smoke] OK horse.compact.foal.v1 resumes Walk
+[smoke] OK horse.compact.foal.v1 restores original Idle descriptor, all component morphs and height
+[smoke] OK horse.compact.foal.v1 Idle resets route
+[smoke] OK horse.compact.foal.v1 four-cycle route stays bounded and camera wraps with actor
+[smoke] OK horse.compact.foal.v1 moving bay coat
+[smoke] OK horse.compact.foal.v1 uses its own procedural coat without Light atlas
+[smoke] OK horse.compact.foal.v1 binds selected coat recipe
+[smoke] OK horse.compact.foal.v1 moving chestnut coat
+[smoke] OK horse.compact.foal.v1 uses its own procedural coat without Light atlas
+[smoke] OK horse.compact.foal.v1 binds selected coat recipe
+[smoke] OK horse.compact.foal.v1 moving cremello coat
+[smoke] OK horse.compact.foal.v1 uses its own procedural coat without Light atlas
+[smoke] OK horse.compact.foal.v1 binds selected coat recipe
+[smoke] OK horse.compact.foal.v1 binds star and leg whites
+WARNING: [HorsePresenter] probe.grey: UNSUPPORTED: coat layer 'grey_age' has no renderer implementation; grey progression is not implemented
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:45)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:45)
+         [2] void Cloverbrook.Game.Scenes.MainMenu+<RunWalkVariantSmokeTest>d__2.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:103)
+         [3] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [4] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [5] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+         [6] void System.Threading.Tasks.Task.RunContinuations(object)
+         [7] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+         [8] void Cloverbrook.Game.Scenes.MainMenu+<WaitSeconds>d__8.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:200)
+         [9] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [10] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [11] void Godot.SignalAwaiter.SignalCallback(nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_bool*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/SignalAwaiter.cs:65)
+[smoke] OK probe.grey remains refused
+WARNING: [HorsePresenter] probe.unknown-recipe: UNSUPPORTED: coat recipe 'eumelanin_points_pheomelanin_body:champagne' is not in the visual catalog
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:45)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:45)
+         [2] void Cloverbrook.Game.Scenes.MainMenu+<RunWalkVariantSmokeTest>d__2.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:103)
+         [3] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [4] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [5] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+         [6] void System.Threading.Tasks.Task.RunContinuations(object)
+         [7] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+         [8] void Cloverbrook.Game.Scenes.MainMenu+<WaitSeconds>d__8.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:200)
+         [9] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [10] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [11] void Godot.SignalAwaiter.SignalCallback(nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_bool*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/SignalAwaiter.cs:65)
+[smoke] OK probe.unknown-recipe remains refused
+WARNING: [HorsePresenter] probe.unknown-mesh: UNSUPPORTED: mesh family 'horse.draft.adult.v1' has no asset
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:45)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:45)
+         [2] void Cloverbrook.Game.Scenes.MainMenu+<RunWalkVariantSmokeTest>d__2.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:103)
+         [3] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [4] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [5] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+         [6] void System.Threading.Tasks.Task.RunContinuations(object)
+         [7] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+         [8] void Cloverbrook.Game.Scenes.MainMenu+<WaitSeconds>d__8.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:200)
+         [9] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [10] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [11] void Godot.SignalAwaiter.SignalCallback(nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_bool*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/SignalAwaiter.cs:65)
+[smoke] OK probe.unknown-mesh remains refused
+[smoke] OK horse.compact.adult.v1 fails closed: scene
+[smoke] OK horse.compact.adult.v1 fails closed: sourceGlbSha256
+[smoke] OK horse.compact.adult.v1 fails closed: candidateBlendSha256
+[smoke] OK horse.compact.adult.v1 fails closed: motionProfilePath
+[smoke] OK horse.compact.adult.v1 fails closed: motionProfileSha256
+[smoke] OK horse.compact.adult.v1 fails closed: receiptPath
+[smoke] OK horse.compact.adult.v1 fails closed: receiptSha256
+[smoke] OK horse.compact.adult.v1 fails closed: cpuMotionAuditPath
+[smoke] OK horse.compact.adult.v1 fails closed: cpuMotionAuditSha256
+[smoke] OK horse.compact.adult.v1 fails closed: fps
+[smoke] OK horse.compact.adult.v1 fails closed: periodFrames
+[smoke] OK horse.compact.adult.v1 fails closed: forwardSpeedMetersPerSecond
+[smoke] OK horse.compact.adult.v1 fails closed: dutyFactor
+[smoke] OK horse.compact.adult.v1 fails closed: bodySignedDetail
+[smoke] OK horse.compact.adult.v1 refuses mismatched age
+[smoke] OK horse.standard.foal.v1 fails closed: scene
+[smoke] OK horse.standard.foal.v1 fails closed: sourceGlbSha256
+[smoke] OK horse.standard.foal.v1 fails closed: candidateBlendSha256
+[smoke] OK horse.standard.foal.v1 fails closed: motionProfilePath
+[smoke] OK horse.standard.foal.v1 fails closed: motionProfileSha256
+[smoke] OK horse.standard.foal.v1 fails closed: receiptPath
+[smoke] OK horse.standard.foal.v1 fails closed: receiptSha256
+[smoke] OK horse.standard.foal.v1 fails closed: cpuMotionAuditPath
+[smoke] OK horse.standard.foal.v1 fails closed: cpuMotionAuditSha256
+[smoke] OK horse.standard.foal.v1 fails closed: fps
+[smoke] OK horse.standard.foal.v1 fails closed: periodFrames
+[smoke] OK horse.standard.foal.v1 fails closed: forwardSpeedMetersPerSecond
+[smoke] OK horse.standard.foal.v1 fails closed: dutyFactor
+[smoke] OK horse.standard.foal.v1 fails closed: bodySignedDetail
+[smoke] OK horse.standard.foal.v1 refuses mismatched age
+[smoke] OK horse.compact.foal.v1 fails closed: scene
+[smoke] OK horse.compact.foal.v1 fails closed: sourceGlbSha256
+[smoke] OK horse.compact.foal.v1 fails closed: candidateBlendSha256
+[smoke] OK horse.compact.foal.v1 fails closed: motionProfilePath
+[smoke] OK horse.compact.foal.v1 fails closed: motionProfileSha256
+[smoke] OK horse.compact.foal.v1 fails closed: receiptPath
+[smoke] OK horse.compact.foal.v1 fails closed: receiptSha256
+[smoke] OK horse.compact.foal.v1 fails closed: cpuMotionAuditPath
+[smoke] OK horse.compact.foal.v1 fails closed: cpuMotionAuditSha256
+[smoke] OK horse.compact.foal.v1 fails closed: fps
+[smoke] OK horse.compact.foal.v1 fails closed: periodFrames
+[smoke] OK horse.compact.foal.v1 fails closed: forwardSpeedMetersPerSecond
+[smoke] OK horse.compact.foal.v1 fails closed: dutyFactor
+[smoke] OK horse.compact.foal.v1 fails closed: bodySignedDetail
+[smoke] OK horse.compact.foal.v1 refuses mismatched age
+[smoke] OK Light still requires accepted signed detail
+[smoke] OK viewer selects family Walk
+[smoke] OK viewer changes coat during Walk
+[smoke] OK viewer Idle restores selected shape
+[smoke] OK viewer selects family Walk
+[smoke] OK viewer changes coat during Walk
+[smoke] OK viewer Idle restores selected shape
+[smoke] OK viewer selects family Walk
+[smoke] OK viewer changes coat during Walk
+[smoke] OK viewer Idle restores selected shape
+[smoke] OK viewer selects family Walk
+[smoke] OK viewer changes coat during Walk
+[smoke] OK viewer Idle restores selected shape
+WARNING: [HorsePresenter] probe.unknown-mesh: UNSUPPORTED: mesh family 'horse.draft.adult.v1' has no asset
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:45)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:45)
+         [2] void Cloverbrook.Game.Scenes.HorseViewer.Refresh(bool) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/HorseViewer.cs:139)
+         [3] void Cloverbrook.Game.Scenes.HorseViewer.<BuildUi>b__16_0(long) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/HorseViewer.cs:60)
+         [4] void Godot.OptionButton.ItemSelectedTrampoline(object, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/GodotObjects/OptionButton.cs:643)
+         [5] void Godot.DelegateUtils.InvokeWithVariantArgs(nint, System.Void*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/DelegateUtils.cs:86)
+         [6] Godot.NativeInterop.godot_variant Godot.NativeInterop.NativeFuncs.godotsharp_method_bind_call(nint, nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error&) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Godot.SourceGenerators.Internal/Godot.SourceGenerators.Internal.UnmanagedCallbacksGenerator/Godot.NativeInterop.NativeFuncs.generated.cs:388)
+         [7] int Godot.NativeCalls.godot_icall_2_921(nint, nint, Godot.NativeInterop.godot_string_name, System.ReadOnlySpan`1[Godot.Variant], Godot.NativeInterop.godot_string_name) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/NativeCalls.cs:8163)
+         [8] Godot.Error Godot.GodotObject.EmitSignal(Godot.StringName, Godot.Variant[]) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/GodotObjects/GodotObject.cs:719)
+         [9] void Cloverbrook.Game.Scenes.MainMenu+<CheckViewerControls>d__6.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:180)
+         [10] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [11] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [12] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+         [13] void System.Threading.Tasks.Task.RunContinuations(object)
+         [14] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+         [15] void Cloverbrook.Game.Scenes.MainMenu+<WaitSeconds>d__8.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:200)
+         [16] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [17] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [18] void Godot.SignalAwaiter.SignalCallback(nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_bool*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/SignalAwaiter.cs:65)
+WARNING: [HorsePresenter] probe.unknown-mesh: UNSUPPORTED: mesh family 'horse.draft.adult.v1' has no asset
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:45)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:45)
+         [2] void Cloverbrook.Game.Scenes.HorseViewer.Refresh(bool) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/HorseViewer.cs:139)
+         [3] void Cloverbrook.Game.Scenes.HorseViewer.<BuildUi>b__16_2(bool) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/HorseViewer.cs:69)
+         [4] void Godot.BaseButton.ToggledTrampoline(object, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/GodotObjects/BaseButton.cs:511)
+         [5] void Godot.DelegateUtils.InvokeWithVariantArgs(nint, System.Void*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/DelegateUtils.cs:86)
+         [6] void Godot.NativeInterop.NativeFuncs.godotsharp_method_bind_ptrcall(nint, nint, System.Void**, System.Void*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Godot.SourceGenerators.Internal/Godot.SourceGenerators.Internal.UnmanagedCallbacksGenerator/Godot.NativeInterop.NativeFuncs.generated.cs:380)
+         [7] void Godot.NativeCalls.godot_icall_1_14(nint, nint, Godot.NativeInterop.godot_bool) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/NativeCalls.cs:140)
+         [8] void Godot.BaseButton.SetPressed(bool) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/GodotObjects/BaseButton.cs:252)
+         [9] void Godot.BaseButton.set_ButtonPressed(bool) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/GodotObjects/BaseButton.cs:93)
+         [10] void Cloverbrook.Game.Scenes.MainMenu+<CheckViewerControls>d__6.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:181)
+         [11] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [12] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [13] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+         [14] void System.Threading.Tasks.Task.RunContinuations(object)
+         [15] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+         [16] void Cloverbrook.Game.Scenes.MainMenu+<WaitSeconds>d__8.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:200)
+         [17] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [18] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [19] void Godot.SignalAwaiter.SignalCallback(nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_bool*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/SignalAwaiter.cs:65)
+WARNING: [HorsePresenter] probe.unknown-mesh: UNSUPPORTED: mesh family 'horse.draft.adult.v1' has no asset
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:45)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:45)
+         [2] void Cloverbrook.Game.Scenes.HorseViewer.Refresh(bool) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/HorseViewer.cs:139)
+         [3] void Cloverbrook.Game.Scenes.HorseViewer.<BuildUi>b__16_1(long) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/HorseViewer.cs:66)
+         [4] void Godot.OptionButton.ItemSelectedTrampoline(object, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/GodotObjects/OptionButton.cs:643)
+         [5] void Godot.DelegateUtils.InvokeWithVariantArgs(nint, System.Void*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/DelegateUtils.cs:86)
+         [6] Godot.NativeInterop.godot_variant Godot.NativeInterop.NativeFuncs.godotsharp_method_bind_call(nint, nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error&) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Godot.SourceGenerators.Internal/Godot.SourceGenerators.Internal.UnmanagedCallbacksGenerator/Godot.NativeInterop.NativeFuncs.generated.cs:388)
+         [7] int Godot.NativeCalls.godot_icall_2_921(nint, nint, Godot.NativeInterop.godot_string_name, System.ReadOnlySpan`1[Godot.Variant], Godot.NativeInterop.godot_string_name) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/NativeCalls.cs:8163)
+         [8] Godot.Error Godot.GodotObject.EmitSignal(Godot.StringName, Godot.Variant[]) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/GodotObjects/GodotObject.cs:719)
+         [9] void Cloverbrook.Game.Scenes.MainMenu+<CheckViewerControls>d__6.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:182)
+         [10] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [11] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [12] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+         [13] void System.Threading.Tasks.Task.RunContinuations(object)
+         [14] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult()
+         [15] void Cloverbrook.Game.Scenes.MainMenu+<WaitSeconds>d__8.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Scenes/WalkIntegrationSmoke.cs:200)
+         [16] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+         [17] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+         [18] void Godot.SignalAwaiter.SignalCallback(nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_bool*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/SignalAwaiter.cs:65)
+[smoke] OK viewer family/age switches keep unsupported probe refused
+[smoke] OK all four family mappings, coats, neutral Walk/Idle, paused route, camera, viewer controls and evidence guards

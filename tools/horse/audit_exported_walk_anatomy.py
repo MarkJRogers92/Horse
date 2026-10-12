@@ -3,7 +3,7 @@ import struct,json,numpy as np,math
 from pathlib import Path
 
 import argparse,hashlib
-p=argparse.ArgumentParser();p.add_argument('glb',type=Path);p.add_argument('profile',type=Path);p.add_argument('--out',type=Path,required=True);args=p.parse_args();profile=json.loads(args.profile.read_text());files={args.glb.stem:args.glb};result={}
+p=argparse.ArgumentParser();p.add_argument('glb',type=Path);p.add_argument('profile',type=Path);p.add_argument('--out',type=Path,required=True);p.add_argument('--placement-out',type=Path);args=p.parse_args();profile=json.loads(args.profile.read_text());files={args.glb.stem:args.glb};result={}
 def quat(q):
  x,y,z,w=q;return np.array([[1-2*y*y-2*z*z,2*x*y-2*z*w,2*x*z+2*y*w],[2*x*y+2*z*w,1-2*x*x-2*z*z,2*y*z-2*x*w],[2*x*z-2*y*w,2*y*z+2*x*w,1-2*x*x-2*y*y]])
 def slerp(a,b,t):
@@ -18,7 +18,7 @@ for label,path in files.items():
  act=next(a for a in d['animations'] if a['name']=='Walk');tracks=[]
  for ch in act['channels']:
   s=act['samplers'][ch['sampler']];tracks.append((ch['target']['node'],ch['target']['path'],accessor(s['input']).ravel(),accessor(s['output']),s.get('interpolation','LINEAR')))
- duration=max(t[2][-1] for t in tracks);phases=[]
+ duration=max(t[2][-1] for t in tracks);phases=[];placement=[]
  for phase in np.linspace(0,1,117):
   vals={i:{k:np.array(v,float) for k,v in n.items() if k in ('translation','rotation','scale')} for i,n in enumerate(nodes)}
   for ni,prop,times,values,interp in tracks:
@@ -56,6 +56,14 @@ for label,path in files.items():
    limbphase=(float(phase)-profile['limbs']['fore_'+side]['stanceStartFrame']/profile['periodFrames'])%1
    joints[side]={'limbPhase':limbphase,'carpusOffsetM':float(np.dot(B-A,normal)),'flexionDegrees':float(np.degrees(np.arccos(np.clip(np.dot(u,w)/(np.linalg.norm(u)*np.linalg.norm(w)),-1,1)))),'hoofPitchDegrees':pitch,'points':[A.tolist(),B.tolist(),C.tolist()]}
   phases.append(dict(phase=float(phase),joints=joints))
+  if args.placement_out:
+   feet={}
+   for limb,spec in profile['limbs'].items():
+    node=names[spec['boneName']];matrix=glob[node]@bind[node]
+    points=np.array([p['restPosition']+[1.] for p in spec['solePoints']])
+    posed=(matrix@points.T).T[:,:3]
+    feet[limb]=posed.mean(axis=0).tolist()
+   placement.append({'phase':float(phase),'soleCentroidsGodotM':feet})
  summary={};failures=[]
  for side in ('l','r'):
   rows=[p['joints'][side] for p in phases];stance=[r for r in rows if r['limbPhase']<.6];swing=[r for r in rows if r['limbPhase']>=.6]
@@ -67,5 +75,17 @@ for label,path in files.items():
   if metrics['stanceHoofPitchRangeDegrees']>.5:failures.append(side+': planted hoof rotation')
   summary['fore_'+side]=metrics
  result={'schema':'horse.walk.anatomy.v1','sourceGlbSha256':hashlib.sha256(path.read_bytes()).hexdigest(),'motionProfileSha256':hashlib.sha256(args.profile.read_bytes()).hexdigest(),'sampleCount':117,'durationSeconds':float(duration),'method':'Independent glTF node hierarchy and quaternion track evaluation; actual adult joint heads and inverse skin binds. Foal joints are measured from actual deform-bone skin matrices applied to the solver rest anchors, independently of interpolated helper markers. Positive carpal offset is anterior to the elbow-fetlock chord.','limits':{'minimumSignedCarpusOffsetM':-.002,'maximumStanceFlexionDegrees':12,'minimumSwingFlexionDegrees':20,'minimumHoofPitchRangeDegrees':20,'maximumStanceHoofPitchRangeDegrees':.5},'limbs':summary,'failures':failures,'phases':phases}
+ if args.placement_out:
+  coords={limb:np.array([row['soleCentroidsGodotM'][limb] for row in placement]) for limb in profile['limbs']}
+  metrics={}
+  for kind in ('fore','hind'):
+   # Signed separation catches left/right crossing instead of hiding it.
+   widths=coords[kind+'_r'][:,2]-coords[kind+'_l'][:,2]
+   metrics[kind+'TrackWidthMinM']=float(widths.min());metrics[kind+'TrackWidthMaxM']=float(widths.max())
+   metrics[kind+'MeanX']=float(np.mean([coords[kind+'_l'][:,0],coords[kind+'_r'][:,0]]))
+  metrics['meanForeHindSpanM']=metrics['foreMeanX']-metrics['hindMeanX']
+  metrics['stanceTravelM']=profile['forwardSpeedMetersPerSecond']*profile['dutyFactor']*float(duration)
+  placement_report={'schema':'horse.walk.placement.v1','sourceGlbSha256':result['sourceGlbSha256'],'motionProfileSha256':result['motionProfileSha256'],'sampleCount':117,'durationSeconds':float(duration),'registeredSolePoints':sum(len(v['solePoints']) for v in profile['limbs'].values()),'method':'Actual exported rigid hoof Skin transforms applied to all profile sole witnesses; widths are signed right-minus-left lateral centroid separation, not outer hoof edges. The independent contact audit verifies every witness is rigidly bound to that hoof.','metrics':metrics,'phases':placement}
+  args.placement_out.write_text(json.dumps(placement_report,indent=2)+'\n')
  args.out.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(summary,indent=2));print('FAILURES',failures)
  raise SystemExit(bool(failures))

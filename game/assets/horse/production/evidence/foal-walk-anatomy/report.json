@@ -2,13 +2,13 @@
   "allComponentDeformation": {
     "Body": {
       "failures": [],
-      "maxBodyEdgeStretch": 1.7349543033927,
+      "maxBodyEdgeStretch": 1.68258440950127,
       "samples": 61,
       "worstEdge": [
-        5561,
-        5763
+        1539,
+        2142
       ],
-      "worstPhase": 0.816666666666667
+      "worstPhase": 0.283333333333333
     },
     "Eyes": {
       "failures": [],
@@ -32,20 +32,20 @@
     },
     "Tail": {
       "failures": [],
-      "maxBodyEdgeStretch": 1.00689445831359,
+      "maxBodyEdgeStretch": 1.00704989320479,
       "samples": 61,
       "worstEdge": [
         28,
         30
       ],
-      "worstPhase": 0.0333333333333333
+      "worstPhase": 0.0166666666666667
     }
   },
   "animations": [
     {
-      "boneMovementMeters": 0.259593069553375,
-      "endpointBasisError": 0.000000240302881593379,
-      "endpointTranslationErrorMeters": 0.000000044703483581543,
+      "boneMovementMeters": 0.233333617448807,
+      "endpointBasisError": 0.0000000462671465584208,
+      "endpointTranslationErrorMeters": 0.00000000416500123279206,
       "importLoopMode": 0,
       "length": 0.966666638851166,
       "name": "Walk",
@@ -67,36 +67,36 @@
     "method": "Fixed closest rest-triangle barycentrics, imported Skin binds",
     "samples": 61
   },
-  "candidateGlbSha256": "a37ff181d158517c6297c97655d8c2218ff2810a2fe48694510901a4ee82dbd8",
+  "candidateGlbSha256": "7a3a78e1eb0cb30ec2fe989218f82bc429cc369acc60f70d471676025099b188",
   "contact": {
     "failures": [],
     "limbs": {
       "fore_l": {
-        "centralSwingMinimumMeters": 0.0412216857075691,
-        "maxPerAxisStanceMotionMeters": 0.000132244080305099,
-        "maxStanceSoleMinimumMeters": 0.000103757971373852,
-        "minStanceHeightMeters": -0.0000066683569457382,
+        "centralSwingMinimumMeters": 0.0418948568403721,
+        "maxPerAxisStanceMotionMeters": 0.000187089666724205,
+        "maxStanceSoleMinimumMeters": 0.000139043520903215,
+        "minStanceHeightMeters": -0.0000131457927636802,
         "registered": 42
       },
       "fore_r": {
-        "centralSwingMinimumMeters": 0.0410835929214954,
-        "maxPerAxisStanceMotionMeters": 0.000133567489683628,
-        "maxStanceSoleMinimumMeters": 0.0000646429834887385,
-        "minStanceHeightMeters": -0.00000646017724648118,
+        "centralSwingMinimumMeters": 0.0417814664542675,
+        "maxPerAxisStanceMotionMeters": 0.000189501792192459,
+        "maxStanceSoleMinimumMeters": 0.0000759851754992269,
+        "minStanceHeightMeters": -0.0000132907880470157,
         "registered": 44
       },
       "hind_l": {
-        "centralSwingMinimumMeters": 0.0414479523897171,
-        "maxPerAxisStanceMotionMeters": 0.000490978360176086,
-        "maxStanceSoleMinimumMeters": 0.000165700592333451,
-        "minStanceHeightMeters": -0.0000200402864720672,
+        "centralSwingMinimumMeters": 0.0414254069328308,
+        "maxPerAxisStanceMotionMeters": 0.000692576169967651,
+        "maxStanceSoleMinimumMeters": 0.000166212470503524,
+        "minStanceHeightMeters": -0.0000184488308150321,
         "registered": 46
       },
       "hind_r": {
-        "centralSwingMinimumMeters": 0.0414480865001678,
-        "maxPerAxisStanceMotionMeters": 0.000490665435791016,
-        "maxStanceSoleMinimumMeters": 0.00016614850028418,
-        "minStanceHeightMeters": -0.0000195722677744925,
+        "centralSwingMinimumMeters": 0.0414253585040569,
+        "maxPerAxisStanceMotionMeters": 0.000692844390869141,
+        "maxStanceSoleMinimumMeters": 0.000166370897204615,
+        "minStanceHeightMeters": -0.000018133912817575,
         "registered": 44
       }
     },
@@ -114,7 +114,7 @@
     "timestamp": 0
   },
   "failures": [],
-  "file": "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/foal-walk-anatomy/horse_foal_walk.glb",
+  "file": "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/foal-walk-refined/horse_foal_walk.glb",
   "importBakeFps": 60.0,
   "meshCount": 4,
   "meshes": [
@@ -186,13 +186,13 @@
   "skeletons": 1,
   "skinDeformation": {
     "failures": [],
-    "maxBodyEdgeStretch": 1.7349543033927,
+    "maxBodyEdgeStretch": 1.68258440950127,
     "samples": 61,
     "worstEdge": [
-      5561,
-      5763
+      1539,
+      2142
     ],
-    "worstPhase": 0.816666666666667
+    "worstPhase": 0.283333333333333
   },
   "usesProjectImport": false
 }

@@ -2,13 +2,13 @@
   "allComponentDeformation": {
     "Body": {
       "failures": [],
-      "maxBodyEdgeStretch": 1.73495113169971,
+      "maxBodyEdgeStretch": 1.68258407388924,
       "samples": 61,
       "worstEdge": [
-        2404,
-        7939
+        1828,
+        5777
       ],
-      "worstPhase": 0.816666666666667
+      "worstPhase": 0.283333333333333
     },
     "Eyes": {
       "failures": [],
@@ -32,21 +32,21 @@
     },
     "Tail": {
       "failures": [],
-      "maxBodyEdgeStretch": 1.00689445831359,
+      "maxBodyEdgeStretch": 1.00704989320479,
       "samples": 61,
       "worstEdge": [
         2,
         41
       ],
-      "worstPhase": 0.0333333333333333
+      "worstPhase": 0.0166666666666667
     }
   },
   "animationOptimizerEnabled": false,
   "animations": [
     {
-      "boneMovementMeters": 0.259593069553375,
-      "endpointBasisError": 0.000000240302881593379,
-      "endpointTranslationErrorMeters": 0.000000044703483581543,
+      "boneMovementMeters": 0.233333617448807,
+      "endpointBasisError": 0.0000000462671465584208,
+      "endpointTranslationErrorMeters": 0.00000000416500123279206,
       "importLoopMode": 0,
       "length": 0.966666638851166,
       "name": "Walk",
@@ -68,36 +68,36 @@
     "method": "Fixed closest rest-triangle barycentrics, imported Skin binds",
     "samples": 61
   },
-  "candidateGlbSha256": "a37ff181d158517c6297c97655d8c2218ff2810a2fe48694510901a4ee82dbd8",
+  "candidateGlbSha256": "7a3a78e1eb0cb30ec2fe989218f82bc429cc369acc60f70d471676025099b188",
   "contact": {
     "failures": [],
     "limbs": {
       "fore_l": {
-        "centralSwingMinimumMeters": 0.0412216633558273,
-        "maxPerAxisStanceMotionMeters": 0.000132239423692226,
-        "maxStanceSoleMinimumMeters": 0.000103749698610045,
-        "minStanceHeightMeters": -0.00000666658161208034,
+        "centralSwingMinimumMeters": 0.0418948531150818,
+        "maxPerAxisStanceMotionMeters": 0.000187140889465809,
+        "maxStanceSoleMinimumMeters": 0.000139016105094925,
+        "minStanceHeightMeters": -0.0000132338609546423,
         "registered": 42
       },
       "fore_r": {
-        "centralSwingMinimumMeters": 0.0410836115479469,
-        "maxPerAxisStanceMotionMeters": 0.000133567489683628,
-        "maxStanceSoleMinimumMeters": 0.0000646429834887385,
-        "minStanceHeightMeters": -0.00000645953696221113,
+        "centralSwingMinimumMeters": 0.0417814739048481,
+        "maxPerAxisStanceMotionMeters": 0.000189395621418953,
+        "maxStanceSoleMinimumMeters": 0.0000758990790927783,
+        "minStanceHeightMeters": -0.0000132668064907193,
         "registered": 44
       },
       "hind_l": {
-        "centralSwingMinimumMeters": 0.0414479561150074,
-        "maxPerAxisStanceMotionMeters": 0.000490978360176086,
-        "maxStanceSoleMinimumMeters": 0.000165625766385347,
-        "minStanceHeightMeters": -0.00002004683483392,
+        "centralSwingMinimumMeters": 0.0414253771305084,
+        "maxPerAxisStanceMotionMeters": 0.000692635774612427,
+        "maxStanceSoleMinimumMeters": 0.000166248675668612,
+        "minStanceHeightMeters": -0.0000183498195838183,
         "registered": 46
       },
       "hind_r": {
-        "centralSwingMinimumMeters": 0.0414480715990067,
-        "maxPerAxisStanceMotionMeters": 0.000490665435791016,
-        "maxStanceSoleMinimumMeters": 0.000166155135957524,
-        "minStanceHeightMeters": -0.0000195900211110711,
+        "centralSwingMinimumMeters": 0.0414254255592823,
+        "maxPerAxisStanceMotionMeters": 0.000692874193191528,
+        "maxStanceSoleMinimumMeters": 0.000166396668646485,
+        "minStanceHeightMeters": -0.0000181883806362748,
         "registered": 44
       }
     },
@@ -188,13 +188,13 @@
   "skeletons": 1,
   "skinDeformation": {
     "failures": [],
-    "maxBodyEdgeStretch": 1.73495113169971,
+    "maxBodyEdgeStretch": 1.68258407388924,
     "samples": 61,
     "worstEdge": [
-      2404,
-      7939
+      1828,
+      5777
     ],
-    "worstPhase": 0.816666666666667
+    "worstPhase": 0.283333333333333
   },
   "usesProjectImport": true
 }

@@ -1,0 +1,42 @@
+{
+  "adultLight": {
+    "sourceGlbSha256": "b9e2d3ee455c14fb037596cf2dfd9a8241c5760ceea38855238b523bd734a628",
+    "metrics": {
+      "foreTrackWidthMinM": 0.14310490365884057,
+      "foreTrackWidthMaxM": 0.14326434770907676,
+      "foreMeanX": 0.347527541164928,
+      "hindTrackWidthMinM": 0.2848786193626479,
+      "hindTrackWidthMaxM": 0.2850851534611519,
+      "hindMeanX": -0.7783725196439327,
+      "meanForeHindSpanM": 1.1259000608088607,
+      "stanceTravelM": 0.43499843871597926
+    }
+  },
+  "foalBefore": {
+    "sourceGlbSha256": "a37ff181d158517c6297c97655d8c2218ff2810a2fe48694510901a4ee82dbd8",
+    "metrics": {
+      "foreTrackWidthMinM": 0.21906819890476767,
+      "foreTrackWidthMaxM": 0.21911609163494256,
+      "foreMeanX": 0.25079515787595935,
+      "hindTrackWidthMinM": 0.24469049623313388,
+      "hindTrackWidthMaxM": 0.24469950134729546,
+      "hindMeanX": -0.6026886339113441,
+      "meanForeHindSpanM": 0.8534837917873035,
+      "stanceTravelM": 0.19999999424506879
+    }
+  },
+  "foalRefined": {
+    "sourceGlbSha256": "7a3a78e1eb0cb30ec2fe989218f82bc429cc369acc60f70d471676025099b188",
+    "metrics": {
+      "foreTrackWidthMinM": 0.10904455443019022,
+      "foreTrackWidthMaxM": 0.10906885156343737,
+      "foreMeanX": 0.23135419417577474,
+      "hindTrackWidthMinM": 0.1746887242479364,
+      "hindTrackWidthMaxM": 0.17469473968774568,
+      "hindMeanX": -0.5227342992274112,
+      "meanForeHindSpanM": 0.754088493403186,
+      "stanceTravelM": 0.2799999919430963
+    }
+  },
+  "interpretation": "Coordinates from the exported rigs. Widths are hoof sole-centroid lanes, not external hoof edges. Juvenile length scaling and selected bounds are authored choices, not measurements inferred from perspective footage."
+}

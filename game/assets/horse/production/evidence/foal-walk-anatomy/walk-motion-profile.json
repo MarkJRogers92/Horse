@@ -1,10 +1,10 @@
 {
   "schema": "horse.foal_walk.motion_profile.v1",
-  "candidateBlendSha256": "80d28ab85ab32bb658a0b2f8b6e3adf7776ebc939a99378cc9e9772b0dcc03c6",
-  "sourceGlbSha256": "a37ff181d158517c6297c97655d8c2218ff2810a2fe48694510901a4ee82dbd8",
+  "candidateBlendSha256": "ac23bb9241663b6129faf5cac89e33ad68a67db59deca3d000508e8eb1057109",
+  "sourceGlbSha256": "7a3a78e1eb0cb30ec2fe989218f82bc429cc369acc60f70d471676025099b188",
   "periodFrames": 58,
   "fps": 60,
-  "forwardSpeedMetersPerSecond": 0.3448275862068966,
+  "forwardSpeedMetersPerSecond": 0.48275862068965525,
   "dutyFactor": 0.6,
   "coordinateSpace": "Skeleton local, Blender (x,y,z) to Godot (x,z,-y)",
   "scope": "Neutral foal candidate; lower hoof skin locally rigid; original geometry and coat data preserved.",
