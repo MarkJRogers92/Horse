@@ -28,19 +28,20 @@ internal static class RemainingWalkEvidence
             ["walk-motion-profile"] = "f46be30cfa401b2fc45d917d9f5fe7fa1c392c5a084084aa736a37f398549be7",
          });
     private static readonly Accepted Foal = new("foal", "foal",
-        "7a3a78e1eb0cb30ec2fe989218f82bc429cc369acc60f70d471676025099b188",
-        "ac23bb9241663b6129faf5cac89e33ad68a67db59deca3d000508e8eb1057109", 0.48275862068965525, 176,
+        "5f302d885e7a331de7cbc7f494846becac5eceae062e8ffed805ab2ff31beddc",
+        "6183af14b955d9fa20636deabaf38ca8aa1527e4a13af6216653ede6152bfcca", 0.48275862068965525, 176,
         new Dictionary<string, string> {
-            ["anatomy-report"] = "f3da8f56e4e267afba99886c6620551adfde14080812b59de361ad41af2bd681",
-            ["attachment-audit"] = "a1f9cbe3b394ca38a44e600ee176b24f0e5602a912e15d53976d1511cd617851",
-            ["dense-deformation-audit"] = "247ec052662f491620f8844a9b740dfba42fa33ab7454c1d56fd42cfc6eaee7a",
-            ["game-import-report"] = "c3953140d461c93a685dde9201bc48de94226ef1f775522bf803c105c94831e6",
-            ["native-anatomy-report"] = "0932b2d92927766f1ff7a29c0d29435421d44be75cc84878aee841ef948fad80",
-            ["placement-report"] = "b591ccebabd465d4432fca494e80e3daa7af1f2736b61d9833993eb9fda29e31",
-            ["report"] = "bf51ff728f80eedfee982640c9dde3b44b7222659c727de4ff7b40e88cea153b",
-            ["source-audit"] = "e04e0d1a6848365ce6552e11194acb6ec6a35bac99dcd1f9c7a1c27b43653f51",
-            ["surface-report"] = "91c931a489b41128d2ddf3dbf424e5e89e96f41eac2df985abe3b07391cabc19",
-            ["walk-motion-profile"] = "8a595f6e879c02eb79e4bd36337d90fa14fb6897eceeed84debaeeb6b07c34d9",
+            ["anatomy-report"] = "89b42b511985e0ac3c035bc70ce8920517d3d9335a42696028bc497e9a8b3e43",
+            ["attachment-audit"] = "5172fe26530e3041b492a5ea0747e021999da9a87dcad1492c5bc9515ac8fe5e",
+            ["dense-deformation-audit"] = "cf734d5228b6e220e5778f01d3e0cbceae0c8ece81ba64d5e2fdc7291448eea9",
+            ["game-import-report"] = "b49df41ac653e8b6900071a5ae20757675ff3e02f289bdce8057d8bd0e70be27",
+            ["native-anatomy-report"] = "f8e7ff20ec4f19a78fae4149f7bfe3ee1776a9bc4cfc6d4d8c6c6363ea340db9",
+            ["native-hind-report"] = "e5916d4628aeb7c413abeca6ff894998206df167ff5a9f4f1ee8af33d28eadc9",
+            ["placement-report"] = "f816ca2c2ca8a18e16b6d29fd796a2a7ff9d8e8fda3958b718cf434777bf0ff7",
+            ["report"] = "cbc314698a96d5842153b6d7dc5c7eea1e1b23f45b01e15f3df9d63a27f2911d",
+            ["source-audit"] = "fe82b2de54dc538aa1a3ff7e6029d0fb7e591d8e654f88663a67d429df8e2cec",
+            ["surface-report"] = "ba80273c4d73537fbb2adfd0dba56ca2f169087a499f76934c20881dcca4d96f",
+            ["walk-motion-profile"] = "d06129015da0de7561fdcc81b456bdfd14d730402848207ed3e23d4b70bae634",
          });
 
     public static WalkAnimationVariant? Parse(JsonElement variant, string family, string age, out string? reason)
@@ -96,17 +97,24 @@ internal static class RemainingWalkEvidence
                     !Number(profile, "periodFrames", 58) || !Number(profile, "fps", 60) ||
                     !Number(profile, "forwardSpeedMetersPerSecond", a.Speed) || !Number(profile, "dutyFactor", 0.6) ||
                     !True(profile, "sourceRootInPlace") ||
-                    Text(source, "schema") != $"horse.{a.Asset}_walk.candidate.v1" ||
+                    Text(source, "schema") != $"horse.{a.Asset}_walk.candidate.{(a.Asset == "foal" ? "v2" : "v1")}" ||
                     Text(source, "candidateGlbSha256") != a.Glb || Text(source, "candidateBlendSha256") != a.Blend ||
-                    !True(source, "protectedMeshDataExact") || source.GetProperty("reusedLightAtlas").GetBoolean() ||
+                    (a.Asset == "foal" ? source.GetProperty("protectedMeshDataExact").ValueKind != JsonValueKind.False ||
+                        !ValidateFoalGeometry(surface, a.Glb, a.Blend) : !True(source, "protectedMeshDataExact")) ||
+                    source.GetProperty("reusedLightAtlas").GetBoolean() ||
                     source.GetProperty("bodyMaxEdgeStretch").GetDouble() > 2 ||
                     source.GetProperty("loopMaxVertexDeltaM").GetDouble() > 0.001 ||
                     Text(dense, "candidateBlendSha256") != a.Blend || !True(dense, "bodyStretchPass") ||
                     dense.GetProperty("sampleCount").GetInt32() != 581 ||
                     Text(surface, "candidateGlbSha256") != a.Glb || !Empty(surface, "failures")) return null;
-                foreach (var component in surface.GetProperty("components").EnumerateObject())
-                    foreach (var attribute in component.Value.EnumerateObject())
-                        if (!Number(attribute.Value, "maximumError", 0)) return null;
+                if (a.Asset == "foal")
+                {
+                    if (!ValidateFoalHind(files["native-hind-report"].RootElement, a.Glb)) return null;
+                }
+                else
+                    foreach (var component in surface.GetProperty("components").EnumerateObject())
+                        foreach (var attribute in component.Value.EnumerateObject())
+                            if (!Number(attribute.Value, "maximumError", 0)) return null;
                 var engine = runtime.GetProperty("engine");
                 if (Text(runtime, "candidateGlbSha256") != a.Glb || !True(runtime, "usesProjectImport") ||
                     !Number(engine, "major", 4) || !Number(engine, "minor", 7) || !Number(engine, "patch", 2) ||
@@ -134,6 +142,51 @@ internal static class RemainingWalkEvidence
             finally { foreach (var file in files.Values) file.Dispose(); }
         }
         catch (Exception error) { reason += ": " + error.Message; return null; }
+    }
+
+    // Explicit owner-approved geometry branch. Historical rig-only proofs remain immutable;
+    // positions are not relabeled as exact. Stock still requires the original exact contract.
+    private static bool ValidateFoalGeometry(JsonElement report, string glb, string blend)
+    {
+        if (Text(report, "schema") != "horse.foal_walk.bounded_geometry.v1" ||
+            Text(report, "sourceBlendSha256") != "4aa253f8c6a63f1fc377801460db3d4e4129513c4ee2a2fa2eefee155f62869d" ||
+            Text(report, "sourceGlbSha256") != "28d2893d1de080f80ca95f946b2872a18d74beb4f12428340e8cd328f32812e3" ||
+            Text(report, "candidateGlbSha256") != glb || Text(report, "candidateBlendSha256") != blend ||
+            !True(report, "pass") || !Empty(report, "failures") ||
+            report.GetProperty("allPositionsExact").ValueKind != JsonValueKind.False ||
+            !Number(report, "changedVertexCount", 1361)) return false;
+        double offset = report.GetProperty("maxOffsetM").GetDouble();
+        if (!double.IsFinite(offset) || offset <= 0 || offset > 0.050001) return false;
+        foreach (string key in new[] { "meshSetMatches", "topologyExact", "uvExact", "colorsExact", "transformsExact",
+            "weightsExact", "untouchedPositionsExact", "positionsWithinAuthorizedRegion", "maxOffsetWithinLimit",
+            "morphDeltasPreserved", "untouchedShapePositionsExact", "normalsOutsideSupportExact",
+            "exportCornerCorrespondenceExact", "exportProtectedAttributesExact", "exportPositionsMatchCandidate",
+            "exportMorphDeltasPreserved", "exportNormalsOutsideSupportExact", "rawPackedNormalsOutsideSupportExact",
+            "exportUntouchedPositionsExact", "exportSkinAttributesExact", "liveGlbRegionPass" })
+            if (!True(report, key)) return false;
+        var limits = report.GetProperty("limits");
+        return Text(limits, "mesh") == "Body" && Number(limits, "sourceXExclusiveMaximumM", -0.24) &&
+            Number(limits, "sourceZExclusiveMinimumM", 0.40) && Number(limits, "sourceZExclusiveMaximumM", 0.91) &&
+            Number(limits, "maxOffsetM", 0.09) && Number(limits, "morphDeltaToleranceM", 1e-7);
+    }
+
+    private static bool ValidateFoalHind(JsonElement report, string glb)
+    {
+        if (Text(report, "sourceGlbSha256") != glb || !True(report, "usesProjectImport") ||
+            !Number(report, "sampleCount", 581) || !Empty(report, "failures")) return false;
+        var limbs = report.GetProperty("limbs");
+        if (!limbs.EnumerateObject().Select(p => p.Name).ToHashSet().SetEquals(new[] { "L", "R" })) return false;
+        foreach (var limb in limbs.EnumerateObject())
+        {
+            double gap = limb.Value.GetProperty("maximumJointCoincidenceErrorM").GetDouble();
+            double stifle = limb.Value.GetProperty("minimumForwardStifleOffsetM").GetDouble();
+            double hock = limb.Value.GetProperty("maximumForwardHockOffsetM").GetDouble();
+            double lo = limb.Value.GetProperty("relativeUpperGaskinRotationMinDegrees").GetDouble();
+            double hi = limb.Value.GetProperty("relativeUpperGaskinRotationMaxDegrees").GetDouble();
+            if (!double.IsFinite(gap) || gap < 0 || gap > 0.001 || !double.IsFinite(stifle) || stifle <= 0 ||
+                !double.IsFinite(hock) || hock >= 0 || !double.IsFinite(lo) || !double.IsFinite(hi) || hi - lo < 5) return false;
+        }
+        return true;
     }
 
     // Rig-specific style bounds supplement, and do not replace, the physical/anatomy gates.

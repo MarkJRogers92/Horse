@@ -23,7 +23,7 @@ class IntegratedWalkTests(unittest.TestCase):
                 self.assertEqual(variant['periodFrames'],58)
                 asset=resource(variant['scene'])
                 self.assertEqual(sha(asset),variant['sourceGlbSha256'])
-                self.assertEqual(asset.read_bytes(),(ROOT/f'art/derived/production/candidates/{name}-walk-{"refined" if name=="foal" else "anatomy"}/horse_{name}_walk.glb').read_bytes())
+                self.assertEqual(asset.read_bytes(),(ROOT/f'art/derived/production/candidates/{name}-walk-{"hind-geometry" if name=="foal" else "anatomy"}/horse_{name}_walk.glb').read_bytes())
                 for field in ['motionProfile','receipt','cpuMotionAudit']:
                     self.assertEqual(sha(resource(variant[field+'Path'])),variant[field+'Sha256'])
                 evidence=resource(variant['motionProfilePath']).parent
@@ -52,10 +52,16 @@ class IntegratedWalkTests(unittest.TestCase):
                 self.assertEqual(runtime['attachments']['failures'],[])
                 surface=read(evidence/'surface-report.json')
                 self.assertEqual(surface['failures'],[])
-                for attrs in surface['components'].values():
-                    for value in attrs.values(): self.assertEqual(value['maximumError'],0)
-                self.assertIn('COLOR_0',surface['components']['Body'])
-                self.assertIn('TEXCOORD_1',surface['components']['Body'])
+                if name=='foal':
+                    self.assertEqual(surface['schema'],'horse.foal_walk.bounded_geometry.v1')
+                    self.assertTrue(surface['pass']);self.assertFalse(surface['allPositionsExact'])
+                    self.assertTrue(surface['colorsExact']);self.assertTrue(surface['uvExact'])
+                    self.assertTrue(surface['untouchedPositionsExact']);self.assertTrue(surface['exportProtectedAttributesExact'])
+                else:
+                    for attrs in surface['components'].values():
+                        for value in attrs.values(): self.assertEqual(value['maximumError'],0)
+                    self.assertIn('COLOR_0',surface['components']['Body'])
+                    self.assertIn('TEXCOORD_1',surface['components']['Body'])
 
     def test_foal_mappings_share_exact_proof(self):
         families=read(ROOT/'game/data/visual_catalog.json')['meshFamilies']

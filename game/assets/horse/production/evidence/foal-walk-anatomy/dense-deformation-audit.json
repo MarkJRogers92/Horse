@@ -1,5 +1,5 @@
 {
-  "candidateBlendSha256": "ac23bb9241663b6129faf5cac89e33ad68a67db59deca3d000508e8eb1057109",
+  "candidateBlendSha256": "6183af14b955d9fa20636deabaf38ca8aa1527e4a13af6216653ede6152bfcca",
   "sampleCount": 581,
   "bodyMaxEdgeStretch": 1.6841062307357788,
   "worstEdge": {
@@ -23,8 +23,8 @@
     ]
   },
   "minimumEdgeRatio": 0.21652033925056458,
-  "maximumInfluences": 7,
-  "maximumWeightSumError": 4.394678398966789e-08,
+  "maximumInfluences": 8,
+  "maximumWeightSumError": 6.55754774925299e-08,
   "componentEdgeStretch": {
     "Body": {
       "maxEdgeStretch": 1.6841062307357788,
@@ -39,8 +39,8 @@
       "minimumEdgeRatio": 0.999788761138916
     },
     "Tail": {
-      "maxEdgeStretch": 1.001185655593872,
-      "minimumEdgeRatio": 0.9984550476074219
+      "maxEdgeStretch": 1.0006005764007568,
+      "minimumEdgeRatio": 0.9992576241493225
     }
   },
   "bodyStretchLimit": 2.0,

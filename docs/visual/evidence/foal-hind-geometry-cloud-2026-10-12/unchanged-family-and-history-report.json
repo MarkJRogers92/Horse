@@ -1,0 +1,529 @@
+{
+  "baselineCommit": "acd4698db835067689cbd72598d9876d6421c37f",
+  "protectedFileCount": 130,
+  "allProtectedFilesExact": true,
+  "adultCatalogEntriesExact": true,
+  "checks": [
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/README.md",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/anatomy-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/attachment-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/dense-deformation-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/horse_foal_walk.blend",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/horse_foal_walk.glb",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/source-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/walk-motion-profile.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-polish/README.md",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-polish/attachment-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-polish/dense-deformation-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-polish/horse_foal_walk.blend",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-polish/horse_foal_walk.glb",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-polish/source-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-polish/walk-motion-profile.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/anatomy-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/attachment-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/dense-deformation-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/horse_foal_walk.blend",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/horse_foal_walk.glb",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/placement-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/source-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-refined/walk-motion-profile.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk/README.md",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk/attachment-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk/dense-deformation-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk/horse_foal_walk.blend",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk/horse_foal_walk.glb",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk/source-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk/walk-motion-profile.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/README.md",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/anatomy-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/dense-deformation-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/geometry-uv-preservation.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/horse_light_walk.blend",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/horse_light_walk.glb",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/neutral-motion-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/source-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/walk-motion-profile.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-anatomy/README.md",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-anatomy/anatomy-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-anatomy/dense-deformation-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-anatomy/horse_stock_walk.blend",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-anatomy/horse_stock_walk.glb",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-anatomy/source-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-anatomy/walk-motion-profile.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-polish/README.md",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-polish/dense-deformation-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-polish/horse_stock_walk.blend",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-polish/horse_stock_walk.glb",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-polish/source-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-polish/tail-repair-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-polish/walk-motion-profile.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk/README.md",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk/horse_stock_walk.blend",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk/horse_stock_walk.glb",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk/source-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk/walk-motion-profile.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-polish/attachment-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-polish/dense-deformation-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-polish/game-import-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-polish/report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-polish/source-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-polish/surface-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-polish/walk-motion-profile.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-v5-detail/ai-neutral-skin-mask.png",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-v5-detail/ai-neutral-skin-mask.png.import",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-v5-detail/game-integration-handoff.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-v5-detail/light-v5-uv-reuse-binding.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v5-detail/game-integration-handoff.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v5-detail/geometry-uv-preservation.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v5-detail/light-v5-uv-reuse-binding.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v5-detail/neutral-motion-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v5-detail/walk-motion-profile.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v5-detail/walk-motion-receipt.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/anatomy-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/dense-deformation-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/game-import-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/game-integration-handoff.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/geometry-uv-preservation.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/light-v5-uv-reuse-binding.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/native-anatomy-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/neutral-motion-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/source-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/surface-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/walk-motion-profile.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/walk-motion-receipt.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/anatomy-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/dense-deformation-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/game-import-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/native-anatomy-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/source-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/surface-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/walk-motion-profile.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-polish/dense-deformation-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-polish/game-import-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-polish/report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-polish/source-audit.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-polish/surface-report.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-polish/walk-motion-profile.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_foal.glb",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_foal.glb.import",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_foal.manifest.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_foal_walk.glb.import",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_light.glb",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_light.glb.import",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_light.manifest.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_light_body_detail_v5.png",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_light_body_detail_v5.png.import",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_light_walk.glb",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_light_walk.glb.import",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_stock.glb",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_stock.glb.import",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_stock.manifest.json",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_stock_walk.glb",
+      "unchanged": true
+    },
+    {
+      "path": "game/assets/horse/production/horse_stock_walk.glb.import",
+      "unchanged": true
+    },
+    {
+      "path": "handoff/ASSET_REGISTRY_TEMPLATE.json",
+      "unchanged": true
+    },
+    {
+      "path": "handoff/CLOVERBROOK_WORKFLOW.txt",
+      "unchanged": true
+    },
+    {
+      "path": "handoff/COMPLETION_HANDOFF_TEMPLATE.txt",
+      "unchanged": true
+    },
+    {
+      "path": "handoff/CONTRACT_CATALOG.json",
+      "unchanged": true
+    },
+    {
+      "path": "handoff/Cloverbrook_Stables_Workflow.docx",
+      "unchanged": true
+    },
+    {
+      "path": "handoff/DECISIONS_AND_CONSTRAINTS.txt",
+      "unchanged": true
+    },
+    {
+      "path": "handoff/GENETICS_FIXTURES.json",
+      "unchanged": true
+    },
+    {
+      "path": "handoff/MODEL_TASK_TEMPLATE.txt",
+      "unchanged": true
+    },
+    {
+      "path": "handoff/PACKAGE_MANIFEST.json",
+      "unchanged": true
+    },
+    {
+      "path": "handoff/SOURCES.txt",
+      "unchanged": true
+    },
+    {
+      "path": "handoff/START_HERE.txt",
+      "unchanged": true
+    },
+    {
+      "path": "handoff/TASK_BOARD.json",
+      "unchanged": true
+    }
+  ],
+  "failures": []
+}

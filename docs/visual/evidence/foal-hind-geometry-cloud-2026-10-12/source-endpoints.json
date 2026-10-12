@@ -1,0 +1,14 @@
+{
+  "candidateBlendSha256": "6183af14b955d9fa20636deabaf38ca8aa1527e4a13af6216653ede6152bfcca",
+  "endpointFrames": [
+    0,
+    58
+  ],
+  "maximumLoopVertexDifferenceM": 0.0,
+  "components": {
+    "Body": 0.0,
+    "Eyes": 0.0,
+    "Mane": 0.0,
+    "Tail": 0.0
+  }
+}

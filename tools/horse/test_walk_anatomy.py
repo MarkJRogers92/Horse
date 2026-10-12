@@ -81,7 +81,7 @@ class WalkAnatomyTests(unittest.TestCase):
   for family,f in [('horse.standard.adult.v1','light'),('horse.compact.adult.v1','stock'),('horse.standard.foal.v1','foal')]:
    with self.subTest(family=family):
     v=catalog['meshFamilies'][family]['walkVariant'];e=ROOT/'game'/v['motionProfilePath'].removeprefix('res://');p=e;e=e.parent
-    glb=ROOT/'game'/v['scene'].removeprefix('res://');candidate=ROOT/f'art/derived/production/candidates/{f}-walk-{"refined" if f=="foal" else "anatomy"}/horse_{f}_walk.glb'
+    glb=ROOT/'game'/v['scene'].removeprefix('res://');candidate=ROOT/f'art/derived/production/candidates/{f}-walk-{"hind-geometry" if f=="foal" else "anatomy"}/horse_{f}_walk.glb'
     self.assertEqual(glb.read_bytes(),candidate.read_bytes())
     with tempfile.TemporaryDirectory() as out:
      dest=Path(out)/'anatomy.json';run=subprocess.run([sys.executable,str(ROOT/'tools/horse/audit_exported_walk_anatomy.py'),str(glb),str(p),'--out',str(dest)],capture_output=True,text=True)
@@ -93,8 +93,11 @@ class WalkAnatomyTests(unittest.TestCase):
     for side,metrics in native['limbs'].items():
      for key,value in metrics.items():self.assertAlmostEqual(value,raw['limbs'][side][key],delta=0.0001 if key.endswith('M') else 0.02)
     surface=read(e/'surface-report.json');self.assertEqual(surface['failures'],[]);self.assertEqual(surface['candidateGlbSha256'],sha(glb))
-    for component in surface['components'].values():
-     for attr in component.values():self.assertEqual(attr['maximumError'],0)
+    if f=='foal':
+     self.assertEqual(surface['schema'],'horse.foal_walk.bounded_geometry.v1');self.assertTrue(surface['pass']);self.assertFalse(surface['allPositionsExact']);self.assertTrue(surface['untouchedPositionsExact']);self.assertTrue(surface['exportProtectedAttributesExact'])
+    else:
+     for component in surface['components'].values():
+      for attr in component.values():self.assertEqual(attr['maximumError'],0)
     for m in runtime['meshes']:self.assertEqual(m['zeroWeightVertices'],0);self.assertEqual(m['nonUnitWeightVertices'],0)
     if f=='light':
      audit=read(e/'neutral-motion-audit.json');self.assertEqual(len(audit['metric_gates']),9);self.assertTrue(all(audit['metric_gates'].values()))

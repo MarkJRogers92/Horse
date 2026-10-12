@@ -1,0 +1,111 @@
+{
+  "review_date_utc": "2026-10-12",
+  "scope": "Read-only image reference comparison; all listed photographs visually inspected. Breeder marketing images are not clinical health certifications. No model or repository edits.",
+  "references": [
+    {
+      "source": "https://www.spendthriftfarm.com/stallions/maximus-mischief/",
+      "photos": [
+        {
+          "file": "spendthrift-beijos-3mo-side.jpg",
+          "subject": "Beijos do Brasil 21 filly",
+          "age": "3 months, stated in caption",
+          "view": "Near-side standing with dam; grass partly obscures hooves"
+        },
+        {
+          "file": "spendthrift-termpaper-4mo-side.jpg",
+          "subject": "Term Paper 21 colt",
+          "age": "4 months, stated in caption",
+          "view": "Near-side standing, staggered feet"
+        },
+        {
+          "file": "spendthrift-termpaper-4mo-moving-side.jpg",
+          "subject": "Term Paper 21 colt",
+          "age": "4 months, stated in caption",
+          "view": "Side moving, not neutral conformation stance"
+        },
+        {
+          "file": "spendthrift-lawanda-3mo-front-quarter.jpg",
+          "subject": "Lawanda 21 filly",
+          "age": "3 months, stated in caption",
+          "view": "Front quarter moving with dam"
+        },
+        {
+          "file": "spendthrift-lawanda-3mo-side-2.jpg",
+          "subject": "Lawanda 21 filly",
+          "age": "3 months, stated in caption",
+          "view": "Side moving"
+        },
+        {
+          "file": "spendthrift-dulce-9day-side.jpg",
+          "subject": "Dulce Periculum 21 filly",
+          "age": "9 days, stated in caption",
+          "view": "Side moving, neonatal comparison only"
+        }
+      ]
+    },
+    {
+      "source": "https://www.kadonpark.com.au/kadonparkdesires",
+      "photos": [
+        {
+          "file": "kadon-desires-1mo-1.jpg",
+          "subject": "Kadon Park Desires",
+          "age": "1 month, stated in caption",
+          "view": "Three-quarter standing; grass hides feet"
+        },
+        {
+          "file": "kadon-desires-1mo-2.jpg",
+          "subject": "Kadon Park Desires",
+          "age": "1 month, stated in caption",
+          "view": "Near-side standing; grass hides feet"
+        }
+      ]
+    },
+    {
+      "source": "https://www.wimborneparkstud.com.au/index.php?page=wimborne-covergirl",
+      "photos": [
+        {
+          "file": "wimborne-covergirl-3mo.jpg",
+          "subject": "Wimborne Covergirl",
+          "age": "3 months, stated on page",
+          "view": "Side in motion; do not infer walk timing"
+        }
+      ]
+    },
+    {
+      "source": "https://www.runningbrookqh.net/horses-for-sale.html",
+      "subject": "Gunna Twist N Spook / Rusty",
+      "age": "Born March 24 2026; photo gallery dated August 22 2026 (~5 months, calculated)",
+      "files": [
+        "runningbrook-rusty-9754.jpg",
+        "runningbrook-rusty-9785.jpg",
+        "runningbrook-rusty-9813.jpg",
+        "runningbrook-rusty-9827.jpg",
+        "runningbrook-rusty-9831.jpg",
+        "runningbrook-rusty-9879.jpg",
+        "runningbrook-rusty-9888.jpg"
+      ],
+      "best_views": {
+        "runningbrook-rusty-9827.jpg": "Near-front standing, head turned; not exact orthographic alignment",
+        "runningbrook-rusty-9754.jpg": "Side walking, staggered foot placement",
+        "runningbrook-rusty-9813.jpg": "Rear quarter moving, cannot measure frontal hock alignment"
+      }
+    },
+    {
+      "source": "https://www.newcastleequinecentre.net.au/equine-reproduction-foal-conformation/",
+      "type": "Veterinary context, not a healthy-foal image template",
+      "notes": "Foal conformation changes with age. Assess front, rear, and side. Newborns are especially lax/gangly. Clinical deformity examples must not become normal-art references."
+    },
+    {
+      "source": "https://www.runningbrookqh.net/uploads/7/6/1/5/76157475/img-9058-jpg-rs_orig.jpg",
+      "file": "runningbrook-rear.jpg",
+      "age": "Unknown; exact image not present in current sales page source",
+      "view": "Rear-oblique, useful only as supplemental unaged silhouette"
+    },
+    {
+      "source": "https://merelsnest.be/userfiles/image/paard-pernella1.jpg",
+      "file": "merelsnest-pernella-side.jpg",
+      "age": "Unknown; proposed parent horse page no longer exposes subject content",
+      "view": "Rear-quarter standing; cannot certify identity, age, or health"
+    }
+  ]
+}

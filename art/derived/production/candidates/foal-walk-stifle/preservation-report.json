@@ -1,0 +1,17 @@
+{
+  "originalBlendSha256": "ac23bb9241663b6129faf5cac89e33ad68a67db59deca3d000508e8eb1057109",
+  "candidateBlendSha256": "4aa253f8c6a63f1fc377801460db3d4e4129513c4ee2a2fa2eefee155f62869d",
+  "sampleCount": 117,
+  "frontBodyVertexCount": 3624,
+  "maximumFrontVertexDifferenceM": 3.4047588997054845e-05,
+  "maximumHoofWitnessDifferenceM": 7.358368065979448e-07,
+  "maximumUnchangedComponentDifferenceM": 4.3618420022539794e-05,
+  "maximumJointCoincidenceErrorM": 5.009649835233164e-07,
+  "maximumStifleRelativeRotationDegrees": 44.365384470791106,
+  "protectedMeshDataExact": true,
+  "comparisonToleranceM": 0.0001,
+  "comparisonToleranceReason": "0.1 mm absolute bound for measured non-hind posed-surface differences; 50 times tighter than the unchanged 5 mm contact gate. Non-hind animation curves are exact. The cause of these tiny surface differences is not established; actual errors are retained, not treated as exact equality.",
+  "failures": [],
+  "unchangedNonHindAnimationCurveCount": 540,
+  "nonHindAnimationCurvesExact": true
+}

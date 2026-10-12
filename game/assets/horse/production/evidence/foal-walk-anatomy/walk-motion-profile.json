@@ -1,7 +1,7 @@
 {
   "schema": "horse.foal_walk.motion_profile.v1",
-  "candidateBlendSha256": "ac23bb9241663b6129faf5cac89e33ad68a67db59deca3d000508e8eb1057109",
-  "sourceGlbSha256": "7a3a78e1eb0cb30ec2fe989218f82bc429cc369acc60f70d471676025099b188",
+  "candidateBlendSha256": "6183af14b955d9fa20636deabaf38ca8aa1527e4a13af6216653ede6152bfcca",
+  "sourceGlbSha256": "5f302d885e7a331de7cbc7f494846becac5eceae062e8ffed805ab2ff31beddc",
   "periodFrames": 58,
   "fps": 60,
   "forwardSpeedMetersPerSecond": 0.48275862068965525,

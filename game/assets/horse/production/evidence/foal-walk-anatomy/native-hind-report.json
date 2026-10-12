@@ -1,0 +1,42 @@
+{
+  "engine": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "failures": [],
+  "limbs": {
+    "L": {
+      "hockAngleMaxDegrees": 123.37025090222,
+      "hockAngleMinDegrees": 99.7058584094172,
+      "maximumForwardHockOffsetM": -0.142691045999527,
+      "maximumJointCoincidenceErrorM": 0.000134413669002242,
+      "minimumForwardStifleOffsetM": 0.108291760087013,
+      "relativeUpperGaskinRotationMaxDegrees": 44.3298948078637,
+      "relativeUpperGaskinRotationMinDegrees": 2.41313742339042,
+      "stifleAngleMaxDegrees": 107.818996162179,
+      "stifleAngleMinDegrees": 65.4395028529477
+    },
+    "R": {
+      "hockAngleMaxDegrees": 123.34325799462,
+      "hockAngleMinDegrees": 99.6837217663172,
+      "maximumForwardHockOffsetM": -0.142752394080162,
+      "maximumJointCoincidenceErrorM": 0.000134588699438609,
+      "minimumForwardStifleOffsetM": 0.108347371220589,
+      "relativeUpperGaskinRotationMaxDegrees": 44.3654049613586,
+      "relativeUpperGaskinRotationMinDegrees": 2.44984435409395,
+      "stifleAngleMaxDegrees": 107.773821291009,
+      "stifleAngleMinDegrees": 65.4040746617229
+    }
+  },
+  "method": "Actual imported skin matrices applied independently to hip/stifle/hock/fetlock rest anchors. Stifle must stay forward of hip-hock chord; hock caudal to stifle-fetlock chord. These are trial articulation checks, not medical angle norms.",
+  "sampleCount": 581,
+  "sourceGlbSha256": "5f302d885e7a331de7cbc7f494846becac5eceae062e8ffed805ab2ff31beddc",
+  "usesProjectImport": true
+}

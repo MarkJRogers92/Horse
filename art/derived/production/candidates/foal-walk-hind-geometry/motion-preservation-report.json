@@ -1,0 +1,19 @@
+{
+  "originalBlendSha256": "ac23bb9241663b6129faf5cac89e33ad68a67db59deca3d000508e8eb1057109",
+  "candidateBlendSha256": "6183af14b955d9fa20636deabaf38ca8aa1527e4a13af6216653ede6152bfcca",
+  "sampleCount": 117,
+  "frontBodyVertexCount": 3624,
+  "maximumFrontVertexDifferenceM": 3.4047588997054845e-05,
+  "maximumHoofWitnessDifferenceM": 7.358368065979448e-07,
+  "maximumUnchangedComponentDifferenceM": 4.3618420022539794e-05,
+  "maximumJointCoincidenceErrorM": 5.009649835233164e-07,
+  "maximumStifleRelativeRotationDegrees": 44.365384470791106,
+  "protectedMeshDataExact": false,
+  "comparisonToleranceM": 0.0001,
+  "comparisonToleranceReason": "0.1 mm absolute bound for measured non-hind posed-surface differences; 50 times tighter than the unchanged 5 mm contact gate. Non-hind animation curves are checked separately for exact equality. The cause of these tiny surface differences is not established; actual errors are retained, not treated as exact equality.",
+  "failures": [],
+  "unchangedNonHindAnimationCurveCount": 540,
+  "nonHindAnimationCurvesExact": true,
+  "schema": "horse.foal_walk.motion_preservation.v1",
+  "validatorSha256": "2e961ffd2f9c85dbe0fff1e568587cca58c40aff21a8a37cf8b2376d02b3c310"
+}

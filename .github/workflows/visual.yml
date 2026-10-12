@@ -89,6 +89,9 @@ jobs:
               "$PWD/evidence/walk-import/${family}.json" \
               "res://assets/horse/production/evidence/${family}-walk-anatomy/walk-motion-profile.json" --imported
           done
+          "$G" --headless --path game --script "$PWD/tools/horse/check_imported_foal_hind.gd" -- \
+            "res://assets/horse/production/horse_foal_walk.glb" \
+            "$PWD/evidence/walk-import/foal-hind.json"
 
       - name: Smoke test main scene (checked family Walk, coats, and viewer controls)
         env:

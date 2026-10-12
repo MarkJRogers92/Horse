@@ -32,24 +32,24 @@
     },
     "Tail": {
       "failures": [],
-      "maxBodyEdgeStretch": 1.00704989320479,
+      "maxBodyEdgeStretch": 1.00646736118436,
       "samples": 61,
       "worstEdge": [
         28,
         30
       ],
-      "worstPhase": 0.0166666666666667
+      "worstPhase": 0.166666666666667
     }
   },
   "animations": [
     {
       "boneMovementMeters": 0.233333617448807,
-      "endpointBasisError": 0.0000000462671465584208,
-      "endpointTranslationErrorMeters": 0.00000000416500123279206,
+      "endpointBasisError": 0.0000000614390600617298,
+      "endpointTranslationErrorMeters": 0.0000000149011611938477,
       "importLoopMode": 0,
       "length": 0.966666638851166,
       "name": "Walk",
-      "tracks": 54
+      "tracks": 62
     }
   ],
   "attachments": {
@@ -67,7 +67,7 @@
     "method": "Fixed closest rest-triangle barycentrics, imported Skin binds",
     "samples": 61
   },
-  "candidateGlbSha256": "7a3a78e1eb0cb30ec2fe989218f82bc429cc369acc60f70d471676025099b188",
+  "candidateGlbSha256": "5f302d885e7a331de7cbc7f494846becac5eceae062e8ffed805ab2ff31beddc",
   "contact": {
     "failures": [],
     "limbs": {
@@ -86,17 +86,17 @@
         "registered": 44
       },
       "hind_l": {
-        "centralSwingMinimumMeters": 0.0414254069328308,
-        "maxPerAxisStanceMotionMeters": 0.000692576169967651,
-        "maxStanceSoleMinimumMeters": 0.000166212470503524,
-        "minStanceHeightMeters": -0.0000184488308150321,
+        "centralSwingMinimumMeters": 0.0414216890931129,
+        "maxPerAxisStanceMotionMeters": 0.000701099634170532,
+        "maxStanceSoleMinimumMeters": 0.000170531013282016,
+        "minStanceHeightMeters": -0.0000115737202577293,
         "registered": 46
       },
       "hind_r": {
-        "centralSwingMinimumMeters": 0.0414253585040569,
-        "maxPerAxisStanceMotionMeters": 0.000692844390869141,
-        "maxStanceSoleMinimumMeters": 0.000166370897204615,
-        "minStanceHeightMeters": -0.000018133912817575,
+        "centralSwingMinimumMeters": 0.0414210930466652,
+        "maxPerAxisStanceMotionMeters": 0.000701576471328735,
+        "maxStanceSoleMinimumMeters": 0.000170127867022529,
+        "minStanceHeightMeters": -0.0000116692972369492,
         "registered": 44
       }
     },
@@ -114,7 +114,7 @@
     "timestamp": 0
   },
   "failures": [],
-  "file": "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/foal-walk-refined/horse_foal_walk.glb",
+  "file": "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/foal-walk-hind-geometry/horse_foal_walk.glb",
   "importBakeFps": 60.0,
   "meshCount": 4,
   "meshes": [
@@ -122,7 +122,7 @@
       "blendShapes": 4,
       "name": "Body",
       "nonUnitWeightVertices": 0,
-      "skinBinds": 74,
+      "skinBinds": 76,
       "surfaceArrays": [
         {
           "colors": 8867,
@@ -138,7 +138,7 @@
       "blendShapes": 4,
       "name": "Eyes",
       "nonUnitWeightVertices": 0,
-      "skinBinds": 74,
+      "skinBinds": 76,
       "surfaceArrays": [
         {
           "colors": 0,
@@ -154,7 +154,7 @@
       "blendShapes": 4,
       "name": "Mane",
       "nonUnitWeightVertices": 0,
-      "skinBinds": 74,
+      "skinBinds": 76,
       "surfaceArrays": [
         {
           "colors": 0,
@@ -170,7 +170,7 @@
       "blendShapes": 4,
       "name": "Tail",
       "nonUnitWeightVertices": 0,
-      "skinBinds": 74,
+      "skinBinds": 76,
       "surfaceArrays": [
         {
           "colors": 0,

@@ -1,0 +1,18 @@
+{
+  "schema": "horse.foal_walk.candidate.v2",
+  "candidateGlbSha256": "5f302d885e7a331de7cbc7f494846becac5eceae062e8ffed805ab2ff31beddc",
+  "candidateBlendSha256": "6183af14b955d9fa20636deabaf38ca8aa1527e4a13af6216653ede6152bfcca",
+  "protectedMeshDataExact": false,
+  "reusedLightAtlas": false,
+  "geometryChangeScope": "Owner-approved bounded Body upper-hind and hock; surface-report.json provides independent per-vertex proof.",
+  "bodyMaxEdgeStretch": 1.6841062307357788,
+  "bodyStretchEvidenceSha256": "cf734d5228b6e220e5778f01d3e0cbceae0c8ece81ba64d5e2fdc7291448eea9",
+  "bodyStretchSamples": 581,
+  "loopMaxVertexDeltaM": 0.0,
+  "endpointSamples": 2,
+  "sourceRootInPlace": true,
+  "fps": 60,
+  "periodFrames": 58,
+  "dutyFactor": 0.6,
+  "forwardSpeedMetersPerSecond": 0.48275862068965525
+}

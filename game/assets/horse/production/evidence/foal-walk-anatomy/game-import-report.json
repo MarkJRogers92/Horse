@@ -5,8 +5,8 @@
       "maxBodyEdgeStretch": 1.68258407388924,
       "samples": 61,
       "worstEdge": [
-        1828,
-        5777
+        1822,
+        5784
       ],
       "worstPhase": 0.283333333333333
     },
@@ -32,25 +32,25 @@
     },
     "Tail": {
       "failures": [],
-      "maxBodyEdgeStretch": 1.00704989320479,
+      "maxBodyEdgeStretch": 1.00646736118436,
       "samples": 61,
       "worstEdge": [
         2,
         41
       ],
-      "worstPhase": 0.0166666666666667
+      "worstPhase": 0.166666666666667
     }
   },
   "animationOptimizerEnabled": false,
   "animations": [
     {
       "boneMovementMeters": 0.233333617448807,
-      "endpointBasisError": 0.0000000462671465584208,
-      "endpointTranslationErrorMeters": 0.00000000416500123279206,
+      "endpointBasisError": 0.0000000614390600617298,
+      "endpointTranslationErrorMeters": 0.0000000149011611938477,
       "importLoopMode": 0,
       "length": 0.966666638851166,
       "name": "Walk",
-      "tracks": 54
+      "tracks": 62
     }
   ],
   "attachments": {
@@ -68,7 +68,7 @@
     "method": "Fixed closest rest-triangle barycentrics, imported Skin binds",
     "samples": 61
   },
-  "candidateGlbSha256": "7a3a78e1eb0cb30ec2fe989218f82bc429cc369acc60f70d471676025099b188",
+  "candidateGlbSha256": "5f302d885e7a331de7cbc7f494846becac5eceae062e8ffed805ab2ff31beddc",
   "contact": {
     "failures": [],
     "limbs": {
@@ -87,17 +87,17 @@
         "registered": 44
       },
       "hind_l": {
-        "centralSwingMinimumMeters": 0.0414253771305084,
-        "maxPerAxisStanceMotionMeters": 0.000692635774612427,
-        "maxStanceSoleMinimumMeters": 0.000166248675668612,
-        "minStanceHeightMeters": -0.0000183498195838183,
+        "centralSwingMinimumMeters": 0.0414216183125973,
+        "maxPerAxisStanceMotionMeters": 0.00070112943649292,
+        "maxStanceSoleMinimumMeters": 0.000170463987160474,
+        "minStanceHeightMeters": -0.00001160753890872,
         "registered": 46
       },
       "hind_r": {
-        "centralSwingMinimumMeters": 0.0414254255592823,
-        "maxPerAxisStanceMotionMeters": 0.000692874193191528,
-        "maxStanceSoleMinimumMeters": 0.000166396668646485,
-        "minStanceHeightMeters": -0.0000181883806362748,
+        "centralSwingMinimumMeters": 0.0414211191236973,
+        "maxPerAxisStanceMotionMeters": 0.000701576471328735,
+        "maxStanceSoleMinimumMeters": 0.00017029517039191,
+        "minStanceHeightMeters": -0.0000117251620395109,
         "registered": 44
       }
     },
@@ -123,7 +123,7 @@
       "blendShapes": 4,
       "name": "Body",
       "nonUnitWeightVertices": 0,
-      "skinBinds": 74,
+      "skinBinds": 76,
       "surfaceArrays": [
         {
           "colors": 8867,
@@ -139,7 +139,7 @@
       "blendShapes": 4,
       "name": "Eyes",
       "nonUnitWeightVertices": 0,
-      "skinBinds": 74,
+      "skinBinds": 76,
       "surfaceArrays": [
         {
           "colors": 0,
@@ -155,7 +155,7 @@
       "blendShapes": 4,
       "name": "Mane",
       "nonUnitWeightVertices": 0,
-      "skinBinds": 74,
+      "skinBinds": 76,
       "surfaceArrays": [
         {
           "colors": 0,
@@ -171,7 +171,7 @@
       "blendShapes": 4,
       "name": "Tail",
       "nonUnitWeightVertices": 0,
-      "skinBinds": 74,
+      "skinBinds": 76,
       "surfaceArrays": [
         {
           "colors": 0,
@@ -191,8 +191,8 @@
     "maxBodyEdgeStretch": 1.68258407388924,
     "samples": 61,
     "worstEdge": [
-      1828,
-      5777
+      1822,
+      5784
     ],
     "worstPhase": 0.283333333333333
   },

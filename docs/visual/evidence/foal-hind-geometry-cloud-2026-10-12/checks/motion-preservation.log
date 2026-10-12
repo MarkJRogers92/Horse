@@ -1,0 +1,11 @@
+Failed to create secure directory (/home/agent/.local/run/pulse): Read-only file system
+socket(): Operation not permitted
+00:00.419  blend            | Read blend: "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/foal-walk-refined/horse_foal_walk.blend"
+00:00.671  blend            | Read blend: "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/foal-walk-hind-geometry/horse_foal_walk.blend"
+00:00.942  blend            | Read blend: "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/foal-walk-refined/horse_foal_walk.blend"
+00:01.057  blend            | Read blend: "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/foal-walk-hind-geometry/horse_foal_walk.blend"
+{"originalBlendSha256": "ac23bb9241663b6129faf5cac89e33ad68a67db59deca3d000508e8eb1057109", "candidateBlendSha256": "6183af14b955d9fa20636deabaf38ca8aa1527e4a13af6216653ede6152bfcca", "sampleCount": 117, "frontBodyVertexCount": 3624, "maximumFrontVertexDifferenceM": 3.4047588997054845e-05, "maximumHoofWitnessDifferenceM": 7.358368065979448e-07, "maximumUnchangedComponentDifferenceM": 4.3618420022539794e-05, "maximumJointCoincidenceErrorM": 5.009649835233164e-07, "maximumStifleRelativeRotationDegrees": 44.365384470791106, "protectedMeshDataExact": false, "comparisonToleranceM": 0.0001, "comparisonToleranceReason": "0.1 mm absolute bound for measured non-hind posed-surface differences; 50 times tighter than the unchanged 5 mm contact gate. Non-hind animation curves are checked separately for exact equality. The cause of these tiny surface differences is not established; actual errors are retained, not treated as exact equality.", "failures": []}
+True 540
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:34:58)
+
+Blender quit

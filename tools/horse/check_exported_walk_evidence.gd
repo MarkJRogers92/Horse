@@ -35,6 +35,8 @@ func _initialize() -> void:
 				failures.append("Missing foal attachment proof")
 			if family.age == "foal" and not FileAccess.file_exists(directory+"/placement-report.json"):
 				failures.append("Missing foal placement proof")
+			if family.age == "foal" and not FileAccess.file_exists(directory+"/native-hind-report.json"):
+				failures.append("Missing foal hind articulation proof")
 		for path in files:
 			var hash = FileAccess.get_sha256(path)
 			if hash != files[path]: failures.append("Missing or altered raw file "+path)
