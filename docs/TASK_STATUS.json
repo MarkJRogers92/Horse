@@ -1,0 +1,223 @@
+{
+  "note": "Live status overlay for handoff/TASK_BOARD.json, which is frozen and lists every task as proposed. Update this file, not the board.",
+  "updated": "2026-10-12",
+  "tasks": [
+    {
+      "id": "P0-01",
+      "title": "Freeze v1 scope and system ownership",
+      "status": "not_started"
+    },
+    {
+      "id": "P0-02",
+      "title": "Create and pin the Unity and Blender toolchain",
+      "status": "partial",
+      "notes": "P0-02a .NET domain solution and CI done; Unity pin replaced by Godot 4.7.2 .NET (D-003)."
+    },
+    {
+      "id": "P0-03",
+      "title": "Define shared domain, identity, RNG, and save contracts",
+      "status": "done",
+      "notes": "Shared domain, identity, RNG and save contracts in src/Cloverbrook.Domain."
+    },
+    {
+      "id": "P0-04",
+      "title": "Specify the horse asset contract and provenance workflow",
+      "status": "not_started"
+    },
+    {
+      "id": "P0-05",
+      "title": "Run an actual PC and Mac skeleton-build smoke test",
+      "status": "not_started"
+    },
+    {
+      "id": "P1-01",
+      "title": "Create the first adult horse mesh and inspection scene",
+      "status": "partial",
+      "notes": "Meshy-based Light/Stock adult library (D-007); owner art review pending."
+    },
+    {
+      "id": "P1-02",
+      "title": "Validate the adult rig, bounded morphs, tack fit, and minimum gaits",
+      "status": "partial",
+      "notes": "Neutral Walk and Idle for Light/Stock/foal; morph-compatible gaits and tack not done."
+    },
+    {
+      "id": "P1-03",
+      "title": "Build the engine coat material and visual fixture harness",
+      "status": "partial",
+      "notes": "Descriptor-driven coat material and capture harness; live catalog still gated."
+    },
+    {
+      "id": "P1-04",
+      "title": "Implement phased inheritance and a single meiosis service",
+      "status": "done",
+      "notes": "Phased inheritance and single meiosis service."
+    },
+    {
+      "id": "P1-05",
+      "title": "Implement pedigree, relatedness, and breeding eligibility",
+      "status": "done",
+      "notes": "Pedigree, relatedness and breeding eligibility."
+    },
+    {
+      "id": "P1-06",
+      "title": "Resolve inherited traits into stable phenotype and visual descriptors",
+      "status": "done",
+      "notes": "Phenotype and visual descriptor resolution."
+    },
+    {
+      "id": "P1-07",
+      "title": "Build forecasts from the production meiosis and phenotype services",
+      "status": "done",
+      "notes": "Forecasts, including the gray base-coat class (REA merge)."
+    },
+    {
+      "id": "P1-08",
+      "title": "Create the foal shape, rig, and growth presentation",
+      "status": "partial",
+      "notes": "Foal mesh, rig and Walk; growth uses stage swaps, not morphs."
+    },
+    {
+      "id": "P1-09",
+      "title": "Implement production save/load primitives and initial migration tests",
+      "status": "done",
+      "notes": "Codec, atomic store, migrations v1 to v3."
+    },
+    {
+      "id": "P1-10",
+      "title": "Pass the integrated adult, foal, committed-mating, and save/load proof",
+      "status": "partial",
+      "notes": "Integrated saved stable proof runs in CI; visual approval pending."
+    },
+    {
+      "id": "P2-01",
+      "title": "Build horse roster, inspection, adoption, and basic care",
+      "status": "partial",
+      "notes": "Roster list in the stable screen; inspection screen in progress (2026-10-12)."
+    },
+    {
+      "id": "P2-02",
+      "title": "Implement the stable calendar, needs, and daily operating model",
+      "status": "done",
+      "notes": "Stable calendar, care and daily costs (D-004)."
+    },
+    {
+      "id": "P2-03",
+      "title": "Implement elementary NPC offers, income, and shared valuation primitives",
+      "status": "partial",
+      "notes": "Club support income done (D-008); NPC offers and valuation not started."
+    },
+    {
+      "id": "P2-04",
+      "title": "Build the first barn upgrade, useful hay plot, and basic estate tools",
+      "status": "not_started"
+    },
+    {
+      "id": "P2-05",
+      "title": "Create shared competition rules and elementary playable/watchable activities",
+      "status": "not_started"
+    },
+    {
+      "id": "P2-06",
+      "title": "Build the breeding planner, external-stud booking, and core purchase flow",
+      "status": "partial",
+      "notes": "Owned-parent breeding (D-006); external studs and purchases not started."
+    },
+    {
+      "id": "P2-07",
+      "title": "Complete pregnancy, foaling, naming, and growth",
+      "status": "done",
+      "notes": "Pregnancy, foaling, naming and growth (D-005)."
+    },
+    {
+      "id": "P2-08",
+      "title": "Build the first-session tutorial and intuitive stable navigation",
+      "status": "not_started"
+    },
+    {
+      "id": "P2-09",
+      "title": "Validate the full early stable-session slice on actual PC and Mac builds",
+      "status": "not_started"
+    },
+    {
+      "id": "P3-01",
+      "title": "Complete NPC listings, bounded auctions, commissions, stud services, and simple leases",
+      "status": "not_started"
+    },
+    {
+      "id": "P3-02",
+      "title": "Expand farm, staffing, facilities, and explicit paid-work/care contracts",
+      "status": "not_started"
+    },
+    {
+      "id": "P3-03",
+      "title": "Review economy balance, capacity pressure, and transaction exploits",
+      "status": "not_started"
+    },
+    {
+      "id": "P4-01",
+      "title": "Implement playable manual flat racing",
+      "status": "not_started"
+    },
+    {
+      "id": "P4-02",
+      "title": "Implement playable manual barrel racing",
+      "status": "not_started"
+    },
+    {
+      "id": "P4-03",
+      "title": "Connect competition calendars, classes, awards, and assisted participation",
+      "status": "not_started"
+    },
+    {
+      "id": "P4-04",
+      "title": "Validate race feel, replay rules, and actual PC/Mac performance",
+      "status": "not_started"
+    },
+    {
+      "id": "P5-01",
+      "title": "Expand to two validated body families and four breed-inspired presets",
+      "status": "not_started"
+    },
+    {
+      "id": "P5-02",
+      "title": "Author the v1 content catalog and varied progression goals",
+      "status": "not_started"
+    },
+    {
+      "id": "P5-03",
+      "title": "Polish cute audio, action effects, narration, and accessibility settings",
+      "status": "not_started"
+    },
+    {
+      "id": "P5-04",
+      "title": "Run full v1 regression, migration, usability, and performance gates",
+      "status": "not_started"
+    },
+    {
+      "id": "P5-05",
+      "title": "Package a reviewable v1 candidate and maintenance handoff",
+      "status": "not_started"
+    },
+    {
+      "id": "P6-01",
+      "title": "Design an optional trusted online economy boundary",
+      "status": "not_started"
+    },
+    {
+      "id": "P6-02",
+      "title": "Implement optional asynchronous online trade and competitions",
+      "status": "not_started"
+    },
+    {
+      "id": "P6-03",
+      "title": "Expand regions, body families, breeding depth, and horse activities",
+      "status": "not_started"
+    },
+    {
+      "id": "P6-04",
+      "title": "Evaluate optional mobile, console, or real-time multiplayer versions",
+      "status": "not_started"
+    }
+  ]
+}

@@ -10,7 +10,7 @@
 - **Horse viewer** shows Light and Stock adults and the foal with coats and markings, plus a neutral Walk and Idle (D-007, Meshy-based library). A macOS export exists; it still has the earlier animation.
 - **Domain (`src/`, pure C#)** covers phased coat genetics, pedigree, eligibility, forecasts (including the gray base-coat class), conception, the save codec and the atomic store.
 
-## Task board position (`handoff/TASK_BOARD.json` statuses are frozen as "proposed")
+## Task board position (live per-task status: [`docs/TASK_STATUS.json`](docs/TASK_STATUS.json); the frozen board still says "proposed")
 | Done (scoped slices) | Partly done | Not started |
 | --- | --- | --- |
 | P0-02a, P0-03, P1-04–P1-07, P1-09, P2-02, P2-06 (owned parents only), P2-07 | P1-01/02/03/08 (horse art, rig, coats, foal: D-007), P1-10, **P2-03 (income only)** | P2-01 roster, P2-04 estate, P2-05 activities, P2-08 tutorial, P2-09, P3+ |
