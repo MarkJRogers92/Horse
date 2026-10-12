@@ -399,7 +399,7 @@ public partial class StableDay
                 || grown.BirthDay != 4 || totalEvents.Count(e => e.Kind.ToString() == "Birth") != 1
                 || totalEvents.Count(e => e.Kind.ToString() == "FoalToYoungster") != 1
                 || totalEvents.Count(e => e.Kind.ToString() == "YoungsterToAdult") != 1
-                || _state.Conceptions.Count != 1 || _state.Coins != 54 || _state.Header.RngStreams.Breeding.EventCounter != breedingCounter)
+                || _state.Conceptions.Count != 1 || _state.Coins != 554 || _state.Header.RngStreams.Breeding.EventCounter != breedingCounter)
                 throw new InvalidOperationException("Reloaded birth, name, growth, daily fees, or breeding receipt was not stable.");
             if (_state.Ledger.Count(entry => entry.Kind == "breeding") != 1
                 || _state.Ledger.Single(entry => entry.Kind == "breeding").DeltaCoins != -50)

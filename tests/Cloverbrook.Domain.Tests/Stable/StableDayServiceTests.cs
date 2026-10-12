@@ -25,7 +25,7 @@ namespace Cloverbrook.Domain.Tests
             var beforeBytes = new StableSaveCodec().Encode(state);
             var first = Service.Preview(state, plan); var second = Service.Preview(state, plan);
             Assert.True(first.Allowed); Assert.Equal(10, first.FromDay); Assert.Equal(11, first.ToDay);
-            Assert.Equal(12, first.CareCostCoins); Assert.Equal(24, first.OperationsCostCoins); Assert.Equal(0, first.AssistanceCoins); Assert.Equal(64, first.ProjectedCoins);
+            Assert.Equal(12, first.CareCostCoins); Assert.Equal(24, first.OperationsCostCoins); Assert.Equal(0, first.AssistanceCoins); Assert.Equal(50, first.IncomeCoins); Assert.Equal(114, first.ProjectedCoins);
             Assert.Equal(2, first.HorseOutcomes.Count); Assert.Equal(first.Receipt!.ReceiptHash, second.Receipt!.ReceiptHash);
             Assert.All(first.HorseOutcomes, o => { Assert.Equal(7900, o.After.Nutrition); Assert.Equal(7900, o.After.Bedding); Assert.Equal(6200, o.After.Turnout); Assert.Equal(6000, o.After.Grooming); });
             Assert.Equal(beforeBytes, new StableSaveCodec().Encode(state));
@@ -58,11 +58,13 @@ namespace Cloverbrook.Domain.Tests
         [Fact]
         public void AssistanceCoversTheShortfallWithoutNegativeWalletOrMissingBasicCare()
         {
-            var state = SaveTestData.Initial(0); var preview = Service.Preview(state, Plan(state));
+            // Legacy v1 rules have no club support, so an empty wallet exercises the assistance path.
+            var legacy = new StableDayService(new StableCalendar(), new StableDailyPolicy(StableDailyPolicy.LegacyVersion));
+            var state = SaveTestData.Initial(0); var preview = legacy.Preview(state, Plan(state));
             Assert.True(preview.Allowed); Assert.Equal(36, preview.AssistanceCoins); Assert.Equal(0, preview.ProjectedCoins);
             Assert.All(preview.HorseOutcomes, h => Assert.True(h.After.Nutrition >= h.Before.Nutrition && h.After.Bedding >= h.Before.Bedding));
             Directory.CreateDirectory(directory); var store = new AtomicSaveStore(Path.Combine(directory, "stable.clover")); store.Initialize(state);
-            var next = store.CommitEndDay(Request(state), Service).State;
+            var next = store.CommitEndDay(Request(state, version: StableDailyPolicy.LegacyVersion), legacy).State;
             Assert.Equal(0, next.Coins); Assert.Empty(next.Ledger); Assert.Equal(36, next.DailyState.Receipts.Single().AssistanceCoins);
         }
 
@@ -167,7 +169,7 @@ namespace Cloverbrook.Domain.Tests
             var store = Store(); var before = store.Initialize(SaveTestData.Initial()); var operationId = Guid.Parse("de000000-0000-0000-0000-000000000002"); var request = Request(before, operationId);
             var committed = store.CommitEndDay(request, new StableDayService());
             Assert.True(committed.IsDurablyCommitted); Assert.False(committed.Replayed); Assert.Equal(11, committed.State.Header.CalendarDay);
-            Assert.Equal(1UL, committed.State.Header.SaveRevision); Assert.Equal(64, committed.State.Coins); Assert.Single(committed.State.DailyState.Receipts);
+            Assert.Equal(1UL, committed.State.Header.SaveRevision); Assert.Equal(114, committed.State.Coins); Assert.Single(committed.State.DailyState.Receipts);
             Assert.Equal(2, committed.State.DailyState.HorseCare.Count); Assert.Equal(before.Header.RngStreams.World.EventCounter, committed.State.Header.RngStreams.World.EventCounter);
             var bytes = File.ReadAllBytes(SavePath); var restarted = Store().Load().State;
             var replay = Store().CommitEndDay(request, new StableDayService());
@@ -348,7 +350,7 @@ namespace Cloverbrook.Domain.Tests
             Assert.Throws<IOException>(() => Store(s => FailAt(s, stage)).CommitEndDay(request, new StableDayService()));
             Assert.Equal(original, File.ReadAllBytes(SavePath)); var unchanged = Store().Load().State;
             Assert.Equal(before.Header.CalendarDay, unchanged.Header.CalendarDay); Assert.Empty(unchanged.DailyState.Receipts); Assert.Equal(100, unchanged.Coins);
-            var retry = Store().CommitEndDay(request, new StableDayService()); Assert.Equal(11, retry.State.Header.CalendarDay); Assert.Equal(64, retry.State.Coins);
+            var retry = Store().CommitEndDay(request, new StableDayService()); Assert.Equal(11, retry.State.Header.CalendarDay); Assert.Equal(114, retry.State.Coins);
         }
 
         [Fact]
@@ -357,7 +359,7 @@ namespace Cloverbrook.Domain.Tests
             var store = Store(); var before = store.Initialize(SaveTestData.Initial()); var request = Request(before);
             Assert.Throws<IOException>(() => Store(s => FailAt(s, SaveWriteStage.AfterReplace)).CommitEndDay(request, new StableDayService()));
             var committedBytes = File.ReadAllBytes(SavePath); var replay = Store().CommitEndDay(request, new StableDayService());
-            Assert.True(replay.Replayed); Assert.Equal(committedBytes, File.ReadAllBytes(SavePath)); Assert.Equal(64, replay.State.Coins); Assert.Single(replay.State.DailyState.Receipts);
+            Assert.True(replay.Replayed); Assert.Equal(committedBytes, File.ReadAllBytes(SavePath)); Assert.Equal(114, replay.State.Coins); Assert.Single(replay.State.DailyState.Receipts);
         }
     }
 }

@@ -106,9 +106,14 @@ namespace Cloverbrook.Domain
             var careCost = checked((long)active.Length * StableDailyPolicy.FeedCoinsPerHorse);
             var operationsCost = active.Length == 0 ? 0 : StableDailyPolicy.OperationsCoinsPerDay;
             var totalCost = checked(careCost + operationsCost);
-            var walletDebit = Math.Min(state.Coins, totalCost);
+            // Today's club support is credited with the day, so it can pay today's upkeep before assistance is needed.
+            var income = StableDailyPolicy.IncomeFor(policy.PolicyVersion, active.Length);
+            long available;
+            try { available = checked(state.Coins + income); }
+            catch (OverflowException) { return Block(from, "The wallet cannot receive today's income within its supported range."); }
+            var walletDebit = Math.Min(available, totalCost);
             var assistance = totalCost - walletDebit;
-            var projectedCoins = state.Coins - walletDebit;
+            var projectedCoins = available - walletDebit;
             var outcomes = new List<HorseCareOutcome>();
             foreach (var horse in active)
             {
@@ -119,11 +124,11 @@ namespace Cloverbrook.Domain
             }
             var previewId = new TransactionId(Guid.ParseExact(Canonical.Hash("stable.end-day.preview.v1", state.Header.SaveId.ToString(),
                 state.Header.SaveRevision.ToString(CultureInfo.InvariantCulture), from.ToString(CultureInfo.InvariantCulture), plan.RequestHash).Substring(0, 32), "N"));
-            var request = new EndDayRequest(previewId, state.PlayerOwnerId, state.Header.SaveRevision, from, plan, StableDailyPolicy.Version);
+            var request = new EndDayRequest(previewId, state.PlayerOwnerId, state.Header.SaveRevision, from, plan, policy.PolicyVersion);
             var costId = CostId(request.OperationId);
             var orderedLifecycleEvents = lifecycleEvents.OrderBy(e => e.HorseId.ToString(), StringComparer.Ordinal).ToArray();
             var receipt = new DailyCareReceipt(request, from, to, careCost, operationsCost, walletDebit, assistance, costId, outcomes, orderedLifecycleEvents);
-            return new DailyPreview(true, null, from, to, careCost, operationsCost, assistance, projectedCoins, outcomes, receipt, orderedLifecycleEvents);
+            return new DailyPreview(true, null, from, to, careCost, operationsCost, assistance, projectedCoins, outcomes, receipt, orderedLifecycleEvents, income);
         }
 
         private static HorseRecord? Mare(PreparedConception conception)
@@ -167,6 +172,8 @@ namespace Cloverbrook.Domain
 
         internal static TransactionId CostId(TransactionId operationId) => new TransactionId(Guid.ParseExact(
             Canonical.Hash("stable.daily-care.cost.v1", operationId.ToString()).Substring(0, 32), "N"));
+        internal static TransactionId IncomeId(TransactionId operationId) => new TransactionId(Guid.ParseExact(
+            Canonical.Hash("stable.daily-care.income.v1", operationId.ToString()).Substring(0, 32), "N"));
         private static DailyPreview Block(int day, string reason) => new DailyPreview(false, reason, day, day, 0, 0, 0, 0, Array.Empty<HorseCareOutcome>(), null);
     }
 
@@ -187,12 +194,13 @@ namespace Cloverbrook.Domain
 
     internal static class StableDayTransaction
     {
+        internal const string IncomeLedgerKind = "stable-income";
         internal static EndDayStateChange Apply(StableSnapshot state, EndDayRequest request, StableDayService service)
         {
             var receipt = service.PrepareReceipt(state, request);
             if (state.DailyState.Receipts.Any(r => r.Request.OperationId.Equals(request.OperationId)))
                 throw new EndDayRejectedException("idempotency_conflict", "This command ID already belongs to another daily-care request.");
-            if (state.Ledger.Any(l => l.Id.Equals(request.OperationId) || l.Id.Equals(receipt.CostTransactionId)))
+            if (state.Ledger.Any(l => l.Id.Equals(request.OperationId) || l.Id.Equals(receipt.CostTransactionId) || l.Id.Equals(receipt.IncomeTransactionId)))
                 throw new EndDayRejectedException("ledger_id_conflict", "This command's transaction identity is already used in the wallet history.");
 
             var care = state.DailyState.HorseCare.ToDictionary(p => p.Key, p => p.Value);
@@ -236,8 +244,10 @@ namespace Cloverbrook.Domain
             }).ToList();
             var header = SaveHeaders.Copy(state.Header, revision: checked(state.Header.SaveRevision + 1), schema: StableSnapshot.SchemaVersion,
                 payloadHash: "unwritten", calendarDay: receipt.ToDay);
-            var ledger = receipt.WalletDebitCoins == 0 ? state.Ledger : state.Ledger.Concat(new[]
-            { new CoinLedgerEntry(receipt.CostTransactionId, -receipt.WalletDebitCoins, "stable-day") });
+            var entries = new List<CoinLedgerEntry>();
+            if (receipt.IncomeCoins > 0) entries.Add(new CoinLedgerEntry(receipt.IncomeTransactionId, receipt.IncomeCoins, IncomeLedgerKind));
+            if (receipt.WalletDebitCoins > 0) entries.Add(new CoinLedgerEntry(receipt.CostTransactionId, -receipt.WalletDebitCoins, "stable-day"));
+            var ledger = entries.Count == 0 ? state.Ledger : state.Ledger.Concat(entries);
             var next = new StableSnapshot(header, state.PlayerOwnerId, nextHorses, state.OpeningCoinBalance, state.CapacityRevision,
                 ledger, state.PendingCapacityPlans, state.Conceptions, nextDaily, state.LegacyLifecycleBaselines);
             return new EndDayStateChange(next, receipt, false);

@@ -62,6 +62,9 @@ namespace Cloverbrook.Domain
         public System.Collections.Generic.IReadOnlyList<HorseCareOutcome> HorseOutcomes { get; }
         public System.Collections.Generic.IReadOnlyList<StableLifecycleEvent> LifecycleEvents { get; }
         public string ReceiptHash { get; }
+        /// <summary>Club support credited by this day. Derived from the request's policy version and cared-for horses, so the receipt hash already binds it.</summary>
+        public long IncomeCoins => StableDailyPolicy.IncomeFor(Request.PolicyVersion, HorseOutcomes.Count);
+        public TransactionId IncomeTransactionId => StableDayService.IncomeId(Request.OperationId);
         private static string Values(HorseCareState s) => string.Join(",", s.Nutrition.ToString(CultureInfo.InvariantCulture), s.Bedding.ToString(CultureInfo.InvariantCulture),
             s.Turnout.ToString(CultureInfo.InvariantCulture), s.Grooming.ToString(CultureInfo.InvariantCulture));
     }
@@ -70,8 +73,8 @@ namespace Cloverbrook.Domain
     {
         internal DailyPreview(bool allowed, string? blockReason, int fromDay, int toDay, long careCost, long operationsCost, long assistance,
             long projectedCoins, System.Collections.Generic.IEnumerable<HorseCareOutcome> outcomes, DailyCareReceipt? receipt,
-            System.Collections.Generic.IEnumerable<StableLifecycleEvent>? lifecycleEvents = null)
-        { Allowed = allowed; BlockReason = blockReason; FromDay = fromDay; ToDay = toDay; CareCostCoins = careCost; OperationsCostCoins = operationsCost;
+            System.Collections.Generic.IEnumerable<StableLifecycleEvent>? lifecycleEvents = null, long incomeCoins = 0)
+        { Allowed = allowed; IncomeCoins = incomeCoins; BlockReason = blockReason; FromDay = fromDay; ToDay = toDay; CareCostCoins = careCost; OperationsCostCoins = operationsCost;
             AssistanceCoins = assistance; ProjectedCoins = projectedCoins; HorseOutcomes = Snapshot.List(outcomes); Receipt = receipt;
             LifecycleEvents = Snapshot.List(lifecycleEvents ?? Array.Empty<StableLifecycleEvent>()); }
         public bool Allowed { get; }
@@ -81,6 +84,9 @@ namespace Cloverbrook.Domain
         public long CareCostCoins { get; }
         public long OperationsCostCoins { get; }
         public long AssistanceCoins { get; }
+        public long IncomeCoins { get; }
+        /// <summary>Upkeep paid from the wallet, which already includes today's income.</summary>
+        public long WalletDebitCoins => CareCostCoins + OperationsCostCoins - AssistanceCoins;
         public long ProjectedCoins { get; }
         public System.Collections.Generic.IReadOnlyList<HorseCareOutcome> HorseOutcomes { get; }
         public System.Collections.Generic.IReadOnlyList<StableLifecycleEvent> LifecycleEvents { get; }

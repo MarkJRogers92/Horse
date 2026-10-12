@@ -560,12 +560,12 @@ public partial class StableDay : Node
             _preview = _service.Preview(_state, _reviewedPlan);
             _reviewedRevision = _state.Header.SaveRevision;
             _reviewedDay = _state.Header.CalendarDay;
-            var walletDebit = _preview.CareCostCoins + _preview.OperationsCostCoins - _preview.AssistanceCoins;
             var lines = new List<string>
             {
                 $"Season {_state.Header.CalendarDay / StableCalendar.DaysPerSeason + 1}, day {_state.Header.CalendarDay % StableCalendar.DaysPerSeason + 1} → season {_preview.ToDay / StableCalendar.DaysPerSeason + 1}, day {_preview.ToDay % StableCalendar.DaysPerSeason + 1}.",
+                $"Club support: +{_preview.IncomeCoins:N0} coins.",
                 $"Daily care: {_preview.CareCostCoins:N0} coins · stable operations: {_preview.OperationsCostCoins:N0} coins.",
-                $"From your wallet: {walletDebit:N0} coins · assistance: {_preview.AssistanceCoins:N0} coins.",
+                $"From your wallet: {_preview.WalletDebitCoins:N0} coins · assistance: {_preview.AssistanceCoins:N0} coins.",
                 $"Wallet after the day: {_preview.ProjectedCoins:N0} coins.",
                 "",
                 "Care after today's plan:"
@@ -757,7 +757,7 @@ public partial class StableDay : Node
             var replay = await Task.Run(() => _store.CommitEndDay(request, _service));
             if (reloaded.State.Header.CalendarDay != 1 || committed.State.Header.CalendarDay != 1 || replay.State.Header.CalendarDay != 1 || !replay.Replayed)
                 throw new InvalidOperationException("Commit, reload or retry did not retain exactly one day advancement.");
-            if (reloaded.State.Coins != startCoins - (preview.CareCostCoins + preview.OperationsCostCoins - preview.AssistanceCoins)
+            if (reloaded.State.Coins != startCoins + preview.IncomeCoins - preview.WalletDebitCoins || reloaded.State.Coins != preview.ProjectedCoins
                 || committed.State.Coins != reloaded.State.Coins || replay.State.Coins != reloaded.State.Coins)
                 throw new InvalidOperationException("Commit, reload or retry changed the wallet more than once.");
             GD.Print($"[stable-day-smoke] OK day={reloaded.State.Header.CalendarDay} coins={reloaded.State.Coins} replayed={replay.Replayed} path={_store.SavePath}");
@@ -801,10 +801,11 @@ public partial class StableDay : Node
 
             _reloadButton.EmitSignal(BaseButton.SignalName.Pressed);
             await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-            if (_state == null || _state.Header.CalendarDay != 1 || _state.Coins != startCoins - 36
+            if (_state == null || _state.Header.CalendarDay != 1 || _state.Coins != startCoins + 50 - 36
                 || _state.DailyState.Receipts.Count != 1 || _state.Ledger.Count(e => e.Kind == "stable-day") != 1
+                || _state.Ledger.Count(e => e.Kind == "stable-income") != 1
                 || _state.DailyState.For(turnout.Key).Turnout != 6200)
-                throw new InvalidOperationException("Reload did not show exactly one saved day and one 36-coin debit.");
+                throw new InvalidOperationException("Reload did not show exactly one saved day, one 50-coin club support credit and one 36-coin debit.");
             await CaptureFrame(Path.Combine(directory, "03_day_2.png"));
             GD.Print($"[stable-day-capture] OK screenshots=3 day={_state.Header.CalendarDay} coins={_state.Coins} output={directory}");
             GetTree().Quit(0);
@@ -844,7 +845,9 @@ public partial class StableDay : Node
                 if (_preview.LifecycleEvents.Count > 0 && !birthCaptured)
                     await CaptureFrame(Path.Combine(directory, "02_birth_review.png"));
                 var coinsBefore = _state.Coins;
-                var expectedWalletDebit = _preview.CareCostCoins + _preview.OperationsCostCoins - _preview.AssistanceCoins;
+                var expectedWalletDebit = _preview.WalletDebitCoins;
+                var expectedIncome = _preview.IncomeCoins;
+                var creditsBefore = _state.Ledger.Count(entry => entry.Kind == "stable-income");
                 var receiptsBefore = _state.DailyState.Receipts.Count;
                 var debitsBefore = _state.Ledger.Count(entry => entry.Kind == "stable-day");
                 _confirmDayButton.EmitSignal(BaseButton.SignalName.Pressed);
@@ -857,10 +860,11 @@ public partial class StableDay : Node
                     throw new InvalidOperationException("A confirmed End day did not append exactly one durable receipt.");
                 var committedReceipt = _state.DailyState.Receipts.Last();
                 if (committedReceipt.FromDay != fromDay || committedReceipt.ToDay != fromDay + 1
-                    || committedReceipt.WalletDebitCoins != expectedWalletDebit
-                    || _state.Coins != coinsBefore - committedReceipt.WalletDebitCoins
-                    || _state.Ledger.Count(entry => entry.Kind == "stable-day") != debitsBefore + (committedReceipt.WalletDebitCoins > 0 ? 1 : 0))
-                    throw new InvalidOperationException("The confirmed day did not persist exactly its previewed wallet debit.");
+                    || committedReceipt.WalletDebitCoins != expectedWalletDebit || committedReceipt.IncomeCoins != expectedIncome
+                    || _state.Coins != coinsBefore + committedReceipt.IncomeCoins - committedReceipt.WalletDebitCoins
+                    || _state.Ledger.Count(entry => entry.Kind == "stable-day") != debitsBefore + (committedReceipt.WalletDebitCoins > 0 ? 1 : 0)
+                    || _state.Ledger.Count(entry => entry.Kind == "stable-income") != creditsBefore + (committedReceipt.IncomeCoins > 0 ? 1 : 0))
+                    throw new InvalidOperationException("The confirmed day did not persist exactly its previewed income and wallet debit.");
                 var committedEvents = committedReceipt.LifecycleEvents;
                 if (committedEvents.Any(item => item.Kind.ToString() == "Birth"))
                 {

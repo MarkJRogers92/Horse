@@ -108,7 +108,7 @@ namespace Cloverbrook.Domain.Tests
 
             if (filename == "old_pregnancy_care_v2.clvr")
             {
-                Assert.All(migrated.DailyState.Receipts, receipt => Assert.Equal(StableDailyPolicy.Version, receipt.Request.PolicyVersion));
+                Assert.All(migrated.DailyState.Receipts, receipt => Assert.Equal(StableDailyPolicy.LegacyVersion, receipt.Request.PolicyVersion));
                 Assert.Equal(LifeStage.Unborn, migrated.Horses.Single(h => h.OriginCommitId != null).LifeState.Stage);
                 Assert.Equal(14, migrated.Conceptions.Single().Commit.PlannedBirthDay);
             }

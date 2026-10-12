@@ -133,7 +133,7 @@ namespace Cloverbrook.Domain
             var costId = ConceptionService.CostTransactionId(state.Header, nextEventIndex);
             if (state.Ledger.Any(entry => entry.Id.Equals(costId))
                 || state.DailyState.Receipts.Any(receipt => receipt.Request.OperationId.Equals(costId)
-                    || receipt.CostTransactionId.Equals(costId)))
+                    || receipt.CostTransactionId.Equals(costId) || receipt.IncomeTransactionId.Equals(costId)))
                 throw new ConceptionRejectedException("ledger_id_conflict", "This pairing's deterministic cost identity already appears in saved wallet or care history.");
 
             // The hold exists only in this locked, in-memory transaction input.
@@ -225,8 +225,9 @@ namespace Cloverbrook.Domain
                     throw new EndDayRejectedException("idempotency_conflict", "This command ID already belongs to a different daily-care request.");
                 return new StoredEndDay(state, existing, true);
             }
-            var costId = StableDayService.CostId(request.OperationId);
-            if (request.OperationId.Equals(costId) || state.Ledger.Any(entry => entry.Id.Equals(request.OperationId) || entry.Id.Equals(costId)))
+            var costId = StableDayService.CostId(request.OperationId); var incomeId = StableDayService.IncomeId(request.OperationId);
+            if (request.OperationId.Equals(costId) || request.OperationId.Equals(incomeId)
+                || state.Ledger.Any(entry => entry.Id.Equals(request.OperationId) || entry.Id.Equals(costId) || entry.Id.Equals(incomeId)))
                 throw new EndDayRejectedException("ledger_id_conflict", "This command's transaction identity is already used in the wallet history.");
             var result = StableDayTransaction.Apply(state, request, service);
             var saved = Publish(result.State, preserveCurrentAsBackup: true);

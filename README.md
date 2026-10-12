@@ -1,8 +1,8 @@
 # Cloverbrook Stables
 
-A cozy 3D horse breeding and stable management game for PC and Mac (Unity 6 LTS, URP, C#, Blender). It has believable horses, honest coat genetics and attachment-first stable life.
+A cozy 3D horse breeding and stable management game for PC and Mac (Godot 4 .NET per D-003, C#, Blender). It has believable horses, honest coat genetics and attachment-first stable life.
 
-> **Status:** design and production spec only, with no game code yet. See [`STATUS.md`](STATUS.md).
+> **Status:** playable prototype: a saved stable with care, income, breeding, births and growth, plus a horse viewer. See [`STATUS.md`](STATUS.md).
 
 ## Where things are
 | Path | What |

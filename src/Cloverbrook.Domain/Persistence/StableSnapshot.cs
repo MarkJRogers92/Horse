@@ -103,6 +103,11 @@ namespace Cloverbrook.Domain
                 && DailyState.Receipts.All(r => !r.Request.OperationId.Equals(r.CostTransactionId)
                     && !DailyState.Receipts.Any(other => other.Request.OperationId.Equals(r.CostTransactionId))),
                 "Daily-care receipt transaction identities are reused.");
+            Require(DailyState.Receipts.Select(r => r.IncomeTransactionId).Distinct().Count() == DailyState.Receipts.Count
+                && DailyState.Receipts.All(r => !DailyState.Receipts.Any(other => other.Request.OperationId.Equals(r.IncomeTransactionId)
+                    || other.CostTransactionId.Equals(r.IncomeTransactionId))),
+                "Daily-care income transaction identities are reused.");
+            Require(DailyState.Receipts.All(r => StableDailyPolicy.IsSupported(r.Request.PolicyVersion)), "A daily-care receipt uses an unknown policy version.");
             Require(PendingCapacityPlans.Select(p => p.ReservationId).Distinct().Count() == PendingCapacityPlans.Count
                 && PendingCapacityPlans.Select(p => p.BreedingId).Distinct().Count() == PendingCapacityPlans.Count, "Duplicate pending capacity hold.");
             Require(Conceptions.Select(c => c.Commit.BreedingCommitId).Distinct().Count() == Conceptions.Count
@@ -129,6 +134,15 @@ namespace Cloverbrook.Domain
             foreach (var debit in Ledger.Where(l => l.Kind == "stable-day"))
                 Require(DailyState.Receipts.Any(r => r.WalletDebitCoins > 0 && r.CostTransactionId.Equals(debit.Id)
                     && debit.DeltaCoins == -r.WalletDebitCoins), "Orphan daily-care wallet debit.");
+            foreach (var receipt in DailyState.Receipts)
+            {
+                if (receipt.IncomeCoins == 0) Require(!ledger.ContainsKey(receipt.IncomeTransactionId), "A daily receipt without income cannot have an income credit.");
+                else Require(ledger.TryGetValue(receipt.IncomeTransactionId, out var credit) && credit.Kind == StableDayTransaction.IncomeLedgerKind
+                    && credit.BreedingId == null && credit.DeltaCoins == receipt.IncomeCoins, "A daily income credit is missing or inconsistent with its receipt.");
+            }
+            foreach (var credit in Ledger.Where(l => l.Kind == StableDayTransaction.IncomeLedgerKind))
+                Require(DailyState.Receipts.Any(r => r.IncomeCoins > 0 && r.IncomeTransactionId.Equals(credit.Id)
+                    && credit.DeltaCoins == r.IncomeCoins), "Orphan daily income credit.");
             var horsesById = Horses.ToDictionary(h => h.HorseId);
             var lastCare = new Dictionary<HorseId, HorseCareState>();
             var lastDay = (int?)null; var lastExpectedRevision = (ulong?)null;
