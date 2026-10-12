@@ -4,7 +4,7 @@
   "pythonTests": 56,
   "domainTests": 190,
   "gameBuildWarnings": 0,
-  "gameBuildErrors": 0,
+  "gameBuildErrors": 2,
   "headlessTransitionChecks": 2111,
   "renderedTransitionChecks": 3552,
   "measuredBridges": 19,
@@ -28,5 +28,7 @@
     "Raw static surface/morph arrays exact between Idle and Walk. Different imported rigs retain measured 0.073560 mm swap residual.",
     "First wall-clock Idle capture missed intended extrema; final deterministic exact-time pose capture preserves original bounds and passes.",
     "No Mac launch or publication by this worker."
-  ]
+  ],
+  "gameBuildPassed": false,
+  "verificationCorrection": "The final local warnings-as-errors build failed with two CS0618 errors. The prior green-build summary was incorrect; the original failing log remains in checks/game-build.log. See ../foal-idle-ci-fix-cloud-2026-10-12 for the clean rebuild after correction."
 }

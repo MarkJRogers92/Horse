@@ -817,7 +817,9 @@ public partial class CaptureRunner : Node
         // clip times: screenshot I/O can span most of this subtle four-second loop.
         // Waiting for a wall-clock threshold after capture can miss both extrema.
         _stage.Presenter.Pose("idle", 0);
-        skeleton.ForceUpdateAllBoneTransforms();
+        // Pose seeks with update=true and pauses playback. Let the scene tree
+        // flush deferred skeleton/skin updates without advancing that clip time.
+        await Settle(2);
         var rootPositionAtStart = skeleton.GetBonePosePosition(rootIndex);
         var rootRotationAtStart = skeleton.GetBonePoseRotation(rootIndex);
         var neckPositionAtStart = skeleton.GetBonePosePosition(neckIndex);
@@ -839,7 +841,7 @@ public partial class CaptureRunner : Node
         {
             double targetTime = length * fraction;
             _stage.Presenter.Pose("idle", targetTime);
-            skeleton.ForceUpdateAllBoneTransforms();
+            await Settle(2);
             if (Math.Abs(player.CurrentAnimationPosition-targetTime)>0.0001)
             {
                 _failures++;

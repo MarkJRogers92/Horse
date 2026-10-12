@@ -35,7 +35,7 @@ Final check results, rendered clips/sheets, game coat captures, 50-image regress
 
 ### Final local result
 
-- 56 Python walk/evidence tests and 190 Release domain tests passed; warnings-as-errors game build and frozen-spec validation passed.
+- 56 Python walk/evidence tests, 190 Release domain tests and frozen-spec validation passed. Correction: the final warnings-as-errors game build failed with two CS0618 errors, despite the earlier summary claiming success. The original failing log is retained. The narrow fix and successful clean rebuild are recorded in `../foal-idle-ci-fix-cloud-2026-10-12/`.
 - Corrected native Idle, unchanged Walk contact/deformation/loop/attachments, and imported hind articulation passed.
 - 2,111 headless transition checks and 3,552 rendered checks passed, including 19 measured bridges and 1,440 rendered frames. Eight six-second clips and contact sheets cover bay/cremello side/front/rear/quarter views.
 - Final headless and rendered main smoke reached the all-four-family success line. The complete 50-image coat/Idle/viewer/detail/Stock/probe regression has zero failures; actual-game closeups retain face and leg markings.

@@ -1,0 +1,44 @@
+{
+  "schema": "horse.foal_idle.ci_api_fix.v1",
+  "sourceParentCommit": "672196d2761627562065818eb48306cdce1dbf87",
+  "GodotNetSdk": "4.7.2",
+  "dotnetSdk": "8.0.425",
+  "cleanBuildCommand": "dotnet clean game/Cloverbrook.Game.csproj; dotnet build game/Cloverbrook.Game.csproj -warnaserror",
+  "buildExitCode": 0,
+  "buildWarnings": 0,
+  "buildErrors": 0,
+  "captureSets": [
+    "foal_idle",
+    "viewer_age_toggle"
+  ],
+  "captureImages": 11,
+  "captureFailures": 0,
+  "headlessTransitionChecks": 2111,
+  "transitionFailures": [],
+  "pythonTests": 56,
+  "exactPoseMetricsMatchPreviousRender": true,
+  "samples": [
+    {
+      "sample": "quarter",
+      "timeSeconds": 1.0104166269302368,
+      "rootPositionDelta": 0,
+      "rootRotationDeltaRadians": 0,
+      "neckPositionDelta": 0,
+      "neckRotationDeltaRadians": 0.0016914561,
+      "headPositionDelta": 0,
+      "headRotationDeltaRadians": 0
+    },
+    {
+      "sample": "midpoint",
+      "timeSeconds": 2.0208332538604736,
+      "rootPositionDelta": 0,
+      "rootRotationDeltaRadians": 0,
+      "neckPositionDelta": 0,
+      "neckRotationDeltaRadians": 0.0034526715,
+      "headPositionDelta": 0,
+      "headRotationDeltaRadians": 0.001544081
+    }
+  ],
+  "localFailureExplanation": "Archived prior final local build contained the same two CS0618 errors as CI. A prior successful build and subsequent successful render execution were incorrectly treated as proving that final warnings-as-errors build passed. The failing log is retained and its summary corrected. No SDK mismatch or warning suppression is involved.",
+  "noAssetOrRuntimePresenterChanges": true
+}

@@ -1,0 +1,11 @@
+# Foal capture API portability correction
+
+The final local build archived with source `672196d` already failed on both `Skeleton3D.ForceUpdateAllBoneTransforms()` calls with CS0618. CI [run 38205918811](https://github.com/MarkJRogers92/Horse/actions/runs/38205918811) exposed the same failure. The earlier zero-error summary was incorrect: an earlier green build and successful render runs did not establish a final warnings-as-errors pass. The original failing log remains intact; its JSON/README result is corrected explicitly.
+
+The two internal-only calls are replaced by `await Settle(2)`. `HorsePresenter.Pose` uses supported `Play → Seek(time, true) → Pause`: seek applies the requested local pose immediately and pause preserves the exact time. Two process-frame boundaries allow ordinary skeleton/skin updates, and each existing screenshot waits another eight frames. All target-time, real-playback, fixed-root, movement and small-motion bounds remain unchanged. No warning is suppressed and no animation, mesh, UV, morph, shader or runtime transition implementation changes.
+
+A clean build with installed Godot.NET.Sdk 4.7.2 and the exact CI `dotnet build game/Cloverbrook.Game.csproj -warnaserror` command exits zero with zero warnings/errors. The focused rendered `foal_idle,viewer_age_toggle` check writes 11 captures with zero failures. Quarter and midpoint poses are sampled at exactly 1.0104166269302368 and 2.0208332538604736 seconds, with fixed root and changing neck/head. All measured pose values match the earlier deterministic render exactly. Side/head captures were visually inspected.
+
+The full 2,111-check headless foal transition probe and 56 Python evidence/walk tests pass. Frozen-spec validation and whitespace checks pass. The former CI render defaults omitted `foal_idle`; the existing render step now explicitly includes that set alongside all its previous sets, so these lines remain exercised in CI. This narrow fix does not repeat the unrelated domain/whole-coat matrix; prior physical asset evidence remains byte-identical.
+
+`verification.json`, build/clean logs, focused capture report/images and transition report are included. No push, Mac operation, or paid tool use.
