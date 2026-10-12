@@ -37,6 +37,7 @@ All listed jobs passed the frozen-spec validator and Release dotnet test. Older 
 | Atomic store / headless end-to-end | 30bee9ea | 38094043405 / 114336150637 | 134/134 | 11685635596 |
 | Numeric/rolling-backup boundaries | 51f26128 | 38094262761 | 138/138 | successful test-results artifact |
 | Public API + final combined proof | a15266e3 | [38094410593](https://github.com/MarkJRogers92/Horse/actions/runs/38094410593) / 114337226950 | 147/147 | 11685351742 |
+| Gray-base coat forecast preview | 17129b69 | Local macOS `DOTNET_ROLL_FORWARD=LatestMajor dotnet test -c Release` | 152/152 | — |
 Latest verified descriptor artifact: 11685376690 (run 38094410593). Initial P1-07 CS0119 was fixed before these green runs; no failed build was called a pass.
 
 ## Completion handoff — P1-07/P1-09 implemented scope
