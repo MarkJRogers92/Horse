@@ -94,7 +94,23 @@ public partial class StableDay
             if (!_guideText.Text.StartsWith("Guide 4 of 5", StringComparison.Ordinal))
                 throw new InvalidOperationException("Ending the first day did not advance the guide to breeding.");
             await CaptureFrame(Path.Combine(directory, "03_day_2.png"));
-            GD.Print($"[stable-day-capture] OK screenshots=4 day={_state.Header.CalendarDay} coins={_state.Coins} output={directory}");
+            var coinsBeforePractice = _state.Coins; var hashBeforePractice = _state.Header.PayloadHash;
+            _practiceButton.EmitSignal(BaseButton.SignalName.Pressed);
+            if (!_practiceOverlay.Visible || _practiceStart.Disabled || _practiceChoices.Count != 2)
+                throw new InvalidOperationException("Practice gallop did not offer both starter horses.");
+            _practiceStart.EmitSignal(BaseButton.SignalName.Pressed);
+            for (var frame = 0; frame < 6; frame++) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+            if (_practiceResult == null) throw new InvalidOperationException("Practice gallop did not start.");
+            _practiceElapsedMs = (_practiceResult.Frames.Count - 1) * _practiceResult.FrameIntervalMilliseconds * 0.55;
+            AdvancePracticePlayback();
+            await CaptureFrame(Path.Combine(directory, "04a_practice_running.png"));
+            FinishPracticePlayback();
+            if (_practiceResult == null || !_practiceResults.Text.StartsWith("1st · ", StringComparison.Ordinal)
+                || _practiceLanes.Any(lane => lane.Value < 1000) || _state.Coins != coinsBeforePractice || _state.Header.PayloadHash != hashBeforePractice)
+                throw new InvalidOperationException("Practice gallop did not finish with placings, or it changed the saved stable.");
+            await CaptureFrame(Path.Combine(directory, "04_practice.png"));
+            _practiceOverlay.Visible = false;
+            GD.Print($"[stable-day-capture] OK screenshots=6 day={_state.Header.CalendarDay} coins={_state.Coins} output={directory}");
             GetTree().Quit(0);
         }
         catch (Exception ex)

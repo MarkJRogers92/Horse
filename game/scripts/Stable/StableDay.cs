@@ -309,12 +309,16 @@ public partial class StableDay : Node
         _reviewButton = new Button { Text = "Review day", CustomMinimumSize = new Vector2(180, 48) };
         _reviewButton.Pressed += ShowReview;
         buttonRow.AddChild(_reviewButton);
+        _practiceButton = new Button { Text = "Practice gallop", CustomMinimumSize = new Vector2(170, 44) };
+        _practiceButton.Pressed += ShowPractice;
+        buttonRow.AddChild(_practiceButton);
         leftActions.AddChild(buttonRow);
         footer.AddChild(leftActions);
         page.AddChild(footer);
 
         BuildReviewOverlay(root);
         BuildInspectOverlay(root);
+        BuildPracticeOverlay(root);
         BuildRecoveryDialog(root);
     }
 
@@ -551,7 +555,7 @@ public partial class StableDay : Node
 
     private void SetControlsEnabled(bool enabled)
     {
-        foreach (var button in new[] { _reviewButton, _retryButton, _reloadButton, _backButton, _foalingDemoButton })
+        foreach (var button in new[] { _reviewButton, _retryButton, _reloadButton, _backButton, _foalingDemoButton, _practiceButton })
             if (GodotObject.IsInstanceValid(button)) button.Disabled = !enabled;
         foreach (var button in new BaseButton[] { _marePicker, _stallionPicker, _planBreedingButton, _retryBreedingButton })
             if (GodotObject.IsInstanceValid(button)) button.Disabled = !enabled;
