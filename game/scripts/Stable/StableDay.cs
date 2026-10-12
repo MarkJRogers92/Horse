@@ -88,6 +88,12 @@ public partial class StableDay : Node
         {
             SetStatus("The stable could not be opened. " + PlainError(ex));
             SetControlsEnabled(false);
+            // Automated runs must fail fast instead of waiting on an error screen until the CI timeout.
+            if (_captureOutput != null || _lifecycleCaptureOutput != null || _breedingCaptureOutput != null)
+            {
+                GD.PushError("[stable-capture] FAILED during setup: " + ex);
+                GetTree().Quit(1);
+            }
         }
     }
 
