@@ -132,7 +132,8 @@
     {
       "id": "P2-08",
       "title": "Build the first-session tutorial and intuitive stable navigation",
-      "status": "not_started"
+      "status": "partial",
+      "notes": "Five-step stable guide driven by saved progress (Details, care, End Day, pairing, foal), skippable per save slot. Narration, palette/naming setup, adoption, activity and building steps not done."
     },
     {
       "id": "P2-09",

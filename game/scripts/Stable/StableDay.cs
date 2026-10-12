@@ -47,6 +47,7 @@ public partial class StableDay : Node
         var args = OS.GetCmdlineUserArgs();
         _foalingDemoMode = args.Contains("--foaling-demo") || args.Any(a => a.StartsWith("--stable-lifecycle-capture=", StringComparison.Ordinal));
         _store = new AtomicSaveStore(ResolveSavePath(args, _foalingDemoMode));
+        LoadGuidePreference();
         BuildUi();
         _captureOutput = args.FirstOrDefault(a => a.StartsWith("--stable-day-capture=", StringComparison.Ordinal))?["--stable-day-capture=".Length..];
         _lifecycleCaptureOutput = args.FirstOrDefault(a => a.StartsWith("--stable-lifecycle-capture=", StringComparison.Ordinal))?["--stable-lifecycle-capture=".Length..];
@@ -204,6 +205,7 @@ public partial class StableDay : Node
         {
             _foalingDemoMode = true;
             _store = new AtomicSaveStore(ProjectSettings.GlobalizePath(FoalingDemoSavePath));
+            LoadGuidePreference();
             _state = null;
             ClearReviewedPlan();
             LoadOrCreate();
@@ -251,10 +253,7 @@ public partial class StableDay : Node
         _wallet = SummaryCard("500 coins");
         summary.AddChild(SummaryPanel(_season, "CALENDAR"));
         summary.AddChild(SummaryPanel(_wallet, "WALLET"));
-        var dailyNote = CozyTheme.Title("Daily basics are covered for active-stable horses.", 17);
-        var notePanel = new PanelContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, SizeFlagsVertical = Control.SizeFlags.ExpandFill };
-        notePanel.AddChild(dailyNote);
-        summary.AddChild(notePanel);
+        summary.AddChild(BuildGuidePanel());
         page.AddChild(summary);
 
         var columns = new HSplitContainer { SizeFlagsVertical = Control.SizeFlags.ExpandFill, SplitOffsets = new[] { 365 }, DraggerVisibility = SplitContainer.DraggerVisibilityEnum.Hidden };
@@ -467,6 +466,7 @@ public partial class StableDay : Node
         _foalingDemoButton.Text = _foalingDemoMode ? "Foaling demo · active" : "Foaling demo";
         _foalingDemoButton.Disabled = _busy || _foalingDemoMode || _pendingRequest != null || _pendingBreedingRequest != null || _recoveryRequired;
         RefreshBreedingUi();
+        RefreshGuide();
     }
 
     private string ParentNames(HorseRecord horse)
@@ -514,6 +514,7 @@ public partial class StableDay : Node
     {
         (bool Turnout, bool Grooming) current = _optionalCare.TryGetValue(id, out var value) ? value : (false, false);
         _optionalCare[id] = (turnout ?? current.Turnout, grooming ?? current.Grooming);
+        if (turnout == true || grooming == true) { _guideSawCareChoice = true; RefreshGuide(); }
     }
 
     private static CheckButton CareToggle(string text, bool value, bool required)

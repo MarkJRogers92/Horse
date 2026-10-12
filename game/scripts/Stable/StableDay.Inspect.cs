@@ -52,6 +52,7 @@ public partial class StableDay
             _inspectTitle.Text = profile.Name;
             _inspectDetails.Text = string.Join("\n", InspectionLines(profile));
             _inspectOverlay.Visible = true;
+            _guideSawDetails = true; RefreshGuide();
         }
         catch (Exception ex)
         {
