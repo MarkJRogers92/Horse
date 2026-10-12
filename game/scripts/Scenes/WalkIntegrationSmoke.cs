@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Nodes;
 using Cloverbrook.Game.Visual;
+using Cloverbrook.Game.Tools;
 using Godot;
 
 namespace Cloverbrook.Game.Scenes;
@@ -204,10 +205,10 @@ public partial class MainMenu
 
     private async System.Threading.Tasks.Task WaitForViewerTransition(HorseStage stage)
     {
-        double deadline = Time.GetTicksMsec() + 3000;
-        while (stage.Presenter.IsTransitioning && Time.GetTicksMsec() < deadline)
-            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-        Check(!stage.Presenter.IsTransitioning, "viewer transition completed");
+        var result = await TransitionCompletionWait.Wait(this, stage.Presenter);
+        GD.Print($"[smoke] viewer transition wait: {result.StopReason}, {result.Frames} frames, " +
+                 $"{result.EngineSeconds:F3}s engine / {result.WallSeconds:F3}s wall");
+        Check(result.Completed, "viewer transition completed");
     }
 
     private static void Check(bool condition, string message)

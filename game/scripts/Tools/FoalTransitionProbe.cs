@@ -39,6 +39,7 @@ public partial class FoalTransitionProbe : Node
             CheckRestEvidenceGuards();
             if (OS.GetCmdlineUserArgs().Contains("--render")) await CaptureTransitions();
             await CheckViewer();
+            await CheckLiveWaitClocks();
             System.IO.Directory.CreateDirectory(_output);
             System.IO.File.WriteAllText(System.IO.Path.Combine(_output, "transition-report.json"), JsonSerializer.Serialize(new
             {
@@ -289,12 +290,67 @@ public partial class FoalTransitionProbe : Node
         layer.QueueFree();
     }
 
+    private async Task CheckLiveWaitClocks()
+    {
+        int savedMaxFps = Engine.MaxFps;
+        var viewer = GD.Load<PackedScene>("res://scenes/viewer.tscn").Instantiate<HorseViewer>();
+        AddChild(viewer);
+        var stage = viewer.GetNode<HorseStage>("Stage");
+        var p = stage.Presenter;
+        var body = All<OptionButton>(viewer).Single(n => n.Name == "BodyFamilySelector");
+        var foal = All<CheckButton>(viewer).Single(n => n.Name == "FoalToggle");
+        var animation = All<OptionButton>(viewer).Single(n => n.Name == "AnimationSelector");
+        var coat = All<OptionButton>(viewer).Single(n => n.Name == "CoatSelector");
+        try
+        {
+            // Match the CI sequence: already walking, switch to foal, change coat,
+            // then select Idle. Use real process callbacks, never manual _Process.
+            foreach (int bodyIndex in new[] { 0, 1 })
+            {
+                Engine.MaxFps = savedMaxFps;
+                Select(body, bodyIndex); Select(animation, 3);
+                foal.ButtonPressed = true; Select(coat, 0);
+                Check(p.UsesWalkVariant && !p.IsTransitioning, "coat selection directly presents foal Walk");
+                Engine.MaxFps = 1; // Reproduce software-renderer delta clamping.
+                Select(animation, 0);
+                Check(p.IsTransitioning, "low-FPS viewer starts asynchronous Idle bridge");
+                var result = await TransitionCompletionWait.Wait(this, p);
+                _measurements.Add(new { label = $"low-FPS viewer body {bodyIndex}", wait = result });
+                Check(result.Completed && result.WallSeconds > 3 && result.EngineSeconds < 3,
+                    "slow live bridge completes within three-second simulation deadline despite >3s wall time");
+                Check(!p.UsesWalkVariant && p.CurrentAnimation == "Idle" &&
+                    p.Descriptor!.MorphWeights.OrderBy(x => x.Key).SequenceEqual(
+                        FixtureLibrary.Get("chestnut", true).MorphWeights.OrderBy(x => x.Key)),
+                    "slow viewer restores selected chestnut shape for both foal families");
+            }
+            Engine.MaxFps = savedMaxFps;
+            Select(animation, 3);
+            p.SetProcess(false); // Genuine stuck state must still fail closed.
+            var stuck = await TransitionCompletionWait.Wait(this, p);
+            _measurements.Add(new { label = "disabled presenter rejection", wait = stuck });
+            Check(!stuck.Completed && stuck.StopReason == "engine-timeout" && p.IsTransitioning,
+                "three-second simulation deadline rejects disabled presenter");
+            p.SetProcess(true);
+            await WaitForBridge(p);
+            Select(animation, 0);
+            p.SetProcess(false);
+            var watchdog = await TransitionCompletionWait.Wait(this, p, engineSeconds: 3, wallSeconds: 0.05);
+            _measurements.Add(new { label = "wall watchdog rejection", wait = watchdog });
+            Check(!watchdog.Completed && watchdog.StopReason == "wall-watchdog" && p.IsTransitioning,
+                "independent wall watchdog rejects a stalled wait");
+        }
+        finally
+        {
+            Engine.MaxFps = savedMaxFps;
+            p.SetProcess(true);
+            viewer.QueueFree();
+        }
+    }
+
     private async Task WaitForBridge(HorsePresenter presenter)
     {
-        ulong deadline = Time.GetTicksMsec() + 3000;
-        while (presenter.IsTransitioning && Time.GetTicksMsec() < deadline)
-            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-        Check(!presenter.IsTransitioning, "live process bridge completes within timeout");
+        var result = await TransitionCompletionWait.Wait(this, presenter);
+        Check(result.Completed, "live process bridge completes within engine-time deadline");
     }
 
     private static void Select(OptionButton control, int index)

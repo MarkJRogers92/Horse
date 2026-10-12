@@ -1,0 +1,149 @@
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+
+[foal-transition] horse.standard.foal.v1 idle-to-walk 60 fps: swap 0.073560 mm; max frame 12.183 mm; stretch 1.282141x; floor -1.500 mm
+[foal-transition] horse.standard.foal.v1 walk-to-idle 60 fps: swap 0.073560 mm; max frame 15.010 mm; stretch 1.510325x; floor -1.500 mm
+[foal-transition] horse.standard.foal.v1 latest-reversal-to-idle 60 fps: swap 0.000000 mm; max frame 3.227 mm; stretch 1.028590x; floor 0.229 mm
+WARNING: [HorsePresenter] bay.foal: UNSUPPORTED: Walk requires the checked neutral family shape (all supported body morphs and height at zero)
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:66)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:66)
+         [2] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:40)
+         [3] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.TransitionTo(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.Transitions.cs:38)
+         [4] void Cloverbrook.Game.Tools.FoalTransitionProbe.CheckFamily(string, int) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:125)
+         [5] void Cloverbrook.Game.Tools.FoalTransitionProbe+<Run>d__5.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:37)
+         [6] void System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start<TStateMachine>(TStateMachine&)
+         [7] void Cloverbrook.Game.Tools.FoalTransitionProbe.Run()
+         [8] bool Cloverbrook.Game.Tools.FoalTransitionProbe.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Godot.SourceGenerators/Godot.SourceGenerators.ScriptMethodsGenerator/Cloverbrook.Game.Tools.FoalTransitionProbe_ScriptMethods.generated.cs:81)
+         [9] Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/CSharpInstanceBridge.cs:24)
+WARNING: [HorsePresenter] probe.grey: UNSUPPORTED: coat layer 'grey_age' has no renderer implementation; grey progression is not implemented
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:51)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:51)
+         [2] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:40)
+         [3] void Cloverbrook.Game.Tools.FoalTransitionProbe.CheckFamily(string, int) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:129)
+         [4] void Cloverbrook.Game.Tools.FoalTransitionProbe+<Run>d__5.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:37)
+         [5] void System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start<TStateMachine>(TStateMachine&)
+         [6] void Cloverbrook.Game.Tools.FoalTransitionProbe.Run()
+         [7] bool Cloverbrook.Game.Tools.FoalTransitionProbe.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Godot.SourceGenerators/Godot.SourceGenerators.ScriptMethodsGenerator/Cloverbrook.Game.Tools.FoalTransitionProbe_ScriptMethods.generated.cs:81)
+         [8] Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/CSharpInstanceBridge.cs:24)
+[foal-transition] horse.standard.foal.v1 idle-to-walk 120 fps: swap 0.073560 mm; max frame 6.102 mm; stretch 1.282141x; floor -1.500 mm
+[foal-transition] horse.standard.foal.v1 walk-to-idle 120 fps: swap 0.073560 mm; max frame 7.528 mm; stretch 1.510325x; floor -1.500 mm
+[foal-transition] horse.standard.foal.v1 latest-reversal-to-idle 120 fps: swap 0.000000 mm; max frame 1.614 mm; stretch 1.028631x; floor 0.229 mm
+WARNING: [HorsePresenter] bay.foal: UNSUPPORTED: Walk requires the checked neutral family shape (all supported body morphs and height at zero)
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:66)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:66)
+         [2] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:40)
+         [3] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.TransitionTo(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.Transitions.cs:38)
+         [4] void Cloverbrook.Game.Tools.FoalTransitionProbe.CheckFamily(string, int) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:125)
+         [5] void Cloverbrook.Game.Tools.FoalTransitionProbe+<Run>d__5.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:37)
+         [6] void System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start<TStateMachine>(TStateMachine&)
+         [7] void Cloverbrook.Game.Tools.FoalTransitionProbe.Run()
+         [8] bool Cloverbrook.Game.Tools.FoalTransitionProbe.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Godot.SourceGenerators/Godot.SourceGenerators.ScriptMethodsGenerator/Cloverbrook.Game.Tools.FoalTransitionProbe_ScriptMethods.generated.cs:81)
+         [9] Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/CSharpInstanceBridge.cs:24)
+WARNING: [HorsePresenter] probe.grey: UNSUPPORTED: coat layer 'grey_age' has no renderer implementation; grey progression is not implemented
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:51)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:51)
+         [2] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:40)
+         [3] void Cloverbrook.Game.Tools.FoalTransitionProbe.CheckFamily(string, int) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:129)
+         [4] void Cloverbrook.Game.Tools.FoalTransitionProbe+<Run>d__5.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:37)
+         [5] void System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start<TStateMachine>(TStateMachine&)
+         [6] void Cloverbrook.Game.Tools.FoalTransitionProbe.Run()
+         [7] bool Cloverbrook.Game.Tools.FoalTransitionProbe.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Godot.SourceGenerators/Godot.SourceGenerators.ScriptMethodsGenerator/Cloverbrook.Game.Tools.FoalTransitionProbe_ScriptMethods.generated.cs:81)
+         [8] Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/CSharpInstanceBridge.cs:24)
+[foal-transition] horse.compact.foal.v1 idle-to-walk 60 fps: swap 0.073560 mm; max frame 12.183 mm; stretch 1.282141x; floor -1.500 mm
+[foal-transition] horse.compact.foal.v1 walk-to-idle 60 fps: swap 0.073560 mm; max frame 15.010 mm; stretch 1.510325x; floor -1.500 mm
+[foal-transition] horse.compact.foal.v1 latest-reversal-to-idle 60 fps: swap 0.000000 mm; max frame 3.227 mm; stretch 1.028590x; floor 0.229 mm
+WARNING: [HorsePresenter] bay.foal: UNSUPPORTED: Walk requires the checked neutral family shape (all supported body morphs and height at zero)
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:66)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:66)
+         [2] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:40)
+         [3] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.TransitionTo(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.Transitions.cs:38)
+         [4] void Cloverbrook.Game.Tools.FoalTransitionProbe.CheckFamily(string, int) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:125)
+         [5] void Cloverbrook.Game.Tools.FoalTransitionProbe+<Run>d__5.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:37)
+         [6] void System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start<TStateMachine>(TStateMachine&)
+         [7] void Cloverbrook.Game.Tools.FoalTransitionProbe.Run()
+         [8] bool Cloverbrook.Game.Tools.FoalTransitionProbe.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Godot.SourceGenerators/Godot.SourceGenerators.ScriptMethodsGenerator/Cloverbrook.Game.Tools.FoalTransitionProbe_ScriptMethods.generated.cs:81)
+         [9] Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/CSharpInstanceBridge.cs:24)
+WARNING: [HorsePresenter] probe.grey: UNSUPPORTED: coat layer 'grey_age' has no renderer implementation; grey progression is not implemented
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:51)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:51)
+         [2] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:40)
+         [3] void Cloverbrook.Game.Tools.FoalTransitionProbe.CheckFamily(string, int) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:129)
+         [4] void Cloverbrook.Game.Tools.FoalTransitionProbe+<Run>d__5.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:37)
+         [5] void System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start<TStateMachine>(TStateMachine&)
+         [6] void Cloverbrook.Game.Tools.FoalTransitionProbe.Run()
+         [7] bool Cloverbrook.Game.Tools.FoalTransitionProbe.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Godot.SourceGenerators/Godot.SourceGenerators.ScriptMethodsGenerator/Cloverbrook.Game.Tools.FoalTransitionProbe_ScriptMethods.generated.cs:81)
+         [8] Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/CSharpInstanceBridge.cs:24)
+[foal-transition] horse.compact.foal.v1 idle-to-walk 120 fps: swap 0.073560 mm; max frame 6.102 mm; stretch 1.282141x; floor -1.500 mm
+[foal-transition] horse.compact.foal.v1 walk-to-idle 120 fps: swap 0.073560 mm; max frame 7.528 mm; stretch 1.510325x; floor -1.500 mm
+[foal-transition] horse.compact.foal.v1 latest-reversal-to-idle 120 fps: swap 0.000000 mm; max frame 1.614 mm; stretch 1.028631x; floor 0.229 mm
+WARNING: [HorsePresenter] bay.foal: UNSUPPORTED: Walk requires the checked neutral family shape (all supported body morphs and height at zero)
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:66)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:66)
+         [2] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:40)
+         [3] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.TransitionTo(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.Transitions.cs:38)
+         [4] void Cloverbrook.Game.Tools.FoalTransitionProbe.CheckFamily(string, int) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:125)
+         [5] void Cloverbrook.Game.Tools.FoalTransitionProbe+<Run>d__5.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:37)
+         [6] void System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start<TStateMachine>(TStateMachine&)
+         [7] void Cloverbrook.Game.Tools.FoalTransitionProbe.Run()
+         [8] bool Cloverbrook.Game.Tools.FoalTransitionProbe.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Godot.SourceGenerators/Godot.SourceGenerators.ScriptMethodsGenerator/Cloverbrook.Game.Tools.FoalTransitionProbe_ScriptMethods.generated.cs:81)
+         [9] Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/CSharpInstanceBridge.cs:24)
+WARNING: [HorsePresenter] probe.grey: UNSUPPORTED: coat layer 'grey_age' has no renderer implementation; grey progression is not implemented
+     at: Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (res://scripts/Visual/HorsePresenter.cs:51)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.PresentModel(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:51)
+         [2] Cloverbrook.Game.Visual.VisualSupport Cloverbrook.Game.Visual.HorsePresenter.Present(Cloverbrook.Game.Visual.VisualDescriptor, string) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Visual/HorsePresenter.cs:40)
+         [3] void Cloverbrook.Game.Tools.FoalTransitionProbe.CheckFamily(string, int) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:129)
+         [4] void Cloverbrook.Game.Tools.FoalTransitionProbe+<Run>d__5.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:37)
+         [5] void System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start<TStateMachine>(TStateMachine&)
+         [6] void Cloverbrook.Game.Tools.FoalTransitionProbe.Run()
+         [7] bool Cloverbrook.Game.Tools.FoalTransitionProbe.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Godot.SourceGenerators/Godot.SourceGenerators.ScriptMethodsGenerator/Cloverbrook.Game.Tools.FoalTransitionProbe_ScriptMethods.generated.cs:81)
+         [8] Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/CSharpInstanceBridge.cs:24)
+[foal-transition] walk stop phase 0 60 fps: swap 0.073560 mm; max frame 12.193 mm; stretch 1.282141x; floor -1.500 mm
+[foal-transition] walk stop phase 0.125 60 fps: swap 0.073560 mm; max frame 16.808 mm; stretch 1.336423x; floor -1.500 mm
+[foal-transition] walk stop phase 0.25 60 fps: swap 0.073560 mm; max frame 20.657 mm; stretch 1.668427x; floor -1.500 mm
+[foal-transition] walk stop phase 0.5 60 fps: swap 0.073560 mm; max frame 12.190 mm; stretch 1.254103x; floor -1.500 mm
+[foal-transition] walk stop phase 0.625 60 fps: swap 0.073560 mm; max frame 16.816 mm; stretch 1.319035x; floor -1.500 mm
+[foal-transition] walk stop phase 0.75 60 fps: swap 0.073560 mm; max frame 20.657 mm; stretch 1.626769x; floor -1.500 mm
+[foal-transition] walk stop phase 0.875 60 fps: swap 0.073560 mm; max frame 15.338 mm; stretch 1.489263x; floor -1.500 mm
+ERROR: [foal-transition] FAILED System.InvalidOperationException: live process bridge completes within timeout
+   at Cloverbrook.Game.Tools.FoalTransitionProbe.Check(Boolean condition, String message) in /workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:line 332
+   at Cloverbrook.Game.Tools.FoalTransitionProbe.WaitForBridge(HorsePresenter presenter) in /workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:line 297
+   at Cloverbrook.Game.Tools.FoalTransitionProbe.CheckViewer() in /workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:line 223
+   at Cloverbrook.Game.Tools.FoalTransitionProbe.Run() in /workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:line 41
+   at: void Cloverbrook.Game.Tools.FoalTransitionProbe+<Run>d__5.MoveNext() (res://scripts/Tools/FoalTransitionProbe.cs:41)
+   C# backtrace (most recent call first):
+       [0] void Godot.GD.PushError(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:366)
+       [1] void Cloverbrook.Game.Tools.FoalTransitionProbe+<Run>d__5.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:41)
+       [2] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+       [3] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+       [4] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+       [5] void System.Threading.Tasks.Task.RunContinuations(object)
+       [6] void System.Threading.Tasks.Task.FinishSlow(bool)
+       [7] bool System.Threading.Tasks.Task.TrySetException(object)
+       [8] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.SetException(System.Exception, System.Threading.Tasks.Task`1[TResult]&)
+       [9] void Cloverbrook.Game.Tools.FoalTransitionProbe+<CheckViewer>d__9.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:223)
+       [10] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+       [11] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+       [12] void System.Threading.Tasks.AwaitTaskContinuation.RunCallback(System.Threading.ContextCallback, object, System.Threading.Tasks.Task&)
+       [13] void System.Threading.Tasks.Task.RunContinuations(object)
+       [14] void System.Threading.Tasks.Task.FinishSlow(bool)
+       [15] bool System.Threading.Tasks.Task.TrySetException(object)
+       [16] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1.SetException(System.Exception, System.Threading.Tasks.Task`1[TResult]&)
+       [17] void Cloverbrook.Game.Tools.FoalTransitionProbe+<WaitForBridge>d__12.MoveNext() (/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/scripts/Tools/FoalTransitionProbe.cs:297)
+       [18] void System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, object)
+       [19] void System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1.MoveNext(System.Threading.Thread)
+       [20] void Godot.SignalAwaiter.SignalCallback(nint, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_bool*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/SignalAwaiter.cs:65)

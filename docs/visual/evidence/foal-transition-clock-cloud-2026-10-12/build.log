@@ -1,0 +1,10 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Cloverbrook.Domain -> /workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/src/Cloverbrook.Domain/bin/Debug/netstandard2.1/Cloverbrook.Domain.dll
+  Cloverbrook.Game -> /workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/bin/Debug/Cloverbrook.Game.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:05.50

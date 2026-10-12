@@ -1,0 +1,43 @@
+Build started 10/12/2026 00:27:21.
+     1>Project "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/Cloverbrook.Game.csproj" on node 1 (Clean target(s)).
+     1>CoreClean:
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/bin/Debug/Cloverbrook.Game.deps.json".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/bin/Debug/Cloverbrook.Game.runtimeconfig.json".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/bin/Debug/Cloverbrook.Game.dll".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/bin/Debug/Cloverbrook.Game.pdb".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/bin/Debug/GodotSharp.dll".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/bin/Debug/Cloverbrook.Domain.dll".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/bin/Debug/Cloverbrook.Domain.pdb".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Cloverbrook.Game.csproj.AssemblyReference.cache".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Cloverbrook.Game.GeneratedMSBuildEditorConfig.editorconfig".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Cloverbrook.Game.AssemblyInfoInputs.cache".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Cloverbrook.Game.AssemblyInfo.cs".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Cloverbrook.Game.csproj.CoreCompileInputs.cache".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Cloverbrook.Game.sourcelink.json".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Cloverbr.C687DBEB.Up2Date".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Cloverbrook.Game.dll".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/refint/Cloverbrook.Game.dll".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Cloverbrook.Game.pdb".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/Cloverbrook.Game.genruntimeconfig.cache".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/.godot/mono/temp/obj/Debug/ref/Cloverbrook.Game.dll".
+     1>Project "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/Cloverbrook.Game.csproj" (1) is building "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/src/Cloverbrook.Domain/Cloverbrook.Domain.csproj" (2:2) on node 1 (Clean target(s)).
+     2>CoreClean:
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/src/Cloverbrook.Domain/bin/Debug/netstandard2.1/Cloverbrook.Domain.deps.json".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/src/Cloverbrook.Domain/bin/Debug/netstandard2.1/Cloverbrook.Domain.dll".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/src/Cloverbrook.Domain/bin/Debug/netstandard2.1/Cloverbrook.Domain.pdb".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/src/Cloverbrook.Domain/obj/Debug/netstandard2.1/Cloverbrook.Domain.GeneratedMSBuildEditorConfig.editorconfig".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/src/Cloverbrook.Domain/obj/Debug/netstandard2.1/Cloverbrook.Domain.AssemblyInfoInputs.cache".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/src/Cloverbrook.Domain/obj/Debug/netstandard2.1/Cloverbrook.Domain.AssemblyInfo.cs".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/src/Cloverbrook.Domain/obj/Debug/netstandard2.1/Cloverbrook.Domain.csproj.CoreCompileInputs.cache".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/src/Cloverbrook.Domain/obj/Debug/netstandard2.1/Cloverbrook.Domain.sourcelink.json".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/src/Cloverbrook.Domain/obj/Debug/netstandard2.1/Cloverbrook.Domain.dll".
+         Deleting file "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/src/Cloverbrook.Domain/obj/Debug/netstandard2.1/Cloverbrook.Domain.pdb".
+     2>Done Building Project "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/src/Cloverbrook.Domain/Cloverbrook.Domain.csproj" (Clean target(s)).
+     1>Done Building Project "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/game/Cloverbrook.Game.csproj" (Clean target(s)).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.62

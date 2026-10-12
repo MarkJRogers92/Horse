@@ -1,0 +1,175 @@
+{
+  "schema": "horse.foal_transition.clock_fix.v1",
+  "parentCommit": "36fe610767e299ea1d831ba893417ecf7c62b0a6",
+  "ciFailureRun": "https://github.com/MarkJRogers92/Horse/actions/runs/38206811463",
+  "preFixExactVulkanSmokeReproducedFailure": true,
+  "preFixOneFpsProbeReproducedFailure": true,
+  "postFixExactVulkanSmokeExitCode": 0,
+  "postFixReachedFinalAllFourSuccess": true,
+  "renderingDriver": "vulkan",
+  "renderingMethod": "Forward+",
+  "renderer": "llvmpipe LLVM 19.1.7 (256 bits)",
+  "vulkanVersion": "1.4.305",
+  "environmentNote": "Same Godot 4.7.2, renderer mode, resolution and smoke arguments as CI; authenticated cloud Xvfb over TCP and staged Mesa libraries. CI Mesa is LLVM 20.1.2/Vulkan1.4.318. No renderer fallback.",
+  "engineDeadlineSeconds": 3,
+  "wallWatchdogSeconds": 30,
+  "bridgeRuntimeChanged": false,
+  "assetOrUvOrMorphOrAdultChanges": false,
+  "protectedPathsExact": [
+    "art/derived/production",
+    "game/assets/horse/production",
+    "game/data",
+    "game/scripts/Visual/HorsePresenter.cs",
+    "game/scripts/Visual/HorsePresenter.Transitions.cs",
+    "game/scripts/Visual/HorsePresenter.TransitionFloor.cs",
+    "game/scripts/Scenes/HorseViewer.cs",
+    "game/scripts/Scenes/HorseStage.cs"
+  ],
+  "strictBuildExitCode": 0,
+  "strictBuildWarnings": 0,
+  "strictBuildErrors": 0,
+  "transitionChecks": 2122,
+  "lowFpsAndStallRegressions": [
+    {
+      "label": "low-FPS viewer body 0",
+      "wait": {
+        "Completed": true,
+        "StopReason": "complete",
+        "Frames": 7,
+        "EngineSeconds": 0.8086653333333333,
+        "WallSeconds": 6.985
+      }
+    },
+    {
+      "label": "low-FPS viewer body 1",
+      "wait": {
+        "Completed": true,
+        "StopReason": "complete",
+        "Frames": 6,
+        "EngineSeconds": 0.7999789999999996,
+        "WallSeconds": 5.99
+      }
+    },
+    {
+      "label": "disabled presenter rejection",
+      "wait": {
+        "Completed": false,
+        "StopReason": "engine-timeout",
+        "Frames": 416,
+        "EngineSeconds": 3,
+        "WallSeconds": 2.865
+      }
+    },
+    {
+      "label": "wall watchdog rejection",
+      "wait": {
+        "Completed": false,
+        "StopReason": "wall-watchdog",
+        "Frames": 8,
+        "EngineSeconds": 0.05515955555555596,
+        "WallSeconds": 0.053
+      }
+    }
+  ],
+  "pythonTests": 56,
+  "renderedMainImages": 24,
+  "images": [
+    {
+      "name": "horse.compact.adult.v1-bay-moving.png",
+      "sha256": "443cb4be510409730be1246444f66c8cf3c322fb233a3f2be9874be413fcfb98"
+    },
+    {
+      "name": "horse.compact.adult.v1-chestnut-moving.png",
+      "sha256": "cebd54090d26226fc3de47b0790131657c2846bd29d0b7b678919042c23a9aa5"
+    },
+    {
+      "name": "horse.compact.adult.v1-cremello-moving.png",
+      "sha256": "83ce8a687c36a4c0f4b371bbfcaf6383620a4d9abe0fb9cdaac21a1b4099bf8e"
+    },
+    {
+      "name": "horse.compact.adult.v1-markings-head.png",
+      "sha256": "291b3e4a7e66251e8208c2c916d645877c727203bfd9d663893cafbe42546056"
+    },
+    {
+      "name": "horse.compact.adult.v1-markings-legs.png",
+      "sha256": "1d4d559de45eeb361371e766c1e5801060063961e20bb64fc8a9709abb6c9150"
+    },
+    {
+      "name": "horse.compact.foal.v1-bay-moving.png",
+      "sha256": "cd680ae1aa248d3df84a570fd11b1498aa038878b3d58bab099df1f85d159322"
+    },
+    {
+      "name": "horse.compact.foal.v1-chestnut-moving.png",
+      "sha256": "48693d328938255e5a1a0176ec12f672b8cb1bf0a8a79413010623aa20111950"
+    },
+    {
+      "name": "horse.compact.foal.v1-cremello-moving.png",
+      "sha256": "0bdd2f0c27be6d3e8021ba6062316d068a4bec90e337c8202bc3681e8149c47b"
+    },
+    {
+      "name": "horse.compact.foal.v1-markings-head.png",
+      "sha256": "b7bf78c958f061da3551dab64dfc25e10dcff98556d4e774bf059fe306f61811"
+    },
+    {
+      "name": "horse.compact.foal.v1-markings-legs.png",
+      "sha256": "89ef4b4827441ba8eea5f84f45cd9f72d215830b01dd87028a521624a2c87c62"
+    },
+    {
+      "name": "horse.standard.adult.v1-bay-moving.png",
+      "sha256": "ab55e9f5deb1df42a185336dfefefaaaa68551d1394e674b1bba319fcfc47b66"
+    },
+    {
+      "name": "horse.standard.adult.v1-chestnut-moving.png",
+      "sha256": "e839c9b85cb7f40591a67a807aef6b57554586a8df2d2d9a7d0b8d2065407af9"
+    },
+    {
+      "name": "horse.standard.adult.v1-cremello-moving.png",
+      "sha256": "e6107f8320be717511f40e741962464456b2521c8046f2911efc022600d1c7d2"
+    },
+    {
+      "name": "horse.standard.adult.v1-markings-head.png",
+      "sha256": "eef9634ae8adf71c5a64fd5ed1a004277322a02dbf835521869b38f268ae2bbf"
+    },
+    {
+      "name": "horse.standard.adult.v1-markings-legs.png",
+      "sha256": "7b680e56f3f21eee714480908306586134eca6972feb76db322eac50031d8b6f"
+    },
+    {
+      "name": "horse.standard.foal.v1-bay-moving.png",
+      "sha256": "e00561f6ffe22e2bf7b60c1e01335743d694f996cf9fe103d56d24c8648182d2"
+    },
+    {
+      "name": "horse.standard.foal.v1-chestnut-moving.png",
+      "sha256": "409ca27f2af3a6f09a973f6d7042cb808d4574899ace3fd23d32b7308129f10c"
+    },
+    {
+      "name": "horse.standard.foal.v1-cremello-moving.png",
+      "sha256": "2d61a02abd86b8be0fddcb08821c8ce93affc129b6cf87296d9f3ed6e35bfd09"
+    },
+    {
+      "name": "horse.standard.foal.v1-markings-head.png",
+      "sha256": "220c63f4d1b98adeacf1f0290013717cfecfccd97f4b708905dbac2d9fcee084"
+    },
+    {
+      "name": "horse.standard.foal.v1-markings-legs.png",
+      "sha256": "09c8c7f35e783fd5d663fe8476e464e71f186d9a510a72f3d5d95f4698f654ca"
+    },
+    {
+      "name": "viewer-horse.compact.adult.v1.png",
+      "sha256": "57c5a5f130af93ca6973c41ac6e78278230a5d050c4e1a42daca069997ae36d3"
+    },
+    {
+      "name": "viewer-horse.compact.foal.v1.png",
+      "sha256": "d25013159772cf7e7edb7f23952e54a3897bd37516fdb9a7d32fa2c693ddbed7"
+    },
+    {
+      "name": "viewer-horse.standard.adult.v1.png",
+      "sha256": "36b0b9ebe8c33a6c46a03949e59bc533934398f2b59522a05cfd4dbf8a605323"
+    },
+    {
+      "name": "viewer-horse.standard.foal.v1.png",
+      "sha256": "1d74073f2b9047b315958dcac2fa5204d0d029078959bb1a128aa014d32cebef"
+    }
+  ],
+  "captureStorage": "Four viewer images included here; all 24 originals remain in foal-transition-ci-fix/after-captures cloud working output."
+}
