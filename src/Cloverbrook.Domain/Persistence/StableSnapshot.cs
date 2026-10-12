@@ -140,6 +140,12 @@ namespace Cloverbrook.Domain
                 else Require(ledger.TryGetValue(receipt.IncomeTransactionId, out var credit) && credit.Kind == StableDayTransaction.IncomeLedgerKind
                     && credit.BreedingId == null && credit.DeltaCoins == receipt.IncomeCoins, "A daily income credit is missing or inconsistent with its receipt.");
             }
+            foreach (var sale in Ledger.Where(l => l.Kind == HorseMarket.SaleLedgerKind))
+                Require(sale.BreedingId == null && sale.DeltaCoins >= HorseMarket.MinimumPrice && sale.DeltaCoins <= HorseMarket.MaximumPrice
+                    && Horses.Any(h => HorseMarket.IsSold(h) && HorseMarket.SaleId(h.HorseId).Equals(sale.Id)), "A horse sale credit has no matching sold horse.");
+            foreach (var sold in Horses.Where(HorseMarket.IsSold))
+                Require(ledger.TryGetValue(HorseMarket.SaleId(sold.HorseId), out var saleCredit) && saleCredit.Kind == HorseMarket.SaleLedgerKind
+                    && sold.OriginCommitId != null, "A sold horse is missing its sale credit.");
             foreach (var credit in Ledger.Where(l => l.Kind == StableDayTransaction.IncomeLedgerKind))
                 Require(DailyState.Receipts.Any(r => r.IncomeCoins > 0 && r.IncomeTransactionId.Equals(credit.Id)
                     && credit.DeltaCoins == r.IncomeCoins), "Orphan daily income credit.");

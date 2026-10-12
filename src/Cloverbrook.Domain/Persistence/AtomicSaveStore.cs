@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -261,6 +262,39 @@ namespace Cloverbrook.Domain
             var horses = current.Horses.Select(h => h.HorseId.Equals(horseId) ? h.Rename(normalizedName) : h).ToArray();
             var replacement = current.WithHorses(horses).WithHeader(SaveHeaders.Copy(current.Header,
                 revision: checked(current.Header.SaveRevision + 1), schema: StableSnapshot.SchemaVersion, payloadHash: "unwritten"));
+            return SaveSnapshotUnlocked(current, replacement, expectedSaveRevision);
+        }
+
+        /// <summary>D-010: sells a bred adult to the club buyer for its current quote. An exact repeat returns the saved sale.</summary>
+        public StableSnapshot CommitSale(OwnerId requester, HorseId horseId, ulong expectedSaveRevision, long quotedPrice)
+        {
+            Check.NotNull(requester, nameof(requester)); Check.NotNull(horseId, nameof(horseId));
+            using var held = Lock(); var current = RequirePrimary();
+            var saleId = HorseMarket.SaleId(horseId);
+            var existing = current.Ledger.SingleOrDefault(l => l.Id.Equals(saleId));
+            if (existing != null)
+            {
+                if (existing.DeltaCoins != quotedPrice || !current.PlayerOwnerId.Equals(requester))
+                    throw new StableCommandRejectedException("idempotency_conflict", "This horse was already sold under different terms.");
+                return current;
+            }
+            return Publish(HorseMarket.ApplySale(current, requester, horseId, expectedSaveRevision, quotedPrice), preserveCurrentAsBackup: true);
+        }
+
+        /// <summary>D-011: records one day of gallop training for the entrants. Returns the current save unchanged when nobody can gain today.</summary>
+        public StableSnapshot RecordPractice(OwnerId requester, ulong expectedSaveRevision, IEnumerable<HorseId> entrants)
+        {
+            Check.NotNull(requester, nameof(requester)); Check.NotNull(entrants, nameof(entrants));
+            var ids = entrants.ToHashSet();
+            using var held = Lock(); var current = RequirePrimary();
+            if (!current.PlayerOwnerId.Equals(requester)) throw new StableCommandRejectedException("ownership", "Only the stable owner can train these horses.");
+            if (current.Header.SaveRevision != expectedSaveRevision) throw new StableCommandRejectedException("stale_save", "The stable changed; reload before training.");
+            var eligible = PracticeGallop.Eligibility(current).Where(e => e.Eligible).Select(e => e.HorseId).ToHashSet();
+            if (ids.Count == 0 || ids.Any(id => !eligible.Contains(id))) throw new StableCommandRejectedException("not_eligible", "Only horses that can gallop today can train.");
+            var day = current.Header.CalendarDay;
+            if (current.Horses.Where(h => ids.Contains(h.HorseId)).All(h => PracticeTraining.GainToday(h, day) == 0)) return current;
+            var replacement = current.WithHorses(current.Horses.Select(h => ids.Contains(h.HorseId) ? PracticeTraining.Apply(h, day) : h))
+                .WithHeader(SaveHeaders.Copy(current.Header, revision: checked(current.Header.SaveRevision + 1), schema: StableSnapshot.SchemaVersion, payloadHash: "unwritten"));
             return SaveSnapshotUnlocked(current, replacement, expectedSaveRevision);
         }
 

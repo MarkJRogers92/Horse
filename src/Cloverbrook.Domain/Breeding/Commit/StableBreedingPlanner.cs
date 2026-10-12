@@ -106,7 +106,7 @@ namespace Cloverbrook.Domain
                 var childId = new HorseId(Guid.ParseExact(Canonical.Hash("conception/horse", scope).Substring(0, 32), "N"));
                 Reject(state.Horses.Any(h => h.HorseId.Equals(childId)), "identity_collision", "The next offspring identity already exists; investigate save integrity.");
             }
-            Reject(state.Horses.Any(h => !h.OwnerId.Equals(state.PlayerOwnerId) || h.HomeAssignment != HomeKind.ActiveStable),
+            Reject(state.Horses.Any(h => HorseMarket.IsSold(h) ? false : !h.OwnerId.Equals(state.PlayerOwnerId) || h.HomeAssignment != HomeKind.ActiveStable),
                 "unsupported_population", "This prototype supports only owner-owned horses in the active stable.");
             Reject(state.PendingCapacityPlans.Any(p => p.BreedingId.Equals(eventId) || p.ReservationId.Equals(reservationId)),
                 "reservation_conflict", "This event or reservation is already held by another pending pairing.");
@@ -171,7 +171,8 @@ namespace Cloverbrook.Domain
                 catch (OverflowException)
                 { issues.Add(new EligibilityIssue("pending_capacity", "An existing confirmed capacity hold exceeds the supported calendar range.")); }
             }
-            currentUsed = state.Horses.Count + state.PendingCapacityPlans.Count;
+            var atHome = state.Horses.Count(h => !HorseMarket.IsSold(h)); // sold horses no longer use a home place
+            currentUsed = atHome + state.PendingCapacityPlans.Count;
             futureUsed = currentUsed + 1;
             var windowsProjected = false;
             try
@@ -179,7 +180,7 @@ namespace Cloverbrook.Domain
                 var birth = checked(current + policy.PregnancyDays);
                 var young = checked(birth + policy.FoalDays);
                 var adult = checked(young + policy.YoungsterDays);
-                var occupied = state.Horses.Count;
+                var occupied = atHome;
                 var reservations = state.PendingCapacityPlans.Count;
                 rows.Add(new ReservedCapacityWindow(CapacityStage.Pregnancy, current, birth, CapacitySlots, occupied, reservations, true));
                 rows.Add(new ReservedCapacityWindow(CapacityStage.Foal, birth, young, CapacitySlots, occupied, reservations, true));

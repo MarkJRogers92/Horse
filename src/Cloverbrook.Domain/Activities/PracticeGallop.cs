@@ -43,13 +43,13 @@ namespace Cloverbrook.Domain
     }
 
     /// <summary>
-    /// D-009 practice gallop: a versioned, deterministic 800 m flat-race kernel driven by developed game traits
-    /// (speed, acceleration, endurance, composure). It awards nothing and changes no save state; its seed derives
+    /// D-009/D-011 practice gallop: a versioned, deterministic 800 m flat-race kernel driven by developed game traits
+    /// (speed, acceleration, endurance, composure) plus learned gallop skill. It awards nothing and changes no save state; its seed derives
     /// from the save ID, calendar day, run index and entrants, never from a save RNG stream or frame timing.
     /// </summary>
     public static class PracticeGallop
     {
-        public const string Version = "activity.practice-gallop.v1";
+        public const string Version = "activity.practice-gallop.v2";
         public const int DistanceMeters = 800;
         public const int MaxEntrants = 6;
         public const int FrameIntervalMilliseconds = 500;
@@ -76,7 +76,7 @@ namespace Cloverbrook.Domain
                 if (!horses.TryGetValue(id, out var horse)) throw new ArgumentException("A horse in this gallop is not in the stable.", nameof(entrants));
                 var reason = BlockReason(state, horse);
                 if (reason != null) throw new ArgumentException(horse.Name + " cannot gallop: " + reason, nameof(entrants));
-                runners.Add(new Runner(horse, new PhenotypeResolver().ResolveGenetics(horse).Traits!.Developed));
+                runners.Add(new Runner(horse, new PhenotypeResolver().ResolveGenetics(horse).Traits!.Developed, PracticeTraining.Skill(horse)));
             }
             var seedHex = Canonical.Hash(new[] { Version, state.Header.SaveId.ToString(), state.Header.CalendarDay.ToString(CultureInfo.InvariantCulture),
                 runIndex.ToString(CultureInfo.InvariantCulture) }.Concat(ids.Select(id => id.ToString()))).Substring(0, 32);
@@ -125,7 +125,7 @@ namespace Cloverbrook.Domain
             private readonly long topSpeed, acceleration, fadePerSecond, noiseAmplitude; // mm/s, mm/s², mm/s per s, mm/s
             private long form, speed, fadeStartMs = -1;
             private CounterRng rng = null!;
-            public Runner(HorseRecord horse, QuantizedVector traits)
+            public Runner(HorseRecord horse, QuantizedVector traits, int gallopSkill)
             {
                 Horse = horse;
                 // Traits are 0..10000 with 5000 average. Every trait moves its parameter within a bounded range.
@@ -133,6 +133,9 @@ namespace Cloverbrook.Domain
                 acceleration = 4000 + (traits.Get("acceleration", 5000) - 5000) * 2000L / 5000;
                 fadePerSecond = 400 - (traits.Get("endurance", 5000) - 5000) * 300L / 5000;
                 noiseAmplitude = 600 - (traits.Get("composure", 5000) - 5000) * 400L / 5000;
+                // v2 (D-011): learned gallop skill adds up to 0.8 m/s and holds pace longer; it never changes inherited traits.
+                topSpeed += gallopSkill * 800L / PracticeTraining.MaxSkill;
+                fadePerSecond -= gallopSkill * 150L / PracticeTraining.MaxSkill;
             }
             public HorseRecord Horse { get; }
             public long Position { get; private set; }
