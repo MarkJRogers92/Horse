@@ -24,7 +24,7 @@ Live per-task status is in [`docs/TASK_STATUS.json`](docs/TASK_STATUS.json); the
 | P0-03, P1-04–P1-07, P1-09, P2-02, P2-07 | P0-02, P1-01/02/03/08 (D-007 art), P1-10, P2-01 (Details), P2-03 (income), P2-05 (practice gallop), P2-06 (owned parents), P2-08 (guide) | P2-04 estate, P2-09, P3+ |
 
 ## Next steps
-1. **`main` branch:** create it from this branch once visual CI is green. Owner-approved on 2026-10-12. The owner must make it the default branch in GitHub settings.
+1. **`main` branch and Mac install:** `main` is created from this branch once visual CI is green (owner-approved 2026-10-12). Every push to `main` runs `.github/workflows/macos-build.yml`, which uploads `Cloverbrook-Stables-macOS-<run>` (universal, ad-hoc signed, not notarized; see INSTALL.txt inside) to the run's Artifacts. It can also be started by hand from the Actions tab. The owner must make `main` the default branch in GitHub settings.
 2. Rest of P2-03: more buyers with weekly demand, buying horses, visitor activities.
 3. P2-05 settlement: entry fees and prizes need a persisted event record (save schema v4) through its own decision record. The practice kernel's parameters can be reused.
 4. P2-01: adoption, and inspection in 3D through the horse presenter.

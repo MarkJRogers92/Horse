@@ -1,0 +1,82 @@
+name: macos-build
+
+# Builds the installable Mac app from main (or on demand) and attaches it to the run as a download.
+# The app is universal (Apple Silicon + Intel) and ad-hoc signed, not Apple-notarized: on first launch,
+# right-click the app and choose Open. Nothing is published outside this repository's Actions page.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  GODOT_VERSION: 4.7.2-stable
+
+jobs:
+  macos:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Domain tests
+        run: dotnet test Cloverbrook.sln --configuration Release
+
+      - name: Cache Godot and macOS export template
+        id: godot-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/godot
+            ~/.local/share/godot/export_templates
+          key: godot-${{ env.GODOT_VERSION }}-mono-linux-macos-template
+
+      - name: Download Godot .NET and the macOS export template
+        if: steps.godot-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/godot && cd ~/godot
+          curl -sSL -o g.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_mono_linux_x86_64.zip"
+          unzip -q g.zip && rm g.zip
+          T=~/.local/share/godot/export_templates/${GODOT_VERSION/-stable/.stable}.mono
+          mkdir -p "$T"
+          curl -sSL -o t.tpz "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_mono_export_templates.tpz"
+          unzip -j -o t.tpz templates/macos.zip templates/version.txt -d "$T" && rm t.tpz
+
+      - name: Build game C# and import project
+        run: |
+          dotnet build game/Cloverbrook.Game.csproj -warnaserror
+          G=$(ls ~/godot/Godot_*/Godot_*.x86_64)
+          echo "G=$G" >> $GITHUB_ENV
+          $G --headless --import --path game
+
+      - name: Export the Mac app
+        run: |
+          # Xcode codesign does not exist on Linux; Godot's built-in ad-hoc signing lets Apple Silicon run it.
+          sed -i 's/^codesign\/codesign=3/codesign\/codesign=1/' game/export_presets.cfg
+          sed -i "s/^application\/version=.*/application\/version=\"$(date -u +%Y%m%d).${GITHUB_RUN_NUMBER}\"/" game/export_presets.cfg
+          mkdir -p dist
+          $G --headless --path game --export-release macOS "$PWD/dist/Cloverbrook-Stables-macOS.zip"
+          unzip -l dist/Cloverbrook-Stables-macOS.zip | grep -q "Cloverbrook Stables.app/Contents/MacOS/Cloverbrook Stables"
+          cat > dist/INSTALL.txt <<'EOF'
+          Cloverbrook Stables for Mac (macOS 13 or newer, Apple Silicon or Intel)
+
+          1. Unzip Cloverbrook-Stables-macOS.zip and drag "Cloverbrook Stables.app" into Applications.
+          2. First launch: right-click (or Control-click) the app and choose Open, then Open again.
+             The app is ad-hoc signed but not Apple-notarized, so macOS asks once.
+             If macOS still refuses, run in Terminal:
+               xattr -dr com.apple.quarantine "/Applications/Cloverbrook Stables.app"
+          3. Choose "Manage stable" from the menu. Pip the rabbit will show you around.
+
+          Saves live in ~/Library/Application Support/Godot/app_userdata/Cloverbrook Stables/.
+          EOF
+          sed -i 's/^          //' dist/INSTALL.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Cloverbrook-Stables-macOS-${{ github.run_number }}
+          path: dist/
+          retention-days: 30
+          compression-level: 0
