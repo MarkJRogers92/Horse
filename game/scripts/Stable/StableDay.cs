@@ -315,6 +315,7 @@ public partial class StableDay : Node
         page.AddChild(footer);
 
         BuildReviewOverlay(root);
+        BuildInspectOverlay(root);
         BuildRecoveryDialog(root);
     }
 
@@ -371,6 +372,7 @@ public partial class StableDay : Node
         _care.QueueFreeChildren();
         _optionalToggles.Clear();
         _turnoutButtons.Clear();
+        _inspectButtons.Clear();
         foreach (var horse in _state.Horses
                      .OrderBy(h => h.LifeState.Stage is LifeStage.Foal or LifeStage.Youngster ? 0 : h.LifeState.Stage == LifeStage.Adult ? 1 : 2)
                      .ThenBy(h => h.Name, StringComparer.Ordinal))
@@ -378,7 +380,9 @@ public partial class StableDay : Node
             var care = _state.DailyState.For(horse.HorseId);
             var card = new PanelContainer();
             var content = new VBoxContainer(); content.AddThemeConstantOverride("separation", 3); card.AddChild(content);
-            content.AddChild(CozyTheme.Title(horse.Name, 20));
+            var header = new HBoxContainer();
+            var title = CozyTheme.Title(horse.Name, 20); title.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
+            header.AddChild(title); header.AddChild(InspectButton(horse.HorseId)); content.AddChild(header);
             content.AddChild(SmallText($"{StageName(horse.LifeState.Stage)} · {HomeName(horse.HomeAssignment)}"));
             content.AddChild(SmallText($"Condition: nutrition {Percent(care.Nutrition)} · bedding {Percent(care.Bedding)}"));
             content.AddChild(SmallText($"Comfort: turnout {Percent(care.Turnout)} · grooming {Percent(care.Grooming)}"));

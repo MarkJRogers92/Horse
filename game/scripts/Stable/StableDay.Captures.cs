@@ -55,6 +55,13 @@ public partial class StableDay
             Directory.CreateDirectory(directory);
 
             await CaptureFrame(Path.Combine(directory, "01_stable_day.png"));
+            var inspected = _state.Horses.OrderBy(h => h.Name, StringComparer.Ordinal).First();
+            _inspectButtons[inspected.HorseId].EmitSignal(BaseButton.SignalName.Pressed);
+            if (!_inspectOverlay.Visible || _inspectTitle.Text != inspected.Name || !_inspectDetails.Text.Contains("Coat: ", StringComparison.Ordinal)
+                || _inspectDetails.Text.Contains("Not born yet", StringComparison.Ordinal))
+                throw new InvalidOperationException("The Details button did not open the horse inspection with a visible coat.");
+            await CaptureFrame(Path.Combine(directory, "01b_inspect.png"));
+            _inspectOverlay.Visible = false;
             var turnout = _turnoutButtons.First();
             SetOptional(turnout.Key, true, null);
             turnout.Value.ButtonPressed = true;
@@ -79,7 +86,7 @@ public partial class StableDay
                 || _state.DailyState.For(turnout.Key).Turnout != 6200)
                 throw new InvalidOperationException("Reload did not show exactly one saved day, one 50-coin club support credit and one 36-coin debit.");
             await CaptureFrame(Path.Combine(directory, "03_day_2.png"));
-            GD.Print($"[stable-day-capture] OK screenshots=3 day={_state.Header.CalendarDay} coins={_state.Coins} output={directory}");
+            GD.Print($"[stable-day-capture] OK screenshots=4 day={_state.Header.CalendarDay} coins={_state.Coins} output={directory}");
             GetTree().Quit(0);
         }
         catch (Exception ex)

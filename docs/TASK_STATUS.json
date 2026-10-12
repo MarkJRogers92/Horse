@@ -93,7 +93,7 @@
       "id": "P2-01",
       "title": "Build horse roster, inspection, adoption, and basic care",
       "status": "partial",
-      "notes": "Roster list in the stable screen; inspection screen in progress (2026-10-12)."
+      "notes": "Roster list plus a read-only Details panel (visible coat, age, family, recorded DNA tests, care) via HorseProfiles; adoption and 3D inspection not done."
     },
     {
       "id": "P2-02",
