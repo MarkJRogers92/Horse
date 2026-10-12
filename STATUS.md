@@ -441,6 +441,7 @@ The owner selected the CC0 reference horse in `art/reference/Horse_Reference/`. 
 Local evidence: warnings-as-errors game build passed; both actual Godot imports retained masks/UV2, normal detail and a 27-bone skinned rig; main-scene smoke passed; Metal captured 131 images with zero capture failures, covering all 13 fixture classes at both ages and three correct unsupported refusals. The editable foal reopened in Blender, passed a bounded FK posing exercise and has six calibrated orthographic reference views. Independent peer review checked the juvenile silhouette, supporting import/code evidence and final CI images.
 
 Remote evidence: [visual run 38099550595](https://github.com/MarkJRogers92/Horse/actions/runs/38099550595) at `f0c5b10` passed build/import/smoke and 131 captures with zero failures; [domain run 38099550598](https://github.com/MarkJRogers92/Horse/actions/runs/38099550598) passed 147/147. Downloaded logs and actual clay/coat/marking/probe images were inspected and compared with the preserved placeholder using the same llvmpipe renderer. See `docs/visual/evidence/reference_f0c5b10/README.md`. No gait clips or adult breed-shape morphs are claimed. No domain/frozen handoff/matrix edits, purchases or other-branch merges.
+**Also merged:** `rea/horse-coat-preview` (2026-10-12, Kimi) adds base coat class to gray-coat forecast outcomes with 5 new tests; 152/152 on that branch locally (pre-merge, not re-run on the combined tree).
 
 ## Task state
 | Task | State |
@@ -448,6 +449,7 @@ Remote evidence: [visual run 38099550595](https://github.com/MarkJRogers92/Horse
 | P0-02a / P0-03 / P1-04 / P1-05 / P1-06 / P1-07 | Complete scoped headless slices, including preserved unified forecasts |
 | P1-09 snapshot + codec + atomic store | Verified in final combined suite: 147/147 on macOS and Linux CI |
 | P1-09 numeric/rolling-backup regressions | 51f26128 preserved: 138/138 CI; final suite 147/147 |
+| REA horse coat calculator review + gray preview improvement | Complete: branch `rea/horse-coat-preview`, 5 new gray forecast tests, full suite 152/152 locally |
 | Public query API + integration/performance | Complete: a15266e3, 147/147 in CI run 38094410593 and local macOS |
 | P2-02 calendar / care / operating-cost prototype | Bounded slice verified: 165/165 local + Linux CI; real Godot screen/pointer checks; CI build/import/startup/stable-day checks passed at 00aa158 |
 | P2-07 saved births / naming / foal growth | Bounded committed-conception slice locally verified: 178/178, actual saved Godot lifecycle and mouse checks; 178/178 Linux CI plus the complete game/visual job passed at 80076b0 |
@@ -479,7 +481,7 @@ All listed jobs passed the frozen-spec validator and Release dotnet test. Older 
 | Public API + final combined proof | a15266e3 | [38094410593](https://github.com/MarkJRogers92/Horse/actions/runs/38094410593) / 114337226950 | 147/147 | 11685351742 |
 | P2-07 birth/growth combined proof | 80076b0 | [domain run 38109572283](https://github.com/MarkJRogers92/Horse/actions/runs/38109572283) / 114382148586 | 178/178 | 11690753023 |
 | P2-06 normal saved breeding combined proof | e9c361b | [domain run 38112660179](https://github.com/MarkJRogers92/Horse/actions/runs/38112660179) / 114391260774 | 190/190 | 11692113036 |
-
+| Gray-base coat forecast preview | 17129b69 | Local macOS `DOTNET_ROLL_FORWARD=LatestMajor dotnet test -c Release` | 152/152 | — |
 Latest verified descriptor artifact: 11685376690 (run 38094410593). Initial P1-07 CS0119 was fixed before these green runs; no failed build was called a pass.
 
 ## Completion handoff — P1-07/P1-09 implemented scope

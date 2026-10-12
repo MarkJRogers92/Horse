@@ -77,6 +77,25 @@ namespace Cloverbrook.Domain
         public double LowerProbability { get; }
         public double UpperProbability { get; }
         public PresentationResolution? Example { get; }
+        // Preserved underlying base coat class (e.g. "bay" for a grey-over-bay outcome).
+        public string? BaseCoatClass => Example?.Descriptor?.BaseCoatClass;
+        // Active overlay layers on top of the base coat, excluding base_pigment.
+        public IReadOnlyList<string> OverlayLabels => Example?.Descriptor?.CoatLayers
+            .Where(l => l != "base_pigment" && l != Example.Descriptor.BaseCoatClass).ToArray() ?? Array.Empty<string>();
+        // Display-friendly label that keeps the hidden underlying colour separate from
+        // the grey overlay, matching the reference calculator's "Gray (Base)" form.
+        public string DisplayLabel
+        {
+            get
+            {
+                if (Example?.Descriptor == null) return Label;
+                var baseClass = Example.Descriptor.BaseCoatClass;
+                if (Example.Descriptor.CoatLayers.Contains("grey_age") && baseClass != null)
+                    return "Gray (" + Title(baseClass.Replace('_', ' ')) + ")";
+                return Label;
+            }
+        }
+        private static string Title(string text) => char.ToUpperInvariant(text[0]) + text.Substring(1);
         public string ExampleNotice => "Possible coat outcome only; markings and body are illustrative, not a committed foal.";
     }
     public sealed class CoatForecast
