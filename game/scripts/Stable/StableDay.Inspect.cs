@@ -13,31 +13,27 @@ public partial class StableDay
     private Control _inspectOverlay = null!;
     private Label _inspectTitle = null!;
     private Label _inspectDetails = null!;
+    private Button _inspectSellButton = null!;
+    private HorseId? _inspectedHorse;
     private readonly Dictionary<HorseId, Button> _inspectButtons = new();
 
     private void BuildInspectOverlay(Control root)
     {
-        _inspectOverlay = new Control { Visible = false };
-        _inspectOverlay.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-        root.AddChild(_inspectOverlay);
-        var dim = new ColorRect { Color = new Color(0.16f, 0.11f, 0.17f, 0.52f), MouseFilter = Control.MouseFilterEnum.Stop };
-        dim.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-        _inspectOverlay.AddChild(dim);
-        var center = new CenterContainer(); center.SetAnchorsPreset(Control.LayoutPreset.FullRect); _inspectOverlay.AddChild(center);
-        var panel = new PanelContainer { CustomMinimumSize = new Vector2(560, 0) }; center.AddChild(panel);
-        var box = new VBoxContainer(); box.AddThemeConstantOverride("separation", 12); panel.AddChild(box);
-        _inspectTitle = CozyTheme.Title("", 26); box.AddChild(_inspectTitle);
-        _inspectDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(500, 0) };
-        box.AddChild(_inspectDetails);
-        var buttons = new HBoxContainer(); buttons.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill });
-        var close = new Button { Text = "Close", CustomMinimumSize = new Vector2(150, 44) };
+        _inspectOverlay = CozyTheme.Dialog(root, "", 580, out var body, out var buttons, out _inspectTitle);
+        _inspectDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(520, 0) };
+        body.AddChild(_inspectDetails);
+        _inspectSellButton = new Button { Text = "Ask for an offer", CustomMinimumSize = new Vector2(170, 46) };
+        _inspectSellButton.Pressed += () => { if (_inspectedHorse != null) ShowSaleOffer(_inspectedHorse); };
+        buttons.AddChild(_inspectSellButton);
+        var close = new Button { Text = "Close", CustomMinimumSize = new Vector2(130, 46) };
         close.Pressed += () => _inspectOverlay.Visible = false;
-        buttons.AddChild(close); box.AddChild(buttons);
+        buttons.AddChild(close);
+        CozyTheme.FinishDialog(body, buttons);
     }
 
     private Button InspectButton(HorseId horseId)
     {
-        var button = new Button { Text = "Details", CustomMinimumSize = new Vector2(110, 34), SizeFlagsHorizontal = Control.SizeFlags.ShrinkEnd };
+        var button = new Button { Text = "Details", CustomMinimumSize = new Vector2(104, 38), SizeFlagsHorizontal = Control.SizeFlags.ShrinkEnd };
         button.Pressed += () => ShowInspection(horseId);
         _inspectButtons[horseId] = button;
         return button;
@@ -49,8 +45,14 @@ public partial class StableDay
         try
         {
             var profile = HorseProfiles.For(_state, horseId);
+            var horse = _state.Horses.Single(h => h.HorseId.Equals(horseId));
+            _inspectedHorse = horseId;
             _inspectTitle.Text = profile.Name;
-            _inspectDetails.Text = string.Join("\n", InspectionLines(profile));
+            _inspectDetails.Text = string.Join("\n", InspectionLines(profile, PracticeTraining.Skill(horse)));
+            var offer = HorseMarket.Quote(_state, horseId);
+            _inspectSellButton.Visible = horse.OriginCommitId != null && !HorseMarket.IsSold(horse);
+            _inspectSellButton.Disabled = !offer.Allowed || _busy;
+            _inspectSellButton.TooltipText = offer.Allowed ? "" : offer.BlockReason ?? "";
             _inspectOverlay.Visible = true;
             _guideSawDetails = true; RefreshGuide();
         }
@@ -60,7 +62,7 @@ public partial class StableDay
         }
     }
 
-    private static IEnumerable<string> InspectionLines(HorseProfile profile)
+    private static IEnumerable<string> InspectionLines(HorseProfile profile, int gallopSkill)
     {
         var role = profile.Role switch { ReproductiveRole.Mare => "Mare", ReproductiveRole.Stallion => "Stallion", _ => "Horse" };
         var age = profile.AgeDays switch
@@ -78,6 +80,8 @@ public partial class StableDay
         if (profile.DueDay.HasValue) yield return $"Expecting a foal on calendar day {profile.DueDay.Value + 1}.";
         if (profile.Care != null)
             yield return $"Care: nutrition {Percent(profile.Care.Nutrition)} · bedding {Percent(profile.Care.Bedding)} · turnout {Percent(profile.Care.Turnout)} · grooming {Percent(profile.Care.Grooming)}";
+        if (profile.Stage == LifeStage.Adult)
+            yield return gallopSkill == 0 ? "Gallop training: not started. Practice gallops build it, once a day." : $"Gallop training: {Percent(gallopSkill)}";
         yield return "";
         if (profile.KnownGenetics.Count == 0)
             yield return "Known genetics: no DNA tests recorded yet. Breeding forecasts use only what is known.";

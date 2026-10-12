@@ -105,7 +105,7 @@
       "id": "P2-03",
       "title": "Implement elementary NPC offers, income, and shared valuation primitives",
       "status": "partial",
-      "notes": "Club support income done (D-008); NPC offers and valuation not started."
+      "notes": "Club support income (D-008) and club buyer sales of bred adults (D-010). Multiple buyers, demand caps and purchases not done."
     },
     {
       "id": "P2-04",
@@ -116,7 +116,7 @@
       "id": "P2-05",
       "title": "Create shared competition rules and elementary playable/watchable activities",
       "status": "partial",
-      "notes": "Deterministic trait-driven 800 m practice gallop with replay panel (D-009). No entry fees, prizes, persisted settlement, barrels or 3D presenter yet."
+      "notes": "Deterministic practice gallop (D-009) with saved once-a-day gallop training (D-011). Entry fees, prizes, persisted event settlement, barrels and 3D presenter not done."
     },
     {
       "id": "P2-06",

@@ -57,35 +57,19 @@ public partial class StableDay
 
     private void BuildBreedingOverlay(Control root)
     {
-        _breedingOverlay = new Control { Visible = false };
-        _breedingOverlay.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-        root.AddChild(_breedingOverlay);
-        var dim = new ColorRect { Color = new Color(0.16f, 0.11f, 0.17f, 0.58f), MouseFilter = Control.MouseFilterEnum.Stop };
-        dim.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-        _breedingOverlay.AddChild(dim);
-        var center = new CenterContainer();
-        center.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-        _breedingOverlay.AddChild(center);
-        var panel = new PanelContainer { CustomMinimumSize = new Vector2(660, 0) };
-        center.AddChild(panel);
-        var box = new VBoxContainer();
-        box.AddThemeConstantOverride("separation", 10);
-        panel.AddChild(box);
-        box.AddChild(CozyTheme.Title("Review breeding plan", 25));
-        var scroll = new ScrollContainer { CustomMinimumSize = new Vector2(620, 420), HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled };
+        _breedingOverlay = CozyTheme.Dialog(root, "Review breeding plan", 680, out var box, out var buttons, out _);
+        var scroll = new ScrollContainer { CustomMinimumSize = new Vector2(620, 400), HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled };
         _breedingDetails = new Label { CustomMinimumSize = new Vector2(600, 0), AutowrapMode = TextServer.AutowrapMode.WordSmart };
         _breedingDetails.AddThemeFontSizeOverride("font_size", 15);
         scroll.AddChild(_breedingDetails);
         box.AddChild(scroll);
-        var buttons = new HBoxContainer();
-        buttons.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill });
-        var cancel = new Button { Text = "Cancel", CustomMinimumSize = new Vector2(140, 44) };
+        var cancel = new Button { Text = "Cancel", CustomMinimumSize = new Vector2(140, 46) };
         cancel.Pressed += CancelBreedingReview;
         buttons.AddChild(cancel);
-        _confirmBreedingButton = new Button { Text = "Confirm · 50 coins", CustomMinimumSize = new Vector2(180, 44) };
+        _confirmBreedingButton = new Button { Text = "Confirm · 50 coins", CustomMinimumSize = new Vector2(190, 46) };
         _confirmBreedingButton.Pressed += ConfirmBreedingReview;
         buttons.AddChild(_confirmBreedingButton);
-        box.AddChild(buttons);
+        CozyTheme.FinishDialog(box, buttons);
     }
 
     private void RefreshBreedingUi()
@@ -405,11 +389,27 @@ public partial class StableDay
                 || _state.Ledger.Single(entry => entry.Kind == "breeding").DeltaCoins != -50)
                 throw new InvalidOperationException("The saved wallet ledger does not contain exactly one 50-coin breeding debit.");
             await CaptureFrame(Path.Combine(directory, "07_reloaded_adult.png"));
+            // D-010: sell the grown foal to the club through the real Details -> offer -> Sell controls.
+            var coinsBeforeSale = _state.Coins;
+            _inspectButtons[childId].EmitSignal(BaseButton.SignalName.Pressed);
+            if (!_inspectSellButton.Visible || _inspectSellButton.Disabled) throw new InvalidOperationException("The grown foal was not offered for sale.");
+            _inspectSellButton.EmitSignal(BaseButton.SignalName.Pressed);
+            var offer = _reviewedOffer ?? throw new InvalidOperationException("Asking for an offer did not open the club's offer.");
+            await CaptureFrame(Path.Combine(directory, "08_offer.png"));
+            _confirmSaleButton.EmitSignal(BaseButton.SignalName.Pressed);
+            for (var frame = 0; frame < 600 && _busy; frame++) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+            _reloadButton.EmitSignal(BaseButton.SignalName.Pressed);
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+            if (_saleOverlay.Visible || _state.Coins != coinsBeforeSale + offer.PriceCoins || _inspectButtons.ContainsKey(childId)
+                || !HorseMarket.IsSold(_state.Horses.Single(h => h.HorseId.Equals(childId))))
+                throw new InvalidOperationException("The sale did not pay once, save, and move the horse to the club.");
+            await CaptureFrame(Path.Combine(directory, "09_after_sale.png"));
             var checks = new
             {
                 outcome = "ok",
                 day = _state.Header.CalendarDay,
                 coins = _state.Coins,
+                salePrice = offer.PriceCoins,
                 breedingFee = StableBreedingPlanner.CostCoins,
                 conceptionCount = _state.Conceptions.Count,
                 breedingEventCounter = _state.Header.RngStreams.Breeding.EventCounter,
@@ -424,7 +424,7 @@ public partial class StableDay
                 screenshots = Directory.GetFiles(directory, "*.png").Select(Path.GetFileName).OrderBy(name => name, StringComparer.Ordinal).ToArray()
             };
             File.WriteAllText(Path.Combine(directory, "checks.json"), JsonSerializer.Serialize(checks, new JsonSerializerOptions { WriteIndented = true }));
-            GD.Print($"[stable-breeding-capture] OK screenshots=7 day={_state.Header.CalendarDay} coins={_state.Coins} child={childId} output={directory}");
+            GD.Print($"[stable-breeding-capture] OK screenshots=9 day={_state.Header.CalendarDay} coins={_state.Coins} child={childId} output={directory}");
             GetTree().Quit(0);
         }
         catch (Exception ex)

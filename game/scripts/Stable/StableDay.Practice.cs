@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Cloverbrook.Domain;
 using Cloverbrook.Game.UI;
 using Godot;
@@ -8,9 +9,9 @@ using Godot;
 namespace Cloverbrook.Game.Stable;
 
 /// <summary>
-/// Practice gallop (P2-05 slice, D-009). The domain decides the whole race up front; this panel only replays
-/// its recorded frames, so playback speed or frame rate can never change a result. Practice pays nothing and
-/// does not change the save.
+/// Practice gallop (P2-05 slice, D-009/D-011). The domain decides the whole race up front; this panel only replays
+/// its recorded frames, so playback speed or frame rate can never change a result. Practice pays nothing; each
+/// horse's first gallop of the day is saved as gallop training.
 /// </summary>
 public partial class StableDay
 {
@@ -24,45 +25,38 @@ public partial class StableDay
     private readonly Dictionary<HorseId, CheckBox> _practiceChoices = new();
     private readonly List<ProgressBar> _practiceLanes = new();
     private PracticeGallopResult? _practiceResult;
+    private Dictionary<HorseId, int> _practiceGains = new();
     private double _practiceElapsedMs = -1;
     private int _practiceRuns;
 
     private void BuildPracticeOverlay(Control root)
     {
-        _practiceOverlay = new Control { Visible = false };
-        _practiceOverlay.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-        root.AddChild(_practiceOverlay);
-        var dim = new ColorRect { Color = new Color(0.16f, 0.11f, 0.17f, 0.52f), MouseFilter = Control.MouseFilterEnum.Stop };
-        dim.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-        _practiceOverlay.AddChild(dim);
-        var center = new CenterContainer(); center.SetAnchorsPreset(Control.LayoutPreset.FullRect); _practiceOverlay.AddChild(center);
-        var panel = new PanelContainer { CustomMinimumSize = new Vector2(640, 0) }; center.AddChild(panel);
-        var box = new VBoxContainer(); box.AddThemeConstantOverride("separation", 10); panel.AddChild(box);
-        box.AddChild(CozyTheme.Title($"Practice gallop · {PracticeGallop.DistanceMeters} m", 26));
-        box.AddChild(SmallText("A friendly gallop on the home track. Speed, acceleration, stamina and calm all matter. Practice is free and changes nothing in your save."));
+        _practiceOverlay = CozyTheme.Dialog(root, $"Practice gallop · {PracticeGallop.DistanceMeters} m", 660, out var box, out var buttons, out _);
+        box.AddChild(SmallText("A friendly gallop on the home track. Speed, acceleration, stamina and calm all matter. Each horse's first gallop of the day counts as training."));
         _practicePicks = new VBoxContainer(); _practicePicks.AddThemeConstantOverride("separation", 4); box.AddChild(_practicePicks);
         _practiceTrack = new VBoxContainer(); _practiceTrack.AddThemeConstantOverride("separation", 6); box.AddChild(_practiceTrack);
-        _practiceResults = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(580, 0) };
+        _practiceResults = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(600, 0) };
         box.AddChild(_practiceResults);
-        var buttons = new HBoxContainer(); buttons.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill });
-        var close = new Button { Text = "Close", CustomMinimumSize = new Vector2(150, 44) };
+        var close = new Button { Text = "Close", CustomMinimumSize = new Vector2(130, 46) };
         close.Pressed += () => { _practiceOverlay.Visible = false; _practiceElapsedMs = -1; };
         buttons.AddChild(close);
-        _practiceStart = new Button { Text = "Start gallop", CustomMinimumSize = new Vector2(150, 44) };
-        _practiceStart.Pressed += StartPractice;
-        buttons.AddChild(_practiceStart); box.AddChild(buttons);
+        _practiceStart = new Button { Text = "Start gallop", CustomMinimumSize = new Vector2(160, 46) };
+        _practiceStart.Pressed += () => _ = StartPracticeAsync();
+        buttons.AddChild(_practiceStart);
+        CozyTheme.FinishDialog(box, buttons);
     }
 
     private void ShowPractice()
     {
         if (_state == null || _busy) return;
         _practicePicks.QueueFreeChildren(); _practiceTrack.QueueFreeChildren(); _practiceChoices.Clear(); _practiceLanes.Clear();
-        _practiceResult = null; _practiceElapsedMs = -1; _practiceResults.Text = "";
+        _practiceResult = null; _practiceElapsedMs = -1; _practiceResults.Text = ""; _practiceStart.Text = "Start gallop";
         var eligible = 0;
-        foreach (var entry in PracticeGallop.Eligibility(_state))
+        foreach (var entry in PracticeGallop.Eligibility(_state).Where(e => !HorseMarket.IsSold(_state.Horses.Single(h => h.HorseId.Equals(e.HorseId)))))
         {
-            var choice = new CheckBox { Text = entry.Eligible ? entry.Name : $"{entry.Name} · {entry.BlockReason}", Disabled = !entry.Eligible,
-                ButtonPressed = entry.Eligible && eligible < PracticeGallop.MaxEntrants };
+            var horse = _state.Horses.Single(h => h.HorseId.Equals(entry.HorseId));
+            var note = !entry.Eligible ? $" · {entry.BlockReason}" : PracticeTraining.TrainedToday(horse, _state.Header.CalendarDay) ? " · trained today" : "";
+            var choice = new CheckBox { Text = entry.Name + note, Disabled = !entry.Eligible, ButtonPressed = entry.Eligible && eligible < PracticeGallop.MaxEntrants };
             if (entry.Eligible) { eligible++; _practiceChoices[entry.HorseId] = choice; }
             _practicePicks.AddChild(choice);
         }
@@ -71,36 +65,45 @@ public partial class StableDay
         _practiceOverlay.Visible = true;
     }
 
-    private void StartPractice()
+    private async Task StartPracticeAsync()
     {
-        if (_state == null) return;
+        if (_state == null || _busy || _recoveryRequired || _pendingRequest != null || _pendingBreedingRequest != null) return;
+        var picked = _practiceChoices.Where(p => p.Value.ButtonPressed).Select(p => p.Key).ToArray();
+        if (picked.Length == 0 || picked.Length > PracticeGallop.MaxEntrants)
+        {
+            _practiceResults.Text = $"Choose 1 to {PracticeGallop.MaxEntrants} horses.";
+            return;
+        }
+        _busy = true; _practiceStart.Disabled = true;
         try
         {
-            var picked = _practiceChoices.Where(p => p.Value.ButtonPressed).Select(p => p.Key).ToArray();
-            if (picked.Length == 0 || picked.Length > PracticeGallop.MaxEntrants)
-            {
-                _practiceResults.Text = $"Choose 1 to {PracticeGallop.MaxEntrants} horses.";
-                return;
-            }
-            _practiceResult = PracticeGallop.Run(_state, picked, _practiceRuns++);
+            var before = _state;
+            _practiceResult = PracticeGallop.Run(before, picked, _practiceRuns++);
+            var owner = before.PlayerOwnerId; var revision = before.Header.SaveRevision;
+            _state = await Task.Run(() => _store.RecordPractice(owner, revision, picked));
+            _practiceGains = picked.ToDictionary(id => id, id => PracticeTraining.Skill(_state.Horses.Single(h => h.HorseId.Equals(id)))
+                - PracticeTraining.Skill(before.Horses.Single(h => h.HorseId.Equals(id))));
             _practiceTrack.QueueFreeChildren(); _practiceLanes.Clear();
             foreach (var entrant in _practiceResult.Entrants)
             {
                 var lane = new HBoxContainer(); lane.AddThemeConstantOverride("separation", 10);
                 var name = SmallText(entrant.Name); name.CustomMinimumSize = new Vector2(120, 0); lane.AddChild(name);
-                var bar = new ProgressBar { MinValue = 0, MaxValue = 1000, ShowPercentage = false, CustomMinimumSize = new Vector2(440, 22),
+                var bar = new ProgressBar { MinValue = 0, MaxValue = 1000, ShowPercentage = false, CustomMinimumSize = new Vector2(460, 24),
                     SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
-                bar.AddThemeStyleboxOverride("background", CozyTheme.Box(CozyTheme.Warning, 8, 0));
-                bar.AddThemeStyleboxOverride("fill", CozyTheme.Box(CozyTheme.Accent, 8, 0));
                 lane.AddChild(bar); _practiceLanes.Add(bar); _practiceTrack.AddChild(lane);
             }
             _practiceResults.Text = "And they're off!";
-            _practiceStart.Disabled = true;
             _practiceElapsedMs = 0;
         }
         catch (Exception ex)
         {
             _practiceResults.Text = "The gallop could not start. " + PlainError(ex);
+            _practiceStart.Disabled = false;
+        }
+        finally
+        {
+            _busy = false;
+            Refresh();
         }
     }
 
@@ -124,7 +127,8 @@ public partial class StableDay
         if (index < result.Frames.Count - 1) return;
         _practiceElapsedMs = -1;
         _practiceStart.Disabled = false; _practiceStart.Text = "Gallop again";
-        var lines = result.Entrants.OrderBy(e => e.Place).Select(e => $"{Ordinal(e.Place)} · {e.Name} · {e.FinishMilliseconds / 1000.0:0.0} s").ToList();
+        var lines = result.Entrants.OrderBy(e => e.Place).Select(e => $"{Ordinal(e.Place)} · {e.Name} · {e.FinishMilliseconds / 1000.0:0.0} s"
+            + (_practiceGains.TryGetValue(e.HorseId, out var gain) && gain > 0 ? $"  ·  training +{Percent(gain)}" : "")).ToList();
         lines.Add("");
         lines.AddRange(result.Observations);
         _practiceResults.Text = string.Join("\n", lines);

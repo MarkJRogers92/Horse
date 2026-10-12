@@ -55,7 +55,7 @@ public partial class StableDay
             Directory.CreateDirectory(directory);
 
             await CaptureFrame(Path.Combine(directory, "01_stable_day.png"));
-            if (!_guideRow.Visible || !_guideText.Text.StartsWith("Guide 1 of 5", StringComparison.Ordinal))
+            if (!_guideRow.Visible || _guideStep != 1)
                 throw new InvalidOperationException("A new stable did not open on the first guide step.");
             var inspected = _state.Horses.OrderBy(h => h.Name, StringComparer.Ordinal).First();
             _inspectButtons[inspected.HorseId].EmitSignal(BaseButton.SignalName.Pressed);
@@ -64,12 +64,12 @@ public partial class StableDay
                 throw new InvalidOperationException("The Details button did not open the horse inspection with a visible coat.");
             await CaptureFrame(Path.Combine(directory, "01b_inspect.png"));
             _inspectOverlay.Visible = false;
-            if (!_guideText.Text.StartsWith("Guide 2 of 5", StringComparison.Ordinal))
+            if (_guideStep != 2)
                 throw new InvalidOperationException("Opening Details did not advance the guide to care planning.");
             var turnout = _turnoutButtons.First();
             SetOptional(turnout.Key, true, null);
             turnout.Value.ButtonPressed = true;
-            if (!_guideText.Text.StartsWith("Guide 3 of 5", StringComparison.Ordinal))
+            if (_guideStep != 3)
                 throw new InvalidOperationException("Choosing comfort care did not advance the guide to ending the day.");
             _reviewButton.EmitSignal(BaseButton.SignalName.Pressed);
             if (!_reviewOverlay.Visible || _preview?.Allowed != true)
@@ -91,7 +91,7 @@ public partial class StableDay
                 || _state.Ledger.Count(e => e.Kind == "stable-income") != 1
                 || _state.DailyState.For(turnout.Key).Turnout != 6200)
                 throw new InvalidOperationException("Reload did not show exactly one saved day, one 50-coin club support credit and one 36-coin debit.");
-            if (!_guideText.Text.StartsWith("Guide 4 of 5", StringComparison.Ordinal))
+            if (_guideStep != 4)
                 throw new InvalidOperationException("Ending the first day did not advance the guide to breeding.");
             await CaptureFrame(Path.Combine(directory, "03_day_2.png"));
             var coinsBeforePractice = _state.Coins; var hashBeforePractice = _state.Header.PayloadHash;
@@ -99,15 +99,16 @@ public partial class StableDay
             if (!_practiceOverlay.Visible || _practiceStart.Disabled || _practiceChoices.Count != 2)
                 throw new InvalidOperationException("Practice gallop did not offer both starter horses.");
             _practiceStart.EmitSignal(BaseButton.SignalName.Pressed);
-            for (var frame = 0; frame < 6; frame++) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+            for (var frame = 0; frame < 600 && (_busy || _practiceResult == null); frame++) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
             if (_practiceResult == null) throw new InvalidOperationException("Practice gallop did not start.");
             _practiceElapsedMs = (_practiceResult.Frames.Count - 1) * _practiceResult.FrameIntervalMilliseconds * 0.55;
             AdvancePracticePlayback();
             await CaptureFrame(Path.Combine(directory, "04a_practice_running.png"));
             FinishPracticePlayback();
             if (_practiceResult == null || !_practiceResults.Text.StartsWith("1st · ", StringComparison.Ordinal)
-                || _practiceLanes.Any(lane => lane.Value < 1000) || _state.Coins != coinsBeforePractice || _state.Header.PayloadHash != hashBeforePractice)
-                throw new InvalidOperationException("Practice gallop did not finish with placings, or it changed the saved stable.");
+                || _practiceLanes.Any(lane => lane.Value < 1000) || _state.Coins != coinsBeforePractice || _state.Header.PayloadHash == hashBeforePractice
+                || _state.Horses.Any(h => PracticeTraining.Skill(h) != PracticeTraining.BaseGain) || !_practiceResults.Text.Contains("training +", StringComparison.Ordinal))
+                throw new InvalidOperationException("Practice gallop did not finish with placings and one saved day of training for each horse.");
             await CaptureFrame(Path.Combine(directory, "04_practice.png"));
             _practiceOverlay.Visible = false;
             GD.Print($"[stable-day-capture] OK screenshots=6 day={_state.Header.CalendarDay} coins={_state.Coins} output={directory}");
@@ -252,6 +253,7 @@ public partial class StableDay
 
     private async Task CaptureFrame(string path)
     {
+        _guideSpeaker.Finish(); _saleSpeaker.Finish();
         await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
         await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
         var image = GetViewport().GetTexture().GetImage();

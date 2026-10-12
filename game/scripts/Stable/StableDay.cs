@@ -325,6 +325,7 @@ public partial class StableDay : Node
         BuildReviewOverlay(root);
         BuildInspectOverlay(root);
         BuildPracticeOverlay(root);
+        BuildSaleOverlay(root);
         BuildRecoveryDialog(root);
     }
 
@@ -340,24 +341,15 @@ public partial class StableDay : Node
 
     private void BuildReviewOverlay(Control root)
     {
-        _reviewOverlay = new Control { Visible = false };
-        _reviewOverlay.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-        root.AddChild(_reviewOverlay);
-        var dim = new ColorRect { Color = new Color(0.16f, 0.11f, 0.17f, 0.52f), MouseFilter = Control.MouseFilterEnum.Stop };
-        dim.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-        _reviewOverlay.AddChild(dim);
-        var center = new CenterContainer(); center.SetAnchorsPreset(Control.LayoutPreset.FullRect); _reviewOverlay.AddChild(center);
-        var panel = new PanelContainer { CustomMinimumSize = new Vector2(620, 0) }; center.AddChild(panel);
-        var box = new VBoxContainer(); box.AddThemeConstantOverride("separation", 12); panel.AddChild(box);
-        box.AddChild(CozyTheme.Title("Review today's plan", 26));
-        _reviewDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(560, 0) };
+        _reviewOverlay = CozyTheme.Dialog(root, "Review today's plan", 640, out var box, out var buttons, out _);
+        _reviewDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(580, 0) };
         box.AddChild(_reviewDetails);
-        var buttons = new HBoxContainer(); buttons.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill });
-        var cancel = new Button { Text = "Keep planning", CustomMinimumSize = new Vector2(150, 44) };
+        var cancel = new Button { Text = "Keep planning", CustomMinimumSize = new Vector2(160, 46) };
         cancel.Pressed += () => { _reviewOverlay.Visible = false; ClearReviewedPlan(); }; buttons.AddChild(cancel);
-        _confirmDayButton = new Button { Text = "End day", CustomMinimumSize = new Vector2(150, 44) };
+        _confirmDayButton = new Button { Text = "End day", CustomMinimumSize = new Vector2(150, 46) };
         _confirmDayButton.Pressed += ConfirmReviewedDay;
-        buttons.AddChild(_confirmDayButton); box.AddChild(buttons);
+        buttons.AddChild(_confirmDayButton);
+        CozyTheme.FinishDialog(box, buttons);
     }
 
     private void BuildRecoveryDialog(Control root)
@@ -382,7 +374,7 @@ public partial class StableDay : Node
         _optionalToggles.Clear();
         _turnoutButtons.Clear();
         _inspectButtons.Clear();
-        foreach (var horse in _state.Horses
+        foreach (var horse in _state.Horses.Where(h => !HorseMarket.IsSold(h))
                      .OrderBy(h => h.LifeState.Stage is LifeStage.Foal or LifeStage.Youngster ? 0 : h.LifeState.Stage == LifeStage.Adult ? 1 : 2)
                      .ThenBy(h => h.Name, StringComparer.Ordinal))
         {

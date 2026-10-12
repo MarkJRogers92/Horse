@@ -26,17 +26,22 @@ public partial class MainMenu : Node
         root.SetAnchorsPreset(Control.LayoutPreset.FullRect);
         root.MouseFilter = Control.MouseFilterEnum.Ignore;
         layer.AddChild(root);
-        var panel = new PanelContainer { Position = new Vector2(48, 200) };
+        var panel = new PanelContainer { Position = new Vector2(48, 150) };
+        var card = CozyTheme.Box(CozyTheme.Cream, 32, 20); card.BorderColor = CozyTheme.Accent; card.SetBorderWidthAll(4);
+        card.ShadowColor = new Color(0.35f, 0.12f, 0.3f, 0.22f); card.ShadowSize = 16; card.ShadowOffset = new Vector2(0, 6);
+        panel.AddThemeStyleboxOverride("panel", card);
         root.AddChild(panel);
         var box = new VBoxContainer(); box.AddThemeConstantOverride("separation", 12);
         panel.AddChild(box);
-        box.AddChild(CozyTheme.Title("Cloverbrook Stables", 40));
-        box.AddChild(CozyTheme.Title("appearance studio · adult shape demo", 15));
+        box.AddChild(CozyTheme.Ribbon("Cloverbrook Stables", 34));
+        var greeting = new BunnySpeaker { CustomMinimumSize = new Vector2(300, 0) };
+        greeting.Say("Hello! I'm Pip. Your horses are waiting in Manage stable.");
+        box.AddChild(greeting);
+        AddButton(box, "Manage stable ♥", "res://scenes/stable_day.tscn");
         AddButton(box, "Horse viewer", "res://scenes/viewer.tscn");
         AddButton(box, "Appearance studio", "res://scenes/appearance_demo.tscn");
         AddButton(box, "Visit the stable", "res://scenes/stable.tscn");
-        AddButton(box, "Manage stable", "res://scenes/stable_day.tscn");
-        var quit = new Button { Text = "Quit" }; quit.Pressed += () => GetTree().Quit(); box.AddChild(quit);
+        var quit = new Button { Text = "Quit", CustomMinimumSize = new Vector2(300, 44) }; quit.Pressed += () => GetTree().Quit(); box.AddChild(quit);
 
         // CI smoke test: prove the project boots, links the domain and presents a horse.
         if (OS.GetCmdlineUserArgs().Contains("--smoke-test"))
@@ -45,7 +50,7 @@ public partial class MainMenu : Node
 
     private static void AddButton(Container box, string text, string scene)
     {
-        var b = new Button { Text = text, CustomMinimumSize = new Vector2(260, 44) };
+        var b = new Button { Text = text, CustomMinimumSize = new Vector2(300, 46) };
         b.Pressed += () => b.GetTree().ChangeSceneToFile(scene);
         box.AddChild(b);
     }
