@@ -60,18 +60,32 @@ jobs:
           mkdir -p dist
           $G --headless --path game --export-release macOS "$PWD/dist/Cloverbrook-Stables-macOS.zip"
           unzip -l dist/Cloverbrook-Stables-macOS.zip | grep -q "Cloverbrook Stables.app/Contents/MacOS/Cloverbrook Stables"
+          cat > "dist/Install Cloverbrook Stables.command" <<'EOF'
+          #!/bin/bash
+          # Copies the app to Applications and re-signs it on this Mac (the Linux-made signature is not accepted).
+          set -e
+          cd "$(dirname "$0")"
+          ditto -x -k Cloverbrook-Stables-macOS.zip /Applications
+          xattr -cr "/Applications/Cloverbrook Stables.app"
+          codesign --force --deep --sign - "/Applications/Cloverbrook Stables.app"
+          echo "Installed. Opening Cloverbrook Stables..."
+          open "/Applications/Cloverbrook Stables.app"
+          EOF
           cat > dist/INSTALL.txt <<'EOF'
           Cloverbrook Stables for Mac (macOS 13 or newer, Apple Silicon or Intel)
 
-          1. Unzip Cloverbrook-Stables-macOS.zip and drag "Cloverbrook Stables.app" into Applications.
-          2. First launch: right-click (or Control-click) the app and choose Open, then Open again.
-             The app is ad-hoc signed but not Apple-notarized, so macOS asks once.
-             If macOS still refuses, run in Terminal:
-               xattr -dr com.apple.quarantine "/Applications/Cloverbrook Stables.app"
-          3. Choose "Manage stable" from the menu. Pip the rabbit will show you around.
+          Easiest: open Terminal, type "bash " (with a space), drag "Install Cloverbrook Stables.command"
+          from this folder into the Terminal window, and press Return. It copies the app to Applications,
+          re-signs it on your Mac and starts it. (GitHub downloads drop the script's run permission,
+          so double-clicking it may not work.)
+
+          By hand: unzip Cloverbrook-Stables-macOS.zip, drag the app to Applications, then in Terminal run:
+            xattr -cr "/Applications/Cloverbrook Stables.app"
+            codesign --force --deep --sign - "/Applications/Cloverbrook Stables.app"
 
           Saves live in ~/Library/Application Support/Godot/app_userdata/Cloverbrook Stables/.
           EOF
+          sed -i 's/^          //' "dist/Install Cloverbrook Stables.command" && chmod +x "dist/Install Cloverbrook Stables.command"
           sed -i 's/^          //' dist/INSTALL.txt
 
       - uses: actions/upload-artifact@v4
