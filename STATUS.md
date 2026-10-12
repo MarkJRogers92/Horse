@@ -1,8 +1,8 @@
 # Project status / checkpoint
 
-**Last updated:** 2026-10-10 by GPT (combined domain integration).
-**Phase:** P1-07/P1-09 headless implementation and public Godot API complete; 147/147 tests verified on macOS and Linux CI.
-**Branch:** `claude/great-euler-hq83x3`
+**Last updated:** 2026-10-12 by Kimi (REA horse coat calculator investigation).
+**Phase:** P1-07/P1-09 headless implementation and public Godot API complete; 147/147 tests verified on macOS and Linux CI. Added gray-base-coat forecast preview improvement; 152/152 tests verified locally.
+**Branch:** `rea/horse-coat-preview`
 
 ## Task state
 | Task | State |
@@ -10,6 +10,7 @@
 | P0-02a / P0-03 / P1-04 / P1-05 / P1-06 / P1-07 | Complete scoped headless slices, including preserved unified forecasts |
 | P1-09 snapshot + codec + atomic store | Verified in final combined suite: 147/147 on macOS and Linux CI |
 | P1-09 numeric/rolling-backup regressions | 51f26128 preserved: 138/138 CI; final suite 147/147 |
+| REA horse coat calculator review + gray preview improvement | Complete: branch `rea/horse-coat-preview`, 5 new gray forecast tests, full suite 152/152 locally |
 | Public query API + integration/performance | Complete: a15266e3, 147/147 in CI run 38094410593 and local macOS |
 
 ## Coordination / accepted decisions

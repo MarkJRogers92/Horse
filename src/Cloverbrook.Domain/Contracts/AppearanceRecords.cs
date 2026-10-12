@@ -59,7 +59,8 @@ namespace Cloverbrook.Domain
             string visualAssetCatalogVersion, string meshFamilyId, string anatomicalMaskSetId, string? cosmeticLayer = null)
         {
             Check.NotNull(phenotype, nameof(phenotype)); HorseId = phenotype.HorseId; PhenotypeInputHash = phenotype.InputHash;
-            ResolverVersion = phenotype.ResolverVersion; CoatClassId = phenotype.CoatClassId; RequiredCoatClasses = Snapshot.List(requiredCoatClasses);
+            ResolverVersion = phenotype.ResolverVersion; CoatClassId = phenotype.CoatClassId; BaseCoatClass = phenotype.BaseCoatClass;
+            RequiredCoatClasses = Snapshot.List(requiredCoatClasses);
             if (RequiredCoatClasses.Count == 0) throw new ArgumentException("A visual descriptor must state its required coat support.");
             VisualCapabilityVersion = Check.Text(visualCapabilityVersion, nameof(visualCapabilityVersion)); VisualAssetCatalogVersion = Check.Text(visualAssetCatalogVersion, nameof(visualAssetCatalogVersion));
             MeshFamilyId = Check.Text(meshFamilyId, nameof(meshFamilyId)); AnatomicalMaskSetId = Check.Text(anatomicalMaskSetId, nameof(anatomicalMaskSetId));
@@ -72,12 +73,15 @@ namespace Cloverbrook.Domain
             CacheKey = Canonical.Hash(new[] { "visual.descriptor.v1", PhenotypeInputHash, VisualCapabilityVersion, VisualAssetCatalogVersion, MeshFamilyId,
                 AnatomicalMaskSetId, CoatRecipe, SkinRecipe, EyeRecipe, HairRecipe, GrayAmount.ToString(CultureInfo.InvariantCulture),
                 PrimitiveMarkingStrength.ToString(CultureInfo.InvariantCulture), Patn1Coverage.ToString(CultureInfo.InvariantCulture),
-                LpPatternPresent.ToString(), MarkingRealizationKey, cosmeticLayer ?? "" }.Concat(RequiredCoatClasses).Concat(CoatLayers));
+                LpPatternPresent.ToString(), MarkingRealizationKey, cosmeticLayer ?? "", BaseCoatClass }.Concat(RequiredCoatClasses).Concat(CoatLayers));
         }
         public HorseId HorseId { get; }
         public string PhenotypeInputHash { get; }
         public string ResolverVersion { get; }
         public string CoatClassId { get; }
+        // The base pigment class before overlays such as grey; preserved so forecasts
+        // can keep the hidden underlying colour separate from the visible overlay.
+        public string BaseCoatClass { get; }
         public IReadOnlyList<string> RequiredCoatClasses { get; }
         public string VisualCapabilityVersion { get; }
         public string VisualAssetCatalogVersion { get; }
