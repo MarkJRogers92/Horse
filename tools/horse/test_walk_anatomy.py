@@ -1,9 +1,80 @@
 """Regression: exported joint anatomy, unchanged surfaces and the Light physical gates."""
-import hashlib,json,subprocess,sys,tempfile,unittest
+import copy,hashlib,json,math,subprocess,sys,tempfile,unittest
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 read=lambda p:json.loads(p.read_text())
+
+# Reports are recomputed from identical, SHA-bound GLB bytes on different
+# Python/NumPy builds. Last-bit arithmetic is not a byte-identity contract.
+# This absolute-only tolerance is at most one nanometre for coordinates,
+# 1e-9 degrees for angles, or 1e-9 seconds/cycles for timing. It is many orders
+# below every anatomy gate. Limits and all non-measurement metadata stay exact.
+MEASUREMENT_ABS_TOLERANCE = 1e-9
+
+def assert_report_matches(actual, expected, path=()):
+ """Compare every leaf, allowing rounding noise only in measured floats."""
+ location = '.'.join(map(str,path)) or '<report>'
+ if type(actual) is not type(expected):
+  raise AssertionError(f'{location}: type changed: {type(actual).__name__} != {type(expected).__name__}')
+ if isinstance(expected,dict):
+  if actual.keys()!=expected.keys():raise AssertionError(f'{location}: object keys changed')
+  for key in expected:assert_report_matches(actual[key],expected[key],path+(key,))
+ elif isinstance(expected,list):
+  if len(actual)!=len(expected):raise AssertionError(f'{location}: array length changed')
+  for index,(a,b) in enumerate(zip(actual,expected)):assert_report_matches(a,b,path+(index,))
+ elif isinstance(expected,float):
+  if not math.isfinite(actual) or not math.isfinite(expected):raise AssertionError(f'{location}: non-finite measurement')
+  measured = path and path[0] in ('durationSeconds','limbs','phases')
+  if not (math.isclose(actual,expected,rel_tol=0,abs_tol=MEASUREMENT_ABS_TOLERANCE) if measured else actual==expected):
+   raise AssertionError(f'{location}: {actual!r} != {expected!r}')
+ elif actual!=expected:
+  raise AssertionError(f'{location}: {actual!r} != {expected!r}')
+
+class AnatomyReportComparisonTests(unittest.TestCase):
+ def setUp(self):
+  self.report=read(ROOT/'game/assets/horse/production/evidence/light-walk-v6-anatomy/anatomy-report.json')
+
+ def test_rounding_noise_is_accepted(self):
+  def perturb(value,path=()):
+   if isinstance(value,dict):return {k:perturb(v,path+(k,)) for k,v in value.items()}
+   if isinstance(value,list):return [perturb(v,path+(i,)) for i,v in enumerate(value)]
+   if isinstance(value,float) and path and path[0] in ('durationSeconds','limbs','phases'):
+    return value+MEASUREMENT_ABS_TOLERANCE/4
+   return value
+  assert_report_matches(perturb(self.report),self.report)
+
+ def test_structure_metadata_and_gate_changes_are_rejected(self):
+  cases=[
+   (('sourceGlbSha256',),'0'*64),
+   (('motionProfileSha256',),'0'*64),
+   (('schema',),'horse.walk.anatomy.v2'),
+   (('sampleCount',),118),
+   (('sampleCount',),117.0),
+   (('sampleCount',),True),
+   (('failures',),['backward carpus']),
+   (('limits','maximumStanceHoofPitchRangeDegrees'),0.5+MEASUREMENT_ABS_TOLERANCE/4),
+   (('limbs','fore_l','minSignedCarpusOffsetM'),self.report['limbs']['fore_l']['minSignedCarpusOffsetM']+0.001),
+   (('limbs','fore_l','maxStanceFlexionDegrees'),12.01),
+   (('limbs','fore_l','hoofPitchRangeDegrees'),19.99),
+   (('phases',0,'joints','l','points',0,0),self.report['phases'][0]['joints']['l']['points'][0][0]+0.001),
+   (('phases',0,'joints','l','flexionDegrees'),self.report['phases'][0]['joints']['l']['flexionDegrees']+0.01),
+   (('durationSeconds',),self.report['durationSeconds']+0.000001),
+   (('durationSeconds',),self.report['durationSeconds']+2*MEASUREMENT_ABS_TOLERANCE),
+   (('durationSeconds',),float('nan')),
+   (('durationSeconds',),float('inf')),
+  ]
+  for path,value in cases:
+   with self.subTest(path=path,value=value):
+    altered=copy.deepcopy(self.report);target=altered
+    for key in path[:-1]:target=target[key]
+    target[path[-1]]=value
+    with self.assertRaises(AssertionError):assert_report_matches(altered,self.report)
+  for altered in [dict(self.report,extra=True),{k:v for k,v in self.report.items() if k!='method'},dict(self.report,phases=self.report['phases'][:-1])]:
+   with self.assertRaises(AssertionError):assert_report_matches(altered,self.report)
+  for actual in [False,1,1.0]:
+   with self.assertRaises(AssertionError):assert_report_matches(actual,True,('accepted',))
+
 class WalkAnatomyTests(unittest.TestCase):
  def test_actual_exports_and_all_evidence(self):
   catalog=read(ROOT/'game/data/visual_catalog.json')
@@ -15,7 +86,7 @@ class WalkAnatomyTests(unittest.TestCase):
     with tempfile.TemporaryDirectory() as out:
      dest=Path(out)/'anatomy.json';run=subprocess.run([sys.executable,str(ROOT/'tools/horse/audit_exported_walk_anatomy.py'),str(glb),str(p),'--out',str(dest)],capture_output=True,text=True)
      self.assertEqual(run.returncode,0,run.stdout+run.stderr)
-     self.assertEqual(read(dest),read(e/'anatomy-report.json'))
+     assert_report_matches(read(dest),read(e/'anatomy-report.json'))
     runtime=read(e/'game-import-report.json');self.assertEqual(runtime['failures'],[]);self.assertTrue(runtime['usesProjectImport']);self.assertEqual(runtime['candidateGlbSha256'],sha(glb))
     native=read(e/'native-anatomy-report.json');self.assertEqual(native['failures'],[]);self.assertTrue(native['usesProjectImport']);self.assertEqual(native['sourceGlbSha256'],sha(glb));self.assertEqual(native['motionProfileSha256'],sha(p))
     raw=read(e/'anatomy-report.json')

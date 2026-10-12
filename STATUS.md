@@ -6,6 +6,21 @@ The prior visual/animation freeze below is historical and remains true for the
 original checkout; new work is isolated here. No release-matrix promotion or main merge.
 
 
+## CI report comparison portability — 2026-10-12
+
+The published anatomy checkpoint reached CI build/import, then failed three
+raw-report comparisons on cross-platform floating-point last digits. The test
+now compares measured floats with an absolute-only 1e-9 tolerance, while keeping
+report structure, hashes, counts, booleans, failure lists and acceptance limits
+exact. Non-finite values fail closed. All original anatomical and physical gates
+remain unchanged; no asset or game evidence bytes were modified. Two regression
+tests accept rounding noise and reject meaningful measurement/metadata changes.
+The CI Stock/foal import step now uses the active anatomy profiles, with a
+regression tying its paths to the catalog. The exact affected CI commands passed
+locally: 19 walk tests and both actual project-import checks with zero failures.
+Frozen-spec validation passed. Remote CI rerun is
+pending the parent publication workflow; this worker did not push.
+
 ## Corrected front-leg anatomy in the cloud game — 2026-10-12
 
 Owner-approved D-007 correction now integrates forward-bending adult front

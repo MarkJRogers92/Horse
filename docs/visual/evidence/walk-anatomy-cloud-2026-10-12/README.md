@@ -119,6 +119,22 @@ The render paths and full regression command are unchanged from the prior
 integration evidence. `manifest.json` binds the delivered artifacts and relevant
 source/evidence files.
 
+## CI portability follow-up
+
+The original visual CI run on published checkpoint `6f776f69` reached build and
+import, then failed exact Python dictionary equality on recomputed numeric last
+digits. The report comparison now allows absolute 1e-9 rounding tolerance only
+for measured floating values. Structure, source hashes, counts, booleans, failure
+lists and the numerical acceptance-limit constants remain exact; non-finite
+values are rejected. The auditor's substantive gates and every asset and bound game-evidence
+file are unchanged. Two comparison regression tests bring the local walk suite
+to 18 passing tests. The adjacent CI import-profile paths were also corrected
+from historical polish evidence to active anatomy evidence. A catalog/path
+regression brings the final suite to 19 passing tests. The exact affected CI
+commands, including both project imports, pass locally. `portability-tests.log`
+records the rerun. The original
+16-test log above is retained as historical checkpoint evidence.
+
 ## Scope and caveats
 
 Acceptance remains neutral Walk at unit scale. Idle restores the selected

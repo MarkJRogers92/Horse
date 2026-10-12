@@ -2,6 +2,7 @@
 """Offline checks for the pinned active Stock/foal game assets and proof chain."""
 import hashlib
 import json
+import re
 import unittest
 from pathlib import Path
 
@@ -59,6 +60,16 @@ class IntegratedWalkTests(unittest.TestCase):
     def test_foal_mappings_share_exact_proof(self):
         families=read(ROOT/'game/data/visual_catalog.json')['meshFamilies']
         self.assertEqual(families['horse.standard.foal.v1']['walkVariant'],families['horse.compact.foal.v1']['walkVariant'])
+
+    def test_ci_import_profiles_match_active_catalog(self):
+        workflow=(ROOT/'.github/workflows/visual.yml').read_text()
+        template=re.search(r'"(res://[^"\n]*\$\{family\}[^"\n]*/walk-motion-profile.json)"',workflow)
+        self.assertIsNotNone(template)
+        catalog=read(ROOT/'game/data/visual_catalog.json')
+        for name,family in [('stock','horse.compact.adult.v1'),('foal','horse.standard.foal.v1')]:
+            path=template.group(1).replace('${family}',name)
+            self.assertEqual(path,catalog['meshFamilies'][family]['walkVariant']['motionProfilePath'])
+            self.assertTrue(resource(path).is_file())
 
     def test_all_raw_assets_exported(self):
         plugin=(ROOT/'game/addons/horse_asset_evidence/plugin.gd').read_text()

@@ -4,6 +4,11 @@
   "scope": "All three checked neutral family Walks; original geometry/UVs/morphs. No new Mac executable.",
   "files": [
     {
+      "path": ".github/workflows/visual.yml",
+      "sha256": "987dc756c4f9e545d9a41b67049f9dc882dc31b8701f1fa7f787f54e31786f6b",
+      "bytes": 7079
+    },
+    {
       "path": "art/derived/production/candidates/foal-walk-anatomy/README.md",
       "sha256": "578765700a5328388a4313bdb42f072db65ce7dda1e8e47280a45c67d4bee842",
       "bytes": 698
@@ -125,8 +130,8 @@
     },
     {
       "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/README.md",
-      "sha256": "f151e5ef1bb64cf1ad38c4ebbbedac6ae2b23d810a172676f804b58721337a67",
-      "bytes": 7732
+      "sha256": "70915b7729f17c4cce498b4bcbd199653229f11bae2c36227d17f11618e1213d",
+      "bytes": 8738
     },
     {
       "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/build.log",
@@ -232,6 +237,11 @@
       "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/light-side-loop.jpg",
       "sha256": "e39c8186843db3055ac793de5d9157abc47bda1900c1f6f87e649af3fce18109",
       "bytes": 177353
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/portability-tests.log",
+      "sha256": "8a1931f653043209d4dae39a9302e7380c852e1220c972111c28bbbc771e23e1",
+      "bytes": 7084
     },
     {
       "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/preservation.json",
@@ -510,20 +520,31 @@
     },
     {
       "path": "tools/horse/test_integrated_walk_assets.py",
-      "sha256": "817db4eef5376bab8982f91500e79e6308d12d4b522b49405bd9a9645536ff8a",
-      "bytes": 4387
+      "sha256": "862c98bb1dfb211ebc054db6da66990b2ebd221be6b5b864d25892224e5d17bd",
+      "bytes": 5042
     },
     {
       "path": "tools/horse/test_walk_anatomy.py",
-      "sha256": "4ed4f4a512219205250380ac5bc5f8f49eed0cee91cec1f2a350f15bebbc2167",
-      "bytes": 3593
+      "sha256": "305e3e0a57cf35ee9700f49a5b910713feceb0fe50f3cda363e6fc67aeec45a9",
+      "bytes": 7645
     }
   ],
   "validation": {
     "domainTests": 190,
-    "walkTests": 16,
+    "walkTests": 19,
     "regressionEntries": 50,
     "failures": []
   },
-  "consoleLogNormalization": "Only trailing line whitespace removed; original logs retained in cloud validation output."
+  "consoleLogNormalization": "Only trailing line whitespace removed; original logs retained in cloud validation output.",
+  "portabilityFollowup": {
+    "parentCommit": "1f07ac4f82c553bb0150c865360402497cc6c197",
+    "measurementAbsoluteTolerance": 1e-09,
+    "relativeTolerance": 0,
+    "metadataAndLimitsExact": true,
+    "actualImportChecks": [
+      "stock",
+      "foal"
+    ],
+    "remoteCiRerun": "pending publication"
+  }
 }
