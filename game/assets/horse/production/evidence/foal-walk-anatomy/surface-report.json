@@ -1,0 +1,205 @@
+{
+  "source": "game/assets/horse/production/horse_foal.glb",
+  "candidate": "art/derived/production/candidates/foal-walk-anatomy/horse_foal_walk.glb",
+  "components": {
+    "Body": {
+      "POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 38454
+      },
+      "NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 38454
+      },
+      "TEXCOORD_0": {
+        "maximumError": 0.0,
+        "cornerCount": 38454
+      },
+      "TEXCOORD_1": {
+        "maximumError": 0.0,
+        "cornerCount": 38454
+      },
+      "COLOR_0": {
+        "maximumError": 0.0,
+        "cornerCount": 38454
+      },
+      "morph0.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 38454
+      },
+      "morph0.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 38454
+      },
+      "morph1.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 38454
+      },
+      "morph1.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 38454
+      },
+      "morph2.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 38454
+      },
+      "morph2.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 38454
+      },
+      "morph3.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 38454
+      },
+      "morph3.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 38454
+      }
+    },
+    "Eyes": {
+      "POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 4320
+      },
+      "NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 4320
+      },
+      "TEXCOORD_0": {
+        "maximumError": 0.0,
+        "cornerCount": 4320
+      },
+      "TEXCOORD_1": {
+        "maximumError": 0.0,
+        "cornerCount": 4320
+      },
+      "morph0.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 4320
+      },
+      "morph0.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 4320
+      },
+      "morph1.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 4320
+      },
+      "morph1.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 4320
+      },
+      "morph2.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 4320
+      },
+      "morph2.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 4320
+      },
+      "morph3.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 4320
+      },
+      "morph3.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 4320
+      }
+    },
+    "Mane": {
+      "POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 1212
+      },
+      "NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 1212
+      },
+      "TEXCOORD_0": {
+        "maximumError": 0.0,
+        "cornerCount": 1212
+      },
+      "morph0.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 1212
+      },
+      "morph0.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 1212
+      },
+      "morph1.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 1212
+      },
+      "morph1.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 1212
+      },
+      "morph2.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 1212
+      },
+      "morph2.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 1212
+      },
+      "morph3.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 1212
+      },
+      "morph3.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 1212
+      }
+    },
+    "Tail": {
+      "POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 180
+      },
+      "NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 180
+      },
+      "TEXCOORD_0": {
+        "maximumError": 0.0,
+        "cornerCount": 180
+      },
+      "morph0.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 180
+      },
+      "morph0.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 180
+      },
+      "morph1.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 180
+      },
+      "morph1.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 180
+      },
+      "morph2.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 180
+      },
+      "morph2.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 180
+      },
+      "morph3.POSITION": {
+        "maximumError": 0.0,
+        "cornerCount": 180
+      },
+      "morph3.NORMAL": {
+        "maximumError": 0.0,
+        "cornerCount": 180
+      }
+    }
+  },
+  "failures": [],
+  "candidateGlbSha256": "a37ff181d158517c6297c97655d8c2218ff2810a2fe48694510901a4ee82dbd8",
+  "sourceGlbSha256": "f7552842a1ae8a24fb32df60c6d5de8200dfe19055c9787330cf1ac5ff72c72a"
+}

@@ -1,0 +1,572 @@
+{
+  "preview": "Test-only Meshy Light model using the existing HorsePresenter, current shader, and isolated catalog; no donor substitute.",
+  "catalogVersion": "reference-assets.v1",
+  "candidateScene": "res://assets/horse/production/horse_light_walk.glb",
+  "walkAnimationName": "Walk",
+  "walkLengthSeconds": 0.96666664,
+  "sharedRootVelocityMetersPerSecond": 0.7499973,
+  "routeVelocityInterpretation": "Scene route speed matches the hash-bound motion profile; pose-derived contact measurements are recorded independently.",
+  "markingRealizationKey": "1e5f00550000000000408080807f000000000000000000000000000000000000",
+  "morphWeights": {
+    "body_length": 0,
+    "chest_width": 0,
+    "height": 0,
+    "mane_density": 0,
+    "muscle": 0,
+    "neck_length": 0,
+    "tail_density": 0
+  },
+  "modelScale": [
+    1,
+    1,
+    1
+  ],
+  "catalogFamilyScene": "res://assets/horse/production/horse_light_walk.glb",
+  "previewSourceHashes": {
+    "candidateGlbSha256": "b9e2d3ee455c14fb037596cf2dfd9a8241c5760ceea38855238b523bd734a628",
+    "previewCatalogSha256": "e12889a701ba3e33038a42c4442478200d174f35c16bb67d5d171f6a1c6c0061",
+    "previewSceneSha256": "64423967361a2d9f513ff7c68243b4fe637673c1028cbab3c83cd777675865ed",
+    "previewScriptSha256": "0623ae6ad5e1892d9af1216ac0931b5ec11933a310e23a69d15616ddad602e14",
+    "coatShaderSha256": "8d39d81f3b8e18fbf194b7d26f0076aced486a17f7cf935cdbbc4c3e862f3ea6"
+  },
+  "bodySignedDetailDisabledReason": null,
+  "bodySignedDetail": {
+    "path": "res://assets/horse/production/horse_light_body_detail_v5.png",
+    "encoding": "rgb8_signed_multiplier_v1",
+    "strength": 1,
+    "sourceGlbSha256": "b9e2d3ee455c14fb037596cf2dfd9a8241c5760ceea38855238b523bd734a628",
+    "textureSha256": "56514e8a81871779ded06be790c3d1b9ba021ffb237cfa03af5b31973cdc5cfa",
+    "handoffPath": "res://assets/horse/production/evidence/light-walk-v6-anatomy/game-integration-handoff.json",
+    "handoffSha256": "f2fc5c6e4aa4af6f1ba22edc3adacdd49491fd1bd7235fbd396dd6a1a84d6186",
+    "bindingPath": "res://assets/horse/production/evidence/light-walk-v6-anatomy/light-v5-uv-reuse-binding.json",
+    "bindingSha256": "379d9222bc7c37af2c3a12e8134244fedfc6c9e364761803ad3a57aaf6e228e5",
+    "retainedTriangleCount": 21253,
+    "neutralRecoveredFaceCount": 453,
+    "neutralRecoveredPixelCount": 14577,
+    "rigOnlyDerivation": "3b8e50fa891aab903bd65223c887f98e7ce0e8ed24e88cc3022901842a10fd80"
+  },
+  "signedDetailRuntime": {
+    "enabledInCatalog": true,
+    "enabledOnPresentedBodyShader": true,
+    "shaderStrength": 1,
+    "metadataStrength": 1,
+    "sourceGlbSha256": "b9e2d3ee455c14fb037596cf2dfd9a8241c5760ceea38855238b523bd734a628",
+    "rawPngSha256": "56514e8a81871779ded06be790c3d1b9ba021ffb237cfa03af5b31973cdc5cfa",
+    "importedPixelSha256": "57139599864f8ca84d6bd299da4b0e4fccb068fa2e636c0d0f94d06b0fca3050",
+    "expectedPixelSha256": "57139599864f8ca84d6bd299da4b0e4fccb068fa2e636c0d0f94d06b0fca3050",
+    "textureResolution": [
+      2048,
+      2048
+    ],
+    "textureFormat": "Rgb8",
+    "preservationEvidence": {
+      "reportPath": "res://assets/horse/production/evidence/light-walk-v6-anatomy/geometry-uv-preservation.json",
+      "reportSha256": "3b8e50fa891aab903bd65223c887f98e7ce0e8ed24e88cc3022901842a10fd80",
+      "baselineBlendSha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+      "baselineGlbSha256": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc",
+      "candidateBlendSha256": "9f6f3c08a002a1869b308f4c99a4bcd71ecab1073261adca14171cb8354df7da",
+      "candidateGlbSha256": "b9e2d3ee455c14fb037596cf2dfd9a8241c5760ceea38855238b523bd734a628",
+      "parentBindingSha256": "f81192626f5583179b46362c6ae4f1fbdc92341b25f697973f5524d0309db3eb",
+      "parentHandoffSha256": "6410f515e3445726b0a1a652f7c6bfa096b25006c726d219ef3df91353d5f773"
+    }
+  },
+  "componentsMorphsAndSkin": [
+    {
+      "component": "Body",
+      "blendShapes": [
+        "body_length",
+        "chest_width",
+        "neck_length",
+        "muscle"
+      ],
+      "surfaceCount": 1,
+      "surfaces": [
+        {
+          "surface": 0,
+          "vertices": 15674,
+          "boneIndexWidth": 8,
+          "weightWidth": 8,
+          "positionsFinite": true,
+          "weightsFiniteNonnegative": true,
+          "activeBoneIndicesInRange": true,
+          "weightsNormalized": true,
+          "minimumWeightSum": 0.99992365,
+          "maximumWeightSum": 1.0000001
+        }
+      ]
+    },
+    {
+      "component": "Eyes",
+      "blendShapes": [
+        "body_length",
+        "chest_width",
+        "neck_length",
+        "muscle"
+      ],
+      "surfaceCount": 1,
+      "surfaces": [
+        {
+          "surface": 0,
+          "vertices": 1646,
+          "boneIndexWidth": 4,
+          "weightWidth": 4,
+          "positionsFinite": true,
+          "weightsFiniteNonnegative": true,
+          "activeBoneIndicesInRange": true,
+          "weightsNormalized": true,
+          "minimumWeightSum": 1,
+          "maximumWeightSum": 1
+        }
+      ]
+    },
+    {
+      "component": "Mane",
+      "blendShapes": [
+        "body_length",
+        "chest_width",
+        "neck_length",
+        "muscle"
+      ],
+      "surfaceCount": 1,
+      "surfaces": [
+        {
+          "surface": 0,
+          "vertices": 1963,
+          "boneIndexWidth": 8,
+          "weightWidth": 8,
+          "positionsFinite": true,
+          "weightsFiniteNonnegative": true,
+          "activeBoneIndicesInRange": true,
+          "weightsNormalized": true,
+          "minimumWeightSum": 0.9999083,
+          "maximumWeightSum": 1.0000001
+        }
+      ]
+    },
+    {
+      "component": "Tail",
+      "blendShapes": [
+        "body_length",
+        "chest_width",
+        "neck_length",
+        "muscle"
+      ],
+      "surfaceCount": 1,
+      "surfaces": [
+        {
+          "surface": 0,
+          "vertices": 2297,
+          "boneIndexWidth": 4,
+          "weightWidth": 4,
+          "positionsFinite": true,
+          "weightsFiniteNonnegative": true,
+          "activeBoneIndicesInRange": true,
+          "weightsNormalized": true,
+          "minimumWeightSum": 0.9999695,
+          "maximumWeightSum": 1
+        }
+      ]
+    }
+  ],
+  "motionProfileContactRuntime": {
+    "profilePath": "res://assets/horse/production/evidence/light-walk-v6-anatomy/walk-motion-profile.json",
+    "profileSha256": "7a6fa0bea5aee0070054e7f142ae5c87ea937ed07e642b2af3953e47f39cc5d0",
+    "receiptPath": "res://assets/horse/production/evidence/light-walk-v6-anatomy/walk-motion-receipt.json",
+    "receiptSha256": "49c552de3011fd43d8ed78e9e4d2f71ebddf2788efe241f3dd9fe11007ec3a6e",
+    "neutralMotionAuditPath": "res://assets/horse/production/evidence/light-walk-v6-anatomy/neutral-motion-audit.json",
+    "candidateBlendSha256": "9f6f3c08a002a1869b308f4c99a4bcd71ecab1073261adca14171cb8354df7da",
+    "sourceGlbSha256": "b9e2d3ee455c14fb037596cf2dfd9a8241c5760ceea38855238b523bd734a628",
+    "periodFrames": 58,
+    "fps": 60,
+    "sharedSpeedMetersPerSecond": 0.749997329711914,
+    "dutyFactor": 0.6,
+    "sampleCount": 61,
+    "phaseCoordinate": "frame = 58*i/60, i=0..60; endpoint retained only for rig-local closure",
+    "rootMotionContract": "Profile is an in-place source clip; only the preview scene root advances at the hash-bound shared speed.",
+    "neutralMorphWeights": {
+      "body_length": 0,
+      "chest_width": 0,
+      "height": 0,
+      "mane_density": 0,
+      "muscle": 0,
+      "neck_length": 0,
+      "tail_density": 0
+    },
+    "wholeModelScale": [
+      1,
+      1,
+      1
+    ],
+    "sourceBodySkeletonRegistration": "Every profile rest bone head matched imported global rest within 20 micrometres; every source sole point matched a Body surface vertex rigidly weighted to the declared bone.",
+    "registeredPointCounts": {
+      "fore_l": 100,
+      "hind_r": 115,
+      "fore_r": 100,
+      "hind_l": 114
+    },
+    "allStanceMinimumY": -0.00013158214,
+    "allStanceYPercentile05": 0.0009027336491271853,
+    "maximumRigLocalFirstLastClosureMeters": 3.285919376594393e-07,
+    "finiteSamples": true,
+    "limbs": {
+      "fore_l": {
+        "boneName": "front_leg_ankle_l",
+        "boneIndex": 36,
+        "restBoneHead": [
+          0.29257932,
+          0.20051387,
+          -0.11610278
+        ],
+        "registeredRigidPointCount": 100,
+        "stanceStartFrame": 0,
+        "stanceMinimumY": -1.5598082e-05,
+        "stanceYPercentile05": 0.0004377535660751164,
+        "maximumPerPointStanceXRange": 0.00015962124,
+        "maximumPerPointStanceZRange": 2.3789704e-05,
+        "centralSwingMinimumY": 0.039688136,
+        "physicalGatesPassed": true
+      },
+      "hind_r": {
+        "boneName": "back_leg_foot_r",
+        "boneIndex": 23,
+        "restBoneHead": [
+          -0.8034311,
+          0.17264877,
+          0.13467924
+        ],
+        "registeredRigidPointCount": 115,
+        "stanceStartFrame": 14.5,
+        "stanceMinimumY": -5.1597628e-05,
+        "stanceYPercentile05": 0.0012341506080701947,
+        "maximumPerPointStanceXRange": 0.0010708869,
+        "maximumPerPointStanceZRange": 6.54757e-05,
+        "centralSwingMinimumY": 0.039055083,
+        "physicalGatesPassed": true
+      },
+      "fore_r": {
+        "boneName": "front_leg_ankle_r",
+        "boneIndex": 43,
+        "restBoneHead": [
+          0.29257932,
+          0.20051387,
+          0.10681455
+        ],
+        "registeredRigidPointCount": 100,
+        "stanceStartFrame": 29,
+        "stanceMinimumY": -0.00013158214,
+        "stanceYPercentile05": 0.0004379216115921736,
+        "maximumPerPointStanceXRange": 0.00012809038,
+        "maximumPerPointStanceZRange": 1.9483268e-05,
+        "centralSwingMinimumY": 0.039921656,
+        "physicalGatesPassed": true
+      },
+      "hind_l": {
+        "boneName": "back_leg_foot_l",
+        "boneIndex": 16,
+        "restBoneHead": [
+          -0.8034311,
+          0.17264877,
+          -0.14396746
+        ],
+        "registeredRigidPointCount": 114,
+        "stanceStartFrame": 43.5,
+        "stanceMinimumY": 1.37918105e-05,
+        "stanceYPercentile05": 0.0009579414036124945,
+        "maximumPerPointStanceXRange": 0.0010889173,
+        "maximumPerPointStanceZRange": 5.9485435e-05,
+        "centralSwingMinimumY": 0.03909111,
+        "physicalGatesPassed": true
+      }
+    },
+    "physicalGatesPassed": true
+  },
+  "playback": {
+    "currentAnimation": "Walk",
+    "clipLengthSeconds": 0.96666664,
+    "positionAdvanced": true,
+    "poseChanged": true,
+    "maxBonePositionDeltaMeters": 0.015267348,
+    "maxBoneRotationDeltaRadians": 0.68441755,
+    "maxBoneScaleDelta": 0.00011952932,
+    "poseValuesFinite": true,
+    "rootDeltaMeters": 0.23362167,
+    "elapsedSeconds": 0.31149666666666664,
+    "expectedRootDeltaMeters": 0.23362166450083255,
+    "rootSpeedMeasuredMetersPerSecond": 0.7499973412102164,
+    "loopWrappedDuringAnimationPlayerPlayback": true,
+    "wrapStartPositionSeconds": 0.9166666388511657,
+    "wrapEndPositionSeconds": 0,
+    "wrapObservedWithinSeconds": 0.091,
+    "interpretation": "Observed imported AnimationPlayer playback and scene route; this does not certify authored seam quality, skin validity, foot contact, or gait quality."
+  },
+  "captures": [
+    {
+      "file": "walk_00_side.png",
+      "sha256": "2b6f9d17795fdcb151ba684c2a2c3b2c0766223a7059be7274b654bbf93e15bd",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "coat": "bay",
+      "view": "side",
+      "requestedPhaseSeconds": 0.02,
+      "morphWeights": {
+        "body_length": 0,
+        "chest_width": 0,
+        "height": 0,
+        "mane_density": 0,
+        "muscle": 0,
+        "neck_length": 0,
+        "tail_density": 0
+      },
+      "modelScale": [
+        1,
+        1,
+        1
+      ],
+      "actualAnimationPositionSeconds": 0.019999999552965164,
+      "poseFinite": true,
+      "saveError": "Ok"
+    },
+    {
+      "file": "walk_17_side.png",
+      "sha256": "ad42df2cfa2e9c5e8d737aec75e9c21d7bd5d5cb5b26f1b9afc782eb32b8b41f",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "coat": "bay",
+      "view": "side",
+      "requestedPhaseSeconds": 0.16433333,
+      "morphWeights": {
+        "body_length": 0,
+        "chest_width": 0,
+        "height": 0,
+        "mane_density": 0,
+        "muscle": 0,
+        "neck_length": 0,
+        "tail_density": 0
+      },
+      "modelScale": [
+        1,
+        1,
+        1
+      ],
+      "actualAnimationPositionSeconds": 0.16433332860469818,
+      "poseFinite": true,
+      "saveError": "Ok"
+    },
+    {
+      "file": "walk_33_side.png",
+      "sha256": "4fb47c7be016743098738230d9f093e65b266e8455561e6e6f47a67553aca91c",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "coat": "bay",
+      "view": "side",
+      "requestedPhaseSeconds": 0.319,
+      "morphWeights": {
+        "body_length": 0,
+        "chest_width": 0,
+        "height": 0,
+        "mane_density": 0,
+        "muscle": 0,
+        "neck_length": 0,
+        "tail_density": 0
+      },
+      "modelScale": [
+        1,
+        1,
+        1
+      ],
+      "actualAnimationPositionSeconds": 0.3190000057220459,
+      "poseFinite": true,
+      "saveError": "Ok"
+    },
+    {
+      "file": "walk_50_side.png",
+      "sha256": "544ee95a4fbc78a0e9aee68710635dbd53b8a1c6adefafc49a1d85fd721fa287",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "coat": "bay",
+      "view": "side",
+      "requestedPhaseSeconds": 0.48333332,
+      "morphWeights": {
+        "body_length": 0,
+        "chest_width": 0,
+        "height": 0,
+        "mane_density": 0,
+        "muscle": 0,
+        "neck_length": 0,
+        "tail_density": 0
+      },
+      "modelScale": [
+        1,
+        1,
+        1
+      ],
+      "actualAnimationPositionSeconds": 0.4833333194255829,
+      "poseFinite": true,
+      "saveError": "Ok"
+    },
+    {
+      "file": "walk_67_side.png",
+      "sha256": "f4a770b9e33ca44cf85f7374bf5faba4a94f5ad2a6d580c0e155d39e6fd5f1d8",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "coat": "bay",
+      "view": "side",
+      "requestedPhaseSeconds": 0.6476667,
+      "morphWeights": {
+        "body_length": 0,
+        "chest_width": 0,
+        "height": 0,
+        "mane_density": 0,
+        "muscle": 0,
+        "neck_length": 0,
+        "tail_density": 0
+      },
+      "modelScale": [
+        1,
+        1,
+        1
+      ],
+      "actualAnimationPositionSeconds": 0.6476666927337646,
+      "poseFinite": true,
+      "saveError": "Ok"
+    },
+    {
+      "file": "walk_95_side.png",
+      "sha256": "88af3b5332947597f08b9ac601533cbd1061602c165648ebeae354c52867037d",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "coat": "bay",
+      "view": "side",
+      "requestedPhaseSeconds": 0.9183333,
+      "morphWeights": {
+        "body_length": 0,
+        "chest_width": 0,
+        "height": 0,
+        "mane_density": 0,
+        "muscle": 0,
+        "neck_length": 0,
+        "tail_density": 0
+      },
+      "modelScale": [
+        1,
+        1,
+        1
+      ],
+      "actualAnimationPositionSeconds": 0.9183332920074463,
+      "poseFinite": true,
+      "saveError": "Ok"
+    },
+    {
+      "file": "coat_chestnut_q3.png",
+      "sha256": "3a158a94771a80d124332560fedad6fa18d7c8ffb412b84e14f875e28ae9540c",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "coat": "chestnut",
+      "view": "quarter",
+      "requestedPhaseSeconds": 0.48333332,
+      "morphWeights": {
+        "body_length": 0,
+        "chest_width": 0,
+        "height": 0,
+        "mane_density": 0,
+        "muscle": 0,
+        "neck_length": 0,
+        "tail_density": 0
+      },
+      "modelScale": [
+        1,
+        1,
+        1
+      ],
+      "actualAnimationPositionSeconds": 0.4833333194255829,
+      "poseFinite": true,
+      "saveError": "Ok"
+    },
+    {
+      "file": "coat_cremello_q3.png",
+      "sha256": "e14dc8b0ca9a28948f648d18b675d746c6899a8a3771bc58b675e8217d766e2d",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "coat": "cremello",
+      "view": "quarter",
+      "requestedPhaseSeconds": 0.48333332,
+      "morphWeights": {
+        "body_length": 0,
+        "chest_width": 0,
+        "height": 0,
+        "mane_density": 0,
+        "muscle": 0,
+        "neck_length": 0,
+        "tail_density": 0
+      },
+      "modelScale": [
+        1,
+        1,
+        1
+      ],
+      "actualAnimationPositionSeconds": 0.4833333194255829,
+      "poseFinite": true,
+      "saveError": "Ok"
+    },
+    {
+      "file": "marked_head_q3.png",
+      "sha256": "fc511fa36bd76d30afd64ab4b78865f93e71b366e01fb5b9508d950616c01a0a",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "coat": "bay",
+      "view": "head",
+      "requestedPhaseSeconds": 0.48333332,
+      "morphWeights": {
+        "body_length": 0,
+        "chest_width": 0,
+        "height": 0,
+        "mane_density": 0,
+        "muscle": 0,
+        "neck_length": 0,
+        "tail_density": 0
+      },
+      "modelScale": [
+        1,
+        1,
+        1
+      ],
+      "actualAnimationPositionSeconds": 0.4833333194255829,
+      "poseFinite": true,
+      "saveError": "Ok"
+    }
+  ],
+  "coatCycle": {
+    "choices": [
+      "marked bay",
+      "chestnut",
+      "cremello"
+    ],
+    "runtimeControls": [
+      "1/2/3 or buttons select coat; S/Q/H or buttons select side/quarter/head; Space toggles Walk; Escape closes"
+    ],
+    "markingRealizationKeyStableAcrossChoices": true,
+    "markingRealizationKey": "1e5f00550000000000408080807f000000000000000000000000000000000000",
+    "customCremelloRecipe": "pheomelanin_full:cream_double"
+  },
+  "failures": [],
+  "godotVersion": "4.7.2-stable (official)",
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits) / 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1"
+}

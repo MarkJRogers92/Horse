@@ -22,7 +22,7 @@ class IntegratedWalkTests(unittest.TestCase):
                 self.assertEqual(variant['periodFrames'],58)
                 asset=resource(variant['scene'])
                 self.assertEqual(sha(asset),variant['sourceGlbSha256'])
-                self.assertEqual(asset.read_bytes(),(ROOT/f'art/derived/production/candidates/{name}-walk-polish/horse_{name}_walk.glb').read_bytes())
+                self.assertEqual(asset.read_bytes(),(ROOT/f'art/derived/production/candidates/{name}-walk-anatomy/horse_{name}_walk.glb').read_bytes())
                 for field in ['motionProfile','receipt','cpuMotionAudit']:
                     self.assertEqual(sha(resource(variant[field+'Path'])),variant[field+'Sha256'])
                 evidence=resource(variant['motionProfilePath']).parent
@@ -64,6 +64,6 @@ class IntegratedWalkTests(unittest.TestCase):
         plugin=(ROOT/'game/addons/horse_asset_evidence/plugin.gd').read_text()
         for path in ['horse_light.glb','horse_light_walk.glb','horse_stock_walk.glb','horse_foal_walk.glb','horse_light_body_detail_v5.png','ai-neutral-skin-mask.png']:
             self.assertIn(path,plugin)
-        for name in ['stock','foal']: self.assertIn(f'evidence/{name}-walk-polish/',plugin)
+        for name in ['stock','foal']: self.assertIn(f'evidence/{name}-walk-anatomy/',plugin)
 
 if __name__=='__main__': unittest.main()

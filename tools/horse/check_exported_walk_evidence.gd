@@ -19,6 +19,9 @@ func _initialize() -> void:
 			variant.receiptPath:variant.receiptSha256,
 			variant.cpuMotionAuditPath:variant.cpuMotionAuditSha256
 		}
+		var anatomy_path = variant.motionProfilePath.get_base_dir()+"/anatomy-report.json"
+		if not FileAccess.file_exists(anatomy_path): failures.append("Missing raw anatomy proof")
+		if not FileAccess.file_exists(variant.motionProfilePath.get_base_dir()+"/native-anatomy-report.json"): failures.append("Missing imported anatomy proof")
 		if family_id == "horse.standard.adult.v1":
 			var detail = variant.bodySignedDetail
 			files[detail.path] = detail.textureSha256
@@ -26,7 +29,7 @@ func _initialize() -> void:
 			files[family.scene] = family.bodySignedDetail.sourceGlbSha256
 		else:
 			var directory = variant.motionProfilePath.get_base_dir()
-			for name in ["surface-report","dense-deformation-audit","report"]:
+			for name in ["surface-report","dense-deformation-audit","report","anatomy-report","native-anatomy-report"]:
 				if not FileAccess.file_exists(directory+"/"+name+".json"): failures.append("Missing raw proof "+name)
 			if family.age == "foal" and not FileAccess.file_exists(directory+"/attachment-audit.json"):
 				failures.append("Missing foal attachment proof")

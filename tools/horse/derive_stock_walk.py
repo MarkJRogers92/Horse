@@ -35,8 +35,15 @@ def evaluated():
  return result
 
 def main():
+ global OUT
+ donor_override=None
+ if '--' in sys.argv:
+  import argparse
+  parser=argparse.ArgumentParser();parser.add_argument('--donor',type=Path);parser.add_argument('--out',type=Path);args=parser.parse_args(sys.argv[sys.argv.index('--')+1:]);donor_override=args.donor
+  if args.out is not None:OUT=args.out.resolve();OUT.mkdir(parents=True,exist_ok=True)
  source=ROOT/'art/derived/production/horse_stock.blend';donor=ROOT/'art/derived/production/horse_light_walk.blend'
- bpy.ops.wm.open_mainfile(filepath=str(donor))
+ if donor_override is not None:donor=donor_override.resolve()
+ bpy.ops.wm.open_mainfile(filepath=str(donor));donor_period=bpy.context.scene.frame_end-bpy.context.scene.frame_start
  rig=bpy.data.objects['Skeleton'];originals={n:bpy.data.objects[n] for n in NAMES}
  with bpy.data.libraries.load(str(source),link=False) as (a,b): b.objects=list(NAMES)
  targets={n:o for n,o in zip(NAMES,b.objects)}
@@ -53,7 +60,7 @@ def main():
   for _ in range(20):q+=p-family_point(q,'light')
   offsets[name]=family_point(q,'stock')-p
  samples=[]
- for f in np.linspace(0,29,117):
+ for f in np.linspace(0,donor_period,117):
   bpy.context.scene.frame_set(int(f),subframe=float(f)%1);bpy.context.view_layer.update()
   samples.append((float(f),{n:Matrix.Translation(offsets[n])@rig.pose.bones[n].matrix.copy() for n in bone_names}))
  rig.animation_data_clear()
@@ -70,7 +77,7 @@ def main():
   for pb in rig.pose.bones:
    b=pb.bone;kwargs={} if b.parent is None else dict(parent_matrix=matrices[b.parent.name],parent_matrix_local=b.parent.matrix_local)
    pb.rotation_mode='QUATERNION';pb.matrix_basis=b.convert_local_to_pose(matrices[b.name],b.matrix_local,invert=True,**kwargs)
-   for prop in ('location','rotation_quaternion','scale'):pb.keyframe_insert(prop,frame=f*2,group=b.name)
+   for prop in ('location','rotation_quaternion','scale'):pb.keyframe_insert(prop,frame=f/donor_period*58,group=b.name)
  for layer in action.layers:
   for strip in layer.strips:
    for slot in action.slots:
@@ -118,9 +125,11 @@ def main():
  bpy.context.scene.frame_end=58;bpy.context.scene.render.fps=60
  bpy.context.scene.frame_set(0)
  bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'horse_stock_walk.blend'),compress=True)
- profile=json.loads((ROOT/'game/assets/horse/production/evidence/light-walk-v5-detail/walk-motion-profile.json').read_text())
+ profile_path=donor.parent/'walk-motion-profile.json'
+ if not profile_path.is_file():profile_path=ROOT/'game/assets/horse/production/evidence/light-walk-v5-detail/walk-motion-profile.json'
+ profile=json.loads(profile_path.read_text());profile_period=profile['periodFrames']
  profile['periodFrames']=58;profile['fps']=60
- for limb in profile['limbs'].values():limb['stanceStartFrame']*=2
+ for limb in profile['limbs'].values():limb['stanceStartFrame']*=58/profile_period
  scene=bpy.context.scene
  # Same indexed distal geometry and weights permit direct reuse of the recorded
  # sole witnesses. Recheck actual points, rather than assume family identity.

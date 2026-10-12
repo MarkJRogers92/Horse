@@ -1,0 +1,15 @@
+{
+  "schema": "horse.light_walk.motion_receipt.v1",
+  "candidateBlendSha256": "9f6f3c08a002a1869b308f4c99a4bcd71ecab1073261adca14171cb8354df7da",
+  "sourceGlbSha256": "b9e2d3ee455c14fb037596cf2dfd9a8241c5760ceea38855238b523bd734a628",
+  "motionProfilePath": "res://assets/horse/production/evidence/light-walk-v6-anatomy/walk-motion-profile.json",
+  "motionProfileSha256": "7a6fa0bea5aee0070054e7f142ae5c87ea937ed07e642b2af3953e47f39cc5d0",
+  "cpuMotionAuditPath": "res://assets/horse/production/evidence/light-walk-v6-anatomy/neutral-motion-audit.json",
+  "cpuMotionAuditSha256": "58e7b16ff8235d52c251b4207b70e58edd3ef81ad2bfbeb4cab16a273c512253",
+  "neutralPhysicalGatesPassed": true,
+  "scope": "Neutral source physical gates only. Imported native contact and coat proof are separate runtime checks.",
+  "anatomyReportPath": "res://assets/horse/production/evidence/light-walk-v6-anatomy/anatomy-report.json",
+  "anatomyReportSha256": "49c57886d5c5eaa47c9151f15e319bcceb0518a3b1fd91d0b0621bcc0d1d4fc4",
+  "gameImportReportPath": "res://assets/horse/production/evidence/light-walk-v6-anatomy/game-import-report.json",
+  "gameImportReportSha256": "9d09b85b64b4aeeb50bd4278d617c306b306b715a2e18fedee70d29b95e0b88d"
+}

@@ -291,12 +291,12 @@ public sealed class VisualCatalog
                 return RemainingWalkEvidence.Parse(variant, familyId, age, out disabledReason);
             const string expectedFamily = "horse.standard.adult.v1";
             const string expectedScene = "res://assets/horse/production/horse_light_walk.glb";
-            const string expectedGlb = "13a678c5fe5ddb20cd48a1b0b17d9e59ecf4a98b7d9599a160f6ee8ce3373219";
-            const string expectedBlend = "3ef7417273cd9baa9d68b406c2731e4bf7db4bd2bc3a56dde95e3a6471173573";
-            const string expectedEvidenceRoot = "res://assets/horse/production/evidence/light-walk-v5-detail/";
-            const string expectedProfileSha = "7f72b680dc658969235a200b32a834b1c1d69c946270cbbcc87973a433243d1f";
-            const string expectedReceiptSha = "81e769bed3d6bac22fa6ce4021f04f28506ba6422fe0fa1a08cf05765297c29f";
-            const string expectedAuditSha = "face59f6bfae24d44d3e1c2bf10c3deea3b2983fba3356e625af74b6c0b83f61";
+            const string expectedGlb = "b9e2d3ee455c14fb037596cf2dfd9a8241c5760ceea38855238b523bd734a628";
+            const string expectedBlend = "9f6f3c08a002a1869b308f4c99a4bcd71ecab1073261adca14171cb8354df7da";
+            const string expectedEvidenceRoot = "res://assets/horse/production/evidence/light-walk-v6-anatomy/";
+            const string expectedProfileSha = "7a6fa0bea5aee0070054e7f142ae5c87ea937ed07e642b2af3953e47f39cc5d0";
+            const string expectedReceiptSha = "49c552de3011fd43d8ed78e9e4d2f71ebddf2788efe241f3dd9fe11007ec3a6e";
+            const string expectedAuditSha = "58e7b16ff8235d52c251b4207b70e58edd3ef81ad2bfbeb4cab16a273c512253";
             const double expectedSpeed = 0.749997329711914;
 
             string scene = ReadString(variant, "scene") ?? "";
@@ -318,12 +318,33 @@ public sealed class VisualCatalog
             if (!variant.TryGetProperty("forwardSpeedMetersPerSecond", out var speedNode) ||
                 speedNode.ValueKind != JsonValueKind.Number || !speedNode.TryGetDouble(out var speed) ||
                 !double.IsFinite(speed) || Math.Abs(speed - expectedSpeed) > 1e-12 ||
-                !variant.TryGetProperty("periodFrames", out var periodNode) || !periodNode.TryGetInt32(out int period) || period != 29 ||
-                !variant.TryGetProperty("fps", out var fpsNode) || !fpsNode.TryGetInt32(out int fps) || fps != 30 ||
+                !variant.TryGetProperty("periodFrames", out var periodNode) || !periodNode.TryGetInt32(out int period) || period != 58 ||
+                !variant.TryGetProperty("fps", out var fpsNode) || !fpsNode.TryGetInt32(out int fps) || fps != 60 ||
                 !variant.TryGetProperty("dutyFactor", out var dutyNode) || !dutyNode.TryGetDouble(out double duty) ||
                 !double.IsFinite(duty) || Math.Abs(duty - 0.6) > 1e-6 ||
                 !FileAccess.FileExists(scene) || Sha256(FileAccess.GetFileAsBytes(scene)) != expectedGlb)
                 return null;
+
+            // These additional gates bind actual exported anatomy and the exact project import.
+            const string expectedAnatomySha = "49c57886d5c5eaa47c9151f15e319bcceb0518a3b1fd91d0b0621bcc0d1d4fc4";
+            const string expectedImportSha = "9d09b85b64b4aeeb50bd4278d617c306b306b715a2e18fedee70d29b95e0b88d";
+            byte[] anatomyBytes = FileAccess.GetFileAsBytes(expectedEvidenceRoot + "anatomy-report.json");
+            byte[] importBytes = FileAccess.GetFileAsBytes(expectedEvidenceRoot + "game-import-report.json");
+            if (Sha256(anatomyBytes) != expectedAnatomySha || Sha256(importBytes) != expectedImportSha) return null;
+            const string expectedNativeAnatomySha = "c3316079ce3be72cd8d86b71c5b3069ace8267b636905a50efaa08f6c8b35973";
+            byte[] nativeAnatomyBytes = FileAccess.GetFileAsBytes(expectedEvidenceRoot + "native-anatomy-report.json");
+            if (Sha256(nativeAnatomyBytes) != expectedNativeAnatomySha) return null;
+            using var nativeAnatomyDoc = JsonDocument.Parse(nativeAnatomyBytes);
+            if (!WalkAnatomyEvidence.Validate(nativeAnatomyDoc.RootElement, expectedGlb, expectedProfileSha) ||
+                !nativeAnatomyDoc.RootElement.GetProperty("usesProjectImport").GetBoolean()) return null;
+            using var anatomyDoc = JsonDocument.Parse(anatomyBytes);
+            using var importDoc = JsonDocument.Parse(importBytes);
+            if (!WalkAnatomyEvidence.Validate(anatomyDoc.RootElement, expectedGlb, expectedProfileSha) ||
+                importDoc.RootElement.GetProperty("candidateGlbSha256").GetString() != expectedGlb ||
+                importDoc.RootElement.GetProperty("failures").GetArrayLength() != 0 ||
+                !importDoc.RootElement.GetProperty("usesProjectImport").GetBoolean() ||
+                importDoc.RootElement.GetProperty("projectImportFps").GetInt32() != 60 ||
+                importDoc.RootElement.GetProperty("animationOptimizerEnabled").GetBoolean()) return null;
 
             // The body detail is separately validated against the derived GLB and the exact
             // rig-only UV preservation evidence. The ordinary family keeps its original scene
@@ -395,7 +416,7 @@ public sealed class VisualCatalog
         string.Equals(path, "res://assets/horse/production/evidence/light-v5-detail/" + fileName, StringComparison.Ordinal);
 
     private static bool IsWalkDerivedEvidencePath(string? path, string fileName) =>
-        string.Equals(path, "res://assets/horse/production/evidence/light-walk-v5-detail/" + fileName, StringComparison.Ordinal);
+        string.Equals(path, "res://assets/horse/production/evidence/light-walk-v6-anatomy/" + fileName, StringComparison.Ordinal);
 
     private static bool TryReadPositiveInt(JsonElement node, string key, out int value)
     {
@@ -505,7 +526,7 @@ public sealed class VisualCatalog
             const string baselineGlb = "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc";
             const string parentBinding = "f81192626f5583179b46362c6ae4f1fbdc92341b25f697973f5524d0309db3eb";
             const string parentHandoff = "6410f515e3445726b0a1a652f7c6bfa096b25006c726d219ef3df91353d5f773";
-            const string proofPath = "res://assets/horse/production/evidence/light-walk-v5-detail/geometry-uv-preservation.json";
+            const string proofPath = "res://assets/horse/production/evidence/light-walk-v6-anatomy/geometry-uv-preservation.json";
             const string baselineGlbPath = "res://assets/horse/production/horse_light.glb";
             const string atlasPath = "res://assets/horse/production/horse_light_body_detail_v5.png";
             const string parentHandoffPath = "res://assets/horse/production/evidence/light-v5-detail/game-integration-handoff.json";

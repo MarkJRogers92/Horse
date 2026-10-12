@@ -1,0 +1,37 @@
+{
+  "durationSeconds": 0.966666638851166,
+  "engine": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "failures": [],
+  "limbs": {
+    "fore_l": {
+      "hoofPitchRangeDegrees": 39.786389066023,
+      "maxStanceFlexionDegrees": 5.01324401823394,
+      "maxSwingFlexionDegrees": 39.8959579798395,
+      "minSignedCarpusOffsetM": 0.0149582009762526,
+      "stanceHoofPitchRangeDegrees": 0.0677258996223285
+    },
+    "fore_r": {
+      "hoofPitchRangeDegrees": 39.7904920401731,
+      "maxStanceFlexionDegrees": 5.01317230124765,
+      "maxSwingFlexionDegrees": 39.8966717346077,
+      "minSignedCarpusOffsetM": 0.014957444742322,
+      "stanceHoofPitchRangeDegrees": 0.0664384486032587
+    }
+  },
+  "method": "Actual Godot project-imported AnimationPlayer and Skeleton3D. Adult bone heads; foal actual skin matrices applied to elbow/carpus/fetlock rest anchors. Positive offset is anterior to elbow-fetlock chord.",
+  "motionProfileSha256": "7a6fa0bea5aee0070054e7f142ae5c87ea937ed07e642b2af3953e47f39cc5d0",
+  "sampleCount": 117,
+  "schema": "horse.walk.anatomy.v1",
+  "sourceGlbSha256": "b9e2d3ee455c14fb037596cf2dfd9a8241c5760ceea38855238b523bd734a628",
+  "usesProjectImport": true
+}

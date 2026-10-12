@@ -15,27 +15,31 @@ internal static class RemainingWalkEvidence
 
     // Generated from the reviewed bytes, never from untrusted catalog declarations.
     private static readonly Accepted Stock = new("stock", "adult",
-        "3850db293a2b50d084fc9a4c2359c751e71f5456ba01219bf2dd1449dbda2e9e",
-        "4efbbb61a865c08367d7bcdba8b7c756cf2100a8ad1ec90125e1641a7bc1d5b0", 0.749997329711914, 429,
-        new Dictionary<string, string> { 
-            ["surface-report"] = "a1537671ae465410a83a56dd91fa530f6051a2f3a3aaa7f2d9fb58b46e916992",
-            ["report"] = "0b88e2a1b5aab88c162be1a3a2ff50801163b09cd7fcd01ecd35f87e3a1cb985",
-            ["dense-deformation-audit"] = "3cc96700d39790cbde3375518a7312de0c250228f018f6a992e92b29f244054a",
-            ["source-audit"] = "f9c67068d6204abb0d97c87cc3c1581fbe52a453fc59dfe596bb0c6949db2993",
-            ["walk-motion-profile"] = "337be1230a74561a667e925f051c7a4c03bcae800ff5308816804dfd22ef25bf",
-            ["game-import-report"] = "956fe08e5f776a35616ba6a5131d8e3a8151ec79fe5bf2cad6579ee6ebbec5b1",
+        "d705a9a8443b30ee8e4c4eb859cf8bc1a20ab1e9178fcc28fa439f5308cf4168",
+        "71b8c95f6291bd9b4a8b89978aa76aa1efe6bf1ea4b819822e68564b1e5dfab8", 0.749997329711914, 429,
+        new Dictionary<string, string> {
+            ["native-anatomy-report"] = "08af5addb1153ded1e732ba1693f28995f94e57404086e96b5ef763760f6b298",
+            ["anatomy-report"] = "e5a72caa00b770209e84844f684a06a89d210272ea8ab507236a733f50292ae6",
+            ["dense-deformation-audit"] = "f1a2b035fdd1004f96e48f99e67fe6a99563426b896982880c18bea04c20ffc9",
+            ["game-import-report"] = "543305d29cc5e68cf54e47d1003a77f47d386dfc74030b94cd8fc0631c23aa14",
+            ["report"] = "fc4e4bdc7462c7583564cefc37a67b5f841ec36b69df43a46855c237212e35db",
+            ["source-audit"] = "f8f0653124b3c1fe2a3829a5474f734f2c8d23193b9160448fe63c4b1db1931b",
+            ["surface-report"] = "c44948f6c94ebb4deec7a343232a988ce52992325dea08c3b61c7b6a88258514",
+            ["walk-motion-profile"] = "f46be30cfa401b2fc45d917d9f5fe7fa1c392c5a084084aa736a37f398549be7",
          });
     private static readonly Accepted Foal = new("foal", "foal",
-        "219061fb162cfb227a9c0a6e025e12c83c8af6e834ba8517e3754ac8e3dd0769",
-        "5f94f6d90946d6a899c57239861ec79ef17f27767dd318e039938f5ed70cc96d", 0.3448275862068966, 176,
-        new Dictionary<string, string> { 
-            ["surface-report"] = "6050eab92558e1cd54fdb1618509d4ce0d259ba71e0f3b2a15d19de3535d6237",
-            ["report"] = "4d59b1e33f29943e68984a65d8fbc77163439d3ef7a2f06735943d357cd043ec",
-            ["attachment-audit"] = "7711757453e03a1d84e7cc372f060531330abdd53d053c83b4c523116c0a0816",
-            ["dense-deformation-audit"] = "d2bcb33a13664f3c51a808e10d690b38c1416447edc535ef1c6617ec23ef0bc9",
-            ["source-audit"] = "6e4b23cc2c1218ad1164efd2326361fa75e7253dcde938b8eacd010b546b7f61",
-            ["walk-motion-profile"] = "f525314057884aba7d8dd8f5836f7bbb083825227ce551dc12f4c3248fd6f762",
-            ["game-import-report"] = "753d4bb08188910751e2546b62a23d7349236115b5a315b09042b478423432d2",
+        "a37ff181d158517c6297c97655d8c2218ff2810a2fe48694510901a4ee82dbd8",
+        "80d28ab85ab32bb658a0b2f8b6e3adf7776ebc939a99378cc9e9772b0dcc03c6", 0.3448275862068966, 176,
+        new Dictionary<string, string> {
+            ["native-anatomy-report"] = "1093328adda212cec83e3aef7c6c3c1851506a67b6619f9482e74017ff14a233",
+            ["anatomy-report"] = "a6f9317749fb4a71c0c5d7276c8260efd208b8b5fd9480c341854d73ccc4870a",
+            ["attachment-audit"] = "943da9d0646eccb7b9b07b7385e16a55f6a6abc5eacd531142d407f14beb6968",
+            ["dense-deformation-audit"] = "8c0924190eab1ef944e16d6ac8db0455e7fb3ffdc6c423480d3454a0633d43a1",
+            ["game-import-report"] = "4d76f93e8726e50dad225bb1e8c3f5086493cb6e4927445499111815f6be0d82",
+            ["report"] = "8e997ae0c001d13993b8565329c41c9c11a5ab754ac516f94cca57e77b02561e",
+            ["source-audit"] = "c9bf85510924b8748ca99e2a1cbb9b8df78a8c7ccb1468f0cce07f14431e5d38",
+            ["surface-report"] = "5e3f969da8cb8cd2150888f400676dcc5cded4eb391f00f0fc7f16595b08ea14",
+            ["walk-motion-profile"] = "7dfc563da3d61ebaa6d88ed565fe163e59a65e5b5e64f4eef37885917b035699",
          });
 
     public static WalkAnimationVariant? Parse(JsonElement variant, string family, string age, out string? reason)
@@ -50,7 +54,7 @@ internal static class RemainingWalkEvidence
         if (accepted == null || age != accepted.Age) return null;
         var a = accepted;
         string scene = $"res://assets/horse/production/horse_{a.Asset}_walk.glb";
-        string root = $"res://assets/horse/production/evidence/{a.Asset}-walk-polish/";
+        string root = $"res://assets/horse/production/evidence/{a.Asset}-walk-anatomy/";
         try
         {
             if (Text(variant, "scene") != scene || Text(variant, "sourceGlbSha256") != a.Glb ||
@@ -76,6 +80,9 @@ internal static class RemainingWalkEvidence
                     Text(variant, "cpuMotionAuditPath") != root + "source-audit.json" ||
                     Text(variant, "cpuMotionAuditSha256") != a.Evidence["source-audit"]) return null;
 
+                if (!WalkAnatomyEvidence.Validate(files["anatomy-report"].RootElement, a.Glb, a.Evidence["walk-motion-profile"])) return null;
+                if (!WalkAnatomyEvidence.Validate(files["native-anatomy-report"].RootElement, a.Glb, a.Evidence["walk-motion-profile"]) ||
+                    !True(files["native-anatomy-report"].RootElement, "usesProjectImport")) return null;
                 var profile = files["walk-motion-profile"].RootElement;
                 var source = files["source-audit"].RootElement;
                 var surface = files["surface-report"].RootElement;

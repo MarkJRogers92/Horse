@@ -1,0 +1,529 @@
+{
+  "schema": "horse.walk.anatomy.checkpoint.v1",
+  "baselineCommit": "d26f2ee9544e3d9ee76c9854d73cb5c90853e66e",
+  "scope": "All three checked neutral family Walks; original geometry/UVs/morphs. No new Mac executable.",
+  "files": [
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/README.md",
+      "sha256": "578765700a5328388a4313bdb42f072db65ce7dda1e8e47280a45c67d4bee842",
+      "bytes": 698
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/anatomy-report.json",
+      "sha256": "a6f9317749fb4a71c0c5d7276c8260efd208b8b5fd9480c341854d73ccc4870a",
+      "bytes": 161354
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/attachment-audit.json",
+      "sha256": "943da9d0646eccb7b9b07b7385e16a55f6a6abc5eacd531142d407f14beb6968",
+      "bytes": 678
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/dense-deformation-audit.json",
+      "sha256": "8c0924190eab1ef944e16d6ac8db0455e7fb3ffdc6c423480d3454a0633d43a1",
+      "bytes": 1257
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/horse_foal_walk.blend",
+      "sha256": "80d28ab85ab32bb658a0b2f8b6e3adf7776ebc939a99378cc9e9772b0dcc03c6",
+      "bytes": 1556401
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/horse_foal_walk.glb",
+      "sha256": "a37ff181d158517c6297c97655d8c2218ff2810a2fe48694510901a4ee82dbd8",
+      "bytes": 1628952
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/source-audit.json",
+      "sha256": "c9bf85510924b8748ca99e2a1cbb9b8df78a8c7ccb1468f0cce07f14431e5d38",
+      "bytes": 6847
+    },
+    {
+      "path": "art/derived/production/candidates/foal-walk-anatomy/walk-motion-profile.json",
+      "sha256": "7dfc563da3d61ebaa6d88ed565fe163e59a65e5b5e64f4eef37885917b035699",
+      "bytes": 35332
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/README.md",
+      "sha256": "35a9a3ea25e318f90edd63ab73dc7eab04fd3e2f652ad262657199218a8f8ca0",
+      "bytes": 704
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/anatomy-report.json",
+      "sha256": "49c57886d5c5eaa47c9151f15e319bcceb0518a3b1fd91d0b0621bcc0d1d4fc4",
+      "bytes": 161176
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/dense-deformation-audit.json",
+      "sha256": "4c64199c99c5699f76e851c042719feb1465dcda125caf00be7d5a51b53ed15d",
+      "bytes": 1255
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/geometry-uv-preservation.json",
+      "sha256": "3b8e50fa891aab903bd65223c887f98e7ce0e8ed24e88cc3022901842a10fd80",
+      "bytes": 12358
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/horse_light_walk.blend",
+      "sha256": "9f6f3c08a002a1869b308f4c99a4bcd71ecab1073261adca14171cb8354df7da",
+      "bytes": 2650830
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/horse_light_walk.glb",
+      "sha256": "b9e2d3ee455c14fb037596cf2dfd9a8241c5760ceea38855238b523bd734a628",
+      "bytes": 3410412
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/neutral-motion-audit.json",
+      "sha256": "58e7b16ff8235d52c251b4207b70e58edd3ef81ad2bfbeb4cab16a273c512253",
+      "bytes": 27213
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/source-audit.json",
+      "sha256": "125aba6238716204e0eadc83246b44f2cc97ea7e3ce0ad28d7bcfc8e5cc866f1",
+      "bytes": 48073
+    },
+    {
+      "path": "art/derived/production/candidates/light-walk-anatomy/walk-motion-profile.json",
+      "sha256": "7a6fa0bea5aee0070054e7f142ae5c87ea937ed07e642b2af3953e47f39cc5d0",
+      "bytes": 84130
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-anatomy/README.md",
+      "sha256": "fd54f70ac52c7e5685f2a1d25b3ec267ff60215a9f10b5b739a90ad69660fb49",
+      "bytes": 701
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-anatomy/anatomy-report.json",
+      "sha256": "e5a72caa00b770209e84844f684a06a89d210272ea8ab507236a733f50292ae6",
+      "bytes": 161154
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-anatomy/dense-deformation-audit.json",
+      "sha256": "f1a2b035fdd1004f96e48f99e67fe6a99563426b896982880c18bea04c20ffc9",
+      "bytes": 1258
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-anatomy/horse_stock_walk.blend",
+      "sha256": "71b8c95f6291bd9b4a8b89978aa76aa1efe6bf1ea4b819822e68564b1e5dfab8",
+      "bytes": 2834699
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-anatomy/horse_stock_walk.glb",
+      "sha256": "d705a9a8443b30ee8e4c4eb859cf8bc1a20ab1e9178fcc28fa439f5308cf4168",
+      "bytes": 3536744
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-anatomy/source-audit.json",
+      "sha256": "f8f0653124b3c1fe2a3829a5474f734f2c8d23193b9160448fe63c4b1db1931b",
+      "bytes": 12687
+    },
+    {
+      "path": "art/derived/production/candidates/stock-walk-anatomy/walk-motion-profile.json",
+      "sha256": "f46be30cfa401b2fc45d917d9f5fe7fa1c392c5a084084aa736a37f398549be7",
+      "bytes": 84130
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/README.md",
+      "sha256": "f151e5ef1bb64cf1ad38c4ebbbedac6ae2b23d810a172676f804b58721337a67",
+      "bytes": 7732
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/build.log",
+      "sha256": "5038aa55e1017bb3edc3f04b812612bd1dfc50246ac03c829db6b083ed0cab2b",
+      "bytes": 434
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/corrected-family-loops.mp4",
+      "sha256": "20e6b7209c29fc304a6ed7fb910b7c804b080887709e65ddaeeb12d44619a2c5",
+      "bytes": 495085
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/domain.log",
+      "sha256": "92aab532c6c38638bacff7edce26362869d62efac42e0992dd4999750e136a70",
+      "bytes": 819
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/export-evidence-report.json",
+      "sha256": "8b66d0c50eab710946fdccf6adcd9b88154332ed101999b231fdeddea5d24b13",
+      "bytes": 3900
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/foal-front-loop.jpg",
+      "sha256": "89af714cc5e9e77fec61d010c53d68c8b2defb323cfa3733cff62862b6704b0e",
+      "bytes": 132823
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/foal-quarter-loop.jpg",
+      "sha256": "dbb4bdd09266ca954275188a46568beac9ca1059d09d037302b9b5a48b478e7e",
+      "bytes": 182273
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/foal-render-manifest.json",
+      "sha256": "27c8d60ead9dbd7d7523d467405818833e3a43dc169cb7b51a51d2c586ca81d4",
+      "bytes": 338
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/foal-side-loop.jpg",
+      "sha256": "d9da4e28db1e008fac649e787c1f53787d4294774671622732f651d855ca6a0f",
+      "bytes": 168321
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/horse.compact.adult.v1-bay.png",
+      "sha256": "5b38494804e10d77d96aa585aa22b61399baa66b42b1879238a0f8f7467bf2bb",
+      "bytes": 584454
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/horse.compact.adult.v1-cremello.png",
+      "sha256": "21b854c15faf33f8bf8c0ec78e37d95acd02f30cac3581f61d209c549454849b",
+      "bytes": 557763
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/horse.standard.adult.v1-bay.png",
+      "sha256": "35d3ea60b2a8f4a828db4456668dfea3035e28182076d13c4628e35e9862ccd8",
+      "bytes": 599984
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/horse.standard.adult.v1-cremello.png",
+      "sha256": "af824411acc9080499b28f53c0402c64c00e108ac491961cd242941aa3422be2",
+      "bytes": 573731
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/horse.standard.foal.v1-bay.png",
+      "sha256": "0bd24c73879d5f352f62a021cb45355941cc58b07f4eae1a00ee7769d52f8de1",
+      "bytes": 539096
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/horse.standard.foal.v1-cremello.png",
+      "sha256": "b85f6232c7bd043973d1b72acab9e918e314abacba7e754575c884edf9e917c4",
+      "bytes": 510783
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/light-before-after.mp4",
+      "sha256": "d778945b5876cdb8798acada285caefb62bfef7cce8efdcf2505dd96a162ea57",
+      "bytes": 748281
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/light-coated-full-report.json.gz",
+      "sha256": "c89e2d4b696d2f961df1639caf1247e08e9618d6ff837c916ab9a8081ff86288",
+      "bytes": 554225
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/light-coated-summary.json",
+      "sha256": "36312103ca6752ad4306556e0362ad6cbb94c7f8a0411666834f402915051169",
+      "bytes": 17729
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/light-front-loop.jpg",
+      "sha256": "f9afe425ebbb0f2eaf9eca2562988441be43a9564297dea5e8e6212fb8e8e619",
+      "bytes": 129381
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/light-quarter-loop.jpg",
+      "sha256": "93df6c93d8d13be023e3328067d24bb39ca17f96a9f88a7c229cb4dd4f0a5c00",
+      "bytes": 194688
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/light-render-manifest.json",
+      "sha256": "60397de7d2116e209770bd91031a7972ac5a4fb864c039bac671459e9eed5a81",
+      "bytes": 338
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/light-side-loop.jpg",
+      "sha256": "e39c8186843db3055ac793de5d9157abc47bda1900c1f6f87e649af3fce18109",
+      "bytes": 177353
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/preservation.json",
+      "sha256": "ba275901e67be44d6d761b2492506549dc6b3f6e306338f834405028c714e2d3",
+      "bytes": 9701
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/python-tests.log",
+      "sha256": "9908030ca885633ec1fa165d9684a09c47dd1b789457b8e45b8bb9a90445b101",
+      "bytes": 186
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/regression-report.json",
+      "sha256": "542c147850662231607427fb380575a9aea80b862733899e91a1521f5262149d",
+      "bytes": 66194
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/smoke-final.log",
+      "sha256": "896b3a07238751ffdac973f2e17c8de612ea23f31b1a440d4d610258ca89b12f",
+      "bytes": 39327
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/smoke-rendered.log",
+      "sha256": "084caf070fa549b9a3ebde51f35a2c1be7e371f4f04dde9184d8f421f756ae8a",
+      "bytes": 40995
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/spec.log",
+      "sha256": "7d1d37ac6843f676a03e9908b7b010dce6b53cc19a73f9c6468729675a4687df",
+      "bytes": 103
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/stock-front-loop.jpg",
+      "sha256": "ffbfe183868984dab7ec76e6fd5599462b9aff9b856dca7423d660a76d100fbb",
+      "bytes": 138325
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/stock-quarter-loop.jpg",
+      "sha256": "d30fd692fd3557fa26ac23b7bf748826f1601a48074f57d5c79569d351b6d86b",
+      "bytes": 198361
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/stock-render-manifest.json",
+      "sha256": "c899ca58c3f70d0d3095ebd75ae6888eddc25aaa7d6eb2c73d48d07b4871e49a",
+      "bytes": 338
+    },
+    {
+      "path": "docs/visual/evidence/walk-anatomy-cloud-2026-10-12/stock-side-loop.jpg",
+      "sha256": "86c2ec5f2e9e41b0d35aa81abc5adb9b393b7ed164beb2f5f727199b9dca139d",
+      "bytes": 180318
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/anatomy-report.json",
+      "sha256": "a6f9317749fb4a71c0c5d7276c8260efd208b8b5fd9480c341854d73ccc4870a",
+      "bytes": 161354
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/attachment-audit.json",
+      "sha256": "943da9d0646eccb7b9b07b7385e16a55f6a6abc5eacd531142d407f14beb6968",
+      "bytes": 678
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/dense-deformation-audit.json",
+      "sha256": "8c0924190eab1ef944e16d6ac8db0455e7fb3ffdc6c423480d3454a0633d43a1",
+      "bytes": 1257
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/game-import-report.json",
+      "sha256": "4d76f93e8726e50dad225bb1e8c3f5086493cb6e4927445499111815f6be0d82",
+      "bytes": 4803
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/native-anatomy-report.json",
+      "sha256": "1093328adda212cec83e3aef7c6c3c1851506a67b6619f9482e74017ff14a233",
+      "bytes": 1379
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/report.json",
+      "sha256": "8e997ae0c001d13993b8565329c41c9c11a5ab754ac516f94cca57e77b02561e",
+      "bytes": 4817
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/source-audit.json",
+      "sha256": "c9bf85510924b8748ca99e2a1cbb9b8df78a8c7ccb1468f0cce07f14431e5d38",
+      "bytes": 6847
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/surface-report.json",
+      "sha256": "5e3f969da8cb8cd2150888f400676dcc5cded4eb391f00f0fc7f16595b08ea14",
+      "bytes": 4692
+    },
+    {
+      "path": "game/assets/horse/production/evidence/foal-walk-anatomy/walk-motion-profile.json",
+      "sha256": "7dfc563da3d61ebaa6d88ed565fe163e59a65e5b5e64f4eef37885917b035699",
+      "bytes": 35332
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/anatomy-report.json",
+      "sha256": "49c57886d5c5eaa47c9151f15e319bcceb0518a3b1fd91d0b0621bcc0d1d4fc4",
+      "bytes": 161176
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/dense-deformation-audit.json",
+      "sha256": "4c64199c99c5699f76e851c042719feb1465dcda125caf00be7d5a51b53ed15d",
+      "bytes": 1255
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/game-import-report.json",
+      "sha256": "9d09b85b64b4aeeb50bd4278d617c306b306b715a2e18fedee70d29b95e0b88d",
+      "bytes": 4801
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/game-integration-handoff.json",
+      "sha256": "f2fc5c6e4aa4af6f1ba22edc3adacdd49491fd1bd7235fbd396dd6a1a84d6186",
+      "bytes": 5668
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/geometry-uv-preservation.json",
+      "sha256": "3b8e50fa891aab903bd65223c887f98e7ce0e8ed24e88cc3022901842a10fd80",
+      "bytes": 12358
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/light-v5-uv-reuse-binding.json",
+      "sha256": "379d9222bc7c37af2c3a12e8134244fedfc6c9e364761803ad3a57aaf6e228e5",
+      "bytes": 1406
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/native-anatomy-report.json",
+      "sha256": "c3316079ce3be72cd8d86b71c5b3069ace8267b636905a50efaa08f6c8b35973",
+      "bytes": 1377
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/neutral-motion-audit.json",
+      "sha256": "58e7b16ff8235d52c251b4207b70e58edd3ef81ad2bfbeb4cab16a273c512253",
+      "bytes": 27213
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/report.json",
+      "sha256": "30dd8a9af1409503cf4ec8b32a8f88d34618d691725c9b9186585eab7ce7fc78",
+      "bytes": 4818
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/source-audit.json",
+      "sha256": "125aba6238716204e0eadc83246b44f2cc97ea7e3ce0ad28d7bcfc8e5cc866f1",
+      "bytes": 48073
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/surface-report.json",
+      "sha256": "897dece8357a1cea2017a80c8004f6eec9b1539b7a8236e59b48623cb327f61c",
+      "bytes": 4728
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/walk-motion-profile.json",
+      "sha256": "7a6fa0bea5aee0070054e7f142ae5c87ea937ed07e642b2af3953e47f39cc5d0",
+      "bytes": 84130
+    },
+    {
+      "path": "game/assets/horse/production/evidence/light-walk-v6-anatomy/walk-motion-receipt.json",
+      "sha256": "49c552de3011fd43d8ed78e9e4d2f71ebddf2788efe241f3dd9fe11007ec3a6e",
+      "bytes": 1215
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/anatomy-report.json",
+      "sha256": "e5a72caa00b770209e84844f684a06a89d210272ea8ab507236a733f50292ae6",
+      "bytes": 161154
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/dense-deformation-audit.json",
+      "sha256": "f1a2b035fdd1004f96e48f99e67fe6a99563426b896982880c18bea04c20ffc9",
+      "bytes": 1258
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/game-import-report.json",
+      "sha256": "543305d29cc5e68cf54e47d1003a77f47d386dfc74030b94cd8fc0631c23aa14",
+      "bytes": 4798
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/native-anatomy-report.json",
+      "sha256": "08af5addb1153ded1e732ba1693f28995f94e57404086e96b5ef763760f6b298",
+      "bytes": 1375
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/report.json",
+      "sha256": "fc4e4bdc7462c7583564cefc37a67b5f841ec36b69df43a46855c237212e35db",
+      "bytes": 4815
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/source-audit.json",
+      "sha256": "f8f0653124b3c1fe2a3829a5474f734f2c8d23193b9160448fe63c4b1db1931b",
+      "bytes": 12687
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/surface-report.json",
+      "sha256": "c44948f6c94ebb4deec7a343232a988ce52992325dea08c3b61c7b6a88258514",
+      "bytes": 4728
+    },
+    {
+      "path": "game/assets/horse/production/evidence/stock-walk-anatomy/walk-motion-profile.json",
+      "sha256": "f46be30cfa401b2fc45d917d9f5fe7fa1c392c5a084084aa736a37f398549be7",
+      "bytes": 84130
+    },
+    {
+      "path": "game/data/visual_catalog.json",
+      "sha256": "f14478ada6b7a38a57a93428675a31cfe0e80a7228460939bee35bbb98ef2c67",
+      "bytes": 14098
+    },
+    {
+      "path": "game/data/visual_catalog_light_walk_preview.json",
+      "sha256": "e12889a701ba3e33038a42c4442478200d174f35c16bb67d5d171f6a1c6c0061",
+      "bytes": 11580
+    },
+    {
+      "path": "game/scripts/Tools/CoatedHorseWalk.cs",
+      "sha256": "0623ae6ad5e1892d9af1216ac0931b5ec11933a310e23a69d15616ddad602e14",
+      "bytes": 64337
+    },
+    {
+      "path": "game/scripts/Visual/RemainingWalkEvidence.cs",
+      "sha256": "87cf64922fd916f5fcd59a4be604e7a1c59943a9bf31a4561ccfc43fbb938ea6",
+      "bytes": 10638
+    },
+    {
+      "path": "game/scripts/Visual/VisualCatalog.cs",
+      "sha256": "4bf93f030b716b7c637b38088f452f33b4bee594262a7e01d88e4d373f0a288e",
+      "bytes": 55822
+    },
+    {
+      "path": "game/scripts/Visual/WalkAnatomyEvidence.cs",
+      "sha256": "08ec2b41877afb35050e8262bb1c6a58ff3e74103d5576af3514f28b6ec5b715",
+      "bytes": 1556
+    },
+    {
+      "path": "tools/horse/audit_exported_walk_anatomy.py",
+      "sha256": "370f0a46be64334ce2880699f2bc3b149a024b08537e91abe54c5c9f4b74a219",
+      "bytes": 6476
+    },
+    {
+      "path": "tools/horse/audit_light_uv_preservation.py",
+      "sha256": "b9bc64c4943cf76ad314590d34548a24577cb54b9116726f013e233ece392693",
+      "bytes": 7169
+    },
+    {
+      "path": "tools/horse/audit_walk_source_physics.py",
+      "sha256": "1b40b4370b4acdc040b73a3a97b08e552a65468ced979b3367e38dda7202fff8",
+      "bytes": 4726
+    },
+    {
+      "path": "tools/horse/check_imported_walk.gd",
+      "sha256": "67ccf77433bde668fc25639d9af8dd37e266536684ca44236c2d52dfe98232b9",
+      "bytes": 16656
+    },
+    {
+      "path": "tools/horse/check_imported_walk_anatomy.gd",
+      "sha256": "5d3a20b7b4a30bad14a4e3957d591aa8b8d50a63b560946ac3b556b77e32af43",
+      "bytes": 4629
+    },
+    {
+      "path": "tools/horse/derive_foal_anatomical_walk.py",
+      "sha256": "5f3595082b268c2340e4c04fe9882bc4f406543b46d620c1fe805f30bd5bdb0e",
+      "bytes": 15249
+    },
+    {
+      "path": "tools/horse/derive_stock_walk.py",
+      "sha256": "035b08d8f0239fb0583503e7f84743f98d69e92bf9a89655154625d713406bf7",
+      "bytes": 13017
+    },
+    {
+      "path": "tools/horse/render_anatomy_views.py",
+      "sha256": "23f831746440dfe8d66b0932b037667f010ac02774a4d44e126eff97db73a058",
+      "bytes": 2970
+    },
+    {
+      "path": "tools/horse/repair_light_walk_anatomy.py",
+      "sha256": "8dac33c1fbe498c65e728c94eeb640ea9e53eeafde7f9cdd2752bb72dc4f1a6d",
+      "bytes": 8326
+    },
+    {
+      "path": "tools/horse/test_integrated_walk_assets.py",
+      "sha256": "817db4eef5376bab8982f91500e79e6308d12d4b522b49405bd9a9645536ff8a",
+      "bytes": 4387
+    },
+    {
+      "path": "tools/horse/test_walk_anatomy.py",
+      "sha256": "4ed4f4a512219205250380ac5bc5f8f49eed0cee91cec1f2a350f15bebbc2167",
+      "bytes": 3593
+    }
+  ],
+  "validation": {
+    "domainTests": 190,
+    "walkTests": 16,
+    "regressionEntries": 50,
+    "failures": []
+  },
+  "consoleLogNormalization": "Only trailing line whitespace removed; original logs retained in cloud validation output."
+}

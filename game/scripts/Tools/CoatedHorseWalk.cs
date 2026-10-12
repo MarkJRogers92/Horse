@@ -18,7 +18,7 @@ public partial class CoatedHorseWalk : Node3D
     private const string PreviewCatalogPath = "res://data/visual_catalog_light_walk_preview.json";
     private const string FamilyId = "horse.standard.adult.v1";
     private const string CandidateScenePath = "res://assets/horse/production/horse_light_walk.glb";
-    private const string MotionEvidenceDirectory = "res://assets/horse/production/evidence/light-walk-v5-detail/";
+    private const string MotionEvidenceDirectory = "res://assets/horse/production/evidence/light-walk-v6-anatomy/";
     private const string MotionProfilePath = MotionEvidenceDirectory + "walk-motion-profile.json";
     private const string MotionReceiptPath = MotionEvidenceDirectory + "walk-motion-receipt.json";
     private const string NeutralMotionAuditPath = MotionEvidenceDirectory + "neutral-motion-audit.json";
@@ -154,7 +154,7 @@ public partial class CoatedHorseWalk : Node3D
         int fps = profile.GetProperty("fps").GetInt32();
         double speed = profile.GetProperty("forwardSpeedMetersPerSecond").GetDouble();
         double duty = profile.GetProperty("dutyFactor").GetDouble();
-        if (period != 29 || fps != 30 || !double.IsFinite(speed) || speed <= 0 || !double.IsFinite(duty) || Math.Abs(duty - 0.60) > 1e-9 ||
+        if (period != 58 || fps != 60 || !double.IsFinite(speed) || speed <= 0 || !double.IsFinite(duty) || Math.Abs(duty - 0.60) > 1e-9 ||
             !profile.TryGetProperty("sourceRootInPlace", out var sourceRootInPlace) || sourceRootInPlace.ValueKind != JsonValueKind.True)
             throw new InvalidDataException("Motion profile period, frame rate, shared speed, or duty factor is incompatible");
 
@@ -695,7 +695,7 @@ public partial class CoatedHorseWalk : Node3D
             ["candidateBlendSha256"] = profile.CandidateBlendSha256, ["sourceGlbSha256"] = profile.SourceGlbSha256,
             ["periodFrames"] = profile.PeriodFrames, ["fps"] = profile.Fps,
             ["sharedSpeedMetersPerSecond"] = profile.ForwardSpeed, ["dutyFactor"] = profile.DutyFactor,
-            ["sampleCount"] = phaseCount, ["phaseCoordinate"] = "frame = 29*i/60, i=0..60; endpoint retained only for rig-local closure",
+            ["sampleCount"] = phaseCount, ["phaseCoordinate"] = "frame = 58*i/60, i=0..60; endpoint retained only for rig-local closure",
             ["rootMotionContract"] = "Profile is an in-place source clip; only the preview scene root advances at the hash-bound shared speed.",
             ["neutralMorphWeights"] = new Dictionary<string, int>(_currentMorphWeights), ["wholeModelScale"] = VectorValues(_presenter.Model!.Scale),
             ["sourceBodySkeletonRegistration"] = "Every profile rest bone head matched imported global rest within 20 micrometres; every source sole point matched a Body surface vertex rigidly weighted to the declared bone.",

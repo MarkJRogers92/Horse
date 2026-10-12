@@ -1,0 +1,93 @@
+{
+  "engine": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "failures": [],
+  "pack": "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/../anatomy-fix/horse-game.pck",
+  "rawFiles": [
+    {
+      "path": "res://assets/horse/production/horse_light_walk.glb",
+      "sha256": "b9e2d3ee455c14fb037596cf2dfd9a8241c5760ceea38855238b523bd734a628"
+    },
+    {
+      "path": "res://assets/horse/production/evidence/light-walk-v6-anatomy/walk-motion-profile.json",
+      "sha256": "7a6fa0bea5aee0070054e7f142ae5c87ea937ed07e642b2af3953e47f39cc5d0"
+    },
+    {
+      "path": "res://assets/horse/production/evidence/light-walk-v6-anatomy/walk-motion-receipt.json",
+      "sha256": "49c552de3011fd43d8ed78e9e4d2f71ebddf2788efe241f3dd9fe11007ec3a6e"
+    },
+    {
+      "path": "res://assets/horse/production/evidence/light-walk-v6-anatomy/neutral-motion-audit.json",
+      "sha256": "58e7b16ff8235d52c251b4207b70e58edd3ef81ad2bfbeb4cab16a273c512253"
+    },
+    {
+      "path": "res://assets/horse/production/horse_light_body_detail_v5.png",
+      "sha256": "56514e8a81871779ded06be790c3d1b9ba021ffb237cfa03af5b31973cdc5cfa"
+    },
+    {
+      "path": "res://assets/horse/production/evidence/light-v5-detail/ai-neutral-skin-mask.png",
+      "sha256": "f78c9f8380ec6f244f855da9a130a9103f439937ca8d0ecea55e8efc5c4fa12e"
+    },
+    {
+      "path": "res://assets/horse/production/horse_light.glb",
+      "sha256": "26a4870d8e93c488a513171fce52de3e76a0837692ed8c1a9a59e40d4a1c6cbc"
+    },
+    {
+      "path": "res://assets/horse/production/horse_stock_walk.glb",
+      "sha256": "d705a9a8443b30ee8e4c4eb859cf8bc1a20ab1e9178fcc28fa439f5308cf4168"
+    },
+    {
+      "path": "res://assets/horse/production/evidence/stock-walk-anatomy/walk-motion-profile.json",
+      "sha256": "f46be30cfa401b2fc45d917d9f5fe7fa1c392c5a084084aa736a37f398549be7"
+    },
+    {
+      "path": "res://assets/horse/production/evidence/stock-walk-anatomy/game-import-report.json",
+      "sha256": "543305d29cc5e68cf54e47d1003a77f47d386dfc74030b94cd8fc0631c23aa14"
+    },
+    {
+      "path": "res://assets/horse/production/evidence/stock-walk-anatomy/source-audit.json",
+      "sha256": "f8f0653124b3c1fe2a3829a5474f734f2c8d23193b9160448fe63c4b1db1931b"
+    },
+    {
+      "path": "res://assets/horse/production/horse_foal_walk.glb",
+      "sha256": "a37ff181d158517c6297c97655d8c2218ff2810a2fe48694510901a4ee82dbd8"
+    },
+    {
+      "path": "res://assets/horse/production/evidence/foal-walk-anatomy/walk-motion-profile.json",
+      "sha256": "7dfc563da3d61ebaa6d88ed565fe163e59a65e5b5e64f4eef37885917b035699"
+    },
+    {
+      "path": "res://assets/horse/production/evidence/foal-walk-anatomy/game-import-report.json",
+      "sha256": "4d76f93e8726e50dad225bb1e8c3f5086493cb6e4927445499111815f6be0d82"
+    },
+    {
+      "path": "res://assets/horse/production/evidence/foal-walk-anatomy/source-audit.json",
+      "sha256": "c9bf85510924b8748ca99e2a1cbb9b8df78a8c7ccb1468f0cce07f14431e5d38"
+    },
+    {
+      "path": "res://assets/horse/production/horse_foal_walk.glb",
+      "sha256": "a37ff181d158517c6297c97655d8c2218ff2810a2fe48694510901a4ee82dbd8"
+    },
+    {
+      "path": "res://assets/horse/production/evidence/foal-walk-anatomy/walk-motion-profile.json",
+      "sha256": "7dfc563da3d61ebaa6d88ed565fe163e59a65e5b5e64f4eef37885917b035699"
+    },
+    {
+      "path": "res://assets/horse/production/evidence/foal-walk-anatomy/game-import-report.json",
+      "sha256": "4d76f93e8726e50dad225bb1e8c3f5086493cb6e4927445499111815f6be0d82"
+    },
+    {
+      "path": "res://assets/horse/production/evidence/foal-walk-anatomy/source-audit.json",
+      "sha256": "c9bf85510924b8748ca99e2a1cbb9b8df78a8c7ccb1468f0cce07f14431e5d38"
+    }
+  ]
+}

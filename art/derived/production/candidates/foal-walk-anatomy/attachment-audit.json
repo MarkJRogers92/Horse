@@ -1,0 +1,19 @@
+{
+  "candidateBlendSha256": "80d28ab85ab32bb658a0b2f8b6e3adf7776ebc939a99378cc9e9772b0dcc03c6",
+  "samples": 61,
+  "method": "All hair vertices within 12 mm of rest Body surface; fixed rest-triangle barycentric witnesses. Rest offsets are source geometry and not a new seam opening.",
+  "attachments": {
+    "Mane": {
+      "witnessCount": 211,
+      "maxRestGapM": 0.01168723776936531,
+      "maxGapVectorDriftM": 9.129803299739974e-06,
+      "maxPosedGapM": 0.011687659611478681
+    },
+    "Tail": {
+      "witnessCount": 24,
+      "maxRestGapM": 0.011733382008969784,
+      "maxGapVectorDriftM": 2.9356054969166553e-05,
+      "maxPosedGapM": 0.011733499574000161
+    }
+  }
+}

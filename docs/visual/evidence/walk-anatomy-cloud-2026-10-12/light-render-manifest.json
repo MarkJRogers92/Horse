@@ -1,0 +1,12 @@
+{
+  "sourceBlendSha256": "9f6f3c08a002a1869b308f4c99a4bcd71ecab1073261adca14171cb8354df7da",
+  "views": [
+    "side",
+    "front",
+    "quarter"
+  ],
+  "framesPerView": 30,
+  "sourcePeriodFrames": 58,
+  "sourceFps": 60,
+  "method": "Actual evaluated complete in-place loop, neutral inspection material. No file save or geometry edits."
+}

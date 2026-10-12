@@ -6,6 +6,36 @@ The prior visual/animation freeze below is historical and remains true for the
 original checkout; new work is isolated here. No release-matrix promotion or main merge.
 
 
+## Corrected front-leg anatomy in the cloud game — 2026-10-12
+
+Owner-approved D-007 correction now integrates forward-bending adult front
+carpi, recovery hoof pitch and a straighter planted foal foreleg. Light and Stock
+retain about 40 degrees of recovery hoof fold; foal uses 25 degrees. Actual Godot
+project imports measure maximum planted carpal flexion 5.01 / 6.15 / 5.03 degrees
+for Light / Stock / foal, with all anatomical gates passing. The historical
+backward adult gait fails the new regression test.
+
+Original surface positions, normals, UVs, coat masks and all morphs remain exact.
+Light's signed-detail atlas and immutable foundation proof stay intact; new
+versioned rig-only proof binds the corrected asset. All 53 protected historical
+files and non-Walk catalog data are unchanged. Original candidates/evidence are
+retained. The original nine Light physical gates and Stock/foal contact, loop,
+weight, stretch and hair-join limits all pass without relaxed thresholds.
+
+All three complete loops were visually reviewed side/front/three-quarter.
+Warnings-as-errors build, 190 domain tests, 16 walk tests, frozen-spec validation,
+actual imported anatomy/skin checks, normal headless/rendered smoke, separate
+Light coat proof, 50-entry appearance/Idle/viewer regression and empty-project
+exported-PCK evidence check pass. Evidence and before/after video:
+`docs/visual/evidence/walk-anatomy-cloud-2026-10-12/`.
+
+Completion handoff: targeted neutral Walk correction implemented and locally
+verified. Neutral Walk/unit scale remains the accepted scope; Idle restores
+morphs. Existing stylized mesh silhouettes and some local compression remain.
+The Mac download is unchanged and retains the earlier animation. Native Mac
+signing/launch, owner art review and parent-approved publication are separate.
+No Mac access, spending, public release or independent push occurred.
+
 ## Integrated Stock and foal Walk on the cloud computer — 2026-10-11
 
 Owner-approved D-007 integration now maps the exact polished Stock/foal exports

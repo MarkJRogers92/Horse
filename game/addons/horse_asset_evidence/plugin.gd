@@ -19,6 +19,9 @@ class HorseAssetEvidenceExport extends EditorExportPlugin:
 
 	func _export_file(path: String, _type: String, _features: PackedStringArray) -> void:
 		if path in SOURCE_FILES or (path.ends_with(".json") and (
+			path.begins_with("res://assets/horse/production/evidence/light-walk-v6-anatomy/") or
+			path.begins_with("res://assets/horse/production/evidence/stock-walk-anatomy/") or
+			path.begins_with("res://assets/horse/production/evidence/foal-walk-anatomy/") or
 			path.begins_with("res://assets/horse/production/evidence/stock-walk-polish/") or
 			path.begins_with("res://assets/horse/production/evidence/foal-walk-polish/"))):
 			add_file(path, FileAccess.get_file_as_bytes(path), false)

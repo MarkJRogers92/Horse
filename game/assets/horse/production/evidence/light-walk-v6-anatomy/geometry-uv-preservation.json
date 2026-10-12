@@ -1,0 +1,273 @@
+{
+  "schema": "horse_rig_only_geometry_uv_preservation.v1",
+  "baseline_blend_sha256": "9c2975ba2cd2cf4311b45e96c827bae0474c9259b92fe8b81bafa100f12bc295",
+  "candidate_blend_sha256": "9f6f3c08a002a1869b308f4c99a4bcd71ecab1073261adca14171cb8354df7da",
+  "glb_sha256": "b9e2d3ee455c14fb037596cf2dfd9a8241c5760ceea38855238b523bd734a628",
+  "mesh_set_matches": true,
+  "preserved_fields": [
+    "positions",
+    "topology",
+    "transform",
+    "UV_layers_order",
+    "UV_active_render",
+    "frozen_UVs",
+    "colors",
+    "morphs",
+    "UV0"
+  ],
+  "forbidden_changes": [],
+  "baseline": {
+    "Body": {
+      "positions": "6a661d77c3bb96f9be3692d742a8547183510110cf7f1f54f0c4668737d7704c",
+      "topology": "7921b3c0aa05a8bd2c785c0fab67926f7070f0b80993ca5b474ff2ad61206639",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "bad133e1394f133d11a8e6f7f029bebdf2b98b9ef2de273c9de7785ee3f16958",
+      "UV_active_render": "153c9dbcc7025ecd7e50ce6d83f1995233dfc636bc869098e3a8d84288fd938a",
+      "frozen_UVs": "4e48996ae906725bb6b429e0a7696503b2d8336f1f7a5d620f985c2c9923f648",
+      "colors": "0260cade494b2010c98feadfd04f80d1c817873e9e750110be2eeee315dbd8f7",
+      "morphs": "a195876b8bf2d169d331ec9e9ccb1e0c2af2d248a7e3ca3c5c1c7d04c748ee7f",
+      "UV0": "54c9e11fd19c6a8d13195ccd36bd27f21f96f6b3a24239b7e4ebae9950cd3241",
+      "weights": "25a7ee5fd624965f255059a180fff2c3cfbed103c79559a35bf81c4b3bd16c29"
+    },
+    "Eyes": {
+      "positions": "38e7fd85fc283dcd79622970daa78cb7366981a560a8cfa4abc826b0daebea2f",
+      "topology": "6183665a201fc3192861cc5fe0130922b0f40135010995ad344f7bd03b052169",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "5cfbe290be817259e457b346a345b2ee0d919422b3c1042104423eecd61fa703",
+      "UV_active_render": "153c9dbcc7025ecd7e50ce6d83f1995233dfc636bc869098e3a8d84288fd938a",
+      "frozen_UVs": "be5ef07d4eb647c65acd5d302ef9f2ec3dff32a7a8d2c9e403e7696f16ef461f",
+      "colors": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "morphs": "872075e277a556312b065b03ee20dab0ec9e3e3f8616b29783d6ee2431dc9c5f",
+      "UV0": "263677f4e4268115f62682e993893edd10240ec259c33f330a6c14971ab48046",
+      "weights": "3daebe4ae3d673d6a8e4acfb3862f83e84b5b425a53eeadf8423b7e9f6a64e15"
+    },
+    "Mane": {
+      "positions": "8404ca94d8f056fd9a44501d92bed6006b82826fa7f643b87a1fcf35f8b31470",
+      "topology": "33241e2617960f8d7821807fa10d4d8935759018570c043199ac55b55ea43375",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "547435c435ef3929a4b130b9e56c2ba827b0e05428253d7af2891c4a9dcdd5d1",
+      "UV_active_render": "1c28f2eb0958c3d15db1f0f0e7f2b8998ca2b8f67ab426a1fbb3d561fe76fad9",
+      "frozen_UVs": "edf00bad71b71ff50c55fc089906e1e524c4704486b890856523c44639663f67",
+      "colors": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "morphs": "6285014f2a40911f09402a06ffa11b382e859346dd1767ba5515cfb68c98299c",
+      "UV0": "aeb58764acc9dfed9e9665f41430d2bf50ed9ebad264d0c8cf10c97ee96bfcd2",
+      "weights": "02d3cc54708c2b1625d74ee6b95bd61e5fbc0d9febf2f9efdf86b3fc7b42ce22"
+    },
+    "Tail": {
+      "positions": "9c8d55902a13948ae623f67d490f2f4041a3b767441ece0cfd318436ed08cacc",
+      "topology": "6faca5a9ff9aeb464322511f5b42b920cdb4e18f8430481a2dc27297846c3362",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "547435c435ef3929a4b130b9e56c2ba827b0e05428253d7af2891c4a9dcdd5d1",
+      "UV_active_render": "1c28f2eb0958c3d15db1f0f0e7f2b8998ca2b8f67ab426a1fbb3d561fe76fad9",
+      "frozen_UVs": "99b6ab020a4d1195143be739eb7058608266cef10208fe985656b07cd930c916",
+      "colors": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "morphs": "8028a25dd7e375309f1012a7166c769ee114785b008203c0e7a671dc753b0a09",
+      "UV0": "96a2c0c32e45ea1b2de5f55c99ecff18ae7df1cb8d0580c4f714bc8841268bfb",
+      "weights": "7b9e69f308b44a5abe4675b2aeae969c7f707d44b77832165f09e2c9eb6ed597"
+    }
+  },
+  "candidate": {
+    "Body": {
+      "positions": "6a661d77c3bb96f9be3692d742a8547183510110cf7f1f54f0c4668737d7704c",
+      "topology": "7921b3c0aa05a8bd2c785c0fab67926f7070f0b80993ca5b474ff2ad61206639",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "bad133e1394f133d11a8e6f7f029bebdf2b98b9ef2de273c9de7785ee3f16958",
+      "UV_active_render": "153c9dbcc7025ecd7e50ce6d83f1995233dfc636bc869098e3a8d84288fd938a",
+      "frozen_UVs": "4e48996ae906725bb6b429e0a7696503b2d8336f1f7a5d620f985c2c9923f648",
+      "colors": "0260cade494b2010c98feadfd04f80d1c817873e9e750110be2eeee315dbd8f7",
+      "morphs": "a195876b8bf2d169d331ec9e9ccb1e0c2af2d248a7e3ca3c5c1c7d04c748ee7f",
+      "UV0": "54c9e11fd19c6a8d13195ccd36bd27f21f96f6b3a24239b7e4ebae9950cd3241",
+      "weights": "eaa04ff19a827b5d99b922810057fb1e6ce813e9b06075b1693a6c61f5795eb0"
+    },
+    "Eyes": {
+      "positions": "38e7fd85fc283dcd79622970daa78cb7366981a560a8cfa4abc826b0daebea2f",
+      "topology": "6183665a201fc3192861cc5fe0130922b0f40135010995ad344f7bd03b052169",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "5cfbe290be817259e457b346a345b2ee0d919422b3c1042104423eecd61fa703",
+      "UV_active_render": "153c9dbcc7025ecd7e50ce6d83f1995233dfc636bc869098e3a8d84288fd938a",
+      "frozen_UVs": "be5ef07d4eb647c65acd5d302ef9f2ec3dff32a7a8d2c9e403e7696f16ef461f",
+      "colors": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "morphs": "872075e277a556312b065b03ee20dab0ec9e3e3f8616b29783d6ee2431dc9c5f",
+      "UV0": "263677f4e4268115f62682e993893edd10240ec259c33f330a6c14971ab48046",
+      "weights": "59ad85e6577a4c35134b1a6cfb5eb137ef6a9a5d723058ffc0fe198d243a7d10"
+    },
+    "Mane": {
+      "positions": "8404ca94d8f056fd9a44501d92bed6006b82826fa7f643b87a1fcf35f8b31470",
+      "topology": "33241e2617960f8d7821807fa10d4d8935759018570c043199ac55b55ea43375",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "547435c435ef3929a4b130b9e56c2ba827b0e05428253d7af2891c4a9dcdd5d1",
+      "UV_active_render": "1c28f2eb0958c3d15db1f0f0e7f2b8998ca2b8f67ab426a1fbb3d561fe76fad9",
+      "frozen_UVs": "edf00bad71b71ff50c55fc089906e1e524c4704486b890856523c44639663f67",
+      "colors": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "morphs": "6285014f2a40911f09402a06ffa11b382e859346dd1767ba5515cfb68c98299c",
+      "UV0": "aeb58764acc9dfed9e9665f41430d2bf50ed9ebad264d0c8cf10c97ee96bfcd2",
+      "weights": "654918d993bc4053558f639cae276b0f3b7502654755893deba4452be0878993"
+    },
+    "Tail": {
+      "positions": "9c8d55902a13948ae623f67d490f2f4041a3b767441ece0cfd318436ed08cacc",
+      "topology": "6faca5a9ff9aeb464322511f5b42b920cdb4e18f8430481a2dc27297846c3362",
+      "transform": "2163c9d76567ed72097e8c4d524c30a2163c6be4ef7565c48b3eb350242b07ae",
+      "UV_layers_order": "547435c435ef3929a4b130b9e56c2ba827b0e05428253d7af2891c4a9dcdd5d1",
+      "UV_active_render": "1c28f2eb0958c3d15db1f0f0e7f2b8998ca2b8f67ab426a1fbb3d561fe76fad9",
+      "frozen_UVs": "99b6ab020a4d1195143be739eb7058608266cef10208fe985656b07cd930c916",
+      "colors": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "morphs": "8028a25dd7e375309f1012a7166c769ee114785b008203c0e7a671dc753b0a09",
+      "UV0": "96a2c0c32e45ea1b2de5f55c99ecff18ae7df1cb8d0580c4f714bc8841268bfb",
+      "weights": "3f9646a04d873d1db704aabe3370b26026f693f85e457be003aaa7dd12b9205c"
+    }
+  },
+  "export_corner_audit": {
+    "source_sha256": "9f6f3c08a002a1869b308f4c99a4bcd71ecab1073261adca14171cb8354df7da",
+    "glb_sha256": "b9e2d3ee455c14fb037596cf2dfd9a8241c5760ceea38855238b523bd734a628",
+    "meshes": {
+      "Body": {
+        "source_vertices": 10924,
+        "export_vertices": 15674,
+        "source_triangles": 21706,
+        "export_triangles": 21706,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_absolute_attribute_error": {
+          "TEXCOORD_0": 0.0,
+          "TEXCOORD_1": 0.0,
+          "COLOR_0": 7.649390986852467e-06
+        },
+        "pass": true
+      },
+      "Eyes": {
+        "source_vertices": 1476,
+        "export_vertices": 1646,
+        "source_triangles": 2944,
+        "export_triangles": 2944,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_absolute_attribute_error": {
+          "TEXCOORD_0": 0.0,
+          "TEXCOORD_1": 0.0
+        },
+        "pass": true
+      },
+      "Mane": {
+        "source_vertices": 1963,
+        "export_vertices": 1963,
+        "source_triangles": 3752,
+        "export_triangles": 3752,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_absolute_attribute_error": {
+          "TEXCOORD_0": 0.0
+        },
+        "pass": true
+      },
+      "Tail": {
+        "source_vertices": 2297,
+        "export_vertices": 2297,
+        "source_triangles": 4542,
+        "export_triangles": 4542,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_absolute_attribute_error": {
+          "TEXCOORD_0": 0.0
+        },
+        "pass": true
+      }
+    },
+    "pass": true,
+    "mesh_set_matches": true
+  },
+  "export_morph_audit": {
+    "source_sha256": "9f6f3c08a002a1869b308f4c99a4bcd71ecab1073261adca14171cb8354df7da",
+    "glb_sha256": "b9e2d3ee455c14fb037596cf2dfd9a8241c5760ceea38855238b523bd734a628",
+    "meshes": {
+      "Body": {
+        "target_names": [
+          "body_length",
+          "chest_width",
+          "neck_length",
+          "muscle"
+        ],
+        "source_triangles": 21706,
+        "export_triangles": 21706,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_position_delta_error": {
+          "body_length": 0.0,
+          "chest_width": 0.0,
+          "neck_length": 0.0,
+          "muscle": 0.0
+        },
+        "pass": true
+      },
+      "Eyes": {
+        "target_names": [
+          "body_length",
+          "chest_width",
+          "neck_length",
+          "muscle"
+        ],
+        "source_triangles": 2944,
+        "export_triangles": 2944,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_position_delta_error": {
+          "body_length": 0.0,
+          "chest_width": 0.0,
+          "neck_length": 0.0,
+          "muscle": 0.0
+        },
+        "pass": true
+      },
+      "Mane": {
+        "target_names": [
+          "body_length",
+          "chest_width",
+          "neck_length",
+          "muscle"
+        ],
+        "source_triangles": 3752,
+        "export_triangles": 3752,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_position_delta_error": {
+          "body_length": 0.0,
+          "chest_width": 0.0,
+          "neck_length": 0.0,
+          "muscle": 0.0
+        },
+        "pass": true
+      },
+      "Tail": {
+        "target_names": [
+          "body_length",
+          "chest_width",
+          "neck_length",
+          "muscle"
+        ],
+        "source_triangles": 4542,
+        "export_triangles": 4542,
+        "unmatched_export_triangles": 0,
+        "unmatched_source_triangles": 0,
+        "ambiguous_matches": 0,
+        "max_position_delta_error": {
+          "body_length": 0.0,
+          "chest_width": 0.0,
+          "neck_length": 0.0,
+          "muscle": 0.0
+        },
+        "pass": true
+      }
+    },
+    "pass": true,
+    "mesh_set_matches": true
+  },
+  "pass": true,
+  "scope": "Fresh foundation/candidate snapshots and actual candidate Blend-to-GLB complete-triangle correspondence. Geometry, transforms, UV order/data, colors and all shape keys unchanged. Weights, rig and motion may differ. Does not certify gait or morph-extreme animation.",
+  "validator_sha256": "b9bc64c4943cf76ad314590d34548a24577cb54b9116726f013e233ece392693"
+}

@@ -1,0 +1,198 @@
+{
+  "allComponentDeformation": {
+    "Body": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.7349543033927,
+      "samples": 61,
+      "worstEdge": [
+        5561,
+        5763
+      ],
+      "worstPhase": 0.816666666666667
+    },
+    "Eyes": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.00030063224577,
+      "samples": 61,
+      "worstEdge": [
+        276,
+        291
+      ],
+      "worstPhase": 0.0333333333333333
+    },
+    "Mane": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.02730626333088,
+      "samples": 61,
+      "worstEdge": [
+        12,
+        14
+      ],
+      "worstPhase": 0.05
+    },
+    "Tail": {
+      "failures": [],
+      "maxBodyEdgeStretch": 1.00689445831359,
+      "samples": 61,
+      "worstEdge": [
+        28,
+        30
+      ],
+      "worstPhase": 0.0333333333333333
+    }
+  },
+  "animations": [
+    {
+      "boneMovementMeters": 0.259593069553375,
+      "endpointBasisError": 0.000000240302881593379,
+      "endpointTranslationErrorMeters": 0.000000044703483581543,
+      "importLoopMode": 0,
+      "length": 0.966666638851166,
+      "name": "Walk",
+      "tracks": 54
+    }
+  ],
+  "attachments": {
+    "components": {
+      "Mane": {
+        "maximumGapDriftMeters": 0.000058122823247686,
+        "witnessCount": 361
+      },
+      "Tail": {
+        "maximumGapDriftMeters": 0.0000506829637743067,
+        "witnessCount": 34
+      }
+    },
+    "failures": [],
+    "method": "Fixed closest rest-triangle barycentrics, imported Skin binds",
+    "samples": 61
+  },
+  "candidateGlbSha256": "a37ff181d158517c6297c97655d8c2218ff2810a2fe48694510901a4ee82dbd8",
+  "contact": {
+    "failures": [],
+    "limbs": {
+      "fore_l": {
+        "centralSwingMinimumMeters": 0.0412216857075691,
+        "maxPerAxisStanceMotionMeters": 0.000132244080305099,
+        "maxStanceSoleMinimumMeters": 0.000103757971373852,
+        "minStanceHeightMeters": -0.0000066683569457382,
+        "registered": 42
+      },
+      "fore_r": {
+        "centralSwingMinimumMeters": 0.0410835929214954,
+        "maxPerAxisStanceMotionMeters": 0.000133567489683628,
+        "maxStanceSoleMinimumMeters": 0.0000646429834887385,
+        "minStanceHeightMeters": -0.00000646017724648118,
+        "registered": 44
+      },
+      "hind_l": {
+        "centralSwingMinimumMeters": 0.0414479523897171,
+        "maxPerAxisStanceMotionMeters": 0.000490978360176086,
+        "maxStanceSoleMinimumMeters": 0.000165700592333451,
+        "minStanceHeightMeters": -0.0000200402864720672,
+        "registered": 46
+      },
+      "hind_r": {
+        "centralSwingMinimumMeters": 0.0414480865001678,
+        "maxPerAxisStanceMotionMeters": 0.000490665435791016,
+        "maxStanceSoleMinimumMeters": 0.00016614850028418,
+        "minStanceHeightMeters": -0.0000195722677744925,
+        "registered": 44
+      }
+    },
+    "registered": 176
+  },
+  "engine": {
+    "build": "official",
+    "hash": "ed1daf0bf001b61586d9930840f2f1394092c079",
+    "hex": 263938,
+    "major": 4,
+    "minor": 7,
+    "patch": 2,
+    "status": "stable",
+    "string": "4.7.2-stable (official)",
+    "timestamp": 0
+  },
+  "failures": [],
+  "file": "/workspace/scratch/46c24ac297cd/horse-walk-cloud/repo/art/derived/production/candidates/foal-walk-anatomy/horse_foal_walk.glb",
+  "importBakeFps": 60.0,
+  "meshCount": 4,
+  "meshes": [
+    {
+      "blendShapes": 4,
+      "name": "Body",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 74,
+      "surfaceArrays": [
+        {
+          "colors": 8867,
+          "uv0": 8867,
+          "uv1": 8867,
+          "vertices": 8867
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    },
+    {
+      "blendShapes": 4,
+      "name": "Eyes",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 74,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 846,
+          "uv1": 846,
+          "vertices": 846
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    },
+    {
+      "blendShapes": 4,
+      "name": "Mane",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 74,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 364,
+          "uv1": 0,
+          "vertices": 364
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    },
+    {
+      "blendShapes": 4,
+      "name": "Tail",
+      "nonUnitWeightVertices": 0,
+      "skinBinds": 74,
+      "surfaceArrays": [
+        {
+          "colors": 0,
+          "uv0": 58,
+          "uv1": 0,
+          "vertices": 58
+        }
+      ],
+      "surfaces": 1,
+      "zeroWeightVertices": 0
+    }
+  ],
+  "skeletons": 1,
+  "skinDeformation": {
+    "failures": [],
+    "maxBodyEdgeStretch": 1.7349543033927,
+    "samples": 61,
+    "worstEdge": [
+      5561,
+      5763
+    ],
+    "worstPhase": 0.816666666666667
+  },
+  "usesProjectImport": false
+}
