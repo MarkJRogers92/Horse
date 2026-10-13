@@ -332,10 +332,101 @@
       "status": "downloaded",
       "balanceAfter": 931,
       "chargedCredits": 3
+    },
+    {
+      "name": "header_birth",
+      "kind": "image",
+      "prompt": "Inside a cozy wooden stable stall deep in fresh golden straw, morning sunbeams through a small window, floating pink hearts and bunting, soft pastel storybook game illustration, stylized 3D render, cozy warm light, gentle colors (blush pink, cream, sage green, sky blue), wide banner composition, empty centre foreground, no horses, no people, no text, no logos",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:40:14+00:00",
+      "balanceBefore": 931,
+      "taskId": "01a1338f-a75b-7595-b27e-7538db4334e4",
+      "files": [
+        "game/assets/ui/headers/header_birth.jpg"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 928,
+      "chargedCredits": 3
+    },
+    {
+      "name": "header_sale",
+      "kind": "image",
+      "prompt": "The entrance of a charming riding club: white fence gate open under a flower arch, a blank wooden sign, rosettes on the posts, green meadow beyond, soft pastel storybook game illustration, stylized 3D render, cozy warm light, gentle colors (blush pink, cream, sage green, sky blue), wide banner composition, empty centre foreground, no horses, no people, no text, no logos",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:40:30+00:00",
+      "balanceBefore": 928,
+      "taskId": "01a1338f-e570-7407-bf1b-51184db3f02a",
+      "files": [
+        "game/assets/ui/headers/header_sale.jpg"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 925,
+      "chargedCredits": 3
+    },
+    {
+      "name": "header_gallop",
+      "kind": "image",
+      "prompt": "A countryside horse racing track with white rails curving away, pastel bunting flags, a tiny striped grandstand, rolling hills and fluffy clouds, soft pastel storybook game illustration, stylized 3D render, cozy warm light, gentle colors (blush pink, cream, sage green, sky blue), wide banner composition, empty centre foreground, no horses, no people, no text, no logos",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:40:47+00:00",
+      "balanceBefore": 925,
+      "taskId": "01a13390-2604-74bb-b325-fee851dfef66",
+      "files": [
+        "game/assets/ui/headers/header_gallop.jpg"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 922,
+      "chargedCredits": 3
+    },
+    {
+      "name": "header_breeding",
+      "kind": "image",
+      "prompt": "A blossoming spring meadow with a heart-shaped tree in pink bloom, butterflies, soft clouds and a white fence, soft pastel storybook game illustration, stylized 3D render, cozy warm light, gentle colors (blush pink, cream, sage green, sky blue), wide banner composition, empty centre foreground, no horses, no people, no text, no logos",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:41:02+00:00",
+      "balanceBefore": 922,
+      "taskId": "01a13390-63e7-72ab-85f3-77f3dfdcc88d",
+      "files": [
+        "game/assets/ui/headers/header_breeding.jpg"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 919,
+      "chargedCredits": 3
+    },
+    {
+      "name": "header_day",
+      "kind": "image",
+      "prompt": "A peaceful evening over a pastel horse farm: a barn with glowing windows, paddock fence, sunset sky in peach and lavender, first stars, soft pastel storybook game illustration, stylized 3D render, cozy warm light, gentle colors (blush pink, cream, sage green, sky blue), wide banner composition, empty centre foreground, no horses, no people, no text, no logos",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:41:18+00:00",
+      "balanceBefore": 919,
+      "taskId": "01a13390-a1da-7102-9f05-8625ef6859a7",
+      "files": [
+        "game/assets/ui/headers/header_day.jpg"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 916,
+      "chargedCredits": 3
+    },
+    {
+      "name": "header_details",
+      "kind": "image",
+      "prompt": "A tidy tack room wall: wooden pegs with a halter and grooming brushes, framed blank photos, pinned rosettes and ribbons, a hay bale bench, soft pastel storybook game illustration, stylized 3D render, cozy warm light, gentle colors (blush pink, cream, sage green, sky blue), wide banner composition, empty centre foreground, no horses, no people, no text, no logos",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:41:40+00:00",
+      "balanceBefore": 916,
+      "taskId": "01a13390-f5cd-71dc-bffa-d84dbf47a1a5",
+      "files": [
+        "game/assets/ui/headers/header_details.jpg"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 913,
+      "chargedCredits": 3
     }
   ],
-  "spentCredits": 333,
+  "spentCredits": 351,
   "postProcessing": "Textures resized to 1024x1024 with @gltf-transform/cli 4.1.1 'resize' before commit (about 42 MB to 6 MB); geometry unchanged.",
   "balanceNote": "The account balance rose by about 100 credits between the wheelbarrow (balance 864) and the first image (balance before 964), outside any task here (likely a Meshy credit adjustment). Per-task charges are measured within each task, so the D-012 total is unaffected.",
-  "imagePostProcessing": "Icons: 1024 px Meshy images cut out from their cream background by border flood fill, cropped to content and saved at 256 px RGBA."
+  "imagePostProcessing": "Icons: 1024 px Meshy images cut out from their cream background by border flood fill, cropped to content and saved at 256 px RGBA.",
+  "headerPostProcessing": "Headers: Meshy 16:9 images; gallop, sale and details cropped to their picture area; all resized to at most 960 px wide and saved as JPEG quality 88."
 }

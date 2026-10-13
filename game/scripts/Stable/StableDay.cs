@@ -361,6 +361,7 @@ public partial class StableDay : Node
         _reviewOverlay = CozyTheme.Dialog(root, "Review today's plan", 640, out var box, out var buttons, out _);
         _reviewDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(580, 0) };
         box.AddChild(_reviewDetails);
+        CozyTheme.DialogHeader(box, "day", 596, 100);
         var cancel = new Button { Text = "Keep planning", CustomMinimumSize = new Vector2(160, 46) };
         cancel.Pressed += () => { _reviewOverlay.Visible = false; ClearReviewedPlan(); }; buttons.AddChild(cancel);
         _confirmDayButton = new Button { Text = "End day", CustomMinimumSize = new Vector2(150, 46) };
