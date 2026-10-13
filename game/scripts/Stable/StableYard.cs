@@ -430,7 +430,7 @@ public partial class StableYard : Node3D
         foreach (var tag in _tags.Values) tag.Visible = false; // clean photos: no name tags
         if (_fairTag != null) _fairTag.Visible = false;
         if (_trophyTag != null) _trophyTag.Visible = false;
-        _photoYaw = 15f; _photoPitch = 14f; _photoDistance = key == null ? 12f : 5.5f;
+        _photoYaw = FrontYaw(key); _photoPitch = 14f; _photoDistance = key == null ? 12f : 5.5f;
     }
 
     public void ExitPhotoMode()
@@ -447,6 +447,13 @@ public partial class StableYard : Node3D
         _photoPitch = Mathf.Clamp(_photoPitch + pitchDegrees, 3f, 70f);
     }
 
+    /// <summary>Orbit angle that frames a horse from its front three-quarter (horses face +X in their own space).</summary>
+    private float FrontYaw(string? key)
+    {
+        var presenter = _horses.FirstOrDefault(h => h.Key == key).Presenter;
+        return presenter == null ? 15f : presenter.GlobalRotationDegrees.Y + 90f - 35f;
+    }
+
     public void PhotoZoom(float factor) => _photoDistance = Mathf.Clamp(_photoDistance * factor, 2.4f, 18f);
 
     /// <summary>Point the photo camera at the next horse (then the whole paddock); returns its key or null.</summary>
@@ -456,6 +463,7 @@ public partial class StableYard : Node3D
         var index = _photoKey == null ? -1 : keys.IndexOf(_photoKey);
         _photoKey = index + 1 < keys.Count ? keys[index + 1] : null;
         _photoDistance = _photoKey == null ? 12f : 5.5f;
+        _photoYaw = FrontYaw(_photoKey);
         return _photoKey;
     }
 
