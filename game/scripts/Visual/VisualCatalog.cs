@@ -8,7 +8,15 @@ using Godot;
 namespace Cloverbrook.Game.Visual;
 
 public sealed record CoatRecipe(string Label, Color Body, Color Points, float PointsAmount, Color Counter, Color? Primitive,
-    float Sooty, float Dapple, float Sheen);
+    float Sooty, float Dapple, float Sheen)
+{
+    /// <summary>D-024 shade range (light, dark) around <see cref="Body"/>; null keeps one shade.</summary>
+    public (Color Light, Color Dark)? BodyRange { get; init; }
+    public (float Min, float Max)? SootyRange { get; init; }
+    public (float Min, float Max)? DappleRange { get; init; }
+    /// <summary>D-024: how much darker a dun's undiluted head reads than its body (0 = not dun).</summary>
+    public float DunHead { get; init; }
+}
 public sealed record HairRecipe(Color Color, Color Tip);
 public sealed record SkinRecipe(Color Color, float NoseAmount);
 public sealed record EyeRecipe(Color Iris, Color Ring);
@@ -98,7 +106,13 @@ public sealed class VisualCatalog
             cat.Coats[c.Name] = new CoatRecipe(v.GetProperty("label").GetString()!, Hex(v, "body"), Hex(v, "points"),
                 v.GetProperty("pointsAmount").GetSingle(), Hex(v, "counter"),
                 v.TryGetProperty("primitive", out _) ? Hex(v, "primitive") : null,
-                v.GetProperty("sooty").GetSingle(), v.GetProperty("dapple").GetSingle(), v.GetProperty("sheen").GetSingle());
+                v.GetProperty("sooty").GetSingle(), v.GetProperty("dapple").GetSingle(), v.GetProperty("sheen").GetSingle())
+            {
+                BodyRange = v.TryGetProperty("bodyRange", out var br) ? (Color.FromHtml(br[0].GetString()!), Color.FromHtml(br[1].GetString()!)) : null,
+                SootyRange = v.TryGetProperty("sootyRange", out var sr) ? (sr[0].GetSingle(), sr[1].GetSingle()) : null,
+                DappleRange = v.TryGetProperty("dappleRange", out var dr) ? (dr[0].GetSingle(), dr[1].GetSingle()) : null,
+                DunHead = v.TryGetProperty("dunHead", out var dh) ? dh.GetSingle() : 0f,
+            };
         }
         foreach (var h in r.GetProperty("hairRecipes").EnumerateObject()) cat.Hair[h.Name] = new HairRecipe(Hex(h.Value, "color"), Hex(h.Value, "tip"));
         foreach (var s in r.GetProperty("skinRecipes").EnumerateObject()) cat.Skin[s.Name] = new SkinRecipe(Hex(s.Value, "color"), s.Value.GetProperty("noseAmount").GetSingle());

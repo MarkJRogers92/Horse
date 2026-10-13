@@ -142,11 +142,13 @@ public partial class HorsePresenter : Node3D
             Support = Support with { Limitations = Support.Limitations.Append("body signed detail disabled: atlas could not be loaded losslessly or its imported pixels did not match provenance").ToArray() };
 
         var coatMat = new ShaderMaterial { Shader = CoatShader };
-        coatMat.SetShaderParameter("body_color", coat.Body);
+        var look = CoatLook.For(coat, descriptor.MarkingRealizationKey); // D-024 individual shade
+        coatMat.SetShaderParameter("body_color", look.Body);
         coatMat.SetShaderParameter("points_color", coat.Points);
         coatMat.SetShaderParameter("points_amount", coat.PointsAmount);
-        coatMat.SetShaderParameter("counter_color", coat.Counter);
-        coatMat.SetShaderParameter("primitive_color", coat.Primitive ?? coat.Points);
+        coatMat.SetShaderParameter("counter_color", look.Counter);
+        coatMat.SetShaderParameter("primitive_color", look.Primitive);
+        coatMat.SetShaderParameter("dun_head", descriptor.CoatLayers.Contains("dun_dilution") ? coat.DunHead : 0f);
         coatMat.SetShaderParameter("primitive_strength", descriptor.CoatLayers.Contains("primitive_markings") ? descriptor.PrimitiveMarkingStrength / 10000f : 0f);
         coatMat.SetShaderParameter("skin_color", skin.Color);
         coatMat.SetShaderParameter("nose_amount", skin.NoseAmount);
@@ -154,8 +156,9 @@ public partial class HorsePresenter : Node3D
         coatMat.SetShaderParameter("pink_skin", catalog.PinkSkin);
         coatMat.SetShaderParameter("hoof_dark", catalog.HoofDark);
         coatMat.SetShaderParameter("hoof_pale", catalog.HoofPale);
-        coatMat.SetShaderParameter("sooty", coat.Sooty);
-        coatMat.SetShaderParameter("dapple", descriptor.CoatLayers.Contains("shading_modifiers") ? coat.Dapple : 0f);
+        var artistic = descriptor.CoatLayers.Contains("shading_modifiers");
+        coatMat.SetShaderParameter("sooty", artistic ? look.Sooty : coat.Sooty);
+        coatMat.SetShaderParameter("dapple", artistic ? look.Dapple : 0f);
         coatMat.SetShaderParameter("sheen", coat.Sheen);
         // Data atlas is intentionally opt-in per family and remains off when its
         // metadata is absent, invalid, stale, or fails Godot's texture import.

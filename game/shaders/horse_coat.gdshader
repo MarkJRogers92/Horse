@@ -12,6 +12,7 @@ uniform float points_amount = 1.0;
 uniform vec3 counter_color : source_color = vec3(0.6, 0.35, 0.2);
 uniform vec3 primitive_color : source_color = vec3(0.1);
 uniform float primitive_strength = 0.0;   // descriptor primitiveMarkingStrength / 10000
+uniform float dun_head = 0.0;             // D-024: dun leaves the head undiluted, so it reads darker than the body
 uniform vec3 skin_color : source_color = vec3(0.17, 0.15, 0.15);
 uniform float nose_amount = 0.55;
 uniform vec3 white_color : source_color = vec3(0.97, 0.95, 0.93);
@@ -92,12 +93,20 @@ void fragment() {
 	col = mix(col, points_color, pts * points_amount);
 	// primitive markings (dun, nd1): dorsal stripe + leg barring
 	if (primitive_strength > 0.0) {
-		float stripe = is_trunk ? smoothstep(0.35, 0.75, m.b) : 0.0;
+		// A crisp, continuous dorsal stripe from withers to tail (slightly wavy edge).
+		float stripe = is_trunk ? smoothstep(0.42, 0.62, m.b + (hair_var - 0.5) * 0.08) : 0.0;
 		float bars = 0.0;
 		if (is_leg && primitive_strength > 0.5) {
-			bars = smoothstep(0.55, 0.85, sin(c.y * 42.0 + hair_var * 2.0) * 0.5 + 0.5) * smoothstep(0.5, 0.7, c.y) * (1.0 - smoothstep(1.25, 1.5, c.y));
+			// D-024: zebra barring sits around the knees and hocks (canonical leg height ~0.8-1.1), 3-4 soft bars.
+			float band = smoothstep(0.74, 0.84, c.y) * (1.0 - smoothstep(1.02, 1.1, c.y));
+			bars = smoothstep(0.6, 0.85, sin(c.y * 58.0 + hair_var * 1.5) * 0.5 + 0.5) * band;
 		}
-		col = mix(col, primitive_color, clamp(stripe + bars * 0.7, 0.0, 1.0) * primitive_strength);
+		col = mix(col, primitive_color, clamp(stripe * 0.95 + bars * 0.65, 0.0, 1.0) * primitive_strength);
+	}
+	// D-024 dun mask: the undiluted head is darker than the body, strongest over the face and cheeks.
+	if (dun_head > 0.0 && is_head) {
+		float face = smoothstep(-0.2, 0.25, c.x) * (1.0 - smoothstep(1.05, 1.3, c.x));
+		col = mix(col, col * 0.5 + primitive_color * 0.5, clamp(dun_head * face * 1.3, 0.0, 1.0));
 	}
 	// soft-nose / eye skin shows through the fine hair
 	col = mix(col, skin_color, smoothstep(0.2, 0.9, m.g) * nose_amount);
