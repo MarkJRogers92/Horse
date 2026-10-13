@@ -17,6 +17,7 @@ public partial class StableDay
     private VBoxContainer _inspectAbilities = null!;
     private Button _inspectSellButton = null!;
     private Button _inspectTackButton = null!;
+    private Button _inspectDnaButton = null!;
     private HorseId? _inspectedHorse;
     private readonly Dictionary<HorseId, Button> _inspectButtons = new();
 
@@ -36,6 +37,9 @@ public partial class StableDay
         _inspectTackButton = new Button { Text = "Dress up", CustomMinimumSize = new Vector2(140, 46) };
         _inspectTackButton.Pressed += () => { if (_inspectedHorse != null) ShowTack(_inspectedHorse); };
         buttons.AddChild(_inspectTackButton);
+        _inspectDnaButton = CozyTheme.WithIcon(new Button { Text = $"DNA test · {DnaTest.Price}", CustomMinimumSize = new Vector2(190, 46) }, "breeding", 28);
+        _inspectDnaButton.Pressed += () => { if (_inspectedHorse != null) _ = DnaTestAsync(_inspectedHorse); };
+        buttons.AddChild(_inspectDnaButton);
         var close = new Button { Text = "Close", CustomMinimumSize = new Vector2(130, 46) };
         close.Pressed += () => { _inspectOverlay.Visible = false; _yard.Focus(null); };
         buttons.AddChild(close);
@@ -69,6 +73,10 @@ public partial class StableDay
             _inspectSellButton.Visible = horse.OriginCommitId != null && !HorseMarket.IsSold(horse);
             _inspectSellButton.Disabled = !offer.Allowed || _busy;
             _inspectTackButton.Visible = Tack.BlockReason(_state, horseId, Tack.PadSlot, null) == null;
+            var dnaBlock = DnaTest.BlockReason(_state, horseId);
+            _inspectDnaButton.Disabled = dnaBlock != null || _busy;
+            _inspectDnaButton.TooltipText = dnaBlock != null ? char.ToUpperInvariant(dnaBlock[0]) + dnaBlock.Substring(1)
+                : "The vet reveals this horse's true colour genes, so breeding odds become exact.";
             _inspectSellButton.TooltipText = offer.Allowed ? "" : offer.BlockReason ?? "";
             _inspectOverlay.Visible = true;
             _guideSawDetails = true; RefreshGuide();
@@ -77,6 +85,21 @@ public partial class StableDay
         {
             SetStatus("This horse could not be shown. " + PlainError(ex));
         }
+    }
+
+    private async System.Threading.Tasks.Task DnaTestAsync(HorseId horseId)
+    {
+        if (_state == null || _busy || _recoveryRequired || _pendingRequest != null || _pendingBreedingRequest != null) return;
+        _busy = true;
+        try
+        {
+            var owner = _state.PlayerOwnerId; var revision = _state.Header.SaveRevision;
+            _state = await System.Threading.Tasks.Task.Run(() => _store.CommitDnaTest(owner, horseId, revision, DnaTest.Price));
+            Audio.GameAudio.Play("ribbon", -5);
+            SetStatus($"The vet's results are in for {_state.Horses.Single(h => h.HorseId.Equals(horseId)).Name}. Breeding odds are now exact.");
+        }
+        catch (Exception ex) { SetStatus("The DNA test was not done. " + PlainError(ex)); }
+        finally { _busy = false; Refresh(); ShowInspection(horseId); }
     }
 
     /// <summary>
@@ -129,11 +152,11 @@ public partial class StableDay
             yield return $"Care: nutrition {Percent(profile.Care.Nutrition)} · bedding {Percent(profile.Care.Bedding)} · turnout {Percent(profile.Care.Turnout)} · grooming {Percent(profile.Care.Grooming)}";
         yield return "";
         if (profile.KnownGenetics.Count == 0)
-            yield return "Known genetics: no DNA tests recorded yet. Breeding forecasts use only what is known.";
+            yield return $"Known genetics: no DNA test yet. A DNA test at the vet costs {DnaTest.Price} coins and makes breeding odds exact.";
         else
         {
             yield return "Known genetics (recorded tests):";
-            foreach (var call in profile.KnownGenetics) yield return $"• {call.Locus}: {call.Call}";
+            foreach (var call in profile.KnownGenetics) yield return "• " + DnaTest.Describe(call.Locus, call.Pair);
         }
     }
 

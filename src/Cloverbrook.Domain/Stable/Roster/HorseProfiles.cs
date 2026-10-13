@@ -7,8 +7,10 @@ namespace Cloverbrook.Domain
     /// <summary>One revealed genetic test result, shown exactly as recorded in player knowledge.</summary>
     public sealed class KnownGeneticCall
     {
-        internal KnownGeneticCall(string locus, AllelePair call) { Locus = locus; Call = call.A + "/" + call.B; }
+        internal KnownGeneticCall(string locus, AllelePair call) { Locus = locus; Pair = call; Call = call.A + "/" + call.B; }
         public string Locus { get; }
+        /// <summary>The recorded call, for friendly wording (see <see cref="DnaTest.Describe"/>).</summary>
+        public AllelePair Pair { get; }
         public string Call { get; }
     }
 

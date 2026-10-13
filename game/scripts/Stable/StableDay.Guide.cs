@@ -127,6 +127,8 @@ public partial class StableDay
         var mare = home.FirstOrDefault(h => h.ReproductionState.Role == ReproductiveRole.Mare && Ready(h));
         var stallion = home.FirstOrDefault(h => h.ReproductionState.Role == ReproductiveRole.Stallion && Ready(h));
         if (mare != null && stallion != null && _state.Coins >= 50) return $"Tip: {mare.Name} and {stallion.Name} could have a foal together. Review the pairing to see.";
+        if (!_foalingDemoMode && _state.Coins >= DnaTest.Price && home.Count(h => h.LifeState.Stage == LifeStage.Adult) >= 2 && DnaTest.TestedCount(_state) == 0)
+            return $"Tip: the vet's DNA test ({DnaTest.Price} coins, under Details) shows a horse's true colour genes and makes foal odds exact.";
         if (!_foalingDemoMode && day % HorseFair.DaysPerWeek == 0 && HorseFair.Offers(_state).FirstOrDefault(o => HorseFair.BlockReason(_state, o) == null) is { } offer)
             return $"Tip: it's fair week! {offer.Name} and friends are waiting at the Horse fair.";
         if (!_foalingDemoMode && _state.Coins >= 300 && StableShop.OwnedDecor(_state).Count == 0)

@@ -361,6 +361,15 @@ namespace Cloverbrook.Domain
             return Publish(StableShop.ApplyDecor(current, requester, itemId, expectedSaveRevision), preserveCurrentAsBackup: true);
         }
 
+        /// <summary>D-028: DNA-tests one horse (60 coins). A retry for a horse already tested returns the current save.</summary>
+        public StableSnapshot CommitDnaTest(OwnerId requester, HorseId horseId, ulong expectedSaveRevision, long quotedPrice)
+        {
+            Check.NotNull(requester, nameof(requester)); Check.NotNull(horseId, nameof(horseId));
+            using var held = Lock(); var current = RequirePrimary();
+            if (current.PlayerOwnerId.Equals(requester) && current.Ledger.Any(l => l.Id.Equals(DnaTest.TestId(horseId)))) return current;
+            return Publish(DnaTest.Apply(current, requester, horseId, expectedSaveRevision, quotedPrice), preserveCurrentAsBackup: true);
+        }
+
         /// <summary>D-011: records one day of gallop training for the entrants. Returns the current save unchanged when nobody can gain today.</summary>
         public StableSnapshot RecordPractice(OwnerId requester, ulong expectedSaveRevision, IEnumerable<HorseId> entrants)
         {

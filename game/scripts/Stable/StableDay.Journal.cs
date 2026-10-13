@@ -47,6 +47,8 @@ public partial class StableDay
             s => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId) && Tack.Worn(h, Tack.PadSlot) != null && Tack.Worn(h, Tack.BowSlot) != null)),
         new("friends", "Best Friends", "Reach a full five-heart bond with a horse.", "breeding",
             s => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId) && HorseBond.Hearts(h) >= 5)),
+        new("gene_detective", "Gene Detective", "DNA-test three horses.", "breeding",
+            s => DnaTest.TestedCount(s) >= 3),
         new("savings", "Nest Egg", "Save up 1,000 coins.", "coins", s => s.Coins >= 1000),
         new("season", "A Whole Season", "Reach the summer of your first year.", "day",
             s => s.Header.CalendarDay >= StableCalendar.DaysPerSeason),
