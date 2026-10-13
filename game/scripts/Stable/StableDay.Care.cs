@@ -16,6 +16,7 @@ public partial class StableDay
 {
     private PanelContainer? _careBubble;
     private HorseId? _careHorse;
+    private Vector2 _careNear;
 
     private static readonly (string Kind, string Label, string Icon)[] CareActions =
     {
@@ -28,7 +29,7 @@ public partial class StableDay
         var horse = _state.Horses.SingleOrDefault(h => h.HorseId.Equals(horseId));
         if (horse == null) return;
         CloseCareBubble();
-        _careHorse = horseId;
+        _careHorse = horseId; _careNear = near;
         var bubble = new PanelContainer { MouseFilter = Control.MouseFilterEnum.Stop };
         var style = CozyTheme.Box(CozyTheme.Cream, 20, 10); style.BorderColor = CozyTheme.Accent; style.SetBorderWidthAll(3);
         style.ShadowColor = new Color(0.4f, 0.2f, 0.35f, 0.25f); style.ShadowSize = 8;
@@ -82,7 +83,7 @@ public partial class StableDay
     private async Task InteractAsync(HorseId horseId, string kind)
     {
         if (_state == null || _busy || _recoveryRequired || _pendingRequest != null || _pendingBreedingRequest != null) return;
-        var position = _careBubble?.Position ?? Vector2.Zero;
+        var near = _careNear;
         _busy = true;
         var before = _state.Horses.Single(h => h.HorseId.Equals(horseId));
         try
@@ -109,7 +110,7 @@ public partial class StableDay
         {
             _busy = false;
             Refresh();
-            if (_careHorse != null && _careHorse.Equals(horseId)) ShowCareBubble(horseId, position - new Vector2(24, -0));
+            if (_careHorse != null && _careHorse.Equals(horseId)) ShowCareBubble(horseId, near);
         }
     }
 }

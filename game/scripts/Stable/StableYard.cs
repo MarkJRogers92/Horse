@@ -311,7 +311,7 @@ public partial class StableYard : Node3D
     // D-022 decorations: owned items stand at fixed, camera-visible spots outside the paddock.
     public static readonly (Vector3 Position, float Yaw)[] DecorSpots =
     {
-        (new Vector3(-9.6f, 0, -4.0f), 40f), (new Vector3(-10.8f, 0, -8.2f), 55f), (new Vector3(-6.0f, 0, -11.0f), 15f),
+        (new Vector3(-8.0f, 0, -2.6f), 40f), (new Vector3(-10.2f, 0, -9.2f), 55f), (new Vector3(-6.0f, 0, -11.0f), 15f),
         (new Vector3(6.6f, 0, -10.0f), -20f), (new Vector3(9.6f, 0, -4.2f), -50f), (new Vector3(-1.6f, 0, -9.4f), 5f),
         (new Vector3(2.0f, 0, -9.0f), -10f), (new Vector3(13.0f, 0, -12.0f), -35f),
     };

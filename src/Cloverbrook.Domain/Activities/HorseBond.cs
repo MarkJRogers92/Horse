@@ -22,8 +22,8 @@ namespace Cloverbrook.Domain
 
         public static int Bond(HorseRecord horse) => Math.Max(0, Math.Min(MaxBond, Check.NotNull(horse, nameof(horse)).TrainingState.Get(BondKey)));
 
-        /// <summary>0-5 hearts for display.</summary>
-        public static int Hearts(HorseRecord horse) => Bond(horse) * 5 / MaxBond;
+        /// <summary>0-5 hearts for display: any bond shows a first heart; five hearts above 80%.</summary>
+        public static int Hearts(HorseRecord horse) => Math.Min(5, (Bond(horse) * 5 + MaxBond - 1) / MaxBond);
 
         public static bool DoneToday(HorseRecord horse, string kind, int calendarDay) => horse.TrainingState.Get(DayKey(kind)) == DayMarker(calendarDay);
 

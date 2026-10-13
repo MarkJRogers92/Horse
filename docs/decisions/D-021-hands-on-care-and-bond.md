@@ -7,7 +7,7 @@ with hearts) plus a bond level that helps a little in races.
   - **Limit:** each raises a horse's bond once per calendar day.
   - **Gains:** 250, 350 and 400 points, with diminishing returns (gain × (10000 − bond) / 10000).
   - **Free, no decay:** interactions cost nothing and bond never goes down.
-  - **Display:** 0–5 hearts.
+  - **Display:** 0–5 hearts. Any bond shows a first heart, and five hearts means above 80%.
   - **Storage:** bond and the day markers live in the horse's existing `TrainingState`. That keeps bond
     learned rather than inherited and needs no save-schema change.
 - **Saving.** `AtomicSaveStore.CommitInteraction` checks the owner, the save revision, the kind and the
