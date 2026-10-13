@@ -226,6 +226,8 @@ public partial class HorsePresenter : Node3D
             }
         }
 
+        float Norm(string morph) => descriptor.MorphWeights.TryGetValue(morph, out var w) ? Mathf.Clamp(w / catalog.BodyBlendShapeNormalization, -1f, 1f) : 0f;
+        HorseTack.Apply(Model, descriptor.CosmeticLayer, scenePath, Norm("chest_width") + Norm("muscle")); // D-020 cosmetic tack
         Animator = FindAll<AnimationPlayer>(Model).FirstOrDefault();
         if (Animator != null)
             foreach (var name in Animator.GetAnimationList())

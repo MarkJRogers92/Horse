@@ -16,6 +16,7 @@ public partial class StableDay
     private HBoxContainer _inspectRow = null!;
     private VBoxContainer _inspectAbilities = null!;
     private Button _inspectSellButton = null!;
+    private Button _inspectTackButton = null!;
     private HorseId? _inspectedHorse;
     private readonly Dictionary<HorseId, Button> _inspectButtons = new();
 
@@ -32,6 +33,9 @@ public partial class StableDay
         _inspectSellButton = CozyTheme.WithIcon(new Button { Text = "Ask for an offer", CustomMinimumSize = new Vector2(190, 46) }, "sell", 28);
         _inspectSellButton.Pressed += () => { if (_inspectedHorse != null) ShowSaleOffer(_inspectedHorse); };
         buttons.AddChild(_inspectSellButton);
+        _inspectTackButton = new Button { Text = "Dress up", CustomMinimumSize = new Vector2(140, 46) };
+        _inspectTackButton.Pressed += () => { if (_inspectedHorse != null) ShowTack(_inspectedHorse); };
+        buttons.AddChild(_inspectTackButton);
         var close = new Button { Text = "Close", CustomMinimumSize = new Vector2(130, 46) };
         close.Pressed += () => { _inspectOverlay.Visible = false; _yard.Focus(null); };
         buttons.AddChild(close);
@@ -64,6 +68,7 @@ public partial class StableDay
             var offer = HorseMarket.Quote(_state, horseId);
             _inspectSellButton.Visible = horse.OriginCommitId != null && !HorseMarket.IsSold(horse);
             _inspectSellButton.Disabled = !offer.Allowed || _busy;
+            _inspectTackButton.Visible = Tack.BlockReason(_state, horseId, Tack.PadSlot, null) == null;
             _inspectSellButton.TooltipText = offer.Allowed ? "" : offer.BlockReason ?? "";
             _inspectOverlay.Visible = true;
             _guideSawDetails = true; RefreshGuide();

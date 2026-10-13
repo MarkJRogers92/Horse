@@ -14,7 +14,7 @@ public partial class HorsePortraitStudio : SubViewport
 {
     public const int PortraitSize = 320;
     private readonly Dictionary<string, ImageTexture?> _cache = new();
-    private readonly Queue<(VisualDescriptor Descriptor, TaskCompletionSource<ImageTexture?> Done)> _queue = new();
+    private readonly Queue<(VisualDescriptor Descriptor, bool FullBody, TaskCompletionSource<ImageTexture?> Done)> _queue = new();
     private HorsePresenter _presenter = null!;
     private Camera3D _camera = null!;
     private bool _rendering;
@@ -55,13 +55,16 @@ public partial class HorsePortraitStudio : SubViewport
 
     public bool Busy => _rendering || _queue.Count > 0;
 
-    public bool TryGetCached(VisualDescriptor descriptor, out ImageTexture? texture) => _cache.TryGetValue(descriptor.CacheKey, out texture);
+    private static string Key(VisualDescriptor descriptor, bool fullBody) => fullBody ? descriptor.CacheKey + ":full" : descriptor.CacheKey;
 
-    public Task<ImageTexture?> RenderAsync(VisualDescriptor descriptor)
+    public bool TryGetCached(VisualDescriptor descriptor, out ImageTexture? texture, bool fullBody = false) => _cache.TryGetValue(Key(descriptor, fullBody), out texture);
+
+    /// <summary>A head-and-shoulders portrait, or with <paramref name="fullBody"/> the whole horse (used to show tack).</summary>
+    public Task<ImageTexture?> RenderAsync(VisualDescriptor descriptor, bool fullBody = false)
     {
-        if (_cache.TryGetValue(descriptor.CacheKey, out var cached)) return Task.FromResult(cached);
+        if (_cache.TryGetValue(Key(descriptor, fullBody), out var cached)) return Task.FromResult(cached);
         var done = new TaskCompletionSource<ImageTexture?>();
-        _queue.Enqueue((descriptor, done));
+        _queue.Enqueue((descriptor, fullBody, done));
         if (!_rendering) _ = DrainAsync();
         return done.Task;
     }
@@ -71,8 +74,8 @@ public partial class HorsePortraitStudio : SubViewport
         _rendering = true;
         while (_queue.Count > 0)
         {
-            var (descriptor, done) = _queue.Dequeue();
-            if (_cache.TryGetValue(descriptor.CacheKey, out var cached)) { done.SetResult(cached); continue; }
+            var (descriptor, fullBody, done) = _queue.Dequeue();
+            if (_cache.TryGetValue(Key(descriptor, fullBody), out var cached)) { done.SetResult(cached); continue; }
             ImageTexture? texture = null;
             var support = _presenter.Present(descriptor, "idle");
             if (support.Supported)
@@ -82,7 +85,7 @@ public partial class HorsePortraitStudio : SubViewport
                     animator.Seek(0.4, true);
                     animator.Pause();
                 }
-                Frame(descriptor.IsFoal);
+                if (fullBody) FrameBody(descriptor.IsFoal); else Frame(descriptor.IsFoal);
                 RenderTargetUpdateMode = UpdateMode.Always;
                 for (var i = 0; i < 3; i++) await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
                 var image = GetTexture().GetImage();
@@ -91,10 +94,19 @@ public partial class HorsePortraitStudio : SubViewport
                 texture = ImageTexture.CreateFromImage(image);
                 RenderTargetUpdateMode = UpdateMode.Disabled;
             }
-            _cache[descriptor.CacheKey] = texture;
+            _cache[Key(descriptor, fullBody)] = texture;
             done.SetResult(texture);
         }
         _rendering = false;
+    }
+
+    private void FrameBody(bool foal)
+    {
+        float s = foal ? 0.7f : 1f;
+        var target = new Vector3(0.2f * s, 1.0f * s, 0);
+        var direction = new Vector3(0.42f, 0.22f, 0.88f).Normalized();
+        _camera.Position = target + direction * (5.0f * s);
+        _camera.LookAt(target, Vector3.Up);
     }
 
     private void Frame(bool foal)

@@ -112,7 +112,7 @@ public partial class MainMenu : Node
             foreach (var h in state.Horses.Where(h => h.OwnerId.Equals(state.PlayerOwnerId) && !Cloverbrook.Domain.HorseMarket.IsSold(h)
                          && h.LifeState.Stage != Cloverbrook.Domain.LifeStage.Unborn).OrderBy(h => h.Name, StringComparer.Ordinal).Take(5))
             {
-                var resolution = new Cloverbrook.Domain.PhenotypeResolver().ResolveForPresentation(h, DomainBridge.Matrix, VisualCatalog.Instance.Version, "canonical-anatomy.v1");
+                var resolution = new Cloverbrook.Domain.PhenotypeResolver().ResolveForPresentation(h, DomainBridge.Matrix, VisualCatalog.Instance.Version, "canonical-anatomy.v1", Cloverbrook.Domain.Tack.Layer(h));
                 var (visual, _) = DomainBridge.FromPresentation(resolution);
                 if (visual == null) continue;
                 horses.Add((h.HorseId.ToString(), visual)); names[h.HorseId.ToString()] = h.Name;

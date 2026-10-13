@@ -180,6 +180,20 @@ public partial class StableDay
                 await CaptureFrame(System.IO.Path.Combine(output, "18_yard_landmarks.png"));
                 _uiLayer.Visible = true;
             }
+            if (_state?.Horses.FirstOrDefault(h => h.OwnerId.Equals(_state.PlayerOwnerId) && h.LifeState.Stage == LifeStage.Adult) is { } model)
+            {
+                _practiceOverlay.Visible = false;
+                await WearAsync(model.HorseId, Tack.PadSlot, "pad.lavender");
+                await WearAsync(model.HorseId, Tack.BowSlot, "bow.rose");
+                do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
+                await CaptureFrame(System.IO.Path.Combine(output, "19_dress_up.png"));
+                _tackOverlay.Visible = false; _uiLayer.Visible = false;
+                _yard.Focus(model.HorseId.ToString());
+                var focused = _yard.ElapsedSeconds;
+                while (_yard.ElapsedSeconds - focused < 2.5) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                await CaptureFrame(System.IO.Path.Combine(output, "20_dressed_in_yard.png"));
+                _uiLayer.Visible = true;
+            }
             GD.Print("[hub-preview] OK " + output);
             GetTree().Quit(0);
         }
@@ -195,7 +209,7 @@ public partial class StableDay
         VisualDescriptor? descriptor = null;
         try
         {
-            var resolution = new PhenotypeResolver().ResolveForPresentation(horse, DomainBridge.Matrix, VisualCatalog.Instance.Version, AnatomicalMaskSetId);
+            var resolution = new PhenotypeResolver().ResolveForPresentation(horse, DomainBridge.Matrix, VisualCatalog.Instance.Version, AnatomicalMaskSetId, Tack.Layer(horse));
             var (visual, reasons) = DomainBridge.FromPresentation(resolution);
             if (visual != null && VisualCatalog.Instance.Check(visual).Supported) descriptor = visual;
             else GD.Print($"[stable-hub] {horse.Name} shown as a silhouette: {string.Join("; ", reasons.Concat(visual == null ? Array.Empty<string>() : VisualCatalog.Instance.Check(visual).Problems))}");
@@ -229,7 +243,7 @@ public partial class StableDay
     }
 
     /// <summary>A rounded portrait card that fills in when the render finishes.</summary>
-    private Control Portrait(HorseRecord horse, int size, Color background)
+    private Control Portrait(HorseRecord horse, int size, Color background, bool fullBody = false)
     {
         var material = PortraitMaterial(background);
         var picture = new TextureRect
@@ -240,14 +254,14 @@ public partial class StableDay
         };
         var descriptor = DescriptorFor(horse);
         if (descriptor == null) return picture;
-        if (_portraits.TryGetCached(descriptor, out var ready)) { picture.Texture = ready ?? Silhouette(); return picture; }
-        _ = SetPortraitAsync(picture, descriptor);
+        if (_portraits.TryGetCached(descriptor, out var ready, fullBody)) { picture.Texture = ready ?? Silhouette(); return picture; }
+        _ = SetPortraitAsync(picture, descriptor, fullBody);
         return picture;
     }
 
-    private async System.Threading.Tasks.Task SetPortraitAsync(TextureRect picture, VisualDescriptor descriptor)
+    private async System.Threading.Tasks.Task SetPortraitAsync(TextureRect picture, VisualDescriptor descriptor, bool fullBody = false)
     {
-        var texture = await _portraits.RenderAsync(descriptor);
+        var texture = await _portraits.RenderAsync(descriptor, fullBody);
         if (IsInstanceValid(picture)) picture.Texture = texture ?? Silhouette();
     }
 
