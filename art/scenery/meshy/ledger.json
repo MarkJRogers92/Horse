@@ -167,8 +167,175 @@
       "status": "downloaded",
       "balanceAfter": 864,
       "chargedCredits": 30
+    },
+    {
+      "name": "icon_grooming",
+      "kind": "image",
+      "prompt": "A single cute game UI icon: a wooden horse grooming brush with soft bristles and a small pink heart, chunky rounded stylized 3D render, soft pastel colors, centered, on a plain soft cream background, no text, no border",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:29:15+00:00",
+      "balanceBefore": 964,
+      "taskId": "01a13385-96b1-767a-848d-4619b7a53a2e",
+      "files": [
+        "game/assets/ui/icons/icon_grooming.png"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 961,
+      "chargedCredits": 3
+    },
+    {
+      "name": "icon_feed",
+      "kind": "image",
+      "prompt": "A single cute game UI icon: a light blue feed bucket full of golden oats and a carrot, chunky rounded stylized 3D render, soft pastel colors, centered, on a plain soft cream background, no text, no border",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:29:55+00:00",
+      "balanceBefore": 961,
+      "taskId": "01a13386-36a3-728d-ad60-c63355b6c2ef",
+      "files": [
+        "game/assets/ui/icons/icon_feed.png"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 958,
+      "chargedCredits": 3
+    },
+    {
+      "name": "icon_bedding",
+      "kind": "image",
+      "prompt": "A single cute game UI icon: a fluffy pile of fresh golden straw bedding with a tiny pink flower, chunky rounded stylized 3D render, soft pastel colors, centered, on a plain soft cream background, no text, no border",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:30:17+00:00",
+      "balanceBefore": 958,
+      "taskId": "01a13386-89b2-773a-a889-c7fd29703d21",
+      "files": [
+        "game/assets/ui/icons/icon_bedding.png"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 955,
+      "chargedCredits": 3
+    },
+    {
+      "name": "icon_turnout",
+      "kind": "image",
+      "prompt": "A single cute game UI icon: a small white wooden paddock gate swung open onto a round green grassy hill with daisies, chunky rounded stylized 3D render, soft pastel colors, centered, on a plain soft cream background, no text, no border",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:30:43+00:00",
+      "balanceBefore": 955,
+      "taskId": "01a13386-f20f-7471-94a4-5f218d240e82",
+      "files": [
+        "game/assets/ui/icons/icon_turnout.png"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 952,
+      "chargedCredits": 3
+    },
+    {
+      "name": "icon_coins",
+      "kind": "image",
+      "prompt": "A single cute game UI icon: a small stack of shiny gold coins each stamped with a horseshoe, chunky rounded stylized 3D render, soft pastel colors, centered, on a plain soft cream background, no text, no border",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:31:10+00:00",
+      "balanceBefore": 952,
+      "taskId": "01a13387-590e-75ce-a000-ca0e6ce5aa03",
+      "files": [
+        "game/assets/ui/icons/icon_coins.png"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 949,
+      "chargedCredits": 3
+    },
+    {
+      "name": "icon_day",
+      "kind": "image",
+      "prompt": "A single cute game UI icon: a smiling soft sun rising over a tiny pastel barn roof, chunky rounded stylized 3D render, soft pastel colors, centered, on a plain soft cream background, no text, no border",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:31:31+00:00",
+      "balanceBefore": 949,
+      "taskId": "01a13387-ab35-71dd-af29-00a7526bfe2c",
+      "files": [
+        "game/assets/ui/icons/icon_day.png"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 946,
+      "chargedCredits": 3
+    },
+    {
+      "name": "icon_breeding",
+      "kind": "image",
+      "prompt": "A single cute game UI icon: a pink heart with two small golden horseshoes, chunky rounded stylized 3D render, soft pastel colors, centered, on a plain soft cream background, no text, no border",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:31:47+00:00",
+      "balanceBefore": 946,
+      "taskId": "01a13387-e9eb-74c4-8697-96ca3523f1a1",
+      "files": [
+        "game/assets/ui/icons/icon_breeding.png"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 943,
+      "chargedCredits": 3
+    },
+    {
+      "name": "icon_gallop",
+      "kind": "image",
+      "prompt": "A single cute game UI icon: a pastel pink and gold first-place rosette ribbon with a horseshoe in the centre, chunky rounded stylized 3D render, soft pastel colors, centered, on a plain soft cream background, no text, no border",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:32:03+00:00",
+      "balanceBefore": 943,
+      "taskId": "01a13388-2806-7497-808e-c03afb0933b1",
+      "files": [
+        "game/assets/ui/icons/icon_gallop.png"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 940,
+      "chargedCredits": 3
+    },
+    {
+      "name": "icon_sell",
+      "kind": "image",
+      "prompt": "A single cute game UI icon: a cream paper price tag with a pink heart and a small gold coin, tied with string, chunky rounded stylized 3D render, soft pastel colors, centered, on a plain soft cream background, no text, no border",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:32:19+00:00",
+      "balanceBefore": 940,
+      "taskId": "01a13388-66ce-72c0-8723-e7d692324c95",
+      "files": [
+        "game/assets/ui/icons/icon_sell.png"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 937,
+      "chargedCredits": 3
+    },
+    {
+      "name": "icon_end_day",
+      "kind": "image",
+      "prompt": "A single cute game UI icon: a sleepy crescent moon with tiny stars over a soft lavender cloud, chunky rounded stylized 3D render, soft pastel colors, centered, on a plain soft cream background, no text, no border",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:32:35+00:00",
+      "balanceBefore": 937,
+      "taskId": "01a13388-a5b2-75f3-bb42-4d7b398cc7bd",
+      "files": [
+        "game/assets/ui/icons/icon_end_day.png"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 934,
+      "chargedCredits": 3
+    },
+    {
+      "name": "icon_foal",
+      "kind": "image",
+      "prompt": "A single cute game UI icon: a cute stylized baby horse foal head with big eyes and a tiny pink bow, chunky rounded stylized 3D render, soft pastel colors, centered, on a plain soft cream background, no text, no border",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T04:33:17+00:00",
+      "balanceBefore": 934,
+      "taskId": "01a13389-4bd8-740f-9548-80050353c288",
+      "files": [
+        "game/assets/ui/icons/icon_foal.png"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 931,
+      "chargedCredits": 3
     }
   ],
-  "spentCredits": 300,
-  "postProcessing": "Textures resized to 1024x1024 with @gltf-transform/cli 4.1.1 'resize' before commit (about 42 MB to 6 MB); geometry unchanged."
+  "spentCredits": 333,
+  "postProcessing": "Textures resized to 1024x1024 with @gltf-transform/cli 4.1.1 'resize' before commit (about 42 MB to 6 MB); geometry unchanged.",
+  "balanceNote": "The account balance rose by about 100 credits between the wheelbarrow (balance 864) and the first image (balance before 964), outside any task here (likely a Meshy credit adjustment). Per-task charges are measured within each task, so the D-012 total is unaffected.",
+  "imagePostProcessing": "Icons: 1024 px Meshy images cut out from their cream background by border flood fill, cropped to content and saved at 256 px RGBA."
 }

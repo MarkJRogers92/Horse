@@ -45,7 +45,7 @@ public partial class StableDay
         box.AddChild(selectors);
         var actions = new HBoxContainer();
         actions.AddThemeConstantOverride("separation", 8);
-        _planBreedingButton = new Button { Text = "Review pairing", CustomMinimumSize = new Vector2(145, 38) };
+        _planBreedingButton = CozyTheme.WithIcon(new Button { Text = "Review pairing", CustomMinimumSize = new Vector2(165, 40) }, "breeding", 26);
         _planBreedingButton.Pressed += ShowBreedingReview;
         actions.AddChild(_planBreedingButton);
         _retryBreedingButton = new Button { Text = "Retry saved breeding", Visible = false, CustomMinimumSize = new Vector2(170, 38) };

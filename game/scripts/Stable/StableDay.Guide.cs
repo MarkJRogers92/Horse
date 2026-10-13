@@ -73,7 +73,7 @@ public partial class StableDay
         if (firstDay && !_guideSawCareChoice)
             return (2, "Feed and bedding are always done. Switch on turnout or grooming to keep someone extra comfy!");
         if (firstDay)
-            return (3, "When you're happy, press Review day, then End day. The riding club pays 50 coins every day.");
+            return (3, "When you're happy, press End the day and check the plan. The riding club pays 50 coins every day.");
         var bred = _state.Horses.Where(h => h.OriginCommitId != null).ToArray();
         if (bred.Length == 0)
             return (4, "Fancy a foal? Pick a mare and a stallion, then Review pairing. You'll see the fee first.");

@@ -247,8 +247,8 @@ public partial class StableDay : Node
         header.AddChild(CozyTheme.Ribbon("Cloverbrook Stables", 24));
         _season = SummaryCard("Season 1 · Day 1");
         _wallet = SummaryCard("500 coins");
-        header.AddChild(HudPill(_season, "DAY"));
-        header.AddChild(HudPill(_wallet, "COINS"));
+        header.AddChild(HudPill(_season, "DAY", "day"));
+        header.AddChild(HudPill(_wallet, "COINS", "coins"));
         header.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, MouseFilter = Control.MouseFilterEnum.Ignore });
         _foalingDemoButton = new Button { Text = _foalingDemoMode ? "Foaling demo · active" : "Foaling demo", CustomMinimumSize = new Vector2(170, 44), Disabled = _foalingDemoMode };
         _foalingDemoButton.Pressed += OpenFoalingDemo;
@@ -320,10 +320,10 @@ public partial class StableDay : Node
         _retryButton = new Button { Text = "Retry saved day", Visible = false, CustomMinimumSize = new Vector2(170, 50) };
         _retryButton.Pressed += () => _ = CommitPendingAsync();
         footer.AddChild(_retryButton);
-        _practiceButton = new Button { Text = "Practice gallop", CustomMinimumSize = new Vector2(170, 50) };
+        _practiceButton = CozyTheme.WithIcon(new Button { Text = "Practice gallop", CustomMinimumSize = new Vector2(190, 50) }, "gallop", 32);
         _practiceButton.Pressed += ShowPractice;
         footer.AddChild(_practiceButton);
-        _reviewButton = new Button { Text = "Review day", CustomMinimumSize = new Vector2(180, 54) };
+        _reviewButton = CozyTheme.WithIcon(new Button { Text = "End the day", CustomMinimumSize = new Vector2(190, 54) }, "end_day", 34);
         _reviewButton.Pressed += ShowReview;
         footer.AddChild(_reviewButton);
         root.AddChild(footer);
@@ -343,11 +343,14 @@ public partial class StableDay : Node
         control.OffsetLeft = offsetLeft; control.OffsetTop = offsetTop; control.OffsetRight = offsetRight; control.OffsetBottom = offsetBottom;
     }
 
-    private static Control HudPill(Label value, string label)
+    private static Control HudPill(Label value, string label, string icon)
     {
         var panel = new PanelContainer { CustomMinimumSize = new Vector2(150, 0) };
         panel.AddThemeStyleboxOverride("panel", CozyTheme.Box(new Color(1, 1, 1, 0.9f), 20, 4));
-        var box = new VBoxContainer(); box.AddThemeConstantOverride("separation", -4); panel.AddChild(box);
+        var row = new HBoxContainer(); row.AddThemeConstantOverride("separation", 6); panel.AddChild(row);
+        row.AddChild(new TextureRect { Texture = CozyTheme.Icon(icon), CustomMinimumSize = new Vector2(40, 40), ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+            StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered });
+        var box = new VBoxContainer(); box.AddThemeConstantOverride("separation", -4); row.AddChild(box);
         var heading = CozyTheme.Title(label, 10); heading.AddThemeColorOverride("font_color", CozyTheme.AccentDeep);
         box.AddChild(heading); box.AddChild(value);
         return panel;
@@ -447,7 +450,7 @@ public partial class StableDay : Node
             {
                 var renameRow = new HBoxContainer();
                 var nameInput = new LineEdit { PlaceholderText = "Choose a name", Text = horse.Name, MaxLength = 40, CustomMinimumSize = new Vector2(120, 38), SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
-                var rename = new Button { Text = horse.LifeState.Stage == LifeStage.Foal ? "Name foal" : "Rename horse", CustomMinimumSize = new Vector2(125, 38) };
+                var rename = CozyTheme.WithIcon(new Button { Text = horse.LifeState.Stage == LifeStage.Foal ? "Name foal" : "Rename", CustomMinimumSize = new Vector2(125, 38) }, "foal", 24);
                 rename.Pressed += () => _ = RenameFoalAsync(horse.HorseId, nameInput.Text);
                 renameRow.AddChild(nameInput); renameRow.AddChild(rename); _roster.AddChild(renameRow);
             }
@@ -545,6 +548,8 @@ public partial class StableDay : Node
     private static CheckButton CareToggle(string text, bool value, bool required)
     {
         var toggle = new CheckButton { Text = text, ButtonPressed = value, Disabled = required, CustomMinimumSize = new Vector2(155, 40) };
+        var icon = text switch { "Feed" => "feed", "Fresh bedding" => "bedding", "Turnout" => "turnout", "Grooming" => "grooming", _ => null };
+        if (icon != null) CozyTheme.WithIcon(toggle, icon, 30);
         toggle.AddThemeColorOverride("font_disabled_color", CozyTheme.Text);
         return toggle;
     }

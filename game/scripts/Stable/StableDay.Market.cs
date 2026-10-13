@@ -31,7 +31,7 @@ public partial class StableDay
         var keep = new Button { Text = "Keep my horse", CustomMinimumSize = new Vector2(160, 46) };
         keep.Pressed += () => { _saleOverlay.Visible = false; _reviewedOffer = null; };
         buttons.AddChild(keep);
-        _confirmSaleButton = new Button { Text = "Sell", CustomMinimumSize = new Vector2(170, 46) };
+        _confirmSaleButton = CozyTheme.WithIcon(new Button { Text = "Sell", CustomMinimumSize = new Vector2(180, 46) }, "sell", 28);
         _confirmSaleButton.Pressed += () => _ = ConfirmSaleAsync();
         buttons.AddChild(_confirmSaleButton);
         CozyTheme.FinishDialog(body, buttons);

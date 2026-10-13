@@ -73,7 +73,7 @@ public partial class StableDay
                 throw new InvalidOperationException("Choosing comfort care did not advance the guide to ending the day.");
             _reviewButton.EmitSignal(BaseButton.SignalName.Pressed);
             if (!_reviewOverlay.Visible || _preview?.Allowed != true)
-                throw new InvalidOperationException("The Review day button did not open an allowed day preview.");
+                throw new InvalidOperationException("The End the day button did not open an allowed day preview.");
             if (!_reviewedPlan!.For(turnout.Key)!.Turnout || _preview.HorseOutcomes.Single(o => o.HorseId.Equals(turnout.Key)).After.Turnout != 6200)
                 throw new InvalidOperationException("The selected turnout choice did not appear in the reviewed care result.");
             await CaptureFrame(Path.Combine(directory, "02_review.png"));
@@ -145,7 +145,7 @@ public partial class StableDay
                 var fromDay = _state.Header.CalendarDay;
                 _reviewButton.EmitSignal(BaseButton.SignalName.Pressed);
                 if (!_reviewOverlay.Visible || _preview?.Allowed != true)
-                    throw new InvalidOperationException("The actual Review day UI did not produce an allowed lifecycle preview.");
+                    throw new InvalidOperationException("The actual End the day UI did not produce an allowed lifecycle preview.");
                 if (_preview.LifecycleEvents.Count > 0 && !birthCaptured)
                     await CaptureFrame(Path.Combine(directory, "02_birth_review.png"));
                 var coinsBefore = _state.Coins;

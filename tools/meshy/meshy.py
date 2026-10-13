@@ -10,6 +10,7 @@ and the D-012 budget (500 credits, no further check-in) is enforced before each 
 Usage:
   python3 tools/meshy/meshy.py balance
   python3 tools/meshy/meshy.py generate --name barn --prompt "..." [--texture-prompt "..."] [--no-refine]
+  python3 tools/meshy/meshy.py image --name icon_coins --prompt "..." [--out-dir game/assets/ui/icons]
   python3 tools/meshy/meshy.py ledger
 """
 import argparse
@@ -134,6 +135,54 @@ def generate(args):
               f"{DECISION} spent {ledger['spentCredits']}/{BUDGET}", flush=True)
 
 
+def guard(ledger, args):
+    spent = sum(e.get("chargedCredits", 0) for e in ledger["entries"])
+    if spent >= BUDGET:
+        sys.exit(f"Budget exhausted: {spent}/{BUDGET} credits spent under {DECISION}.")
+    if spent >= CHECKPOINT and not args.past_checkpoint:
+        sys.exit(f"{spent} credits spent: owner check-in at {CHECKPOINT} is required.")
+
+
+def image(args):
+    """2D illustration (UI icons, cards) through Meshy text-to-image."""
+    ledger = load_ledger()
+    guard(ledger, args)
+    before = balance()
+    entry = {"name": args.name, "kind": "image", "prompt": args.prompt, "aiModel": args.model,
+             "createdAt": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "balanceBefore": before}
+    ledger["entries"].append(entry)
+    try:
+        body = {"ai_model": args.model, "prompt": args.prompt, "aspect_ratio": args.aspect}
+        entry["taskId"] = call("POST", "/v1/text-to-image", json=body)["result"]
+        while True:
+            task = call("GET", f"/v1/text-to-image/{entry['taskId']}")
+            if task.get("status") == "SUCCEEDED":
+                break
+            if task.get("status") in ("FAILED", "CANCELED", "EXPIRED"):
+                sys.exit(f"image {entry['taskId']} ended {task.get('status')}: {task.get('task_error')}")
+            time.sleep(5)
+        out = ROOT / args.out_dir
+        out.mkdir(parents=True, exist_ok=True)
+        urls = task.get("image_urls") or []
+        files = []
+        for i, url in enumerate(urls[:1]):
+            path = out / f"{args.name}.png"
+            download(url, path)
+            files.append(str(path.relative_to(ROOT)))
+        entry["files"] = files
+        entry["status"] = "downloaded" if files else "no image returned"
+    except SystemExit as failure:
+        entry["status"] = f"failed: {failure}"
+        raise
+    finally:
+        time.sleep(3)
+        entry["balanceAfter"] = balance()
+        entry["chargedCredits"] = before - entry["balanceAfter"]
+        save_ledger(ledger)
+        print(f"{args.name}: charged {entry['chargedCredits']} credits; balance {entry['balanceAfter']}; "
+              f"{DECISION} spent {ledger['spentCredits']}/{BUDGET}", flush=True)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="command", required=True)
@@ -147,11 +196,20 @@ def main():
     g.add_argument("--polycount", type=int, default=20000)
     g.add_argument("--no-refine", action="store_true", help="geometry only, no textures")
     g.add_argument("--past-checkpoint", action="store_true", help="owner approved spending past the check-in")
+    im = sub.add_parser("image")
+    im.add_argument("--name", required=True)
+    im.add_argument("--prompt", required=True)
+    im.add_argument("--model", default="nano-banana")
+    im.add_argument("--aspect", default="1:1")
+    im.add_argument("--out-dir", default="game/assets/ui/icons")
+    im.add_argument("--past-checkpoint", action="store_true")
     args = p.parse_args()
     if args.command == "balance":
         print(balance())
     elif args.command == "ledger":
         print(json.dumps(load_ledger(), indent=2))
+    elif args.command == "image":
+        image(args)
     else:
         generate(args)
 

@@ -25,7 +25,7 @@ public partial class StableDay
         _inspectDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(340, 0), SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
         _inspectRow.AddChild(_inspectDetails);
         body.AddChild(_inspectRow);
-        _inspectSellButton = new Button { Text = "Ask for an offer", CustomMinimumSize = new Vector2(170, 46) };
+        _inspectSellButton = CozyTheme.WithIcon(new Button { Text = "Ask for an offer", CustomMinimumSize = new Vector2(190, 46) }, "sell", 28);
         _inspectSellButton.Pressed += () => { if (_inspectedHorse != null) ShowSaleOffer(_inspectedHorse); };
         buttons.AddChild(_inspectSellButton);
         var close = new Button { Text = "Close", CustomMinimumSize = new Vector2(130, 46) };

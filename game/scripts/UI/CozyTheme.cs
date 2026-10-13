@@ -117,6 +117,21 @@ public static class CozyTheme
         return b;
     }
 
+    /// <summary>A generated UI icon (D-012, res://assets/ui/icons), or null if it is missing.</summary>
+    public static Texture2D? Icon(string name)
+    {
+        var path = $"res://assets/ui/icons/icon_{name}.png";
+        return ResourceLoader.Exists(path) ? GD.Load<Texture2D>(path) : null;
+    }
+
+    /// <summary>Put an icon on a button at a readable size.</summary>
+    public static T WithIcon<T>(T button, string name, int size = 30) where T : Button
+    {
+        button.Icon = Icon(name);
+        button.AddThemeConstantOverride("icon_max_width", size);
+        return button;
+    }
+
     public static StyleBoxFlat Box(Color bg, int radius, int pad)
     {
         var b = new StyleBoxFlat { BgColor = bg, AntiAliasing = true };
