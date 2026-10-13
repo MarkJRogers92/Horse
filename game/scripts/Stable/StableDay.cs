@@ -402,6 +402,7 @@ public partial class StableDay : Node
         var dayNumber = day % StableCalendar.DaysPerSeason + 1;
         _season.Text = $"{StableYard.SeasonName(seasonNumber - 1)} · Day {dayNumber}";
         if (_shownSeason != seasonNumber - 1) { _shownSeason = seasonNumber - 1; _yard.SetSeason(_shownSeason); }
+        _yard.SetTrophies(_state.Ledger.Count(l => l.Kind == ClubRace.PrizeLedgerKind && l.DeltaCoins == ClubRace.PrizeFor(1)));
         var weather = WeatherFor(_state, day);
         if (_yard.Weather != weather) _yard.SetWeather(weather);
         Audio.GameAudio.Ambience(weather == YardWeather.Rain && _shownSeason != 3 ? "ambience_rain" : "ambience_yard");

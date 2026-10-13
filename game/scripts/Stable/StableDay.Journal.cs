@@ -41,6 +41,8 @@ public partial class StableDay
             s => s.Horses.Any(h => HorseFair.IsPurchased(h) && h.OwnerId.Equals(s.PlayerOwnerId))),
         new("colours", "Colourful Herd", "Collect five different coats.", "breeding",
             s => CollectedCoats(s).Count >= 5),
+        new("cup", "Cup Champion", "Win the Willowbrook Cup.", "gallop",
+            s => s.Ledger.Any(l => l.Kind == ClubRace.PrizeLedgerKind && l.DeltaCoins == ClubRace.PrizeFor(1))),
         new("savings", "Nest Egg", "Save up 1,000 coins.", "coins", s => s.Coins >= 1000),
         new("season", "A Whole Season", "Reach the summer of your first year.", "day",
             s => s.Header.CalendarDay >= StableCalendar.DaysPerSeason),

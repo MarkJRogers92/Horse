@@ -33,35 +33,59 @@ public partial class StableDay
     private double _practiceDelta;
     private Control? _practiceArt;
     private Label _practiceIntro = null!;
+    private const string PracticeIntro = "A friendly gallop on the home track. Speed, acceleration, stamina and calm all matter. Each horse's first gallop of the day counts as training.";
+    private HBoxContainer _practiceModes = null!;
+    private Button _practiceTab = null!, _cupTab = null!;
+    private bool _cupMode;
+    private Label _practiceTitle = null!;
+    private readonly Dictionary<HorseId, HorseRecord> _raceHorses = new();
 
     private void BuildPracticeOverlay(Control root)
     {
-        _practiceOverlay = CozyTheme.Dialog(root, $"Practice gallop · {PracticeGallop.DistanceMeters} m", 660, out var box, out var buttons, out _);
+        _practiceOverlay = CozyTheme.Dialog(root, $"Practice gallop · {PracticeGallop.DistanceMeters} m", 660, out var box, out var buttons, out _practiceTitle);
         _practiceArt = CozyTheme.DialogHeader(box, "gallop", 616, 84);
-        _practiceIntro = SmallText("A friendly gallop on the home track. Speed, acceleration, stamina and calm all matter. Each horse's first gallop of the day counts as training.");
+        _practiceModes = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center };
+        _practiceModes.AddThemeConstantOverride("separation", 8);
+        var modes = new ButtonGroup();
+        _practiceTab = new Button { Text = "Practice", ToggleMode = true, ButtonGroup = modes, ButtonPressed = true, CustomMinimumSize = new Vector2(150, 40) };
+        _cupTab = CozyTheme.WithIcon(new Button { Text = ClubRace.Name, ToggleMode = true, ButtonGroup = modes, CustomMinimumSize = new Vector2(220, 40) }, "gallop", 24);
+        _practiceTab.Pressed += () => ShowPractice(false);
+        _cupTab.Pressed += () => ShowPractice(true);
+        _practiceModes.AddChild(_practiceTab); _practiceModes.AddChild(_cupTab);
+        box.AddChild(_practiceModes);
+        _practiceIntro = SmallText(PracticeIntro);
         box.AddChild(_practiceIntro);
         _practicePicks = new VBoxContainer(); _practicePicks.AddThemeConstantOverride("separation", 4); box.AddChild(_practicePicks);
         _practiceTrack = new VBoxContainer(); _practiceTrack.AddThemeConstantOverride("separation", 6); box.AddChild(_practiceTrack);
         _practiceResults = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(600, 0) };
         box.AddChild(_practiceResults);
         var close = new Button { Text = "Close", CustomMinimumSize = new Vector2(130, 46) };
-        close.Pressed += () => { _practiceOverlay.Visible = false; _practiceElapsedMs = -1; Audio.GameAudio.Loop(null); };
+        close.Pressed += () => { if (_practiceElapsedMs >= 0) FinishPracticePlayback(); _practiceOverlay.Visible = false; _practiceElapsedMs = -1; Audio.GameAudio.Loop(null); };
         buttons.AddChild(close);
         _practiceStart = new Button { Text = "Start gallop", CustomMinimumSize = new Vector2(160, 46) };
-        _practiceStart.Pressed += () => _ = StartPracticeAsync();
+        _practiceStart.Pressed += () => _ = (_cupMode ? StartCupAsync() : StartPracticeAsync());
         buttons.AddChild(_practiceStart);
         CozyTheme.FinishDialog(box, buttons);
     }
 
-    private void ShowPractice()
+    private void ShowPractice() => ShowPractice(false);
+
+    private void ShowPractice(bool cup)
     {
         if (_state == null || _busy) return;
+        _cupMode = cup; _raceHorses.Clear(); _cupOutcome = null;
+        _practiceTab.SetPressedNoSignal(!cup); _cupTab.SetPressedNoSignal(cup);
+        _practiceModes.Visible = true;
+        _practiceTitle.Text = cup ? $"{ClubRace.Name} · {PracticeGallop.DistanceMeters} m" : $"Practice gallop · {PracticeGallop.DistanceMeters} m";
+        _cupRivalRow?.QueueFree(); _cupRivalRow = null;
         _practicePicks.QueueFreeChildren(); _practiceTrack.QueueFreeChildren(); _practiceChoices.Clear(); _practiceLanes.Clear();
-        _practiceResult = null; _practiceElapsedMs = -1; _practiceResults.Text = ""; _practiceStart.Text = "Start gallop";
+        _practiceResult = null; _practiceElapsedMs = -1; _practiceResults.Text = ""; _practiceStart.Text = cup ? $"Enter · {ClubRace.EntryFee} coins" : "Start gallop";
         _practicePicks.Visible = true; _practiceIntro.Visible = true;
         if (_practiceArt != null) _practiceArt.Visible = true;
         _raceFrame?.QueueFree(); _raceFrame = null; _raceView = null;
         _practicePodium?.QueueFree(); _practicePodium = null; _practiceTrack.Visible = true;
+        if (cup) { FillCupPicker(); _practiceOverlay.Visible = true; return; }
+        _practiceIntro.Text = PracticeIntro;
         var eligible = 0;
         foreach (var entry in PracticeGallop.Eligibility(_state).Where(e => !HorseMarket.IsSold(_state.Horses.Single(h => h.HorseId.Equals(e.HorseId)))))
         {
@@ -101,28 +125,7 @@ public partial class StableDay
             _state = await Task.Run(() => _store.RecordPractice(owner, revision, picked));
             _practiceGains = picked.ToDictionary(id => id, id => PracticeTraining.Skill(_state.Horses.Single(h => h.HorseId.Equals(id)))
                 - PracticeTraining.Skill(before.Horses.Single(h => h.HorseId.Equals(id))));
-            _practiceTrack.QueueFreeChildren(); _practiceLanes.Clear();
-            // The race in 3D above the lanes; the lanes stay as an exact position read-out.
-            _practicePicks.Visible = false; _practiceIntro.Visible = false;
-            if (_practiceArt != null) _practiceArt.Visible = false;
-            _raceFrame?.QueueFree();
-            _practicePodium?.QueueFree(); _practicePodium = null; _practiceTrack.Visible = true;
-            _raceFrame = new SubViewportContainer { Stretch = true, CustomMinimumSize = new Vector2(616, 250) };
-            _raceView = new RaceView { Size = new Vector2I(616, 250) };
-            _raceFrame.AddChild(_raceView);
-            _practiceTrack.GetParent().AddChild(_raceFrame);
-            _practiceTrack.GetParent().MoveChild(_raceFrame, _practiceTrack.GetIndex());
-            _raceView.Setup(_practiceResult.Entrants.Select(e => DescriptorFor(_state.Horses.Single(h => h.HorseId.Equals(e.HorseId)))).ToList());
-            foreach (var entrant in _practiceResult.Entrants)
-            {
-                var lane = new HBoxContainer(); lane.AddThemeConstantOverride("separation", 10);
-                var name = CozyTheme.Title(entrant.Name, 15); name.CustomMinimumSize = new Vector2(96, 0); name.VerticalAlignment = VerticalAlignment.Center;
-                lane.AddChild(name);
-                var horse = _state.Horses.Single(h => h.HorseId.Equals(entrant.HorseId));
-                var track = new RaceLane { Running = true };
-                track.SetToken(Portrait(horse, 46, CardTint(horse)));
-                lane.AddChild(track); _practiceLanes.Add(track); _practiceTrack.AddChild(lane);
-            }
+            BeginRacePlayback(_practiceResult);
             _practiceResults.Text = "And they're off!";
             Audio.GameAudio.Play("race_bell", -4);
             Audio.GameAudio.Loop("hooves_gallop");
@@ -139,6 +142,42 @@ public partial class StableDay
             Refresh();
         }
     }
+
+    /// <summary>Swap the picker for the 3D race and the position lanes, ready to replay <paramref name="result"/>.</summary>
+    private void BeginRacePlayback(PracticeGallopResult result)
+    {
+        _practiceTrack.QueueFreeChildren(); _practiceLanes.Clear();
+        // The race in 3D above the lanes; the lanes stay as an exact position read-out.
+        _practicePicks.Visible = false; _practiceIntro.Visible = false; _practiceModes.Visible = false;
+        _cupRivalRow?.QueueFree(); _cupRivalRow = null;
+        if (_practiceArt != null) _practiceArt.Visible = false;
+        _raceFrame?.QueueFree();
+        _practicePodium?.QueueFree(); _practicePodium = null; _practiceTrack.Visible = true;
+        var height = _cupMode ? 200 : 250;
+        _raceFrame = new SubViewportContainer { Stretch = true, CustomMinimumSize = new Vector2(616, height) };
+        _raceView = new RaceView { Size = new Vector2I(616, height) };
+        _practiceTrack.AddThemeConstantOverride("separation", _cupMode ? 2 : 6);
+        _raceFrame.AddChild(_raceView);
+        _practiceTrack.GetParent().AddChild(_raceFrame);
+        _practiceTrack.GetParent().MoveChild(_raceFrame, _practiceTrack.GetIndex());
+        _raceView.Setup(result.Entrants.Select(e => DescriptorFor(RaceHorse(e.HorseId))).ToList());
+        foreach (var entrant in result.Entrants)
+        {
+            var lane = new HBoxContainer(); lane.AddThemeConstantOverride("separation", 10);
+            var horse = RaceHorse(entrant.HorseId);
+            var mine = horse.OwnerId.Equals(_state?.PlayerOwnerId);
+            var name = CozyTheme.Title(entrant.Name, 15); name.CustomMinimumSize = new Vector2(110, 0); name.ClipText = true; name.VerticalAlignment = VerticalAlignment.Center;
+            if (_cupMode && mine) name.AddThemeColorOverride("font_color", CozyTheme.AccentDeep);
+            lane.AddChild(name);
+            var track = new RaceLane { Running = true, Compact = _cupMode };
+            track.SetToken(Portrait(horse, _cupMode ? 30 : 46, CardTint(horse)));
+            lane.AddChild(track); _practiceLanes.Add(track); _practiceTrack.AddChild(lane);
+        }
+    }
+
+    /// <summary>Entrants come from the stable, or for the cup from this week's visiting rivals.</summary>
+    private HorseRecord RaceHorse(HorseId id) =>
+        _raceHorses.TryGetValue(id, out var horse) ? horse : _state!.Horses.Single(h => h.HorseId.Equals(id));
 
     public override void _Process(double delta)
     {
@@ -174,6 +213,7 @@ public partial class StableDay
             _practiceLanes[lane].Running = false;
             _practiceLanes[lane].ShowPlace(result.Entrants[lane].Place);
         }
+        if (_cupMode) { FinishCupPlayback(result); return; }
         _practiceStart.Disabled = false; _practiceStart.Text = "Gallop again";
         var lines = result.Entrants.OrderBy(e => e.Place).Select(e => $"{Ordinal(e.Place)} · {e.Name} · {e.FinishMilliseconds / 1000.0:0.0} s"
             + (_practiceGains.TryGetValue(e.HorseId, out var gain) && gain > 0 ? $"  ·  training +{Percent(gain)}" : "")).ToList();
@@ -200,7 +240,7 @@ public partial class StableDay
         foreach (var index in layout)
         {
             var entrant = order[index];
-            var horse = _state.Horses.Single(h => h.HorseId.Equals(entrant.HorseId));
+            var horse = RaceHorse(entrant.HorseId);
             var column = new VBoxContainer { Alignment = BoxContainer.AlignmentMode.End };
             column.AddThemeConstantOverride("separation", 4);
             var portrait = Portrait(horse, entrant.Place == 1 ? 92 : 74, CardTint(horse));

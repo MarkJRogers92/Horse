@@ -115,6 +115,9 @@ public partial class StableDay
         }
         var gallopReady = PracticeGallop.Eligibility(_state).Where(e => e.Eligible)
             .Select(e => home.FirstOrDefault(h => h.HorseId.Equals(e.HorseId))).Where(h => h != null && !PracticeTraining.TrainedToday(h, day)).ToList();
+        if (!_foalingDemoMode && !ClubRace.EnteredThisWeek(_state) && home.Any(h => ClubRace.BlockReason(_state, h.HorseId) == null)
+            && HorseFair.DaysUntilNextFair(day) <= 3)
+            return $"Tip: the {ClubRace.Name} closes in {Days(HorseFair.DaysUntilNextFair(day))}. Enter a horse from Practice gallop!";
         if (gallopReady.Count > 0) return $"Tip: {gallopReady[0]!.Name} hasn't galloped today. A practice gallop builds training.";
         var pregnant = home.FirstOrDefault(h => h.ReproductionState.PregnancyId != null);
         if (pregnant != null) return $"Tip: {pregnant.Name} is expecting. Keep her comfy until the foal arrives!";

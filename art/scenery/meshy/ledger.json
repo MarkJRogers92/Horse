@@ -543,9 +543,41 @@
       "balanceAfter": 794,
       "chargedCredits": 3,
       "note": "Generated in parallel; per-image balances reconstructed from the 9-credit total."
+    },
+    {
+      "name": "fair_tent",
+      "prompt": "A small charming country fair market tent: square canopy with pastel pink and cream vertical stripes and a scalloped valance edge, four wooden poles, a little wooden counter in front with rosettes and a hay bale, pastel bunting along the front. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals, no text.",
+      "createdAt": "2026-10-13T13:57:47+00:00",
+      "balanceBefore": 794,
+      "aiModel": "latest",
+      "previewTaskId": "01a1358e-18b3-71df-bec0-a2758558f6a4",
+      "refineTaskId": "01a1358f-1fdf-76c0-816a-55e277640aec",
+      "glbBytes": 8864552,
+      "files": [
+        "game/assets/scenery/fair_tent/fair_tent.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 764,
+      "chargedCredits": 30
+    },
+    {
+      "name": "trophy_stand",
+      "prompt": "A small wooden display table with a shiny golden trophy cup with two handles on top, a pink and gold first-place rosette ribbon pinned to the front of the table, and a little potted flower beside the trophy. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals, no text.",
+      "createdAt": "2026-10-13T14:00:21+00:00",
+      "balanceBefore": 764,
+      "aiModel": "latest",
+      "previewTaskId": "01a13590-74af-71e0-a168-ad6363e8e22a",
+      "refineTaskId": "01a13591-7f6d-7604-b10f-39a47f84655f",
+      "glbBytes": 7738448,
+      "files": [
+        "game/assets/scenery/trophy_stand/trophy_stand.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 734,
+      "chargedCredits": 30
     }
   ],
-  "spentCredits": 480,
+  "spentCredits": 540,
   "postProcessing": "Textures resized to 1024x1024 with @gltf-transform/cli 4.1.1 'resize' before commit (about 42 MB to 6 MB); geometry unchanged.",
   "balanceNote": "The account balance rose by about 100 credits between the wheelbarrow (balance 864) and the first image (balance before 964), outside any task here (likely a Meshy credit adjustment). Per-task charges are measured within each task, so the D-012 total is unaffected.",
   "imagePostProcessing": "Icons: 1024 px Meshy images cut out from their cream background by border flood fill, cropped to content and saved at 256 px RGBA.",

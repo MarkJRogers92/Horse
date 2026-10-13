@@ -98,6 +98,7 @@ public partial class StableDay
                 await CaptureFrame(System.IO.Path.Combine(output, name + ".png"));
             }
             _uiLayer.Visible = false;
+            _yard.SetTrophies(1); // preview only: show the trophy stand in the UI-free view (Refresh restores the real count)
             await CaptureFrame(System.IO.Path.Combine(output, "04_yard_only.png"));
             for (var s = 0; s < 4; s++)
             {
@@ -160,6 +161,25 @@ public partial class StableDay
             _journalCoatTab.ButtonPressed = true; ShowJournalPage(true);
             do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
             await CaptureFrame(System.IO.Path.Combine(output, "14_journal_coats.png"));
+            _journalOverlay.Visible = false;
+            ShowPractice(true);
+            do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
+            await CaptureFrame(System.IO.Path.Combine(output, "15_cup_entry.png"));
+            if (_practiceChoices.Count > 0)
+            {
+                await StartCupAsync();
+                var started = _yard.ElapsedSeconds;
+                while (_yard.ElapsedSeconds - started < 2.5) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                await CaptureFrame(System.IO.Path.Combine(output, "16_cup_race.png"));
+                FinishPracticePlayback();
+                do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
+                await CaptureFrame(System.IO.Path.Combine(output, "17_cup_result.png"));
+                _practiceOverlay.Visible = false; _uiLayer.Visible = false;
+                var shown = _yard.ElapsedSeconds;
+                while (_yard.ElapsedSeconds - shown < 1.5) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                await CaptureFrame(System.IO.Path.Combine(output, "18_yard_landmarks.png"));
+                _uiLayer.Visible = true;
+            }
             GD.Print("[hub-preview] OK " + output);
             GetTree().Quit(0);
         }
@@ -260,6 +280,14 @@ public partial class StableDay
         if (@event is InputEventMouseMotion motion) { _yard.Hover(motion.Position); return; }
         if (@event is not InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left } click || _state == null) return;
         var key = _yard.PickHorse(click.Position);
+        if (key == null && _yard.PickProp(click.Position) is { } prop)
+        {
+            GetViewport().SetInputAsHandled();
+            Audio.GameAudio.Play("ui_click", -8);
+            if (prop == "fair" && !_fairButton.Disabled) ShowFair();
+            else if (prop == "trophy") { ShowPractice(true); }
+            return;
+        }
         if (key == null) { _yard.Focus(null); return; }
         var horse = _state.Horses.FirstOrDefault(h => h.HorseId.ToString() == key);
         if (horse == null) return;

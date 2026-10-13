@@ -12,7 +12,15 @@ public partial class RaceLane : Control
     private static readonly Color Sand = Color.FromHtml("#ecd6ae");
     private static readonly Color SandDark = Color.FromHtml("#dcc092");
     private static readonly Color Rail = Colors.White;
-    private const float TokenSize = 46f;
+    private float TokenSize => _compact ? 30f : 46f;
+    private bool _compact;
+
+    /// <summary>A slimmer lane for full six-horse fields (the cup).</summary>
+    public bool Compact
+    {
+        get => _compact;
+        set { _compact = value; CustomMinimumSize = new Vector2(0, value ? 34 : 54); }
+    }
     private Control _token = new();
     private readonly Label _place;
     private double _bob;

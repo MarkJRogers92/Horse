@@ -243,9 +243,15 @@ public partial class StableYard : Node3D
     public string? Hover(Vector2 screenPoint)
     {
         var key = PickHorse(screenPoint);
+        var prop = key == null ? PickProp(screenPoint) : null;
+        if (_fairTag is { } fairTag)
+        {
+            fairTag.Modulate = prop == "fair" ? Color.FromHtml("#e48aa9") : Color.FromHtml("#5b3a5e");
+            fairTag.Scale = Vector3.One * (prop == "fair" ? 1.2f : 1f);
+        }
+        Input.SetDefaultCursorShape(key == null && prop == null ? Input.CursorShape.Arrow : Input.CursorShape.PointingHand);
         if (key == _hoverKey) return key;
         Highlight(key);
-        Input.SetDefaultCursorShape(key == null ? Input.CursorShape.Arrow : Input.CursorShape.PointingHand);
         return key;
     }
 
@@ -300,6 +306,38 @@ public partial class StableYard : Node3D
             if (distance < radius && distance < bestDistance) { best = key; bestDistance = distance; }
         }
         return best;
+    }
+
+    private Node3D _fairTent = null!, _trophy = null!;
+    private Label3D _trophyTag = null!, _fairTag = null!;
+
+    private static Label3D PropTag(string text, float height) => new()
+    {
+        Text = text, Billboard = BaseMaterial3D.BillboardModeEnum.Enabled, FontSize = 64, PixelSize = 0.0075f, OutlineSize = 18,
+        Modulate = Color.FromHtml("#5b3a5e"), OutlineModulate = new Color(1, 1, 1, 0.92f), Font = UI.CozyTheme.BoldFont,
+        Position = new Vector3(0, height, 0), NoDepthTest = true, RenderPriority = 9,
+    };
+
+    /// <summary>Shows the trophy stand with the number of cups won (hidden until the first win).</summary>
+    public void SetTrophies(int wins)
+    {
+        _trophy.Visible = wins > 0;
+        _trophyTag.Text = wins > 1 ? $"Cup wins ×{wins}" : "Cup champion";
+    }
+
+    /// <summary>The clickable landmark under the pointer: "fair" or "trophy", or null.</summary>
+    public string? PickProp(Vector2 screenPoint)
+    {
+        foreach (var (key, node, centreHeight, radius) in new[] { ("fair", _fairTent, 1.6f, 2.0f), ("trophy", _trophy, 0.7f, 0.9f) })
+        {
+            if (node == null || !node.Visible) continue;
+            var centre = node.GlobalPosition + Vector3.Up * centreHeight;
+            if (_camera.IsPositionBehind(centre)) continue;
+            var projected = _camera.UnprojectPosition(centre);
+            var edge = _camera.UnprojectPosition(centre + _camera.GlobalBasis.X * radius);
+            if (projected.DistanceTo(screenPoint) < projected.DistanceTo(edge)) return key;
+        }
+        return null;
     }
 
     /// <summary>Change the overview framing (the title screen frames the yard to the right of its menu).</summary>
@@ -614,6 +652,14 @@ public partial class StableYard : Node3D
         Place("saddle_rack", 1.25f, new Vector3(-0.2f, 0, -12.2f), 15f, () => new Node3D());
         Place("wheelbarrow", 0.85f, new Vector3(4.6f, 0, -11.6f), -60f, () => new Node3D());
         Place("show_jump", 1.3f, new Vector3(7.2f, 0, -7.5f), -25f, () => new Node3D());
+        // Clickable landmarks (D-019): the fair tent opens the Horse Fair; the trophy stand appears once a cup is won.
+        _fairTent = Place("fair_tent", 3.1f, new Vector3(10.0f, 0, -8.6f), -30f, () => new Node3D());
+        _fairTag = PropTag("Horse Fair", 3.2f);
+        _fairTent.AddChild(_fairTag);
+        _trophy = Place("trophy_stand", 1.5f, new Vector3(-3.2f, 0, -9.2f), 15f, () => new Node3D());
+        _trophyTag = PropTag("", 2.05f);
+        _trophy.AddChild(_trophyTag);
+        _trophy.Visible = false;
         var sign = Place("signpost", 2.5f, new Vector3(-5.6f, 0, -4.2f), 18f, () => new Node3D());
         // The generated board is blank on purpose; the stable's name is real text so it stays crisp.
         _signLabel = new Label3D
