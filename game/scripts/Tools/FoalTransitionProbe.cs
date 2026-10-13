@@ -123,8 +123,9 @@ public partial class FoalTransitionProbe : Node
         p.Present(adult, "walk"); model = p.Model; p._Process(5);
         Check(!p.IsTransitioning && p.Model == model && p.Descriptor == adult && p.UsesWalkVariant,
             "age/family change cancels pending foal request");
-        Check(!p.TransitionTo(original, "walk").Supported && p.Model == null && !p.IsTransitioning,
-            "nonneutral Walk still fails closed");
+        // D-013: a non-neutral shape walks directly with its own shape; only the bridge needs neutral.
+        Check(p.TransitionTo(original, "walk").Supported && p.UsesWalkVariant && !p.IsTransitioning && p.Descriptor == original,
+            "nonneutral Walk presents directly with its own shape");
         p.Present(original, "idle"); p.TransitionTo(neutral, "walk"); p._Process(0.08);
         var probe = FixtureLibrary.UnsupportedProbes().First();
         Check(!p.Present(probe, "walk").Supported && p.Model == null && !p.IsTransitioning,
