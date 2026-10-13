@@ -70,8 +70,8 @@ public partial class StableDay
     {
         if (_guideDismissed || _state == null) return (0, null);
         var firstDay = _state.Header.CalendarDay == 0;
-        if (firstDay && !_guideSawDetails)
-            return (1, "Hi, I'm Pip! Welcome to your stable. Press Details on a horse to meet them properly.");
+        if (firstDay && !_guideSawDetails && !_state.Horses.Any(h => HorseBond.Bond(h) > 0))
+            return (1, "Hi, I'm Pip! Welcome to your stable. Click a horse in the yard to say hello. Try a pat or a carrot!");
         if (firstDay && !_guideSawCareChoice)
             return (2, "Feed and bedding are always done. Switch on turnout or grooming to keep someone extra comfy!");
         if (firstDay)
@@ -129,6 +129,8 @@ public partial class StableDay
         if (mare != null && stallion != null && _state.Coins >= 50) return $"Tip: {mare.Name} and {stallion.Name} could have a foal together. Review the pairing to see.";
         if (!_foalingDemoMode && day % HorseFair.DaysPerWeek == 0 && HorseFair.Offers(_state).FirstOrDefault(o => HorseFair.BlockReason(_state, o) == null) is { } offer)
             return $"Tip: it's fair week! {offer.Name} and friends are waiting at the Horse fair.";
+        if (!_foalingDemoMode && _state.Coins >= 300 && StableShop.OwnedDecor(_state).Count == 0)
+            return "Tip: the Shop sells flower carts, benches and more to decorate your yard.";
         return "Everyone is fed and happy. End the day whenever you're ready!";
     }
 }
