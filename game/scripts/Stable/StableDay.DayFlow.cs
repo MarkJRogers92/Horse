@@ -30,7 +30,7 @@ public partial class StableDay
             _reviewedDay = _state.Header.CalendarDay;
             var lines = new List<string>
             {
-                $"Season {_state.Header.CalendarDay / StableCalendar.DaysPerSeason + 1}, day {_state.Header.CalendarDay % StableCalendar.DaysPerSeason + 1} → season {_preview.ToDay / StableCalendar.DaysPerSeason + 1}, day {_preview.ToDay % StableCalendar.DaysPerSeason + 1}.",
+                $"{StableYard.SeasonName(_state.Header.CalendarDay / StableCalendar.DaysPerSeason)} day {_state.Header.CalendarDay % StableCalendar.DaysPerSeason + 1} → {StableYard.SeasonName(_preview.ToDay / StableCalendar.DaysPerSeason)} day {_preview.ToDay % StableCalendar.DaysPerSeason + 1}.",
                 $"Club support: +{_preview.IncomeCoins:N0} coins.",
                 $"Daily care: {_preview.CareCostCoins:N0} coins · stable operations: {_preview.OperationsCostCoins:N0} coins.",
                 $"From your wallet: {_preview.WalletDebitCoins:N0} coins · assistance: {_preview.AssistanceCoins:N0} coins.",

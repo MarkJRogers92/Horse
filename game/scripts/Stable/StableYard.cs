@@ -66,7 +66,13 @@ public partial class StableYard : Node3D
         AddChild(Lighting.Build(LightingMode.Stable));
         BuildGround();
         BuildScenery();
-        AddChild(Petals());
+        _petals = Petals();
+        AddChild(_petals);
+        _lights = GetChildren().OfType<Node3D>().First(n => n.Name.ToString().StartsWith("Lighting", StringComparison.Ordinal));
+        foreach (var sun in All<DirectionalLight3D>(_lights)) _sunDefaults[sun] = (sun.LightColor, sun.LightEnergy);
+        // Godot renames duplicate sibling names, so find the trees by group, not by name.
+        foreach (var holder in GetChildren().OfType<Node3D>().Where(n => n.IsInGroup("scenery_oak_tree")))
+            _trees.AddRange(All<MeshInstance3D>(holder));
         _camera = new Camera3D { Fov = 40, Current = true, Position = _cameraHome };
         AddChild(_camera);
         _cameraGoal = _cameraHome; _targetGoal = _homeTarget; _lookTarget = _homeTarget;
@@ -325,13 +331,82 @@ public partial class StableYard : Node3D
     }
     public double ElapsedSeconds => _time;
 
+    // Seasons (presentation only): the calendar's season index picks the yard's look.
+    private ShaderMaterial _grassMat = null!, _sandMat = null!;
+    private StandardMaterial3D _hillMat = null!, _bladeMat = null!;
+    private MultiMeshInstance3D _blades = null!, _flowers = null!;
+    private CpuParticles3D _petals = null!;
+    private Node3D _lights = null!;
+    private readonly Dictionary<DirectionalLight3D, (Color Colour, float Energy)> _sunDefaults = new();
+    private readonly List<MeshInstance3D> _trees = new();
+
+    public static string SeasonName(int seasonIndex) => (seasonIndex % 4) switch { 0 => "Spring", 1 => "Summer", 2 => "Autumn", _ => "Winter" };
+
+    /// <summary>Dress the yard for the season: 0 spring, 1 summer, 2 autumn, 3 winter (repeating).</summary>
+    public void SetSeason(int seasonIndex)
+    {
+        int s = ((seasonIndex % 4) + 4) % 4;
+        var (a, b, clover, hill, blade) = s switch
+        {
+            1 => ("#5f9e45", "#9ccc5e", "#4f8c3f", "#a6cf88", "#e8ffd8"),
+            2 => ("#a39a52", "#cdb46a", "#8f8a46", "#c9b77c", "#e6c27a"),
+            3 => ("#e9eef4", "#ffffff", "#d7e1ea", "#eef3f7", "#ffffff"),
+            _ => ("#8fbd73", "#b3d585", "#78ad6b", "#b3d39c", "#ffffff"),
+        };
+        _grassMat.SetShaderParameter("grass_a", Color.FromHtml(a));
+        _grassMat.SetShaderParameter("grass_b", Color.FromHtml(b));
+        _grassMat.SetShaderParameter("clover", Color.FromHtml(clover));
+        _hillMat.AlbedoColor = Color.FromHtml(hill);
+        _sandMat.SetShaderParameter("rim_grass", Color.FromHtml(s == 3 ? "#eef3f8" : s == 2 ? "#bfae66" : "#9ec27a"));
+        _bladeMat.AlbedoColor = Color.FromHtml(blade);
+        _blades.Visible = s != 3;
+        _flowers.Visible = s <= 1;
+
+        var ramp = new Gradient();
+        switch (s)
+        {
+            case 2: // falling leaves
+                ramp.SetColor(0, Color.FromHtml("#e8893a")); ramp.SetColor(1, Color.FromHtml("#c9452f")); ramp.AddPoint(0.5f, Color.FromHtml("#f2c14e"));
+                _petals.Amount = 70; _petals.ScaleAmountMin = 1.4f; _petals.ScaleAmountMax = 2.2f;
+                _petals.Gravity = new Vector3(0.2f, -0.35f, 0.05f); _petals.Emitting = true; break;
+            case 3: // snow
+                ramp.SetColor(0, Colors.White); ramp.SetColor(1, Color.FromHtml("#e6f0ff"));
+                _petals.Amount = 220; _petals.ScaleAmountMin = 0.6f; _petals.ScaleAmountMax = 1.2f;
+                _petals.Gravity = new Vector3(0.03f, -0.45f, 0.02f); _petals.Emitting = true; break;
+            case 1: // summer: clear air
+                _petals.Emitting = false; break;
+            default: // spring blossom
+                ramp.SetColor(0, Color.FromHtml("#fbd0dd")); ramp.SetColor(1, Colors.White);
+                _petals.Amount = 60; _petals.ScaleAmountMin = 1f; _petals.ScaleAmountMax = 1f;
+                _petals.Gravity = new Vector3(0.15f, -0.25f, 0.05f); _petals.Emitting = true; break;
+        }
+        if (s != 1) _petals.ColorInitialRamp = ramp;
+
+        // Tint the Meshy oaks with a translucent overlay rather than editing their textures.
+        StandardMaterial3D? overlay = s switch
+        {
+            2 => new StandardMaterial3D { AlbedoColor = new Color(0.93f, 0.52f, 0.2f, 0.42f), Transparency = BaseMaterial3D.TransparencyEnum.Alpha, ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded },
+            3 => new StandardMaterial3D { AlbedoColor = new Color(0.96f, 0.98f, 1f, 0.5f), Transparency = BaseMaterial3D.TransparencyEnum.Alpha, ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded },
+            _ => null,
+        };
+        foreach (var tree in _trees) tree.MaterialOverlay = overlay;
+
+        foreach (var (sun, (colour, energy)) in _sunDefaults)
+        {
+            sun.LightColor = s switch { 2 => colour.Lerp(new Color(1f, 0.72f, 0.48f), 0.45f), 3 => colour.Lerp(new Color(0.82f, 0.9f, 1f), 0.5f), 1 => colour.Lerp(new Color(1f, 0.97f, 0.88f), 0.3f), _ => colour };
+            sun.LightEnergy = energy * (s == 3 ? 0.92f : s == 1 ? 1.08f : 1f);
+        }
+    }
+
     // ---------------------------------------------------------------------------------
     private void BuildGround()
     {
         var grass = new ShaderMaterial { Shader = GD.Load<Shader>("res://shaders/grass_ground.gdshader") };
+        _grassMat = grass;
         AddChild(Sets.Mesh(new PlaneMesh { Size = new Vector2(160, 160), SubdivideWidth = 2, SubdivideDepth = 2 }, grass, Vector3.Zero));
         var sand = Sets.Mat(Color.FromHtml("#e6cfa6"), 0.95f);
         var raked = new ShaderMaterial { Shader = GD.Load<Shader>("res://shaders/paddock_sand.gdshader") };
+        _sandMat = raked;
         var paddock = Sets.Mesh(new CylinderMesh { TopRadius = 1, BottomRadius = 1, Height = 0.02f, RadialSegments = 64 }, raked, new Vector3(0, 0.006f, -0.5f));
         paddock.Scale = new Vector3(7.0f, 1, 5.0f);
         AddChild(paddock);
@@ -341,6 +416,7 @@ public partial class StableYard : Node3D
         var rng = new RandomNumberGenerator { Seed = 11 };
         AddChild(GrassAndFlowers(rng));
         var hill = Sets.Mat(Color.FromHtml("#b3d39c"), 1f);
+        _hillMat = hill;
         for (var i = 0; i < 9; i++)
         {
             float a = Mathf.DegToRad(200 + i * 18), r = 48 + rng.RandfRange(-5, 8);
@@ -351,7 +427,7 @@ public partial class StableYard : Node3D
     }
 
     /// <summary>Blossom petals drifting slowly across the yard.</summary>
-    private static Node3D Petals()
+    private static CpuParticles3D Petals()
     {
         var petals = new CpuParticles3D
         {
@@ -373,7 +449,7 @@ public partial class StableYard : Node3D
     }
 
     /// <summary>Grass tufts and wildflowers outside the paddock (instanced, cheap).</summary>
-    private static Node3D GrassAndFlowers(RandomNumberGenerator rng)
+    private Node3D GrassAndFlowers(RandomNumberGenerator rng)
     {
         var root = new Node3D { Name = "GrassAndFlowers" };
         bool InPaddock(Vector3 p) => Mathf.Pow(p.X / 7.4f, 2) + Mathf.Pow((p.Z + 0.5f) / 5.4f, 2) < 1f;
@@ -389,7 +465,9 @@ public partial class StableYard : Node3D
             blades.SetInstanceColor(i, Color.FromHtml("#5f9a4d").Lerp(Color.FromHtml("#94c070"), rng.Randf()));
         }
         var bladeMat = Sets.Mat(Colors.White, 1f); bladeMat.VertexColorUseAsAlbedo = true; bladeMat.SpecularMode = BaseMaterial3D.SpecularModeEnum.Disabled; bladeMat.CullMode = BaseMaterial3D.CullModeEnum.Disabled;
-        root.AddChild(new MultiMeshInstance3D { Multimesh = blades, MaterialOverride = bladeMat, CastShadow = GeometryInstance3D.ShadowCastingSetting.Off });
+        _blades = new MultiMeshInstance3D { Multimesh = blades, MaterialOverride = bladeMat, CastShadow = GeometryInstance3D.ShadowCastingSetting.Off };
+        _bladeMat = bladeMat;
+        root.AddChild(_blades);
 
         var petals = new[] { "#f7a1bd", "#fbd36b", "#c9a7ef", "#ffffff", "#ff9fa0", "#9fd3f5" };
         var heads = new MultiMesh { TransformFormat = MultiMesh.TransformFormatEnum.Transform3D, UseColors = true, Mesh = new SphereMesh { Radius = 0.045f, Height = 0.06f, RadialSegments = 8, Rings = 4 } };
@@ -406,7 +484,8 @@ public partial class StableYard : Node3D
             heads.SetInstanceColor(i, Color.FromHtml(petals[(i / 40) % petals.Length]));
         }
         var petalMat = Sets.Mat(Colors.White, 0.6f); petalMat.VertexColorUseAsAlbedo = true;
-        root.AddChild(new MultiMeshInstance3D { Multimesh = heads, MaterialOverride = petalMat, CastShadow = GeometryInstance3D.ShadowCastingSetting.Off });
+        _flowers = new MultiMeshInstance3D { Multimesh = heads, MaterialOverride = petalMat, CastShadow = GeometryInstance3D.ShadowCastingSetting.Off };
+        root.AddChild(_flowers);
         return root;
     }
 
@@ -458,6 +537,7 @@ public partial class StableYard : Node3D
         }
         else node = fallback();
         var holder = new Node3D { Name = asset, Position = position, RotationDegrees = new Vector3(0, yaw, 0) };
+        holder.AddToGroup("scenery_" + asset);
         holder.AddChild(node);
         AddChild(holder);
         return holder;

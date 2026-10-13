@@ -49,7 +49,7 @@ public partial class StableDay
         banner.SetAnchorsPreset(Control.LayoutPreset.FullRect);
         var morning = CozyTheme.Title("Good morning!", 44); morning.HorizontalAlignment = HorizontalAlignment.Center;
         morning.AddThemeColorOverride("font_color", Colors.White);
-        var date = CozyTheme.Title($"Season {season} · Day {day}", 26); date.HorizontalAlignment = HorizontalAlignment.Center;
+        var date = CozyTheme.Title($"{StableYard.SeasonName(season - 1)} · Day {day} · Year {(season - 1) / 4 + 1}", 26); date.HorizontalAlignment = HorizontalAlignment.Center;
         date.AddThemeColorOverride("font_color", new Color(1, 0.93f, 0.85f));
         banner.AddChild(morning); banner.AddChild(date);
         if (!string.IsNullOrEmpty(news))
@@ -92,6 +92,14 @@ public partial class StableDay
             }
             _uiLayer.Visible = false;
             await CaptureFrame(System.IO.Path.Combine(output, "04_yard_only.png"));
+            for (var s = 0; s < 4; s++)
+            {
+                _yard.SetSeason(s);
+                var before = _yard.ElapsedSeconds;
+                while (_yard.ElapsedSeconds - before < 2.5) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                await CaptureFrame(System.IO.Path.Combine(output, $"04_season_{s}_{StableYard.SeasonName(s).ToLowerInvariant()}.png"));
+            }
+            _yard.SetSeason(_shownSeason);
             _uiLayer.Visible = true;
             ShowReview(); ConfirmReviewedDay();
             while (_busy) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
@@ -113,6 +121,12 @@ public partial class StableDay
                 var born = _yard.ElapsedSeconds;
                 while (_yard.ElapsedSeconds - born < 4.4) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
                 await CaptureFrame(System.IO.Path.Combine(output, "08_birth_celebration.png"));
+                _birthOverlay.Visible = false;
+                var shown = _yard.ElapsedSeconds;
+                while (_yard.ElapsedSeconds - shown < 2.0) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                await CaptureFrame(System.IO.Path.Combine(output, "09_ribbon_toast.png"));
+                ShowJournal();
+                await CaptureFrame(System.IO.Path.Combine(output, "10_journal.png"));
             }
             GD.Print("[hub-preview] OK " + output);
             GetTree().Quit(0);

@@ -249,14 +249,15 @@ public partial class StableDay : Node
         header.AddChild(CozyTheme.Ribbon("Cloverbrook Stables", 24));
         _season = SummaryCard("Season 1 · Day 1");
         _wallet = SummaryCard("500 coins");
-        header.AddChild(HudPill(_season, "DAY", "day"));
-        header.AddChild(HudPill(_wallet, "COINS", "coins"));
+        header.AddChild(HudPill(_season, "YEAR 1", "day", out _yearLabel));
+        header.AddChild(HudPill(_wallet, "COINS", "coins", out _));
         header.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, MouseFilter = Control.MouseFilterEnum.Ignore });
         _foalingDemoButton = new Button { Text = _foalingDemoMode ? "Foaling demo · active" : "Foaling demo", CustomMinimumSize = new Vector2(170, 44), Disabled = _foalingDemoMode };
         _foalingDemoButton.Pressed += OpenFoalingDemo;
         header.AddChild(_foalingDemoButton);
         _backButton = new Button { Text = "Menu", CustomMinimumSize = new Vector2(100, 44) };
         _backButton.Pressed += () => GetTree().ChangeSceneToFile("res://scenes/main.tscn");
+        header.AddChild(JournalButton());
         header.AddChild(Audio.GameAudio.MuteButton());
         header.AddChild(_backButton);
         root.AddChild(header);
@@ -336,6 +337,7 @@ public partial class StableDay : Node
         BuildPracticeOverlay(root);
         BuildSaleOverlay(root);
         BuildBirthOverlay(root);
+        BuildJournalOverlay(root);
         BuildRecoveryDialog(root);
     }
 
@@ -347,7 +349,10 @@ public partial class StableDay : Node
         control.OffsetLeft = offsetLeft; control.OffsetTop = offsetTop; control.OffsetRight = offsetRight; control.OffsetBottom = offsetBottom;
     }
 
-    private static Control HudPill(Label value, string label, string icon)
+    private Label _yearLabel = null!;
+    private int _shownSeason = -1;
+
+    private static Control HudPill(Label value, string label, string icon, out Label heading)
     {
         var panel = new PanelContainer { CustomMinimumSize = new Vector2(150, 0) };
         panel.AddThemeStyleboxOverride("panel", CozyTheme.Box(new Color(1, 1, 1, 0.9f), 20, 4));
@@ -355,7 +360,7 @@ public partial class StableDay : Node
         row.AddChild(new TextureRect { Texture = CozyTheme.Icon(icon), CustomMinimumSize = new Vector2(40, 40), ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
             StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered });
         var box = new VBoxContainer(); box.AddThemeConstantOverride("separation", -4); row.AddChild(box);
-        var heading = CozyTheme.Title(label, 10); heading.AddThemeColorOverride("font_color", CozyTheme.AccentDeep);
+        heading = CozyTheme.Title(label, 10); heading.AddThemeColorOverride("font_color", CozyTheme.AccentDeep);
         box.AddChild(heading); box.AddChild(value);
         return panel;
     }
@@ -388,7 +393,9 @@ public partial class StableDay : Node
         var day = _state.Header.CalendarDay;
         var seasonNumber = day / StableCalendar.DaysPerSeason + 1;
         var dayNumber = day % StableCalendar.DaysPerSeason + 1;
-        _season.Text = $"Season {seasonNumber} · Day {dayNumber}";
+        _season.Text = $"{StableYard.SeasonName(seasonNumber - 1)} · Day {dayNumber}";
+        _yearLabel.Text = $"YEAR {(seasonNumber - 1) / 4 + 1}";
+        if (_shownSeason != seasonNumber - 1) { _shownSeason = seasonNumber - 1; _yard.SetSeason(_shownSeason); }
         _wallet.Text = $"{_state.Coins:N0} coins";
 
         _roster.QueueFreeChildren();
@@ -488,6 +495,7 @@ public partial class StableDay : Node
 
         RefreshMilestoneHistory();
         RefreshYard();
+        CheckRibbons();
 
         if (_recoveryRequired) SetStatus("A verified backup needs your acknowledgment before the stable can be changed.");
         SetControlsEnabled(!_busy && !_recoveryRequired);
