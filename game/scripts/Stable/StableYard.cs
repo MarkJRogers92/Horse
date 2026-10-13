@@ -41,8 +41,17 @@ public partial class StableYard : Node3D
         public Vector3? Target;
         public float TurnGoal;
         public bool Walking;
-        public bool? CanWalk; // learned once; a refused Walk would otherwise reload the model every time
+        public bool? CanWalk; // learned once from the descriptor's shape; not every body shape has a checked Walk
+        public double Pace = MinWalkPace; // fraction of the clip's ground speed; eased so horses accelerate and brake
     }
+
+    // The Walk clip's feet only stay planted when the clip plays at the same fraction of its
+    // checked speed as the horse travels, so ground speed and clip pace always move together.
+    private const float MinWalkPace = 0.4f;      // slowest pace while arcing round or arriving
+    private const float TurnFullPaceRadians = 1.0f; // facing error at which the pace has fallen to its minimum
+    private const float ArrivalSlowMeters = 1.0f; // start braking this far from the target
+    private const float ArrivalStopMeters = 0.2f;
+    private const double PaceChangePerSecond = 0.9;
     private Camera3D _camera = null!;
     private static readonly Vector3 HomeTarget = new(0.45f, 0.75f, -0.4f);
     private Vector3 _homeTarget = HomeTarget;
@@ -79,6 +88,7 @@ public partial class StableYard : Node3D
     private void Wander(string key, HorsePresenter presenter, double delta)
     {
         if (!_wander.TryGetValue(presenter, out var w)) _wander[presenter] = w = new Wanderer { RestLeft = _rng.RandfRange(3, 9), TurnGoal = presenter.RotationDegrees.Y };
+        // A bridge between Idle and Walk (also used when a horse stops) holds the horse still.
         if (presenter.Descriptor == null || presenter.IsTransitioning) return;
         if (key == _focusedKey)
         {
@@ -92,14 +102,21 @@ public partial class StableYard : Node3D
             float yawGoal = Mathf.RadToDeg(Mathf.Atan2(-to.Z, to.X));
             float yaw = Mathf.RadToDeg(Mathf.LerpAngle(Mathf.DegToRad(presenter.RotationDegrees.Y), Mathf.DegToRad(yawGoal), 1f - Mathf.Exp(-1.8f * (float)delta)));
             presenter.RotationDegrees = new Vector3(0, yaw, 0);
+            float facing = Mathf.Abs(Mathf.AngleDifference(Mathf.DegToRad(yaw), Mathf.DegToRad(yawGoal)));
             if (w.Walking)
             {
-                float speed = (float)presenter.LocomotionSpeedMetersPerSecond;
-                float facing = Mathf.Abs(Mathf.AngleDifference(Mathf.DegToRad(yaw), Mathf.DegToRad(yawGoal)));
-                if (facing < 0.6f) presenter.Position += presenter.Basis.X.Normalized() * speed * (float)delta * (1f - facing);
-                if (to.Length() < 0.25f) { StopWalking(presenter, w); w.Target = null; w.RestLeft = _rng.RandfRange(5, 12); }
+                // Walk forward while the yaw settles, slowing for sharp turns and for the
+                // last metre; the clip is slowed by exactly the same factor so feet never skate.
+                float distance = to.Length();
+                double wanted = Math.Min(
+                    Mathf.Clamp(1f - facing / TurnFullPaceRadians, MinWalkPace, 1f),
+                    Mathf.Clamp(distance / ArrivalSlowMeters, MinWalkPace, 1f));
+                w.Pace = Mathf.MoveToward(w.Pace, wanted, PaceChangePerSecond * delta);
+                presenter.SetPace(w.Pace);
+                presenter.Position += presenter.Basis.X.Normalized() * (float)(presenter.EffectiveSpeedMetersPerSecond * delta);
+                if (distance < ArrivalStopMeters) { StopWalking(presenter, w); w.Target = null; w.RestLeft = _rng.RandfRange(5, 12); }
             }
-            else if (Mathf.Abs(Mathf.AngleDifference(Mathf.DegToRad(yaw), Mathf.DegToRad(yawGoal))) < 0.05f)
+            else if (facing < 0.05f)
             {
                 w.Target = null; w.RestLeft = _rng.RandfRange(6, 14);
             }
@@ -111,12 +128,16 @@ public partial class StableYard : Node3D
         var next = PickSpot(presenter);
         w.Target = next;
         w.Walking = false;
-        if (w.CanWalk != false)
+        // Decide from the descriptor so a body shape without a checked Walk never loads (and
+        // clears) a model just to be refused. The bridge hides the Idle-to-Walk model swap.
+        w.CanWalk ??= presenter.CanWalk(presenter.Descriptor);
+        if (w.CanWalk == true)
         {
-            var support = presenter.Present(presenter.Descriptor, "walk");
-            w.Walking = support.Supported && presenter.UsesWalkVariant && presenter.LocomotionSpeedMetersPerSecond > 0;
-            w.CanWalk = w.Walking;
-            if (!w.Walking) presenter.Present(presenter.Descriptor, "idle");
+            var support = presenter.TransitionTo(presenter.Descriptor, "walk");
+            w.Walking = support.Supported;
+            w.Pace = MinWalkPace;
+            presenter.SetPace(w.Pace); // during the bridge this is the pace the Walk clip starts at
+            if (!w.Walking) { w.CanWalk = false; presenter.Present(presenter.Descriptor, "idle"); }
         }
         if (!w.Walking)
         {
@@ -134,7 +155,7 @@ public partial class StableYard : Node3D
     private void StopWalking(HorsePresenter presenter, Wanderer w)
     {
         w.Walking = false;
-        if (presenter.Descriptor != null) presenter.Present(presenter.Descriptor, "idle");
+        if (presenter.Descriptor != null) presenter.TransitionTo(presenter.Descriptor, "idle");
     }
 
     /// <summary>A spot inside the paddock, clear of the other horses.</summary>
@@ -172,6 +193,9 @@ public partial class StableYard : Node3D
                 existing = new HorsePresenter { Name = "Horse_" + i };
                 AddChild(existing);
                 if (!existing.Present(descriptor!, "idle").Supported) { existing.QueueFree(); continue; }
+                // Horses that all breathe in unison look like clones; start each at its own point in the loop.
+                if (Wandering && existing.Animator is { } idle && !string.IsNullOrEmpty(existing.CurrentAnimation))
+                    idle.Seek(_rng.RandfRange(0f, (float)idle.GetAnimation(existing.CurrentAnimation).Length), true);
                 _horses.Add((key, existing));
                 existing.Position = Slots[i].Position;
                 existing.RotationDegrees = new Vector3(0, Slots[i].Yaw, 0);

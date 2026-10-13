@@ -32,8 +32,11 @@ public partial class FoalTransitionProbe : Node
             _stage.SetMode(World.LightingMode.Neutral);
             // Advance every phase explicitly, independent of machine/render speed.
             _stage.ProcessMode = ProcessModeEnum.Disabled;
-            foreach (string family in new[] { "horse.standard.foal.v1", "horse.compact.foal.v1" })
+            // Foals and both adults share one bridge: the rest surfaces of each family's Idle and Walk scenes are identical.
+            var only = OS.GetCmdlineUserArgs().FirstOrDefault(a => a.StartsWith("--families=", StringComparison.Ordinal))?.Split('=', 2)[1].Split(',');
+            foreach (string family in new[] { "horse.standard.foal.v1", "horse.compact.foal.v1", "horse.standard.adult.v1", "horse.compact.adult.v1" })
             foreach (int fps in new[] { 60, 120 })
+            if (only == null || only.Contains(family))
                 CheckFamily(family, fps);
             CheckWalkStopPhases();
             CheckRestEvidenceGuards();
@@ -44,7 +47,7 @@ public partial class FoalTransitionProbe : Node
             System.IO.File.WriteAllText(System.IO.Path.Combine(_output, "transition-report.json"), JsonSerializer.Serialize(new
             {
                 checks = _checks, failures = Array.Empty<string>(), measurements = _measurements,
-                scope = "Corrected foal Idle/Walk rest-surface swaps, reversible shape/height bridges, real viewer selection and cancellation. Direct Present and adult semantics unchanged."
+                scope = "Corrected foal and adult Idle/Walk rest-surface swaps, reversible shape/height bridges, real viewer selection and cancellation. Direct Present semantics unchanged."
             }, new JsonSerializerOptions { WriteIndented = true }));
             GD.Print($"[foal-transition] PASS {_checks} checks; report {_output}/transition-report.json");
             GetTree().Quit(0);
@@ -58,14 +61,15 @@ public partial class FoalTransitionProbe : Node
 
     private void CheckFamily(string family, int fps)
     {
-        var original = FixtureLibrary.Get("bay", true) with { MeshFamilyId = family };
+        bool foal = family.Contains("foal", StringComparison.Ordinal);
+        var original = FixtureLibrary.Get("bay", foal) with { MeshFamilyId = family };
         var weights = original.MorphWeights.ToDictionary(p => p.Key, p => p.Value, StringComparer.Ordinal);
         weights["body_length"] = 2200; weights["chest_width"] = -1300;
         weights["neck_length"] = 1800; weights["muscle"] = 2400; weights["height"] = 900;
         original = original with { MorphWeights = weights };
         var neutral = Neutral(original);
         var p = _stage.Presenter;
-        Check(p.Present(original, "idle").Supported, "original shaped foal loads");
+        Check(p.Present(original, "idle").Supported, "original shaped horse loads");
         p.Pose("idle", 0.43);
         _stage.FrameView("q3");
         var start = Surface(p.Model!);
@@ -112,17 +116,17 @@ public partial class FoalTransitionProbe : Node
         Check(ShapeMatches(original) && !p.UsesWalkVariant, "latest rapid-toggle destination wins");
 
         p.TransitionTo(neutral, "walk"); p._Process(0.11);
-        var chestnut = FixtureLibrary.Get("chestnut", true) with { MeshFamilyId = family };
+        var chestnut = FixtureLibrary.Get("chestnut", foal) with { MeshFamilyId = family };
         p.Present(chestnut, "idle");
         var model = p.Model;
         p._Process(5);
         Check(!p.IsTransitioning && p.Model == model && p.Descriptor == chestnut && ShapeMatches(chestnut),
-            "coat change cancels pending foal request");
+            "coat change cancels pending request");
         p.TransitionTo(Neutral(chestnut), "walk"); p._Process(0.31);
-        var adult = Neutral(FixtureLibrary.Get("bay", false));
-        p.Present(adult, "walk"); model = p.Model; p._Process(5);
-        Check(!p.IsTransitioning && p.Model == model && p.Descriptor == adult && p.UsesWalkVariant,
-            "age/family change cancels pending foal request");
+        var otherAge = Neutral(FixtureLibrary.Get("bay", !foal));
+        p.Present(otherAge, "walk"); model = p.Model; p._Process(5);
+        Check(!p.IsTransitioning && p.Model == model && p.Descriptor == otherAge && p.UsesWalkVariant,
+            "age/family change cancels pending request");
         // D-013: a non-neutral shape walks directly with its own shape; only the bridge needs neutral.
         Check(p.TransitionTo(original, "walk").Supported && p.UsesWalkVariant && !p.IsTransitioning && p.Descriptor == original,
             "nonneutral Walk presents directly with its own shape");
@@ -162,8 +166,11 @@ public partial class FoalTransitionProbe : Node
                 maxSwap = Math.Max(maxSwap, gap); swaps++;
                 // Different imported rigs quantize weights independently. Measure
                 // that precision separately from exact source/rest geometry.
-                Check(gap < 0.0001f, "actual old/new skin rest surfaces differ by less than 0.1 mm");
-                Check(normalizedGap < 0.00001f, "normalizing imported weight sums removes the rest-swap discrepancy (<10 micrometres)");
+                // Foals are pinned to 0.1 mm. The adult rigs quantize weights a little differently (0.19 mm raw measured
+                // for the Light adult) while their normalized surfaces agree to micrometres; 0.5 mm is far below a pixel.
+                float rawLimit = p.Descriptor!.IsFoal ? 0.0001f : 0.0005f;
+                Check(gap < rawLimit, $"actual old/new skin rest surfaces differ by less than {rawLimit * 1000:F1} mm (measured {gap * 1000:F5} mm, normalized {normalizedGap * 1000:F5} mm)");
+                Check(normalizedGap < 0.00001f, $"normalizing imported weight sums removes the rest-swap discrepancy (<10 micrometres; measured {normalizedGap * 1000:F5} mm)");
             }
             var after = Surface(p.Model!);
             maxStep = Math.Max(maxStep, Distance(before, after));

@@ -6,8 +6,9 @@ namespace Cloverbrook.Game.Visual;
 
 public partial class HorsePresenter
 {
-    // The foal scenes have identical corrected rest surfaces but different rigs.
-    // Never blend unrelated bone indices, and never play Walk with body morphs.
+    // A family's Idle and Walk scenes have identical corrected rest surfaces but different rigs
+    // (checked for the foal and both adults). Never blend unrelated bone indices, and never play
+    // Walk with body morphs. The name is historical: the bridge works for every age.
     public const double FoalTransitionHalfSeconds = 0.28;
     public bool IsTransitioning { get; private set; }
     public bool PreserveRoutePlacement { get; private set; }
@@ -18,9 +19,10 @@ public partial class HorsePresenter
     private ShapePose? _transitionFrom, _transitionTo;
     private double _transitionElapsed;
     private bool _transitionIncoming;
+    private double _resumePace = 1; // pace the incoming clip starts at (see SetPace)
 
     /// <summary>
-    /// Optional interactive foal Idle/Walk bridge. Direct Present stays immediate.
+    /// Optional interactive Idle/Walk bridge for foals and adults. Direct Present stays immediate.
     /// Repeated requests rebase from the currently visible shape, never a saved
     /// original mesh. Other horses/appearances cancel the bridge and present normally.
     /// </summary>
@@ -30,9 +32,9 @@ public partial class HorsePresenter
         var support = catalog.Check(descriptor);
         bool wantsWalk = IsWalkRequest(animation);
         bool eligible = support.Supported && Support?.Supported == true && Model != null &&
-            Descriptor?.IsFoal == true && descriptor.IsFoal && SameAppearance(Descriptor, descriptor) &&
+            Descriptor != null && Descriptor.IsFoal == descriptor.IsFoal && SameAppearance(Descriptor, descriptor) &&
             catalog.MeshFamilies.TryGetValue(descriptor.MeshFamilyId, out var family) && family.WalkVariant != null &&
-            (!wantsWalk || HasNeutralWalkShape(descriptor, family, catalog)) &&
+            (!wantsWalk || CanWalkWithShape(descriptor, family, catalog)) &&
             (wantsWalk || string.Equals(animation, "idle", StringComparison.OrdinalIgnoreCase)) &&
             (IsTransitioning || wantsWalk != UsesWalkVariant);
         if (!eligible) return Present(descriptor, animation);
@@ -46,11 +48,15 @@ public partial class HorsePresenter
         // from this exact visible pose rather than treating its lift as a new base.
         if (!IsTransitioning) PrepareTransitionFloor();
         _transitionFrom = CaptureShapePose();
+        // D-013: shaped horses bridge too. The swap still passes through the neutral shape, the only
+        // state where the Idle and Walk skins are measured identical (their body-shape deltas differ
+        // by up to ~36 mm), so a shaped horse eases to neutral and back instead of popping.
         _transitionTo = NeutralShapePose();
         _transitionDescriptor = descriptor;
         _transitionAnimation = animation;
         _transitionElapsed = 0;
         _transitionIncoming = false;
+        _resumePace = 1;
         IsTransitioning = true;
         PreserveRoutePlacement = true;
         // Keep both animation and locomotion stopped through the entire bridge,
@@ -99,9 +105,10 @@ public partial class HorsePresenter
         }
 
         string resume = _transitionAnimation!;
+        double resumePace = _resumePace;
         ClearTransitionState();
         // All intended morphs/height are installed before motion is allowed.
-        ApplyAnimation(resume);
+        ApplyAnimation(resume, resumePace);
     }
 
     private void CancelFoalTransition()
@@ -118,6 +125,7 @@ public partial class HorsePresenter
         _transitionFrom = _transitionTo = null;
         _transitionElapsed = 0;
         _transitionIncoming = false;
+        _resumePace = 1;
         _transitionFloor = null;
     }
 
