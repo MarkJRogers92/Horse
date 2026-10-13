@@ -28,12 +28,18 @@ public partial class StableDay
     private Dictionary<HorseId, int> _practiceGains = new();
     private double _practiceElapsedMs = -1;
     private int _practiceRuns;
+    private RaceView? _raceView;
+    private SubViewportContainer? _raceFrame;
+    private double _practiceDelta;
+    private Control? _practiceArt;
+    private Label _practiceIntro = null!;
 
     private void BuildPracticeOverlay(Control root)
     {
         _practiceOverlay = CozyTheme.Dialog(root, $"Practice gallop · {PracticeGallop.DistanceMeters} m", 660, out var box, out var buttons, out _);
-        CozyTheme.DialogHeader(box, "gallop", 616, 84);
-        box.AddChild(SmallText("A friendly gallop on the home track. Speed, acceleration, stamina and calm all matter. Each horse's first gallop of the day counts as training."));
+        _practiceArt = CozyTheme.DialogHeader(box, "gallop", 616, 84);
+        _practiceIntro = SmallText("A friendly gallop on the home track. Speed, acceleration, stamina and calm all matter. Each horse's first gallop of the day counts as training.");
+        box.AddChild(_practiceIntro);
         _practicePicks = new VBoxContainer(); _practicePicks.AddThemeConstantOverride("separation", 4); box.AddChild(_practicePicks);
         _practiceTrack = new VBoxContainer(); _practiceTrack.AddThemeConstantOverride("separation", 6); box.AddChild(_practiceTrack);
         _practiceResults = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(600, 0) };
@@ -52,6 +58,9 @@ public partial class StableDay
         if (_state == null || _busy) return;
         _practicePicks.QueueFreeChildren(); _practiceTrack.QueueFreeChildren(); _practiceChoices.Clear(); _practiceLanes.Clear();
         _practiceResult = null; _practiceElapsedMs = -1; _practiceResults.Text = ""; _practiceStart.Text = "Start gallop";
+        _practicePicks.Visible = true; _practiceIntro.Visible = true;
+        if (_practiceArt != null) _practiceArt.Visible = true;
+        _raceFrame?.QueueFree(); _raceFrame = null; _raceView = null;
         var eligible = 0;
         foreach (var entry in PracticeGallop.Eligibility(_state).Where(e => !HorseMarket.IsSold(_state.Horses.Single(h => h.HorseId.Equals(e.HorseId)))))
         {
@@ -85,6 +94,16 @@ public partial class StableDay
             _practiceGains = picked.ToDictionary(id => id, id => PracticeTraining.Skill(_state.Horses.Single(h => h.HorseId.Equals(id)))
                 - PracticeTraining.Skill(before.Horses.Single(h => h.HorseId.Equals(id))));
             _practiceTrack.QueueFreeChildren(); _practiceLanes.Clear();
+            // The race in 3D above the lanes; the lanes stay as an exact position read-out.
+            _practicePicks.Visible = false; _practiceIntro.Visible = false;
+            if (_practiceArt != null) _practiceArt.Visible = false;
+            _raceFrame?.QueueFree();
+            _raceFrame = new SubViewportContainer { Stretch = true, CustomMinimumSize = new Vector2(616, 250) };
+            _raceView = new RaceView { Size = new Vector2I(616, 250) };
+            _raceFrame.AddChild(_raceView);
+            _practiceTrack.GetParent().AddChild(_raceFrame);
+            _practiceTrack.GetParent().MoveChild(_raceFrame, _practiceTrack.GetIndex());
+            _raceView.Setup(_practiceResult.Entrants.Select(e => DescriptorFor(_state.Horses.Single(h => h.HorseId.Equals(e.HorseId)))).ToList());
             foreach (var entrant in _practiceResult.Entrants)
             {
                 var lane = new HBoxContainer(); lane.AddThemeConstantOverride("separation", 10);
@@ -116,6 +135,7 @@ public partial class StableDay
     {
         if (_practiceElapsedMs < 0 || _practiceResult == null) return;
         _practiceElapsedMs += delta * 1000 * PracticePlaybackSpeed;
+        _practiceDelta = delta;
         AdvancePracticePlayback();
     }
 
@@ -127,12 +147,18 @@ public partial class StableDay
         var index = (int)Math.Min(Math.Floor(position), result.Frames.Count - 1);
         var next = Math.Min(index + 1, result.Frames.Count - 1);
         var t = Math.Clamp(position - index, 0, 1);
+        var progress = new List<float>();
         for (var lane = 0; lane < _practiceLanes.Count; lane++)
+        {
             _practiceLanes[lane].Value = (float)(result.Frames[index][lane] + (result.Frames[next][lane] - result.Frames[index][lane]) * t);
+            progress.Add(_practiceLanes[lane].Value);
+        }
+        _raceView?.SetProgress(progress, _practiceDelta);
         if (index < result.Frames.Count - 1) return;
         _practiceElapsedMs = -1;
         Audio.GameAudio.Loop(null);
         Audio.GameAudio.Play("care_cheer", -6);
+        _raceView?.Finish();
         for (var lane = 0; lane < _practiceLanes.Count; lane++)
         {
             _practiceLanes[lane].Running = false;
