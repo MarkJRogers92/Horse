@@ -387,6 +387,18 @@ namespace Cloverbrook.Domain
             return Publish(DnaTest.Apply(current, requester, horseId, expectedSaveRevision, quotedPrice), preserveCurrentAsBackup: true);
         }
 
+        /// <summary>
+        /// D-031: collects the coins for one of today's finished tasks (and the streak bonus when it completes the set). A retry
+        /// for a task already collected returns the current save.
+        /// </summary>
+        public StableSnapshot CommitDailyTaskReward(OwnerId requester, string taskId, ulong expectedSaveRevision)
+        {
+            Check.NotNull(requester, nameof(requester)); Check.NotNull(taskId, nameof(taskId));
+            using var held = Lock(); var current = RequirePrimary();
+            if (current.PlayerOwnerId.Equals(requester) && DailyTasks.For(current).Any(t => t.Id == taskId && DailyTasks.IsClaimedToday(current, t))) return current;
+            return Publish(DailyTasks.ApplyClaim(current, requester, taskId, expectedSaveRevision), preserveCurrentAsBackup: true);
+        }
+
         /// <summary>D-011: records one day of gallop training for the entrants. Returns the current save unchanged when nobody can gain today.</summary>
         public StableSnapshot RecordPractice(OwnerId requester, ulong expectedSaveRevision, IEnumerable<HorseId> entrants)
         {

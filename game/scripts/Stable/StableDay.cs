@@ -312,6 +312,7 @@ public partial class StableDay : Node
         Anchor(guide, 0, 0, 1, 0, 368, 76, -456, 196);
         root.AddChild(guide);
         root.MoveChild(guide, 1); // stay beneath every dialog overlay
+        BuildTasksPanel(root); // D-031 Pip's daily tasks, under the bubble
 
         // Bottom dock: status and the day's main actions.
         var footer = new HBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore }; footer.AddThemeConstantOverride("separation", 10);

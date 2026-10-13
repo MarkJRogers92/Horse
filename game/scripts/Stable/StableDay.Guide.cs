@@ -95,6 +95,7 @@ public partial class StableDay
         _dailyNote.Visible = line == null;
         if (line != null) _guideSpeaker.Say(line);
         else _dailyNote.Text = DailyTip();
+        RefreshDailyTasks();
     }
 
     /// <summary>After the guide: one useful, state-driven suggestion for today (presentation only).</summary>
