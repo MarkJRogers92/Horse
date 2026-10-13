@@ -225,6 +225,31 @@ public partial class StableDay
             while (_yard.ElapsedSeconds - posed < 2.5) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
             await CaptureFrame(System.IO.Path.Combine(output, "23_photo_mode.png"));
             ExitPhotoMode();
+            // D-028 DNA test, D-029 show, D-030 grazing.
+            if (_state?.Horses.FirstOrDefault(h => h.OwnerId.Equals(_state.PlayerOwnerId) && h.LifeState.Stage == LifeStage.Adult) is { } tested)
+            {
+                ShowInspection(tested.HorseId);
+                do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
+                await CaptureFrame(System.IO.Path.Combine(output, "24_details_dna_button.png"));
+                await DnaTestAsync(tested.HorseId);
+                do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
+                await CaptureFrame(System.IO.Path.Combine(output, "25_details_dna_results.png"));
+                _inspectOverlay.Visible = false;
+            }
+            OpenShow();
+            do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
+            await CaptureFrame(System.IO.Path.Combine(output, "26_show_entry.png"));
+            await EnterShowAsync();
+            do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
+            await CaptureFrame(System.IO.Path.Combine(output, "27_show_result.png"));
+            _showOverlay.Visible = false; _uiLayer.Visible = false;
+            foreach (var wait in new[] { 6.0, 12.0, 18.0 })
+            {
+                var start = _yard.ElapsedSeconds;
+                while (_yard.ElapsedSeconds - start < 6.0) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                await CaptureFrame(System.IO.Path.Combine(output, $"28_yard_life_{wait:0}s.png"));
+            }
+            _uiLayer.Visible = true;
             GD.Print("[hub-preview] OK " + output);
             GetTree().Quit(0);
         }
