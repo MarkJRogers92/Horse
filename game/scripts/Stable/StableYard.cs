@@ -26,6 +26,9 @@ public partial class StableYard : Node3D
     private readonly List<(string Key, HorsePresenter Presenter)> _horses = new();
     private readonly Dictionary<HorsePresenter, Wanderer> _wander = new();
     private readonly RandomNumberGenerator _rng = new() { Seed = 5 };
+    private readonly Dictionary<string, string> _mothers = new(); // foal key -> mare key, for horses both in the yard (D-030)
+    private const float FoalLeashMeters = 2.5f; // a foal's wander targets stay this close to its mare
+    private const float FoalFollowTriggerMeters = 2.6f; // a resting foal sets off after its mare once she is this far away
     private string? _focusedKey;
 
     /// <summary>Where wandering horses may go: centre and half-extents of an ellipse on the ground.</summary>
@@ -108,6 +111,8 @@ public partial class StableYard : Node3D
         if (!_wander.TryGetValue(presenter, out var w)) _wander[presenter] = w = new Wanderer { RestLeft = _rng.RandfRange(3, 9), TurnGoal = presenter.RotationDegrees.Y };
         // A bridge between Idle and Walk (also used when a horse stops) holds the horse still.
         if (presenter.Descriptor == null || presenter.IsTransitioning) return;
+        // D-030 idle life (grazing, tail swish) runs only while the horse stands fully at rest.
+        if (presenter.IdleLife is { } life) life.Calm = key != _focusedKey && !w.Walking && w.Target == null && (w.RestLeft > 0 || life.Busy);
         if (key == _focusedKey)
         {
             if (w.Walking) StopWalking(presenter, w);
@@ -141,9 +146,16 @@ public partial class StableYard : Node3D
             return;
         }
 
+        // A foal sets off after its mare rather than being left behind.
+        if (_mothers.TryGetValue(key, out var mareKey) && MareOf(mareKey) is { } mare && w.RestLeft > 0.6 &&
+            presenter.Position.DistanceTo(mare.Position) > FoalFollowTriggerMeters &&
+            _wander.TryGetValue(mare, out var mareState) && (mareState.Walking || mareState.Target != null))
+            w.RestLeft = _rng.RandfRange(0.3f, 0.6f);
         w.RestLeft -= delta;
-        if (w.RestLeft > 0) return;
-        var next = PickSpot(presenter);
+        if (w.RestLeft > 0 || presenter.IdleLife is { Busy: true }) return; // a graze in progress finishes first
+        // Let the head come up (and the tail settle) before any walk or turn starts.
+        if (presenter.IdleLife is { } resting && resting.Offset > 0.02f) { resting.Calm = false; return; }
+        var next = PickSpot(presenter, key);
         w.Target = next;
         w.Walking = false;
         // Decide from the descriptor so a body shape without a checked Walk never loads (and
@@ -177,23 +189,62 @@ public partial class StableYard : Node3D
     }
 
     /// <summary>A spot inside the paddock, clear of the other horses.</summary>
-    private Vector3 PickSpot(HorsePresenter self)
+    private Vector3 PickSpot(HorsePresenter self, string key)
     {
+        // D-030: a foal stays within a short leash of its mare (and goes where she is going).
+        if (_mothers.TryGetValue(key, out var mareKey) && MareOf(mareKey) is { } mare)
+        {
+            var anchor = _wander.TryGetValue(mare, out var ms) && ms.Target is { } mareTarget ? mareTarget : mare.Position;
+            for (var attempt = 0; attempt < 16; attempt++)
+            {
+                float a = _rng.RandfRange(0, Mathf.Tau), r = _rng.RandfRange(0.9f, FoalLeashMeters - 0.3f);
+                var p = ClampToPaddock(anchor + new Vector3(Mathf.Cos(a) * r, 0, Mathf.Sin(a) * r));
+                if (p.DistanceTo(anchor) <= FoalLeashMeters &&
+                    _horses.All(h => h.Presenter == self || h.Presenter == mare || h.Presenter.Position.DistanceTo(p) > 1.6f))
+                    return p;
+            }
+            return ClampToPaddock(anchor + new Vector3(1.2f, 0, 0.6f));
+        }
+
+        // D-030: on rain (or snow) days horses drift toward the barn side of the paddock, the back edge under the stable block.
+        bool shelter = _weather == YardWeather.Rain;
+        float clearance = shelter ? 2.0f : 2.6f;
+        Vector3? best = null;
         for (var attempt = 0; attempt < 24; attempt++)
         {
             float a = _rng.RandfRange(0, Mathf.Tau), r = Mathf.Sqrt(_rng.Randf());
             // The open screen area between the stable's side panels (see D-012 layout).
             var p = new Vector3(Mathf.Cos(a) * WanderRadius.X * r + WanderCentre.X, 0, Mathf.Sin(a) * WanderRadius.Y * r + WanderCentre.Z);
-            if (_horses.All(h => h.Presenter == self || h.Presenter.Position.DistanceTo(p) > 2.6f) &&
-                _wander.Where(kv => kv.Key != self && kv.Value.Target.HasValue).All(kv => kv.Value.Target!.Value.DistanceTo(p) > 2.6f))
-                return p;
+            if (_horses.All(h => h.Presenter == self || h.Presenter.Position.DistanceTo(p) > clearance) &&
+                _wander.Where(kv => kv.Key != self && kv.Value.Target.HasValue).All(kv => kv.Value.Target!.Value.DistanceTo(p) > clearance))
+            {
+                if (!shelter) return p;
+                if (best is not { } b || p.Z < b.Z) best = p; // the barn stands at negative Z
+            }
         }
-        return self.Position;
+        return best ?? self.Position;
+    }
+
+    private HorsePresenter? MareOf(string mareKey) => _horses.FirstOrDefault(h => h.Key == mareKey).Presenter;
+
+    private Vector3 ClampToPaddock(Vector3 p)
+    {
+        var o = new Vector2((p.X - WanderCentre.X) / (WanderRadius.X * 1.1f), (p.Z - WanderCentre.Z) / (WanderRadius.Y * 1.1f));
+        if (o.LengthSquared() > 1f) { o = o.Normalized(); p = new Vector3(o.X * WanderRadius.X * 1.1f + WanderCentre.X, 0, o.Y * WanderRadius.Y * 1.1f + WanderCentre.Z); }
+        p.Y = 0;
+        return p;
     }
 
     /// <summary>Show exactly these horses (key = horse id), reusing presenters that did not change.</summary>
-    public void SetHorses(IReadOnlyList<(string Key, VisualDescriptor? Descriptor)> horses, IReadOnlyDictionary<string, string>? names = null)
+    /// <param name="mothers">Optional foal key to mare key map; a foal whose mare is also shown stays near her (D-030).</param>
+    public void SetHorses(IReadOnlyList<(string Key, VisualDescriptor? Descriptor)> horses, IReadOnlyDictionary<string, string>? names = null,
+        IReadOnlyDictionary<string, string>? mothers = null)
     {
+        _mothers.Clear();
+        if (mothers != null)
+            foreach (var (foal, mare) in mothers)
+                if (foal != mare && horses.Any(h => h.Key == foal && h.Descriptor?.IsFoal == true) && horses.Any(h => h.Key == mare && h.Descriptor?.IsFoal == false))
+                    _mothers[foal] = mare;
         var wanted = horses.Where(h => h.Descriptor != null).Take(Slots.Length).ToList();
         foreach (var stale in _horses.Where(h => wanted.All(w => w.Key != h.Key || w.Descriptor!.CacheKey != h.Presenter.Descriptor?.CacheKey)).ToList())
         {
@@ -215,6 +266,7 @@ public partial class StableYard : Node3D
                 if (Wandering && existing.Animator is { } idle && !string.IsNullOrEmpty(existing.CurrentAnimation))
                     idle.Seek(_rng.RandfRange(0f, (float)idle.GetAnimation(existing.CurrentAnimation).Length), true);
                 _horses.Add((key, existing));
+                if (Wandering) existing.EnableIdleLife(StableSeed(key)); // D-030: live captures keep still horses
                 existing.Position = Slots[i].Position;
                 existing.RotationDegrees = new Vector3(0, Slots[i].Yaw, 0);
             }
@@ -225,6 +277,14 @@ public partial class StableYard : Node3D
             }
             if (names != null && names.TryGetValue(key, out var name)) NameTag(existing, name);
         }
+    }
+
+    /// <summary>Stable per-horse seed (string.GetHashCode is randomised per run).</summary>
+    private static int StableSeed(string key)
+    {
+        uint h = 2166136261;
+        foreach (char c in key) h = (h ^ c) * 16777619;
+        return unchecked((int)h);
     }
 
     private readonly Dictionary<HorsePresenter, Label3D> _tags = new();
@@ -581,6 +641,10 @@ public partial class StableYard : Node3D
     /// <summary>Presentation-only weather for the day (D-018): clouds dim the sun, rain falls (snow thickens in winter).</summary>
     public void SetWeather(YardWeather weather)
     {
+        // D-030: when the rain starts, resting horses soon head for the barn side.
+        if (weather == YardWeather.Rain && _weather != YardWeather.Rain)
+            foreach (var w in _wander.Values)
+                if (w.Target == null) w.RestLeft = Math.Min(w.RestLeft, _rng.RandfRange(1f, 6f));
         _weather = weather;
         ApplyWeather();
     }

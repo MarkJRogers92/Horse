@@ -43,6 +43,7 @@ public partial class HorsePresenter
             SameAppearance(_transitionDescriptor, descriptor) && SameWeights(_transitionDescriptor, descriptor) &&
             string.Equals(_transitionAnimation, animation, StringComparison.OrdinalIgnoreCase)) return support;
 
+        if (IdleLife != null) { _idleLifeCarry = IdleLife.NextGraze; IdleLife.Clear(); } // D-030: the bridge must read the plain clip pose
         Animator?.Pause();
         // During reversals retain the unlifted origin; clearance is recomputed
         // from this exact visible pose rather than treating its lift as a new base.
@@ -68,6 +69,7 @@ public partial class HorsePresenter
 
     public override void _Process(double delta)
     {
+        if (!IsTransitioning) IdleLife?.Tick(delta);
         if (!IsTransitioning || _transitionFrom == null || _transitionTo == null ||
             Model == null || !double.IsFinite(delta) || delta <= 0) return;
         _transitionElapsed = Math.Min(FoalTransitionHalfSeconds, _transitionElapsed + delta);

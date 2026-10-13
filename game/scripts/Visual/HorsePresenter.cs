@@ -257,6 +257,7 @@ public partial class HorsePresenter : Node3D
         LocomotionSpeedMetersPerSecond = 0;
         LocomotionPeriodSeconds = 0;
         ApplyAnimation(animation);
+        AttachIdleLife();
         if (!string.IsNullOrEmpty(animation) && string.IsNullOrEmpty(ResolveAnimation(animation)))
             Support = Support with { Limitations = Support.Limitations.Append($"animation '{animation}' unavailable; static pose").ToArray() };
         EmitSignal(SignalName.Presented, Support.Summary, true);
@@ -450,6 +451,7 @@ public partial class HorsePresenter : Node3D
     private void ClearModel()
     {
         if (Model != null) { RemoveChild(Model); Model.QueueFree(); }
+        IdleLife = null;
         Model = null; Animator = null; HeadViewTarget = null; CurrentAnimation = ""; Pace = 1;
         UsesWalkVariant = false; LocomotionSpeedMetersPerSecond = 0; LocomotionPeriodSeconds = 0;
     }

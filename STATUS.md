@@ -66,6 +66,7 @@ Goal: stop the stable looking like a text game. (1) portraits of every horse, (2
 - [x] Mac download: the artifact always has the fixed name `Cloverbrook-Stables-macOS`, the installer always uses `~/Applications` (macOS blocks Terminal writes to /Applications), and INSTALL.txt has a one-line install/update command. Owner runs the game from Home > Applications.
 - [x] D-028: DNA tests at the vet (60 coins, once per horse) reveal a horse's true coat calls into `PlayerKnowledge.RevealedCalls`, so foal coat odds become exact; Details button, friendly "Known genetics" wording, Gene Detective ribbon, Pip tip; no save schema change (`docs/decisions/D-028-dna-tests.md`).
 - [x] D-029: weekly Coat & Turnout Show. `HorseShow` domain (judge's card out of 100, five deterministic rivals, 15-coin entry, 120/70/35 prizes), `CommitShowEntry` with ledger validation, a Horse show dialog, four new ribbons and a Pip tip. See `docs/decisions/D-029-coat-and-turnout-show.md`.
+- [x] D-030: livelier yard (presentation only). Resting horses graze, lift their heads, flick ears and swish tails (`HorseIdleLife` bone modifier, zero during Walk and swaps); foals stay within 2.5 m of their mare; horses shelter on the barn side in rain. `YardWalkProbe` extended. See `docs/decisions/D-030-livelier-yard.md`.
 - [ ] Owner: bush/foliage via the Meshy web app's free retries (prompt in the hand-off); everything else in the D-012–D-015 list is done.
 
 ## Animation playback fixes (owner request 2026-10-13)
