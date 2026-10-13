@@ -26,6 +26,10 @@ public partial class StableYard : Node3D
     private readonly RandomNumberGenerator _rng = new() { Seed = 5 };
     private string? _focusedKey;
 
+    /// <summary>Where wandering horses may go: centre and half-extents of an ellipse on the ground.</summary>
+    public Vector3 WanderCentre { get; set; } = new(0.4f, 0, -0.6f);
+    public Vector2 WanderRadius { get; set; } = new(2.6f, 2.3f);
+
     /// <summary>When false (automated captures) horses stay on their slots for repeatable screenshots.</summary>
     public bool Wandering { get; set; } = true;
 
@@ -139,7 +143,8 @@ public partial class StableYard : Node3D
         for (var attempt = 0; attempt < 24; attempt++)
         {
             float a = _rng.RandfRange(0, Mathf.Tau), r = Mathf.Sqrt(_rng.Randf());
-            var p = new Vector3(Mathf.Cos(a) * 4.6f * r + 0.3f, 0, Mathf.Sin(a) * 3.0f * r - 0.4f);
+            // The open screen area between the stable's side panels (see D-012 layout).
+            var p = new Vector3(Mathf.Cos(a) * WanderRadius.X * r + WanderCentre.X, 0, Mathf.Sin(a) * WanderRadius.Y * r + WanderCentre.Z);
             if (_horses.All(h => h.Presenter == self || h.Presenter.Position.DistanceTo(p) > 2.6f) &&
                 _wander.Where(kv => kv.Key != self && kv.Value.Target.HasValue).All(kv => kv.Value.Target!.Value.DistanceTo(p) > 2.6f))
                 return p;

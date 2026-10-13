@@ -31,6 +31,7 @@ public partial class MainMenu : Node
             var yard = new Stable.StableYard { Name = "Yard" };
             AddChild(yard);
             yard.SetCameraHome(new Vector3(-2.6f, 3.0f, 10.5f), new Vector3(-1.2f, 0.9f, -1.0f));
+            yard.WanderCentre = new Vector3(0.6f, 0, -0.8f); yard.WanderRadius = new Vector2(3.6f, 2.6f);
             yard.SetHorses(new (string, VisualDescriptor?)[]
             {
                 ("menu-palomino", FixtureLibrary.Get("palomino", false)),

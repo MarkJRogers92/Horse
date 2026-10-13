@@ -48,21 +48,9 @@ namespace Cloverbrook.Domain.Tests
             Assert.Equal(adult.Descriptor.MarkingRealizationKey, foal.Descriptor.MarkingRealizationKey);
             Assert.Equal(adult.Descriptor.CoatRecipe, foal.Descriptor.CoatRecipe); Assert.NotEqual(adult.Descriptor.MeshFamilyId, foal.Descriptor.MeshFamilyId);
             Assert.NotEqual(adult.Descriptor.CacheKey, foal.Descriptor.CacheKey);
-            Assert.Equal(ResolutionStatus.Unsupported, resolver.ResolveForPresentation(ReferenceHorse(extension, agouti, creamA, creamB, dun, VisualAge.Adult), PhenotypeTests.Matrix(), "reference-assets.v1", "canonical-anatomy.v1").Status);
-        }
-        [Fact]
-        public void StablePreviewMatchesPresentationRecipeWithoutReleasingTheMatrix()
-        {
-            var resolver = new PhenotypeResolver(); var horse = ReferenceHorse("E", "A", "N", "N", "nd2", VisualAge.Adult);
-            Assert.Equal(ResolutionStatus.Unsupported, resolver.ResolveForPresentation(horse, PhenotypeTests.Matrix(), "reference-assets.v1", "canonical-anatomy.v1").Status);
-            var preview = resolver.ResolveForStablePreview(horse, "reference-assets.v1", "canonical-anatomy.v1");
-            Assert.Equal(ResolutionStatus.Supported, preview.Status);
-            Assert.Equal(PhenotypeResolver.StablePreviewCapabilityVersion, preview.Descriptor!.VisualCapabilityVersion);
-            Assert.Equal("horse.standard.adult.v1", preview.Descriptor.MeshFamilyId);
-            Assert.Equal("Bay", preview.DisplayLabel);
-            var released = resolver.ResolveForPresentation(horse, PhenotypeTests.Matrix(true), "reference-assets.v1", "canonical-anatomy.v1").Descriptor!;
-            Assert.Equal(released.CoatRecipe, preview.Descriptor.CoatRecipe);
-            Assert.Equal(released.MarkingRealizationKey, preview.Descriptor.MarkingRealizationKey);
+            var real = resolver.ResolveForPresentation(ReferenceHorse(extension, agouti, creamA, creamB, dun, VisualAge.Adult), PhenotypeTests.Matrix(), "reference-assets.v1", "canonical-anatomy.v1");
+            Assert.Equal(ResolutionStatus.Supported, real.Status); // released by D-013
+            Assert.Equal(adult.Descriptor.CoatRecipe, real.Descriptor!.CoatRecipe);
         }
         [Fact]
         public void ExportReferenceDescriptorsForEveryPhase1ClassWithoutChangingReleaseStatus()
@@ -97,7 +85,7 @@ namespace Cloverbrook.Domain.Tests
             var json = JsonSerializer.Serialize(payload, new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
             using var parsed = JsonDocument.Parse(json); Assert.Equal(26, parsed.RootElement.GetProperty("fixtures").GetArrayLength());
             Assert.True(parsed.RootElement.GetProperty("notForLiveStock").GetBoolean());
-            Assert.DoesNotContain(PhenotypeTests.Matrix().Classes.Values, c => c.Release == SupportLevel.Released);
+            Assert.DoesNotContain(PhenotypeTests.Matrix().Classes.Values, c => c.Release == SupportLevel.Released && !expected.Contains(c.Id));
             var directory = Path.Combine(AppContext.BaseDirectory, "TestResults"); Directory.CreateDirectory(directory);
             File.WriteAllText(Path.Combine(directory, "visual-descriptor-fixtures.json"), json);
         }

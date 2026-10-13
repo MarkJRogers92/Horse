@@ -56,12 +56,12 @@ public partial class HorsePresenter : Node3D
         var family = catalog.MeshFamilies[descriptor.MeshFamilyId];
         bool requestedWalk = IsWalkRequest(animation);
         bool useWalkVariant = requestedWalk && family.WalkVariant != null;
-        if (useWalkVariant && !HasNeutralWalkShape(descriptor, family, catalog))
+        if (useWalkVariant && !CanWalkWithShape(descriptor, family, catalog))
         {
             Support = Support with
             {
                 Supported = false,
-                Problems = Support.Problems.Append("Walk requires the checked neutral family shape (all supported body morphs and height at zero)").ToArray()
+                Problems = Support.Problems.Append("Walk requires a checked family Walk with the declared body channels").ToArray()
             };
             GD.PushWarning($"[HorsePresenter] {descriptor.FixtureId}: {Support.Summary}");
             EmitSignal(SignalName.Presented, Support.Summary, false);
@@ -266,7 +266,7 @@ public partial class HorsePresenter : Node3D
         if (UsesWalkVariant && string.Equals(CurrentAnimation, "Walk", StringComparison.OrdinalIgnoreCase) &&
             Descriptor != null && VisualCatalog.Instance.MeshFamilies.TryGetValue(Descriptor.MeshFamilyId, out var family) && family.WalkVariant is { } walk)
         {
-            LocomotionSpeedMetersPerSecond = walk.ForwardSpeedMetersPerSecond;
+            LocomotionSpeedMetersPerSecond = walk.ForwardSpeedMetersPerSecond * (Model?.Scale.X ?? 1f);
             LocomotionPeriodSeconds = (double)walk.PeriodFrames / walk.FramesPerSecond;
         }
         else
@@ -302,6 +302,20 @@ public partial class HorsePresenter : Node3D
 
     private static bool IsWalkRequest(string animation) => string.Equals(animation, "walk", StringComparison.OrdinalIgnoreCase);
 
+    /// <summary>
+    /// D-013: Walk plays with any body shape inside the declared channel range (clamped to ±1) and any
+    /// height; the extreme-shape deformed review is in docs/visual/evidence/walk-shapes-*. Probes and
+    /// families without a checked Walk or declared Body channels are still refused.
+    /// </summary>
+    private static bool CanWalkWithShape(VisualDescriptor descriptor, MeshFamily family, VisualCatalog catalog)
+    {
+        if (family.WalkVariant == null || family.Age != (descriptor.IsFoal ? "foal" : "adult") ||
+            descriptor.FixtureId.StartsWith("probe.", StringComparison.Ordinal)) return false;
+        return catalog.FamilyMeshBlendShapes.TryGetValue(descriptor.MeshFamilyId, out var meshes) &&
+               meshes.TryGetValue("Body", out var channels) && channels.Count > 0;
+    }
+
+    /// <summary>The foal Idle/Walk bridge interpolates through the neutral rest shape, so it still needs one.</summary>
     private static bool HasNeutralWalkShape(VisualDescriptor descriptor, MeshFamily family, VisualCatalog catalog)
     {
         if (family.WalkVariant == null || family.Age != (descriptor.IsFoal ? "foal" : "adult") ||

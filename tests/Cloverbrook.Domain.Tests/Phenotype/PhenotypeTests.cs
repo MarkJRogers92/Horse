@@ -72,11 +72,16 @@ namespace Cloverbrook.Domain.Tests
             Assert.Equal(ResolutionStatus.Unsupported, resolver.ResolveGenetics(FrozenFixtureData.Horse(FrozenFixtureData.With(("pmel", "Z", "N"), ("stx17", "G", "N")))).Status);
         }
         [Fact]
-        public void RealMatrixHasNoReleasedArtAndCannotProduceLiveDescriptors()
+        public void RealMatrixReleasesExactlyThePhase1Classes()
         {
-            var matrix = Matrix(); Assert.DoesNotContain(matrix.Classes.Values, c => c.Release == SupportLevel.Released);
-            var result = new PhenotypeResolver().ResolveForPresentation(FrozenFixtureData.Horse(FrozenFixtureData.Genome()), matrix, "not-approved", "anatomy.v1");
-            Assert.Equal(ResolutionStatus.Unsupported, result.Status); Assert.Null(result.Descriptor); Assert.NotEmpty(result.Reasons);
+            // D-013: the owner released the 13 phase-1 classes; phase-2 classes stay unreleased.
+            var matrix = Matrix();
+            using var file = FixtureFiles.Load("COAT_SUPPORT_MATRIX.json");
+            foreach (var row in file.RootElement.GetProperty("coatClasses").EnumerateArray())
+                Assert.Equal(row.GetProperty("phase").GetInt32() == 1, matrix.Classes[row.GetProperty("id").GetString()!].Release == SupportLevel.Released);
+            var bay = new PhenotypeResolver().ResolveForPresentation(FrozenFixtureData.Horse(FrozenFixtureData.Genome()), matrix, "assets.v1", "anatomy.v1");
+            Assert.Equal(ResolutionStatus.Supported, bay.Status); Assert.Equal("Bay", bay.DisplayLabel);
+            Assert.NotEmpty(matrix.ReleasedSupportProblems(new[] { "dunalino_family" }, new[] { "base_pigment", "cream_single", "dun_dilution" }));
         }
         [Fact]
         public void TestOnlyReleaseFixtureMakesStableDescriptorsWithoutReleasingRealArt()
@@ -108,7 +113,7 @@ namespace Cloverbrook.Domain.Tests
             Assert.True(check.EvaluatedAll); Assert.False(check.IsSupported); Assert.Contains(check.Reasons, r => r.Contains("dunalino_family"));
             var safe = FrozenFixtureData.Parents(FrozenFixtureData.Find("palominoPair"));
             Assert.True(LiveCoatGuard.CheckPair(safe.A, safe.B, Matrix(true)).IsSupported);
-            Assert.False(LiveCoatGuard.CheckPair(safe.A, safe.B, Matrix()).IsSupported);
+            Assert.True(LiveCoatGuard.CheckPair(safe.A, safe.B, Matrix()).IsSupported); // palomino family released by D-013
             Assert.False(LiveCoatGuard.CheckPair(safe.A, safe.B, Matrix(true), 1).EvaluatedAll);
         }
         [Fact]

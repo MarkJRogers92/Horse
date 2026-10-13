@@ -44,7 +44,8 @@ Goal: stop the stable looking like a text game. (1) portraits of every horse, (2
 - [x] Birth celebration: after the night card, "A foal is born!" dialog with the stall illustration, foal portrait, parents and coat, confetti and a name box (uses the existing rename save). Live play only. `--hub-preview=DIR --foaling-demo --hub-birth` records it.
 - Verified locally at this checkpoint: 214/214 tests, validator OK, game `-warnaserror` build, all three stable captures, main-menu smoke test. Evidence refreshed in `docs/stable/evidence/2026-10-13-hub/`.
 - [x] Yard feel: floating name tags with hover highlight and pointer cursor, heart/sparkle burst when comfort care is switched on, drifting blossom petals, Meshy planter boxes and a bench (30 each). Spent 411/500.
-- [ ] Next: owner-retried bush via the web app (API retries cost credits; web app gives 4 free retries), walking for all body shapes (art track), sound and music (needs a licensed pack: owner decision).
+- [x] D-013 (owner approved "all 4"): phase-1 coats released in the matrix (game copy + validator check; stable uses the released path, preview workaround removed). Walk allowed with every body shape after the extreme-shape audit; ground speed scales with height. Smoke test updated. 213/213 tests.
+- [ ] Next (owner asleep, automate): original synthesized music + SFX (asset sites are blocked here; no purchase), then a gallop cycle (Blender) shown in a 3D race, then the web-app bush retry. Keep at least 350 Meshy credits.
 
 ## Next steps (before D-012)
 1. **`main` branch and Mac install:** `main` is created from this branch once visual CI is green (owner-approved 2026-10-12). Every push to `main` runs `.github/workflows/macos-build.yml`, which uploads `Cloverbrook-Stables-macOS-<run>` (universal, ad-hoc signed, not notarized; see INSTALL.txt inside) to the run's Artifacts. It can also be started by hand from the Actions tab. The owner must make `main` the default branch in GitHub settings.

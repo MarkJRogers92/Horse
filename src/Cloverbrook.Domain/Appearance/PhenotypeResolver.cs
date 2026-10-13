@@ -117,21 +117,6 @@ namespace Cloverbrook.Domain
             var descriptor = new HorseVisualDescriptor(phenotype, result.RequiredCoatClasses, matrix.Version, visualAssetCatalogVersion, mesh, anatomicalMaskSetId, cosmeticLayer);
             return new PresentationResolution(descriptor, VisibleLabel(phenotype), Array.Empty<string>());
         }
-        public const string StablePreviewCapabilityVersion = "stable-preview.unreleased.v1";
-        // D-012: presentation-only portraits and yard horses for horses already in a
-        // save. Skips the release matrix (which governs what live stock may carry) but
-        // never invents a coat: unsupported genetics stay unsupported, and the renderer
-        // still refuses recipes or layers it has not implemented. The descriptor is
-        // tagged so it can never be mistaken for a released approval.
-        public PresentationResolution ResolveForStablePreview(HorseRecord horse, string visualAssetCatalogVersion, string anatomicalMaskSetId)
-        {
-            var result = ResolveGenetics(horse);
-            if (result.Status == ResolutionStatus.Unsupported) return new PresentationResolution(null, null, new[] { result.UnsupportedReason! });
-            var phenotype = result.Phenotype!;
-            var mesh = result.Traits!.BodyFamily + (phenotype.VisualAge == VisualAge.Foal ? ".foal.v1" : ".adult.v1");
-            var descriptor = new HorseVisualDescriptor(phenotype, result.RequiredCoatClasses, StablePreviewCapabilityVersion, visualAssetCatalogVersion, mesh, anatomicalMaskSetId);
-            return new PresentationResolution(descriptor, VisibleLabel(phenotype), Array.Empty<string>());
-        }
         public static string VisibleLabel(Phenotype p)
         {
             Check.NotNull(p, nameof(p));

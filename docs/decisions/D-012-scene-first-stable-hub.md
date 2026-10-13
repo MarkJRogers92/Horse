@@ -22,7 +22,7 @@ we make the game look like a polished Steam horse game (owner reference: Rival S
    secret injected by the environment proxy; it is never stored in the repository or
    printed.
 
-## Showing saved horses before any coat is released
+## Showing saved horses before any coat is released (superseded by D-013)
 No coat class in `COAT_SUPPORT_MATRIX.json` is released yet, so the released presentation
 path refuses every real horse, and the stable has been text-only. Portraits and yard horses
 use `PhenotypeResolver.ResolveForStablePreview` instead. It runs the same genetics and

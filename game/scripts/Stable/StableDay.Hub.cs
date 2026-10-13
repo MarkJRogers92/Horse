@@ -119,7 +119,7 @@ public partial class StableDay
         VisualDescriptor? descriptor = null;
         try
         {
-            var resolution = new PhenotypeResolver().ResolveForStablePreview(horse, VisualCatalog.Instance.Version, AnatomicalMaskSetId);
+            var resolution = new PhenotypeResolver().ResolveForPresentation(horse, DomainBridge.Matrix, VisualCatalog.Instance.Version, AnatomicalMaskSetId);
             var (visual, reasons) = DomainBridge.FromPresentation(resolution);
             if (visual != null && VisualCatalog.Instance.Check(visual).Supported) descriptor = visual;
             else GD.Print($"[stable-hub] {horse.Name} shown as a silhouette: {string.Join("; ", reasons.Concat(visual == null ? Array.Empty<string>() : VisualCatalog.Instance.Check(visual).Problems))}");

@@ -12,6 +12,24 @@ public static class DomainBridge
 {
     public static string ResolverVersion => new PhenotypeResolver().Version;
 
+    private static CoatSupportMatrix? _matrix;
+
+    /// <summary>The authoritative coat release record (game copy of docs/contracts/COAT_SUPPORT_MATRIX.json, D-013).</summary>
+    public static CoatSupportMatrix Matrix => _matrix ??= ParseMatrix(FileAccess.GetFileAsString("res://data/coat_support_matrix.json"));
+
+    public static CoatSupportMatrix ParseMatrix(string json)
+    {
+        using var document = System.Text.Json.JsonDocument.Parse(json);
+        var root = document.RootElement;
+        SupportLevel Level(System.Text.Json.JsonElement row, string name) => System.Enum.Parse<SupportLevel>(row.GetProperty(name).GetString()!, true);
+        var classes = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Select(root.GetProperty("coatClasses").EnumerateArray(), row =>
+            new CoatClassSupport(row.GetProperty("id").GetString()!,
+                System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Select(row.GetProperty("layers").EnumerateArray(), v => v.GetString()!)),
+                Level(row, "geneticStatus"), Level(row, "visualStatus"), Level(row, "releaseStatus"))));
+        var layers = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Select(root.GetProperty("layers").EnumerateArray(), v => v.GetProperty("id").GetString()!));
+        return new CoatSupportMatrix(root.GetProperty("formatVersion").GetString()!, layers, classes);
+    }
+
     /// <summary>Convert a live domain descriptor for the presenter.</summary>
     public static Visual.VisualDescriptor ToVisual(HorseVisualDescriptor descriptor, string displayLabel) =>
         Visual.VisualDescriptor.FromDomain(descriptor, displayLabel, testOnly: false);

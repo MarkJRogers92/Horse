@@ -73,6 +73,10 @@ if m:
         if order.get(c["releaseStatus"], 0) > min(order.get(c["geneticStatus"], 0), order.get(c["visualStatus"], 0)):
             errors.append(f"coat class {c['id']} released beyond its genetic/visual support")
     notes.append(f"coat matrix: {len(m['coatClasses'])} classes over {len(layers)} render layers")
+    # The game ships a byte-identical copy (res:// cannot read docs/); D-013.
+    game_copy = ROOT / "game/data/coat_support_matrix.json"
+    if not game_copy.exists() or game_copy.read_bytes() != (ROOT / "docs/contracts/COAT_SUPPORT_MATRIX.json").read_bytes():
+        errors.append("game/data/coat_support_matrix.json must be an exact copy of docs/contracts/COAT_SUPPORT_MATRIX.json")
 
 for n in notes: print("note:", n)
 for e in errors: print("ERROR:", e)

@@ -35,7 +35,11 @@ public partial class MainMenu
                 original = original with { MorphWeights = weights };
                 var neutral = Neutral(original);
                 Check(stage.Presenter.Present(original, "idle").Supported && stage.Presenter.IsAnimationAvailable("walk"), familyId + " offers Walk from Idle");
-                Check(!stage.Presenter.Present(original, "walk").Supported && stage.Presenter.Model == null, familyId + " refuses direct nonneutral Walk");
+                // D-013: Walk keeps the horse's own body shape and height (extreme-shape review in docs/visual/evidence/walk-shapes-2026-10-13).
+                Check(stage.Presenter.Present(original, "walk").Supported && stage.Presenter.UsesWalkVariant &&
+                      OriginalDescriptorValuesMatch(stage.Presenter, original, catalog), familyId + " plays Walk with its own body shape");
+                Check(Math.Abs(stage.Presenter.LocomotionSpeedMetersPerSecond - walk!.ForwardSpeedMetersPerSecond * stage.Presenter.Model!.Scale.X) < 1e-9,
+                      familyId + " scales Walk ground speed with height so hooves do not slide");
                 for (int repeat = 0; repeat < 2; repeat++)
                 {
                     Check(stage.Presenter.Present(neutral, "walk").Supported && stage.Presenter.UsesWalkVariant &&
