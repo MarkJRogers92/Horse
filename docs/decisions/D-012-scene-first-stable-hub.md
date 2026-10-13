@@ -34,6 +34,9 @@ or meshes still show a silhouette). Releasing coats remains a separate owner dec
 ## Budget
 - At most **300 Meshy credits** for this decision (owner, 2026-10-13). Check in with
   the owner at **150** cumulative before spending further.
+- **Raised to about 500** (owner, 2026-10-13, after the 150 check-in): the remaining 150
+  plus about 200 more. Priority: assets that are reused widely, are very important, or
+  make a big visual difference.
 - Balance before work: 1,164 credits. No subscription, credit purchase or other paid
   service is authorized.
 - Every task is recorded in `art/scenery/meshy/ledger.json` with its prompt, task IDs

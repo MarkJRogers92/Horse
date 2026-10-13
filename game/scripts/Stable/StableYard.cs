@@ -22,6 +22,23 @@ public partial class StableYard : Node3D
         (new Vector3(-3.0f, 0, -1.2f), 60f), (new Vector3(2.6f, 0, -2.0f), 125f), (new Vector3(-0.2f, 0, -2.2f), 200f),
     };
     private readonly List<(string Key, HorsePresenter Presenter)> _horses = new();
+    private readonly Dictionary<HorsePresenter, Wanderer> _wander = new();
+    private readonly RandomNumberGenerator _rng = new() { Seed = 5 };
+    private string? _focusedKey;
+
+    /// <summary>When false (automated captures) horses stay on their slots for repeatable screenshots.</summary>
+    public bool Wandering { get; set; } = true;
+
+    // Per-horse life in the paddock: rest, then walk (or turn in place when Walk is
+    // not allowed for this body shape) toward a new spot.
+    private sealed class Wanderer
+    {
+        public double RestLeft;
+        public Vector3? Target;
+        public float TurnGoal;
+        public bool Walking;
+        public bool? CanWalk; // learned once; a refused Walk would otherwise reload the model every time
+    }
     private Camera3D _camera = null!;
     private static readonly Vector3 HomeTarget = new(0.45f, 0.75f, -0.4f);
     private Vector3 _lookTarget = HomeTarget;
@@ -50,6 +67,82 @@ public partial class StableYard : Node3D
         _lookTarget = _lookTarget.Lerp(_targetGoal, k);
         _camera.Position = _camera.Position.Lerp(_cameraGoal + drift, k);
         _camera.LookAt(_lookTarget, Vector3.Up);
+        if (Wandering) foreach (var (key, presenter) in _horses) Wander(key, presenter, delta);
+    }
+
+    private void Wander(string key, HorsePresenter presenter, double delta)
+    {
+        if (!_wander.TryGetValue(presenter, out var w)) _wander[presenter] = w = new Wanderer { RestLeft = _rng.RandfRange(3, 9), TurnGoal = presenter.RotationDegrees.Y };
+        if (presenter.Descriptor == null || presenter.IsTransitioning) return;
+        if (key == _focusedKey)
+        {
+            if (w.Walking) StopWalking(presenter, w);
+            return;
+        }
+
+        if (w.Target is { } target)
+        {
+            var to = target - presenter.Position; to.Y = 0;
+            float yawGoal = Mathf.RadToDeg(Mathf.Atan2(-to.Z, to.X));
+            float yaw = Mathf.RadToDeg(Mathf.LerpAngle(Mathf.DegToRad(presenter.RotationDegrees.Y), Mathf.DegToRad(yawGoal), 1f - Mathf.Exp(-1.8f * (float)delta)));
+            presenter.RotationDegrees = new Vector3(0, yaw, 0);
+            if (w.Walking)
+            {
+                float speed = (float)presenter.LocomotionSpeedMetersPerSecond;
+                float facing = Mathf.Abs(Mathf.AngleDifference(Mathf.DegToRad(yaw), Mathf.DegToRad(yawGoal)));
+                if (facing < 0.6f) presenter.Position += presenter.Basis.X.Normalized() * speed * (float)delta * (1f - facing);
+                if (to.Length() < 0.25f) { StopWalking(presenter, w); w.Target = null; w.RestLeft = _rng.RandfRange(5, 12); }
+            }
+            else if (Mathf.Abs(Mathf.AngleDifference(Mathf.DegToRad(yaw), Mathf.DegToRad(yawGoal))) < 0.05f)
+            {
+                w.Target = null; w.RestLeft = _rng.RandfRange(6, 14);
+            }
+            return;
+        }
+
+        w.RestLeft -= delta;
+        if (w.RestLeft > 0) return;
+        var next = PickSpot(presenter);
+        w.Target = next;
+        w.Walking = false;
+        if (w.CanWalk != false)
+        {
+            var support = presenter.Present(presenter.Descriptor, "walk");
+            w.Walking = support.Supported && presenter.UsesWalkVariant && presenter.LocomotionSpeedMetersPerSecond > 0;
+            w.CanWalk = w.Walking;
+            if (!w.Walking) presenter.Present(presenter.Descriptor, "idle");
+        }
+        if (!w.Walking)
+        {
+            // Walk is only checked for the neutral body shape, so other horses shift
+            // their weight with a small turn in place instead of travelling.
+            // Keep faces toward the camera side: yaw in (0°, 180°) would show the horse's back.
+            float goal = Mathf.Wrap(presenter.RotationDegrees.Y + _rng.RandfRange(25, 55) * (_rng.Randf() < 0.5f ? -1 : 1), -200f, 160f);
+            goal = Mathf.Clamp(goal, -195f, 15f);
+            float turn = Mathf.DegToRad(goal);
+            w.Target = presenter.Position + new Vector3(Mathf.Cos(turn), 0, -Mathf.Sin(turn)) * 3f;
+            w.Walking = false;
+        }
+    }
+
+    private void StopWalking(HorsePresenter presenter, Wanderer w)
+    {
+        w.Walking = false;
+        if (presenter.Descriptor != null) presenter.Present(presenter.Descriptor, "idle");
+    }
+
+    /// <summary>A spot inside the paddock, clear of the other horses.</summary>
+    private Vector3 PickSpot(HorsePresenter self)
+    {
+        for (var attempt = 0; attempt < 24; attempt++)
+        {
+            float a = _rng.RandfRange(0, Mathf.Tau), r = Mathf.Sqrt(_rng.Randf());
+            var p = new Vector3(Mathf.Cos(a) * 4.6f * r + 0.3f, 0, Mathf.Sin(a) * 3.0f * r - 0.4f);
+            if (_horses.All(h => h.Presenter == self || h.Presenter.Position.DistanceTo(p) > 2.6f) &&
+                _wander.Where(kv => kv.Key != self && kv.Value.Target.HasValue).All(kv => kv.Value.Target!.Value.DistanceTo(p) > 2.6f))
+                return p;
+        }
+        return self.Position;
     }
 
     /// <summary>Show exactly these horses (key = horse id), reusing presenters that did not change.</summary>
@@ -59,6 +152,7 @@ public partial class StableYard : Node3D
         foreach (var stale in _horses.Where(h => wanted.All(w => w.Key != h.Key || w.Descriptor!.CacheKey != h.Presenter.Descriptor?.CacheKey)).ToList())
         {
             stale.Presenter.QueueFree();
+            _wander.Remove(stale.Presenter);
             _horses.Remove(stale);
         }
         for (var i = 0; i < wanted.Count; i++)
@@ -71,9 +165,14 @@ public partial class StableYard : Node3D
                 AddChild(existing);
                 if (!existing.Present(descriptor!, "idle").Supported) { existing.QueueFree(); continue; }
                 _horses.Add((key, existing));
+                existing.Position = Slots[i].Position;
+                existing.RotationDegrees = new Vector3(0, Slots[i].Yaw, 0);
             }
-            existing.Position = Slots[i].Position;
-            existing.RotationDegrees = new Vector3(0, Slots[i].Yaw, 0);
+            else if (!Wandering)
+            {
+                existing.Position = Slots[i].Position;
+                existing.RotationDegrees = new Vector3(0, Slots[i].Yaw, 0);
+            }
         }
     }
 
@@ -98,6 +197,7 @@ public partial class StableYard : Node3D
     /// <summary>Glide the camera toward a horse, or back to the overview when key is null.</summary>
     public void Focus(string? key)
     {
+        _focusedKey = key;
         var presenter = _horses.FirstOrDefault(h => h.Key == key).Presenter;
         if (presenter == null) { _cameraGoal = _cameraHome; _targetGoal = HomeTarget; return; }
         var p = presenter.GlobalPosition;
@@ -106,6 +206,7 @@ public partial class StableYard : Node3D
     }
 
     public int HorseCount => _horses.Count;
+    public double ElapsedSeconds => _time;
 
     // ---------------------------------------------------------------------------------
     private void BuildGround()
@@ -113,13 +214,15 @@ public partial class StableYard : Node3D
         var grass = new ShaderMaterial { Shader = GD.Load<Shader>("res://shaders/grass_ground.gdshader") };
         AddChild(Sets.Mesh(new PlaneMesh { Size = new Vector2(160, 160), SubdivideWidth = 2, SubdivideDepth = 2 }, grass, Vector3.Zero));
         var sand = Sets.Mat(Color.FromHtml("#e6cfa6"), 0.95f);
-        var paddock = Sets.Mesh(new CylinderMesh { TopRadius = 1, BottomRadius = 1, Height = 0.02f, RadialSegments = 64 }, sand, new Vector3(0, 0.006f, -0.5f));
-        paddock.Scale = new Vector3(6.4f, 1, 4.6f);
+        var raked = new ShaderMaterial { Shader = GD.Load<Shader>("res://shaders/paddock_sand.gdshader") };
+        var paddock = Sets.Mesh(new CylinderMesh { TopRadius = 1, BottomRadius = 1, Height = 0.02f, RadialSegments = 64 }, raked, new Vector3(0, 0.006f, -0.5f));
+        paddock.Scale = new Vector3(7.0f, 1, 5.0f);
         AddChild(paddock);
         var path = Sets.Mesh(new BoxMesh { Size = new Vector3(2.4f, 0.02f, 9f) }, sand, new Vector3(-5.2f, 0.007f, -8.5f), new Vector3(0, 28, 0));
         AddChild(path);
 
         var rng = new RandomNumberGenerator { Seed = 11 };
+        AddChild(GrassAndFlowers(rng));
         var hill = Sets.Mat(Color.FromHtml("#b3d39c"), 1f);
         for (var i = 0; i < 9; i++)
         {
@@ -128,6 +231,44 @@ public partial class StableYard : Node3D
             h.Scale = new Vector3(rng.RandfRange(16, 26), rng.RandfRange(9, 13), rng.RandfRange(10, 16));
             AddChild(h);
         }
+    }
+
+    /// <summary>Grass tufts and wildflowers outside the paddock (instanced, cheap).</summary>
+    private static Node3D GrassAndFlowers(RandomNumberGenerator rng)
+    {
+        var root = new Node3D { Name = "GrassAndFlowers" };
+        bool InPaddock(Vector3 p) => Mathf.Pow(p.X / 7.4f, 2) + Mathf.Pow((p.Z + 0.5f) / 5.4f, 2) < 1f;
+        bool OnPath(Vector3 p) => p.Z < -11f && p.Z > -14.5f && p.X > -7f && p.X < 1.5f;
+        var blades = new MultiMesh { TransformFormat = MultiMesh.TransformFormatEnum.Transform3D, UseColors = true, Mesh = new PrismMesh { Size = new Vector3(0.05f, 0.2f, 0.01f) } };
+        const int tufts = 14000; blades.InstanceCount = tufts;
+        for (var i = 0; i < tufts; i++)
+        {
+            Vector3 p;
+            do p = new Vector3(rng.RandfRange(-22, 22), 0, rng.RandfRange(-24, 3.5f)); while (InPaddock(p) || OnPath(p));
+            var basis = Basis.Identity.Rotated(Vector3.Up, rng.RandfRange(0, Mathf.Tau)).Rotated(Vector3.Right, rng.RandfRange(-0.3f, 0.3f)).Scaled(Vector3.One * rng.RandfRange(0.6f, 1.5f));
+            blades.SetInstanceTransform(i, new Transform3D(basis, p + new Vector3(0, 0.11f, 0)));
+            blades.SetInstanceColor(i, Color.FromHtml("#5f9a4d").Lerp(Color.FromHtml("#94c070"), rng.Randf()));
+        }
+        var bladeMat = Sets.Mat(Colors.White, 1f); bladeMat.VertexColorUseAsAlbedo = true; bladeMat.SpecularMode = BaseMaterial3D.SpecularModeEnum.Disabled; bladeMat.CullMode = BaseMaterial3D.CullModeEnum.Disabled;
+        root.AddChild(new MultiMeshInstance3D { Multimesh = blades, MaterialOverride = bladeMat, CastShadow = GeometryInstance3D.ShadowCastingSetting.Off });
+
+        var petals = new[] { "#f7a1bd", "#fbd36b", "#c9a7ef", "#ffffff", "#ff9fa0", "#9fd3f5" };
+        var heads = new MultiMesh { TransformFormat = MultiMesh.TransformFormatEnum.Transform3D, UseColors = true, Mesh = new SphereMesh { Radius = 0.045f, Height = 0.06f, RadialSegments = 8, Rings = 4 } };
+        const int flowers = 1600; heads.InstanceCount = flowers;
+        for (var i = 0; i < flowers; i++)
+        {
+            // Clustered drifts: pick a cluster centre, then scatter around it.
+            var centre = new Vector3(rng.RandfRange(-16, 16), 0, rng.RandfRange(-20, 2.5f));
+            Vector3 p;
+            int guard = 0;
+            do p = centre + new Vector3(rng.RandfRange(-1.4f, 1.4f), 0, rng.RandfRange(-1.4f, 1.4f)); while ((InPaddock(p) || OnPath(p)) && ++guard < 20);
+            if (InPaddock(p)) p = new Vector3(p.X > 0 ? 9 : -9, 0, p.Z);
+            heads.SetInstanceTransform(i, new Transform3D(Basis.Identity.Scaled(Vector3.One * rng.RandfRange(0.7f, 1.3f)), p + new Vector3(0, rng.RandfRange(0.1f, 0.22f), 0)));
+            heads.SetInstanceColor(i, Color.FromHtml(petals[(i / 40) % petals.Length]));
+        }
+        var petalMat = Sets.Mat(Colors.White, 0.6f); petalMat.VertexColorUseAsAlbedo = true;
+        root.AddChild(new MultiMeshInstance3D { Multimesh = heads, MaterialOverride = petalMat, CastShadow = GeometryInstance3D.ShadowCastingSetting.Off });
+        return root;
     }
 
     private void BuildScenery()
@@ -151,10 +292,20 @@ public partial class StableYard : Node3D
             Place("oak_tree", size * rng.RandfRange(0.85f, 1.1f), pos, rng.RandfRange(0, 360), () => FallbackTree(rng));
         Place("hay_props", 1.6f, new Vector3(2.4f, 0, -12.6f), -25f, () => FallbackHay());
         Place("water_trough", 0.85f, new Vector3(4.4f, 0, -3.8f), 75f, () => FallbackTrough());
+        Place("saddle_rack", 1.25f, new Vector3(-0.2f, 0, -12.2f), 15f, () => new Node3D());
+        Place("wheelbarrow", 0.85f, new Vector3(4.6f, 0, -11.6f), -60f, () => new Node3D());
+        Place("show_jump", 1.3f, new Vector3(7.2f, 0, -7.5f), -25f, () => new Node3D());
+        var sign = Place("signpost", 2.5f, new Vector3(-5.6f, 0, -4.2f), 18f, () => new Node3D());
+        // The generated board is blank on purpose; the stable's name is real text so it stays crisp.
+        sign.AddChild(new Label3D
+        {
+            Text = "Cloverbrook\nStables", FontSize = 96, PixelSize = 0.0022f, OutlineSize = 0, Modulate = Color.FromHtml("#5b3a5e"),
+            Font = UI.CozyTheme.BoldFont, Position = new Vector3(0.0f, 1.62f, 0.2f), NoDepthTest = false,
+        });
     }
 
     /// <summary>Load a Meshy asset scaled to a target height, or build its stand-in.</summary>
-    private void Place(string asset, float height, Vector3 position, float yaw, Func<Node3D> fallback)
+    private Node3D Place(string asset, float height, Vector3 position, float yaw, Func<Node3D> fallback)
     {
         var node = LoadAsset(asset, out var bounds);
         if (node != null && bounds.Size.Y > 0.0001f)
@@ -167,6 +318,7 @@ public partial class StableYard : Node3D
         var holder = new Node3D { Name = asset, Position = position, RotationDegrees = new Vector3(0, yaw, 0) };
         holder.AddChild(node);
         AddChild(holder);
+        return holder;
     }
 
     /// <summary>Like Place, but scales a fence section to span a given length along X.</summary>

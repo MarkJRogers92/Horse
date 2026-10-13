@@ -16,13 +16,16 @@ public partial class StableDay
     private Label _saleDetails = null!;
     private Button _confirmSaleButton = null!;
     private SaleOffer? _reviewedOffer;
+    private HBoxContainer _saleRow = null!;
     private ulong _reviewedOfferRevision;
 
     private void BuildSaleOverlay(Control root)
     {
         _saleOverlay = CozyTheme.Dialog(root, "A buyer is interested", 600, out var body, out var buttons, out _saleTitle);
-        _saleSpeaker = new BunnySpeaker();
-        body.AddChild(_saleSpeaker);
+        _saleRow = new HBoxContainer(); _saleRow.AddThemeConstantOverride("separation", 12);
+        _saleSpeaker = new BunnySpeaker { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
+        _saleRow.AddChild(_saleSpeaker);
+        body.AddChild(_saleRow);
         _saleDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(540, 0) };
         body.AddChild(_saleDetails);
         var keep = new Button { Text = "Keep my horse", CustomMinimumSize = new Vector2(160, 46) };
@@ -45,6 +48,10 @@ public partial class StableDay
             .Concat(new[] { "", $"Wallet after the sale: {_state.Coins + offer.PriceCoins:N0} coins.",
                 $"{offer.Name} keeps their place in your family tree, and frees a home place for a new foal." }));
         _confirmSaleButton.Text = $"Sell · +{offer.PriceCoins:N0}";
+        foreach (var old in _saleRow.GetChildren().Where(c => c != _saleSpeaker)) old.QueueFree();
+        var horse = _state.Horses.Single(h => h.HorseId.Equals(horseId));
+        var portrait = Portrait(horse, 120, CardTint(horse)); portrait.SizeFlagsVertical = Control.SizeFlags.ShrinkCenter;
+        _saleRow.AddChild(portrait); _saleRow.MoveChild(portrait, 0);
         _inspectOverlay.Visible = false;
         _saleOverlay.Visible = true;
     }

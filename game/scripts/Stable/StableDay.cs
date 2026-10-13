@@ -41,6 +41,7 @@ public partial class StableDay : Node
     private ConfirmationDialog _recoveryDialog = null!;
     private SaveLoadResult? _recoveryCandidate;
     private VBoxContainer _history = null!;
+    private CanvasLayer _uiLayer = null!;
 
     public override void _Ready()
     {
@@ -84,6 +85,8 @@ public partial class StableDay : Node
             if (_lifecycleCaptureOutput != null) _ = RunLifecycleCaptureAsync(_lifecycleCaptureOutput);
             else if (_breedingCaptureOutput != null) _ = RunBreedingCaptureAsync(_breedingCaptureOutput);
             else if (_captureOutput != null) _ = RunCaptureAsync(_captureOutput);
+            else if (args.FirstOrDefault(a => a.StartsWith("--hub-preview=", StringComparison.Ordinal)) is { } hubPreview)
+                _ = RunHubPreviewAsync(hubPreview["--hub-preview=".Length..]);
         }
         catch (Exception ex)
         {
@@ -228,6 +231,7 @@ public partial class StableDay : Node
     private void BuildUi()
     {
         var layer = new CanvasLayer();
+        _uiLayer = layer;
         AddChild(layer);
         var root = new Control { Theme = CozyTheme.Build() };
         root.SetAnchorsPreset(Control.LayoutPreset.FullRect);
@@ -298,6 +302,7 @@ public partial class StableDay : Node
         guide.SizeFlagsHorizontal = guide.SizeFlagsVertical = Control.SizeFlags.Fill;
         Anchor(guide, 0, 0, 1, 0, 368, 76, -456, 196);
         root.AddChild(guide);
+        root.MoveChild(guide, 1); // stay beneath every dialog overlay
 
         // Bottom dock: status and the day's main actions.
         var footer = new HBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore }; footer.AddThemeConstantOverride("separation", 10);

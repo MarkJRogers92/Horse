@@ -5,7 +5,7 @@ The API key is injected by the environment's network-secret proxy, so this scrip
 never reads or prints it. If MESHY_API_KEY is set (local use), it is sent instead.
 
 Every generation is appended to the ledger with the actual balance before and after,
-and the D-012 budget (300 credits, owner check-in at 150) is enforced before each call.
+and the D-012 budget (500 credits, no further check-in) is enforced before each call.
 
 Usage:
   python3 tools/meshy/meshy.py balance
@@ -26,8 +26,8 @@ API = "https://api.meshy.ai/openapi"
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 LEDGER = ROOT / "art/scenery/meshy/ledger.json"
 OUT = ROOT / "game/assets/scenery"
-BUDGET = 300
-CHECKPOINT = 150
+BUDGET = 500  # D-012: 300, raised by the owner after the 150 check-in
+CHECKPOINT = 500  # owner authorised the full raised budget
 DECISION = "D-012"
 
 

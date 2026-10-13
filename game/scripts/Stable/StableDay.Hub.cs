@@ -19,10 +19,30 @@ public partial class StableDay
 
     private void BuildHub()
     {
-        _yard = new StableYard { Name = "StableYard" };
+        var args = OS.GetCmdlineUserArgs();
+        _yard = new StableYard { Name = "StableYard", Wandering = !args.Any(a => a.StartsWith("--stable-", StringComparison.Ordinal)) };
         AddChild(_yard);
         _portraits = new HorsePortraitStudio { Name = "PortraitStudio" };
         AddChild(_portraits);
+    }
+
+    /// <summary>--hub-preview=DIR: timed screenshots of a live (wandering) yard, for visual review.</summary>
+    private async System.Threading.Tasks.Task RunHubPreviewAsync(string output)
+    {
+        try
+        {
+            System.IO.Directory.CreateDirectory(output);
+            foreach (var (seconds, name) in new[] { (3.0, "01_hub_live"), (14.0, "02_hub_live"), (24.0, "03_hub_live") })
+            {
+                while (_yard.ElapsedSeconds < seconds) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                await CaptureFrame(System.IO.Path.Combine(output, name + ".png"));
+            }
+            _uiLayer.Visible = false;
+            await CaptureFrame(System.IO.Path.Combine(output, "04_yard_only.png"));
+            GD.Print("[hub-preview] OK " + output);
+            GetTree().Quit(0);
+        }
+        catch (Exception ex) { GD.PushError("[hub-preview] FAILED " + ex); GetTree().Quit(1); }
     }
 
     /// <summary>Presentation-only descriptor for a saved horse, or null when it cannot be shown.</summary>
@@ -60,11 +80,17 @@ public partial class StableDay
 
     private static readonly Shader PortraitShader = GD.Load<Shader>("res://shaders/portrait_card.gdshader");
 
-    /// <summary>A rounded portrait card that fills in when the render finishes.</summary>
-    private Control Portrait(HorseRecord horse, int size, Color background)
+    private static ShaderMaterial PortraitMaterial(Color background)
     {
         var material = new ShaderMaterial { Shader = PortraitShader };
         material.SetShaderParameter("background", background);
+        return material;
+    }
+
+    /// <summary>A rounded portrait card that fills in when the render finishes.</summary>
+    private Control Portrait(HorseRecord horse, int size, Color background)
+    {
+        var material = PortraitMaterial(background);
         var picture = new TextureRect
         {
             CustomMinimumSize = new Vector2(size, size), ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
@@ -97,13 +123,13 @@ public partial class StableDay
         for (var y = 0; y < n; y++)
         for (var x = 0; x < n; x++)
         {
-            // A simple horse-head outline: a tilted ellipse for the head and a block for the neck.
-            float hx = (x - 52) / 15f, hy = (y - 38) / 24f;
-            float rx = hx * 0.87f + hy * 0.5f, ry = -hx * 0.5f + hy * 0.87f;
-            bool head = rx * rx + ry * ry < 1f;
-            bool neck = x > 30 && x < 58 && y > 44 && y < 96 && x - 30 > (y - 44) * 0.15f;
-            bool ear = Math.Abs(x - 44) < 4 && y > 8 && y < 20;
-            image.SetPixel(x, y, head || neck || ear ? ink : new Color(0, 0, 0, 0));
+            // A horseshoe: an open ring, thicker at the toe, with nail holes.
+            float dx = x - 48f, dy = y - 44f, r = MathF.Sqrt(dx * dx + dy * dy);
+            bool open = dy < -6f && MathF.Abs(dx) < 15f;
+            float thickness = 9f + MathF.Max(0f, dy) * 0.12f;
+            bool shoe = r < 30f && r > 30f - thickness && !open;
+            bool nail = MathF.Abs(r - (30f - thickness / 2f)) < 1.6f && (MathF.Abs(MathF.Atan2(dy, dx) * 180f / MathF.PI % 30f) < 4f);
+            image.SetPixel(x, y, shoe && !nail ? ink : new Color(0, 0, 0, 0));
         }
         return ImageTexture.CreateFromImage(image);
     }

@@ -32,7 +32,10 @@ Goal: stop the stable looking like a text game. (1) portraits of every horse, (2
 - [x] Portraits: `HorsePortraitStudio` (private SubViewport through HorsePresenter, cached by descriptor) + `portrait_card.gdshader`. Shown on roster cards, care sections and Details.
 - [x] 3D yard hub: `StableYard` (Meshy scenery with procedural fallbacks, saved horses in paddock slots, click a horse to open Details and focus the camera). New layout: top bar, roster left, care/breeding right, Pip top centre, bottom dock. Captures wait for portraits.
 - Verified locally: 214/214 tests, game `-warnaserror` build, stable-day, lifecycle and breeding captures all OK. Evidence: `docs/stable/evidence/2026-10-13-hub/` (00_before vs 01_hub).
-- [ ] Next: breeding dialog with mare/stallion portraits, sale offer portrait, gallop shown with horses, horses wandering/walking in the yard, more Meshy scenery after owner approval.
+- [x] Owner raised the budget to about 500 after the check-in and merged to `main` (07e91e5). Spent 300/500: saddle stand, signpost (real "Cloverbrook Stables" text via Label3D), show jump, wheelbarrow; a flowering bush was rejected (shard foliage, files not kept).
+- [x] Breeding review shows mare ♥ stallion = ? foal portraits; sale offer shows the horse. Pip sits beneath dialogs.
+- [x] Yard life: horses rest, then turn in place (Walk is refused for non-neutral body shapes by the checked-walk rule, so travel only happens for neutral horses). Raked-sand shader, grass tufts and wildflowers. `--hub-preview=DIR` writes live yard screenshots (game time) plus a UI-free view.
+- [ ] Next: visual practice gallop, end-of-day sunset transition, main menu in the yard, illustrated icons (Meshy text-to-image if cheap), retry a bush/planter.
 
 ## Next steps (before D-012)
 1. **`main` branch and Mac install:** `main` is created from this branch once visual CI is green (owner-approved 2026-10-12). Every push to `main` runs `.github/workflows/macos-build.yml`, which uploads `Cloverbrook-Stables-macOS-<run>` (universal, ad-hoc signed, not notarized; see INSTALL.txt inside) to the run's Artifacts. It can also be started by hand from the Actions tab. The owner must make `main` the default branch in GitHub settings.

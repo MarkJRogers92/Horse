@@ -87,8 +87,88 @@
       "balanceAfter": 1014,
       "chargedCredits": 30,
       "licenseBasis": "Owner's paid Meshy plan; see D-012 Licensing."
+    },
+    {
+      "name": "flowering_bush",
+      "prompt": "A single round leafy garden shrub covered in small soft pink and white blossoms, dense and full, countryside hedge bush. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T03:37:52+00:00",
+      "balanceBefore": 1014,
+      "aiModel": "latest",
+      "previewTaskId": "01a13356-8e34-76a5-b7fc-a7817f82b035",
+      "refineTaskId": "01a13359-59e0-77ac-8eeb-4893a734cac7",
+      "glbBytes": 7207596,
+      "files": [
+        "game/assets/scenery/flowering_bush/flowering_bush.glb"
+      ],
+      "status": "rejected after review: shard-like foliage and scattered petals; files not kept",
+      "balanceAfter": 984,
+      "chargedCredits": 30
+    },
+    {
+      "name": "saddle_rack",
+      "prompt": "A wooden saddle stand holding a brown leather English riding saddle with stirrups hanging down and a folded soft pink saddle pad, equestrian stable prop. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T03:41:45+00:00",
+      "balanceBefore": 984,
+      "aiModel": "latest",
+      "previewTaskId": "01a1335a-1ca2-71fe-9c7a-3942a1429e92",
+      "refineTaskId": "01a1335a-f548-7202-8d07-fe30ee212118",
+      "glbBytes": 8394184,
+      "files": [
+        "game/assets/scenery/saddle_rack/saddle_rack.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 954,
+      "chargedCredits": 30
+    },
+    {
+      "name": "signpost",
+      "prompt": "A rustic wooden farm signpost: one sturdy post with a wide blank rectangular painted cream sign board with a sage green frame, small flower box at its base. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T03:43:31+00:00",
+      "balanceBefore": 954,
+      "aiModel": "latest",
+      "previewTaskId": "01a1335b-b904-7668-829e-c3e17c29b381",
+      "refineTaskId": "01a1335c-90f4-770b-80fc-e0768a25486c",
+      "glbBytes": 7886632,
+      "files": [
+        "game/assets/scenery/signpost/signpost.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 924,
+      "chargedCredits": 30
+    },
+    {
+      "name": "show_jump",
+      "prompt": "A horse show jumping obstacle: two white wooden jump wings with a horizontal striped rail in white and pastel pink, plus a ground pole, equestrian arena jump. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T03:45:16+00:00",
+      "balanceBefore": 924,
+      "aiModel": "latest",
+      "previewTaskId": "01a1335d-53ed-7523-a9a1-7024eedabbe0",
+      "refineTaskId": "01a1335e-0508-71c4-a11e-7a27759259a9",
+      "glbBytes": 5978860,
+      "files": [
+        "game/assets/scenery/show_jump/show_jump.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 894,
+      "chargedCredits": 30
+    },
+    {
+      "name": "wheelbarrow",
+      "prompt": "A wooden farm wheelbarrow with one wheel, filled with golden straw, a small pitchfork resting across it. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T03:46:52+00:00",
+      "balanceBefore": 894,
+      "aiModel": "latest",
+      "previewTaskId": "01a1335e-c963-73d7-9fb1-ce3435023487",
+      "refineTaskId": "01a1335f-77bd-76da-9abb-4a85cddf7959",
+      "glbBytes": 7856256,
+      "files": [
+        "game/assets/scenery/wheelbarrow/wheelbarrow.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 864,
+      "chargedCredits": 30
     }
   ],
-  "spentCredits": 150,
+  "spentCredits": 300,
   "postProcessing": "Textures resized to 1024x1024 with @gltf-transform/cli 4.1.1 'resize' before commit (about 42 MB to 6 MB); geometry unchanged."
 }

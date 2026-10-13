@@ -61,7 +61,10 @@ public partial class StableDay
     private void BuildBreedingOverlay(Control root)
     {
         _breedingOverlay = CozyTheme.Dialog(root, "Review breeding plan", 680, out var box, out var buttons, out _);
-        var scroll = new ScrollContainer { CustomMinimumSize = new Vector2(620, 400), HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled };
+        _breedingPair = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center };
+        _breedingPair.AddThemeConstantOverride("separation", 14);
+        box.AddChild(_breedingPair);
+        var scroll = new ScrollContainer { CustomMinimumSize = new Vector2(620, 230), HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled };
         _breedingDetails = new Label { CustomMinimumSize = new Vector2(600, 0), AutowrapMode = TextServer.AutowrapMode.WordSmart };
         _breedingDetails.AddThemeFontSizeOverride("font_size", 15);
         scroll.AddChild(_breedingDetails);
@@ -73,6 +76,45 @@ public partial class StableDay
         _confirmBreedingButton.Pressed += ConfirmBreedingReview;
         buttons.AddChild(_confirmBreedingButton);
         CozyTheme.FinishDialog(box, buttons);
+    }
+
+    private HBoxContainer _breedingPair = null!;
+
+    /// <summary>Mare ♥ stallion = ? foal, as portrait cards across the top of the review.</summary>
+    private void ShowBreedingPair(HorseId mareId, HorseId stallionId)
+    {
+        foreach (var child in _breedingPair.GetChildren()) child.QueueFree();
+        var mare = _state!.Horses.Single(h => h.HorseId.Equals(mareId));
+        var stallion = _state.Horses.Single(h => h.HorseId.Equals(stallionId));
+        _breedingPair.AddChild(NamedPortrait(Portrait(mare, 140, CardTint(mare)), mare.Name));
+        _breedingPair.AddChild(Symbol("♥"));
+        _breedingPair.AddChild(NamedPortrait(Portrait(stallion, 140, CardTint(stallion)), stallion.Name));
+        _breedingPair.AddChild(Symbol("="));
+        var foal = new PanelContainer { CustomMinimumSize = new Vector2(110, 110), SizeFlagsVertical = Control.SizeFlags.ShrinkCenter };
+        var foalCard = CozyTheme.Box(Color.FromHtml("#fbe7b0"), 28, 0); foalCard.BorderColor = Colors.White; foalCard.SetBorderWidthAll(5);
+        foal.AddThemeStyleboxOverride("panel", foalCard);
+        var mystery = CozyTheme.Title("?", 64); mystery.HorizontalAlignment = HorizontalAlignment.Center; mystery.VerticalAlignment = VerticalAlignment.Center;
+        mystery.AddThemeColorOverride("font_color", new Color(CozyTheme.AccentDeep, 0.8f));
+        foal.AddChild(mystery);
+        _breedingPair.AddChild(NamedPortrait(foal, "Foal · a surprise!"));
+    }
+
+    private static Control NamedPortrait(Control portrait, string name)
+    {
+        var column = new VBoxContainer { Alignment = BoxContainer.AlignmentMode.Center };
+        column.AddThemeConstantOverride("separation", 2);
+        portrait.SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter;
+        column.AddChild(portrait);
+        var label = CozyTheme.Title(name, 15); label.HorizontalAlignment = HorizontalAlignment.Center;
+        column.AddChild(label);
+        return column;
+    }
+
+    private static Label Symbol(string text)
+    {
+        var label = CozyTheme.Title(text, 30); label.VerticalAlignment = VerticalAlignment.Center;
+        label.AddThemeColorOverride("font_color", CozyTheme.AccentDeep);
+        return label;
     }
 
     private void RefreshBreedingUi()
@@ -188,6 +230,7 @@ public partial class StableDay
                 foreach (var rejection in quote.Rejections) lines.Add("• " + rejection.Message);
             }
             _breedingDetails.Text = string.Join("\n", lines);
+            ShowBreedingPair(mareId, stallionId);
             _confirmBreedingButton.Disabled = !quote.IsEligible;
             _breedingOverlay.Visible = true;
         }
