@@ -80,7 +80,7 @@ public partial class StableDay
     private void MaybeAskStableName()
     {
         _yard.SetStableName(StableName.Get(_store.SavePath));
-        if (_yard.Wandering && !_foalingDemoMode && !StableName.IsChosen(_store.SavePath)) _nameStableOverlay.Visible = true;
+        if (_yard.Wandering && !_foalingDemoMode && !_hubPreviewRunning && !StableName.IsChosen(_store.SavePath)) _nameStableOverlay.Visible = true;
     }
 
     private void BuildBirthOverlay(Control root)

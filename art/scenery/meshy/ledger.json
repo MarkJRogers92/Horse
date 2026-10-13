@@ -497,9 +497,55 @@
       "status": "downloaded",
       "balanceAfter": 803,
       "chargedCredits": 30
+    },
+    {
+      "name": "header_fair",
+      "kind": "image",
+      "prompt": "A charming country horse fair on a sunny morning: striped pastel bunting, a little wooden market stall with rosettes and hay bales, white fence paddock, a blank wooden sign, green meadow and trees beyond, soft pastel storybook game illustration, stylized 3D render, cozy warm light, gentle colors (blush pink, cream, sage green, sky blue), wide banner composition, empty centre foreground, no horses, no people, no text, no logos",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T11:11:06+00:00",
+      "balanceBefore": 803,
+      "files": [
+        "game/assets/ui/headers/header_fair.jpg"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 800,
+      "chargedCredits": 3,
+      "aspectRatio": "16:9",
+      "note": "Generated in parallel; per-image balances reconstructed from the 9-credit total."
+    },
+    {
+      "name": "icon_fair",
+      "kind": "image",
+      "prompt": "A single cute game UI icon: a small striped pastel pink and cream market tent with bunting and a tiny horseshoe on top, chunky rounded stylized 3D render, soft pastel colors, centered, on a plain soft cream background, no text, no border",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T11:11:06+00:00",
+      "balanceBefore": 800,
+      "taskId": "01a134f5-801e-7440-ae47-ffb94cccb4f9",
+      "files": [
+        "game/assets/ui/icons/icon_fair.png"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 797,
+      "chargedCredits": 3
+    },
+    {
+      "name": "icon_journal",
+      "kind": "image",
+      "prompt": "A single cute game UI icon: a closed pastel pink leather journal book with a gold horseshoe on the cover and a ribbon bookmark, chunky rounded stylized 3D render, soft pastel colors, centered, on a plain soft cream background, no text, no border",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T11:11:06+00:00",
+      "balanceBefore": 797,
+      "files": [
+        "game/assets/ui/icons/icon_journal.png"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 794,
+      "chargedCredits": 3,
+      "note": "Generated in parallel; per-image balances reconstructed from the 9-credit total."
     }
   ],
-  "spentCredits": 471,
+  "spentCredits": 480,
   "postProcessing": "Textures resized to 1024x1024 with @gltf-transform/cli 4.1.1 'resize' before commit (about 42 MB to 6 MB); geometry unchanged.",
   "balanceNote": "The account balance rose by about 100 credits between the wheelbarrow (balance 864) and the first image (balance before 964), outside any task here (likely a Meshy credit adjustment). Per-task charges are measured within each task, so the D-012 total is unaffected.",
   "imagePostProcessing": "Icons: 1024 px Meshy images cut out from their cream background by border flood fill, cropped to content and saved at 256 px RGBA.",

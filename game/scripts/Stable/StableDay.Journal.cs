@@ -37,6 +37,10 @@ public partial class StableDay
             s => ActiveHorses(s).Any() && ActiveHorses(s).All(h => s.DailyState.For(h.HorseId) is var c && c.Grooming >= 8000 && c.Turnout >= 8000)),
         new("full_house", "Full House", "Have four horses at home at once.", "turnout",
             s => ActiveHorses(s).Count() >= 4),
+        new("fair", "Fair Find", "Buy a horse at the horse fair.", "fair",
+            s => s.Horses.Any(h => HorseFair.IsPurchased(h) && h.OwnerId.Equals(s.PlayerOwnerId))),
+        new("colours", "Colourful Herd", "Collect five different coats.", "breeding",
+            s => CollectedCoats(s).Count >= 5),
         new("savings", "Nest Egg", "Save up 1,000 coins.", "coins", s => s.Coins >= 1000),
         new("season", "A Whole Season", "Reach the summer of your first year.", "day",
             s => s.Header.CalendarDay >= StableCalendar.DaysPerSeason),
@@ -51,6 +55,8 @@ public partial class StableDay
     private GridContainer _journalGrid = null!;
     private Label _journalSummary = null!;
     private Button _journalButton = null!;
+    private Button _journalRibbonTab = null!;
+    private Button _journalCoatTab = null!;
     private HashSet<string> _seenRibbons = new();
     private bool _ribbonsLoaded;
 
@@ -59,6 +65,15 @@ public partial class StableDay
     private void BuildJournalOverlay(Control root)
     {
         _journalOverlay = CozyTheme.Dialog(root, "Stable Journal", 700, out var body, out var buttons, out _);
+        var tabs = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center };
+        tabs.AddThemeConstantOverride("separation", 8);
+        var group = new ButtonGroup();
+        _journalRibbonTab = new Button { Text = "Ribbons", ToggleMode = true, ButtonGroup = group, ButtonPressed = true, CustomMinimumSize = new Vector2(150, 40) };
+        _journalCoatTab = new Button { Text = "Coat collection", ToggleMode = true, ButtonGroup = group, CustomMinimumSize = new Vector2(190, 40) };
+        _journalRibbonTab.Pressed += () => ShowJournalPage(false);
+        _journalCoatTab.Pressed += () => ShowJournalPage(true);
+        tabs.AddChild(_journalRibbonTab); tabs.AddChild(_journalCoatTab);
+        body.AddChild(tabs);
         _journalSummary = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart };
         _journalSummary.AddThemeFontSizeOverride("font_size", 15);
         body.AddChild(_journalSummary);
@@ -73,7 +88,7 @@ public partial class StableDay
 
     private Button JournalButton()
     {
-        _journalButton = CozyTheme.WithIcon(new Button { Text = "Journal", CustomMinimumSize = new Vector2(130, 44) }, "gallop", 26);
+        _journalButton = CozyTheme.WithIcon(new Button { Text = "Journal", CustomMinimumSize = new Vector2(130, 44) }, "journal", 26);
         _journalButton.Pressed += ShowJournal;
         return _journalButton;
     }
@@ -81,11 +96,77 @@ public partial class StableDay
     private void ShowJournal()
     {
         if (_state == null) return;
+        _journalRibbonTab.ButtonPressed = true;
+        ShowJournalPage(false);
+        _journalOverlay.Visible = true;
+    }
+
+    private void ShowJournalPage(bool coats)
+    {
+        if (_state == null) return;
         foreach (var child in _journalGrid.GetChildren()) child.QueueFree();
+        if (coats)
+        {
+            var collected = CollectedCoats(_state);
+            _journalSummary.Text = $"{collected.Count} of {CoatCollection.Length} coats collected. Breed foals or visit the Horse fair to find new colours.";
+            _journalGrid.Columns = 5;
+            foreach (var (id, label) in CoatCollection) _journalGrid.AddChild(CoatCard(label, collected.TryGetValue(id, out var horse) ? horse : null));
+            return;
+        }
         var earned = Ribbons.Where(r => r.Earned(_state)).Select(r => r.Id).ToHashSet();
         _journalSummary.Text = $"{earned.Count} of {Ribbons.Length} ribbons earned. They come from what really happens in your stable.";
+        _journalGrid.Columns = 3;
         foreach (var ribbon in Ribbons) _journalGrid.AddChild(RibbonCard(ribbon, earned.Contains(ribbon.Id)));
-        _journalOverlay.Visible = true;
+    }
+
+    /// <summary>The 13 coats D-013 released, in collecting order.</summary>
+    private static readonly (string Id, string Label)[] CoatCollection =
+    {
+        ("chestnut", "Chestnut"), ("bay", "Bay"), ("black", "Black"), ("palomino", "Palomino"), ("buckskin", "Buckskin"),
+        ("smoky_black", "Smoky black"), ("cremello", "Cremello"), ("perlino", "Perlino"), ("smoky_cream", "Smoky cream"),
+        ("red_dun", "Red dun"), ("bay_dun", "Bay dun"), ("grullo", "Grullo"), ("non_dun1_marked", "Primitive marked"),
+    };
+
+    /// <summary>Every horse that has lived at this stable (sold horses keep their records), first one per coat.</summary>
+    private static Dictionary<string, HorseRecord> CollectedCoats(StableSnapshot state)
+    {
+        var found = new Dictionary<string, HorseRecord>(StringComparer.Ordinal);
+        var resolver = new PhenotypeResolver();
+        foreach (var horse in state.Horses.Where(h => h.LifeState.Stage != LifeStage.Unborn
+                     && (h.OwnerId.Equals(state.PlayerOwnerId) || HorseMarket.IsSold(h))).OrderBy(h => h.BirthDay ?? -1).ThenBy(h => h.Name, StringComparer.Ordinal))
+        {
+            try
+            {
+                var genetics = resolver.ResolveGenetics(horse);
+                if (genetics.Phenotype == null) continue;
+                var id = genetics.RequiredCoatClasses.Contains("non_dun1_marked") ? "non_dun1_marked" : genetics.Phenotype.CoatClassId;
+                if (!found.ContainsKey(id)) found[id] = horse;
+            }
+            catch (Exception) { }
+        }
+        return found;
+    }
+
+    private Control CoatCard(string label, HorseRecord? horse)
+    {
+        var card = new PanelContainer { CustomMinimumSize = new Vector2(118, 0) };
+        var style = CozyTheme.Box(horse != null ? Color.FromHtml("#fff4d6") : new Color(1, 1, 1, 0.55f), 16, 6);
+        style.BorderColor = horse != null ? Color.FromHtml("#f5c542") : CozyTheme.Border; style.SetBorderWidthAll(horse != null ? 3 : 2);
+        card.AddThemeStyleboxOverride("panel", style);
+        var box = new VBoxContainer(); box.AddThemeConstantOverride("separation", 2); card.AddChild(box);
+        Control picture;
+        if (horse != null) picture = Portrait(horse, 92, CardTint(horse));
+        else picture = new TextureRect { Texture = Silhouette(), CustomMinimumSize = new Vector2(92, 92), ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+            StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered, Modulate = new Color(1, 1, 1, 0.5f) };
+        picture.SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter;
+        box.AddChild(picture);
+        var title = CozyTheme.Title(label, 13); title.HorizontalAlignment = HorizontalAlignment.Center;
+        if (horse == null) title.AddThemeColorOverride("font_color", CozyTheme.SoftText);
+        box.AddChild(title);
+        var who = new Label { Text = horse?.Name ?? "not found yet", HorizontalAlignment = HorizontalAlignment.Center };
+        who.AddThemeFontSizeOverride("font_size", 11); who.AddThemeColorOverride("font_color", CozyTheme.SoftText);
+        box.AddChild(who);
+        return card;
     }
 
     private static Control RibbonCard(Ribbon ribbon, bool earned)

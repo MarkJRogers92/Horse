@@ -122,6 +122,8 @@ public partial class StableDay
         var mare = home.FirstOrDefault(h => h.ReproductionState.Role == ReproductiveRole.Mare && Ready(h));
         var stallion = home.FirstOrDefault(h => h.ReproductionState.Role == ReproductiveRole.Stallion && Ready(h));
         if (mare != null && stallion != null && _state.Coins >= 50) return $"Tip: {mare.Name} and {stallion.Name} could have a foal together. Review the pairing to see.";
+        if (!_foalingDemoMode && day % HorseFair.DaysPerWeek == 0 && HorseFair.Offers(_state).FirstOrDefault(o => HorseFair.BlockReason(_state, o) == null) is { } offer)
+            return $"Tip: it's fair week! {offer.Name} and friends are waiting at the Horse fair.";
         return "Everyone is fed and happy. End the day whenever you're ready!";
     }
 }

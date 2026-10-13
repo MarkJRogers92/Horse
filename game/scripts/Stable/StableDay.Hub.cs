@@ -76,12 +76,15 @@ public partial class StableDay
         tween.TweenCallback(Callable.From(() => { veil.QueueFree(); banner.QueueFree(); }));
     }
 
+    private bool _hubPreviewRunning;
+
     /// <summary>--hub-preview=DIR: timed screenshots of a live (wandering) yard, for visual review.</summary>
     private async System.Threading.Tasks.Task RunHubPreviewAsync(string output)
     {
         try
         {
             System.IO.Directory.CreateDirectory(output);
+            _hubPreviewRunning = true; _nameStableOverlay.Visible = false; // a fresh preview save would otherwise ask for a stable name
             foreach (var (seconds, name) in new[] { (3.0, "01_hub_live"), (14.0, "02_hub_live"), (24.0, "03_hub_live") })
             {
                 while (_yard.ElapsedSeconds < seconds) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
@@ -132,6 +135,23 @@ public partial class StableDay
                 ShowJournal();
                 await CaptureFrame(System.IO.Path.Combine(output, "10_journal.png"));
             }
+            _journalOverlay.Visible = false;
+            ShowFair();
+            do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
+            await CaptureFrame(System.IO.Path.Combine(output, "11_fair.png"));
+            if (_state != null && HorseFair.Offers(_state).FirstOrDefault(o => HorseFair.BlockReason(_state, o) == null) is { } offer)
+            {
+                await BuyAsync(offer);
+                var bought = _yard.ElapsedSeconds;
+                while (_yard.ElapsedSeconds - bought < 1.2) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                while (_portraits.Busy) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                await CaptureFrame(System.IO.Path.Combine(output, "12_fair_bought.png"));
+            }
+            ShowJournal();
+            await CaptureFrame(System.IO.Path.Combine(output, "13_journal_ribbons.png"));
+            _journalCoatTab.ButtonPressed = true; ShowJournalPage(true);
+            do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
+            await CaptureFrame(System.IO.Path.Combine(output, "14_journal_coats.png"));
             GD.Print("[hub-preview] OK " + output);
             GetTree().Quit(0);
         }

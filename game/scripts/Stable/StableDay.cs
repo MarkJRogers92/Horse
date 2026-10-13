@@ -327,6 +327,7 @@ public partial class StableDay : Node
         _retryButton = new Button { Text = "Retry saved day", Visible = false, CustomMinimumSize = new Vector2(170, 50) };
         _retryButton.Pressed += () => _ = CommitPendingAsync();
         footer.AddChild(_retryButton);
+        footer.AddChild(FairButton());
         _practiceButton = CozyTheme.WithIcon(new Button { Text = "Practice gallop", CustomMinimumSize = new Vector2(190, 50) }, "gallop", 32);
         _practiceButton.Pressed += ShowPractice;
         footer.AddChild(_practiceButton);
@@ -339,6 +340,7 @@ public partial class StableDay : Node
         BuildInspectOverlay(root);
         BuildPracticeOverlay(root);
         BuildSaleOverlay(root);
+        BuildFairOverlay(root);
         BuildBirthOverlay(root);
         BuildJournalOverlay(root);
         BuildNameStableOverlay(root);
@@ -509,6 +511,7 @@ public partial class StableDay : Node
         SetControlsEnabled(!_busy && !_recoveryRequired);
         _reviewButton.Disabled = _busy || _recoveryRequired || _pendingRequest != null || _pendingBreedingRequest != null || _state.Horses.Count == 0;
         _retryButton.Visible = _pendingRequest != null;
+        _fairButton.Disabled = _busy || _recoveryRequired || _foalingDemoMode;
         _retryButton.Disabled = _busy || _recoveryRequired;
         _reloadButton.Disabled = _busy || _pendingRequest != null || _pendingBreedingRequest != null;
         foreach (var toggle in _optionalToggles) toggle.Disabled = _busy || _recoveryRequired;
