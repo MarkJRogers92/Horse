@@ -23,7 +23,7 @@ public partial class StableDay
     private Button _practiceStart = null!;
     private Button _practiceButton = null!;
     private readonly Dictionary<HorseId, CheckBox> _practiceChoices = new();
-    private readonly List<ProgressBar> _practiceLanes = new();
+    private readonly List<RaceLane> _practiceLanes = new();
     private PracticeGallopResult? _practiceResult;
     private Dictionary<HorseId, int> _practiceGains = new();
     private double _practiceElapsedMs = -1;
@@ -87,10 +87,12 @@ public partial class StableDay
             foreach (var entrant in _practiceResult.Entrants)
             {
                 var lane = new HBoxContainer(); lane.AddThemeConstantOverride("separation", 10);
-                var name = SmallText(entrant.Name); name.CustomMinimumSize = new Vector2(120, 0); lane.AddChild(name);
-                var bar = new ProgressBar { MinValue = 0, MaxValue = 1000, ShowPercentage = false, CustomMinimumSize = new Vector2(460, 24),
-                    SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
-                lane.AddChild(bar); _practiceLanes.Add(bar); _practiceTrack.AddChild(lane);
+                var name = CozyTheme.Title(entrant.Name, 15); name.CustomMinimumSize = new Vector2(96, 0); name.VerticalAlignment = VerticalAlignment.Center;
+                lane.AddChild(name);
+                var horse = _state.Horses.Single(h => h.HorseId.Equals(entrant.HorseId));
+                var track = new RaceLane { Running = true };
+                track.SetToken(Portrait(horse, 46, CardTint(horse)));
+                lane.AddChild(track); _practiceLanes.Add(track); _practiceTrack.AddChild(lane);
             }
             _practiceResults.Text = "And they're off!";
             _practiceElapsedMs = 0;
@@ -123,9 +125,14 @@ public partial class StableDay
         var next = Math.Min(index + 1, result.Frames.Count - 1);
         var t = Math.Clamp(position - index, 0, 1);
         for (var lane = 0; lane < _practiceLanes.Count; lane++)
-            _practiceLanes[lane].Value = result.Frames[index][lane] + (result.Frames[next][lane] - result.Frames[index][lane]) * t;
+            _practiceLanes[lane].Value = (float)(result.Frames[index][lane] + (result.Frames[next][lane] - result.Frames[index][lane]) * t);
         if (index < result.Frames.Count - 1) return;
         _practiceElapsedMs = -1;
+        for (var lane = 0; lane < _practiceLanes.Count; lane++)
+        {
+            _practiceLanes[lane].Running = false;
+            _practiceLanes[lane].ShowPlace(result.Entrants[lane].Place);
+        }
         _practiceStart.Disabled = false; _practiceStart.Text = "Gallop again";
         var lines = result.Entrants.OrderBy(e => e.Place).Select(e => $"{Ordinal(e.Place)} · {e.Name} · {e.FinishMilliseconds / 1000.0:0.0} s"
             + (_practiceGains.TryGetValue(e.HorseId, out var gain) && gain > 0 ? $"  ·  training +{Percent(gain)}" : "")).ToList();

@@ -26,6 +26,42 @@ public partial class StableDay
         AddChild(_portraits);
     }
 
+    /// <summary>
+    /// Sunset, a moment of night, then morning over the yard after a saved day (presentation only;
+    /// the save has already committed). Skipped in automated captures so screenshots stay stable.
+    /// </summary>
+    private void PlayDayTransition(int calendarDay, string? news)
+    {
+        if (!_yard.Wandering) return;
+        var veil = new ColorRect { Color = new Color(1f, 0.62f, 0.42f, 0f), MouseFilter = Control.MouseFilterEnum.Stop };
+        veil.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+        var season = calendarDay / StableCalendar.DaysPerSeason + 1;
+        var day = calendarDay % StableCalendar.DaysPerSeason + 1;
+        var banner = new VBoxContainer { Alignment = BoxContainer.AlignmentMode.Center, Modulate = new Color(1, 1, 1, 0), MouseFilter = Control.MouseFilterEnum.Ignore };
+        banner.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+        var morning = CozyTheme.Title("Good morning!", 44); morning.HorizontalAlignment = HorizontalAlignment.Center;
+        morning.AddThemeColorOverride("font_color", Colors.White);
+        var date = CozyTheme.Title($"Season {season} · Day {day}", 26); date.HorizontalAlignment = HorizontalAlignment.Center;
+        date.AddThemeColorOverride("font_color", new Color(1, 0.93f, 0.85f));
+        banner.AddChild(morning); banner.AddChild(date);
+        if (!string.IsNullOrEmpty(news))
+        {
+            var line = CozyTheme.Title(news, 20); line.HorizontalAlignment = HorizontalAlignment.Center;
+            line.AddThemeColorOverride("font_color", Color.FromHtml("#ffd6e4"));
+            banner.AddChild(line);
+        }
+        _uiLayer.AddChild(veil); _uiLayer.AddChild(banner);
+        _yard.PlayNightfall(3.6);
+        var tween = CreateTween();
+        tween.TweenProperty(veil, "color", new Color(1f, 0.55f, 0.35f, 0.42f), 0.9);       // golden hour
+        tween.TweenProperty(veil, "color", new Color(0.12f, 0.12f, 0.32f, 0.82f), 0.7);    // night
+        tween.Parallel().TweenProperty(banner, "modulate", Colors.White, 0.5).SetDelay(0.4);
+        tween.TweenInterval(0.9);
+        tween.TweenProperty(veil, "color", new Color(1f, 0.9f, 0.8f, 0f), 1.1);             // sunrise
+        tween.Parallel().TweenProperty(banner, "modulate", new Color(1, 1, 1, 0), 0.8).SetDelay(0.3);
+        tween.TweenCallback(Callable.From(() => { veil.QueueFree(); banner.QueueFree(); }));
+    }
+
     /// <summary>--hub-preview=DIR: timed screenshots of a live (wandering) yard, for visual review.</summary>
     private async System.Threading.Tasks.Task RunHubPreviewAsync(string output)
     {
@@ -39,6 +75,15 @@ public partial class StableDay
             }
             _uiLayer.Visible = false;
             await CaptureFrame(System.IO.Path.Combine(output, "04_yard_only.png"));
+            _uiLayer.Visible = true;
+            ShowReview(); ConfirmReviewedDay();
+            while (_busy) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+            var ended = _yard.ElapsedSeconds;
+            foreach (var (after, name) in new[] { (0.9, "05_sunset"), (1.9, "06_night"), (3.6, "07_morning") })
+            {
+                while (_yard.ElapsedSeconds - ended < after) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                await CaptureFrame(System.IO.Path.Combine(output, name + ".png"));
+            }
             GD.Print("[hub-preview] OK " + output);
             GetTree().Quit(0);
         }

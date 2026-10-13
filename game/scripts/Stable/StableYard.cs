@@ -206,6 +206,21 @@ public partial class StableYard : Node3D
     }
 
     public int HorseCount => _horses.Count;
+
+    /// <summary>Dim the sun toward dusk and back over the given seconds.</summary>
+    public void PlayNightfall(double seconds)
+    {
+        foreach (var sun in All<DirectionalLight3D>(this))
+        {
+            var energy = sun.LightEnergy; var colour = sun.LightColor;
+            var tween = CreateTween();
+            tween.TweenProperty(sun, "light_color", new Color(1f, 0.6f, 0.4f), seconds * 0.3);
+            tween.Parallel().TweenProperty(sun, "light_energy", energy * 0.25f, seconds * 0.45);
+            tween.TweenInterval(seconds * 0.2);
+            tween.TweenProperty(sun, "light_color", colour, seconds * 0.35);
+            tween.Parallel().TweenProperty(sun, "light_energy", energy, seconds * 0.35);
+        }
+    }
     public double ElapsedSeconds => _time;
 
     // ---------------------------------------------------------------------------------
