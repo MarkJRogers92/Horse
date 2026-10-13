@@ -313,6 +313,22 @@ namespace Cloverbrook.Domain
             return (Publish(replacement, preserveCurrentAsBackup: true), outcome);
         }
 
+        /// <summary>D-020: puts on (or takes off, with a null item) one piece of tack. Free and purely cosmetic.</summary>
+        public StableSnapshot CommitTack(OwnerId requester, HorseId horseId, string slot, string? itemId, ulong expectedSaveRevision)
+        {
+            Check.NotNull(requester, nameof(requester)); Check.NotNull(horseId, nameof(horseId)); Check.NotNull(slot, nameof(slot));
+            using var held = Lock(); var current = RequirePrimary();
+            if (!current.PlayerOwnerId.Equals(requester)) throw new StableCommandRejectedException("ownership", "Only the stable owner can dress these horses.");
+            if (current.Header.SaveRevision != expectedSaveRevision) throw new StableCommandRejectedException("stale_save", "The stable changed; reload before changing tack.");
+            var block = Tack.BlockReason(current, horseId, slot, itemId);
+            if (block != null) throw new StableCommandRejectedException("tack_unavailable", block);
+            var horse = current.Horses.Single(h => h.HorseId.Equals(horseId));
+            if (Tack.Worn(horse, slot)?.Id == itemId) return current;
+            var replacement = current.WithHorses(current.Horses.Select(h => h.HorseId.Equals(horseId) ? Tack.Apply(h, slot, itemId) : h))
+                .WithHeader(SaveHeaders.Copy(current.Header, revision: checked(current.Header.SaveRevision + 1), schema: StableSnapshot.SchemaVersion, payloadHash: "unwritten"));
+            return SaveSnapshotUnlocked(current, replacement, expectedSaveRevision);
+        }
+
         /// <summary>D-011: records one day of gallop training for the entrants. Returns the current save unchanged when nobody can gain today.</summary>
         public StableSnapshot RecordPractice(OwnerId requester, ulong expectedSaveRevision, IEnumerable<HorseId> entrants)
         {
