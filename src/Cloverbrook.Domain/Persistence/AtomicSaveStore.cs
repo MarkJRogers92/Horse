@@ -313,6 +313,23 @@ namespace Cloverbrook.Domain
             return (Publish(replacement, preserveCurrentAsBackup: true), outcome);
         }
 
+        /// <summary>
+        /// D-029: enters one horse in this week's Coat and Turnout Show and saves the entry fee and any prize together.
+        /// Returns no outcome when this week's show was already entered (a retry never pays twice).
+        /// </summary>
+        public (StableSnapshot State, HorseShowOutcome? Outcome) CommitShowEntry(OwnerId requester, HorseId horseId, ulong expectedSaveRevision, long quotedEntry)
+        {
+            Check.NotNull(requester, nameof(requester)); Check.NotNull(horseId, nameof(horseId));
+            using var held = Lock(); var current = RequirePrimary();
+            if (HorseShow.EnteredThisWeek(current))
+            {
+                if (!current.PlayerOwnerId.Equals(requester)) throw new StableCommandRejectedException("ownership", "Only the stable owner can enter the show.");
+                return (current, null);
+            }
+            var (replacement, outcome) = HorseShow.ApplyEntry(current, requester, horseId, expectedSaveRevision, quotedEntry);
+            return (Publish(replacement, preserveCurrentAsBackup: true), outcome);
+        }
+
         /// <summary>D-020: puts on (or takes off, with a null item) one piece of tack. Free and purely cosmetic.</summary>
         public StableSnapshot CommitTack(OwnerId requester, HorseId horseId, string slot, string? itemId, ulong expectedSaveRevision)
         {
