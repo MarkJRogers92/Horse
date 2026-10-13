@@ -120,6 +120,7 @@ public partial class StableDay
         };
         yield return $"{role} · {StageName(profile.Stage)}{age} · {HomeName(profile.Home)}";
         yield return $"Coat: {profile.VisibleCoat}";
+        foreach (var note in CoatNotes(profile.VisibleCoat)) yield return note;
         yield return profile.IsFounder ? "Family: founding horse of this stable (parents not recorded)."
             : $"Parents: {profile.ParentAName ?? "unknown"} × {profile.ParentBName ?? "unknown"}";
         if (profile.OffspringNames.Count > 0) yield return "Offspring: " + string.Join(", ", profile.OffspringNames);
@@ -134,5 +135,14 @@ public partial class StableDay
             yield return "Known genetics (recorded tests):";
             foreach (var call in profile.KnownGenetics) yield return $"• {call.Locus}: {call.Call}";
         }
+    }
+
+    /// <summary>D-026/D-027 friendly notes for coats that change or pass on in surprising ways.</summary>
+    private static System.Collections.Generic.IEnumerable<string> CoatNotes(string coat)
+    {
+        if (coat.Contains("(progressive grey)")) yield return "  Grey: born coloured, then lighter every season — dapples first, snowy white in later years.";
+        if (coat.Contains("tobiano")) yield return "  Tobiano: white patches that cross the back. At least half its foals share the pattern.";
+        if (coat.Contains("roan")) yield return "  Roan: white hairs through the body; the head and legs stay dark. At least half its foals share it.";
+        if (coat.Contains("appaloosa")) yield return "  Appaloosa: spotted white over the hips (or all over for a leopard), with striped hooves.";
     }
 }

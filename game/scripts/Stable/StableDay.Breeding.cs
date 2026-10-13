@@ -249,12 +249,40 @@ public partial class StableDay
                 foreach (var rejection in quote.Rejections) lines.Add("• " + rejection.Message);
             }
             _breedingDetails.Text = string.Join("\n", lines);
+            ShowFoalCoatOdds(_state.Horses.Single(h => h.HorseId.Equals(mareId)), _state.Horses.Single(h => h.HorseId.Equals(stallionId)), string.Join("\n", lines));
             ShowBreedingPair(mareId, stallionId);
             _confirmBreedingButton.Disabled = !quote.IsEligible;
             _breedingOverlay.Visible = true;
         }
         catch (Exception ex) { SetStatus("The pairing could not be reviewed. " + PlainError(ex)); }
     }
+
+    private int _oddsRequest;
+
+    /// <summary>D-027: the foal coats this pairing could give, worked out off the main thread from what the player can see.</summary>
+    private void ShowFoalCoatOdds(HorseRecord mare, HorseRecord stallion, string details)
+    {
+        var request = ++_oddsRequest;
+        _breedingDetails.Text = details + "\n\nFOAL COAT POSSIBILITIES\nWorking out the colours this foal could have…";
+        var matrix = Cloverbrook.Game.DomainIntegration.DomainBridge.Matrix;
+        System.Threading.Tasks.Task.Run(() => FoalCoatOdds.For(mare, stallion, matrix)).ContinueWith(task =>
+            Callable.From(() =>
+            {
+                if (request != _oddsRequest || !_breedingConfirmationOpen || !IsInstanceValid(_breedingDetails)) return;
+                var odds = task.IsCompletedSuccessfully ? task.Result : System.Array.Empty<FoalCoatChance>();
+                var lines = new System.Collections.Generic.List<string> { details, "", "FOAL COAT POSSIBILITIES" };
+                if (odds.Count == 0) lines.Add("The colour possibilities could not be worked out for this pair.");
+                foreach (var chance in odds.Take(8))
+                    lines.Add($"• {chance.Label}: {Likelihood(chance)} ({chance.Text})");
+                if (odds.Count > 8) lines.Add($"…and {odds.Count - 8} rarer colours.");
+                if (odds.Any(o => o.Low < o.High))
+                    lines.Add("Ranges cover every hidden gene these horses' coats allow, so surprises are possible.");
+                _breedingDetails.Text = string.Join("\n", lines);
+            }).CallDeferred());
+    }
+
+    private static string Likelihood(FoalCoatChance chance) =>
+        chance.Low >= 0.5 ? "very likely" : chance.High >= 0.5 ? "good chance" : chance.High >= 0.2 ? "possible" : "small chance";
 
     private void CancelBreedingReview()
     {
@@ -370,6 +398,11 @@ public partial class StableDay
                 || _reviewedBreedingQuote.FutureCapacity != 4 || _reviewedBreedingQuote.FutureCapacityUsed != 3
                 || !_reviewedBreedingQuote.Warnings.Any(warning => warning.Code == "unknown_ancestry"))
                 throw new InvalidOperationException("The saved-horse plan did not show the fixed fee, four-day due date, protected space, or unknown-ancestry warning.");
+            // D-027: the foal coat possibilities arrive from a background task; the starter duns must list Bay dun.
+            for (var wait = 0; wait < 200 && _breedingDetails.Text.Contains("Working out the colours"); wait++)
+                await ToSignal(GetTree().CreateTimer(0.05), SceneTreeTimer.SignalName.Timeout);
+            if (!_breedingDetails.Text.Contains("FOAL COAT POSSIBILITIES") || !_breedingDetails.Text.Contains("• Bay dun:"))
+                throw new InvalidOperationException("The review did not list the foal coat possibilities.");
             await CaptureFrame(Path.Combine(directory, "02_plan.png"));
             CancelBreedingReview();
             if (_state.Header.PayloadHash != startHash || _state.Coins != 500 || _state.Conceptions.Count != 0
