@@ -160,6 +160,13 @@ namespace Cloverbrook.Domain
                 Require(prize.BreedingId == null && ClubRace.IsPrizeAmount(prize.DeltaCoins)
                     && raceWeeks.Any(w => ClubRace.PrizeId(Header.SaveId, w).Equals(prize.Id) && ledger.TryGetValue(ClubRace.EntryId(Header.SaveId, w), out var paid) && paid.Kind == ClubRace.EntryLedgerKind),
                     "A cup prize has no matching entry.");
+            foreach (var entry in Ledger.Where(l => l.Kind == HorseShow.EntryLedgerKind))
+                Require(entry.BreedingId == null && entry.DeltaCoins == -HorseShow.EntryFee && raceWeeks.Any(w => HorseShow.EntryId(Header.SaveId, w).Equals(entry.Id)),
+                    "A horse show entry fee does not belong to a week of this stable.");
+            foreach (var prize in Ledger.Where(l => l.Kind == HorseShow.PrizeLedgerKind))
+                Require(prize.BreedingId == null && HorseShow.IsPrizeAmount(prize.DeltaCoins)
+                    && raceWeeks.Any(w => HorseShow.PrizeId(Header.SaveId, w).Equals(prize.Id) && ledger.TryGetValue(HorseShow.EntryId(Header.SaveId, w), out var paid) && paid.Kind == HorseShow.EntryLedgerKind),
+                    "A horse show prize has no matching entry.");
             var shopProblem = StableShop.LedgerProblem(this, ledger);
             Require(shopProblem == null, shopProblem ?? "");
             foreach (var credit in Ledger.Where(l => l.Kind == StableDayTransaction.IncomeLedgerKind))

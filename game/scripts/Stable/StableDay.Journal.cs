@@ -47,12 +47,25 @@ public partial class StableDay
             s => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId) && Tack.Worn(h, Tack.PadSlot) != null && Tack.Worn(h, Tack.BowSlot) != null)),
         new("friends", "Best Friends", "Reach a full five-heart bond with a horse.", "breeding",
             s => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId) && HorseBond.Hearts(h) >= 5)),
+        new("best_in_show", "Best in Show", "Win the Coat & Turnout Show.", "grooming",
+            s => s.Ledger.Any(l => l.Kind == HorseShow.PrizeLedgerKind && l.DeltaCoins == HorseShow.PrizeFor(1))),
+        new("leopard_lover", "Leopard Lover", "Raise a homebred leopard appaloosa.", "foal", HasHomebredLeopard),
+        new("silver_lining", "Silver Lining", "Own a grey that has turned light.", "day", HasLightGrey),
+        new("pattern_collector", "Pattern Collector", "Collect tobiano, roan, grey and appaloosa.", "breeding",
+            s => CollectedCoats(s) is var c && new[] { "tobiano_overlay", "roan_overlay", "grey_overlay", "leopard_complex_overlay" }.All(c.ContainsKey)),
         new("savings", "Nest Egg", "Save up 1,000 coins.", "coins", s => s.Coins >= 1000),
         new("season", "A Whole Season", "Reach the summer of your first year.", "day",
             s => s.Header.CalendarDay >= StableCalendar.DaysPerSeason),
         new("year", "Happy Anniversary", "Care for your stable for a whole year.", "end_day",
             s => s.Header.CalendarDay >= StableCalendar.DaysPerSeason * 4),
     };
+
+    private static bool HasHomebredLeopard(StableSnapshot s) => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId)
+        && (h.Parentage.ParentAId != null || h.Parentage.ParentBId != null)
+        && new PhenotypeResolver().ResolveGenetics(h).Phenotype is { } p && p.CoatLayers.Contains("leopard_complex") && p.Patn1Coverage > 0);
+
+    private static bool HasLightGrey(StableSnapshot s) => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId)
+        && new PhenotypeResolver().ResolveGenetics(h).Phenotype is { } p && p.CoatLayers.Contains("grey_age") && p.GrayAmount >= 6000);
 
     private static IEnumerable<HorseRecord> ActiveHorses(StableSnapshot s) => s.Horses.Where(h =>
         h.OwnerId.Equals(s.PlayerOwnerId) && h.HomeAssignment == HomeKind.ActiveStable && h.LifeState.Stage != LifeStage.Unborn);
@@ -85,7 +98,7 @@ public partial class StableDay
         body.AddChild(_journalSummary);
         _journalGrid = new GridContainer { Columns = 3 };
         _journalGrid.AddThemeConstantOverride("h_separation", 10); _journalGrid.AddThemeConstantOverride("v_separation", 10);
-        // Scrolls once the ribbons outgrow the window (17+).
+        // Scrolls once the ribbons outgrow the window (21+).
         var scroll = new ScrollContainer { CustomMinimumSize = new Vector2(0, 380), HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled };
         scroll.AddChild(_journalGrid);
         body.AddChild(scroll);

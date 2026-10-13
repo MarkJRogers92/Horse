@@ -120,6 +120,9 @@ public partial class StableDay
         if (!_foalingDemoMode && !ClubRace.EnteredThisWeek(_state) && home.Any(h => ClubRace.BlockReason(_state, h.HorseId) == null)
             && HorseFair.DaysUntilNextFair(day) <= 3)
             return $"Tip: the {ClubRace.Name} closes in {Days(HorseFair.DaysUntilNextFair(day))}. Enter a horse from Practice gallop!";
+        if (!_foalingDemoMode && day % HorseFair.DaysPerWeek == 1 && !HorseShow.EnteredThisWeek(_state) && _state.Coins >= HorseShow.EntryFee
+            && home.Any(h => HorseShow.IsEligibleHorse(_state, h)))
+            return $"Tip: the {HorseShow.Name} is on this week. Groom and bond with a horse, then enter it from Horse show!";
         if (gallopReady.Count > 0) return $"Tip: {gallopReady[0]!.Name} hasn't galloped today. A practice gallop builds training.";
         var pregnant = home.FirstOrDefault(h => h.ReproductionState.PregnancyId != null);
         if (pregnant != null) return $"Tip: {pregnant.Name} is expecting. Keep her comfy until the foal arrives!";
