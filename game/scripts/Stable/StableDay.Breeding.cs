@@ -263,20 +263,21 @@ public partial class StableDay
     private void ShowFoalCoatOdds(HorseRecord mare, HorseRecord stallion, string details)
     {
         var request = ++_oddsRequest;
-        _breedingDetails.Text = details + "\n\nFOAL COAT POSSIBILITIES\nWorking out the colours this foal could have…";
+        _breedingDetails.Text = "FOAL COAT POSSIBILITIES\nWorking out the colours this foal could have…\n\n" + details;
         var matrix = Cloverbrook.Game.DomainIntegration.DomainBridge.Matrix;
         System.Threading.Tasks.Task.Run(() => FoalCoatOdds.For(mare, stallion, matrix)).ContinueWith(task =>
             Callable.From(() =>
             {
                 if (request != _oddsRequest || !_breedingConfirmationOpen || !IsInstanceValid(_breedingDetails)) return;
                 var odds = task.IsCompletedSuccessfully ? task.Result : System.Array.Empty<FoalCoatChance>();
-                var lines = new System.Collections.Generic.List<string> { details, "", "FOAL COAT POSSIBILITIES" };
+                var lines = new System.Collections.Generic.List<string> { "FOAL COAT POSSIBILITIES" };
                 if (odds.Count == 0) lines.Add("The colour possibilities could not be worked out for this pair.");
                 foreach (var chance in odds.Take(8))
                     lines.Add($"• {chance.Label}: {Likelihood(chance)} ({chance.Text})");
                 if (odds.Count > 8) lines.Add($"…and {odds.Count - 8} rarer colours.");
                 if (odds.Any(o => o.Low < o.High))
                     lines.Add("Ranges cover every hidden gene these horses' coats allow, so surprises are possible.");
+                lines.Add(""); lines.Add(details);
                 _breedingDetails.Text = string.Join("\n", lines);
             }).CallDeferred());
     }
