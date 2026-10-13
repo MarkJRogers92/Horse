@@ -50,7 +50,7 @@ public partial class YardWalkProbe : Node
             var state = presenters.ToDictionary(p => p, p => new Track { Model = p.Model, Position = p.Position });
             double elapsed = 0;
             int walkFrames = 0, bridgeSwaps = 0, walkStarts = 0;
-            double maxJump = 0, maxPaceError = 0, maxSpeed = 0;
+            double maxJump = 0, maxPaceError = 0, maxSpeed = 0, maxHandoverSlip = 0;
             var shapedStart = presenters.Single(p => p.Descriptor!.FixtureId.Contains("palomino", StringComparison.Ordinal)).Position;
             while (elapsed < SimulatedSeconds)
             {
@@ -80,9 +80,20 @@ public partial class YardWalkProbe : Node
                         walkFrames++;
                         if (!t.WasWalking) walkStarts++;
                         double clipPace = p.Animator!.SpeedScale;
-                        // Ground speed this frame must equal the clip's checked speed times the clip's playback pace.
                         double groundSpeed = moved / Step;
-                        maxPaceError = Math.Max(maxPaceError, Math.Abs(groundSpeed - p.LocomotionSpeedMetersPerSecond * clipPace));
+                        if (!t.WasWalking)
+                        {
+                            // The bridge hands over to Walk inside the presenter's _Process, after the yard has already run, so
+                            // the clip advances one tick before the horse first moves. Bound that one tick of foot travel.
+                            double handoverSlip = p.LocomotionSpeedMetersPerSecond * clipPace * Step;
+                            Check(moved < 1e-7 && handoverSlip < 0.006, $"{p.Name}: Walk hand-over frame moves the clip {handoverSlip * 1000:F2} mm before the horse moves");
+                            maxHandoverSlip = Math.Max(maxHandoverSlip, handoverSlip);
+                        }
+                        else
+                        {
+                            // Every other frame: ground speed must equal the clip's checked speed times the clip's playback pace.
+                            maxPaceError = Math.Max(maxPaceError, Math.Abs(groundSpeed - p.LocomotionSpeedMetersPerSecond * clipPace));
+                        }
                         maxSpeed = Math.Max(maxSpeed, groundSpeed);
                         Check(p.Animator.IsPlaying() || p.Animator.CurrentAnimation == p.CurrentAnimation, $"{p.Name}: Walk clip not playing while the horse travels");
                     }
@@ -108,7 +119,7 @@ public partial class YardWalkProbe : Node
             System.IO.File.WriteAllText(System.IO.Path.Combine(_output, "yard-walk-report.json"), JsonSerializer.Serialize(new
             {
                 checks = _checks, simulatedSeconds = SimulatedSeconds, walkFrames, walkStarts, bridgeSwaps,
-                maxPaceErrorMetersPerSecond = maxPaceError, maxGroundSpeedMetersPerSecond = maxSpeed, maxSingleFrameStepMeters = maxJump,
+                maxPaceErrorMetersPerSecond = maxPaceError, maxHandoverFootSlipMeters = maxHandoverSlip, maxGroundSpeedMetersPerSecond = maxSpeed, maxSingleFrameStepMeters = maxJump,
             }, new JsonSerializerOptions { WriteIndented = true }));
             GD.Print($"[yard-walk] PASS {_checks} checks; {walkStarts} walks, {walkFrames} walking frames, max pace error {maxPaceError:E2} m/s");
             GetTree().Quit(0);

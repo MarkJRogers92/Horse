@@ -98,6 +98,10 @@ jobs:
             "res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-import-profile.json" --imported
           "$G" --headless --path game res://scenes/tools/FoalTransitionProbe.tscn -- \
             --out="$PWD/evidence/foal-transitions"
+          # Four simulated minutes of stable-yard wandering: clip pace matches ground pace, no teleports,
+          # and every Idle/Walk model swap is hidden inside the rest-pose bridge.
+          "$G" --headless --path game res://scenes/tools/YardWalkProbe.tscn -- \
+            --out="$PWD/evidence/yard-walk"
 
       - name: Smoke test main scene (checked family Walk, coats, and viewer controls)
         env:

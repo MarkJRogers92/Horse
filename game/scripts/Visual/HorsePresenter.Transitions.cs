@@ -19,6 +19,7 @@ public partial class HorsePresenter
     private ShapePose? _transitionFrom, _transitionTo;
     private double _transitionElapsed;
     private bool _transitionIncoming;
+    private double _resumePace = 1; // pace the incoming clip starts at (see SetPace)
 
     /// <summary>
     /// Optional interactive Idle/Walk bridge for foals and adults. Direct Present stays immediate.
@@ -52,6 +53,7 @@ public partial class HorsePresenter
         _transitionAnimation = animation;
         _transitionElapsed = 0;
         _transitionIncoming = false;
+        _resumePace = 1;
         IsTransitioning = true;
         PreserveRoutePlacement = true;
         // Keep both animation and locomotion stopped through the entire bridge,
@@ -100,9 +102,10 @@ public partial class HorsePresenter
         }
 
         string resume = _transitionAnimation!;
+        double resumePace = _resumePace;
         ClearTransitionState();
         // All intended morphs/height are installed before motion is allowed.
-        ApplyAnimation(resume);
+        ApplyAnimation(resume, resumePace);
     }
 
     private void CancelFoalTransition()
@@ -119,6 +122,7 @@ public partial class HorsePresenter
         _transitionFrom = _transitionTo = null;
         _transitionElapsed = 0;
         _transitionIncoming = false;
+        _resumePace = 1;
         _transitionFloor = null;
     }
 

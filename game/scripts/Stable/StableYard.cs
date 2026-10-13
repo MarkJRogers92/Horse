@@ -131,6 +131,7 @@ public partial class StableYard : Node3D
             var support = presenter.TransitionTo(presenter.Descriptor, "walk");
             w.Walking = support.Supported;
             w.Pace = MinWalkPace;
+            presenter.SetPace(w.Pace); // during the bridge this is the pace the Walk clip starts at
             if (!w.Walking) { w.CanWalk = false; presenter.Present(presenter.Descriptor, "idle"); }
         }
         if (!w.Walking)

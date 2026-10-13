@@ -267,10 +267,16 @@ public partial class HorsePresenter : Node3D
         ApplyAnimation(animation);
     }
 
-    /// <summary>Scale the playing clip's speed (clamped to 0.05 to 2). See <see cref="Pace"/>.</summary>
+    /// <summary>
+    /// Scale the playing clip's speed (clamped to 0.05 to 2). See <see cref="Pace"/>. Called while an
+    /// Idle/Walk bridge is running, it sets the pace the incoming clip starts at, so its first frame
+    /// already matches the ground speed the caller will move at.
+    /// </summary>
     public void SetPace(double pace)
     {
-        Pace = double.IsFinite(pace) ? Math.Clamp(pace, 0.05, 2.0) : 1.0;
+        pace = double.IsFinite(pace) ? Math.Clamp(pace, 0.05, 2.0) : 1.0;
+        if (IsTransitioning) { _resumePace = pace; return; }
+        Pace = pace;
         if (Animator != null) Animator.SpeedScale = (float)Pace;
     }
 
@@ -287,12 +293,12 @@ public partial class HorsePresenter : Node3D
                family.WalkVariant != null && HasNeutralWalkShape(descriptor, family, catalog);
     }
 
-    private void ApplyAnimation(string animation)
+    private void ApplyAnimation(string animation, double pace = 1)
     {
         CurrentAnimation = ResolveAnimation(animation) ?? "";
-        Pace = 1;
+        Pace = pace;
         if (Animator == null) return;
-        Animator.SpeedScale = 1f;
+        Animator.SpeedScale = (float)pace;
         if (string.IsNullOrEmpty(CurrentAnimation))
         {
             // A missing clip leaves the bind pose; say so loudly instead of failing silently.
