@@ -43,6 +43,8 @@ public partial class StableDay
             s => CollectedCoats(s).Count >= 5),
         new("cup", "Cup Champion", "Win the Willowbrook Cup.", "gallop",
             s => s.Ledger.Any(l => l.Kind == ClubRace.PrizeLedgerKind && l.DeltaCoins == ClubRace.PrizeFor(1))),
+        new("style", "Stable Style", "Dress a horse in a saddle pad and a bow.", "grooming",
+            s => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId) && Tack.Worn(h, Tack.PadSlot) != null && Tack.Worn(h, Tack.BowSlot) != null)),
         new("savings", "Nest Egg", "Save up 1,000 coins.", "coins", s => s.Coins >= 1000),
         new("season", "A Whole Season", "Reach the summer of your first year.", "day",
             s => s.Header.CalendarDay >= StableCalendar.DaysPerSeason),
@@ -66,7 +68,7 @@ public partial class StableDay
 
     private void BuildJournalOverlay(Control root)
     {
-        _journalOverlay = CozyTheme.Dialog(root, "Stable Journal", 700, out var body, out var buttons, out _);
+        _journalOverlay = CozyTheme.Dialog(root, "Stable Journal", 900, out var body, out var buttons, out _);
         var tabs = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center };
         tabs.AddThemeConstantOverride("separation", 8);
         var group = new ButtonGroup();
@@ -119,7 +121,7 @@ public partial class StableDay
         }
         var earned = Ribbons.Where(r => r.Earned(_state)).Select(r => r.Id).ToHashSet();
         _journalSummary.Text = $"{earned.Count} of {Ribbons.Length} ribbons earned. They come from what really happens in your stable.";
-        _journalGrid.Columns = 3;
+        _journalGrid.Columns = 4;
         foreach (var ribbon in Ribbons) _journalGrid.AddChild(RibbonCard(ribbon, earned.Contains(ribbon.Id)));
     }
 
@@ -175,7 +177,7 @@ public partial class StableDay
 
     private static Control RibbonCard(Ribbon ribbon, bool earned)
     {
-        var card = new PanelContainer { CustomMinimumSize = new Vector2(205, 0) };
+        var card = new PanelContainer { CustomMinimumSize = new Vector2(200, 0) };
         var style = CozyTheme.Box(earned ? Color.FromHtml("#fff4d6") : new Color(1, 1, 1, 0.55f), 18, 8);
         style.BorderColor = earned ? Color.FromHtml("#f5c542") : CozyTheme.Border; style.SetBorderWidthAll(earned ? 3 : 2);
         card.AddThemeStyleboxOverride("panel", style);
