@@ -146,6 +146,12 @@ namespace Cloverbrook.Domain
             foreach (var sold in Horses.Where(HorseMarket.IsSold))
                 Require(ledger.TryGetValue(HorseMarket.SaleId(sold.HorseId), out var saleCredit) && saleCredit.Kind == HorseMarket.SaleLedgerKind
                     && sold.OriginCommitId != null, "A sold horse is missing its sale credit.");
+            foreach (var purchase in Ledger.Where(l => l.Kind == HorseFair.PurchaseLedgerKind))
+                Require(purchase.BreedingId == null && purchase.DeltaCoins <= -HorseFair.MinimumPrice && purchase.DeltaCoins >= -HorseFair.MaximumPrice
+                    && Horses.Any(h => HorseFair.IsPurchased(h) && HorseFair.PurchaseId(h.HorseId).Equals(purchase.Id)), "A horse purchase debit has no matching bought horse.");
+            foreach (var bought in Horses.Where(HorseFair.IsPurchased))
+                Require(ledger.TryGetValue(HorseFair.PurchaseId(bought.HorseId), out var purchaseDebit) && purchaseDebit.Kind == HorseFair.PurchaseLedgerKind
+                    && bought.OriginCommitId == null && bought.Parentage.ParentAId == null && bought.Parentage.ParentBId == null, "A bought horse is missing its purchase debit.");
             foreach (var credit in Ledger.Where(l => l.Kind == StableDayTransaction.IncomeLedgerKind))
                 Require(DailyState.Receipts.Any(r => r.IncomeCoins > 0 && r.IncomeTransactionId.Equals(credit.Id)
                     && credit.DeltaCoins == r.IncomeCoins), "Orphan daily income credit.");

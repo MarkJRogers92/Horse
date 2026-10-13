@@ -66,6 +66,7 @@ namespace Cloverbrook.Domain
         {
             if (IsSold(horse)) return "it already lives at " + BuyerName + ".";
             if (!horse.OwnerId.Equals(state.PlayerOwnerId)) return "it belongs to another owner.";
+            if (HorseFair.IsPurchased(horse)) return "club rules keep horses bought at the fair with you; you can sell horses you bred.";
             if (horse.OriginCommitId == null) return "club rules keep your starter horses with you; you can sell horses you bred.";
             if (horse.LifeState.Stage != LifeStage.Adult) return "the club buys adult horses only.";
             if (horse.ReproductionState.PregnancyId != null) return "she is in foal.";

@@ -281,6 +281,21 @@ namespace Cloverbrook.Domain
             return Publish(HorseMarket.ApplySale(current, requester, horseId, expectedSaveRevision, quotedPrice), preserveCurrentAsBackup: true);
         }
 
+        /// <summary>D-017: buys one horse from this week's fair. A retry of the same purchase returns the current save.</summary>
+        public StableSnapshot CommitPurchase(OwnerId requester, HorseId horseId, ulong expectedSaveRevision, long quotedPrice)
+        {
+            Check.NotNull(requester, nameof(requester)); Check.NotNull(horseId, nameof(horseId));
+            using var held = Lock(); var current = RequirePrimary();
+            var existing = current.Ledger.SingleOrDefault(l => l.Id.Equals(HorseFair.PurchaseId(horseId)));
+            if (existing != null)
+            {
+                if (existing.DeltaCoins != -quotedPrice || !current.PlayerOwnerId.Equals(requester))
+                    throw new StableCommandRejectedException("idempotency_conflict", "This horse was already bought under different terms.");
+                return current;
+            }
+            return Publish(HorseFair.ApplyPurchase(current, requester, horseId, expectedSaveRevision, quotedPrice), preserveCurrentAsBackup: true);
+        }
+
         /// <summary>D-011: records one day of gallop training for the entrants. Returns the current save unchanged when nobody can gain today.</summary>
         public StableSnapshot RecordPractice(OwnerId requester, ulong expectedSaveRevision, IEnumerable<HorseId> entrants)
         {
