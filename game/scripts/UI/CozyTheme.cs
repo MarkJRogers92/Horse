@@ -278,6 +278,8 @@ public static class CozyTheme
         private static ImageTexture? _starOn, _starOff;
         public static ImageTexture StarOn => _starOn ??= Star(true);
         public static ImageTexture StarOff => _starOff ??= Star(false);
+        /// <summary>Free cached textures so none outlive the scene at shutdown.</summary>
+        public static void Release() { _starOn?.Dispose(); _starOff?.Dispose(); _starOn = _starOff = null; }
         public static ImageTexture Knob(bool hot) => Paint(26, 26, p =>
         {
             var c = new Color(0, 0, 0, 0);

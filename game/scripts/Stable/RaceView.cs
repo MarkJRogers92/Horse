@@ -107,6 +107,16 @@ public partial class RaceView : SubViewport
         var label = new Label3D { Text = "FINISH", FontSize = 120, PixelSize = 0.006f, Modulate = Colors.White, OutlineSize = 0,
             Font = UI.CozyTheme.BoldFont, Position = new Vector3(TrackLength + 0.06f, 3.3f, 0), RotationDegrees = new Vector3(0, 90, 0) };
         _world.AddChild(label);
+        // A little pavilion of spectators' benches beside the finish (Meshy, D-016).
+        if (StableYard.LoadAsset("grandstand", out var standBounds) is { } stand && standBounds.Size.Y > 0.0001f)
+        {
+            float scale = 4.6f / standBounds.Size.Y;
+            stand.Scale = Vector3.One * scale;
+            stand.Position = -new Vector3(standBounds.GetCenter().X, standBounds.Position.Y, standBounds.GetCenter().Z) * scale;
+            var holder = new Node3D { Position = new Vector3(TrackLength - 10f, 0, -8.2f) };
+            holder.AddChild(stand);
+            _world.AddChild(holder);
+        }
         // Trees and hills along the far side so the backdrop has depth.
         var rng = new RandomNumberGenerator { Seed = 41 };
         var oak = ResourceLoader.Exists("res://assets/scenery/oak_tree/oak_tree.glb") ? GD.Load<PackedScene>("res://assets/scenery/oak_tree/oak_tree.glb") : null;

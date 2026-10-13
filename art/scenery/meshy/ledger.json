@@ -465,9 +465,41 @@
       "status": "failed: preview 01a13474-6fb4-724f-8823-5890bedbb6ed ended FAILED: {'type': 'invalid_input', 'code': 'invalid_input', 'message': 'Model service error (RepairDidNotCloseError): blueberry postproc[fidelity]: repair did not close the mesh (boundary_edges=9211, manifold=True). Upstream marks and continues; serving has nowhere to carry the mark, so this fails instead of shipping it.', 'doc_url': 'https://docs.meshy.ai/en/api/errors#invalid-input'}",
       "balanceAfter": 863,
       "chargedCredits": 0
+    },
+    {
+      "name": "stable_block",
+      "prompt": "A charming long single-storey horse stable block with four stall doors in a row, each a cream wooden Dutch half-door with the top half open, sage green trim, dusty rose shingle roof with a small cupola and weather vane on top, hanging lanterns between the doors. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T10:11:39+00:00",
+      "balanceBefore": 863,
+      "aiModel": "latest",
+      "previewTaskId": "01a134bf-108d-7015-bdd2-5d02c6dfb7fa",
+      "refineTaskId": "01a134c0-133c-7741-a458-b67583ecec72",
+      "glbBytes": 10692348,
+      "files": [
+        "game/assets/scenery/stable_block/stable_block.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 833,
+      "chargedCredits": 30
+    },
+    {
+      "name": "grandstand",
+      "prompt": "A small cozy countryside racecourse grandstand: three rows of wooden benches under a pastel pink and white striped canopy roof, white railings, little bunting flags along the roof edge. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T10:13:47+00:00",
+      "balanceBefore": 833,
+      "aiModel": "latest",
+      "previewTaskId": "01a134c1-0605-74a8-86a7-17744afb4cb6",
+      "refineTaskId": "01a134c2-09a7-76f7-b2ea-455c821876f5",
+      "glbBytes": 6696796,
+      "files": [
+        "game/assets/scenery/grandstand/grandstand.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 803,
+      "chargedCredits": 30
     }
   ],
-  "spentCredits": 411,
+  "spentCredits": 471,
   "postProcessing": "Textures resized to 1024x1024 with @gltf-transform/cli 4.1.1 'resize' before commit (about 42 MB to 6 MB); geometry unchanged.",
   "balanceNote": "The account balance rose by about 100 credits between the wheelbarrow (balance 864) and the first image (balance before 964), outside any task here (likely a Meshy credit adjustment). Per-task charges are measured within each task, so the D-012 total is unaffected.",
   "imagePostProcessing": "Icons: 1024 px Meshy images cut out from their cream background by border flood fill, cropped to content and saved at 256 px RGBA.",

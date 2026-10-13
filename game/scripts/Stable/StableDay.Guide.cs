@@ -29,6 +29,8 @@ public partial class StableDay
         var panel = new PanelContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, SizeFlagsVertical = Control.SizeFlags.ExpandFill };
         var stack = new VBoxContainer { Alignment = BoxContainer.AlignmentMode.Center }; panel.AddChild(stack);
         _dailyNote = CozyTheme.Title("Daily basics are covered for active-stable horses.", 17);
+        _dailyNote.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+        _dailyNote.CustomMinimumSize = new Vector2(380, 0);
         stack.AddChild(_dailyNote);
         var row = new HBoxContainer(); row.AddThemeConstantOverride("separation", 10); _guideRow = row; stack.AddChild(row);
         _guideSpeaker = new BunnySpeaker { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
@@ -92,5 +94,34 @@ public partial class StableDay
         _guideRow.Visible = line != null;
         _dailyNote.Visible = line == null;
         if (line != null) _guideSpeaker.Say(line);
+        else _dailyNote.Text = DailyTip();
+    }
+
+    /// <summary>After the guide: one useful, state-driven suggestion for today (presentation only).</summary>
+    private string DailyTip()
+    {
+        if (_state == null) return "Daily basics are covered for active-stable horses.";
+        var day = _state.Header.CalendarDay;
+        var home = _state.Horses.Where(h => h.OwnerId.Equals(_state.PlayerOwnerId) && !HorseMarket.IsSold(h)
+            && h.HomeAssignment == HomeKind.ActiveStable && h.LifeState.Stage != LifeStage.Unborn).OrderBy(h => h.Name, StringComparer.Ordinal).ToList();
+        if (home.FirstOrDefault(h => h.OriginCommitId != null && h.Name == "New foal") is { } foal)
+            return "Tip: your new foal still needs a name. Type one under Your horses.";
+        foreach (var h in home)
+        {
+            var care = _state.DailyState.For(h.HorseId);
+            var plan = _optionalCare.TryGetValue(h.HorseId, out var o) ? o : (false, false);
+            if (care.Grooming < 4000 && !plan.Item2) return $"Tip: {h.Name} would love some grooming today.";
+            if (care.Turnout < 4000 && !plan.Item1) return $"Tip: {h.Name} is longing for turnout in the paddock.";
+        }
+        var gallopReady = PracticeGallop.Eligibility(_state).Where(e => e.Eligible)
+            .Select(e => home.FirstOrDefault(h => h.HorseId.Equals(e.HorseId))).Where(h => h != null && !PracticeTraining.TrainedToday(h, day)).ToList();
+        if (gallopReady.Count > 0) return $"Tip: {gallopReady[0]!.Name} hasn't galloped today. A practice gallop builds training.";
+        var pregnant = home.FirstOrDefault(h => h.ReproductionState.PregnancyId != null);
+        if (pregnant != null) return $"Tip: {pregnant.Name} is expecting. Keep her comfy until the foal arrives!";
+        bool Ready(HorseRecord h) => h.LifeState.Stage == LifeStage.Adult && h.ReproductionState.PregnancyId == null && h.ReproductionState.RecoveryUntilDay <= day;
+        var mare = home.FirstOrDefault(h => h.ReproductionState.Role == ReproductiveRole.Mare && Ready(h));
+        var stallion = home.FirstOrDefault(h => h.ReproductionState.Role == ReproductiveRole.Stallion && Ready(h));
+        if (mare != null && stallion != null && _state.Coins >= 50) return $"Tip: {mare.Name} and {stallion.Name} could have a foal together. Review the pairing to see.";
+        return "Everyone is fed and happy. End the day whenever you're ready!";
     }
 }

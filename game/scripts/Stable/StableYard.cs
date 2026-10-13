@@ -505,11 +505,12 @@ public partial class StableYard : Node3D
             PlaceLength("fence", p0.DistanceTo(p1) + 0.15f, mid, yaw, () => FallbackFence(p0.DistanceTo(p1)));
         }
 
-        foreach (var (pos, size) in new[] { (new Vector3(-13, 0, -9), 7.5f), (new Vector3(-10f, 0, -17), 8.5f), (new Vector3(9.5f, 0, -13), 8f),
+        foreach (var (pos, size) in new[] { (new Vector3(-13, 0, -9), 7.5f), (new Vector3(-10f, 0, -17), 8.5f), (new Vector3(16f, 0, -17), 8f),
                      (new Vector3(14, 0, -5), 7f), (new Vector3(4, 0, -20), 9f), (new Vector3(-17, 0, -2), 6.5f) })
             Place("oak_tree", size * rng.RandfRange(0.85f, 1.1f), pos, rng.RandfRange(0, 360), () => FallbackTree(rng));
         Place("hay_props", 1.6f, new Vector3(2.4f, 0, -12.6f), -25f, () => FallbackHay());
         Place("water_trough", 0.85f, new Vector3(4.4f, 0, -3.8f), 75f, () => FallbackTrough());
+        Place("stable_block", 5.2f, new Vector3(8.6f, 0, -15.5f), -18f, () => new Node3D());
         Place("planter_box", 0.75f, new Vector3(-8.2f, 0, -13.0f), 10f, () => new Node3D());
         Place("planter_box", 0.75f, new Vector3(1.3f, 0, -13.2f), 10f, () => new Node3D());
         Place("bench", 1.0f, new Vector3(-8.6f, 0, -6.4f), 50f, () => new Node3D());
@@ -565,7 +566,14 @@ public partial class StableYard : Node3D
 
     private static readonly Dictionary<string, PackedScene?> AssetCache = new();
 
-    private static Node3D? LoadAsset(string asset, out Aabb bounds)
+    /// <summary>Drop managed references to cached scenery so nothing outlives the scene tree at shutdown.</summary>
+    public static void ReleaseCaches()
+    {
+        foreach (var scene in AssetCache.Values) scene?.Dispose();
+        AssetCache.Clear();
+    }
+
+    internal static Node3D? LoadAsset(string asset, out Aabb bounds)
     {
         bounds = default;
         var path = $"{SceneryRoot}{asset}/{asset}.glb";

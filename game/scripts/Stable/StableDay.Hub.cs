@@ -21,6 +21,10 @@ public partial class StableDay
     {
         // Managed wrappers (portrait icons, clips) otherwise keep engine resources alive until after
         // the engine's shutdown leak check; collect them while the scene is closing.
+        CozyTheme.Icons.Release();
+        StableYard.ReleaseCaches();
+        HorsePresenter.ReleaseCaches();
+        _silhouette?.Dispose(); _silhouette = null;
         GC.Collect();
         GC.WaitForPendingFinalizers();
     }

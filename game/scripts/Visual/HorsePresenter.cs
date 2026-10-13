@@ -23,6 +23,13 @@ public partial class HorsePresenter : Node3D
 
     [Signal] public delegate void PresentedEventHandler(string summary, bool supported);
 
+    /// <summary>Drop managed references to cached horse scenes (called when a screen closes).</summary>
+    public static void ReleaseCaches()
+    {
+        foreach (var scene in SceneCache.Values) scene?.Dispose();
+        SceneCache.Clear();
+    }
+
     public VisualDescriptor? Descriptor { get; private set; }
     public VisualSupport? Support { get; private set; }
     public Markings? Markings { get; private set; }

@@ -555,7 +555,8 @@ public partial class StableDay : Node
     {
         (bool Turnout, bool Grooming) current = _optionalCare.TryGetValue(id, out var value) ? value : (false, false);
         _optionalCare[id] = (turnout ?? current.Turnout, grooming ?? current.Grooming);
-        if (turnout == true || grooming == true) { _guideSawCareChoice = true; RefreshGuide(); _yard.Cheer(id.ToString()); }
+        if (turnout == true || grooming == true) { _guideSawCareChoice = true; _yard.Cheer(id.ToString()); }
+        RefreshGuide();
     }
 
     private static CheckButton CareToggle(string text, bool value, bool required)
