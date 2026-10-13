@@ -40,7 +40,11 @@ Goal: stop the stable looking like a text game. (1) portraits of every horse, (2
 - Owner tip: Meshy's web app gives 4 free retries per task; the API charges each attempt. For assets that need retries, hand the owner prompts for the web app and import their GLBs (Drive or GitHub upload).
 - [x] Title screen rebuilt on the yard with three sample horses (neutral fixtures, so they can walk), big Play button, Extras row (viewer, coat studio). `--smoke-test` keeps its original stage. `--menu-preview=FILE` screenshots it.
 - [x] Illustrated icon set from Meshy text-to-image (3 credits each, `meshy.py image`): feed, bedding, turnout, grooming, coins, day, breeding, gallop, sell, end day, foal. Used on HUD pills, care toggles and main buttons. "Review day" button renamed "End the day". Spent 333/500.
-- [ ] Next: event illustrations (birth, sale, gallop, breeding headers), birth celebration moment, owner-retried bush/planter via the web app.
+- [x] Dialog header illustrations (Meshy images, 3 credits each, `game/assets/ui/headers`): breeding (pair portraits sit on the art), details, sale, gallop, day review; birth art ready. `CozyTheme.DialogHeader` + `rounded_image.gdshader`. Spent 351/500.
+- [x] Birth celebration: after the night card, "A foal is born!" dialog with the stall illustration, foal portrait, parents and coat, confetti and a name box (uses the existing rename save). Live play only. `--hub-preview=DIR --foaling-demo --hub-birth` records it.
+- Verified locally at this checkpoint: 214/214 tests, validator OK, game `-warnaserror` build, all three stable captures, main-menu smoke test. Evidence refreshed in `docs/stable/evidence/2026-10-13-hub/`.
+- [x] Yard feel: floating name tags with hover highlight and pointer cursor, heart/sparkle burst when comfort care is switched on, drifting blossom petals, Meshy planter boxes and a bench (30 each). Spent 411/500.
+- [ ] Next: owner-retried bush via the web app (API retries cost credits; web app gives 4 free retries), walking for all body shapes (art track), sound and music (needs a licensed pack: owner decision).
 
 ## Animation playback fixes (owner request 2026-10-13)
 Fixes how the existing Idle/Walk clips are played; no new clip, mesh or rig, and clip deformation is unchanged (owner art review still pending). Details: `docs/visual/HORSE_ANIMATIONS.md`, last section.

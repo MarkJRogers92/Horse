@@ -63,8 +63,15 @@ public partial class StableDay
         _breedingOverlay = CozyTheme.Dialog(root, "Review breeding plan", 680, out var box, out var buttons, out _);
         _breedingPair = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center };
         _breedingPair.AddThemeConstantOverride("separation", 14);
-        box.AddChild(_breedingPair);
-        var scroll = new ScrollContainer { CustomMinimumSize = new Vector2(620, 230), HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled };
+        var art = CozyTheme.DialogHeader(box, "breeding", 636, 196);
+        if (art != null)
+        {
+            _breedingPair.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+            _breedingPair.OffsetTop = 8;
+            art.AddChild(_breedingPair);
+        }
+        else box.AddChild(_breedingPair);
+        var scroll = new ScrollContainer { CustomMinimumSize = new Vector2(620, 210), HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled };
         _breedingDetails = new Label { CustomMinimumSize = new Vector2(600, 0), AutowrapMode = TextServer.AutowrapMode.WordSmart };
         _breedingDetails.AddThemeFontSizeOverride("font_size", 15);
         scroll.AddChild(_breedingDetails);
@@ -106,7 +113,10 @@ public partial class StableDay
         portrait.SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter;
         column.AddChild(portrait);
         var label = CozyTheme.Title(name, 15); label.HorizontalAlignment = HorizontalAlignment.Center;
-        column.AddChild(label);
+        var plate = new PanelContainer { SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter };
+        plate.AddThemeStyleboxOverride("panel", CozyTheme.Box(new Color(1, 1, 1, 0.88f), 12, 2));
+        plate.AddChild(label);
+        column.AddChild(plate);
         return column;
     }
 

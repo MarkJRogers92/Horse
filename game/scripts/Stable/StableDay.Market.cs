@@ -22,6 +22,7 @@ public partial class StableDay
     private void BuildSaleOverlay(Control root)
     {
         _saleOverlay = CozyTheme.Dialog(root, "A buyer is interested", 600, out var body, out var buttons, out _saleTitle);
+        CozyTheme.DialogHeader(body, "sale", 556, 110);
         _saleRow = new HBoxContainer(); _saleRow.AddThemeConstantOverride("separation", 12);
         _saleSpeaker = new BunnySpeaker { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
         _saleRow.AddChild(_saleSpeaker);

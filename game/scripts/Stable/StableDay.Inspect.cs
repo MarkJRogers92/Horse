@@ -21,6 +21,7 @@ public partial class StableDay
     private void BuildInspectOverlay(Control root)
     {
         _inspectOverlay = CozyTheme.Dialog(root, "", 640, out var body, out var buttons, out _inspectTitle);
+        CozyTheme.DialogHeader(body, "details", 596, 96);
         _inspectRow = new HBoxContainer(); _inspectRow.AddThemeConstantOverride("separation", 16);
         _inspectDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(340, 0), SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
         _inspectRow.AddChild(_inspectDetails);

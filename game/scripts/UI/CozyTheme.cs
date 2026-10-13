@@ -193,6 +193,26 @@ public static class CozyTheme
         return overlay;
     }
 
+    private static Shader? _roundedImage;
+
+    /// <summary>Insert a wide illustration (res://assets/ui/headers/header_NAME.jpg) under a dialog's ribbon.</summary>
+    public static TextureRect? DialogHeader(VBoxContainer body, string name, int width, int height)
+    {
+        var path = $"res://assets/ui/headers/header_{name}.jpg";
+        if (!ResourceLoader.Exists(path)) return null;
+        _roundedImage ??= GD.Load<Shader>("res://shaders/rounded_image.gdshader");
+        var material = new ShaderMaterial { Shader = _roundedImage };
+        material.SetShaderParameter("size", new Vector2(width, height));
+        var art = new TextureRect
+        {
+            Texture = GD.Load<Texture2D>(path), CustomMinimumSize = new Vector2(width, height), ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+            StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered, Material = material, SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter,
+        };
+        body.AddChild(art);
+        body.MoveChild(art, 1);
+        return art;
+    }
+
     /// <summary>Moves a dialog's button row below content added after <see cref="Dialog"/>.</summary>
     public static void FinishDialog(VBoxContainer body, HBoxContainer buttons) => body.MoveChild(buttons, body.GetChildCount() - 1);
 

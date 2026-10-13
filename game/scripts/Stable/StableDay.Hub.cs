@@ -71,6 +71,13 @@ public partial class StableDay
             foreach (var (seconds, name) in new[] { (3.0, "01_hub_live"), (14.0, "02_hub_live"), (24.0, "03_hub_live") })
             {
                 while (_yard.ElapsedSeconds < seconds) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                if (name == "02_hub_live" && _state?.Horses.OrderBy(h => h.Name, StringComparer.Ordinal).FirstOrDefault() is { } cheered)
+                {
+                    // Comfort care switched on: hearts over the horse, with the pointer hovering it.
+                    _turnoutButtons.TryGetValue(cheered.HorseId, out var turnout);
+                    if (turnout != null) turnout.ButtonPressed = true;
+                    while (_yard.ElapsedSeconds < seconds + 0.5) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                }
                 await CaptureFrame(System.IO.Path.Combine(output, name + ".png"));
             }
             _uiLayer.Visible = false;
@@ -83,6 +90,19 @@ public partial class StableDay
             {
                 while (_yard.ElapsedSeconds - ended < after) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
                 await CaptureFrame(System.IO.Path.Combine(output, name + ".png"));
+            }
+            if (OS.GetCmdlineUserArgs().Contains("--hub-birth"))
+            {
+                for (var day = 0; day < 12 && _birthFoal == null; day++)
+                {
+                    var before = _yard.ElapsedSeconds;
+                    while (_yard.ElapsedSeconds - before < 4.2) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                    ShowReview(); ConfirmReviewedDay();
+                    while (_busy) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                }
+                var born = _yard.ElapsedSeconds;
+                while (_yard.ElapsedSeconds - born < 4.4) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                await CaptureFrame(System.IO.Path.Combine(output, "08_birth_celebration.png"));
             }
             GD.Print("[hub-preview] OK " + output);
             GetTree().Quit(0);
@@ -118,9 +138,9 @@ public partial class StableDay
         var shown = _state.Horses
             .Where(h => !HorseMarket.IsSold(h) && h.OwnerId.Equals(_state.PlayerOwnerId) && h.LifeState.Stage != LifeStage.Unborn)
             .OrderBy(h => h.Name, StringComparer.Ordinal)
-            .Select(h => (h.HorseId.ToString(), DescriptorFor(h)))
             .ToList();
-        _yard.SetHorses(shown);
+        _yard.SetHorses(shown.Select(h => (h.HorseId.ToString(), DescriptorFor(h))).ToList(),
+            shown.ToDictionary(h => h.HorseId.ToString(), h => h.Name));
     }
 
     private static readonly Shader PortraitShader = GD.Load<Shader>("res://shaders/portrait_card.gdshader");
@@ -181,6 +201,7 @@ public partial class StableDay
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        if (@event is InputEventMouseMotion motion) { _yard.Hover(motion.Position); return; }
         if (@event is not InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left } click || _state == null) return;
         var key = _yard.PickHorse(click.Position);
         if (key == null) { _yard.Focus(null); return; }
