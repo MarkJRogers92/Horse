@@ -42,7 +42,7 @@ public partial class YardWalkProbe : Node
                 // Not neutral: has no checked Walk, so it must turn on the spot and never move or reload.
                 ("shaped", FixtureLibrary.Get("palomino", false) with { MeshFamilyId = "horse.standard.adult.v1", MorphWeights = new Dictionary<string, int> { ["body_length"] = 900 } }),
             };
-            yard.SetHorses(horses);
+            yard.SetHorses(horses, null, new Dictionary<string, string> { ["foal"] = "light" }); // the foal's mare is the Light adult (D-030)
             Check(yard.HorseCount == horses.Count, "all four horses are shown");
             var presenters = yard.GetChildren().OfType<HorsePresenter>().ToArray();
             Check(presenters.Length == horses.Count, "one presenter per horse");
@@ -52,7 +52,12 @@ public partial class YardWalkProbe : Node
             int walkFrames = 0, bridgeSwaps = 0, walkStarts = 0;
             double maxJump = 0, maxPaceError = 0, maxSpeed = 0, maxHandoverSlip = 0, fastestClip = 0;
             var shapedStart = presenters.Single(p => p.Descriptor!.FixtureId.Contains("palomino", StringComparison.Ordinal)).Position;
-            while (elapsed < SimulatedSeconds)
+            var light = presenters.Single(p => p.Descriptor!.FixtureId.Contains("bay", StringComparison.Ordinal) && !p.Descriptor.IsFoal);
+            var foalP = presenters.Single(p => p.Descriptor!.IsFoal);
+            double foalSum = 0, foalMax = 0; int foalSamples = 0, grazeFrames = 0, lifeFrames = 0;
+            double sunnyZ = 0, rainZ = 0; int sunnyN = 0, rainN = 0;
+            double limit = SimulatedSeconds;
+            while (elapsed < limit)
             {
                 // Same order the engine uses: scene logic first, then animation advance.
                 var bridgedAtStart = presenters.ToDictionary(p => p, p => p.IsTransitioning);
@@ -68,6 +73,15 @@ public partial class YardWalkProbe : Node
                         bridgeSwaps++; t.Model = p.Model;
                     }
                     if (p.Animator != null && !p.IsTransitioning) p.Animator.Advance(Step * p.Animator.SpeedScale);
+                    // D-030: grazing and tail offsets exist only on the resting Idle model, and are exactly zero for Walk and swaps.
+                    if (p.UsesWalkVariant) Check(p.IdleLife == null, $"{p.Name}: idle life attached to a Walk model");
+                    if (p.IdleLife is { } idleLife)
+                    {
+                        lifeFrames++;
+                        if (idleLife.Grazing) grazeFrames++;
+                        if (p.IsTransitioning) Check(idleLife.Offset < 1e-4f, $"{p.Name}: idle-life offset {idleLife.Offset:F4} during a bridge");
+                        if (idleLife.Grazing) Check(!p.IsTransitioning && !p.UsesWalkVariant, $"{p.Name}: grazing during a swap or Walk");
+                    }
                     var moved = (p.Position - t.Position).Length();
                     maxJump = Math.Max(maxJump, moved);
                     // A horse takes its last step on the frame it asks to stop; only frames that began inside a bridge must be still.
@@ -103,7 +117,27 @@ public partial class YardWalkProbe : Node
                     t.WasWalking = walking; t.Position = p.Position;
                 }
                 elapsed += Step;
+                if (foalP.Position.IsFinite() && light.Position.IsFinite() && elapsed > 20)
+                {
+                    double gap = foalP.Position.DistanceTo(light.Position);
+                    foalSum += gap; foalSamples++; foalMax = Math.Max(foalMax, gap);
+                }
+                if (elapsed > 20)
+                    foreach (var p in presenters.Where(p => p != foalP && !p.Descriptor!.FixtureId.Contains("palomino", StringComparison.Ordinal)))
+                    {
+                        if (yard.Weather == YardWeather.Rain) { rainZ += p.Position.Z; rainN++; } else { sunnyZ += p.Position.Z; sunnyN++; }
+                    }
+                if (elapsed >= SimulatedSeconds && yard.Weather != YardWeather.Rain)
+                {
+                    yard.SetWeather(YardWeather.Rain); // second phase: rain, horses should shelter toward the barn (negative Z)
+                    limit = SimulatedSeconds + 150;
+                    sunnyZ /= Math.Max(1, sunnyN); sunnyN = 1;
+                }
             }
+            rainZ /= Math.Max(1, rainN);
+            Check(grazeFrames > 300, $"horses grazed (graze frames {grazeFrames} of {lifeFrames} idle-life frames)");
+            Check(foalSamples > 0 && foalSum / foalSamples < 3.4, $"the foal stays near its mare (mean gap {foalSum / Math.Max(1, foalSamples):F2} m, max {foalMax:F2} m)");
+            Check(rainZ < sunnyZ - 0.25, $"horses shelter on rainy days (mean Z sunny {sunnyZ:F2}, rain {rainZ:F2}; the barn is at negative Z)");
 
             var walkers = presenters.Where(p => !p.Descriptor!.FixtureId.Contains("palomino", StringComparison.Ordinal)).ToArray();
             Check(walkFrames > 600, $"the walking horses really walked (frames {walkFrames})");
@@ -120,6 +154,7 @@ public partial class YardWalkProbe : Node
             System.IO.File.WriteAllText(System.IO.Path.Combine(_output, "yard-walk-report.json"), JsonSerializer.Serialize(new
             {
                 checks = _checks, simulatedSeconds = SimulatedSeconds, walkFrames, walkStarts, bridgeSwaps,
+                foalMeanGapMeters = foalSum / Math.Max(1, foalSamples), foalMaxGapMeters = foalMax, grazeFrames, sunnyMeanZ = sunnyZ, rainMeanZ = rainZ,
                 maxPaceErrorMetersPerSecond = maxPaceError, maxHandoverFootSlipMeters = maxHandoverSlip, maxGroundSpeedMetersPerSecond = maxSpeed, maxSingleFrameStepMeters = maxJump,
             }, new JsonSerializerOptions { WriteIndented = true }));
             GD.Print($"[yard-walk] PASS {_checks} checks; {walkStarts} walks, {walkFrames} walking frames, max pace error {maxPaceError:E2} m/s");

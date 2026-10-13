@@ -261,7 +261,22 @@ public partial class StableDay
             .OrderBy(h => h.Name, StringComparer.Ordinal)
             .ToList();
         _yard.SetHorses(shown.Select(h => (h.HorseId.ToString(), DescriptorFor(h))).ToList(),
-            shown.ToDictionary(h => h.HorseId.ToString(), h => h.Name));
+            shown.ToDictionary(h => h.HorseId.ToString(), h => h.Name),
+            MothersOf(shown));
+    }
+
+    /// <summary>D-030: foal id to mare id for foals whose mare is also in the yard (presentation only).</summary>
+    private static Dictionary<string, string> MothersOf(IReadOnlyList<HorseRecord> shown)
+    {
+        var mothers = new Dictionary<string, string>();
+        foreach (var foal in shown)
+        {
+            if (foal.LifeState.VisualAge != VisualAge.Foal) continue;
+            foreach (var parent in new[] { foal.Parentage.ParentAId, foal.Parentage.ParentBId })
+                if (parent != null && shown.FirstOrDefault(h => h.HorseId.Equals(parent)) is { } mare && mare.ReproductionState.Role == ReproductiveRole.Mare)
+                    mothers[foal.HorseId.ToString()] = mare.HorseId.ToString();
+        }
+        return mothers;
     }
 
     private static readonly Shader PortraitShader = GD.Load<Shader>("res://shaders/portrait_card.gdshader");
