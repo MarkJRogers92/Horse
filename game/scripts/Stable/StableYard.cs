@@ -87,6 +87,16 @@ public partial class StableYard : Node3D
         // Slow cinematic drift plus easing toward a selected horse.
         var drift = new Vector3(Mathf.Sin((float)_time * 0.08f) * 0.6f, Mathf.Sin((float)_time * 0.11f) * 0.12f, 0);
         float k = 1f - Mathf.Exp(-2.5f * (float)delta);
+        if (PhotoMode)
+        {
+            // D-023 photo mode: an orbit around the chosen horse (or the paddock), no drift.
+            var target = _photoKey != null && _horses.FirstOrDefault(h => h.Key == _photoKey).Presenter is { } subject
+                ? subject.GlobalPosition + Vector3.Up * (0.95f * (subject.Model?.Scale.Y ?? 1f) * (subject.Descriptor?.IsFoal == true ? 0.66f : 1f)) : _homeTarget;
+            _targetGoal = target;
+            var pitch = Mathf.DegToRad(_photoPitch); var yaw = Mathf.DegToRad(_photoYaw);
+            _cameraGoal = target + new Vector3(Mathf.Sin(yaw) * Mathf.Cos(pitch), Mathf.Sin(pitch), Mathf.Cos(yaw) * Mathf.Cos(pitch)) * _photoDistance;
+            drift = Vector3.Zero;
+        }
         _lookTarget = _lookTarget.Lerp(_targetGoal, k);
         _camera.Position = _camera.Position.Lerp(_cameraGoal + drift, k);
         _camera.LookAt(_lookTarget, Vector3.Up);
@@ -274,6 +284,11 @@ public partial class StableYard : Node3D
         if (presenter == null) return;
         Audio.GameAudio.Play("care_cheer", -10);
         float s = presenter.Descriptor?.IsFoal == true ? 0.66f : 1f;
+        // A happy little hop (D-021).
+        var groundY = presenter.Position.Y;
+        var hop = CreateTween();
+        hop.TweenProperty(presenter, "position:y", groundY + 0.09f * s, 0.14).SetTrans(Tween.TransitionType.Sine).SetEase(Tween.EaseType.Out);
+        hop.TweenProperty(presenter, "position:y", groundY, 0.22).SetTrans(Tween.TransitionType.Bounce).SetEase(Tween.EaseType.Out);
         var burst = new CpuParticles3D
         {
             Emitting = true, OneShot = true, Amount = 30, Lifetime = 1.8, Explosiveness = 0.7f,
@@ -398,6 +413,42 @@ public partial class StableYard : Node3D
     }
 
     public int HorseCount => _horses.Count;
+
+    // ---- D-023 photo mode ----
+    public bool PhotoMode { get; private set; }
+    private string? _photoKey;
+    private float _photoYaw = 15f, _photoPitch = 14f, _photoDistance = 6.5f;
+
+    public string? PhotoSubject => _photoKey;
+
+    /// <summary>The focused horse if any, else the first horse, else the whole yard.</summary>
+    public string? PhotoNextSubjectFirst() => _focusedKey ?? _horses.Select(h => h.Key).FirstOrDefault();
+
+    public void EnterPhotoMode(string? key)
+    {
+        PhotoMode = true; _photoKey = key;
+        _photoYaw = 15f; _photoPitch = 14f; _photoDistance = key == null ? 12f : 5.5f;
+    }
+
+    public void ExitPhotoMode() { PhotoMode = false; _photoKey = null; Focus(null); }
+
+    public void PhotoOrbit(float yawDegrees, float pitchDegrees)
+    {
+        _photoYaw += yawDegrees;
+        _photoPitch = Mathf.Clamp(_photoPitch + pitchDegrees, 3f, 70f);
+    }
+
+    public void PhotoZoom(float factor) => _photoDistance = Mathf.Clamp(_photoDistance * factor, 2.4f, 18f);
+
+    /// <summary>Point the photo camera at the next horse (then the whole paddock); returns its key or null.</summary>
+    public string? PhotoNextSubject()
+    {
+        var keys = _horses.Select(h => h.Key).ToList();
+        var index = _photoKey == null ? -1 : keys.IndexOf(_photoKey);
+        _photoKey = index + 1 < keys.Count ? keys[index + 1] : null;
+        _photoDistance = _photoKey == null ? 12f : 5.5f;
+        return _photoKey;
+    }
 
     /// <summary>Dim the sun toward dusk and back over the given seconds.</summary>
     public void PlayNightfall(double seconds)

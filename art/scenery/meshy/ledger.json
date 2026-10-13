@@ -655,9 +655,24 @@
       "status": "downloaded",
       "balanceAfter": 584,
       "chargedCredits": 30
+    },
+    {
+      "name": "icon_camera",
+      "kind": "image",
+      "prompt": "A single cute game UI icon: a small pastel pink vintage camera with a cream lens and a little gold heart on top, chunky rounded stylized 3D render, soft pastel colors, centered, on a plain soft cream background, no text, no border",
+      "aiModel": "nano-banana",
+      "createdAt": "2026-10-13T17:27:01+00:00",
+      "balanceBefore": 584,
+      "taskId": "01a1364d-a898-74b4-a786-be48c9aa97e1",
+      "files": [
+        "game/assets/ui/icons/icon_camera.png"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 581,
+      "chargedCredits": 3
     }
   ],
-  "spentCredits": 690,
+  "spentCredits": 693,
   "postProcessing": "Textures resized to 1024x1024 with @gltf-transform/cli 4.1.1 'resize' before commit (about 42 MB to 6 MB); geometry unchanged.",
   "balanceNote": "The account balance rose by about 100 credits between the wheelbarrow (balance 864) and the first image (balance before 964), outside any task here (likely a Meshy credit adjustment). Per-task charges are measured within each task, so the D-012 total is unaffected.",
   "imagePostProcessing": "Icons: 1024 px Meshy images cut out from their cream background by border flood fill, cropped to content and saved at 256 px RGBA.",

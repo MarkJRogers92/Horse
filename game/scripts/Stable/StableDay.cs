@@ -260,6 +260,7 @@ public partial class StableDay : Node
         header.AddChild(_foalingDemoButton);
         _backButton = new Button { Text = "Menu", CustomMinimumSize = new Vector2(100, 44) };
         _backButton.Pressed += () => GetTree().ChangeSceneToFile("res://scenes/main.tscn");
+        header.AddChild(PhotoButton());
         header.AddChild(ShopButton());
         header.AddChild(JournalButton());
         header.AddChild(Audio.GameAudio.MuteButton());

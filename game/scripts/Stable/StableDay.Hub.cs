@@ -218,6 +218,13 @@ public partial class StableDay
             while (_yard.ElapsedSeconds - decorated < 2.0) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
             await CaptureFrame(System.IO.Path.Combine(output, "22_decorated_yard.png"));
             _uiLayer.Visible = true;
+            _shopOverlay.Visible = false;
+            EnterPhotoMode();
+            _yard.PhotoOrbit(-40f, 4f); _yard.PhotoZoom(0.85f);
+            var posed = _yard.ElapsedSeconds;
+            while (_yard.ElapsedSeconds - posed < 2.5) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+            await CaptureFrame(System.IO.Path.Combine(output, "23_photo_mode.png"));
+            ExitPhotoMode();
             GD.Print("[hub-preview] OK " + output);
             GetTree().Quit(0);
         }
@@ -315,6 +322,7 @@ public partial class StableDay
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        if (HandlePhotoInput(@event)) { GetViewport().SetInputAsHandled(); return; }
         if (@event is InputEventMouseMotion motion) { _yard.Hover(motion.Position); return; }
         if (@event is not InputEventMouseButton { Pressed: true, ButtonIndex: MouseButton.Left } click || _state == null) return;
         var key = _yard.PickHorse(click.Position);

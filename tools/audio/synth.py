@@ -239,8 +239,21 @@ def extras():
     write("hoof_clop", reverb(clop, 0.5, 0.2))
 
 
+def shutter():
+    """A soft camera shutter for photo mode (D-023): two quick clicks with a breath of noise."""
+    r = np.random.default_rng(23)
+    snap = np.zeros(int(0.35 * SR))
+    for at, f in [(0.0, 2400), (0.09, 1800)]:
+        m = int(0.05 * SR)
+        click = lowpass(r.standard_normal(m), 5000) * env(m, 0.0005, 0.008) * 2 + 0.3 * tone(f, 0.05, ((1, 1),), decay=0.01)
+        place(snap, click, at)
+    write("shutter", reverb(snap, 0.4, 0.15))
+
+
 if __name__ == "__main__":
     import sys
+    if sys.argv[1:] == ["shutter"]:
+        shutter(); sys.exit(0)
     if sys.argv[1:] == ["rain"]:
         rain()
     elif sys.argv[1:] == ["extras"]:
@@ -250,3 +263,4 @@ if __name__ == "__main__":
         sfx()
         rain()
         extras()
+        shutter()
