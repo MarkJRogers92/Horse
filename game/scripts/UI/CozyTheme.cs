@@ -125,6 +125,17 @@ public static class CozyTheme
         return b;
     }
 
+    /// <summary>Five ability stars, value 0-10000 (5000 = three stars); null shows five empty stars.</summary>
+    public static Control StarRating(int? value)
+    {
+        var row = new HBoxContainer(); row.AddThemeConstantOverride("separation", 1);
+        int filled = value is int v ? Math.Clamp((int)Math.Round(1 + v * 4.0 / 10000), 1, 5) : 0;
+        for (var i = 0; i < 5; i++)
+            row.AddChild(new TextureRect { Texture = i < filled ? Icons.StarOn : Icons.StarOff, CustomMinimumSize = new Vector2(20, 20),
+                ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize, StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered });
+        return row;
+    }
+
     /// <summary>A generated UI icon (D-012, res://assets/ui/icons), or null if it is missing.</summary>
     public static Texture2D? Icon(string name)
     {
@@ -225,7 +236,7 @@ public static class CozyTheme
     public static void FinishDialog(VBoxContainer body, HBoxContainer buttons) => body.MoveChild(buttons, body.GetChildCount() - 1);
 
     /// <summary>Procedural, anti-aliased icons so no grey engine defaults remain.</summary>
-    private static class Icons
+    internal static class Icons
     {
         private static float Coverage(float distance) => Mathf.Clamp(0.5f - distance, 0f, 1f);
         private static float RoundRect(Vector2 p, Vector2 center, Vector2 half, float r)
@@ -251,6 +262,22 @@ public static class CozyTheme
             for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) image.SetPixel(x, y, shade(new Vector2(x + 0.5f, y + 0.5f)));
             return ImageTexture.CreateFromImage(image);
         }
+        /// <summary>A five-pointed star (filled gold or an empty outline) for ability ratings.</summary>
+        public static ImageTexture Star(bool filled) => Paint(22, 22, p =>
+        {
+            var d = p - new Vector2(11, 11.5f);
+            float angle = Mathf.Atan2(d.Y, d.X) + Mathf.Pi / 2;
+            float sector = Mathf.PosMod(angle, Mathf.Tau / 5) - Mathf.Tau / 10;
+            float radius = Mathf.Lerp(4.6f, 10f, Mathf.Pow(Mathf.Abs(Mathf.Cos(sector * 2.5f)), 3)); // points at the sector centres
+            float edge = d.Length() - radius;
+            var c = new Color(0, 0, 0, 0);
+            c = Over(c, filled ? Color.FromHtml("#e8a93a") : Border, Coverage(edge));
+            c = Over(c, filled ? Color.FromHtml("#f7c95a") : Colors.White, Coverage(edge + 1.6f));
+            return c;
+        });
+        private static ImageTexture? _starOn, _starOff;
+        public static ImageTexture StarOn => _starOn ??= Star(true);
+        public static ImageTexture StarOff => _starOff ??= Star(false);
         public static ImageTexture Knob(bool hot) => Paint(26, 26, p =>
         {
             var c = new Color(0, 0, 0, 0);

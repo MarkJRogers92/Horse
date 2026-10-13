@@ -14,6 +14,7 @@ public partial class StableDay
     private Label _inspectTitle = null!;
     private Label _inspectDetails = null!;
     private HBoxContainer _inspectRow = null!;
+    private VBoxContainer _inspectAbilities = null!;
     private Button _inspectSellButton = null!;
     private HorseId? _inspectedHorse;
     private readonly Dictionary<HorseId, Button> _inspectButtons = new();
@@ -26,6 +27,8 @@ public partial class StableDay
         _inspectDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(340, 0), SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
         _inspectRow.AddChild(_inspectDetails);
         body.AddChild(_inspectRow);
+        _inspectAbilities = new VBoxContainer(); _inspectAbilities.AddThemeConstantOverride("separation", 2);
+        body.AddChild(_inspectAbilities);
         _inspectSellButton = CozyTheme.WithIcon(new Button { Text = "Ask for an offer", CustomMinimumSize = new Vector2(190, 46) }, "sell", 28);
         _inspectSellButton.Pressed += () => { if (_inspectedHorse != null) ShowSaleOffer(_inspectedHorse); };
         buttons.AddChild(_inspectSellButton);
@@ -57,6 +60,7 @@ public partial class StableDay
             var portrait = Portrait(horse, 200, CardTint(horse)); portrait.SizeFlagsVertical = Control.SizeFlags.ShrinkBegin;
             _inspectRow.AddChild(portrait); _inspectRow.MoveChild(portrait, 0);
             _yard.Focus(horse.HorseId.ToString());
+            FillAbilities(horse, profile);
             var offer = HorseMarket.Quote(_state, horseId);
             _inspectSellButton.Visible = horse.OriginCommitId != null && !HorseMarket.IsSold(horse);
             _inspectSellButton.Disabled = !offer.Allowed || _busy;
@@ -68,6 +72,31 @@ public partial class StableDay
         {
             SetStatus("This horse could not be shown. " + PlainError(ex));
         }
+    }
+
+    /// <summary>
+    /// Star ratings for the abilities the practice gallop uses (developed traits, coarse 1-5 stars).
+    /// They stay hidden until the horse has galloped once, so watching it race is how you learn them.
+    /// </summary>
+    private void FillAbilities(HorseRecord horse, HorseProfile profile)
+    {
+        foreach (var child in _inspectAbilities.GetChildren()) child.QueueFree();
+        if (profile.Stage != LifeStage.Adult) return;
+        var heading = CozyTheme.Title("ABILITIES", 11); heading.AddThemeColorOverride("font_color", CozyTheme.AccentDeep);
+        _inspectAbilities.AddChild(heading);
+        var skill = PracticeTraining.Skill(horse);
+        var traits = new PhenotypeResolver().ResolveGenetics(horse).Traits?.Developed;
+        var grid = new GridContainer { Columns = 4 };
+        grid.AddThemeConstantOverride("h_separation", 14); grid.AddThemeConstantOverride("v_separation", 2);
+        foreach (var (key, label) in new[] { ("speed", "Speed"), ("acceleration", "Acceleration"), ("endurance", "Stamina"), ("composure", "Calm") })
+        {
+            var name = SmallText(label); name.CustomMinimumSize = new Vector2(100, 0);
+            grid.AddChild(name);
+            grid.AddChild(CozyTheme.StarRating(skill > 0 && traits != null ? traits.Get(key, 5000) : null));
+        }
+        _inspectAbilities.AddChild(grid);
+        _inspectAbilities.AddChild(CareBar("Training", skill));
+        if (skill == 0) _inspectAbilities.AddChild(SmallText("Take this horse for a practice gallop to discover its abilities. Each day's first gallop also trains it."));
     }
 
     private static IEnumerable<string> InspectionLines(HorseProfile profile, int gallopSkill)
@@ -88,8 +117,6 @@ public partial class StableDay
         if (profile.DueDay.HasValue) yield return $"Expecting a foal on calendar day {profile.DueDay.Value + 1}.";
         if (profile.Care != null)
             yield return $"Care: nutrition {Percent(profile.Care.Nutrition)} · bedding {Percent(profile.Care.Bedding)} · turnout {Percent(profile.Care.Turnout)} · grooming {Percent(profile.Care.Grooming)}";
-        if (profile.Stage == LifeStage.Adult)
-            yield return gallopSkill == 0 ? "Gallop training: not started. Practice gallops build it, once a day." : $"Gallop training: {Percent(gallopSkill)}";
         yield return "";
         if (profile.KnownGenetics.Count == 0)
             yield return "Known genetics: no DNA tests recorded yet. Breeding forecasts use only what is known.";

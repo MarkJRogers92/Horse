@@ -111,7 +111,13 @@ public partial class StableDay
                 throw new InvalidOperationException("Practice gallop did not finish with placings and one saved day of training for each horse.");
             await CaptureFrame(Path.Combine(directory, "04_practice.png"));
             _practiceOverlay.Visible = false;
-            GD.Print($"[stable-day-capture] OK screenshots=6 day={_state.Header.CalendarDay} coins={_state.Coins} output={directory}");
+            // After a gallop the horse's abilities are discovered: Details shows its star ratings.
+            var galloper = _state.Horses.OrderBy(h => h.Name, StringComparer.Ordinal).First();
+            ShowInspection(galloper.HorseId);
+            if (_inspectAbilities.GetChildCount() == 0) throw new InvalidOperationException("Details did not show abilities after a gallop.");
+            await CaptureFrame(Path.Combine(directory, "05_details_abilities.png"));
+            _inspectOverlay.Visible = false;
+            GD.Print($"[stable-day-capture] OK screenshots=7 day={_state.Header.CalendarDay} coins={_state.Coins} output={directory}");
             GetTree().Quit(0);
         }
         catch (Exception ex)
