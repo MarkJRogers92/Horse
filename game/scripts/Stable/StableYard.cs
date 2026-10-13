@@ -41,6 +41,7 @@ public partial class StableYard : Node3D
     }
     private Camera3D _camera = null!;
     private static readonly Vector3 HomeTarget = new(0.45f, 0.75f, -0.4f);
+    private Vector3 _homeTarget = HomeTarget;
     private Vector3 _lookTarget = HomeTarget;
     private Vector3 _cameraHome = new(0.45f, 3.7f, 11.6f);
     private Vector3 _cameraGoal;
@@ -54,7 +55,7 @@ public partial class StableYard : Node3D
         BuildScenery();
         _camera = new Camera3D { Fov = 40, Current = true, Position = _cameraHome };
         AddChild(_camera);
-        _cameraGoal = _cameraHome; _targetGoal = _lookTarget;
+        _cameraGoal = _cameraHome; _targetGoal = _homeTarget; _lookTarget = _homeTarget;
         _camera.LookAt(_lookTarget, Vector3.Up);
     }
 
@@ -194,12 +195,20 @@ public partial class StableYard : Node3D
         return best;
     }
 
+    /// <summary>Change the overview framing (the title screen frames the yard to the right of its menu).</summary>
+    public void SetCameraHome(Vector3 position, Vector3 target)
+    {
+        _cameraHome = position; _homeTarget = target;
+        if (_camera != null) { _camera.Position = position; _lookTarget = target; _camera.LookAt(target, Vector3.Up); }
+        _cameraGoal = position; _targetGoal = target;
+    }
+
     /// <summary>Glide the camera toward a horse, or back to the overview when key is null.</summary>
     public void Focus(string? key)
     {
         _focusedKey = key;
         var presenter = _horses.FirstOrDefault(h => h.Key == key).Presenter;
-        if (presenter == null) { _cameraGoal = _cameraHome; _targetGoal = HomeTarget; return; }
+        if (presenter == null) { _cameraGoal = _cameraHome; _targetGoal = _homeTarget; return; }
         var p = presenter.GlobalPosition;
         _targetGoal = p + new Vector3(0, 0.95f, 0);
         _cameraGoal = p + new Vector3(0.4f, 2.6f, 6.0f);

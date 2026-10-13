@@ -38,7 +38,8 @@ Goal: stop the stable looking like a text game. (1) portraits of every horse, (2
 - [x] Practice gallop drawn as a racetrack (`RaceLane`): sand lanes, rails, chequered finish, bobbing portrait tokens, place rosettes. Replays the same domain frames.
 - [x] End-of-day transition: golden hour, night card ("Good morning! Season N · Day N" + birth news), sunrise; yard sun dims with it. Skipped in captures; `--hub-preview` records it (05-07).
 - Owner tip: Meshy's web app gives 4 free retries per task; the API charges each attempt. For assets that need retries, hand the owner prompts for the web app and import their GLBs (Drive or GitHub upload).
-- [ ] Next: main menu in the yard, illustrated icons, owner-retried bush/planter.
+- [x] Title screen rebuilt on the yard with three sample horses (neutral fixtures, so they can walk), big Play button, Extras row (viewer, coat studio). `--smoke-test` keeps its original stage. `--menu-preview=FILE` screenshots it.
+- [ ] Next: illustrated icons, owner-retried bush/planter.
 
 ## Next steps (before D-012)
 1. **`main` branch and Mac install:** `main` is created from this branch once visual CI is green (owner-approved 2026-10-12). Every push to `main` runs `.github/workflows/macos-build.yml`, which uploads `Cloverbrook-Stables-macOS-<run>` (universal, ad-hoc signed, not notarized; see INSTALL.txt inside) to the run's Artifacts. It can also be started by hand from the Actions tab. The owner must make `main` the default branch in GitHub settings.
