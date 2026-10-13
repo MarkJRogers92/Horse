@@ -99,11 +99,13 @@ public partial class StableDay
         _journalRibbonTab.ButtonPressed = true;
         ShowJournalPage(false);
         _journalOverlay.Visible = true;
+        Audio.GameAudio.Play("page", -10);
     }
 
     private void ShowJournalPage(bool coats)
     {
         if (_state == null) return;
+        if (_journalOverlay.Visible) Audio.GameAudio.Play("page", -12);
         foreach (var child in _journalGrid.GetChildren()) child.QueueFree();
         if (coats)
         {
@@ -221,6 +223,7 @@ public partial class StableDay
 
     private void ShowRibbonToast(IReadOnlyList<Ribbon> ribbons)
     {
+        Audio.GameAudio.Play("ribbon", -5);
         var toast = new PanelContainer { MouseFilter = Control.MouseFilterEnum.Ignore, Modulate = new Color(1, 1, 1, 0) };
         var style = CozyTheme.Box(Color.FromHtml("#fff4d6"), 22, 10); style.BorderColor = Color.FromHtml("#f5c542"); style.SetBorderWidthAll(3);
         style.ShadowColor = new Color(0.4f, 0.25f, 0.1f, 0.25f); style.ShadowSize = 12;

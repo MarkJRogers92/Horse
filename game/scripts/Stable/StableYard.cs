@@ -12,6 +12,8 @@ namespace Cloverbrook.Game.Stable;
 /// assets in res://assets/scenery when present, otherwise from procedural stand-ins, so
 /// CI never depends on a generated file. Horses are shown through HorsePresenter only.
 /// </summary>
+public enum YardWeather { Sunny, Cloudy, Rain }
+
 public partial class StableYard : Node3D
 {
     private const string SceneryRoot = "res://assets/scenery/";
@@ -324,16 +326,28 @@ public partial class StableYard : Node3D
     /// <summary>Dim the sun toward dusk and back over the given seconds.</summary>
     public void PlayNightfall(double seconds)
     {
-        foreach (var sun in All<DirectionalLight3D>(this))
+        var suns = All<DirectionalLight3D>(this).ToList();
+        var dusk = CreateTween().SetParallel();
+        foreach (var sun in suns)
         {
-            var energy = sun.LightEnergy; var colour = sun.LightColor;
-            var tween = CreateTween();
-            tween.TweenProperty(sun, "light_color", new Color(1f, 0.6f, 0.4f), seconds * 0.3);
-            tween.Parallel().TweenProperty(sun, "light_energy", energy * 0.25f, seconds * 0.45);
-            tween.TweenInterval(seconds * 0.2);
-            tween.TweenProperty(sun, "light_color", colour, seconds * 0.35);
-            tween.Parallel().TweenProperty(sun, "light_energy", energy, seconds * 0.35);
+            dusk.TweenProperty(sun, "light_color", new Color(1f, 0.6f, 0.4f), seconds * 0.3);
+            dusk.TweenProperty(sun, "light_energy", sun.LightEnergy * 0.25f, seconds * 0.45);
         }
+        // Dawn rises to the new day's season and weather, which may have changed overnight.
+        GetTree().CreateTimer(seconds * 0.65).Timeout += () =>
+        {
+            if (!IsInsideTree()) return;
+            var dim = suns.ToDictionary(sun => sun, sun => (sun.LightColor, sun.LightEnergy));
+            ApplyWeather();
+            var dawn = CreateTween().SetParallel();
+            foreach (var sun in suns)
+            {
+                var (colour, energy) = (sun.LightColor, sun.LightEnergy);
+                (sun.LightColor, sun.LightEnergy) = dim[sun];
+                dawn.TweenProperty(sun, "light_color", colour, seconds * 0.35);
+                dawn.TweenProperty(sun, "light_energy", energy, seconds * 0.35);
+            }
+        };
     }
     public double ElapsedSeconds => _time;
 
@@ -410,11 +424,75 @@ public partial class StableYard : Node3D
         };
         foreach (var tree in _trees) tree.MaterialOverlay = overlay;
 
+        _season = s;
+        ApplyWeather();
+    }
+
+    private int _season;
+    private YardWeather _weather = YardWeather.Sunny;
+    private CpuParticles3D? _rain;
+    private WorldEnvironment? _environment;
+    private (Color Top, Color Horizon, Color GroundHorizon, float Fog, float Ambient)? _skyDefaults;
+
+    /// <summary>Presentation-only weather for the day (D-018): clouds dim the sun, rain falls (snow thickens in winter).</summary>
+    public void SetWeather(YardWeather weather)
+    {
+        _weather = weather;
+        ApplyWeather();
+    }
+
+    public YardWeather Weather => _weather;
+
+    private void ApplyWeather()
+    {
+        int s = _season;
+        float sunScale = _weather switch { YardWeather.Rain => 0.5f, YardWeather.Cloudy => 0.78f, _ => 1f };
         foreach (var (sun, (colour, energy)) in _sunDefaults)
         {
-            sun.LightColor = s switch { 2 => colour.Lerp(new Color(1f, 0.72f, 0.48f), 0.45f), 3 => colour.Lerp(new Color(0.82f, 0.9f, 1f), 0.5f), 1 => colour.Lerp(new Color(1f, 0.97f, 0.88f), 0.3f), _ => colour };
-            sun.LightEnergy = energy * (s == 3 ? 0.92f : s == 1 ? 1.08f : 1f);
+            var seasonal = s switch { 2 => colour.Lerp(new Color(1f, 0.72f, 0.48f), 0.45f), 3 => colour.Lerp(new Color(0.82f, 0.9f, 1f), 0.5f), 1 => colour.Lerp(new Color(1f, 0.97f, 0.88f), 0.3f), _ => colour };
+            sun.LightColor = _weather == YardWeather.Sunny ? seasonal : seasonal.Lerp(new Color(0.8f, 0.84f, 0.95f), _weather == YardWeather.Rain ? 0.5f : 0.3f);
+            sun.LightEnergy = energy * (s == 3 ? 0.92f : s == 1 ? 1.08f : 1f) * sunScale;
+            sun.ShadowOpacity = _weather switch { YardWeather.Rain => 0.35f, YardWeather.Cloudy => 0.65f, _ => 1f }; // overcast light casts soft shadows
         }
+        _environment ??= All<WorldEnvironment>(_lights).FirstOrDefault();
+        if (_environment?.Environment is { } env && env.Sky?.SkyMaterial is ProceduralSkyMaterial sky)
+        {
+            _skyDefaults ??= (sky.SkyTopColor, sky.SkyHorizonColor, sky.GroundHorizonColor, env.FogDensity, env.AmbientLightEnergy);
+            var d = _skyDefaults.Value;
+            var grey = new Color(0.62f, 0.66f, 0.74f);
+            float w = _weather switch { YardWeather.Rain => 0.7f, YardWeather.Cloudy => 0.4f, _ => 0f };
+            sky.SkyTopColor = d.Top.Lerp(grey, w);
+            sky.SkyHorizonColor = d.Horizon.Lerp(new Color(0.82f, 0.8f, 0.84f), w);
+            sky.GroundHorizonColor = d.GroundHorizon.Lerp(grey, w * 0.6f);
+            env.FogDensity = d.Fog * (_weather == YardWeather.Rain ? 4f : _weather == YardWeather.Cloudy ? 1.8f : 1f);
+            env.AmbientLightEnergy = d.Ambient * (_weather == YardWeather.Rain ? 0.85f : 1f);
+        }
+        if (_rain == null) { _rain = Rain(); AddChild(_rain); }
+        bool raining = _weather == YardWeather.Rain;
+        _rain.Emitting = raining && s != 3;
+        _rain.Visible = raining && s != 3;
+        if (s == 3) _petals.Amount = raining ? 480 : 220; // a winter "rain" day is a snowy one
+        else if (s != 1) _petals.Emitting = !raining; // no blossom or leaves drifting through the rain
+        else _petals.Emitting = false;
+    }
+
+    private static CpuParticles3D Rain()
+    {
+        var rain = new CpuParticles3D
+        {
+            Name = "Rain", Amount = 1600, Lifetime = 1.1, Preprocess = 2, Emitting = false,
+            Mesh = new QuadMesh { Size = new Vector2(0.012f, 0.32f) },
+            EmissionShape = CpuParticles3D.EmissionShapeEnum.Box, EmissionBoxExtents = new Vector3(13, 0.5f, 9),
+            Position = new Vector3(0, 8, -3), Direction = new Vector3(0.08f, -1, 0.02f), Spread = 2,
+            Gravity = new Vector3(0, -9.8f, 0), InitialVelocityMin = 6.5f, InitialVelocityMax = 8f,
+            ParticleFlagAlignY = true, Color = new Color(0.88f, 0.92f, 1f, 0.7f),
+        };
+        rain.MaterialOverride = new StandardMaterial3D
+        {
+            VertexColorUseAsAlbedo = true, CullMode = BaseMaterial3D.CullModeEnum.Disabled, ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded,
+            Transparency = BaseMaterial3D.TransparencyEnum.Alpha, BillboardMode = BaseMaterial3D.BillboardModeEnum.FixedY,
+        };
+        return rain;
     }
 
     // ---------------------------------------------------------------------------------

@@ -31,7 +31,7 @@ public partial class StableDay
     {
         _fairOverlay = CozyTheme.Dialog(root, "The Horse Fair", 780, out var body, out var buttons, out _);
         CozyTheme.DialogHeader(body, "fair", 736, 96);
-        _fairSpeaker = new BunnySpeaker();
+        _fairSpeaker = new BunnySpeaker { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
         body.AddChild(_fairSpeaker);
         _fairCards = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center };
         _fairCards.AddThemeConstantOverride("separation", 14);
@@ -77,7 +77,7 @@ public partial class StableDay
         var hints = new Label
         {
             Text = string.Join("\n", offer.Reasons.Skip(1)), AutowrapMode = TextServer.AutowrapMode.WordSmart,
-            HorizontalAlignment = HorizontalAlignment.Center, CustomMinimumSize = new Vector2(212, 32),
+            HorizontalAlignment = HorizontalAlignment.Center, CustomMinimumSize = new Vector2(212, 40),
         };
         hints.AddThemeFontSizeOverride("font_size", 12); hints.AddThemeColorOverride("font_color", CozyTheme.SoftText);
         box.AddChild(hints);

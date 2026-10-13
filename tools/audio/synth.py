@@ -200,6 +200,53 @@ def sfx():
     write("ambience_yard", reverb(amb, 1.4, 0.3), stereo_width=1.0, quality=2)
 
 
+def rain():
+    """Soft rain on the yard (D-018): pink-ish hiss, a low roof rumble and scattered droplets."""
+    rng = np.random.default_rng(18)
+    n = int(20 * SR)
+    hiss = lowpass(rng.standard_normal(n), 3200) - lowpass(rng.standard_normal(n), 500) * 0.5
+    hiss *= 0.22 * (0.85 + 0.15 * np.sin(2 * np.pi * 0.05 * t(20)))
+    rumble = lowpass(rng.standard_normal(n), 140) * 0.5
+    drops = np.zeros(n)
+    for _ in range(900):
+        at = rng.uniform(0, 19.9); d = 0.03; x = t(d)
+        f = rng.uniform(1800, 4200)
+        place(drops, rng.uniform(0.02, 0.07) * np.sin(2 * np.pi * f * x) * env(len(x), 0.001, 0.006), at)
+    mix = hiss + rumble + drops
+    # Crossfade the ends so the loop is seamless.
+    fade = int(0.5 * SR); ramp = np.linspace(0, 1, fade)
+    mix[:fade] = mix[:fade] * ramp + mix[-fade:] * (1 - ramp)
+    write("ambience_rain", mix[:-fade], stereo_width=1.0, quality=2)
+
+
+def extras():
+    """Ribbon sparkle, a journal page swish and a friendly hoof clop (D-018 follow-up)."""
+    r = np.random.default_rng(19)
+    rib = np.zeros(int(1.8 * SR))
+    for i, n in enumerate(["C6", "E6", "G6", "C7"]):
+        place(rib, musicbox(note_hz(n), 1.0) * 0.75, i * 0.07)
+    for i in range(10):
+        place(rib, 0.12 * tone(note_hz("E7") * (1 + 0.08 * r.standard_normal()), 0.3, ((1, 1),), decay=0.08), 0.32 + i * 0.05)
+    write("ribbon", reverb(rib, 1.4, 0.32))
+    n = int(0.35 * SR)
+    swish = (lowpass(r.standard_normal(n), 2400) - lowpass(r.standard_normal(n), 300)) * np.sin(np.pi * np.arange(n) / n) ** 2 * 0.5
+    write("page", reverb(swish, 0.4, 0.15))
+    clop = np.zeros(int(0.5 * SR))
+    for at, f in [(0.0, 900), (0.16, 760)]:
+        m = int(0.07 * SR)
+        hit = lowpass(r.standard_normal(m), 1600) * env(m, 0.0005, 0.012) * 3 + 0.4 * tone(f, 0.07, ((1, 1), (2.3, 0.4)), decay=0.015)
+        place(clop, hit, at)
+    write("hoof_clop", reverb(clop, 0.5, 0.2))
+
+
 if __name__ == "__main__":
-    yard_theme()
-    sfx()
+    import sys
+    if sys.argv[1:] == ["rain"]:
+        rain()
+    elif sys.argv[1:] == ["extras"]:
+        extras()
+    else:
+        yard_theme()
+        sfx()
+        rain()
+        extras()

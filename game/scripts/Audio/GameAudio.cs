@@ -90,8 +90,27 @@ public partial class GameAudio : Node
         self._music.VolumeDb = -40;
         self._music.Play();
         self.CreateTween().TweenProperty(self._music, "volume_db", -9f, 2.0);
-        self._ambience.Stream = self.Stream("ambience_yard", loop: true);
+        self._ambience.Stream = self.Stream(self._ambienceName, loop: true);
         if (!self._ambience.Playing) self._ambience.Play();
+    }
+
+    private string _ambienceName = "ambience_yard";
+
+    /// <summary>Swap the background ambience (yard birdsong or rain), crossfading through silence.</summary>
+    public static void Ambience(string name)
+    {
+        var self = _instance;
+        if (self == null || self._ambienceName == name) return;
+        self._ambienceName = name;
+        if (!self.IsInsideTree() || self._musicName == null) return;
+        var tween = self.CreateTween();
+        tween.TweenProperty(self._ambience, "volume_db", -40f, 0.8);
+        tween.TweenCallback(Callable.From(() =>
+        {
+            self._ambience.Stream = self.Stream(name, loop: true);
+            self._ambience.Play();
+        }));
+        tween.TweenProperty(self._ambience, "volume_db", -16f, 1.2);
     }
 
     private void StartMusicDeferred(string name) => Music(name);

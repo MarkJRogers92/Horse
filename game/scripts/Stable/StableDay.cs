@@ -401,8 +401,11 @@ public partial class StableDay : Node
         var seasonNumber = day / StableCalendar.DaysPerSeason + 1;
         var dayNumber = day % StableCalendar.DaysPerSeason + 1;
         _season.Text = $"{StableYard.SeasonName(seasonNumber - 1)} · Day {dayNumber}";
-        _yearLabel.Text = $"YEAR {(seasonNumber - 1) / 4 + 1}";
         if (_shownSeason != seasonNumber - 1) { _shownSeason = seasonNumber - 1; _yard.SetSeason(_shownSeason); }
+        var weather = WeatherFor(_state, day);
+        if (_yard.Weather != weather) _yard.SetWeather(weather);
+        Audio.GameAudio.Ambience(weather == YardWeather.Rain && _shownSeason != 3 ? "ambience_rain" : "ambience_yard");
+        _yearLabel.Text = $"YEAR {(seasonNumber - 1) / 4 + 1} · {WeatherName(weather, _shownSeason)}";
         _wallet.Text = $"{_state.Coins:N0} coins";
 
         _roster.QueueFreeChildren();
@@ -578,6 +581,23 @@ public partial class StableDay : Node
         toggle.AddThemeColorOverride("font_disabled_color", CozyTheme.Text);
         return toggle;
     }
+
+    /// <summary>Presentation-only daily weather (D-018), the same for a given stable and day on every load.</summary>
+    private static YardWeather WeatherFor(StableSnapshot state, int day)
+    {
+        if (day == 0) return YardWeather.Sunny; // a bright first morning
+        var roll = Convert.ToInt32(Canonical.Hash("yard-weather.v1", state.Header.SaveId.ToString(), day.ToString(System.Globalization.CultureInfo.InvariantCulture)).Substring(0, 4), 16) % 100;
+        var season = day / StableCalendar.DaysPerSeason % 4;
+        var rainy = season switch { 1 => 12, 2 => 26, 3 => 22, _ => 22 };
+        return roll < rainy ? YardWeather.Rain : roll < rainy + 25 ? YardWeather.Cloudy : YardWeather.Sunny;
+    }
+
+    private static string WeatherName(YardWeather weather, int season) => weather switch
+    {
+        YardWeather.Rain => season == 3 ? "SNOWY" : "RAINY",
+        YardWeather.Cloudy => "CLOUDY",
+        _ => season == 3 ? "CRISP" : "SUNNY",
+    };
 
     private static Color CardTint(HorseRecord horse) => horse.LifeState.Stage is LifeStage.Foal or LifeStage.Youngster
         ? Color.FromHtml("#fbe7b0") : horse.ReproductionState.Role == ReproductiveRole.Mare ? Color.FromHtml("#fde4ec") : Color.FromHtml("#d9ecf8");
