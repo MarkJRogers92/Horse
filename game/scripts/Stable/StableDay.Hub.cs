@@ -84,6 +84,19 @@ public partial class StableDay
                 while (_yard.ElapsedSeconds - ended < after) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
                 await CaptureFrame(System.IO.Path.Combine(output, name + ".png"));
             }
+            if (OS.GetCmdlineUserArgs().Contains("--hub-birth"))
+            {
+                for (var day = 0; day < 12 && _birthFoal == null; day++)
+                {
+                    var before = _yard.ElapsedSeconds;
+                    while (_yard.ElapsedSeconds - before < 4.2) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                    ShowReview(); ConfirmReviewedDay();
+                    while (_busy) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                }
+                var born = _yard.ElapsedSeconds;
+                while (_yard.ElapsedSeconds - born < 4.4) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                await CaptureFrame(System.IO.Path.Combine(output, "08_birth_celebration.png"));
+            }
             GD.Print("[hub-preview] OK " + output);
             GetTree().Quit(0);
         }

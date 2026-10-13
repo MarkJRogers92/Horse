@@ -110,7 +110,11 @@ public partial class StableDay
             var lifecycleNotice = result.Receipt.LifecycleEvents.Count == 0 ? "" : " " + string.Join(" ", result.Receipt.LifecycleEvents.Select(item => LifecycleText(item, _state)));
             SetStatus(result.Replayed ? "That day was already saved. Your wallet and calendar are up to date." + lifecycleNotice
                 : "Day saved. Your horses' care and the calendar are up to date." + lifecycleNotice);
-            if (!result.Replayed) PlayDayTransition(_state.Header.CalendarDay, result.Receipt.LifecycleEvents.Select(item => LifecycleText(item, _state)).FirstOrDefault());
+            if (!result.Replayed)
+            {
+                PlayDayTransition(_state.Header.CalendarDay, result.Receipt.LifecycleEvents.Select(item => LifecycleText(item, _state)).FirstOrDefault());
+                if (result.Receipt.LifecycleEvents.FirstOrDefault(e => e.Kind == LifecycleEventKind.Birth) is { } birth) CelebrateBirth(birth);
+            }
         }
         catch (Exception ex)
         {
