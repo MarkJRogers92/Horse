@@ -156,7 +156,7 @@ public partial class StableDay
         else
         {
             yield return "Known genetics (recorded tests):";
-            foreach (var call in profile.KnownGenetics) yield return "• " + DnaTest.Describe(call.Locus, call.Pair);
+            foreach (var call in profile.KnownGenetics.OrderBy(c => DnaTest.Loci.Contains(c.Locus) ? DnaTest.Loci.ToList().IndexOf(c.Locus) : 99)) yield return "• " + DnaTest.Describe(call.Locus, call.Pair);
         }
     }
 
