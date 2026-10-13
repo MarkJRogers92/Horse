@@ -34,7 +34,7 @@ public partial class StableDay
         var bar = new PanelContainer { Theme = CozyTheme.Build() };
         bar.AddThemeStyleboxOverride("panel", CozyTheme.Box(new Color(1, 0.98f, 0.96f, 0.92f), 22, 10));
         bar.SetAnchorsPreset(Control.LayoutPreset.CenterBottom);
-        var row = new HBoxContainer(); row.AddThemeConstantOverride("separation", 10); bar.AddChild(row);
+        var row = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center }; row.AddThemeConstantOverride("separation", 10); bar.AddChild(row);
         var exit = new Button { Text = "Done", CustomMinimumSize = new Vector2(110, 46) };
         exit.Pressed += ExitPhotoMode;
         row.AddChild(exit);
@@ -44,6 +44,7 @@ public partial class StableDay
         _photoSubject = CozyTheme.Title("", 16); _photoSubject.VerticalAlignment = VerticalAlignment.Center; _photoSubject.CustomMinimumSize = new Vector2(150, 0);
         row.AddChild(_photoSubject);
         var hint = SmallText("Drag to turn · scroll to zoom"); hint.VerticalAlignment = VerticalAlignment.Center;
+        hint.AutowrapMode = TextServer.AutowrapMode.Off;
         row.AddChild(hint);
         var snap = CozyTheme.WithIcon(new Button { Text = "Snap", CustomMinimumSize = new Vector2(140, 50) }, "camera", 30);
         snap.Pressed += () => _ = SnapAsync();

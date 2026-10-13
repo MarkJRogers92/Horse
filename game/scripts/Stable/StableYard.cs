@@ -427,10 +427,19 @@ public partial class StableYard : Node3D
     public void EnterPhotoMode(string? key)
     {
         PhotoMode = true; _photoKey = key;
+        foreach (var tag in _tags.Values) tag.Visible = false; // clean photos: no name tags
+        if (_fairTag != null) _fairTag.Visible = false;
+        if (_trophyTag != null) _trophyTag.Visible = false;
         _photoYaw = 15f; _photoPitch = 14f; _photoDistance = key == null ? 12f : 5.5f;
     }
 
-    public void ExitPhotoMode() { PhotoMode = false; _photoKey = null; Focus(null); }
+    public void ExitPhotoMode()
+    {
+        PhotoMode = false; _photoKey = null; Focus(null);
+        foreach (var tag in _tags.Values) tag.Visible = true;
+        if (_fairTag != null) _fairTag.Visible = true;
+        if (_trophyTag != null) _trophyTag.Visible = true;
+    }
 
     public void PhotoOrbit(float yawDegrees, float pitchDegrees)
     {
