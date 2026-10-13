@@ -89,7 +89,7 @@ public partial class MainMenu
                     Check(material.GetShaderParameter("use_signed_detail").AsBool() == light &&
                           Math.Abs(material.GetShaderParameter("signed_detail_strength").AsSingle()-(light ? 1 : 0)) < 1e-6,
                         familyId + (light ? " retains accepted Light detail" : " uses its own procedural coat without Light atlas"));
-                    Check(material.GetShaderParameter("body_color").AsColor().IsEqualApprox(catalog.Coats[descriptor.CoatRecipe].Body), familyId + " binds selected coat recipe");
+                    Check(material.GetShaderParameter("body_color").AsColor().IsEqualApprox(CoatLook.For(catalog.Coats[descriptor.CoatRecipe], descriptor.MarkingRealizationKey).Body), familyId + " binds selected coat recipe");
                     stage.FrameView("q3");
                     await WaitSeconds(0.1);
                     await CaptureWalk(evidence, familyId + "-" + coat + "-moving");
