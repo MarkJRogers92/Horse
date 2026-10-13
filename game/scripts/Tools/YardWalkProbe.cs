@@ -55,10 +55,11 @@ public partial class YardWalkProbe : Node
             while (elapsed < SimulatedSeconds)
             {
                 // Same order the engine uses: scene logic first, then animation advance.
+                var bridgedAtStart = presenters.ToDictionary(p => p, p => p.IsTransitioning);
                 yard._Process(Step);
                 foreach (var p in presenters)
                 {
-                    bool bridgedBefore = p.IsTransitioning;
+                    bool bridgedBefore = bridgedAtStart[p];
                     p._Process(Step);
                     var t = state[p];
                     if (p.Model != t.Model)
@@ -69,7 +70,8 @@ public partial class YardWalkProbe : Node
                     if (p.Animator != null && !p.IsTransitioning) p.Animator.Advance(Step * p.Animator.SpeedScale);
                     var moved = (p.Position - t.Position).Length();
                     maxJump = Math.Max(maxJump, moved);
-                    if (p.IsTransitioning)
+                    // A horse takes its last step on the frame it asks to stop; only frames that began inside a bridge must be still.
+                    if (bridgedBefore)
                         Check(moved < 1e-7, $"{p.Name}: horse moved while its Idle/Walk bridge was running");
                     bool walking = !p.IsTransitioning && p.UsesWalkVariant &&
                                    string.Equals(p.CurrentAnimation, "Walk", StringComparison.OrdinalIgnoreCase);

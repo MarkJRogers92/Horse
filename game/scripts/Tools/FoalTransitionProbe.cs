@@ -33,8 +33,10 @@ public partial class FoalTransitionProbe : Node
             // Advance every phase explicitly, independent of machine/render speed.
             _stage.ProcessMode = ProcessModeEnum.Disabled;
             // Foals and both adults share one bridge: the rest surfaces of each family's Idle and Walk scenes are identical.
+            var only = OS.GetCmdlineUserArgs().FirstOrDefault(a => a.StartsWith("--families=", StringComparison.Ordinal))?.Split('=', 2)[1].Split(',');
             foreach (string family in new[] { "horse.standard.foal.v1", "horse.compact.foal.v1", "horse.standard.adult.v1", "horse.compact.adult.v1" })
             foreach (int fps in new[] { 60, 120 })
+            if (only == null || only.Contains(family))
                 CheckFamily(family, fps);
             CheckWalkStopPhases();
             CheckRestEvidenceGuards();
@@ -163,8 +165,8 @@ public partial class FoalTransitionProbe : Node
                 maxSwap = Math.Max(maxSwap, gap); swaps++;
                 // Different imported rigs quantize weights independently. Measure
                 // that precision separately from exact source/rest geometry.
-                Check(gap < 0.0001f, "actual old/new skin rest surfaces differ by less than 0.1 mm");
-                Check(normalizedGap < 0.00001f, "normalizing imported weight sums removes the rest-swap discrepancy (<10 micrometres)");
+                Check(gap < 0.0001f, $"actual old/new skin rest surfaces differ by less than 0.1 mm (measured {gap * 1000:F5} mm, normalized {normalizedGap * 1000:F5} mm)");
+                Check(normalizedGap < 0.00001f, $"normalizing imported weight sums removes the rest-swap discrepancy (<10 micrometres; measured {normalizedGap * 1000:F5} mm)");
             }
             var after = Surface(p.Model!);
             maxStep = Math.Max(maxStep, Distance(before, after));
