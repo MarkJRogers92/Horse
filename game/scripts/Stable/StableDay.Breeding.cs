@@ -40,8 +40,8 @@ public partial class StableDay
         _stallionPicker = new OptionButton { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, CustomMinimumSize = new Vector2(150, 38), ClipText = true };
         _marePicker.ItemSelected += index => OnBreedingParentSelected(_marePicker, index);
         _stallionPicker.ItemSelected += index => OnBreedingParentSelected(_stallionPicker, index);
-        selectors.AddChild(_marePicker);
-        selectors.AddChild(_stallionPicker);
+        selectors.AddChild(Labelled("MARE", _marePicker));
+        selectors.AddChild(Labelled("STALLION", _stallionPicker));
         box.AddChild(selectors);
         var actions = new HBoxContainer();
         actions.AddThemeConstantOverride("separation", 8);
@@ -86,6 +86,15 @@ public partial class StableDay
     }
 
     private HBoxContainer _breedingPair = null!;
+
+    private static Control Labelled(string caption, Control field)
+    {
+        var column = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
+        column.AddThemeConstantOverride("separation", 0);
+        var label = CozyTheme.Title(caption, 10); label.AddThemeColorOverride("font_color", CozyTheme.AccentDeep);
+        column.AddChild(label); column.AddChild(field);
+        return column;
+    }
 
     /// <summary>Mare ♥ stallion = ? foal, as portrait cards across the top of the review.</summary>
     private void ShowBreedingPair(HorseId mareId, HorseId stallionId)
@@ -137,8 +146,8 @@ public partial class StableDay
         _refreshingBreedingPickers = true;
         _marePicker.Clear();
         _stallionPicker.Clear();
-        foreach (var mare in mares) _marePicker.AddItem("Mare · " + mare.Name, _marePicker.ItemCount);
-        foreach (var stallion in stallions) _stallionPicker.AddItem("Stallion · " + stallion.Name, _stallionPicker.ItemCount);
+        foreach (var mare in mares) _marePicker.AddItem(mare.Name, _marePicker.ItemCount);
+        foreach (var stallion in stallions) _stallionPicker.AddItem(stallion.Name, _stallionPicker.ItemCount);
         _selectedMareId = SelectId(_marePicker, mares.Select(h => h.HorseId).ToArray(), _selectedMareId);
         _selectedStallionId = SelectId(_stallionPicker, stallions.Select(h => h.HorseId).ToArray(), _selectedStallionId);
         _refreshingBreedingPickers = false;

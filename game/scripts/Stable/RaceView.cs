@@ -61,7 +61,9 @@ public partial class RaceView : SubViewport
         }
         float lead = progress.Count == 0 ? 0 : progress.Max() / 1000f * TrackLength;
         float k = 1f - Mathf.Exp(-4f * (float)delta);
-        _cameraX = Mathf.Abs(lead - 1.5f - _cameraX) > 12f ? lead - 1.5f : Mathf.Lerp(_cameraX, lead - 1.5f, k);
+        // Follow the leader, but stop short of the line so the runners gallop across it in view.
+        float goal = Mathf.Min(lead - 1.5f, TrackLength - 3.5f);
+        _cameraX = Mathf.Abs(goal - _cameraX) > 12f ? goal : Mathf.Lerp(_cameraX, goal, k);
         PlaceCamera(_cameraX, _horses.Count);
     }
 

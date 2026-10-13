@@ -47,7 +47,8 @@ Goal: stop the stable looking like a text game. (1) portraits of every horse, (2
 - [x] D-013 (owner approved "all 4"): phase-1 coats released in the matrix (game copy + validator check; stable uses the released path, preview workaround removed). Walk allowed with every body shape after the extreme-shape audit; ground speed scales with height. Smoke test updated. 213/213 tests.
 - [x] D-014: original synthesized music, ambience and SFX (`tools/audio/synth.py`, `game/assets/audio`), `GameAudio` with auto button clicks and a ♪ mute toggle; sounds on care, day end, coins, birth, sale and the race.
 - [x] D-015: Blender-authored gallop (Light + Stock, animation-only GLBs) and a 3D practice race (`RaceView`) above the lanes. Review sheet in `docs/visual/evidence/gallop-2026-10-13/`.
-- [ ] Next: polish pass (yard horses occasionally canter? event variety), web-app bush retry. Keep at least 350 Meshy credits (balance 853).
+- [x] Polish: breeding pickers show names under MARE/STALLION captions, gallop picker shows portraits, race camera stops short of the line so the finish is in view, shutdown leak warnings fixed. Meshy tool now enforces the owner's 350-credit reserve (balance 863). A topiary attempt failed at Meshy (foliage mesh repair), not charged.
+- [ ] Owner: bush/foliage via the Meshy web app's free retries (prompt in the hand-off); everything else in the D-012–D-015 list is done.
 
 ## Next steps (before D-012)
 1. **`main` branch and Mac install:** `main` is created from this branch once visual CI is green (owner-approved 2026-10-12). Every push to `main` runs `.github/workflows/macos-build.yml`, which uploads `Cloverbrook-Stables-macOS-<run>` (universal, ad-hoc signed, not notarized; see INSTALL.txt inside) to the run's Artifacts. It can also be started by hand from the Actions tab. The owner must make `main` the default branch in GitHub settings.

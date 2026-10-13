@@ -67,6 +67,13 @@ public partial class StableDay
             var horse = _state.Horses.Single(h => h.HorseId.Equals(entry.HorseId));
             var note = !entry.Eligible ? $" · {entry.BlockReason}" : PracticeTraining.TrainedToday(horse, _state.Header.CalendarDay) ? " · trained today" : "";
             var choice = new CheckBox { Text = entry.Name + note, Disabled = !entry.Eligible, ButtonPressed = entry.Eligible && eligible < PracticeGallop.MaxEntrants };
+            // The horse's own portrait beside its name, once rendered.
+            if (DescriptorFor(horse) is { } look)
+            {
+                if (_portraits.TryGetCached(look, out var ready) && ready != null) choice.Icon = ready;
+                else _ = SetIconAsync(choice, look);
+                choice.AddThemeConstantOverride("icon_max_width", 36);
+            }
             if (entry.Eligible) { eligible++; _practiceChoices[entry.HorseId] = choice; }
             _practicePicks.AddChild(choice);
         }
@@ -177,6 +184,12 @@ public partial class StableDay
         if (_practiceResult == null) return;
         _practiceElapsedMs = (double)(_practiceResult.Frames.Count - 1) * _practiceResult.FrameIntervalMilliseconds;
         AdvancePracticePlayback();
+    }
+
+    private async Task SetIconAsync(Button button, Visual.VisualDescriptor look)
+    {
+        var texture = await _portraits.RenderAsync(look);
+        if (IsInstanceValid(button) && texture != null) button.Icon = texture;
     }
 
     private static string Ordinal(int place) => place switch { 1 => "1st", 2 => "2nd", 3 => "3rd", _ => place + "th" };

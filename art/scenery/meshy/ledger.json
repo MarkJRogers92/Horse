@@ -454,11 +454,23 @@
       "status": "downloaded",
       "balanceAfter": 853,
       "chargedCredits": 30
+    },
+    {
+      "name": "topiary",
+      "prompt": "A round boxwood topiary ball bush planted in a terracotta pot, dense soft green leaves dotted with small pink blossoms, solid compact rounded shape. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T08:50:08+00:00",
+      "balanceBefore": 863,
+      "aiModel": "latest",
+      "previewTaskId": "01a13474-6fb4-724f-8823-5890bedbb6ed",
+      "status": "failed: preview 01a13474-6fb4-724f-8823-5890bedbb6ed ended FAILED: {'type': 'invalid_input', 'code': 'invalid_input', 'message': 'Model service error (RepairDidNotCloseError): blueberry postproc[fidelity]: repair did not close the mesh (boundary_edges=9211, manifold=True). Upstream marks and continues; serving has nowhere to carry the mark, so this fails instead of shipping it.', 'doc_url': 'https://docs.meshy.ai/en/api/errors#invalid-input'}",
+      "balanceAfter": 863,
+      "chargedCredits": 0
     }
   ],
   "spentCredits": 411,
   "postProcessing": "Textures resized to 1024x1024 with @gltf-transform/cli 4.1.1 'resize' before commit (about 42 MB to 6 MB); geometry unchanged.",
   "balanceNote": "The account balance rose by about 100 credits between the wheelbarrow (balance 864) and the first image (balance before 964), outside any task here (likely a Meshy credit adjustment). Per-task charges are measured within each task, so the D-012 total is unaffected.",
   "imagePostProcessing": "Icons: 1024 px Meshy images cut out from their cream background by border flood fill, cropped to content and saved at 256 px RGBA.",
-  "headerPostProcessing": "Headers: Meshy 16:9 images; gallop, sale and details cropped to their picture area; all resized to at most 960 px wide and saved as JPEG quality 88."
+  "headerPostProcessing": "Headers: Meshy 16:9 images; gallop, sale and details cropped to their picture area; all resized to at most 960 px wide and saved as JPEG quality 88.",
+  "balanceNote2": "Meshy's balance has moved between tasks outside this tool twice (+100, +10); per-task charges are measured within each task. A failed generation (topiary, mesh repair error) was not charged."
 }

@@ -46,6 +46,13 @@ public partial class HorsePortraitStudio : SubViewport
         AddChild(_camera);
     }
 
+    public override void _ExitTree()
+    {
+        // Drop cached textures so nothing outlives the scene at shutdown.
+        foreach (var texture in _cache.Values) texture?.Dispose();
+        _cache.Clear();
+    }
+
     public bool Busy => _rendering || _queue.Count > 0;
 
     public bool TryGetCached(VisualDescriptor descriptor, out ImageTexture? texture) => _cache.TryGetValue(descriptor.CacheKey, out texture);

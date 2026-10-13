@@ -27,8 +27,9 @@ API = "https://api.meshy.ai/openapi"
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 LEDGER = ROOT / "art/scenery/meshy/ledger.json"
 OUT = ROOT / "game/assets/scenery"
-BUDGET = 500  # D-012: 300, raised by the owner after the 150 check-in
-CHECKPOINT = 500  # owner authorised the full raised budget
+BUDGET = 1000  # D-012: 300 -> ~500; then "use credits as needed, keep ~350" (owner, 2026-10-13)
+CHECKPOINT = 1000  # no further check-in; MIN_BALANCE is the real limit
+MIN_BALANCE = 350  # owner: always keep about 350 credits in the account
 DECISION = "D-012"
 
 
@@ -91,6 +92,8 @@ def download(url, path):
 
 def generate(args):
     ledger = load_ledger()
+    if balance() - 40 < MIN_BALANCE:
+        sys.exit(f"Account balance would fall below the owner's {MIN_BALANCE}-credit reserve.")
     spent = sum(e.get("chargedCredits", 0) for e in ledger["entries"])
     if spent >= BUDGET:
         sys.exit(f"Budget exhausted: {spent}/{BUDGET} credits spent under {DECISION}.")
@@ -136,6 +139,8 @@ def generate(args):
 
 
 def guard(ledger, args):
+    if balance() - 40 < MIN_BALANCE:
+        sys.exit(f"Account balance would fall below the owner's {MIN_BALANCE}-credit reserve.")
     spent = sum(e.get("chargedCredits", 0) for e in ledger["entries"])
     if spent >= BUDGET:
         sys.exit(f"Budget exhausted: {spent}/{BUDGET} credits spent under {DECISION}.")

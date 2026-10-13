@@ -17,6 +17,14 @@ public partial class StableDay
     private HorsePortraitStudio _portraits = null!;
     private readonly Dictionary<string, VisualDescriptor?> _descriptors = new();
 
+    public override void _ExitTree()
+    {
+        // Managed wrappers (portrait icons, clips) otherwise keep engine resources alive until after
+        // the engine's shutdown leak check; collect them while the scene is closing.
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+    }
+
     private void BuildHub()
     {
         var args = OS.GetCmdlineUserArgs();
