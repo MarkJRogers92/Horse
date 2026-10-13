@@ -1,0 +1,24 @@
+{
+  "decision": "D-012",
+  "budgetCredits": 300,
+  "checkpointCredits": 150,
+  "entries": [
+    {
+      "name": "barn",
+      "prompt": "A cozy countryside horse barn, single building, painted wooden plank walls in warm cream with soft sage green trim and white corner boards, steep gable roof with weathered dusty-rose shingles, large sliding front double door with white X brace, small hayloft window above the door, two side windows with flower boxes, stone foundation. Stylized-realistic game environment asset, clean readable shapes, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T03:06:06+00:00",
+      "balanceBefore": 1164,
+      "aiModel": "latest",
+      "previewTaskId": "01a13339-7876-7309-87b9-b410e0c2791e",
+      "refineTaskId": "01a1333a-7af5-7669-90d2-1aff03f61d07",
+      "glbBytes": 10337236,
+      "files": [
+        "game/assets/scenery/barn/barn.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 1134,
+      "chargedCredits": 30
+    }
+  ],
+  "spentCredits": 30
+}

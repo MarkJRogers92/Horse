@@ -1,7 +1,7 @@
 # Project status
 
-**Last updated:** 2026-10-12 by Claude (club sales D-010, gallop training D-011, Pip the rabbit and cozy UI restyle).
-**Working branch:** `claude/relaxed-ride-9c5tto`. It contains every other active branch: `codex/horse-production-library`, which itself contains `claude/godot-horse-visual-pilot` and `claude/great-euler-hq83x3`, plus a merge of `rea/horse-coat-preview`. The animation archive (`archive/horse-animation-experiments-2026-10-10`) is intentionally not merged.
+**Last updated:** 2026-10-13 by Claude (D-012 scene-first hub: Meshy tool, first scenery, stable preview descriptors).
+**Working branch:** `claude/eloquent-davinci-o1hhr6` (D-012, from `main` a0fc8ad). Previous: `claude/relaxed-ride-9c5tto`. It contains every other active branch: `codex/horse-production-library`, which itself contains `claude/godot-horse-visual-pilot` and `claude/great-euler-hq83x3`, plus a merge of `rea/horse-coat-preview`. The animation archive (`archive/horse-animation-experiments-2026-10-10`) is intentionally not merged.
 **History:** the full checkpoint log up to 2026-10-12 is in [`docs/history/STATUS_LOG_to_2026-10-12.md`](docs/history/STATUS_LOG_to_2026-10-12.md). Search it with `grep -n '^#'`. Keep this page short: replace sections instead of stacking new ones on top.
 
 ## What the game does today (Godot 4.7.2 .NET, `game/`)
@@ -23,7 +23,16 @@ Live per-task status is in [`docs/TASK_STATUS.json`](docs/TASK_STATUS.json); the
 | --- | --- | --- |
 | P0-03, P1-04–P1-07, P1-09, P2-02, P2-07 | P0-02, P1-01/02/03/08 (D-007 art), P1-10, P2-01 (Details), P2-03 (income), P2-05 (practice gallop), P2-06 (owned parents), P2-08 (guide) | P2-04 estate, P2-09, P3+ |
 
-## Next steps
+## Current work: D-012 scene-first stable hub (owner request 2026-10-13)
+Goal: stop the stable looking like a text game. (1) portraits of every horse, (2) a 3D yard home screen with the player's horses, scenery from Meshy.
+- [x] D-012 decision record, Meshy budget 300 credits (check in with owner at 150). Ledger: `art/scenery/meshy/ledger.json`.
+- [x] `tools/meshy/meshy.py` (key is an environment network secret, never in the repo). Barn generated (30 credits).
+- [x] Domain `PhenotypeResolver.ResolveForStablePreview` + test (214/214 locally). No matrix promotion.
+- [ ] Fence, oak tree, hay props, water trough (generating; brings spend to about 150, then owner check-in).
+- [ ] Portraits: SubViewport renders through HorsePresenter on roster cards, Details, breeding, sale.
+- [ ] 3D yard hub: Meshy scenery + saved horses, click a horse to select, HUD top bar + bottom dock. Captures updated.
+
+## Next steps (before D-012)
 1. **`main` branch and Mac install:** `main` is created from this branch once visual CI is green (owner-approved 2026-10-12). Every push to `main` runs `.github/workflows/macos-build.yml`, which uploads `Cloverbrook-Stables-macOS-<run>` (universal, ad-hoc signed, not notarized; see INSTALL.txt inside) to the run's Artifacts. It can also be started by hand from the Actions tab. The owner must make `main` the default branch in GitHub settings.
 2. Rest of P2-03: more buyers with weekly demand, buying horses, visitor activities.
 3. P2-05 settlement: entry fees and prizes need a persisted event record (save schema v4) through its own decision record. The practice kernel's parameters can be reused.
