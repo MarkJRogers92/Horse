@@ -50,7 +50,7 @@ public partial class YardWalkProbe : Node
             var state = presenters.ToDictionary(p => p, p => new Track { Model = p.Model, Position = p.Position });
             double elapsed = 0;
             int walkFrames = 0, bridgeSwaps = 0, walkStarts = 0;
-            double maxJump = 0, maxPaceError = 0, maxSpeed = 0, maxHandoverSlip = 0;
+            double maxJump = 0, maxPaceError = 0, maxSpeed = 0, maxHandoverSlip = 0, fastestClip = 0;
             var shapedStart = presenters.Single(p => p.Descriptor!.FixtureId.Contains("palomino", StringComparison.Ordinal)).Position;
             while (elapsed < SimulatedSeconds)
             {
@@ -95,6 +95,7 @@ public partial class YardWalkProbe : Node
                             maxPaceError = Math.Max(maxPaceError, Math.Abs(groundSpeed - p.LocomotionSpeedMetersPerSecond * clipPace));
                         }
                         maxSpeed = Math.Max(maxSpeed, groundSpeed);
+                        fastestClip = Math.Max(fastestClip, p.LocomotionSpeedMetersPerSecond);
                         Check(p.Animator.IsPlaying() || p.Animator.CurrentAnimation == p.CurrentAnimation, $"{p.Name}: Walk clip not playing while the horse travels");
                     }
                     else if (!p.IsTransitioning && p.Descriptor!.FixtureId.Contains("palomino", StringComparison.Ordinal))
@@ -109,8 +110,7 @@ public partial class YardWalkProbe : Node
             Check(walkStarts >= 6, $"walkers started several walks (starts {walkStarts})");
             Check(bridgeSwaps >= walkStarts, "every walk start/stop used the bridge");
             Check(maxPaceError < 1e-3, $"clip pace matches ground pace every frame (max error {maxPaceError:F6} m/s)");
-            double fastest = walkers.Max(p => p.LocomotionSpeedMetersPerSecond);
-            Check(maxJump <= fastest * Step * 1.001 + 1e-6, $"no teleports (largest single-frame step {maxJump * 1000:F3} mm)");
+            Check(fastestClip > 0 && maxJump <= fastestClip * Step * 1.001 + 1e-6, $"no teleports (largest single-frame step {maxJump * 1000:F3} mm)");
             Check(presenters.All(p => p.Position.Length() < 12), "horses stay in the paddock");
             Check(presenters.Single(p => p.Descriptor!.FixtureId.Contains("palomino", StringComparison.Ordinal)).Position.DistanceTo(shapedStart) < 1e-6,
                 "the shaped horse stayed where it was put");
