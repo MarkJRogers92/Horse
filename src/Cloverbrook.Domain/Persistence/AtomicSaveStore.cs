@@ -296,6 +296,23 @@ namespace Cloverbrook.Domain
             return Publish(HorseFair.ApplyPurchase(current, requester, horseId, expectedSaveRevision, quotedPrice), preserveCurrentAsBackup: true);
         }
 
+        /// <summary>
+        /// D-019: races one horse in this week's cup and saves the entry fee, any prize and the day's training together.
+        /// Returns no outcome when this week's cup was already raced (a retry never pays twice).
+        /// </summary>
+        public (StableSnapshot State, ClubRaceOutcome? Outcome) CommitClubRace(OwnerId requester, HorseId horseId, ulong expectedSaveRevision)
+        {
+            Check.NotNull(requester, nameof(requester)); Check.NotNull(horseId, nameof(horseId));
+            using var held = Lock(); var current = RequirePrimary();
+            if (ClubRace.EnteredThisWeek(current))
+            {
+                if (!current.PlayerOwnerId.Equals(requester)) throw new StableCommandRejectedException("ownership", "Only the stable owner can enter the cup.");
+                return (current, null);
+            }
+            var (replacement, outcome) = ClubRace.ApplyRace(current, requester, horseId, expectedSaveRevision);
+            return (Publish(replacement, preserveCurrentAsBackup: true), outcome);
+        }
+
         /// <summary>D-011: records one day of gallop training for the entrants. Returns the current save unchanged when nobody can gain today.</summary>
         public StableSnapshot RecordPractice(OwnerId requester, ulong expectedSaveRevision, IEnumerable<HorseId> entrants)
         {

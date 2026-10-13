@@ -80,6 +80,25 @@ namespace Cloverbrook.Domain
             }
             var seedHex = Canonical.Hash(new[] { Version, state.Header.SaveId.ToString(), state.Header.CalendarDay.ToString(CultureInfo.InvariantCulture),
                 runIndex.ToString(CultureInfo.InvariantCulture) }.Concat(ids.Select(id => id.ToString()))).Substring(0, 32);
+            return Simulate(runners, seedHex);
+        }
+
+        /// <summary>The race itself: the same physics for practice and for club races (D-019).</summary>
+        internal static PracticeGallopResult Simulate(IReadOnlyList<HorseRecord> horses, IReadOnlyList<int> skills, string seedHex)
+        {
+            if (horses.Count != skills.Count) throw new ArgumentException("Every runner needs a training level.");
+            var runners = new List<Runner>();
+            for (var i = 0; i < horses.Count; i++)
+            {
+                var traits = new PhenotypeResolver().ResolveGenetics(horses[i]).Traits
+                    ?? throw new ArgumentException(horses[i].Name + "'s traits use rules this version cannot read.");
+                runners.Add(new Runner(horses[i], traits.Developed, skills[i]));
+            }
+            return Simulate(runners, seedHex);
+        }
+
+        private static PracticeGallopResult Simulate(List<Runner> runners, string seedHex)
+        {
             var seed = Seed128.Parse(seedHex);
             foreach (var runner in runners) runner.Start(seed);
 

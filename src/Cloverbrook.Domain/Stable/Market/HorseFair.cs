@@ -46,7 +46,7 @@ namespace Cloverbrook.Domain
             ("non_dun1_marked", "E", "A", "N", "N", "nd1", "nd2"),
         };
 
-        private static readonly string[] Names =
+        internal static readonly string[] Names =
         {
             "Bramble", "Clementine", "Dandelion", "Ember", "Fennel", "Hazel", "Indigo", "Jasper", "Lark", "Marigold", "Nutmeg",
             "Oakley", "Pippin", "Quill", "Rosehip", "Saffron", "Thistle", "Willow", "Biscuit", "Cinder", "Duchess", "Fable",
@@ -92,8 +92,15 @@ namespace Cloverbrook.Domain
         private static HorseRecord Create(StableSnapshot state, int week, int slot, HashSet<int> usedCoats, HashSet<string> usedNames, out string coatClass)
         {
             var scope = Canonical.Hash(Version, state.Header.SaveId.ToString(), week.ToString(CultureInfo.InvariantCulture), slot.ToString(CultureInfo.InvariantCulture));
+            return Generate(scope, "fair/offer", state.PlayerOwnerId, OriginRecord, usedCoats, usedNames, out coatClass);
+        }
+
+        /// <summary>A complete adult founder with a released phase-1 coat, derived only from <paramref name="scope"/> (also used for D-019 cup rivals).</summary>
+        internal static HorseRecord Generate(string scope, string purpose, OwnerId owner, string originRecord, HashSet<int> usedCoats, HashSet<string> usedNames, out string coatClass,
+            int markerOnePercent = 50)
+        {
             var seed = Seed128.Parse(scope.Substring(0, 32));
-            var rng = new CounterRng(seed, "fair/offer");
+            var rng = new CounterRng(seed, purpose);
             int coatIndex; do coatIndex = (int)rng.NextBelow(Coats.Length); while (!usedCoats.Add(coatIndex));
             var coat = Coats[coatIndex]; coatClass = coat.Coat;
             string name; var attempts = 0;
@@ -103,7 +110,7 @@ namespace Cloverbrook.Domain
                 var a = new List<string>(); var b = new List<string>();
                 foreach (var locus in block.Loci)
                 {
-                    var (x, y) = Alleles(locus.LocusId, locus.Variant.SupportedAlleleIds[0], coat, block.IsSynthetic, rng);
+                    var (x, y) = Alleles(locus.LocusId, locus.Variant.SupportedAlleleIds[0], coat, block.IsSynthetic, rng, markerOnePercent);
                     a.Add(x); b.Add(y);
                 }
                 return new PhasedBlockPair(block.BlockId, block.IsSynthetic, block.Loci.Select(l => l.LocusId), a, b);
@@ -114,13 +121,14 @@ namespace Cloverbrook.Domain
             var id = new HorseId(Guid.ParseExact(Canonical.Hash(scope, "horse").Substring(0, 32), "N"));
             var age = 10 + (int)rng.NextBelow(10);
             return new HorseRecord(id, name, new Parentage(), genome, CoreGeneticsCatalog.ResolverVersion,
-                Seed128.Parse(Canonical.Hash(scope, "appearance").Substring(0, 32)), state.PlayerOwnerId,
+                Seed128.Parse(Canonical.Hash(scope, "appearance").Substring(0, 32)), owner,
                 new LifeState(LifeStage.Adult, age, VisualAge.Adult), new ReproductionState(role), development, traits.Inherited,
-                homeAssignment: HomeKind.ActiveStable, originRecord: OriginRecord);
+                homeAssignment: HomeKind.ActiveStable, originRecord: originRecord);
         }
 
         private static (string, string) Alleles(string locus, string fallback,
-            (string Coat, string Mc1r, string Asip, string CreamA, string CreamB, string DunA, string DunB) coat, bool synthetic, CounterRng rng)
+            (string Coat, string Mc1r, string Asip, string CreamA, string CreamB, string DunA, string DunB) coat, bool synthetic, CounterRng rng,
+            int markerOnePercent)
         {
             switch (locus)
             {
@@ -130,7 +138,8 @@ namespace Cloverbrook.Domain
                 case "tbx3": return (coat.DunA, coat.DunB);
             }
             // Fictional trait markers vary so fair horses differ in ability; every other real locus stays at its baseline.
-            if (synthetic) return (rng.NextBelow(2) == 0 ? "0" : "1", rng.NextBelow(2) == 0 ? "0" : "1");
+            if (synthetic && markerOnePercent == 50) return (rng.NextBelow(2) == 0 ? "0" : "1", rng.NextBelow(2) == 0 ? "0" : "1");
+            if (synthetic) return (rng.NextBelow(100) < (ulong)markerOnePercent ? "1" : "0", rng.NextBelow(100) < (ulong)markerOnePercent ? "1" : "0");
             return (fallback, fallback);
         }
 

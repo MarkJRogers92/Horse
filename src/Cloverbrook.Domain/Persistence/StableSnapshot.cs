@@ -152,6 +152,14 @@ namespace Cloverbrook.Domain
             foreach (var bought in Horses.Where(HorseFair.IsPurchased))
                 Require(ledger.TryGetValue(HorseFair.PurchaseId(bought.HorseId), out var purchaseDebit) && purchaseDebit.Kind == HorseFair.PurchaseLedgerKind
                     && bought.OriginCommitId == null && bought.Parentage.ParentAId == null && bought.Parentage.ParentBId == null, "A bought horse is missing its purchase debit.");
+            var raceWeeks = Enumerable.Range(0, HorseFair.Week(Header.CalendarDay) + 1);
+            foreach (var entry in Ledger.Where(l => l.Kind == ClubRace.EntryLedgerKind))
+                Require(entry.BreedingId == null && entry.DeltaCoins == -ClubRace.EntryFee && raceWeeks.Any(w => ClubRace.EntryId(Header.SaveId, w).Equals(entry.Id)),
+                    "A cup entry fee does not belong to a week of this stable.");
+            foreach (var prize in Ledger.Where(l => l.Kind == ClubRace.PrizeLedgerKind))
+                Require(prize.BreedingId == null && ClubRace.IsPrizeAmount(prize.DeltaCoins)
+                    && raceWeeks.Any(w => ClubRace.PrizeId(Header.SaveId, w).Equals(prize.Id) && ledger.TryGetValue(ClubRace.EntryId(Header.SaveId, w), out var paid) && paid.Kind == ClubRace.EntryLedgerKind),
+                    "A cup prize has no matching entry.");
             foreach (var credit in Ledger.Where(l => l.Kind == StableDayTransaction.IncomeLedgerKind))
                 Require(DailyState.Receipts.Any(r => r.IncomeCoins > 0 && r.IncomeTransactionId.Equals(credit.Id)
                     && credit.DeltaCoins == r.IncomeCoins), "Orphan daily income credit.");
