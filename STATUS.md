@@ -28,9 +28,11 @@ Goal: stop the stable looking like a text game. (1) portraits of every horse, (2
 - [x] D-012 decision record, Meshy budget 300 credits (check in with owner at 150). Ledger: `art/scenery/meshy/ledger.json`.
 - [x] `tools/meshy/meshy.py` (key is an environment network secret, never in the repo). Barn generated (30 credits).
 - [x] Domain `PhenotypeResolver.ResolveForStablePreview` + test (214/214 locally). No matrix promotion.
-- [ ] Fence, oak tree, hay props, water trough (generating; brings spend to about 150, then owner check-in).
-- [ ] Portraits: SubViewport renders through HorsePresenter on roster cards, Details, breeding, sale.
-- [ ] 3D yard hub: Meshy scenery + saved horses, click a horse to select, HUD top bar + bottom dock. Captures updated.
+- [x] Fence, oak tree, hay props, water trough generated (30 credits each). **Spend is 150/300: owner check-in reached; ask before any further generation** (tool refuses without `--past-checkpoint`). Textures resized to 1024 (42 MB to 6 MB).
+- [x] Portraits: `HorsePortraitStudio` (private SubViewport through HorsePresenter, cached by descriptor) + `portrait_card.gdshader`. Shown on roster cards, care sections and Details.
+- [x] 3D yard hub: `StableYard` (Meshy scenery with procedural fallbacks, saved horses in paddock slots, click a horse to open Details and focus the camera). New layout: top bar, roster left, care/breeding right, Pip top centre, bottom dock. Captures wait for portraits.
+- Verified locally: 214/214 tests, game `-warnaserror` build, stable-day, lifecycle and breeding captures all OK. Evidence: `docs/stable/evidence/2026-10-13-hub/` (00_before vs 01_hub).
+- [ ] Next: breeding dialog with mare/stallion portraits, sale offer portrait, gallop shown with horses, horses wandering/walking in the yard, more Meshy scenery after owner approval.
 
 ## Next steps (before D-012)
 1. **`main` branch and Mac install:** `main` is created from this branch once visual CI is green (owner-approved 2026-10-12). Every push to `main` runs `.github/workflows/macos-build.yml`, which uploads `Cloverbrook-Stables-macOS-<run>` (universal, ad-hoc signed, not notarized; see INSTALL.txt inside) to the run's Artifacts. It can also be started by hand from the Actions tab. The owner must make `main` the default branch in GitHub settings.

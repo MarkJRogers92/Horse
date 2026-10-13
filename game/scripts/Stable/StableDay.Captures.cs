@@ -254,6 +254,8 @@ public partial class StableDay
     private async Task CaptureFrame(string path)
     {
         _guideSpeaker.Finish(); _saleSpeaker.Finish();
+        // Portraits render asynchronously; screenshots must show them, not placeholders.
+        for (var i = 0; i < 600 && _portraits.Busy; i++) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
         await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
         var image = GetViewport().GetTexture().GetImage();

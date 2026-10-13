@@ -17,8 +17,78 @@
       ],
       "status": "downloaded",
       "balanceAfter": 1134,
-      "chargedCredits": 30
+      "chargedCredits": 30,
+      "licenseBasis": "Owner's paid Meshy plan; see D-012 Licensing."
+    },
+    {
+      "name": "fence",
+      "prompt": "One straight section of white wooden paddock fence, two square posts with three horizontal rails between them, about 3 meters long, slightly weathered painted wood. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T03:09:01+00:00",
+      "balanceBefore": 1134,
+      "aiModel": "latest",
+      "previewTaskId": "01a1333c-251d-710e-be30-bd9b3dde4559",
+      "refineTaskId": "01a1333c-af7e-76aa-bf89-95c972b4b706",
+      "glbBytes": 6928124,
+      "files": [
+        "game/assets/scenery/fence/fence.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 1104,
+      "chargedCredits": 30,
+      "licenseBasis": "Owner's paid Meshy plan; see D-012 Licensing."
+    },
+    {
+      "name": "oak_tree",
+      "prompt": "A single rounded leafy oak tree with a thick gnarled trunk and a full soft canopy in fresh green, countryside tree. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T03:10:27+00:00",
+      "balanceBefore": 1104,
+      "aiModel": "latest",
+      "previewTaskId": "01a1333d-73e1-7342-842e-9f2f7587bc13",
+      "refineTaskId": "01a1333f-ed0c-70a2-9291-aafd28e65412",
+      "glbBytes": 8467220,
+      "files": [
+        "game/assets/scenery/oak_tree/oak_tree.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 1074,
+      "chargedCredits": 30,
+      "licenseBasis": "Owner's paid Meshy plan; see D-012 Licensing."
+    },
+    {
+      "name": "hay_props",
+      "prompt": "A small cluster of stable props: two stacked rectangular golden hay bales tied with twine, a light blue metal bucket and a wooden pitchfork leaning against the bales. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T03:14:00+00:00",
+      "balanceBefore": 1074,
+      "aiModel": "latest",
+      "previewTaskId": "01a13340-b1f1-76a4-8af8-e37b8511ed8a",
+      "refineTaskId": "01a13342-36a0-7784-b3db-1634038226fb",
+      "glbBytes": 9562432,
+      "files": [
+        "game/assets/scenery/hay_props/hay_props.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 1044,
+      "chargedCredits": 30,
+      "licenseBasis": "Owner's paid Meshy plan; see D-012 Licensing."
+    },
+    {
+      "name": "water_trough",
+      "prompt": "A rustic wooden horse water trough on short legs, filled with clear water, iron bands around the planks. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T03:16:29+00:00",
+      "balanceBefore": 1044,
+      "aiModel": "latest",
+      "previewTaskId": "01a13342-f9bb-7729-8aa2-66f3ba105d60",
+      "refineTaskId": "01a13343-a846-733e-bb8a-ce214cf3fdf9",
+      "glbBytes": 7291860,
+      "files": [
+        "game/assets/scenery/water_trough/water_trough.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 1014,
+      "chargedCredits": 30,
+      "licenseBasis": "Owner's paid Meshy plan; see D-012 Licensing."
     }
   ],
-  "spentCredits": 30
+  "spentCredits": 150,
+  "postProcessing": "Textures resized to 1024x1024 with @gltf-transform/cli 4.1.1 'resize' before commit (about 42 MB to 6 MB); geometry unchanged."
 }

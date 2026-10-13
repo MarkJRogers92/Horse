@@ -13,20 +13,23 @@ public partial class StableDay
     private Control _inspectOverlay = null!;
     private Label _inspectTitle = null!;
     private Label _inspectDetails = null!;
+    private HBoxContainer _inspectRow = null!;
     private Button _inspectSellButton = null!;
     private HorseId? _inspectedHorse;
     private readonly Dictionary<HorseId, Button> _inspectButtons = new();
 
     private void BuildInspectOverlay(Control root)
     {
-        _inspectOverlay = CozyTheme.Dialog(root, "", 580, out var body, out var buttons, out _inspectTitle);
-        _inspectDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(520, 0) };
-        body.AddChild(_inspectDetails);
+        _inspectOverlay = CozyTheme.Dialog(root, "", 640, out var body, out var buttons, out _inspectTitle);
+        _inspectRow = new HBoxContainer(); _inspectRow.AddThemeConstantOverride("separation", 16);
+        _inspectDetails = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(340, 0), SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
+        _inspectRow.AddChild(_inspectDetails);
+        body.AddChild(_inspectRow);
         _inspectSellButton = new Button { Text = "Ask for an offer", CustomMinimumSize = new Vector2(170, 46) };
         _inspectSellButton.Pressed += () => { if (_inspectedHorse != null) ShowSaleOffer(_inspectedHorse); };
         buttons.AddChild(_inspectSellButton);
         var close = new Button { Text = "Close", CustomMinimumSize = new Vector2(130, 46) };
-        close.Pressed += () => _inspectOverlay.Visible = false;
+        close.Pressed += () => { _inspectOverlay.Visible = false; _yard.Focus(null); };
         buttons.AddChild(close);
         CozyTheme.FinishDialog(body, buttons);
     }
@@ -49,6 +52,10 @@ public partial class StableDay
             _inspectedHorse = horseId;
             _inspectTitle.Text = profile.Name;
             _inspectDetails.Text = string.Join("\n", InspectionLines(profile, PracticeTraining.Skill(horse)));
+            foreach (var old in _inspectRow.GetChildren().Where(c => c != _inspectDetails)) old.QueueFree();
+            var portrait = Portrait(horse, 200, CardTint(horse)); portrait.SizeFlagsVertical = Control.SizeFlags.ShrinkBegin;
+            _inspectRow.AddChild(portrait); _inspectRow.MoveChild(portrait, 0);
+            _yard.Focus(horse.HorseId.ToString());
             var offer = HorseMarket.Quote(_state, horseId);
             _inspectSellButton.Visible = horse.OriginCommitId != null && !HorseMarket.IsSold(horse);
             _inspectSellButton.Disabled = !offer.Allowed || _busy;

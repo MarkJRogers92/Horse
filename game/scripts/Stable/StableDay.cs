@@ -48,6 +48,7 @@ public partial class StableDay : Node
         _foalingDemoMode = args.Contains("--foaling-demo") || args.Any(a => a.StartsWith("--stable-lifecycle-capture=", StringComparison.Ordinal));
         _store = new AtomicSaveStore(ResolveSavePath(args, _foalingDemoMode));
         LoadGuidePreference();
+        BuildHub();
         BuildUi();
         _captureOutput = args.FirstOrDefault(a => a.StartsWith("--stable-day-capture=", StringComparison.Ordinal))?["--stable-day-capture=".Length..];
         _lifecycleCaptureOutput = args.FirstOrDefault(a => a.StartsWith("--stable-lifecycle-capture=", StringComparison.Ordinal))?["--stable-lifecycle-capture=".Length..];
@@ -233,65 +234,57 @@ public partial class StableDay : Node
         root.OffsetLeft = root.OffsetTop = root.OffsetRight = root.OffsetBottom = 0;
         layer.AddChild(root);
 
-        var page = new VBoxContainer { Position = new Vector2(20, 16), Size = new Vector2(1240, 688), AnchorRight = 1, AnchorBottom = 1 };
-        page.OffsetRight = -40;
-        page.OffsetBottom = -32;
-        page.AddThemeConstantOverride("separation", 10);
-        root.AddChild(page);
+        root.MouseFilter = Control.MouseFilterEnum.Ignore; // clicks on open yard reach the horses
 
-        var header = new HBoxContainer();
-        header.AddChild(CozyTheme.Title("A Day at the Stable", 32));
-        header.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill });
-        var prototype = CozyTheme.Title("STABLE MANAGEMENT · PROTOTYPE", 13);
-        prototype.VerticalAlignment = VerticalAlignment.Center;
-        header.AddChild(prototype);
-        _foalingDemoButton = new Button { Text = _foalingDemoMode ? "Foaling demo · active" : "Foaling demo", CustomMinimumSize = new Vector2(190, 42), Disabled = _foalingDemoMode };
-        _foalingDemoButton.Pressed += OpenFoalingDemo;
-        header.AddChild(_foalingDemoButton);
-        _backButton = new Button { Text = "Back to menu", CustomMinimumSize = new Vector2(150, 42) };
-        _backButton.Pressed += () => GetTree().ChangeSceneToFile("res://scenes/main.tscn");
-        header.AddChild(_backButton);
-        page.AddChild(header);
-
-        var summary = new HBoxContainer();
-        summary.AddThemeConstantOverride("separation", 12);
+        // Top bar: game title, calendar and wallet pills, menu buttons.
+        var header = new HBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore };
+        header.AddThemeConstantOverride("separation", 10);
+        Anchor(header, 0, 0, 1, 0, 16, 12, -16, 64);
+        header.AddChild(CozyTheme.Ribbon("Cloverbrook Stables", 24));
         _season = SummaryCard("Season 1 · Day 1");
         _wallet = SummaryCard("500 coins");
-        summary.AddChild(SummaryPanel(_season, "CALENDAR"));
-        summary.AddChild(SummaryPanel(_wallet, "WALLET"));
-        summary.AddChild(BuildGuidePanel());
-        page.AddChild(summary);
+        header.AddChild(HudPill(_season, "DAY"));
+        header.AddChild(HudPill(_wallet, "COINS"));
+        header.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, MouseFilter = Control.MouseFilterEnum.Ignore });
+        _foalingDemoButton = new Button { Text = _foalingDemoMode ? "Foaling demo · active" : "Foaling demo", CustomMinimumSize = new Vector2(170, 44), Disabled = _foalingDemoMode };
+        _foalingDemoButton.Pressed += OpenFoalingDemo;
+        header.AddChild(_foalingDemoButton);
+        _backButton = new Button { Text = "Menu", CustomMinimumSize = new Vector2(100, 44) };
+        _backButton.Pressed += () => GetTree().ChangeSceneToFile("res://scenes/main.tscn");
+        header.AddChild(_backButton);
+        root.AddChild(header);
 
-        var columns = new HSplitContainer { SizeFlagsVertical = Control.SizeFlags.ExpandFill, SplitOffsets = new[] { 365 }, DraggerVisibility = SplitContainer.DraggerVisibilityEnum.Hidden };
-        columns.AddThemeConstantOverride("separation", 12);
-        page.AddChild(columns);
-
-        var rosterPanel = new PanelContainer { CustomMinimumSize = new Vector2(320, 0) };
-        columns.AddChild(rosterPanel);
-        var rosterBox = new VBoxContainer(); rosterBox.AddThemeConstantOverride("separation", 8); rosterPanel.AddChild(rosterBox);
-        rosterBox.AddChild(CozyTheme.Title("Your horses", 23));
+        // Left: your horses with portraits.
+        var rosterPanel = new PanelContainer();
+        Anchor(rosterPanel, 0, 0, 0, 1, 16, 76, 352, -76);
+        root.AddChild(rosterPanel);
+        var rosterBox = new VBoxContainer(); rosterBox.AddThemeConstantOverride("separation", 6); rosterPanel.AddChild(rosterBox);
+        rosterBox.AddChild(CozyTheme.Title("Your horses", 22));
         var rosterScroll = new ScrollContainer { SizeFlagsVertical = Control.SizeFlags.ExpandFill, HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled };
         rosterBox.AddChild(rosterScroll);
         _roster = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
         _roster.AddThemeConstantOverride("separation", 8);
         rosterScroll.AddChild(_roster);
         _history = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
-        _history.AddThemeConstantOverride("separation", 5);
-        rosterBox.AddChild(CozyTheme.Title("Recent milestones", 18));
+        _history.AddThemeConstantOverride("separation", 4);
+        rosterBox.AddChild(CozyTheme.Title("Recent milestones", 16));
         var historyScroll = new ScrollContainer
         {
-            CustomMinimumSize = new Vector2(0, 96),
+            CustomMinimumSize = new Vector2(0, 64),
             HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled
         };
         historyScroll.AddChild(_history);
         rosterBox.AddChild(historyScroll);
 
-        var carePanel = new PanelContainer(); columns.AddChild(carePanel);
-        var careBox = new VBoxContainer(); careBox.AddThemeConstantOverride("separation", 8); carePanel.AddChild(careBox);
-        careBox.AddChild(CozyTheme.Title("Today's care", 23));
-        var instruction = new Label { Text = "Feed and fresh bedding are always included. Choose extra comfort care for each horse.",
-            AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(450, 0) };
-        instruction.AddThemeFontSizeOverride("font_size", 15);
+        // Right: today's care and breeding.
+        var carePanel = new PanelContainer();
+        Anchor(carePanel, 1, 0, 1, 1, -440, 76, -16, -76);
+        root.AddChild(carePanel);
+        var careBox = new VBoxContainer(); careBox.AddThemeConstantOverride("separation", 6); carePanel.AddChild(careBox);
+        careBox.AddChild(CozyTheme.Title("Today's care", 22));
+        var instruction = new Label { Text = "Feed and fresh bedding are always included. Add comfort care for each horse.",
+            AutowrapMode = TextServer.AutowrapMode.WordSmart };
+        instruction.AddThemeFontSizeOverride("font_size", 13);
         careBox.AddChild(instruction);
         var careScroll = new ScrollContainer { SizeFlagsVertical = Control.SizeFlags.ExpandFill, HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled };
         careBox.AddChild(careScroll);
@@ -300,27 +293,35 @@ public partial class StableDay : Node
         careScroll.AddChild(_care);
         BuildBreedingUi(careBox, root);
 
-        var footer = new HBoxContainer(); footer.AddThemeConstantOverride("separation", 10);
-        var leftActions = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
-        _status = new Label { Text = "Loading your stable…", AutowrapMode = TextServer.AutowrapMode.WordSmart };
+        // Centre bottom: Pip, over the open yard.
+        var guide = BuildGuidePanel();
+        guide.SizeFlagsHorizontal = guide.SizeFlagsVertical = Control.SizeFlags.Fill;
+        Anchor(guide, 0, 0, 1, 0, 368, 76, -456, 196);
+        root.AddChild(guide);
+
+        // Bottom dock: status and the day's main actions.
+        var footer = new HBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore }; footer.AddThemeConstantOverride("separation", 10);
+        Anchor(footer, 0, 1, 1, 1, 16, -66, -16, -12);
+        _status = new Label { Text = "Loading your stable…", AutowrapMode = TextServer.AutowrapMode.WordSmart, SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
+            VerticalAlignment = VerticalAlignment.Center };
         _status.AddThemeFontSizeOverride("font_size", 14);
-        leftActions.AddChild(_status);
-        var buttonRow = new HBoxContainer();
-        _reloadButton = new Button { Text = "Reload save", CustomMinimumSize = new Vector2(150, 44) };
+        var statusPanel = new PanelContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
+        statusPanel.AddThemeStyleboxOverride("panel", CozyTheme.Box(new Color(1, 1, 1, 0.82f), 18, 6));
+        statusPanel.AddChild(_status);
+        footer.AddChild(statusPanel);
+        _reloadButton = new Button { Text = "Reload save", CustomMinimumSize = new Vector2(140, 50) };
         _reloadButton.Pressed += ReloadState;
-        buttonRow.AddChild(_reloadButton);
-        _retryButton = new Button { Text = "Retry saved day", Visible = false, CustomMinimumSize = new Vector2(180, 44) };
+        footer.AddChild(_reloadButton);
+        _retryButton = new Button { Text = "Retry saved day", Visible = false, CustomMinimumSize = new Vector2(170, 50) };
         _retryButton.Pressed += () => _ = CommitPendingAsync();
-        buttonRow.AddChild(_retryButton);
-        _reviewButton = new Button { Text = "Review day", CustomMinimumSize = new Vector2(180, 48) };
-        _reviewButton.Pressed += ShowReview;
-        buttonRow.AddChild(_reviewButton);
-        _practiceButton = new Button { Text = "Practice gallop", CustomMinimumSize = new Vector2(170, 44) };
+        footer.AddChild(_retryButton);
+        _practiceButton = new Button { Text = "Practice gallop", CustomMinimumSize = new Vector2(170, 50) };
         _practiceButton.Pressed += ShowPractice;
-        buttonRow.AddChild(_practiceButton);
-        leftActions.AddChild(buttonRow);
-        footer.AddChild(leftActions);
-        page.AddChild(footer);
+        footer.AddChild(_practiceButton);
+        _reviewButton = new Button { Text = "Review day", CustomMinimumSize = new Vector2(180, 54) };
+        _reviewButton.Pressed += ShowReview;
+        footer.AddChild(_reviewButton);
+        root.AddChild(footer);
 
         BuildReviewOverlay(root);
         BuildInspectOverlay(root);
@@ -329,13 +330,21 @@ public partial class StableDay : Node
         BuildRecoveryDialog(root);
     }
 
-    private static Label SummaryCard(string value) => CozyTheme.Title(value, 24);
+    private static Label SummaryCard(string value) => CozyTheme.Title(value, 20);
 
-    private static Control SummaryPanel(Label value, string label)
+    private static void Anchor(Control control, float left, float top, float right, float bottom, float offsetLeft, float offsetTop, float offsetRight, float offsetBottom)
     {
-        var panel = new PanelContainer { CustomMinimumSize = new Vector2(220, 58) };
-        var box = new VBoxContainer(); box.AddThemeConstantOverride("separation", 0); panel.AddChild(box);
-        var heading = CozyTheme.Title(label, 11); box.AddChild(heading); box.AddChild(value);
+        control.AnchorLeft = left; control.AnchorTop = top; control.AnchorRight = right; control.AnchorBottom = bottom;
+        control.OffsetLeft = offsetLeft; control.OffsetTop = offsetTop; control.OffsetRight = offsetRight; control.OffsetBottom = offsetBottom;
+    }
+
+    private static Control HudPill(Label value, string label)
+    {
+        var panel = new PanelContainer { CustomMinimumSize = new Vector2(150, 0) };
+        panel.AddThemeStyleboxOverride("panel", CozyTheme.Box(new Color(1, 1, 1, 0.9f), 20, 4));
+        var box = new VBoxContainer(); box.AddThemeConstantOverride("separation", -4); panel.AddChild(box);
+        var heading = CozyTheme.Title(label, 10); heading.AddThemeColorOverride("font_color", CozyTheme.AccentDeep);
+        box.AddChild(heading); box.AddChild(value);
         return panel;
     }
 
@@ -380,13 +389,18 @@ public partial class StableDay : Node
         {
             var care = _state.DailyState.For(horse.HorseId);
             var card = new PanelContainer();
-            var content = new VBoxContainer(); content.AddThemeConstantOverride("separation", 3); card.AddChild(content);
-            var header = new HBoxContainer();
-            var title = CozyTheme.Title(horse.Name, 20); title.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
-            header.AddChild(title); header.AddChild(InspectButton(horse.HorseId)); content.AddChild(header);
+            var cardRow = new HBoxContainer(); cardRow.AddThemeConstantOverride("separation", 10); card.AddChild(cardRow);
+            var portrait = Portrait(horse, 84, CardTint(horse));
+            portrait.SizeFlagsVertical = Control.SizeFlags.ShrinkBegin;
+            cardRow.AddChild(portrait);
+            var content = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill }; content.AddThemeConstantOverride("separation", 1); cardRow.AddChild(content);
+            var title = CozyTheme.Title(horse.Name, 19);
+            content.AddChild(title);
             content.AddChild(SmallText($"{StageName(horse.LifeState.Stage)} · {HomeName(horse.HomeAssignment)}"));
-            content.AddChild(SmallText($"Condition: nutrition {Percent(care.Nutrition)} · bedding {Percent(care.Bedding)}"));
-            content.AddChild(SmallText($"Comfort: turnout {Percent(care.Turnout)} · grooming {Percent(care.Grooming)}"));
+            content.AddChild(CareBar("Fed", care.Nutrition)); content.AddChild(CareBar("Bedding", care.Bedding));
+            content.AddChild(CareBar("Turnout", care.Turnout)); content.AddChild(CareBar("Grooming", care.Grooming));
+            var details = InspectButton(horse.HorseId); details.SizeFlagsHorizontal = Control.SizeFlags.ShrinkBegin; details.CustomMinimumSize = new Vector2(96, 34);
+            content.AddChild(details);
             var parents = ParentNames(horse);
             if (parents.Length > 0) content.AddChild(SmallText("Parents: " + parents));
             if (horse.ReproductionState.PregnancyId != null)
@@ -427,7 +441,7 @@ public partial class StableDay : Node
             if (horse.OwnerId.Equals(_state.PlayerOwnerId) && horse.OriginCommitId != null && horse.LifeState.Stage != LifeStage.Unborn)
             {
                 var renameRow = new HBoxContainer();
-                var nameInput = new LineEdit { PlaceholderText = "Choose a name", Text = horse.Name, MaxLength = 40, CustomMinimumSize = new Vector2(190, 38), SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
+                var nameInput = new LineEdit { PlaceholderText = "Choose a name", Text = horse.Name, MaxLength = 40, CustomMinimumSize = new Vector2(120, 38), SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
                 var rename = new Button { Text = horse.LifeState.Stage == LifeStage.Foal ? "Name foal" : "Rename horse", CustomMinimumSize = new Vector2(125, 38) };
                 rename.Pressed += () => _ = RenameFoalAsync(horse.HorseId, nameInput.Text);
                 renameRow.AddChild(nameInput); renameRow.AddChild(rename); _roster.AddChild(renameRow);
@@ -437,7 +451,11 @@ public partial class StableDay : Node
             if (!_optionalCare.ContainsKey(horse.HorseId)) _optionalCare[horse.HorseId] = (false, false);
             var options = _optionalCare[horse.HorseId];
             var section = new PanelContainer(); var sectionBox = new VBoxContainer(); sectionBox.AddThemeConstantOverride("separation", 5); section.AddChild(sectionBox);
-            sectionBox.AddChild(CozyTheme.Title(horse.Name, 19));
+            var sectionHeader = new HBoxContainer(); sectionHeader.AddThemeConstantOverride("separation", 8);
+            sectionHeader.AddChild(Portrait(horse, 40, CardTint(horse)));
+            var sectionTitle = CozyTheme.Title(horse.Name, 18); sectionTitle.VerticalAlignment = VerticalAlignment.Center;
+            sectionHeader.AddChild(sectionTitle);
+            sectionBox.AddChild(sectionHeader);
             var required = new HBoxContainer();
             required.AddChild(CareToggle("Feed", true, true)); required.AddChild(CareToggle("Fresh bedding", true, true));
             sectionBox.AddChild(required);
@@ -452,11 +470,11 @@ public partial class StableDay : Node
             _optionalToggles.Add(groom);
             optional.AddChild(groom);
             sectionBox.AddChild(optional);
-            sectionBox.AddChild(SmallText("Optional care can be changed before you review the day."));
             _care.AddChild(section);
         }
 
         RefreshMilestoneHistory();
+        RefreshYard();
 
         if (_recoveryRequired) SetStatus("A verified backup needs your acknowledgment before the stable can be changed.");
         SetControlsEnabled(!_busy && !_recoveryRequired);
@@ -524,6 +542,26 @@ public partial class StableDay : Node
         var toggle = new CheckButton { Text = text, ButtonPressed = value, Disabled = required, CustomMinimumSize = new Vector2(155, 40) };
         toggle.AddThemeColorOverride("font_disabled_color", CozyTheme.Text);
         return toggle;
+    }
+
+    private static Color CardTint(HorseRecord horse) => horse.LifeState.Stage is LifeStage.Foal or LifeStage.Youngster
+        ? Color.FromHtml("#fbe7b0") : horse.ReproductionState.Role == ReproductiveRole.Mare ? Color.FromHtml("#fde4ec") : Color.FromHtml("#d9ecf8");
+
+    /// <summary>A small labelled meter, 0-10000 basis points.</summary>
+    private static Control CareBar(string label, int basisPoints)
+    {
+        var row = new HBoxContainer(); row.AddThemeConstantOverride("separation", 6);
+        var name = new Label { Text = label, CustomMinimumSize = new Vector2(64, 0) };
+        name.AddThemeFontSizeOverride("font_size", 12); name.AddThemeColorOverride("font_color", CozyTheme.SoftText);
+        row.AddChild(name);
+        var bar = new ProgressBar { MinValue = 0, MaxValue = 10000, Value = basisPoints, ShowPercentage = false, CustomMinimumSize = new Vector2(0, 10),
+            SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, SizeFlagsVertical = Control.SizeFlags.ShrinkCenter, TooltipText = Percent(basisPoints) };
+        var back = CozyTheme.Box(new Color(CozyTheme.Border, 0.6f), 5, 0); back.ContentMarginLeft = back.ContentMarginRight = 0;
+        var fill = CozyTheme.Box(basisPoints >= 6000 ? Color.FromHtml("#8fd1a8") : basisPoints >= 3500 ? Color.FromHtml("#f6c76b") : Color.FromHtml("#f19a9a"), 5, 0);
+        fill.ContentMarginLeft = fill.ContentMarginRight = 0;
+        bar.AddThemeStyleboxOverride("background", back); bar.AddThemeStyleboxOverride("fill", fill);
+        row.AddChild(bar);
+        return row;
     }
 
     private static Label SmallText(string text)
