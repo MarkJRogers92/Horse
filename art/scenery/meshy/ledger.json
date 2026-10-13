@@ -575,9 +575,89 @@
       "status": "downloaded",
       "balanceAfter": 734,
       "chargedCredits": 30
+    },
+    {
+      "name": "flower_cart",
+      "prompt": "A charming small wooden flower cart with two spoked wheels, painted sage green, its bed overflowing with pastel pink, white and lavender flowers in pots. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals, no text.",
+      "createdAt": "2026-10-13T16:52:24+00:00",
+      "balanceBefore": 734,
+      "aiModel": "latest",
+      "previewTaskId": "01a1362d-f952-7344-bd70-ed10ed7b6618",
+      "refineTaskId": "01a13630-21d7-765b-ab73-a8b1665e89db",
+      "glbBytes": 11211664,
+      "files": [
+        "game/assets/scenery/flower_cart/flower_cart.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 704,
+      "chargedCredits": 30
+    },
+    {
+      "name": "lamp_post",
+      "prompt": "A cute old-fashioned black iron garden lantern post with a glass lantern on top and a small hanging flower basket with pink flowers. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals, no text.",
+      "createdAt": "2026-10-13T16:56:07+00:00",
+      "balanceBefore": 704,
+      "aiModel": "latest",
+      "previewTaskId": "01a13631-5daf-730f-b63e-2aac64a680c8",
+      "refineTaskId": "01a13632-37cb-70f7-86f0-c86917021080",
+      "glbBytes": 10858016,
+      "files": [
+        "game/assets/scenery/lamp_post/lamp_post.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 674,
+      "chargedCredits": 30
+    },
+    {
+      "name": "birdhouse",
+      "prompt": "A cute wooden birdhouse on a tall wooden post, painted cream with a dusty rose shingle roof and a little round door, a tiny perch. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals, no text.",
+      "createdAt": "2026-10-13T16:58:02+00:00",
+      "balanceBefore": 674,
+      "aiModel": "latest",
+      "previewTaskId": "01a13633-2104-7614-9b9b-adc4c9edfc86",
+      "refineTaskId": "01a13633-d016-7285-ac5f-fcbafa50c3b0",
+      "glbBytes": 7887544,
+      "files": [
+        "game/assets/scenery/birdhouse/birdhouse.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 644,
+      "chargedCredits": 30
+    },
+    {
+      "name": "picnic_table",
+      "prompt": "A cosy wooden picnic table with attached benches, with a pink gingham tablecloth, a wicker basket and a small vase of flowers on top. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals, no text.",
+      "createdAt": "2026-10-13T16:59:57+00:00",
+      "balanceBefore": 644,
+      "aiModel": "latest",
+      "previewTaskId": "01a13634-e213-7464-a4da-c6ad8847a7c3",
+      "refineTaskId": "01a13635-e661-768f-b48c-724ed40001b3",
+      "glbBytes": 8825476,
+      "files": [
+        "game/assets/scenery/picnic_table/picnic_table.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 614,
+      "chargedCredits": 30
+    },
+    {
+      "name": "rose_arch",
+      "prompt": "A white painted wooden garden arch trellis covered in climbing pink roses and green leaves, two posts and a curved top. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals, no text.",
+      "createdAt": "2026-10-13T17:02:14+00:00",
+      "balanceBefore": 614,
+      "aiModel": "latest",
+      "previewTaskId": "01a13636-faa1-7234-8f41-6a51f92b84b5",
+      "refineTaskId": "01a13638-d207-7631-b65a-13baccc5c9c7",
+      "glbBytes": 12758904,
+      "files": [
+        "game/assets/scenery/rose_arch/rose_arch.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 584,
+      "chargedCredits": 30
     }
   ],
-  "spentCredits": 540,
+  "spentCredits": 690,
   "postProcessing": "Textures resized to 1024x1024 with @gltf-transform/cli 4.1.1 'resize' before commit (about 42 MB to 6 MB); geometry unchanged.",
   "balanceNote": "The account balance rose by about 100 credits between the wheelbarrow (balance 864) and the first image (balance before 964), outside any task here (likely a Meshy credit adjustment). Per-task charges are measured within each task, so the D-012 total is unaffected.",
   "imagePostProcessing": "Icons: 1024 px Meshy images cut out from their cream background by border flood fill, cropped to content and saved at 256 px RGBA.",

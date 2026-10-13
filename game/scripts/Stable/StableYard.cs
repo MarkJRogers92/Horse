@@ -308,6 +308,44 @@ public partial class StableYard : Node3D
         return best;
     }
 
+    // D-022 decorations: owned items stand at fixed, camera-visible spots outside the paddock.
+    public static readonly (Vector3 Position, float Yaw)[] DecorSpots =
+    {
+        (new Vector3(-9.6f, 0, -4.0f), 40f), (new Vector3(-10.8f, 0, -8.2f), 55f), (new Vector3(-6.0f, 0, -11.0f), 15f),
+        (new Vector3(6.6f, 0, -10.0f), -20f), (new Vector3(9.6f, 0, -4.2f), -50f), (new Vector3(-1.6f, 0, -9.4f), 5f),
+        (new Vector3(2.0f, 0, -9.0f), -10f), (new Vector3(13.0f, 0, -12.0f), -35f),
+    };
+    private readonly Dictionary<string, Node3D> _decor = new();
+    private Node3D? _annex;
+
+    /// <summary>Show the owned decorations at their spots (asset, target height, spot index); unlisted ones are removed.</summary>
+    public void SetDecor(IReadOnlyList<(string Key, string Asset, float Height, int Spot)> items)
+    {
+        foreach (var key in _decor.Keys.Where(k => items.All(i => i.Key != k)).ToList()) { _decor[key].QueueFree(); _decor.Remove(key); }
+        foreach (var (key, asset, height, spot) in items)
+        {
+            if (spot < 0 || spot >= DecorSpots.Length) continue;
+            var (position, yaw) = DecorSpots[spot];
+            if (_decor.TryGetValue(key, out var existing))
+            {
+                existing.Position = position; existing.RotationDegrees = new Vector3(0, yaw, 0);
+                continue;
+            }
+            var node = Place(asset, height, position, yaw, () => new Node3D());
+            node.Scale = Vector3.One * 0.01f;
+            CreateTween().TweenProperty(node, "scale", Vector3.One, 0.45).SetTrans(Tween.TransitionType.Back).SetEase(Tween.EaseType.Out);
+            _decor[key] = node;
+        }
+    }
+
+    /// <summary>D-022: a second stable block appears once extra stalls are built.</summary>
+    public void SetStalls(int stalls)
+    {
+        var show = stalls > 4;
+        if (show && _annex == null) _annex = Place("stable_block", 4.2f, new Vector3(-13.2f, 0, -13.4f), 28f, () => new Node3D());
+        if (_annex != null) _annex.Visible = show;
+    }
+
     private Node3D _fairTent = null!, _trophy = null!;
     private Label3D _trophyTag = null!, _fairTag = null!;
 

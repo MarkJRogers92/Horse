@@ -125,6 +125,18 @@ public partial class StableDay
                 while (_yard.ElapsedSeconds - ended < after) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
                 await CaptureFrame(System.IO.Path.Combine(output, name + ".png"));
             }
+            if (_state?.Horses.FirstOrDefault(h => h.OwnerId.Equals(_state.PlayerOwnerId) && h.LifeState.Stage == LifeStage.Adult) is { } petted)
+            {
+                var spot = GetViewport().GetVisibleRect().Size / 2 + new Vector2(-80, 40);
+                ShowCareBubble(petted.HorseId, spot);
+                await CaptureFrame(System.IO.Path.Combine(output, "07b_care_bubble.png"));
+                await InteractAsync(petted.HorseId, "pat");
+                await InteractAsync(petted.HorseId, "carrot");
+                var hearts = _yard.ElapsedSeconds;
+                while (_yard.ElapsedSeconds - hearts < 0.8) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                await CaptureFrame(System.IO.Path.Combine(output, "07c_care_hearts.png"));
+                CloseCareBubble();
+            }
             if (OS.GetCmdlineUserArgs().Contains("--hub-birth"))
             {
                 for (var day = 0; day < 12 && _birthFoal == null; day++)
@@ -194,6 +206,18 @@ public partial class StableDay
                 await CaptureFrame(System.IO.Path.Combine(output, "20_dressed_in_yard.png"));
                 _uiLayer.Visible = true;
             }
+            _tackOverlay.Visible = false;
+            foreach (var item in new[] { "hay", "planter", "birdhouse" })
+                if (_state != null && StableShop.DecorBlockReason(_state, item) == null) await BuyDecorAsync(item);
+            ShowShop();
+            do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
+            await CaptureFrame(System.IO.Path.Combine(output, "21_shop.png"));
+            _shopOverlay.Visible = false; _uiLayer.Visible = false;
+            _yard.Focus(null);
+            var decorated = _yard.ElapsedSeconds;
+            while (_yard.ElapsedSeconds - decorated < 2.0) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+            await CaptureFrame(System.IO.Path.Combine(output, "22_decorated_yard.png"));
+            _uiLayer.Visible = true;
             GD.Print("[hub-preview] OK " + output);
             GetTree().Quit(0);
         }
@@ -302,12 +326,13 @@ public partial class StableDay
             else if (prop == "trophy") { ShowPractice(true); }
             return;
         }
-        if (key == null) { _yard.Focus(null); return; }
+        if (key == null) { _yard.Focus(null); CloseCareBubble(); return; }
         var horse = _state.Horses.FirstOrDefault(h => h.HorseId.ToString() == key);
         if (horse == null) return;
         _yard.Focus(key);
         Audio.GameAudio.Play("hoof_clop", -8);
-        ShowInspection(horse.HorseId);
+        if (horse.LifeState.Stage == LifeStage.Unborn) ShowInspection(horse.HorseId);
+        else ShowCareBubble(horse.HorseId, click.Position); // D-021: pat, brush, carrot or Details
         GetViewport().SetInputAsHandled();
     }
 }

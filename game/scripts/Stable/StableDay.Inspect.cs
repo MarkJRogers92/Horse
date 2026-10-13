@@ -101,6 +101,10 @@ public partial class StableDay
         }
         _inspectAbilities.AddChild(grid);
         _inspectAbilities.AddChild(CareBar("Training", skill));
+        var bond = new HBoxContainer(); bond.AddThemeConstantOverride("separation", 6);
+        var bondName = SmallText("Bond"); bondName.CustomMinimumSize = new Vector2(64, 0); bond.AddChild(bondName);
+        bond.AddChild(CozyTheme.HeartRating(HorseBond.Hearts(horse), 16));
+        _inspectAbilities.AddChild(bond);
         if (skill == 0) _inspectAbilities.AddChild(SmallText("Take this horse for a practice gallop to discover its abilities. Each day's first gallop also trains it."));
     }
 

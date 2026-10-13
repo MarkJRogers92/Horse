@@ -260,6 +260,7 @@ public partial class StableDay : Node
         header.AddChild(_foalingDemoButton);
         _backButton = new Button { Text = "Menu", CustomMinimumSize = new Vector2(100, 44) };
         _backButton.Pressed += () => GetTree().ChangeSceneToFile("res://scenes/main.tscn");
+        header.AddChild(ShopButton());
         header.AddChild(JournalButton());
         header.AddChild(Audio.GameAudio.MuteButton());
         header.AddChild(_backButton);
@@ -342,6 +343,7 @@ public partial class StableDay : Node
         BuildSaleOverlay(root);
         BuildFairOverlay(root);
         BuildTackOverlay(root);
+        BuildShopOverlay(root);
         BuildBirthOverlay(root);
         BuildJournalOverlay(root);
         BuildNameStableOverlay(root);
@@ -429,8 +431,13 @@ public partial class StableDay : Node
             portrait.SizeFlagsVertical = Control.SizeFlags.ShrinkBegin;
             cardRow.AddChild(portrait);
             var content = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill }; content.AddThemeConstantOverride("separation", 1); cardRow.AddChild(content);
+            var titleRow = new HBoxContainer(); titleRow.AddThemeConstantOverride("separation", 6);
             var title = CozyTheme.Title(horse.Name, 19);
-            content.AddChild(title);
+            titleRow.AddChild(title);
+            var hearts = CozyTheme.HeartRating(HorseBond.Hearts(horse), 13); hearts.SizeFlagsVertical = Control.SizeFlags.ShrinkCenter;
+            hearts.TooltipText = "Bond: pat, brush and treat this horse in the yard";
+            titleRow.AddChild(hearts);
+            content.AddChild(titleRow);
             content.AddChild(SmallText($"{StageName(horse.LifeState.Stage)} · {HomeName(horse.HomeAssignment)}"));
             content.AddChild(CareBar("Fed", care.Nutrition)); content.AddChild(CareBar("Bedding", care.Bedding));
             content.AddChild(CareBar("Turnout", care.Turnout)); content.AddChild(CareBar("Grooming", care.Grooming));
@@ -510,6 +517,7 @@ public partial class StableDay : Node
 
         RefreshMilestoneHistory();
         RefreshYard();
+        RefreshDecor();
         CheckRibbons();
 
         if (_recoveryRequired) SetStatus("A verified backup needs your acknowledgment before the stable can be changed.");

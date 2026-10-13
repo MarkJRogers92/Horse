@@ -136,6 +136,16 @@ public static class CozyTheme
         return row;
     }
 
+    /// <summary>Five bond hearts (0-5 filled).</summary>
+    public static Control HeartRating(int hearts, int size = 18)
+    {
+        var row = new HBoxContainer(); row.AddThemeConstantOverride("separation", 1);
+        for (var i = 0; i < 5; i++)
+            row.AddChild(new TextureRect { Texture = i < hearts ? Icons.HeartOn : Icons.HeartOff, CustomMinimumSize = new Vector2(size, size),
+                ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize, StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered, MouseFilter = Control.MouseFilterEnum.Ignore });
+        return row;
+    }
+
     /// <summary>A generated UI icon (D-012, res://assets/ui/icons), or null if it is missing.</summary>
     public static Texture2D? Icon(string name)
     {
@@ -275,11 +285,30 @@ public static class CozyTheme
             c = Over(c, filled ? Color.FromHtml("#f7c95a") : Colors.White, Coverage(edge + 1.6f));
             return c;
         });
+        /// <summary>A heart (filled pink or an empty outline) for bond (D-021).</summary>
+        public static ImageTexture Heart(bool filled) => Paint(22, 22, p =>
+        {
+            // Implicit heart curve: (x²+y²-1)³ - x²y³ ≤ 0, scaled into the icon.
+            float x = (p.X - 11f) / 8.6f, y = -(p.Y - 11.8f) / 8.6f;
+            float f = Mathf.Pow(x * x + y * y - 1f, 3) - x * x * y * y * y;
+            float edge = f * 9f; // approximate distance in pixels near the outline
+            var c = new Color(0, 0, 0, 0);
+            c = Over(c, filled ? Color.FromHtml("#e48aa9") : Border, Coverage(edge));
+            c = Over(c, filled ? Color.FromHtml("#f7a8c4") : Colors.White, Coverage(edge + 1.4f));
+            return c;
+        });
+        private static ImageTexture? _heartOn, _heartOff;
+        public static ImageTexture HeartOn => _heartOn ??= Heart(true);
+        public static ImageTexture HeartOff => _heartOff ??= Heart(false);
         private static ImageTexture? _starOn, _starOff;
         public static ImageTexture StarOn => _starOn ??= Star(true);
         public static ImageTexture StarOff => _starOff ??= Star(false);
         /// <summary>Free cached textures so none outlive the scene at shutdown.</summary>
-        public static void Release() { _starOn?.Dispose(); _starOff?.Dispose(); _starOn = _starOff = null; }
+        public static void Release()
+        {
+            _starOn?.Dispose(); _starOff?.Dispose(); _starOn = _starOff = null;
+            _heartOn?.Dispose(); _heartOff?.Dispose(); _heartOn = _heartOff = null;
+        }
         public static ImageTexture Knob(bool hot) => Paint(26, 26, p =>
         {
             var c = new Color(0, 0, 0, 0);

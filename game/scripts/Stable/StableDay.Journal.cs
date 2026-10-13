@@ -45,6 +45,8 @@ public partial class StableDay
             s => s.Ledger.Any(l => l.Kind == ClubRace.PrizeLedgerKind && l.DeltaCoins == ClubRace.PrizeFor(1))),
         new("style", "Stable Style", "Dress a horse in a saddle pad and a bow.", "grooming",
             s => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId) && Tack.Worn(h, Tack.PadSlot) != null && Tack.Worn(h, Tack.BowSlot) != null)),
+        new("friends", "Best Friends", "Reach a full five-heart bond with a horse.", "breeding",
+            s => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId) && HorseBond.Hearts(h) >= 5)),
         new("savings", "Nest Egg", "Save up 1,000 coins.", "coins", s => s.Coins >= 1000),
         new("season", "A Whole Season", "Reach the summer of your first year.", "day",
             s => s.Header.CalendarDay >= StableCalendar.DaysPerSeason),
@@ -83,7 +85,10 @@ public partial class StableDay
         body.AddChild(_journalSummary);
         _journalGrid = new GridContainer { Columns = 3 };
         _journalGrid.AddThemeConstantOverride("h_separation", 10); _journalGrid.AddThemeConstantOverride("v_separation", 10);
-        body.AddChild(_journalGrid);
+        // Scrolls once the ribbons outgrow the window (17+).
+        var scroll = new ScrollContainer { CustomMinimumSize = new Vector2(0, 380), HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled };
+        scroll.AddChild(_journalGrid);
+        body.AddChild(scroll);
         var close = new Button { Text = "Close", CustomMinimumSize = new Vector2(130, 46) };
         close.Pressed += () => _journalOverlay.Visible = false;
         buttons.AddChild(close);

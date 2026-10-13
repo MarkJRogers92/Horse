@@ -113,6 +113,8 @@ public partial class StableDay
             if (care.Grooming < 4000 && !plan.Item2) return $"Tip: {h.Name} would love some grooming today.";
             if (care.Turnout < 4000 && !plan.Item1) return $"Tip: {h.Name} is longing for turnout in the paddock.";
         }
+        if (home.FirstOrDefault(h => HorseBond.Interactions.All(k => !HorseBond.DoneToday(h, k, day))) is { } lonely)
+            return $"Tip: click {lonely.Name} in the yard to give a pat, a brush or a carrot. It builds your bond!";
         var gallopReady = PracticeGallop.Eligibility(_state).Where(e => e.Eligible)
             .Select(e => home.FirstOrDefault(h => h.HorseId.Equals(e.HorseId))).Where(h => h != null && !PracticeTraining.TrainedToday(h, day)).ToList();
         if (!_foalingDemoMode && !ClubRace.EnteredThisWeek(_state) && home.Any(h => ClubRace.BlockReason(_state, h.HorseId) == null)
