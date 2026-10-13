@@ -53,6 +53,7 @@ public partial class StableYard : Node3D
         AddChild(Lighting.Build(LightingMode.Stable));
         BuildGround();
         BuildScenery();
+        AddChild(Petals());
         _camera = new Camera3D { Fov = 40, Current = true, Position = _cameraHome };
         AddChild(_camera);
         _cameraGoal = _cameraHome; _targetGoal = _homeTarget; _lookTarget = _homeTarget;
@@ -147,13 +148,14 @@ public partial class StableYard : Node3D
     }
 
     /// <summary>Show exactly these horses (key = horse id), reusing presenters that did not change.</summary>
-    public void SetHorses(IReadOnlyList<(string Key, VisualDescriptor? Descriptor)> horses)
+    public void SetHorses(IReadOnlyList<(string Key, VisualDescriptor? Descriptor)> horses, IReadOnlyDictionary<string, string>? names = null)
     {
         var wanted = horses.Where(h => h.Descriptor != null).Take(Slots.Length).ToList();
         foreach (var stale in _horses.Where(h => wanted.All(w => w.Key != h.Key || w.Descriptor!.CacheKey != h.Presenter.Descriptor?.CacheKey)).ToList())
         {
             stale.Presenter.QueueFree();
             _wander.Remove(stale.Presenter);
+            _tags.Remove(stale.Presenter);
             _horses.Remove(stale);
         }
         for (var i = 0; i < wanted.Count; i++)
@@ -174,7 +176,68 @@ public partial class StableYard : Node3D
                 existing.Position = Slots[i].Position;
                 existing.RotationDegrees = new Vector3(0, Slots[i].Yaw, 0);
             }
+            if (names != null && names.TryGetValue(key, out var name)) NameTag(existing, name);
         }
+    }
+
+    private readonly Dictionary<HorsePresenter, Label3D> _tags = new();
+    private string? _hoverKey;
+
+    /// <summary>A floating name plate that always faces the camera.</summary>
+    private void NameTag(HorsePresenter presenter, string name)
+    {
+        if (!_tags.TryGetValue(presenter, out var tag))
+        {
+            tag = new Label3D
+            {
+                Billboard = BaseMaterial3D.BillboardModeEnum.Enabled, FontSize = 64, PixelSize = 0.0042f, OutlineSize = 18,
+                Modulate = Color.FromHtml("#5b3a5e"), OutlineModulate = new Color(1, 1, 1, 0.92f), Font = UI.CozyTheme.BoldFont,
+                NoDepthTest = true, RenderPriority = 10, FixedSize = false,
+            };
+            presenter.AddChild(tag);
+            _tags[presenter] = tag;
+        }
+        tag.Text = name;
+        float s = presenter.Descriptor?.IsFoal == true ? 0.66f : 1f;
+        tag.Position = new Vector3(0.3f * s, 1.95f * s + 0.1f, 0);
+    }
+
+    /// <summary>Highlight the horse under the pointer; returns its key.</summary>
+    public string? Hover(Vector2 screenPoint)
+    {
+        var key = PickHorse(screenPoint);
+        if (key == _hoverKey) return key;
+        _hoverKey = key;
+        foreach (var (k, presenter) in _horses)
+            if (_tags.TryGetValue(presenter, out var tag))
+            {
+                tag.Modulate = k == key ? Color.FromHtml("#e48aa9") : Color.FromHtml("#5b3a5e");
+                tag.Scale = Vector3.One * (k == key ? 1.25f : 1f);
+            }
+        Input.SetDefaultCursorShape(key == null ? Input.CursorShape.Arrow : Input.CursorShape.PointingHand);
+        return key;
+    }
+
+    /// <summary>A burst of hearts and sparkles over a horse (comfort care switched on).</summary>
+    public void Cheer(string key)
+    {
+        var presenter = _horses.FirstOrDefault(h => h.Key == key).Presenter;
+        if (presenter == null) return;
+        float s = presenter.Descriptor?.IsFoal == true ? 0.66f : 1f;
+        var burst = new CpuParticles3D
+        {
+            Emitting = true, OneShot = true, Amount = 30, Lifetime = 1.8, Explosiveness = 0.7f,
+            Mesh = new SphereMesh { Radius = 0.09f, Height = 0.18f, RadialSegments = 8, Rings = 4 },
+            EmissionShape = CpuParticles3D.EmissionShapeEnum.Sphere, EmissionSphereRadius = 0.5f,
+            Direction = Vector3.Up, Spread = 40, Gravity = new Vector3(0, 0.6f, 0), InitialVelocityMin = 0.4f, InitialVelocityMax = 1.1f,
+            ScaleAmountMin = 0.6f, ScaleAmountMax = 1.4f, Position = presenter.Position + new Vector3(0.3f * s, 1.7f * s, 0),
+        };
+        var ramp = new Gradient(); ramp.SetColor(0, Color.FromHtml("#ff4f8b")); ramp.SetColor(1, Color.FromHtml("#ffb81c"));
+        burst.ColorInitialRamp = ramp;
+        var glow = new StandardMaterial3D { VertexColorUseAsAlbedo = true, ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded };
+        burst.MaterialOverride = glow;
+        AddChild(burst);
+        GetTree().CreateTimer(2.2).Timeout += burst.QueueFree;
     }
 
     /// <summary>Horse key under a screen point, or null. Uses each horse's projected body centre.</summary>
@@ -257,6 +320,28 @@ public partial class StableYard : Node3D
         }
     }
 
+    /// <summary>Blossom petals drifting slowly across the yard.</summary>
+    private static Node3D Petals()
+    {
+        var petals = new CpuParticles3D
+        {
+            Name = "Petals", Amount = 60, Lifetime = 14, Preprocess = 14,
+            Mesh = new QuadMesh { Size = new Vector2(0.07f, 0.05f) },
+            EmissionShape = CpuParticles3D.EmissionShapeEnum.Box, EmissionBoxExtents = new Vector3(14, 1.5f, 9),
+            Position = new Vector3(0, 6, -6), Direction = new Vector3(1, -0.4f, 0.3f), Spread = 30,
+            Gravity = new Vector3(0.15f, -0.25f, 0.05f), InitialVelocityMin = 0.2f, InitialVelocityMax = 0.6f,
+            AngularVelocityMin = -120, AngularVelocityMax = 120, ParticleFlagAlignY = false,
+        };
+        var ramp = new Gradient(); ramp.SetColor(0, Color.FromHtml("#fbd0dd")); ramp.SetColor(1, Colors.White);
+        petals.ColorInitialRamp = ramp;
+        petals.MaterialOverride = new StandardMaterial3D
+        {
+            VertexColorUseAsAlbedo = true, CullMode = BaseMaterial3D.CullModeEnum.Disabled, ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded,
+            BillboardMode = BaseMaterial3D.BillboardModeEnum.Particles,
+        };
+        return petals;
+    }
+
     /// <summary>Grass tufts and wildflowers outside the paddock (instanced, cheap).</summary>
     private static Node3D GrassAndFlowers(RandomNumberGenerator rng)
     {
@@ -316,6 +401,9 @@ public partial class StableYard : Node3D
             Place("oak_tree", size * rng.RandfRange(0.85f, 1.1f), pos, rng.RandfRange(0, 360), () => FallbackTree(rng));
         Place("hay_props", 1.6f, new Vector3(2.4f, 0, -12.6f), -25f, () => FallbackHay());
         Place("water_trough", 0.85f, new Vector3(4.4f, 0, -3.8f), 75f, () => FallbackTrough());
+        Place("planter_box", 0.75f, new Vector3(-8.2f, 0, -13.0f), 10f, () => new Node3D());
+        Place("planter_box", 0.75f, new Vector3(1.3f, 0, -13.2f), 10f, () => new Node3D());
+        Place("bench", 1.0f, new Vector3(-8.6f, 0, -6.4f), 50f, () => new Node3D());
         Place("saddle_rack", 1.25f, new Vector3(-0.2f, 0, -12.2f), 15f, () => new Node3D());
         Place("wheelbarrow", 0.85f, new Vector3(4.6f, 0, -11.6f), -60f, () => new Node3D());
         Place("show_jump", 1.3f, new Vector3(7.2f, 0, -7.5f), -25f, () => new Node3D());

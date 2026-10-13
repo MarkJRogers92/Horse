@@ -422,9 +422,41 @@
       "status": "downloaded",
       "balanceAfter": 913,
       "chargedCredits": 3
+    },
+    {
+      "name": "planter_box",
+      "prompt": "A long rectangular wooden flower planter box painted sage green, packed with soft pink, white and lavender flowers and round green leaves, solid compact shape. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T05:02:29+00:00",
+      "balanceBefore": 913,
+      "aiModel": "latest",
+      "previewTaskId": "01a133a4-079d-7259-b4ff-cacb0ba7748b",
+      "refineTaskId": "01a133a5-d7ca-70af-8d34-25f9f8003d96",
+      "glbBytes": 10457784,
+      "files": [
+        "game/assets/scenery/planter_box/planter_box.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 883,
+      "chargedCredits": 30
+    },
+    {
+      "name": "bench",
+      "prompt": "A cosy wooden garden bench with a curved backrest and armrests, painted cream with a folded pink plaid blanket on the seat. Stylized-realistic game environment asset, clean readable shapes, soft hand-painted textures, no ground plane, no people, no animals.",
+      "createdAt": "2026-10-13T05:05:50+00:00",
+      "balanceBefore": 883,
+      "aiModel": "latest",
+      "previewTaskId": "01a133a7-1777-7319-afeb-1eb49cf737b2",
+      "refineTaskId": "01a133a8-c350-75d7-a994-91663f11086d",
+      "glbBytes": 7521648,
+      "files": [
+        "game/assets/scenery/bench/bench.glb"
+      ],
+      "status": "downloaded",
+      "balanceAfter": 853,
+      "chargedCredits": 30
     }
   ],
-  "spentCredits": 351,
+  "spentCredits": 411,
   "postProcessing": "Textures resized to 1024x1024 with @gltf-transform/cli 4.1.1 'resize' before commit (about 42 MB to 6 MB); geometry unchanged.",
   "balanceNote": "The account balance rose by about 100 credits between the wheelbarrow (balance 864) and the first image (balance before 964), outside any task here (likely a Meshy credit adjustment). Per-task charges are measured within each task, so the D-012 total is unaffected.",
   "imagePostProcessing": "Icons: 1024 px Meshy images cut out from their cream background by border flood fill, cropped to content and saved at 256 px RGBA.",
