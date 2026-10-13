@@ -145,6 +145,24 @@ public partial class StableDay
                 await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
                 if (IsInstanceValid(shown)) throw new InvalidOperationException("The care bubble did not close.");
             }
+            // D-031 Pip's daily tasks: show the list even while the first-session guide is running, after claiming a finished task.
+            {
+                var guideWas = _guideDismissed; _guideDismissed = true; Refresh();
+                if (_state != null && !DailyTasks.For(_state).Any(t => t.IsDone(_state)) && DailyTasks.For(_state).FirstOrDefault(t => t.Id.Contains(':') && !t.Id.EndsWith(":all") && !t.Id.EndsWith(":week")) is { } care)
+                {
+                    var parts = care.Id.Split(':');
+                    await InteractAsync(_state.Horses.Single(h => h.HorseId.ToString() == parts[1]).HorseId, parts[0]);
+                    while (_busy) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                }
+                if (_state != null && DailyTasks.For(_state).FirstOrDefault(t => t.IsDone(_state) && !DailyTasks.IsClaimedToday(_state, t)) is { } finished)
+                {
+                    await ClaimDailyTaskAsync(finished.Id);
+                    while (_busy) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                }
+                await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                await CaptureFrame(System.IO.Path.Combine(output, "07e_daily_tasks.png"));
+                _guideDismissed = guideWas; Refresh();
+            }
             // D-028 DNA test, before the fair and shop spend the coins.
             if (_state?.Horses.FirstOrDefault(h => h.OwnerId.Equals(_state.PlayerOwnerId) && h.LifeState.Stage == LifeStage.Adult) is { } tested)
             {

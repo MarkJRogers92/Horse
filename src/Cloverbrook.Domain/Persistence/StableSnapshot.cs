@@ -169,6 +169,8 @@ namespace Cloverbrook.Domain
                 Require(prize.BreedingId == null && HorseShow.IsPrizeAmount(prize.DeltaCoins)
                     && raceWeeks.Any(w => HorseShow.PrizeId(Header.SaveId, w).Equals(prize.Id) && ledger.TryGetValue(HorseShow.EntryId(Header.SaveId, w), out var paid) && paid.Kind == HorseShow.EntryLedgerKind),
                     "A horse show prize has no matching entry.");
+            var dailyTaskProblem = DailyTasks.LedgerProblem(this);
+            Require(dailyTaskProblem == null, dailyTaskProblem ?? "");
             var shopProblem = StableShop.LedgerProblem(this, ledger);
             Require(shopProblem == null, shopProblem ?? "");
             foreach (var credit in Ledger.Where(l => l.Kind == StableDayTransaction.IncomeLedgerKind))
