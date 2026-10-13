@@ -63,7 +63,7 @@ public partial class MainMenu : Node
         root.AddChild(panel);
         var box = new VBoxContainer(); box.AddThemeConstantOverride("separation", 12);
         panel.AddChild(box);
-        box.AddChild(CozyTheme.Ribbon("Cloverbrook Stables", 36));
+        box.AddChild(CozyTheme.Ribbon(Stable.StableName.Get(ProjectSettings.GlobalizePath("user://stable-management/stable.clvr")), 36));
         var tagline = CozyTheme.Title("Breed, raise and gallop your dream horses", 16);
         tagline.AddThemeColorOverride("font_color", CozyTheme.SoftText);
         box.AddChild(tagline);

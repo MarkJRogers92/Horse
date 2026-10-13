@@ -61,6 +61,7 @@ public partial class StableDay
         _practicePicks.Visible = true; _practiceIntro.Visible = true;
         if (_practiceArt != null) _practiceArt.Visible = true;
         _raceFrame?.QueueFree(); _raceFrame = null; _raceView = null;
+        _practicePodium?.QueueFree(); _practicePodium = null; _practiceTrack.Visible = true;
         var eligible = 0;
         foreach (var entry in PracticeGallop.Eligibility(_state).Where(e => !HorseMarket.IsSold(_state.Horses.Single(h => h.HorseId.Equals(e.HorseId)))))
         {
@@ -105,6 +106,7 @@ public partial class StableDay
             _practicePicks.Visible = false; _practiceIntro.Visible = false;
             if (_practiceArt != null) _practiceArt.Visible = false;
             _raceFrame?.QueueFree();
+            _practicePodium?.QueueFree(); _practicePodium = null; _practiceTrack.Visible = true;
             _raceFrame = new SubViewportContainer { Stretch = true, CustomMinimumSize = new Vector2(616, 250) };
             _raceView = new RaceView { Size = new Vector2I(616, 250) };
             _raceFrame.AddChild(_raceView);
@@ -166,6 +168,7 @@ public partial class StableDay
         Audio.GameAudio.Loop(null);
         Audio.GameAudio.Play("care_cheer", -6);
         _raceView?.Finish();
+        ShowPodium(result);
         for (var lane = 0; lane < _practiceLanes.Count; lane++)
         {
             _practiceLanes[lane].Running = false;
@@ -185,6 +188,46 @@ public partial class StableDay
         _practiceElapsedMs = (double)(_practiceResult.Frames.Count - 1) * _practiceResult.FrameIntervalMilliseconds;
         AdvancePracticePlayback();
     }
+
+    /// <summary>Swap the 3D race for a podium: portraits on stepped rosette blocks, 2nd-1st-3rd.</summary>
+    private void ShowPodium(PracticeGallopResult result)
+    {
+        if (_raceFrame == null || _state == null) return;
+        var podium = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center, CustomMinimumSize = new Vector2(616, 200) };
+        podium.AddThemeConstantOverride("separation", 18);
+        var order = result.Entrants.OrderBy(e => e.Place).Take(3).ToList();
+        var layout = order.Count switch { 1 => new[] { 0 }, 2 => new[] { 1, 0 }, _ => new[] { 1, 0, 2 } };
+        foreach (var index in layout)
+        {
+            var entrant = order[index];
+            var horse = _state.Horses.Single(h => h.HorseId.Equals(entrant.HorseId));
+            var column = new VBoxContainer { Alignment = BoxContainer.AlignmentMode.End };
+            column.AddThemeConstantOverride("separation", 4);
+            var portrait = Portrait(horse, entrant.Place == 1 ? 92 : 74, CardTint(horse));
+            portrait.SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter;
+            column.AddChild(portrait);
+            var name = CozyTheme.Title(entrant.Name, 15); name.HorizontalAlignment = HorizontalAlignment.Center;
+            column.AddChild(name);
+            var block = new PanelContainer { CustomMinimumSize = new Vector2(120, entrant.Place switch { 1 => 72, 2 => 52, _ => 38 }) };
+            var colour = entrant.Place switch { 1 => Color.FromHtml("#f5c542"), 2 => Color.FromHtml("#c9d1dc"), _ => Color.FromHtml("#e0a46e") };
+            var style = CozyTheme.Box(colour, 14, 4); style.BorderColor = Colors.White; style.SetBorderWidthAll(3);
+            block.AddThemeStyleboxOverride("panel", style);
+            var label = CozyTheme.Title($"{Ordinal(entrant.Place)}\n{entrant.FinishMilliseconds / 1000.0:0.0} s", 15);
+            label.HorizontalAlignment = HorizontalAlignment.Center; label.VerticalAlignment = VerticalAlignment.Center;
+            block.AddChild(label);
+            column.AddChild(block);
+            podium.AddChild(column);
+        }
+        var parent = _raceFrame.GetParent();
+        var at = _raceFrame.GetIndex();
+        _raceFrame.QueueFree(); _raceFrame = null; _raceView = null;
+        _practiceTrack.Visible = false;
+        _practicePodium = podium;
+        parent.AddChild(podium);
+        parent.MoveChild(podium, at);
+    }
+
+    private Control? _practicePodium;
 
     private async Task SetIconAsync(Button button, Visual.VisualDescriptor look)
     {

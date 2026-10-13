@@ -51,6 +51,7 @@ Goal: stop the stable looking like a text game. (1) portraits of every horse, (2
 - [x] D-016: seasons in the yard (spring blossom, summer, autumn leaves, winter snow; HUD "Spring · Day N" + year) and a Stable Journal of 12 ribbons derived from the save, with a "New ribbon" toast.
 - [x] Title screen shows the player's own saved horses (read-only `AtomicSaveStore.Load`), "Continue"/"New stable", Pip greets them by name, in the saved season. Settings window (music and effects volume on separate buses, fullscreen), remembered in `user://settings.cfg`; themed sliders.
 - [x] Details shows ability stars (Speed, Acceleration, Stamina, Calm) after a horse's first gallop; daily state-driven tips replace the fixed note after the guide; Meshy stable block in the yard and a pavilion beside the race finish (30 each, balance 803). Static texture/scene caches are released on exit.
+- [x] Name your stable (shown on the signpost, top bar and title; `stable.cfg` beside the save, live play only), "Idea" name suggestions for foals and stables, results podium after the gallop, roster-card hover lights the horse's name tag.
 - [ ] Owner: bush/foliage via the Meshy web app's free retries (prompt in the hand-off); everything else in the D-012–D-015 list is done.
 
 ## Animation playback fixes (owner request 2026-10-13)

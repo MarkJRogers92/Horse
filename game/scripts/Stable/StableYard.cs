@@ -242,6 +242,14 @@ public partial class StableYard : Node3D
     {
         var key = PickHorse(screenPoint);
         if (key == _hoverKey) return key;
+        Highlight(key);
+        Input.SetDefaultCursorShape(key == null ? Input.CursorShape.Arrow : Input.CursorShape.PointingHand);
+        return key;
+    }
+
+    /// <summary>Light up one horse's name tag (from the yard pointer or its roster card); null clears it.</summary>
+    public void Highlight(string? key)
+    {
         _hoverKey = key;
         foreach (var (k, presenter) in _horses)
             if (_tags.TryGetValue(presenter, out var tag))
@@ -249,8 +257,6 @@ public partial class StableYard : Node3D
                 tag.Modulate = k == key ? Color.FromHtml("#e48aa9") : Color.FromHtml("#5b3a5e");
                 tag.Scale = Vector3.One * (k == key ? 1.25f : 1f);
             }
-        Input.SetDefaultCursorShape(key == null ? Input.CursorShape.Arrow : Input.CursorShape.PointingHand);
-        return key;
     }
 
     /// <summary>A burst of hearts and sparkles over a horse (comfort care switched on).</summary>
@@ -339,6 +345,19 @@ public partial class StableYard : Node3D
     private Node3D _lights = null!;
     private readonly Dictionary<DirectionalLight3D, (Color Colour, float Energy)> _sunDefaults = new();
     private readonly List<MeshInstance3D> _trees = new();
+
+    private Label3D? _signLabel;
+
+    /// <summary>Paint the player's stable name on the signpost (two lines when it is long).</summary>
+    public void SetStableName(string name)
+    {
+        if (_signLabel == null) return;
+        var words = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        _signLabel.Text = words.Length > 1 && name.Length > 11
+            ? string.Join(' ', words.Take(words.Length / 2 + words.Length % 2)) + "\n" + string.Join(' ', words.Skip(words.Length / 2 + words.Length % 2))
+            : name;
+        _signLabel.FontSize = name.Length > 22 ? 70 : 96;
+    }
 
     public static string SeasonName(int seasonIndex) => (seasonIndex % 4) switch { 0 => "Spring", 1 => "Summer", 2 => "Autumn", _ => "Winter" };
 
@@ -519,11 +538,12 @@ public partial class StableYard : Node3D
         Place("show_jump", 1.3f, new Vector3(7.2f, 0, -7.5f), -25f, () => new Node3D());
         var sign = Place("signpost", 2.5f, new Vector3(-5.6f, 0, -4.2f), 18f, () => new Node3D());
         // The generated board is blank on purpose; the stable's name is real text so it stays crisp.
-        sign.AddChild(new Label3D
+        _signLabel = new Label3D
         {
             Text = "Cloverbrook\nStables", FontSize = 96, PixelSize = 0.0022f, OutlineSize = 0, Modulate = Color.FromHtml("#5b3a5e"),
             Font = UI.CozyTheme.BoldFont, Position = new Vector3(0.0f, 1.62f, 0.2f), NoDepthTest = false,
-        });
+        };
+        sign.AddChild(_signLabel);
     }
 
     /// <summary>Load a Meshy asset scaled to a target height, or build its stand-in.</summary>

@@ -84,6 +84,7 @@ public partial class StableDay : Node
             }
             LoadOrCreate();
             Refresh();
+            MaybeAskStableName();
             if (_lifecycleCaptureOutput != null) _ = RunLifecycleCaptureAsync(_lifecycleCaptureOutput);
             else if (_breedingCaptureOutput != null) _ = RunBreedingCaptureAsync(_breedingCaptureOutput);
             else if (_captureOutput != null) _ = RunCaptureAsync(_captureOutput);
@@ -246,7 +247,9 @@ public partial class StableDay : Node
         var header = new HBoxContainer { MouseFilter = Control.MouseFilterEnum.Ignore };
         header.AddThemeConstantOverride("separation", 10);
         Anchor(header, 0, 0, 1, 0, 16, 12, -16, 64);
-        header.AddChild(CozyTheme.Ribbon("Cloverbrook Stables", 24));
+        var ribbon = CozyTheme.Ribbon(StableName.Get(_store.SavePath), 24);
+        _stableNameLabel = (Label)ribbon.GetChild(0);
+        header.AddChild(ribbon);
         _season = SummaryCard("Season 1 · Day 1");
         _wallet = SummaryCard("500 coins");
         header.AddChild(HudPill(_season, "YEAR 1", "day", out _yearLabel));
@@ -338,6 +341,7 @@ public partial class StableDay : Node
         BuildSaleOverlay(root);
         BuildBirthOverlay(root);
         BuildJournalOverlay(root);
+        BuildNameStableOverlay(root);
         BuildRecoveryDialog(root);
     }
 
@@ -350,6 +354,7 @@ public partial class StableDay : Node
     }
 
     private Label _yearLabel = null!;
+    private Label _stableNameLabel = null!;
     private int _shownSeason = -1;
 
     private static Control HudPill(Label value, string label, string icon, out Label heading)
@@ -408,7 +413,10 @@ public partial class StableDay : Node
                      .ThenBy(h => h.Name, StringComparer.Ordinal))
         {
             var care = _state.DailyState.For(horse.HorseId);
-            var card = new PanelContainer();
+            var card = new PanelContainer { MouseFilter = Control.MouseFilterEnum.Pass };
+            var cardKey = horse.HorseId.ToString();
+            card.MouseEntered += () => _yard.Highlight(cardKey);
+            card.MouseExited += () => _yard.Highlight(null);
             var cardRow = new HBoxContainer(); cardRow.AddThemeConstantOverride("separation", 10); card.AddChild(cardRow);
             var portrait = Portrait(horse, 84, CardTint(horse));
             portrait.SizeFlagsVertical = Control.SizeFlags.ShrinkBegin;
@@ -461,10 +469,10 @@ public partial class StableDay : Node
             if (horse.OwnerId.Equals(_state.PlayerOwnerId) && horse.OriginCommitId != null && horse.LifeState.Stage != LifeStage.Unborn)
             {
                 var renameRow = new HBoxContainer();
-                var nameInput = new LineEdit { PlaceholderText = "Choose a name", Text = horse.Name, MaxLength = 40, CustomMinimumSize = new Vector2(120, 38), SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
-                var rename = CozyTheme.WithIcon(new Button { Text = horse.LifeState.Stage == LifeStage.Foal ? "Name foal" : "Rename", CustomMinimumSize = new Vector2(125, 38) }, "foal", 24);
+                var nameInput = new LineEdit { PlaceholderText = "Choose a name", Text = horse.Name, MaxLength = 40, CustomMinimumSize = new Vector2(90, 38), SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
+                var rename = CozyTheme.WithIcon(new Button { Text = horse.LifeState.Stage == LifeStage.Foal ? "Name foal" : "Rename", CustomMinimumSize = new Vector2(110, 38) }, "foal", 22);
                 rename.Pressed += () => _ = RenameFoalAsync(horse.HorseId, nameInput.Text);
-                renameRow.AddChild(nameInput); renameRow.AddChild(rename); _roster.AddChild(renameRow);
+                renameRow.AddChild(nameInput); renameRow.AddChild(SuggestNameButton(nameInput)); renameRow.AddChild(rename); _roster.AddChild(renameRow);
             }
 
             if (!horse.OwnerId.Equals(_state.PlayerOwnerId) || horse.HomeAssignment != HomeKind.ActiveStable || horse.LifeState.Stage == LifeStage.Unborn) continue;
