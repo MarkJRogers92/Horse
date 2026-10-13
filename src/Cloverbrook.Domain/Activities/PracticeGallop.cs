@@ -49,7 +49,7 @@ namespace Cloverbrook.Domain
     /// </summary>
     public static class PracticeGallop
     {
-        public const string Version = "activity.practice-gallop.v2";
+        public const string Version = "activity.practice-gallop.v3";
         public const int DistanceMeters = 800;
         public const int MaxEntrants = 6;
         public const int FrameIntervalMilliseconds = 500;
@@ -155,6 +155,10 @@ namespace Cloverbrook.Domain
                 // v2 (D-011): learned gallop skill adds up to 0.8 m/s and holds pace longer; it never changes inherited traits.
                 topSpeed += gallopSkill * 800L / PracticeTraining.MaxSkill;
                 fadePerSecond -= gallopSkill * 150L / PracticeTraining.MaxSkill;
+                // v3 (D-021): a well-bonded horse is calmer (up to 30% less wobble) and a touch quicker (up to 0.3 m/s).
+                var bond = HorseBond.Bond(horse);
+                topSpeed += bond * 300L / HorseBond.MaxBond;
+                noiseAmplitude -= noiseAmplitude * bond * 3L / (10L * HorseBond.MaxBond);
             }
             public HorseRecord Horse { get; }
             public long Position { get; private set; }

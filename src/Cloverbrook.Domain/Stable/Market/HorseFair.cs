@@ -84,7 +84,7 @@ namespace Cloverbrook.Domain
             Check.NotNull(state, nameof(state)); Check.NotNull(offer, nameof(offer));
             if (offer.AlreadyBought) return offer.Name + " already lives at your stable.";
             var used = state.Horses.Count(h => !HorseMarket.IsSold(h)) + state.PendingCapacityPlans.Count;
-            if (used >= StableBreedingPlanner.CapacitySlots) return "every stall is taken; sell a horse or wait for space.";
+            if (used >= StableShop.Stalls(state)) return "every stall is taken; build a stall, sell a horse or wait for space.";
             if (state.Coins < offer.PriceCoins) return "you need " + offer.PriceCoins.ToString(CultureInfo.InvariantCulture) + " coins.";
             return null;
         }

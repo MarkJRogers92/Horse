@@ -329,6 +329,38 @@ namespace Cloverbrook.Domain
             return SaveSnapshotUnlocked(current, replacement, expectedSaveRevision);
         }
 
+        /// <summary>D-021: one hands-on interaction (pat, brush or carrot) that raises a horse's bond. Free, once per kind per day.</summary>
+        public StableSnapshot CommitInteraction(OwnerId requester, HorseId horseId, string kind, ulong expectedSaveRevision)
+        {
+            Check.NotNull(requester, nameof(requester)); Check.NotNull(horseId, nameof(horseId)); Check.NotNull(kind, nameof(kind));
+            using var held = Lock(); var current = RequirePrimary();
+            if (!current.PlayerOwnerId.Equals(requester)) throw new StableCommandRejectedException("ownership", "Only the stable owner can care for these horses.");
+            if (current.Header.SaveRevision != expectedSaveRevision) throw new StableCommandRejectedException("stale_save", "The stable changed; reload first.");
+            var block = HorseBond.BlockReason(current, horseId, kind);
+            if (block != null) throw new StableCommandRejectedException("not_now", block);
+            var day = current.Header.CalendarDay;
+            var replacement = current.WithHorses(current.Horses.Select(h => h.HorseId.Equals(horseId) ? HorseBond.Apply(h, kind, day) : h))
+                .WithHeader(SaveHeaders.Copy(current.Header, revision: checked(current.Header.SaveRevision + 1), schema: StableSnapshot.SchemaVersion, payloadHash: "unwritten"));
+            return SaveSnapshotUnlocked(current, replacement, expectedSaveRevision);
+        }
+
+        /// <summary>D-022: builds the next stall. A retry of a purchase that already happened returns the current save.</summary>
+        public StableSnapshot CommitStall(OwnerId requester, ulong expectedSaveRevision, long quotedPrice)
+        {
+            Check.NotNull(requester, nameof(requester));
+            using var held = Lock(); var current = RequirePrimary();
+            return Publish(StableShop.ApplyStall(current, requester, expectedSaveRevision, quotedPrice), preserveCurrentAsBackup: true);
+        }
+
+        /// <summary>D-022: buys one decoration. Buying something already owned returns the current save.</summary>
+        public StableSnapshot CommitDecor(OwnerId requester, string itemId, ulong expectedSaveRevision)
+        {
+            Check.NotNull(requester, nameof(requester)); Check.NotNull(itemId, nameof(itemId));
+            using var held = Lock(); var current = RequirePrimary();
+            if (StableShop.Owns(current, itemId) && current.PlayerOwnerId.Equals(requester)) return current;
+            return Publish(StableShop.ApplyDecor(current, requester, itemId, expectedSaveRevision), preserveCurrentAsBackup: true);
+        }
+
         /// <summary>D-011: records one day of gallop training for the entrants. Returns the current save unchanged when nobody can gain today.</summary>
         public StableSnapshot RecordPractice(OwnerId requester, ulong expectedSaveRevision, IEnumerable<HorseId> entrants)
         {

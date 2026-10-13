@@ -44,7 +44,8 @@ namespace Cloverbrook.Domain
         public const string GameBuildVersion = "stable-management-prototype";
         public const string CalendarProfileVersion = "calendar.v1";
         public const long CostCoins = 50;
-        public const int CapacitySlots = 4;
+        /// <summary>The original home places. A stable's real capacity is <see cref="StableShop.Stalls"/> (D-022).</summary>
+        public const int CapacitySlots = StableShop.BaseStalls;
         public const string StarterMigrationMarker = "stable.starter-breeding.v1";
 
         private const string JuniperAppearanceSuffix = "4a554e49504552";
@@ -133,7 +134,7 @@ namespace Cloverbrook.Domain
             var closure = CheckGeneticClosure(state.Horses);
             Reject(!closure.IsSupported, "genetic_closure", "Complete genetic closure failed: " + string.Join("; ", closure.Reasons));
             return new StableBreedingQuote(request, rejections.Count == 0, rejections, warnings, CostCoins, day, birthDay,
-                CapacitySlots, currentUsed, CapacitySlots, futureUsed, capacity);
+                StableShop.Stalls(state), currentUsed, StableShop.Stalls(state), futureUsed, capacity);
         }
 
         internal ConceptionService Service => service;
@@ -171,6 +172,7 @@ namespace Cloverbrook.Domain
                 catch (OverflowException)
                 { issues.Add(new EligibilityIssue("pending_capacity", "An existing confirmed capacity hold exceeds the supported calendar range.")); }
             }
+            var slots = StableShop.Stalls(state); // D-022: built stalls add home places
             var atHome = state.Horses.Count(h => !HorseMarket.IsSold(h)); // sold horses no longer use a home place
             currentUsed = atHome + state.PendingCapacityPlans.Count;
             futureUsed = currentUsed + 1;
@@ -182,18 +184,18 @@ namespace Cloverbrook.Domain
                 var adult = checked(young + policy.YoungsterDays);
                 var occupied = atHome;
                 var reservations = state.PendingCapacityPlans.Count;
-                rows.Add(new ReservedCapacityWindow(CapacityStage.Pregnancy, current, birth, CapacitySlots, occupied, reservations, true));
-                rows.Add(new ReservedCapacityWindow(CapacityStage.Foal, birth, young, CapacitySlots, occupied, reservations, true));
-                rows.Add(new ReservedCapacityWindow(CapacityStage.Youngster, young, adult, CapacitySlots, occupied, reservations, true));
-                rows.Add(new ReservedCapacityWindow(CapacityStage.Adult, adult, null, CapacitySlots, occupied, reservations, true));
+                rows.Add(new ReservedCapacityWindow(CapacityStage.Pregnancy, current, birth, slots, occupied, reservations, true));
+                rows.Add(new ReservedCapacityWindow(CapacityStage.Foal, birth, young, slots, occupied, reservations, true));
+                rows.Add(new ReservedCapacityWindow(CapacityStage.Youngster, young, adult, slots, occupied, reservations, true));
+                rows.Add(new ReservedCapacityWindow(CapacityStage.Adult, adult, null, slots, occupied, reservations, true));
                 windowsProjected = true;
             }
             catch (OverflowException)
             {
                 issues.Add(new EligibilityIssue("capacity_overflow", "The projected capacity window exceeds the supported calendar range."));
             }
-            if (currentUsed > CapacitySlots) issues.Add(new EligibilityIssue("capacity_current", "The current stable already exceeds its four-horse prototype capacity."));
-            if (futureUsed > CapacitySlots) issues.Add(new EligibilityIssue("capacity_future", "The pairing would exceed four occupied or reserved stable places."));
+            if (currentUsed > slots) issues.Add(new EligibilityIssue("capacity_current", $"The current stable already exceeds its {slots} home places."));
+            if (futureUsed > slots) issues.Add(new EligibilityIssue("capacity_future", $"The pairing would exceed {slots} occupied or reserved stable places; build a stall or sell a horse."));
             var plan = new BreedingCapacityPlan(eventId, reservationId, state.CapacityRevision, rows);
             if (windowsProjected && plan.Validate(current, policy).Count != 0)
                 issues.AddRange(plan.Validate(current, policy));
