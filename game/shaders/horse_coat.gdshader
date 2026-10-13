@@ -36,9 +36,16 @@ uniform vec4 face_params = vec4(0.08, 0.15, 0.35, 0.07); // star, strip, blaze, 
 uniform float face_offset = 0.0;
 uniform vec4 leg_white = vec4(0.0);  // FL FR HL HR heights (0 = none)
 uniform float edge_seed = 0.0;
+// D-026 white and pattern families (need the body map; ignored without it)
+uniform float grey_amount = 0.0;       // progressive grey: 0 born coloured .. 1 flea-bitten white
+uniform float roan = 0.0;              // 1 = roan: white hairs through the body, solid head and lower legs
+uniform float tobiano = 0.0;           // 1 = tobiano white pattern
+uniform float tobiano_extent = 0.5;    // individual amount of white, 0 minimal .. 1 mostly white
+uniform float leopard = 0.0;           // 1 = leopard complex (LP)
+uniform float leopard_coverage = 0.3;  // white coverage: low = hip blanket, high (PATN1) = full leopard
 uniform bool use_body_map = false;        // D-025: CUSTOM0 carries the rest-pose body coordinates
 uniform vec3 body_aspect = vec3(1.0, 0.5, 0.25); // body-length units per (u, h, s), for round spots
-uniform int debug_view = 0; // 1 = COLOR masks, 2 = canonical coords, 3 = body map, 4 = primitive markings
+uniform int debug_view = 0; // 1 = COLOR masks, 2 = canonical coords, 3 = body map, 4 = primitive markings, 5 = patterns
 
 varying vec4 body;
 void vertex() { body = CUSTOM0; }
@@ -178,6 +185,68 @@ void fragment() {
 	col = mix(col, skin_color, smoothstep(0.2, 0.9, m.g) * nose_amount);
 	col *= 0.94 + 0.12 * hair_var;
 
+	float pattern_white = 0.0;
+	vec3 pattern_debug = vec3(0.0);
+	if (use_body_map) {
+		float seed = edge_seed * 13.0;
+		// Progressive grey (STX17): born coloured; white hairs arrive on the head first, then a steel or rose grey,
+		// then dapple grey (light rings on a darker net), light grey and finally flea-bitten white with coloured
+		// specks. Lower legs and points grey last. Skin stays dark.
+		if (grey_amount > 0.0) {
+			float g = clamp(grey_amount, 0.0, 1.0);
+			float local = g * (is_head ? 1.35 : is_leg ? mix(0.55, 0.95, smoothstep(0.3, 0.9, c.y)) : 1.0);
+			float lum = dot(col, vec3(0.3, 0.59, 0.11));
+			vec3 steel = mix(col, vec3(lum) * vec3(0.98, 0.99, 1.02), smoothstep(0.05, 0.45, local));
+			vec3 warp = vec3(fbm3(bp * 6.0 + vec3(seed)), fbm3(bp * 6.0 + vec3(seed + 9.0)), 0.0) * 0.12;
+			vec2 w = worley3(bp * 9.0 + warp * 9.0 + vec3(seed + 5.0));
+			float dapples = (smoothstep(0.62, 0.15, w.x) - 0.5) * 0.8;    // + inside a dapple, - on the net
+			float dappleStage = smoothstep(0.25, 0.5, g) * (1.0 - smoothstep(0.7, 0.9, g)) * (is_head ? 0.3 : 1.0);
+			float whiten = clamp(local * 1.15 - 0.15 + dapples * 0.45 * dappleStage + (hair_var - 0.5) * 0.15, 0.0, 1.0);
+			vec3 greyWhite = vec3(0.9, 0.9, 0.88);
+			col = mix(steel * mix(1.0, 0.75, smoothstep(0.1, 0.5, local)), greyWhite, whiten);
+			// Flea-bitten: small specks of the original colour come back late in life.
+			float specks = (1.0 - smoothstep(0.1, 0.17, worley3(bp * 45.0 + vec3(seed)).x)) * smoothstep(0.8, 0.97, g) * (is_head ? 0.5 : 1.0);
+			col = mix(col, body_color * 0.8, specks * 0.85);
+			pattern_debug.r = whiten;
+		}
+		// Roan: white hairs evenly through the body; the head, mane, tail and lower legs stay solid, and dark
+		// hair reaches up the legs in points.
+		if (roan > 0.0) {
+			float where = is_head ? 0.08 : is_leg ? smoothstep(0.55, 0.95, c.y) : smoothstep(-0.1, 0.12, body.x) * (1.0 - smoothstep(1.3, 1.7, body.x)) * 0.85 + 0.15;
+			float hairs = 0.6 + 0.4 * noise3(bp * 400.0);
+			float amount = clamp(where * roan * hairs, 0.0, 1.0);
+			col = mix(col, white_color * 0.9, amount * 0.31);
+			pattern_debug.g = amount;
+		}
+		// Leopard complex (LP): a white blanket over the hips with dark oval spots; with PATN1 the white covers
+		// the whole body (leopard). Spots keep the base colour; the head stays mostly coloured.
+		if (leopard > 0.0) {
+			float coverage = clamp(leopard_coverage, 0.0, 1.0);
+			float blanket = body.y * 0.8 + (0.8 - abs(body.x - 0.35) * 1.1) * 0.9 + (fbm3(bp * 3.0 + vec3(seed)) - 0.5) * 0.45 + (is_leg ? coverage * 1.2 : 0.0);
+			float threshold = mix(1.25, 0.05, coverage);
+			float lw = smoothstep(threshold - 0.03, threshold + 0.03, blanket) * (is_head ? 0.35 : 1.0);
+			vec2 sp = worley3(bp * vec3(7.0, 8.5, 7.0) + vec3(seed + 11.0));
+			float size = 0.24 + 0.14 * hash3(floor(bp * vec3(7.0, 8.5, 7.0) + vec3(seed + 11.0)));
+			float spot = 1.0 - smoothstep(size - 0.03, size + 0.03, sp.x + (fbm3(bp * 25.0) - 0.5) * 0.08);
+			lw *= 1.0 - spot;
+			pattern_white = max(pattern_white, lw * leopard);
+			pattern_debug.b = lw;
+		}
+		// Tobiano (KIT): smooth, rounded white that crosses the back between the withers and the tail, white legs,
+		// a coloured head (normal face markings), and coloured flanks and chest that shrink as the white grows.
+		if (tobiano > 0.0) {
+			float e = clamp(tobiano_extent, 0.0, 1.0);
+			float field = fbm3(bp * 2.1 + vec3(seed + 3.0)) - 0.5;
+			float crossing = exp(-pow((body.x - 0.55) / 0.28, 2.0)) * smoothstep(0.35, 1.0, body.y);
+			float legs = is_leg ? mix(0.55, 1.1, 1.0 - smoothstep(0.2, 1.0, c.y)) : smoothstep(0.1, -0.5, body.y) * 0.6;
+			float darkHead = (is_head ? 1.2 : 0.0) + smoothstep(1.35, 1.8, body.x) * 0.6;
+			float t = field * 1.3 + crossing * 0.9 + legs - darkHead + (e - 0.5) * 1.1 - 0.15;
+			float tw = smoothstep(-0.02, 0.02, t);
+			pattern_white = max(pattern_white, tw * tobiano);
+			pattern_debug.g = max(pattern_debug.g, tw);
+		}
+	}
+
 	// white markings
 	float white = 0.0;
 	if (is_head) white = face_white(c, m.b);
@@ -189,6 +258,7 @@ void fragment() {
 			white = 1.0 - smoothstep(h - 0.02, h + 0.02, c.y + jag);
 		}
 	}
+	white = max(white, pattern_white);
 	vec3 white_here = mix(white_color, pink_skin, smoothstep(0.3, 0.9, m.g) * 0.7);
 	col = mix(col, white_here, white);
 
@@ -197,12 +267,15 @@ void fragment() {
 	if (is_leg && c.y < 0.165) {
 		float h = 1.0 - smoothstep(0.15, 0.17, c.y);
 		vec3 hoof = mix(hoof_dark, hoof_pale, white > 0.5 ? 1.0 : 0.0);
+		// Leopard-complex hooves are often striped.
+		if (leopard > 0.0) hoof = mix(hoof, hoof_pale, step(0.55, noise(vec2(UV.x * 60.0, 0.5))) * leopard);
 		hoof *= 0.9 + 0.2 * noise(vec2(c.y * 160.0, UV.x * 30.0));
 		col = mix(col, hoof, h);
 		rough = mix(rough, 0.38, h);
 	}
 	if (debug_view == 1) col = m.rgb;
 	if (debug_view == 4) col = prim_debug;
+	if (debug_view == 5) col = pattern_debug; // R grey whitening, G roan/tobiano, B leopard white
 	if (debug_view == 3) col = use_body_map ? vec3(fract(body.x * 5.0), fract(body.y * 5.0), body.z * 0.5 + 0.5) : vec3(1, 0, 1);
 	if (debug_view == 2) col = is_head ? vec3(c.x, c.y * 0.5 + 0.5, m.b) : is_leg ? vec3(0.0, c.y, 0.0) : vec3(0.1);
 	ALBEDO = col;

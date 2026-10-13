@@ -57,6 +57,21 @@ namespace Cloverbrook.Domain.Tests
         }
 
         [Fact]
+        public void SomeOffersCarryEachD026PatternAndTheBaseOfferStaysTheSame()
+        {
+            var (_, state) = Starter(); var resolver = new PhenotypeResolver(); var patterns = new System.Collections.Generic.HashSet<string>(); var patterned = 0; var total = 0;
+            for (var day = 0; day < 7 * 60; day += 7)
+                foreach (var offer in HorseFair.Offers(state.WithHeader(OnDay(state.Header, day))))
+                {
+                    var layers = resolver.ResolveGenetics(offer.Horse).Phenotype!.CoatLayers; total++;
+                    var found = new[] { "white_tobiano", "roan", "grey_age", "leopard_complex" }.Where(layers.Contains).ToArray();
+                    if (found.Length > 0) { patterned++; foreach (var f in found) patterns.Add(f); Assert.Contains(offer.Reasons, r => r.StartsWith("Eye-catching pattern")); }
+                }
+            Assert.Equal(4, patterns.Count);
+            Assert.InRange(patterned * 100 / total, 20, 55);
+        }
+
+        [Fact]
         public void OffersAreStableWithinAWeekAndChangeTheNextWeek()
         {
             var (_, state) = Starter();
@@ -115,7 +130,7 @@ namespace Cloverbrook.Domain.Tests
         public void ForgedPurchasesAreRejected()
         {
             var (store, state) = Starter();
-            var offer = HorseFair.Offers(state)[0];
+            var offer = HorseFair.Offers(state).OrderBy(o => o.PriceCoins).First();
             var bought = store.CommitPurchase(state.PlayerOwnerId, offer.HorseId, state.Header.SaveRevision, offer.PriceCoins);
             // A bought horse without its debit, or a debit without its horse, cannot load.
             Assert.Throws<SaveIntegrityException>(() => new StableSnapshot(bought.Header, bought.PlayerOwnerId, bought.Horses, bought.OpeningCoinBalance,

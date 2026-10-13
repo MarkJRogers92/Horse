@@ -32,6 +32,15 @@ public readonly record struct CoatLook(Color Body, Color Counter, Color Primitiv
         return new CoatLook(body, counter, primitive, sooty, dapple, shade);
     }
 
+    /// <summary>D-026 individual pattern amounts: how much white a tobiano carries (minimal to mostly white, usually
+    /// moderate) and how large a leopard-complex blanket is. Deterministic per horse, like the shade.</summary>
+    public static (float TobianoExtent, float Blanket) PatternAmounts(string? realizationKey)
+    {
+        var hash = SHA256.HashData(Encoding.UTF8.GetBytes("coat-pattern.v1|" + (realizationKey ?? "")));
+        float At(int i) => BitConverter.ToUInt16(hash, i) / 65535f;
+        return (Mathf.Clamp(0.2f + (At(0) + At(2)) * 0.32f, 0f, 1f), 0.22f + At(4) * 0.3f);
+    }
+
     private static (float A, float B, float C, float D) Rolls(string key)
     {
         var hash = SHA256.HashData(Encoding.UTF8.GetBytes("coat-look.v1|" + key));

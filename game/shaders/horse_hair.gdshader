@@ -6,6 +6,8 @@ uniform vec3 tip_color : source_color = vec3(0.2);
 uniform float strand_count = 18.0;
 uniform float seed = 0.0;
 uniform bool solid_clumps = false;
+uniform float grey_amount = 0.0;    // D-026: mane and tail grey with the coat, a little later than the body
+uniform float white_fraction = 0.0; // D-026: share of white locks (tobiano, leopard complex)
 float hash(float x) { return fract(sin(x * 91.7 + seed) * 43758.5453); }
 void fragment() {
 	// Each card is a hair CLUMP: solid body, ragged tips, soft edges, fine strand shading.
@@ -18,6 +20,8 @@ void fragment() {
 	ALPHA_SCISSOR_THRESHOLD = 0.4;
 	float streak = 0.82 + 0.25 * hash(lane + 3.0) + 0.06 * sin(u * 120.0 + v * 6.0);
 	vec3 col = mix(hair_color, tip_color, smoothstep(0.3, 1.0, v) * 0.5) * streak;
+	col = mix(col, vec3(0.86, 0.86, 0.84) * streak, smoothstep(0.3, 1.0, grey_amount) * 0.92);
+	if (hash(lane + 11.0) < white_fraction) col = vec3(0.93, 0.92, 0.9) * streak;
 	ALBEDO = col;
 	ROUGHNESS = solid_clumps ? 0.72 : 0.55;
 	SPECULAR = solid_clumps ? 0.22 : 0.3;

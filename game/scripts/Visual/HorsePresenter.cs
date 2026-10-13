@@ -178,6 +178,16 @@ public partial class HorsePresenter : Node3D
         var legs = whiteMarkings ? Markings.LegHeights : new float[4];
         coatMat.SetShaderParameter("leg_white", new Vector4(legs[0], legs[1], legs[2], legs[3]));
         coatMat.SetShaderParameter("edge_seed", Markings.EdgeSeed);
+        // D-026 white and pattern overlays (drawn on the D-025 body map).
+        var (tobianoExtent, blanket) = CoatLook.PatternAmounts(descriptor.MarkingRealizationKey);
+        bool tobiano = descriptor.CoatLayers.Contains("white_tobiano"), leopard = descriptor.CoatLayers.Contains("leopard_complex");
+        float grey = descriptor.CoatLayers.Contains("grey_age") ? descriptor.GrayAmount / 10000f : 0f;
+        coatMat.SetShaderParameter("grey_amount", grey);
+        coatMat.SetShaderParameter("roan", descriptor.CoatLayers.Contains("roan") ? 1f : 0f);
+        coatMat.SetShaderParameter("tobiano", tobiano ? 1f : 0f);
+        coatMat.SetShaderParameter("tobiano_extent", tobianoExtent);
+        coatMat.SetShaderParameter("leopard", leopard ? 1f : 0f);
+        coatMat.SetShaderParameter("leopard_coverage", descriptor.Patn1Coverage > 0 ? 0.6f + descriptor.Patn1Coverage / 10000f * 0.35f : blanket);
 
         var eyeMat = new ShaderMaterial { Shader = EyeShader };
         eyeMat.SetShaderParameter("iris", eye.Iris);
@@ -188,6 +198,8 @@ public partial class HorsePresenter : Node3D
         hairMat.SetShaderParameter("tip_color", hair.Tip);
         hairMat.SetShaderParameter("seed", Markings.EdgeSeed);
         hairMat.SetShaderParameter("solid_clumps", family.HairGeometry == "solid_clumps");
+        hairMat.SetShaderParameter("grey_amount", grey);
+        hairMat.SetShaderParameter("white_fraction", (tobiano ? tobianoExtent * 0.45f : 0f) + (leopard ? 0.12f : 0f));
 
         foreach (var mesh in FindAll<MeshInstance3D>(Model))
         {

@@ -43,8 +43,9 @@ public static class FixtureLibrary
     public static IEnumerable<VisualDescriptor> UnsupportedProbes()
     {
         var bay = Get("bay", false);
-        yield return bay with { FixtureId = "probe.grey", DisplayLabel = "Bay (progressive grey) - probe", GrayAmount = 5000,
-            CoatLayers = bay.CoatLayers.Append("grey_age").ToArray(), TestOnly = true };
+        // D-026 released grey; silver still has no renderer layer.
+        yield return bay with { FixtureId = "probe.silver", DisplayLabel = "Silver bay - probe",
+            CoatLayers = bay.CoatLayers.Append("silver").ToArray(), TestOnly = true };
         yield return bay with { FixtureId = "probe.unknown-recipe", DisplayLabel = "Unknown pigment recipe - probe",
             CoatRecipe = "eumelanin_points_pheomelanin_body:champagne", TestOnly = true };
         yield return bay with { FixtureId = "probe.unknown-mesh", DisplayLabel = "Draft body family - probe",

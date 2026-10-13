@@ -49,9 +49,12 @@ namespace Cloverbrook.Domain
                 bool silver = g.GetAlleles("pmel").Contains("Z") && baseCoat != "chestnut";
                 bool champagne = g.GetAlleles("slc36a1").Contains("Ch"), grey = g.GetAlleles("stx17").Contains("G"), lp = g.GetAlleles("trpm1").Contains("LP");
                 bool pearlExpression = pearl == 2 || (pearl == 1 && cream == 1);
-                // Explicitly unimplemented interactions are never approximated by dropping a layer.
-                var advanced = (silver ? 1 : 0) + (champagne ? 1 : 0) + (grey ? 1 : 0) + (lp ? 1 : 0) + (pearlExpression ? 1 : 0);
-                if (advanced > 1 || (advanced > 0 && (dun || nd1 || (cream > 0 && !pearlExpression))))
+                var kit = g.GetAlleles("pattern.eca3"); bool tobiano = kit.Contains("TO"), roan = kit.Contains("Rn");
+                // D-026: grey, leopard complex, tobiano and roan are overlays with versioned rules that compose over every
+                // phase-1 base, dilution and each other. Silver, champagne and pearl still have no rule for any combination,
+                // and unimplemented interactions are never approximated by dropping a layer.
+                var advanced = (silver ? 1 : 0) + (champagne ? 1 : 0) + (pearlExpression ? 1 : 0);
+                if (advanced > 1 || (advanced > 0 && (dun || nd1 || (cream > 0 && !pearlExpression) || grey || lp || tobiano || roan)))
                     return PhenotypeResolution.Unsupported("This advanced modifier interaction has no versioned expression rule yet.");
                 if (cream == 1 && pearl == 1)
                 {
@@ -93,10 +96,12 @@ namespace Cloverbrook.Domain
                     skin = "champagne_mottled"; eyes = "champagne_amber"; hair = "champagne_lightened"; diagnostic = "champagneOn" + Title(baseCoat);
                 }
                 // These are explicit artistic age/coverage parameters, not inferred clinical measurements.
-                var grayAmount = grey ? horse.LifeState.VisualAge == VisualAge.Foal ? 0 : horse.LifeState.VisualAge == VisualAge.Adult ? 5000 : 9000 : 0;
-                if (grey) { layers.Add("grey_age"); required.Add("grey_overlay"); notes.Add("grey.v1 artistic age curve; simplified G state"); }
+                var grayAmount = grey ? GrayAmount(horse.LifeState) : 0;
+                if (grey) { layers.Add("grey_age"); required.Add("grey_overlay"); notes.Add("grey.v2 artistic age curve; simplified G state"); }
                 var patnCoverage = lp && g.GetAlleles("patn1").Contains("PATN1") ? 8000 : 0;
                 if (lp) { layers.Add("leopard_complex"); required.Add("leopard_complex_overlay"); notes.Add("LP/PATN1 coverage is artistic; LP dosage-specific art remains unreleased"); }
+                if (roan) { layers.Add("roan"); required.Add("roan_overlay"); notes.Add("roan: white hairs through the body; solid head and lower legs"); }
+                if (tobiano) { layers.Add("white_tobiano"); required.Add("tobiano_overlay"); notes.Add("tobiano white extent is an artistic per-horse realisation"); }
                 layers.Add("individual_white_markings"); layers.Add("shading_modifiers");
                 var phenotype = new Phenotype(horse.HorseId, g.GenomeHash, Version, horse.AppearanceSeed, horse.LifeState.VisualAge, baseCoat, coatClass, diagnostic,
                     pigment, dilution, layers, skin, eyes, hair, lp, patnCoverage, grayAmount, primitive, traits.Morphology, notes,
@@ -106,6 +111,15 @@ namespace Cloverbrook.Domain
             catch (GeneticsSupportException exception) { return PhenotypeResolution.Unsupported(exception.Message); }
         }
         private static string Title(string text) => char.ToUpperInvariant(text[0]) + text.Substring(1);
+        /// <summary>grey.v2 (artistic, labelled): foals keep their birth colour; adults lighten with age in game days
+        /// (steel grey, dapple grey around day 40, light grey, flea-bitten white after about a game year); seniors are white.</summary>
+        public static int GrayAmount(LifeState life)
+        {
+            Check.NotNull(life, nameof(life));
+            if (life.VisualAge == VisualAge.Foal) return 0;
+            var curve = (int)Math.Min(9500L, 3000L + life.DaysSinceConception * 55L);
+            return life.VisualAge == VisualAge.Senior ? Math.Max(9000, curve) : Math.Min(curve, 8999);
+        }
         public PresentationResolution ResolveForPresentation(HorseRecord horse, CoatSupportMatrix matrix, string visualAssetCatalogVersion,
             string anatomicalMaskSetId, string? cosmeticLayer = null)
         {
@@ -121,11 +135,15 @@ namespace Cloverbrook.Domain
         {
             Check.NotNull(p, nameof(p));
             var label = p.CoatClassId == "dunalino_family" ? p.BaseCoatClass == "chestnut" ? "Dunalino" : p.BaseCoatClass == "bay" ? "Dunskin" : "Smoky grullo"
+                : p.CoatClassId == "double_cream_dun" ? p.BaseCoatClass == "chestnut" ? "Cremello dun" : p.BaseCoatClass == "bay" ? "Perlino dun" : "Smoky cream dun"
                 : Title(p.CoatClassId.Replace('_', ' '));
+            // Roan and grey name the colour underneath, the way horse people do ("bay roan", "blue roan").
+            if (p.CoatLayers.Contains("roan")) label = p.CoatClassId == "black" ? "Blue roan" : p.CoatClassId == "chestnut" ? "Red roan" : label + " roan";
             if (p.PrimitiveMarkingStrength > 0 && !p.CoatLayers.Contains("dun_dilution")) label += " with primitive markings";
             if (p.CoatLayers.Contains("silver")) label = "Silver " + label;
             if (p.CoatLayers.Contains("champagne")) label = "Champagne " + label;
-            if (p.CoatLayers.Contains("leopard_complex")) label += " with leopard-complex pattern";
+            if (p.CoatLayers.Contains("white_tobiano")) label += " tobiano";
+            if (p.CoatLayers.Contains("leopard_complex")) label += p.Patn1Coverage > 0 ? " leopard appaloosa" : " blanket appaloosa";
             if (p.CoatLayers.Contains("grey_age")) label += " (progressive grey)";
             return label;
         }

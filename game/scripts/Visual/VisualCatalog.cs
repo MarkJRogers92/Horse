@@ -758,7 +758,7 @@ public sealed class VisualCatalog
                 limits.Add($"Light Body signed detail UV scope: {bodyDetail.RetainedTriangleCount} retained triangles plus {bodyDetail.NeutralRecoveredFaceCount} recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed");
         }
         if (d.GrayAmount != 0 && !ImplementedLayers.Contains("grey_age")) problems.Add("grey progression is not implemented");
-        if (d.LpPatternPresent || d.Patn1Coverage != 0) problems.Add("leopard complex / PATN1 is not implemented");
+        if ((d.LpPatternPresent || d.Patn1Coverage != 0) && !ImplementedLayers.Contains("leopard_complex")) problems.Add("leopard complex / PATN1 is not implemented");
         if (d.PrimitiveMarkingStrength > 0 && Coats.TryGetValue(d.CoatRecipe, out var c) && c.Primitive is null && !d.CoatLayers.Contains("primitive_markings"))
             problems.Add("primitive markings requested without a primitive_markings layer");
         if (!string.IsNullOrEmpty(d.CosmeticLayer) && !HorseTack.IsKnownLayer(d.CosmeticLayer)) limits.Add($"cosmetic layer '{d.CosmeticLayer}' ignored (unknown tack)");

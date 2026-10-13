@@ -34,15 +34,22 @@ namespace Cloverbrook.Domain
                 ["trpm1"] = Biological("trpm1", "TRPM1", new[] { "N", "LP" }, "https://vgl.ucdavis.edu/test/leopard-complex", "Leopard-complex inheritance and expression context."),
                 ["patn1"] = Biological("patn1", "RFWD3", new[] { "N", "PATN1" }, "https://vgl.ucdavis.edu/test/appaloosa-pattern-1", "PATN1 modifies LP-associated pattern expression; it cannot create LP by itself.")
             };
-            foreach (var name in new[] { "eca3", "mitf", "pax3", "ednrb" })
-                defs.Add("pattern." + name, Biological("pattern." + name, name == "eca3" ? "KIT-associated region" : name.ToUpperInvariant(),
+            // D-026: the ECA3 KIT-associated region carries the tobiano (TO) and roan (Rn) haplotypes. One haplotype holds
+            // at most one of them (tobiano-roan haplotypes are real but rare and not modelled). "baseline" stays first:
+            // SupportedAlleleIds[0] is the default call for starters and neutral analysis genomes.
+            defs.Add("pattern.eca3", Biological("pattern.eca3", "KIT-associated region", new[] { "baseline", "TO", "Rn" },
+                "https://vgl.ucdavis.edu/test/tobiano", "Tobiano (TO, ECA3 inversion near KIT) and roan (Rn, KIT-associated haplotype) are dominant white patterns; homozygotes are viable.",
+                EvidenceStatus.AssociatedBiological));
+            foreach (var name in new[] { "mitf", "pax3", "ednrb" })
+                defs.Add("pattern." + name, Biological("pattern." + name, name.ToUpperInvariant(),
                     new[] { "baseline" }, "https://vgl.ucdavis.edu/resources/horse-coat-color", "Only the fixed absence-of-supported-pattern state is enabled here; other haplotypes remain deferred.", EvidenceStatus.AssociatedBiological));
             var rules = new List<LinkageBlockRule>();
-            // The ECA3 pattern region is fixed at baseline in this slice. Keeping it
-            // with MC1R makes future nonbaseline patterns require an explicit map update.
+            // MC1R and the KIT region share ECA3 (tobiano and roan are known to be linked to extension). The block keeps
+            // its original layout so existing saves validate unchanged; zero recombination is a slice restriction, NOT an
+            // empirical horse recombination estimate, so a pattern travels with the extension allele it started on.
             rules.Add(new LinkageBlockRule("eca3.core", false, new[] { defs["mc1r"], defs["pattern.eca3"] }, new[] { Rational.Zero }, "eca3.fixed-pattern.v1",
-                "Pattern region is fixed at baseline; zero is a slice restriction, NOT an empirical horse recombination estimate.",
-                new[] { new[] { "E", "baseline" }, new[] { "e", "baseline" } }));
+                "Pattern region is linked to MC1R with zero recombination; a slice restriction, NOT an empirical horse recombination estimate.",
+                new[] { new[] { "E", "baseline" }, new[] { "e", "baseline" }, new[] { "E", "TO" }, new[] { "e", "TO" }, new[] { "E", "Rn" }, new[] { "e", "Rn" } }));
             foreach (var pair in defs.Where(p => p.Key != "mc1r" && p.Key != "pattern.eca3").OrderBy(p => p.Key, StringComparer.Ordinal))
                 rules.Add(new LinkageBlockRule(pair.Key, false, new[] { pair.Value }, Array.Empty<Rational>(), "single-locus.v1",
                     "Single supported locus block. MC1R/ASIP independence follows the frozen cross fixture. No physical map distance is claimed by this logical ID."));

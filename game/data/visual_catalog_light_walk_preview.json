@@ -10,7 +10,11 @@
     "dun_dilution",
     "primitive_markings",
     "individual_white_markings",
-    "shading_modifiers"
+    "shading_modifiers",
+    "white_tobiano",
+    "roan",
+    "grey_age",
+    "leopard_complex"
   ],
   "meshFamilies": {
     "horse.standard.adult.v1": {
@@ -55,8 +59,53 @@
         -0.00058
       ]
     },
-    "horse.standard.foal.v1": {"scene":"res://assets/horse/production/horse_foal.glb","placeholder":false,"age":"foal","hairGeometry":"solid_clumps","headViewTarget":[0.593083,1.199694,-0.00107],"restGeometry":{"sourceGlbSha256":"422d320d4c976411e3f6d4346d74202b606f438bade44111b325686575c86291","candidateBlendSha256":"bef2fe3a18f2d742d0a5e4976dd25d489959be381e408214bfd4323bd725fe31","regionProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/bounded-geometry-audit.json","regionProofSha256":"50f85deb4e88d0f980ea822c2f57224ce747fb2eea7ed58ba6769ae117a70248","consistencyProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-walk-consistency.json","consistencyProofSha256":"a92ec0d29757f49d744db1f0e03ca7c3046fa75389dc39f3e78b61b6bb297650","morphProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-morph-audit.json","morphProofSha256":"b0db735a0b20d8a4d5a6c5ba08cb48595e2b9d5be6edee6dc02b14bbc02d8051","importProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/native-idle-report.json","importProofSha256":"827a0951b71246006b373f4f1e4cebdffd65f1af76424f8c98ea829c27ea9d42"}},
-    "horse.compact.foal.v1": {"scene":"res://assets/horse/production/horse_foal.glb","placeholder":false,"age":"foal","hairGeometry":"solid_clumps","headViewTarget":[0.593083,1.199694,-0.00107],"limitation":"Shares the standard juvenile master; a separate compact foal base is not authored.","restGeometry":{"sourceGlbSha256":"422d320d4c976411e3f6d4346d74202b606f438bade44111b325686575c86291","candidateBlendSha256":"bef2fe3a18f2d742d0a5e4976dd25d489959be381e408214bfd4323bd725fe31","regionProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/bounded-geometry-audit.json","regionProofSha256":"50f85deb4e88d0f980ea822c2f57224ce747fb2eea7ed58ba6769ae117a70248","consistencyProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-walk-consistency.json","consistencyProofSha256":"a92ec0d29757f49d744db1f0e03ca7c3046fa75389dc39f3e78b61b6bb297650","morphProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-morph-audit.json","morphProofSha256":"b0db735a0b20d8a4d5a6c5ba08cb48595e2b9d5be6edee6dc02b14bbc02d8051","importProofPath":"res://assets/horse/production/evidence/foal-idle-hind-geometry/native-idle-report.json","importProofSha256":"827a0951b71246006b373f4f1e4cebdffd65f1af76424f8c98ea829c27ea9d42"}}
+    "horse.standard.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal",
+      "hairGeometry": "solid_clumps",
+      "headViewTarget": [
+        0.593083,
+        1.199694,
+        -0.00107
+      ],
+      "restGeometry": {
+        "sourceGlbSha256": "422d320d4c976411e3f6d4346d74202b606f438bade44111b325686575c86291",
+        "candidateBlendSha256": "bef2fe3a18f2d742d0a5e4976dd25d489959be381e408214bfd4323bd725fe31",
+        "regionProofPath": "res://assets/horse/production/evidence/foal-idle-hind-geometry/bounded-geometry-audit.json",
+        "regionProofSha256": "50f85deb4e88d0f980ea822c2f57224ce747fb2eea7ed58ba6769ae117a70248",
+        "consistencyProofPath": "res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-walk-consistency.json",
+        "consistencyProofSha256": "a92ec0d29757f49d744db1f0e03ca7c3046fa75389dc39f3e78b61b6bb297650",
+        "morphProofPath": "res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-morph-audit.json",
+        "morphProofSha256": "b0db735a0b20d8a4d5a6c5ba08cb48595e2b9d5be6edee6dc02b14bbc02d8051",
+        "importProofPath": "res://assets/horse/production/evidence/foal-idle-hind-geometry/native-idle-report.json",
+        "importProofSha256": "827a0951b71246006b373f4f1e4cebdffd65f1af76424f8c98ea829c27ea9d42"
+      }
+    },
+    "horse.compact.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal",
+      "hairGeometry": "solid_clumps",
+      "headViewTarget": [
+        0.593083,
+        1.199694,
+        -0.00107
+      ],
+      "limitation": "Shares the standard juvenile master; a separate compact foal base is not authored.",
+      "restGeometry": {
+        "sourceGlbSha256": "422d320d4c976411e3f6d4346d74202b606f438bade44111b325686575c86291",
+        "candidateBlendSha256": "bef2fe3a18f2d742d0a5e4976dd25d489959be381e408214bfd4323bd725fe31",
+        "regionProofPath": "res://assets/horse/production/evidence/foal-idle-hind-geometry/bounded-geometry-audit.json",
+        "regionProofSha256": "50f85deb4e88d0f980ea822c2f57224ce747fb2eea7ed58ba6769ae117a70248",
+        "consistencyProofPath": "res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-walk-consistency.json",
+        "consistencyProofSha256": "a92ec0d29757f49d744db1f0e03ca7c3046fa75389dc39f3e78b61b6bb297650",
+        "morphProofPath": "res://assets/horse/production/evidence/foal-idle-hind-geometry/idle-morph-audit.json",
+        "morphProofSha256": "b0db735a0b20d8a4d5a6c5ba08cb48595e2b9d5be6edee6dc02b14bbc02d8051",
+        "importProofPath": "res://assets/horse/production/evidence/foal-idle-hind-geometry/native-idle-report.json",
+        "importProofSha256": "827a0951b71246006b373f4f1e4cebdffd65f1af76424f8c98ea829c27ea9d42"
+      }
+    }
   },
   "coatRecipes": {
     "pheomelanin_full:none": {
@@ -181,6 +230,150 @@
       "sooty": 0.1,
       "dapple": 0.0,
       "sheen": 0.35
+    },
+    "pheomelanin_full:cream_single+dun": {
+      "label": "dunalino",
+      "body": "#ddb97c",
+      "points": "#c9975a",
+      "pointsAmount": 0.35,
+      "counter": "#ecd3a3",
+      "primitive": "#a8733f",
+      "sooty": 0.05,
+      "dapple": 0.05,
+      "sheen": 0.5,
+      "bodyRange": [
+        "#e8cb95",
+        "#c79f62"
+      ],
+      "dunHead": 0.3,
+      "sootyRange": [
+        0.0,
+        0.1
+      ],
+      "dappleRange": [
+        0.0,
+        0.05
+      ]
+    },
+    "eumelanin_points_pheomelanin_body:cream_single+dun": {
+      "label": "dunskin",
+      "body": "#d2b07c",
+      "points": "#1b1512",
+      "pointsAmount": 1.0,
+      "counter": "#e2c89c",
+      "primitive": "#3a2c22",
+      "sooty": 0.05,
+      "dapple": 0.05,
+      "sheen": 0.45,
+      "bodyRange": [
+        "#e0c391",
+        "#b48f5c"
+      ],
+      "dunHead": 0.4,
+      "sootyRange": [
+        0.0,
+        0.1
+      ],
+      "dappleRange": [
+        0.0,
+        0.05
+      ]
+    },
+    "eumelanin_full:cream_single+dun": {
+      "label": "smoky grullo",
+      "body": "#7c7066",
+      "points": "#1d1917",
+      "pointsAmount": 1.0,
+      "counter": "#938679",
+      "primitive": "#28221f",
+      "sooty": 0.1,
+      "dapple": 0.0,
+      "sheen": 0.35,
+      "bodyRange": [
+        "#93867a",
+        "#62574f"
+      ],
+      "dunHead": 0.5,
+      "sootyRange": [
+        0.0,
+        0.15
+      ],
+      "dappleRange": [
+        0.0,
+        0.0
+      ]
+    },
+    "pheomelanin_full:cream_double+dun": {
+      "label": "cremello dun",
+      "body": "#e2cba5",
+      "points": "#d6b98f",
+      "pointsAmount": 0.3,
+      "counter": "#eedfc4",
+      "primitive": "#c9a77a",
+      "sooty": 0.0,
+      "dapple": 0.05,
+      "sheen": 0.45,
+      "bodyRange": [
+        "#ebd9ba",
+        "#d4b88d"
+      ],
+      "dunHead": 0.15,
+      "sootyRange": [
+        0.0,
+        0.0
+      ],
+      "dappleRange": [
+        0.0,
+        0.05
+      ]
+    },
+    "eumelanin_points_pheomelanin_body:cream_double+dun": {
+      "label": "perlino dun",
+      "body": "#dfc59e",
+      "points": "#ae7a51",
+      "pointsAmount": 0.9,
+      "counter": "#ebdbbe",
+      "primitive": "#b98e64",
+      "sooty": 0.0,
+      "dapple": 0.05,
+      "sheen": 0.45,
+      "bodyRange": [
+        "#e8d4b2",
+        "#cfb087"
+      ],
+      "dunHead": 0.15,
+      "sootyRange": [
+        0.0,
+        0.0
+      ],
+      "dappleRange": [
+        0.0,
+        0.05
+      ]
+    },
+    "eumelanin_full:cream_double+dun": {
+      "label": "smoky cream dun",
+      "body": "#d8c3a2",
+      "points": "#988470",
+      "pointsAmount": 0.8,
+      "counter": "#e6d8c1",
+      "primitive": "#a8927a",
+      "sooty": 0.0,
+      "dapple": 0.05,
+      "sheen": 0.45,
+      "bodyRange": [
+        "#e2d0b3",
+        "#c6ae8b"
+      ],
+      "dunHead": 0.15,
+      "sootyRange": [
+        0.0,
+        0.0
+      ],
+      "dappleRange": [
+        0.0,
+        0.05
+      ]
     }
   },
   "hairRecipes": {

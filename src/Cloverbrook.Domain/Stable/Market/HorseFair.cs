@@ -95,7 +95,7 @@ namespace Cloverbrook.Domain
             return Generate(scope, "fair/offer", state.PlayerOwnerId, OriginRecord, usedCoats, usedNames, out coatClass);
         }
 
-        /// <summary>A complete adult founder with a released phase-1 coat, derived only from <paramref name="scope"/> (also used for D-019 cup rivals).</summary>
+        /// <summary>A complete adult founder with a released phase-1 base coat and sometimes a D-026 pattern, derived only from <paramref name="scope"/> (also used for D-019 cup rivals).</summary>
         internal static HorseRecord Generate(string scope, string purpose, OwnerId owner, string originRecord, HashSet<int> usedCoats, HashSet<string> usedNames, out string coatClass,
             int markerOnePercent = 50)
         {
@@ -105,12 +105,14 @@ namespace Cloverbrook.Domain
             var coat = Coats[coatIndex]; coatClass = coat.Coat;
             string name; var attempts = 0;
             do name = Names[(int)rng.NextBelow(Names.Length)]; while (!usedNames.Add(name) && ++attempts < 64);
+            var pattern = Pattern(seed, purpose);
             var genome = new GenomeSnapshot(CoreGeneticsCatalog.Model.Blocks.Values.Select(block =>
             {
                 var a = new List<string>(); var b = new List<string>();
                 foreach (var locus in block.Loci)
                 {
-                    var (x, y) = Alleles(locus.LocusId, locus.Variant.SupportedAlleleIds[0], coat, block.IsSynthetic, rng, markerOnePercent);
+                    var (x, y) = pattern.TryGetValue(locus.LocusId, out var calls) ? calls
+                        : Alleles(locus.LocusId, locus.Variant.SupportedAlleleIds[0], coat, block.IsSynthetic, rng, markerOnePercent);
                     a.Add(x); b.Add(y);
                 }
                 return new PhasedBlockPair(block.BlockId, block.IsSynthetic, block.Loci.Select(l => l.LocusId), a, b);
@@ -124,6 +126,20 @@ namespace Cloverbrook.Domain
                 Seed128.Parse(Canonical.Hash(scope, "appearance").Substring(0, 32)), owner,
                 new LifeState(LifeStage.Adult, age, VisualAge.Adult), new ReproductionState(role), development, traits.Inherited,
                 homeAssignment: HomeKind.ActiveStable, originRecord: originRecord);
+        }
+
+        /// <summary>D-026 white and pattern overlays, drawn from their own stream so each week's base coat, name, sex
+        /// and abilities are unchanged: about one horse in three carries tobiano, roan, grey or leopard complex.</summary>
+        private static Dictionary<string, (string, string)> Pattern(Seed128 seed, string purpose)
+        {
+            var rng = new CounterRng(seed, purpose + "/pattern.v1");
+            var calls = new Dictionary<string, (string, string)>(StringComparer.Ordinal);
+            var roll = rng.NextBelow(100);
+            if (roll < 12) calls["pattern.eca3"] = rng.NextBelow(100) < 15 ? ("TO", "TO") : ("TO", "baseline");
+            else if (roll < 20) calls["pattern.eca3"] = ("Rn", "baseline");
+            else if (roll < 30) calls["stx17"] = ("G", "N");
+            else if (roll < 38) { calls["trpm1"] = ("LP", "N"); if (rng.NextBelow(2) == 0) calls["patn1"] = ("PATN1", "N"); }
+            return calls;
         }
 
         private static (string, string) Alleles(string locus, string fallback,
@@ -157,7 +173,10 @@ namespace Cloverbrook.Domain
                 _ => 0,
             };
             if (rarity != 0) reasons.Add($"Sought-after coat: +{rarity}");
-            return Math.Max(MinimumPrice, Math.Min(MaximumPrice, price + ability + rarity));
+            var layers = new PhenotypeResolver().ResolveGenetics(horse).Phenotype?.CoatLayers ?? Array.Empty<string>();
+            long pattern = layers.Contains("white_tobiano") || layers.Contains("leopard_complex") ? 90 : layers.Contains("roan") || layers.Contains("grey_age") ? 60 : 0;
+            if (pattern != 0) reasons.Add($"Eye-catching pattern: +{pattern}");
+            return Math.Max(MinimumPrice, Math.Min(MaximumPrice, price + ability + rarity + pattern));
         }
 
         internal static StableSnapshot ApplyPurchase(StableSnapshot state, OwnerId requester, HorseId horseId, ulong expectedSaveRevision, long quotedPrice)

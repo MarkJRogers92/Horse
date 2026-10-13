@@ -28,9 +28,22 @@ namespace Cloverbrook.Domain.Tests
             yield return new object[] { "grullo", "E", "a", "N", "N", "D", "Grullo" };
             yield return new object[] { "non_dun1_marked", "E", "A", "N", "N", "nd1", "Bay with primitive markings" };
         }
-        private static HorseRecord ReferenceHorse(string extension, string agouti, string creamA, string creamB, string dun, VisualAge age)
+        // D-026 releases: cream-dun stacking and the white/pattern overlays, each shown on one reference base.
+        // The last column is extra "locus=A/B" calls on top of the base row.
+        public static IEnumerable<object[]> D026Rows()
         {
-            var genome = FrozenFixtureData.With(("mc1r", extension, extension), ("asip", agouti, agouti), ("slc45a2", creamA, creamB), ("tbx3", dun, "nd2"));
+            yield return new object[] { "dunalino_family", "E", "A", "Cr", "N", "D", "Dunskin", "" };
+            yield return new object[] { "double_cream_dun", "E", "A", "Cr", "Cr", "D", "Perlino dun", "" };
+            yield return new object[] { "tobiano_overlay", "E", "A", "N", "N", "nd2", "Bay tobiano", "pattern.eca3=TO/baseline" };
+            yield return new object[] { "roan_overlay", "E", "A", "N", "N", "nd2", "Bay roan", "pattern.eca3=Rn/baseline" };
+            yield return new object[] { "grey_overlay", "E", "a", "N", "N", "nd2", "Black (progressive grey)", "stx17=G/N" };
+            yield return new object[] { "leopard_complex_overlay", "e", "A", "N", "N", "nd2", "Chestnut blanket appaloosa", "trpm1=LP/N" };
+        }
+        private static (string Locus, string A, string B)[] Extra(string extra) => extra.Split(';', StringSplitOptions.RemoveEmptyEntries)
+            .Select(c => { var parts = c.Split('='); var calls = parts[1].Split('/'); return (parts[0], calls[0], calls[1]); }).ToArray();
+        private static HorseRecord ReferenceHorse(string extension, string agouti, string creamA, string creamB, string dun, VisualAge age, string extra = "")
+        {
+            var genome = FrozenFixtureData.With(new[] { ("mc1r", extension, extension), ("asip", agouti, agouti), ("slc45a2", creamA, creamB), ("tbx3", dun, "nd2") }.Concat(Extra(extra)).ToArray());
             return FrozenFixtureData.Horse(genome, stage: age == VisualAge.Foal ? LifeStage.Foal : LifeStage.Adult, age: age);
         }
         [Theory]
@@ -52,25 +65,43 @@ namespace Cloverbrook.Domain.Tests
             Assert.Equal(ResolutionStatus.Supported, real.Status); // released by D-013
             Assert.Equal(adult.Descriptor.CoatRecipe, real.Descriptor!.CoatRecipe);
         }
+        [Theory]
+        [MemberData(nameof(D026Rows))]
+        public void EveryD026ClassIsReleasedWithConsistentAdultAndFoalDescriptors(string classId, string extension, string agouti,
+            string creamA, string creamB, string dun, string visibleLabel, string extra)
+        {
+            var matrix = PhenotypeTests.Matrix(); var resolver = new PhenotypeResolver();
+            var adult = resolver.ResolveForPresentation(ReferenceHorse(extension, agouti, creamA, creamB, dun, VisualAge.Adult, extra), matrix, "reference-assets.v1", "canonical-anatomy.v1");
+            var foal = resolver.ResolveForPresentation(ReferenceHorse(extension, agouti, creamA, creamB, dun, VisualAge.Foal, extra), matrix, "reference-assets.v1", "canonical-anatomy.v1");
+            Assert.Equal(ResolutionStatus.Supported, adult.Status); Assert.Equal(ResolutionStatus.Supported, foal.Status);
+            Assert.Equal(visibleLabel, adult.DisplayLabel); Assert.Equal(visibleLabel, foal.DisplayLabel);
+            Assert.Contains(classId, adult.Descriptor!.RequiredCoatClasses);
+            Assert.All(matrix.Classes[classId].LayerIds, layer => Assert.Contains(layer, adult.Descriptor.CoatLayers));
+            Assert.Equal(adult.Descriptor.CoatRecipe, foal.Descriptor!.CoatRecipe);
+        }
         [Fact]
         public void ExportReferenceDescriptorsForEveryPhase1ClassWithoutChangingReleaseStatus()
         {
             using var source = FixtureFiles.Load("COAT_SUPPORT_MATRIX.json");
             var expected = source.RootElement.GetProperty("coatClasses").EnumerateArray().Where(c => c.GetProperty("phase").GetInt32() == 1).Select(c => c.GetProperty("id").GetString()!).OrderBy(s => s).ToArray();
-            var rows = Phase1Rows().ToArray(); Assert.Equal(expected, rows.Select(r => (string)r[0]).OrderBy(s => s).ToArray());
+            Assert.Equal(expected, Phase1Rows().Select(r => (string)r[0]).OrderBy(s => s).ToArray());
+            var rows = Phase1Rows().Select(r => r.Take(6).Append("").ToArray()).Concat(D026Rows().Select(r => r.Take(6).Append(r[7]).ToArray())).ToArray();
+            expected = expected.Concat(D026Rows().Select(r => (string)r[0])).ToArray();
             var resolver = new PhenotypeResolver(); var examples = new List<object>(); var testMatrix = PhenotypeTests.Matrix(true);
             foreach (var row in rows)
             {
-                var classId = (string)row[0]; var extension = (string)row[1]; var agouti = (string)row[2]; var creamA = (string)row[3]; var creamB = (string)row[4]; var dun = (string)row[5];
+                var classId = (string)row[0]; var extension = (string)row[1]; var agouti = (string)row[2]; var creamA = (string)row[3]; var creamB = (string)row[4]; var dun = (string)row[5]; var extra = (string)row[6];
                 foreach (var age in new[] { VisualAge.Adult, VisualAge.Foal })
                 {
-                    var horse = ReferenceHorse(extension, agouti, creamA, creamB, dun, age);
+                    var horse = ReferenceHorse(extension, agouti, creamA, creamB, dun, age, extra);
+                    var overrides = new Dictionary<string, string[]> { ["mc1r"] = new[] { extension, extension }, ["asip"] = new[] { agouti, agouti },
+                        ["slc45a2"] = new[] { creamA, creamB }, ["tbx3"] = new[] { dun, "nd2" } };
+                    foreach (var (locus, a, b) in Extra(extra)) overrides[locus] = new[] { a, b };
                     var result = resolver.ResolveForPresentation(horse, testMatrix, "reference-assets.v1", "canonical-anatomy.v1");
                     Assert.Equal(ResolutionStatus.Supported, result.Status); var d = result.Descriptor!;
                     examples.Add(new {
                         fixtureId = classId + "." + age.ToString().ToLowerInvariant(), matrixClassId = classId, visualAge = age.ToString(), displayLabel = result.DisplayLabel,
-                        genotypeOverrides = new Dictionary<string, string[]> { ["mc1r"] = new[] { extension, extension }, ["asip"] = new[] { agouti, agouti },
-                            ["slc45a2"] = new[] { creamA, creamB }, ["tbx3"] = new[] { dun, "nd2" } },
+                        genotypeOverrides = overrides,
                         descriptor = new { horseId = d.HorseId.ToString(), d.PhenotypeInputHash, d.ResolverVersion, d.CoatClassId, d.RequiredCoatClasses,
                             d.VisualCapabilityVersion, d.VisualAssetCatalogVersion, d.MeshFamilyId, d.AnatomicalMaskSetId, d.MorphWeights, d.CoatLayers,
                             d.CoatRecipe, d.SkinRecipe, d.EyeRecipe, d.HairRecipe, d.GrayAmount, d.PrimitiveMarkingStrength, d.LpPatternPresent,
@@ -80,10 +111,10 @@ namespace Cloverbrook.Domain.Tests
             }
             var payload = new { formatVersion = "cloverbrook.visual-fixtures.v1", evidence = "headless_reference_only", renderingStatus = "not_rendered",
                 notForLiveStock = true, resolverVersion = resolver.Version, traitModelVersion = GameTraitResolver.Version,
-                note = "13 phase-1 class references at adult and foal ages. Matrix promotion exists only in test memory. Asset IDs are requirements, not available meshes. Use for neutral/stable/portrait contact-sheet implementation; no visuals approved.",
+                note = "13 phase-1 and 6 D-026 class references at adult and foal ages. Matrix promotion exists only in test memory. Asset IDs are requirements, not available meshes. Use for neutral/stable/portrait contact-sheet implementation; no visuals approved.",
                 fixtures = examples };
             var json = JsonSerializer.Serialize(payload, new JsonSerializerOptions { WriteIndented = true, PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-            using var parsed = JsonDocument.Parse(json); Assert.Equal(26, parsed.RootElement.GetProperty("fixtures").GetArrayLength());
+            using var parsed = JsonDocument.Parse(json); Assert.Equal(38, parsed.RootElement.GetProperty("fixtures").GetArrayLength());
             Assert.True(parsed.RootElement.GetProperty("notForLiveStock").GetBoolean());
             Assert.DoesNotContain(PhenotypeTests.Matrix().Classes.Values, c => c.Release == SupportLevel.Released && !expected.Contains(c.Id));
             var directory = Path.Combine(AppContext.BaseDirectory, "TestResults"); Directory.CreateDirectory(directory);

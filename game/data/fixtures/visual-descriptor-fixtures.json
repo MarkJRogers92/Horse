@@ -5,7 +5,7 @@
   "notForLiveStock": true,
   "resolverVersion": "phenotype.v1",
   "traitModelVersion": "game.traits.v1",
-  "note": "13 phase-1 class references at adult and foal ages. Matrix promotion exists only in test memory. Asset IDs are requirements, not available meshes. Use for neutral/stable/portrait contact-sheet implementation; no visuals approved.",
+  "note": "13 phase-1 and 6 D-026 class references at adult and foal ages. Matrix promotion exists only in test memory. Asset IDs are requirements, not available meshes. Use for neutral/stable/portrait contact-sheet implementation; no visuals approved.",
   "fixtures": [
     {
       "fixtureId": "chestnut.adult",
@@ -66,7 +66,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "3a08026d0dd04866c9817c7776591098605a54439ee6569f758bddc931836fe2"
+        "cacheKey": "5e9e75c54012d53f8d18d085595a801cf10f530e00bbe3fe36c5a43a19fca05b"
       }
     },
     {
@@ -128,7 +128,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "6eb1803c496df5a7ea0b2d567dd97fc396b7be7723593f795adfc3102cdd73e5"
+        "cacheKey": "19ff81b956e32c66ae119e778858ed762292f7376353b1f7b04865d8578623ca"
       }
     },
     {
@@ -190,7 +190,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "f175bfbd5ebed080e9ccaf24bbf4257762393715b983e73e84817c29e06c7bb2"
+        "cacheKey": "24f09e67e66b63808dd248d5ca6370ffb812ef04ae813f63fd751e2428dd647c"
       }
     },
     {
@@ -252,7 +252,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "c6ad3d20ca28424be975a257aaa4290a238e4e2b47b91eb50d75a85b556a3450"
+        "cacheKey": "a92fa315d58fbf5f809071118c58fd20e0bb399e4789e55bead5b960dac4708a"
       }
     },
     {
@@ -314,7 +314,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "4e94bb0076af96bf5b4ecd2c77f2d40d6be6443cda7bfbe5865d53eff4381ebf"
+        "cacheKey": "423682a271d08b7ff65ada83dcefa5fb108684f0bc1918405144514502a78ffe"
       }
     },
     {
@@ -376,7 +376,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "c883995540b9589ca3094895b6714481d3d265b79597778f7cc315507e905c67"
+        "cacheKey": "c0fb35efe0d400ac9a1a8935294201995cd1b2d3855eb2f2c86a0ee9c1ed6abc"
       }
     },
     {
@@ -440,7 +440,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "a81e3b7921b44062bc1fb0ce26ae3722200c77ca8761e3e42e6ec3ac96efedc7"
+        "cacheKey": "295a7640cd8153b63e2c74276e7ee38c8d8823f45da12341c844b36b978f05df"
       }
     },
     {
@@ -504,7 +504,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "bd55cefbf88009ea94181f7b69c3444ede4768dcdcefa3aaeaf15257afb48e8d"
+        "cacheKey": "4f9c072cc1732836d4134c241a034937d440b1bb2e4552af8f7a98ff5d90fdc5"
       }
     },
     {
@@ -568,7 +568,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "42c006b661280c7745e6f29739537365291fe06de213b2442e9ba08c016c7426"
+        "cacheKey": "0c517de1b9ca672368ff314ed4966783fa711628691e937fbf0e5ffc710003ea"
       }
     },
     {
@@ -632,7 +632,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "b9a9653ff8e4f3e27852674f9f208e7344465f06aaf463838bf568e86d71f547"
+        "cacheKey": "ba76526b7183beebbf67d1dfbf7b7a455d95947eaa511092d965c87aef88da1f"
       }
     },
     {
@@ -696,7 +696,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "193764e36c3b91d6256d048294cd688abaeafcff0890cc3e8fba52025955918c"
+        "cacheKey": "7fa45c67c9cd04539225fea43ecd87d36c5e240b7db522006868174383c81b59"
       }
     },
     {
@@ -760,7 +760,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "8389bbc035393541347fa7b358d2bdf7e6ce70970bb38ab5d775ed903d08d637"
+        "cacheKey": "99886aeee75f3a9eb5c2735ab2426eb4443e657da54ae5e9f3f6863181c275a3"
       }
     },
     {
@@ -824,7 +824,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "f696a48a0cd924d28b8271a287eebcc7fc0c1aba0e091744aff6853303a2150c"
+        "cacheKey": "be18d5a4dbb74d4656922ddb33b09ee894cf67d84542fa93307bced682870f5c"
       }
     },
     {
@@ -888,7 +888,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "67b8d90ff47022cca65cabcc56447481c29c35729a569dfa7c1f53d46907816b"
+        "cacheKey": "cfdb34d0fb50d15cb3fcdf56246009295323e2392fc92add48a8e818f0af8b57"
       }
     },
     {
@@ -952,7 +952,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "a047c2a10da8f2633416c0bf1c87e02c2517b9ac6ea1aa3a62d2ba520ee64e36"
+        "cacheKey": "959e6e6079cacf27a269bc379f4b3a94f561ea7a88a28d053e51abcde9bd9a64"
       }
     },
     {
@@ -1016,7 +1016,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "767f30d64799bf14b3a35d9a1fe5cec35fc7307244190b6d8e3b01f0be23c9d1"
+        "cacheKey": "3848f4920b7177cd3cb5dc46b3d83b9eb7627d5761914e5fb0eb0189a1d765bb"
       }
     },
     {
@@ -1080,7 +1080,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "166b83042b8e8b631a1a89bbbd971995e0948aa379b151f65542afa7a246fc60"
+        "cacheKey": "3c743dc360b67e5ff40caaa9c1c761b16927c2f4ffa893663eb1b0ead3dd1714"
       }
     },
     {
@@ -1144,7 +1144,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "567b357c0ca7cb95b43183c01be74f5c6ca6ae1911e861f57f902f9407179923"
+        "cacheKey": "dce1e821c3be7b5cbab29609c5491dfce50defbf3695fe02adab0e419b6501db"
       }
     },
     {
@@ -1209,7 +1209,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "061bad0ae69cc7c522e77c479a950b31d53f7fc1cf98fce3deaa452e8cc30c80"
+        "cacheKey": "6d923c7b53cdfaeed1dbca3dac185971af31dfdb52e6d1f2e5ceae8852596dec"
       }
     },
     {
@@ -1274,7 +1274,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "44786e4a28ab569f81e1ee06262939cb540de95ba6841b7c3b44632798c1fe1d"
+        "cacheKey": "1ac6c8e347016ad9249d810f4ca5389273ef7b8c30950fa46ab5ed8ef3554e6d"
       }
     },
     {
@@ -1339,7 +1339,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "0e3008b45362078fa394c9df7b74e4c6f2015185790aaa8e10764e24372f1b5c"
+        "cacheKey": "e57ba1574acb3371b978e1a3acb9be7ad9e0a16c13f8788cdfd754e09ea44f11"
       }
     },
     {
@@ -1404,7 +1404,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "3597d336d682135bc703084c7a839a236f47df842f2fbe1a3f916811b87c93e7"
+        "cacheKey": "d1573f7f3586955ec977e64bc349356a7c8baba14096038fb7767714407a2b7e"
       }
     },
     {
@@ -1469,7 +1469,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "bcde1fa12e5abdd599e65f26f856b2dd8f715954b15869ff13a0577207b929b7"
+        "cacheKey": "c486fc33057602ae153a3df2add4e74f61c726570a7be81d8faa2b101e8ff9c0"
       }
     },
     {
@@ -1534,7 +1534,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "dc8d289e2d86059f2501f0c86edc8f65e69e7b0a3a4a5817797b7ae02260701c"
+        "cacheKey": "6b4c0dea1d4d5999ce9c4730a1a098f9200cdbbbd8511a685a4f1e134e856a26"
       }
     },
     {
@@ -1598,7 +1598,7 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "034fffd8e0a397092a28a51d582d25c3f6062351085f16938fb7af2d51a04040"
+        "cacheKey": "e0f9a63fba0a9e253b936347985b89d80d80a0fc41c7b4bbfcffc5a438983ddd"
       }
     },
     {
@@ -1662,7 +1662,819 @@
         "patn1Coverage": 0,
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
-        "cacheKey": "170235ce85e3556ba8d462ed8e593c2a695c3875aa9227e09cce6835ddc058bb"
+        "cacheKey": "cf00c395585199217e432a566be4fa9e602771779edd5c74cb2d374b434d49f7"
+      }
+    },
+    {
+      "fixtureId": "dunalino_family.adult",
+      "matrixClassId": "dunalino_family",
+      "visualAge": "Adult",
+      "displayLabel": "Dunskin",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "Cr",
+          "N"
+        ],
+        "tbx3": [
+          "D",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "f91eb16b9e9ec1a6dba7d6027cbef211e41a3cdef7ca89e8df7750fafe4024ad",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "dunalino_family",
+        "requiredCoatClasses": [
+          "bay",
+          "buckskin",
+          "dunalino_family"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "cream_single",
+          "dun_dilution",
+          "primitive_markings",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:cream_single\u002Bdun",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 10000,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "f81627eb8f3db0d4dba67f2a0dbbed060a9d37a0f30f5eff649b3290f3a6f72d"
+      }
+    },
+    {
+      "fixtureId": "dunalino_family.foal",
+      "matrixClassId": "dunalino_family",
+      "visualAge": "Foal",
+      "displayLabel": "Dunskin",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "Cr",
+          "N"
+        ],
+        "tbx3": [
+          "D",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "f5ecf5156b5a2cb0bc920cc6985a6cbb954857ddc275d301c7b7441a69cf6fee",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "dunalino_family",
+        "requiredCoatClasses": [
+          "bay",
+          "buckskin",
+          "dunalino_family"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "cream_single",
+          "dun_dilution",
+          "primitive_markings",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:cream_single\u002Bdun",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 10000,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "e84159bab01a9d91dbaa5e5ddec3f545e525f8fcccc647772cc20b058ed00f59"
+      }
+    },
+    {
+      "fixtureId": "double_cream_dun.adult",
+      "matrixClassId": "double_cream_dun",
+      "visualAge": "Adult",
+      "displayLabel": "Perlino dun",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "Cr",
+          "Cr"
+        ],
+        "tbx3": [
+          "D",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "6340d9f517054457bf370cbd764e59575a78be5125b3a3470801641abdfd40d0",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "double_cream_dun",
+        "requiredCoatClasses": [
+          "bay",
+          "double_cream_dun",
+          "perlino"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "cream_double",
+          "dun_dilution",
+          "primitive_markings",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:cream_double\u002Bdun",
+        "skinRecipe": "pink",
+        "eyeRecipe": "blue",
+        "hairRecipe": "double_cream_pale",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 10000,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "bfa8159b4531cab549a9ebe28b49b8bb12fd3f1aee6a55ba0a87b948853ce832"
+      }
+    },
+    {
+      "fixtureId": "double_cream_dun.foal",
+      "matrixClassId": "double_cream_dun",
+      "visualAge": "Foal",
+      "displayLabel": "Perlino dun",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "Cr",
+          "Cr"
+        ],
+        "tbx3": [
+          "D",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "e3f75c7c691ac2c976f95c464e310618345045db694c90641c8aac642e6d1a50",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "double_cream_dun",
+        "requiredCoatClasses": [
+          "bay",
+          "double_cream_dun",
+          "perlino"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "cream_double",
+          "dun_dilution",
+          "primitive_markings",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:cream_double\u002Bdun",
+        "skinRecipe": "pink",
+        "eyeRecipe": "blue",
+        "hairRecipe": "double_cream_pale",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 10000,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "f110c88819cba609fb4f4255e6a85ce412e19d5af30527bd297f53993035c3e2"
+      }
+    },
+    {
+      "fixtureId": "tobiano_overlay.adult",
+      "matrixClassId": "tobiano_overlay",
+      "visualAge": "Adult",
+      "displayLabel": "Bay tobiano",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.eca3": [
+          "TO",
+          "baseline"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "35096ae505ad2b2ac61f02fa985c18474d057d4825eb0a910b689c8eb94e88dd",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "tobiano_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "white_tobiano",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "1b1240f52df9d216fabdb39b059e250b761759f302f889eba04b947d4d20360e"
+      }
+    },
+    {
+      "fixtureId": "tobiano_overlay.foal",
+      "matrixClassId": "tobiano_overlay",
+      "visualAge": "Foal",
+      "displayLabel": "Bay tobiano",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.eca3": [
+          "TO",
+          "baseline"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "654858f7e5361ecaa0be034f87333b766c10846de38b224a39979c485ddf473d",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "tobiano_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "white_tobiano",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "d1cdfeadd3ba7c7677f854e235abbae94c9c1fdfae35f8599d6ab8ccd851fa64"
+      }
+    },
+    {
+      "fixtureId": "roan_overlay.adult",
+      "matrixClassId": "roan_overlay",
+      "visualAge": "Adult",
+      "displayLabel": "Bay roan",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.eca3": [
+          "Rn",
+          "baseline"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "63550d792c2156b29c47ab262e392562e6bfc409d93a99d891409ad4ea95bf08",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "roan_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "roan",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "899a1a59c68638cb89aaa00f2b97f9c03ef94c3ed9da8d47d6e902a52712ef8b"
+      }
+    },
+    {
+      "fixtureId": "roan_overlay.foal",
+      "matrixClassId": "roan_overlay",
+      "visualAge": "Foal",
+      "displayLabel": "Bay roan",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.eca3": [
+          "Rn",
+          "baseline"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "ee914ef8135f3320797c1ffaf47b7d5553f11d17d62acda535b8db334e2201ee",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "roan_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "roan",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "6d14af84812faea1e4a032c309a6f8d2ec1cbe9d914492f041751499f134c3fe"
+      }
+    },
+    {
+      "fixtureId": "grey_overlay.adult",
+      "matrixClassId": "grey_overlay",
+      "visualAge": "Adult",
+      "displayLabel": "Black (progressive grey)",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "a",
+          "a"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "stx17": [
+          "G",
+          "N"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "b6c104f0d7a47a169b61f6341da8971b944273999ee62806cf6d86745a60e4e1",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "black",
+        "requiredCoatClasses": [
+          "black",
+          "grey_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "grey_age",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_full:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_black",
+        "grayAmount": 3660,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "d16dfa7fc79f9a36cbc12286bbdc821911f4330a234d1fca6d65441c52c25b7e"
+      }
+    },
+    {
+      "fixtureId": "grey_overlay.foal",
+      "matrixClassId": "grey_overlay",
+      "visualAge": "Foal",
+      "displayLabel": "Black (progressive grey)",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "a",
+          "a"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "stx17": [
+          "G",
+          "N"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "f9a92d84c7fef178feee55d482e9d1951d7b48d7cc6d0c3966e604dbbe8bb79f",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "black",
+        "requiredCoatClasses": [
+          "black",
+          "grey_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "grey_age",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_full:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_black",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "3bcbd9bc8be630c169eafe7fd5dcf61dcacd00f605370f7f6211fb87f11fa6e2"
+      }
+    },
+    {
+      "fixtureId": "leopard_complex_overlay.adult",
+      "matrixClassId": "leopard_complex_overlay",
+      "visualAge": "Adult",
+      "displayLabel": "Chestnut blanket appaloosa",
+      "genotypeOverrides": {
+        "mc1r": [
+          "e",
+          "e"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "trpm1": [
+          "LP",
+          "N"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "54eb9aa6da02449930fff0c8bf41ec9cf1dc503208d005d3ab486471a4e6e1c2",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "chestnut",
+        "requiredCoatClasses": [
+          "chestnut",
+          "leopard_complex_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "leopard_complex",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_chestnut",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": true,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "2e07c6a926442ddd702d96ec8d0293f94c9cf7fef6d7813438f87db06a0e14d1"
+      }
+    },
+    {
+      "fixtureId": "leopard_complex_overlay.foal",
+      "matrixClassId": "leopard_complex_overlay",
+      "visualAge": "Foal",
+      "displayLabel": "Chestnut blanket appaloosa",
+      "genotypeOverrides": {
+        "mc1r": [
+          "e",
+          "e"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "trpm1": [
+          "LP",
+          "N"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "dcb3315823eabeb96e4b151fad8d76140d9ece7bd6370bfe90f4188da31bab8c",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "chestnut",
+        "requiredCoatClasses": [
+          "chestnut",
+          "leopard_complex_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "leopard_complex",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_chestnut",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": true,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "af927578d0af405f7f5385b89978945076eb133267e9ec778aed2f666470b946"
       }
     }
   ]

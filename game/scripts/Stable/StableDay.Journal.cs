@@ -130,13 +130,17 @@ public partial class StableDay
         foreach (var ribbon in Ribbons) _journalGrid.AddChild(RibbonCard(ribbon, earned.Contains(ribbon.Id)));
     }
 
-    /// <summary>The 13 coats D-013 released, in collecting order.</summary>
+    /// <summary>The 13 coats D-013 released and the 6 D-026 added (cream duns and the pattern overlays), in collecting order.</summary>
     private static readonly (string Id, string Label)[] CoatCollection =
     {
         ("chestnut", "Chestnut"), ("bay", "Bay"), ("black", "Black"), ("palomino", "Palomino"), ("buckskin", "Buckskin"),
         ("smoky_black", "Smoky black"), ("cremello", "Cremello"), ("perlino", "Perlino"), ("smoky_cream", "Smoky cream"),
         ("red_dun", "Red dun"), ("bay_dun", "Bay dun"), ("grullo", "Grullo"), ("non_dun1_marked", "Primitive marked"),
+        ("dunalino_family", "Dunalino & dunskin"), ("double_cream_dun", "Double cream dun"), ("tobiano_overlay", "Tobiano"),
+        ("roan_overlay", "Roan"), ("grey_overlay", "Grey"), ("leopard_complex_overlay", "Appaloosa"),
     };
+
+    private static readonly string[] PatternCoats = { "tobiano_overlay", "roan_overlay", "grey_overlay", "leopard_complex_overlay" };
 
     /// <summary>Every horse that has lived at this stable (sold horses keep their records), first one per coat.</summary>
     private static Dictionary<string, HorseRecord> CollectedCoats(StableSnapshot state)
@@ -151,7 +155,9 @@ public partial class StableDay
                 var genetics = resolver.ResolveGenetics(horse);
                 if (genetics.Phenotype == null) continue;
                 var id = genetics.RequiredCoatClasses.Contains("non_dun1_marked") ? "non_dun1_marked" : genetics.Phenotype.CoatClassId;
-                if (!found.ContainsKey(id)) found[id] = horse;
+                // A pattern counts on its own page as well as the colour underneath it (a bay tobiano fills both).
+                foreach (var each in PatternCoats.Where(genetics.RequiredCoatClasses.Contains).Prepend(id))
+                    if (!found.ContainsKey(each)) found[each] = horse;
             }
             catch (Exception) { }
         }
