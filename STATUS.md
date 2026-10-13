@@ -68,6 +68,7 @@ Goal: stop the stable looking like a text game. (1) portraits of every horse, (2
 - [x] D-029: weekly Coat & Turnout Show. `HorseShow` domain (judge's card out of 100, five deterministic rivals, 15-coin entry, 120/70/35 prizes), `CommitShowEntry` with ledger validation, a Horse show dialog, four new ribbons and a Pip tip. See `docs/decisions/D-029-coat-and-turnout-show.md`.
 - [x] D-030: livelier yard (presentation only). Resting horses graze, lift their heads, flick ears and swish tails (`HorseIdleLife` bone modifier, zero during Walk and swaps); foals stay within 2.5 m of their mare; horses shelter on the barn side in rain. `YardWalkProbe` extended. See `docs/decisions/D-030-livelier-yard.md`.
 - Verified D-028 to D-030 together: 257 domain tests, `-warnaserror` build, smoke OK, all three stable captures OK, and the hub preview (24 to 28: DNA button and results, show entry and result, grazing). Evidence: `docs/stable/evidence/2026-10-13-hub/d028-30_*`. Status messages now stay within two lines in the dock.
+- [x] Owner-reported fixes: the care bubble that could not close once all three actions were used (inverted clamp threw before the bubble was tracked) and top-bar buttons cut off past the music toggle (Foaling demo is now an icon, so Menu fits). Verified in the hub preview (07d, plus an asserted close) and in a 1280x800 day capture; smoke OK.
 - [ ] Owner: bush/foliage via the Meshy web app's free retries (prompt in the hand-off); everything else in the D-012–D-015 list is done.
 
 ## Animation playback fixes (owner request 2026-10-13)
