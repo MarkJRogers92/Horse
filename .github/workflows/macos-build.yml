@@ -63,18 +63,16 @@ jobs:
           cat > "dist/Install Cloverbrook Stables.command" <<'EOF'
           #!/bin/bash
           # Installs the app and re-signs it on this Mac (the Linux-made signature is not accepted).
-          # macOS may stop Terminal from changing /Applications (App Management privacy), so this falls back
-          # to your own ~/Applications folder, which needs no special permission.
+          # macOS often stops Terminal from changing /Applications (App Management privacy), so the game
+          # always lives in your own ~/Applications folder, which needs no special permission. Updating
+          # replaces that copy; saves are kept separately and carry over.
           set -e
           cd "$(dirname "$0")"
           APP="Cloverbrook Stables.app"
-          DEST=/Applications
-          if ! { rm -rf "$DEST/$APP" 2>/dev/null && ditto -x -k Cloverbrook-Stables-macOS.zip "$DEST" 2>/dev/null; }; then
-            DEST="$HOME/Applications"
-            mkdir -p "$DEST"
-            rm -rf "$DEST/$APP"
-            ditto -x -k Cloverbrook-Stables-macOS.zip "$DEST"
-          fi
+          DEST="$HOME/Applications"
+          mkdir -p "$DEST"
+          rm -rf "$DEST/$APP"
+          ditto -x -k Cloverbrook-Stables-macOS.zip "$DEST"
           xattr -cr "$DEST/$APP"
           codesign --force --deep --sign - "$DEST/$APP"
           echo "Installed in $DEST. Opening Cloverbrook Stables..."
@@ -83,17 +81,22 @@ jobs:
           cat > dist/INSTALL.txt <<'EOF'
           Cloverbrook Stables for Mac (macOS 13 or newer, Apple Silicon or Intel)
 
-          Easiest: open Terminal, type "bash " (with a space), drag "Install Cloverbrook Stables.command"
-          from this folder into the Terminal window, and press Return. It copies the app to Applications
-          (or to your own ~/Applications if macOS blocks Terminal there), re-signs it on your Mac and starts it.
-          (GitHub downloads drop the script's run permission, so double-clicking it may not work.)
+          Install or update (paste this one line into Terminal; it finds the newest download in Downloads):
+            D=$(ls -td ~/Downloads/Cloverbrook-Stables-macOS* | head -1); case "$D" in *.zip) ditto -x -k "$D" "${D%.zip}"; D="${D%.zip}";; esac; bash "$D/Install Cloverbrook Stables.command"
+
+          The game lives in your own Applications folder (Finder > Go > Home > Applications). Drag it to the
+          Dock to start it from there. If an older copy sits in the main Applications folder, delete that one.
+
+          Or: open Terminal, type "bash " (with a space), drag "Install Cloverbrook Stables.command" from this
+          folder into the Terminal window and press Return. (GitHub downloads drop the script's run permission,
+          so double-clicking it may not work.)
 
           Already unzipped the app? Fix it in place instead (run in Terminal from the unzipped folder):
             xattr -cr "Cloverbrook Stables.app" && codesign --force --deep --sign - "Cloverbrook Stables.app" && open "Cloverbrook Stables.app"
 
-          By hand: unzip Cloverbrook-Stables-macOS.zip, drag the app to Applications, then in Terminal run:
-            xattr -cr "/Applications/Cloverbrook Stables.app"
-            codesign --force --deep --sign - "/Applications/Cloverbrook Stables.app"
+          By hand: unzip Cloverbrook-Stables-macOS.zip, drag the app to your home Applications folder, then run:
+            xattr -cr ~/Applications/"Cloverbrook Stables.app"
+            codesign --force --deep --sign - ~/Applications/"Cloverbrook Stables.app"
 
           Saves live in ~/Library/Application Support/Godot/app_userdata/Cloverbrook Stables/.
           EOF
@@ -102,7 +105,9 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Cloverbrook-Stables-macOS-${{ github.run_number }}
+          # A fixed name, so the downloaded folder is always Cloverbrook-Stables-macOS (the build number is in
+          # the app's version instead).
+          name: Cloverbrook-Stables-macOS
           path: dist/
           retention-days: 30
           compression-level: 0
