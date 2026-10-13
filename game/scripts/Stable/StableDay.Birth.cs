@@ -76,6 +76,7 @@ public partial class StableDay
         {
             _birthOverlay.Visible = true;
             _confetti.Restart();
+            Audio.GameAudio.Play("birth_fanfare", -3);
             _birthName.GrabFocus();
         };
     }

@@ -228,6 +228,7 @@ public partial class StableYard : Node3D
     {
         var presenter = _horses.FirstOrDefault(h => h.Key == key).Presenter;
         if (presenter == null) return;
+        Audio.GameAudio.Play("care_cheer", -10);
         float s = presenter.Descriptor?.IsFoal == true ? 0.66f : 1f;
         var burst = new CpuParticles3D
         {

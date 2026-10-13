@@ -39,7 +39,7 @@ public partial class StableDay
         _practiceResults = new Label { AutowrapMode = TextServer.AutowrapMode.WordSmart, CustomMinimumSize = new Vector2(600, 0) };
         box.AddChild(_practiceResults);
         var close = new Button { Text = "Close", CustomMinimumSize = new Vector2(130, 46) };
-        close.Pressed += () => { _practiceOverlay.Visible = false; _practiceElapsedMs = -1; };
+        close.Pressed += () => { _practiceOverlay.Visible = false; _practiceElapsedMs = -1; Audio.GameAudio.Loop(null); };
         buttons.AddChild(close);
         _practiceStart = new Button { Text = "Start gallop", CustomMinimumSize = new Vector2(160, 46) };
         _practiceStart.Pressed += () => _ = StartPracticeAsync();
@@ -96,6 +96,8 @@ public partial class StableDay
                 lane.AddChild(track); _practiceLanes.Add(track); _practiceTrack.AddChild(lane);
             }
             _practiceResults.Text = "And they're off!";
+            Audio.GameAudio.Play("race_bell", -4);
+            Audio.GameAudio.Loop("hooves_gallop");
             _practiceElapsedMs = 0;
         }
         catch (Exception ex)
@@ -129,6 +131,8 @@ public partial class StableDay
             _practiceLanes[lane].Value = (float)(result.Frames[index][lane] + (result.Frames[next][lane] - result.Frames[index][lane]) * t);
         if (index < result.Frames.Count - 1) return;
         _practiceElapsedMs = -1;
+        Audio.GameAudio.Loop(null);
+        Audio.GameAudio.Play("care_cheer", -6);
         for (var lane = 0; lane < _practiceLanes.Count; lane++)
         {
             _practiceLanes[lane].Running = false;

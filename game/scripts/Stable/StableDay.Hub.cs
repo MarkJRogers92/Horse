@@ -52,6 +52,8 @@ public partial class StableDay
         }
         _uiLayer.AddChild(veil); _uiLayer.AddChild(banner);
         _yard.PlayNightfall(3.6);
+        Audio.GameAudio.Play("day_end", -4);
+        GetTree().CreateTimer(3.0).Timeout += () => Audio.GameAudio.Play("coins", -8); // the club's daily support arrives with the morning
         var tween = CreateTween();
         tween.TweenProperty(veil, "color", new Color(1f, 0.55f, 0.35f, 0.42f), 0.9);       // golden hour
         tween.TweenProperty(veil, "color", new Color(0.12f, 0.12f, 0.32f, 0.82f), 0.7);    // night

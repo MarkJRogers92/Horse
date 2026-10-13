@@ -71,6 +71,7 @@ public partial class StableDay
             _state = await Task.Run(() => _store.CommitSale(owner, offer.HorseId, revision, offer.PriceCoins));
             _saleOverlay.Visible = false; _reviewedOffer = null;
             SetStatus($"{offer.Name} has gone to {offer.BuyerName}. +{offer.PriceCoins:N0} coins.");
+            Audio.GameAudio.Play("coins");
         }
         catch (Exception ex)
         {

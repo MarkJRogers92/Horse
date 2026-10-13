@@ -14,6 +14,8 @@ public partial class MainMenu : Node
     public override void _Ready()
     {
         DomainBridge.LogVersions();
+        Audio.GameAudio.Ensure(GetTree());
+        Audio.GameAudio.Music("music_yard");
         bool smoke = OS.GetCmdlineUserArgs().Contains("--smoke-test");
         HorseStage? stage = null;
         if (smoke)
@@ -72,6 +74,7 @@ public partial class MainMenu : Node
         var extras = new HBoxContainer(); extras.AddThemeConstantOverride("separation", 8);
         AddSmallButton(extras, "Horse viewer", "res://scenes/viewer.tscn");
         AddSmallButton(extras, "Coat studio", "res://scenes/appearance_demo.tscn");
+        extras.AddChild(Audio.GameAudio.MuteButton());
         box.AddChild(extras);
         var quit = new Button { Text = "Quit", CustomMinimumSize = new Vector2(320, 40) }; quit.Pressed += () => GetTree().Quit(); box.AddChild(quit);
 

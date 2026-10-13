@@ -45,6 +45,8 @@ public partial class StableDay : Node
 
     public override void _Ready()
     {
+        Audio.GameAudio.Ensure(GetTree());
+        Audio.GameAudio.Music("music_yard");
         var args = OS.GetCmdlineUserArgs();
         _foalingDemoMode = args.Contains("--foaling-demo") || args.Any(a => a.StartsWith("--stable-lifecycle-capture=", StringComparison.Ordinal));
         _store = new AtomicSaveStore(ResolveSavePath(args, _foalingDemoMode));
@@ -255,6 +257,7 @@ public partial class StableDay : Node
         header.AddChild(_foalingDemoButton);
         _backButton = new Button { Text = "Menu", CustomMinimumSize = new Vector2(100, 44) };
         _backButton.Pressed += () => GetTree().ChangeSceneToFile("res://scenes/main.tscn");
+        header.AddChild(Audio.GameAudio.MuteButton());
         header.AddChild(_backButton);
         root.AddChild(header);
 
