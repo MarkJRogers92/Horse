@@ -33,11 +33,20 @@ public partial class GameAudio : Node
     private void Setup(SceneTree tree)
     {
         var config = new ConfigFile();
-        if (config.Load(SettingsPath) == Error.Ok) _muted = (bool)config.GetValue("audio", "muted", false);
-        _music = new AudioStreamPlayer { VolumeDb = -9 }; AddChild(_music);
-        _ambience = new AudioStreamPlayer { VolumeDb = -16 }; AddChild(_ambience);
-        _loop = new AudioStreamPlayer { VolumeDb = -8 }; AddChild(_loop);
-        for (var i = 0; i < 6; i++) { var p = new AudioStreamPlayer { VolumeDb = -6 }; AddChild(p); _sfx.Add(p); }
+        float music = 0.8f, effects = 0.9f;
+        if (config.Load(SettingsPath) == Error.Ok)
+        {
+            _muted = (bool)config.GetValue("audio", "muted", false);
+            music = (float)config.GetValue("audio", "music", music);
+            effects = (float)config.GetValue("audio", "effects", effects);
+            if ((bool)config.GetValue("video", "fullscreen", false)) DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+        }
+        EnsureBus("Music"); EnsureBus("SFX");
+        _music = new AudioStreamPlayer { VolumeDb = -9, Bus = "Music" }; AddChild(_music);
+        _ambience = new AudioStreamPlayer { VolumeDb = -16, Bus = "Music" }; AddChild(_ambience);
+        _loop = new AudioStreamPlayer { VolumeDb = -8, Bus = "SFX" }; AddChild(_loop);
+        for (var i = 0; i < 6; i++) { var p = new AudioStreamPlayer { VolumeDb = -6, Bus = "SFX" }; AddChild(p); _sfx.Add(p); }
+        SetBusVolume("Music", music); SetBusVolume("SFX", effects);
         tree.NodeAdded += OnNodeAdded;
         ApplyMute();
     }
@@ -114,6 +123,41 @@ public partial class GameAudio : Node
         var config = new ConfigFile(); config.Load(SettingsPath);
         config.SetValue("audio", "muted", muted); config.Save(SettingsPath);
         self.ApplyMute();
+    }
+
+    private static void EnsureBus(string name)
+    {
+        if (AudioServer.GetBusIndex(name) >= 0) return;
+        AudioServer.AddBus();
+        var index = AudioServer.BusCount - 1;
+        AudioServer.SetBusName(index, name);
+        AudioServer.SetBusSend(index, "Master");
+    }
+
+    private static void SetBusVolume(string bus, float linear)
+    {
+        var index = AudioServer.GetBusIndex(bus);
+        if (index < 0) return;
+        AudioServer.SetBusVolumeDb(index, Mathf.LinearToDb(Mathf.Max(linear, 0.0001f)));
+        AudioServer.SetBusMute(index, linear <= 0.001f);
+    }
+
+    public static float Volume(string bus) => AudioServer.GetBusIndex(bus) is var i and >= 0 && !AudioServer.IsBusMute(i)
+        ? Mathf.DbToLinear(AudioServer.GetBusVolumeDb(i)) : 0f;
+
+    /// <summary>Set and remember a bus volume (0-1): "Music" or "SFX".</summary>
+    public static void SetVolume(string bus, float linear)
+    {
+        SetBusVolume(bus, linear);
+        var config = new ConfigFile(); config.Load(SettingsPath);
+        config.SetValue("audio", bus == "Music" ? "music" : "effects", linear); config.Save(SettingsPath);
+    }
+
+    public static void SetFullscreen(bool on)
+    {
+        DisplayServer.WindowSetMode(on ? DisplayServer.WindowMode.Fullscreen : DisplayServer.WindowMode.Windowed);
+        var config = new ConfigFile(); config.Load(SettingsPath);
+        config.SetValue("video", "fullscreen", on); config.Save(SettingsPath);
     }
 
     private void ApplyMute() => AudioServer.SetBusMute(AudioServer.GetBusIndex("Master"), _muted);

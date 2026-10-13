@@ -49,6 +49,7 @@ Goal: stop the stable looking like a text game. (1) portraits of every horse, (2
 - [x] D-015: Blender-authored gallop (Light + Stock, animation-only GLBs) and a 3D practice race (`RaceView`) above the lanes. Review sheet in `docs/visual/evidence/gallop-2026-10-13/`.
 - [x] Polish: breeding pickers show names under MARE/STALLION captions, gallop picker shows portraits, race camera stops short of the line so the finish is in view, shutdown leak warnings fixed. Meshy tool now enforces the owner's 350-credit reserve (balance 863). A topiary attempt failed at Meshy (foliage mesh repair), not charged.
 - [x] D-016: seasons in the yard (spring blossom, summer, autumn leaves, winter snow; HUD "Spring · Day N" + year) and a Stable Journal of 12 ribbons derived from the save, with a "New ribbon" toast.
+- [x] Title screen shows the player's own saved horses (read-only `AtomicSaveStore.Load`), "Continue"/"New stable", Pip greets them by name, in the saved season. Settings window (music and effects volume on separate buses, fullscreen), remembered in `user://settings.cfg`; themed sliders.
 - [ ] Owner: bush/foliage via the Meshy web app's free retries (prompt in the hand-off); everything else in the D-012–D-015 list is done.
 
 ## Animation playback fixes (owner request 2026-10-13)

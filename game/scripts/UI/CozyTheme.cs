@@ -93,6 +93,14 @@ public static class CozyTheme
         t.SetStylebox("panel", "TooltipPanel", popup);
         t.SetColor("font_color", "TooltipLabel", Text);
         t.SetColor("font_color", "Label", Text);
+        // Sliders: rosy track and fill with a round white knob.
+        var track = Box(Blush, 6, 0); track.ContentMarginTop = track.ContentMarginBottom = 5; track.BorderColor = Border; track.SetBorderWidthAll(1);
+        var fill = Box(Accent, 6, 0); fill.ContentMarginTop = fill.ContentMarginBottom = 5;
+        t.SetStylebox("slider", "HSlider", track);
+        t.SetStylebox("grabber_area", "HSlider", fill);
+        t.SetStylebox("grabber_area_highlight", "HSlider", fill);
+        t.SetIcon("grabber", "HSlider", Icons.Knob(false));
+        t.SetIcon("grabber_highlight", "HSlider", Icons.Knob(true));
         return t;
     }
 
@@ -243,6 +251,14 @@ public static class CozyTheme
             for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) image.SetPixel(x, y, shade(new Vector2(x + 0.5f, y + 0.5f)));
             return ImageTexture.CreateFromImage(image);
         }
+        public static ImageTexture Knob(bool hot) => Paint(26, 26, p =>
+        {
+            var c = new Color(0, 0, 0, 0);
+            c = Over(c, new Color(0.6f, 0.3f, 0.45f, 0.25f), Coverage((p - new Vector2(13, 14.5f)).Length() - 10f));
+            c = Over(c, Colors.White, Coverage((p - new Vector2(13, 13)).Length() - 10f));
+            c = Over(c, hot ? AccentDeep : Accent, Coverage((p - new Vector2(13, 13)).Length() - 4.5f));
+            return c;
+        });
         public static ImageTexture Toggle(bool on, float alpha = 1f) => Paint(48, 28, p =>
         {
             var c = new Color(0, 0, 0, 0);
