@@ -86,3 +86,9 @@ Goal: stop the stable looking like a text game. (1) portraits of every horse, (2
   - The main menu is restyled.
 - **Captures:** a refused setup now exits 1 immediately. Stable-day writes 6 screenshots; breeding writes 9, including the offer and after-sale views.
 - **Not done:** recovery dialog still uses Godot's window chrome (rarely shown); horse viewer and appearance studio panels use the theme but were not redesigned.
+
+## Completion handoff — 2026-10-13 (Claude, D-012 to D-015)
+- **What changed:** scene-first stable (3D Meshy yard, portraits, click-to-inspect, name tags, care cheers, petals), illustrated icons and dialog headers, breeding/sale portraits, birth celebration, sunset day transition, title screen in the yard, phase-1 coats released (D-013), shaped Walk for every horse (D-013), original synthesized audio (D-014), Blender gallop + 3D practice race (D-015).
+- **Tools:** `tools/meshy/meshy.py` (generate / image / balance; ledger `art/scenery/meshy/ledger.json`; refuses below the owner's 350-credit reserve), `tools/audio/synth.py`, `tools/horse/author_gallop.py` (bpy 5.2.2), `scenes/tools/WalkShapeAudit.tscn`, stable flags `--hub-preview=DIR [--foaling-demo --hub-birth]`, menu `--menu-preview=FILE`.
+- **Cloud session setup:** `apt-get install dotnet-sdk-8.0 mesa-vulkan-drivers xvfb libgl1 libegl1 libegl-mesa0`; Godot 4.7.2 mono from GitHub releases; `pip install bpy==5.2.2`; Meshy key is a network secret on `api.meshy.ai` (downloads from `assets.meshy.ai`).
+- **Known limits:** gallop is stylised and not IK-planted; foals have no gallop; Meshy foliage fails (bush/topiary) — use the web app's free retries; audio is synthesized (a licensed score can replace the files by name).
