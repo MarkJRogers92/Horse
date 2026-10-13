@@ -62,22 +62,34 @@ jobs:
           unzip -l dist/Cloverbrook-Stables-macOS.zip | grep -q "Cloverbrook Stables.app/Contents/MacOS/Cloverbrook Stables"
           cat > "dist/Install Cloverbrook Stables.command" <<'EOF'
           #!/bin/bash
-          # Copies the app to Applications and re-signs it on this Mac (the Linux-made signature is not accepted).
+          # Installs the app and re-signs it on this Mac (the Linux-made signature is not accepted).
+          # macOS may stop Terminal from changing /Applications (App Management privacy), so this falls back
+          # to your own ~/Applications folder, which needs no special permission.
           set -e
           cd "$(dirname "$0")"
-          ditto -x -k Cloverbrook-Stables-macOS.zip /Applications
-          xattr -cr "/Applications/Cloverbrook Stables.app"
-          codesign --force --deep --sign - "/Applications/Cloverbrook Stables.app"
-          echo "Installed. Opening Cloverbrook Stables..."
-          open "/Applications/Cloverbrook Stables.app"
+          APP="Cloverbrook Stables.app"
+          DEST=/Applications
+          if ! { rm -rf "$DEST/$APP" 2>/dev/null && ditto -x -k Cloverbrook-Stables-macOS.zip "$DEST" 2>/dev/null; }; then
+            DEST="$HOME/Applications"
+            mkdir -p "$DEST"
+            rm -rf "$DEST/$APP"
+            ditto -x -k Cloverbrook-Stables-macOS.zip "$DEST"
+          fi
+          xattr -cr "$DEST/$APP"
+          codesign --force --deep --sign - "$DEST/$APP"
+          echo "Installed in $DEST. Opening Cloverbrook Stables..."
+          open "$DEST/$APP"
           EOF
           cat > dist/INSTALL.txt <<'EOF'
           Cloverbrook Stables for Mac (macOS 13 or newer, Apple Silicon or Intel)
 
           Easiest: open Terminal, type "bash " (with a space), drag "Install Cloverbrook Stables.command"
-          from this folder into the Terminal window, and press Return. It copies the app to Applications,
-          re-signs it on your Mac and starts it. (GitHub downloads drop the script's run permission,
-          so double-clicking it may not work.)
+          from this folder into the Terminal window, and press Return. It copies the app to Applications
+          (or to your own ~/Applications if macOS blocks Terminal there), re-signs it on your Mac and starts it.
+          (GitHub downloads drop the script's run permission, so double-clicking it may not work.)
+
+          Already unzipped the app? Fix it in place instead (run in Terminal from the unzipped folder):
+            xattr -cr "Cloverbrook Stables.app" && codesign --force --deep --sign - "Cloverbrook Stables.app" && open "Cloverbrook Stables.app"
 
           By hand: unzip Cloverbrook-Stables-macOS.zip, drag the app to Applications, then in Terminal run:
             xattr -cr "/Applications/Cloverbrook Stables.app"
