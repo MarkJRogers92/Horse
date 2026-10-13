@@ -6,8 +6,9 @@ namespace Cloverbrook.Game.Visual;
 
 public partial class HorsePresenter
 {
-    // The foal scenes have identical corrected rest surfaces but different rigs.
-    // Never blend unrelated bone indices, and never play Walk with body morphs.
+    // A family's Idle and Walk scenes have identical corrected rest surfaces but different rigs
+    // (checked for the foal and both adults). Never blend unrelated bone indices, and never play
+    // Walk with body morphs. The name is historical: the bridge works for every age.
     public const double FoalTransitionHalfSeconds = 0.28;
     public bool IsTransitioning { get; private set; }
     public bool PreserveRoutePlacement { get; private set; }
@@ -20,7 +21,7 @@ public partial class HorsePresenter
     private bool _transitionIncoming;
 
     /// <summary>
-    /// Optional interactive foal Idle/Walk bridge. Direct Present stays immediate.
+    /// Optional interactive Idle/Walk bridge for foals and adults. Direct Present stays immediate.
     /// Repeated requests rebase from the currently visible shape, never a saved
     /// original mesh. Other horses/appearances cancel the bridge and present normally.
     /// </summary>
@@ -30,7 +31,7 @@ public partial class HorsePresenter
         var support = catalog.Check(descriptor);
         bool wantsWalk = IsWalkRequest(animation);
         bool eligible = support.Supported && Support?.Supported == true && Model != null &&
-            Descriptor?.IsFoal == true && descriptor.IsFoal && SameAppearance(Descriptor, descriptor) &&
+            Descriptor != null && Descriptor.IsFoal == descriptor.IsFoal && SameAppearance(Descriptor, descriptor) &&
             catalog.MeshFamilies.TryGetValue(descriptor.MeshFamilyId, out var family) && family.WalkVariant != null &&
             (!wantsWalk || HasNeutralWalkShape(descriptor, family, catalog)) &&
             (wantsWalk || string.Equals(animation, "idle", StringComparison.OrdinalIgnoreCase)) &&

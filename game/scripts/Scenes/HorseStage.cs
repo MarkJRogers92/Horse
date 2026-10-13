@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Cloverbrook.Game.CameraControl;
 using Cloverbrook.Game.Visual;
@@ -17,6 +18,16 @@ public partial class HorseStage : Node3D
     public LightingMode Mode { get; private set; }
     private Node3D? _set, _lights;
     private double _walkRouteElapsed;
+    private bool _routeWrapped;
+    private ColorRect? _fade;
+
+    /// <summary>
+    /// The walk route is bounded, so the horse (and camera) jump back to the start every few
+    /// cycles while the set stays put. Interactive venues turn this on to dip to a dark veil across
+    /// that jump. Captures leave it off so recorded frames are never veiled.
+    /// </summary>
+    public bool FadeAtRouteWrap { get; set; }
+    private const double RouteFadeSeconds = 0.25;
 
     public override void _Ready()
     {
@@ -44,11 +55,30 @@ public partial class HorseStage : Node3D
         // Keep the walk route bounded to four checked clip cycles. The camera follows
         // exactly the same scene-root delta, so the horse stays framed as it advances.
         double routeDuration = period * 4.0;
-        _walkRouteElapsed = (_walkRouteElapsed + delta) % routeDuration;
+        double advanced = _walkRouteElapsed + delta;
+        if (advanced >= routeDuration) _routeWrapped = true;
+        _walkRouteElapsed = advanced % routeDuration;
+        UpdateRouteFade(routeDuration);
         float nextX = (float)(speed * _walkRouteElapsed);
         float deltaX = nextX - Presenter.Position.X;
         Presenter.Position = new Vector3(nextX, Presenter.Position.Y, Presenter.Position.Z);
         Camera.Target += Vector3.Right * deltaX;
+    }
+
+    private void UpdateRouteFade(double routeDuration)
+    {
+        if (!FadeAtRouteWrap) { if (_fade != null) _fade.Color = _fade.Color with { A = 0 }; return; }
+        if (_fade == null)
+        {
+            _fade = new ColorRect { Name = "RouteWrapVeil", Color = new Color(0.07f, 0.07f, 0.09f, 0f), MouseFilter = Control.MouseFilterEnum.Ignore };
+            _fade.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+            var layer = new CanvasLayer { Name = "RouteWrapLayer", Layer = 5 };
+            layer.AddChild(_fade);
+            AddChild(layer);
+        }
+        double veil = 1 - (routeDuration - _walkRouteElapsed) / RouteFadeSeconds;
+        if (_routeWrapped) veil = Math.Max(veil, 1 - _walkRouteElapsed / RouteFadeSeconds);
+        _fade.Color = _fade.Color with { A = (float)Math.Clamp(veil, 0, 1) };
     }
 
     private void OnHorsePresented(string summary, bool supported)
@@ -60,6 +90,8 @@ public partial class HorseStage : Node3D
     {
         if (Presenter == null) return;
         _walkRouteElapsed = 0;
+        _routeWrapped = false;
+        if (_fade != null) _fade.Color = _fade.Color with { A = 0 };
         float deltaX = -Presenter.Position.X;
         Presenter.Position = new Vector3(0, Presenter.Position.Y, Presenter.Position.Z);
         if (Camera != null) Camera.Target += Vector3.Right * deltaX;

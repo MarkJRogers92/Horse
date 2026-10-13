@@ -34,6 +34,16 @@ public partial class HorsePresenter : Node3D
     public double LocomotionPeriodSeconds { get; private set; }
     public bool UsesWalkVariant { get; private set; }
 
+    /// <summary>
+    /// Playback pace of the current clip (1 = the checked clip speed). A caller that moves the
+    /// horse slower than <see cref="LocomotionSpeedMetersPerSecond"/> must set the same pace so
+    /// the stance feet keep matching the ground instead of sliding.
+    /// </summary>
+    public double Pace { get; private set; } = 1;
+
+    /// <summary>Ground speed that matches the playing clip at the current <see cref="Pace"/>.</summary>
+    public double EffectiveSpeedMetersPerSecond => LocomotionSpeedMetersPerSecond * Pace;
+
     public VisualSupport Present(VisualDescriptor descriptor, string animation = "idle")
     {
         CancelFoalTransition();
@@ -257,11 +267,40 @@ public partial class HorsePresenter : Node3D
         ApplyAnimation(animation);
     }
 
+    /// <summary>Scale the playing clip's speed (clamped to 0.05 to 2). See <see cref="Pace"/>.</summary>
+    public void SetPace(double pace)
+    {
+        Pace = double.IsFinite(pace) ? Math.Clamp(pace, 0.05, 2.0) : 1.0;
+        if (Animator != null) Animator.SpeedScale = (float)Pace;
+    }
+
+    /// <summary>
+    /// True when this exact descriptor may show the checked Walk: its family has a Walk variant
+    /// and the descriptor has the neutral shape the clip was authored for. Lets callers choose
+    /// Walk or a stand-in without first loading (and possibly clearing) a model.
+    /// </summary>
+    public bool CanWalk(VisualDescriptor descriptor)
+    {
+        var catalog = VisualCatalog.Instance;
+        return catalog.Check(descriptor).Supported &&
+               catalog.MeshFamilies.TryGetValue(descriptor.MeshFamilyId, out var family) &&
+               family.WalkVariant != null && HasNeutralWalkShape(descriptor, family, catalog);
+    }
+
     private void ApplyAnimation(string animation)
     {
         CurrentAnimation = ResolveAnimation(animation) ?? "";
+        Pace = 1;
         if (Animator == null) return;
-        if (string.IsNullOrEmpty(CurrentAnimation)) { Animator.Stop(); return; }
+        Animator.SpeedScale = 1f;
+        if (string.IsNullOrEmpty(CurrentAnimation))
+        {
+            // A missing clip leaves the bind pose; say so loudly instead of failing silently.
+            if (!string.IsNullOrEmpty(animation))
+                GD.PushWarning($"[HorsePresenter] {Descriptor?.FixtureId}: animation '{animation}' not found in {string.Join(", ", Animator.GetAnimationList())}; showing the static pose");
+            Animator.Stop();
+            return;
+        }
         Animator.Play(CurrentAnimation);
         if (UsesWalkVariant && string.Equals(CurrentAnimation, "Walk", StringComparison.OrdinalIgnoreCase) &&
             Descriptor != null && VisualCatalog.Instance.MeshFamilies.TryGetValue(Descriptor.MeshFamilyId, out var family) && family.WalkVariant is { } walk)
@@ -361,7 +400,7 @@ public partial class HorsePresenter : Node3D
     private void ClearModel()
     {
         if (Model != null) { RemoveChild(Model); Model.QueueFree(); }
-        Model = null; Animator = null; HeadViewTarget = null; CurrentAnimation = "";
+        Model = null; Animator = null; HeadViewTarget = null; CurrentAnimation = ""; Pace = 1;
         UsesWalkVariant = false; LocomotionSpeedMetersPerSecond = 0; LocomotionPeriodSeconds = 0;
     }
 

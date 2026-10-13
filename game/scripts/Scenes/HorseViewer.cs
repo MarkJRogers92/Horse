@@ -24,7 +24,7 @@ public partial class HorseViewer : Node
 
     public override void _Ready()
     {
-        _stage = new HorseStage { Name = "Stage" };
+        _stage = new HorseStage { Name = "Stage", FadeAtRouteWrap = true };
         AddChild(_stage);
         _stage.SetMode(StartInStable ? LightingMode.Stable : LightingMode.Neutral);
 
