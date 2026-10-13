@@ -137,6 +137,17 @@ public partial class StableDay
                 await CaptureFrame(System.IO.Path.Combine(output, "07c_care_hearts.png"));
                 CloseCareBubble();
             }
+            // D-028 DNA test, before the fair and shop spend the coins.
+            if (_state?.Horses.FirstOrDefault(h => h.OwnerId.Equals(_state.PlayerOwnerId) && h.LifeState.Stage == LifeStage.Adult) is { } tested)
+            {
+                ShowInspection(tested.HorseId);
+                do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
+                await CaptureFrame(System.IO.Path.Combine(output, "24_details_dna_button.png"));
+                await DnaTestAsync(tested.HorseId);
+                do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
+                await CaptureFrame(System.IO.Path.Combine(output, "25_details_dna_results.png"));
+                _inspectOverlay.Visible = false;
+            }
             if (OS.GetCmdlineUserArgs().Contains("--hub-birth"))
             {
                 for (var day = 0; day < 12 && _birthFoal == null; day++)
@@ -225,17 +236,7 @@ public partial class StableDay
             while (_yard.ElapsedSeconds - posed < 2.5) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
             await CaptureFrame(System.IO.Path.Combine(output, "23_photo_mode.png"));
             ExitPhotoMode();
-            // D-028 DNA test, D-029 show, D-030 grazing.
-            if (_state?.Horses.FirstOrDefault(h => h.OwnerId.Equals(_state.PlayerOwnerId) && h.LifeState.Stage == LifeStage.Adult) is { } tested)
-            {
-                ShowInspection(tested.HorseId);
-                do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
-                await CaptureFrame(System.IO.Path.Combine(output, "24_details_dna_button.png"));
-                await DnaTestAsync(tested.HorseId);
-                do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
-                await CaptureFrame(System.IO.Path.Combine(output, "25_details_dna_results.png"));
-                _inspectOverlay.Visible = false;
-            }
+            // D-029 show, D-030 grazing (the D-028 DNA test runs earlier, while coins remain).
             OpenShow();
             do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
             await CaptureFrame(System.IO.Path.Combine(output, "26_show_entry.png"));

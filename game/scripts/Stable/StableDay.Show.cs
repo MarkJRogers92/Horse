@@ -207,7 +207,7 @@ public partial class StableDay
     {
         var grid = new GridContainer { Columns = 7 };
         grid.AddThemeConstantOverride("h_separation", 14); grid.AddThemeConstantOverride("v_separation", 2);
-        foreach (var head in new[] { "", "Horse", "Coat", "Groom", "Bond", "Turnout", "Total" }) { var h = SmallLabel(head, 12); grid.AddChild(h); }
+        foreach (var head in new[] { "", "Horse", "Coat", "Groom", "Bond", "Turnout", "Total" }) { var h = SmallLabel(head, 12); h.AutowrapMode = TextServer.AutowrapMode.Off; grid.AddChild(h); }
         foreach (var p in outcome.Placings)
         {
             var colour = p.IsPlayer ? CozyTheme.AccentDeep : CozyTheme.Text;

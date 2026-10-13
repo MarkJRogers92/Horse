@@ -319,7 +319,9 @@ public partial class StableDay : Node
         _status = new Label { Text = "Loading your stable…", AutowrapMode = TextServer.AutowrapMode.WordSmart, SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
             VerticalAlignment = VerticalAlignment.Center };
         _status.AddThemeFontSizeOverride("font_size", 14);
-        var statusPanel = new PanelContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
+        // Long messages stay inside the dock (two lines, then an ellipsis) instead of pushing over the buttons.
+        _status.MaxLinesVisible = 2; _status.TextOverrunBehavior = TextServer.OverrunBehavior.TrimEllipsis;
+        var statusPanel = new PanelContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, ClipContents = true };
         statusPanel.AddThemeStyleboxOverride("panel", CozyTheme.Box(new Color(1, 1, 1, 0.82f), 18, 6));
         statusPanel.AddChild(_status);
         footer.AddChild(statusPanel);
