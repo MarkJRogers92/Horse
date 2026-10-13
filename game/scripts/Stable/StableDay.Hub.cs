@@ -135,7 +135,15 @@ public partial class StableDay
                 var hearts = _yard.ElapsedSeconds;
                 while (_yard.ElapsedSeconds - hearts < 0.8) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
                 await CaptureFrame(System.IO.Path.Combine(output, "07c_care_hearts.png"));
+                // All three done: the "lots of love" bubble must stay small, on screen and closable.
+                await InteractAsync(petted.HorseId, "brush");
+                ShowCareBubble(petted.HorseId, spot);
+                await CaptureFrame(System.IO.Path.Combine(output, "07d_care_all_done.png"));
+                var shown = _careBubble;
+                if (shown == null || shown.Size.Y > 320) throw new InvalidOperationException("The all-done care bubble is missing or oversized.");
                 CloseCareBubble();
+                await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                if (IsInstanceValid(shown)) throw new InvalidOperationException("The care bubble did not close.");
             }
             // D-028 DNA test, before the fair and shop spend the coins.
             if (_state?.Horses.FirstOrDefault(h => h.OwnerId.Equals(_state.PlayerOwnerId) && h.LifeState.Stage == LifeStage.Adult) is { } tested)

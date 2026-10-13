@@ -255,7 +255,9 @@ public partial class StableDay : Node
         header.AddChild(HudPill(_season, "YEAR 1", "day", out _yearLabel));
         header.AddChild(HudPill(_wallet, "COINS", "coins", out _));
         header.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, MouseFilter = Control.MouseFilterEnum.Ignore });
-        _foalingDemoButton = new Button { Text = _foalingDemoMode ? "Foaling demo · active" : "Foaling demo", CustomMinimumSize = new Vector2(170, 44), Disabled = _foalingDemoMode };
+        // Compact icon button (tooltip names it) so every top-bar button fits a 1280-wide window, Menu included.
+        _foalingDemoButton = CozyTheme.WithIcon(new Button { Text = "", CustomMinimumSize = new Vector2(52, 44), Disabled = _foalingDemoMode,
+            TooltipText = _foalingDemoMode ? "Foaling demo (active)" : "Foaling demo: try a birth in a separate sandbox save" }, "foal", 30);
         _foalingDemoButton.Pressed += OpenFoalingDemo;
         header.AddChild(_foalingDemoButton);
         _backButton = new Button { Text = "Menu", CustomMinimumSize = new Vector2(100, 44) };
@@ -534,7 +536,7 @@ public partial class StableDay : Node
         _retryButton.Disabled = _busy || _recoveryRequired;
         _reloadButton.Disabled = _busy || _pendingRequest != null || _pendingBreedingRequest != null;
         foreach (var toggle in _optionalToggles) toggle.Disabled = _busy || _recoveryRequired;
-        _foalingDemoButton.Text = _foalingDemoMode ? "Foaling demo · active" : "Foaling demo";
+        _foalingDemoButton.TooltipText = _foalingDemoMode ? "Foaling demo (active)" : "Foaling demo: try a birth in a separate sandbox save";
         _foalingDemoButton.Disabled = _busy || _foalingDemoMode || _pendingRequest != null || _pendingBreedingRequest != null || _recoveryRequired;
         RefreshBreedingUi();
         RefreshGuide();

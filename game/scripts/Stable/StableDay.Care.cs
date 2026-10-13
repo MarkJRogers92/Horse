@@ -39,7 +39,8 @@ public partial class StableDay
         head.AddChild(CozyTheme.Title(horse.Name, 18));
         head.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill });
         var close = new Button { Text = "×", CustomMinimumSize = new Vector2(30, 30) };
-        close.Pressed += CloseCareBubble;
+        // Free this exact bubble too, so a bubble can never outlive its close button.
+        close.Pressed += () => { if (IsInstanceValid(bubble)) bubble.QueueFree(); CloseCareBubble(); };
         head.AddChild(close);
         box.AddChild(head);
         var bondRow = new HBoxContainer(); bondRow.AddThemeConstantOverride("separation", 6);
@@ -65,14 +66,21 @@ public partial class StableDay
         details.Pressed += () => { CloseCareBubble(); ShowInspection(horseId); };
         box.AddChild(details);
         if (CareActions.All(a => HorseBond.BlockReason(_state, horseId, a.Kind) != null))
-            box.AddChild(SmallText($"{horse.Name} has had lots of love today. Come back tomorrow!"));
+        {
+            // A fixed wrap width: an unsized wrapping label measures one word per line and makes the bubble very tall.
+            var done = SmallText($"{horse.Name} has had lots of love today. Come back tomorrow!");
+            done.CustomMinimumSize = new Vector2(300, 0);
+            box.AddChild(done);
+        }
         _uiLayer.GetChild(0).AddChild(bubble);
-        // Beside the horse, kept on screen.
+        _careBubble = bubble; // tracked before layout, so Close always finds it
+        // Beside the horse, kept on screen. Bounds are ordered so a large bubble never inverts the clamp (which throws).
         bubble.ResetSize();
         var screen = GetViewport().GetVisibleRect().Size;
         var size = bubble.GetCombinedMinimumSize();
-        bubble.Position = new Vector2(Mathf.Clamp(near.X + 24, 16, screen.X - size.X - 16), Mathf.Clamp(near.Y - size.Y / 2, 80, screen.Y - size.Y - 80));
-        _careBubble = bubble;
+        bubble.Size = size;
+        float Fit(float value, float low, float high) => Mathf.Clamp(value, low, Mathf.Max(low, high));
+        bubble.Position = new Vector2(Fit(near.X + 24, 16, screen.X - size.X - 16), Fit(near.Y - size.Y / 2, 80, screen.Y - size.Y - 80));
     }
 
     private void CloseCareBubble()
