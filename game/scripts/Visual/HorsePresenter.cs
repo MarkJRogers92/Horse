@@ -28,6 +28,7 @@ public partial class HorsePresenter : Node3D
     {
         foreach (var scene in SceneCache.Values) scene?.Dispose();
         SceneCache.Clear();
+        BodyMap.ReleaseCache();
     }
 
     public VisualDescriptor? Descriptor { get; private set; }
@@ -190,6 +191,11 @@ public partial class HorsePresenter : Node3D
 
         foreach (var mesh in FindAll<MeshInstance3D>(Model))
         {
+            if (mesh.Name == "Body" && BodyMap.Apply(mesh) is { } frame) // D-025 continuous body coordinates
+            {
+                coatMat.SetShaderParameter("use_body_map", true);
+                coatMat.SetShaderParameter("body_aspect", frame.Aspect);
+            }
             if (mesh.Name == "Body")
                 for (int s = 0; s < mesh.Mesh.GetSurfaceCount(); s++)
                     if (mesh.Mesh.SurfaceGetMaterial(s) is StandardMaterial3D { NormalEnabled: true, NormalTexture: not null } source)

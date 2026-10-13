@@ -30,14 +30,26 @@ public partial class CoatGallery : Node3D
             stage.SetMode(Arg("--lighting", "neutral") == "stable" ? LightingMode.Stable : LightingMode.Neutral);
             var variants = int.Parse(Arg("--variants", "1"));
             var views = Arg("--views", "side,q3,head").Split(',');
-            foreach (var classId in FixtureLibrary.ClassIds)
+            // --only bay,grullo limits the classes; --family swaps the mesh family (for example a foal);
+            // --debug N sets the shader debug view; --set dapple=0.9,sooty=0.6 overrides float coat uniforms.
+            var only = Arg("--only", "").Split(',', StringSplitOptions.RemoveEmptyEntries);
+            var family = Arg("--family", "");
+            var debug = int.Parse(Arg("--debug", "0"));
+            var overrides = Arg("--set", "").Split(',', StringSplitOptions.RemoveEmptyEntries).Select(p => p.Split('=')).ToArray();
+            foreach (var classId in FixtureLibrary.ClassIds.Where(c => only.Length == 0 || only.Contains(c)))
             for (var v = 0; v < variants; v++)
             {
                 var fixture = FixtureLibrary.Get(classId, false);
                 // Variants re-roll the individual shade (D-024) by changing the realisation key.
                 var descriptor = v == 0 ? fixture : fixture with { MarkingRealizationKey = fixture.MarkingRealizationKey + "-variant-" + v };
+                if (family.Length > 0) descriptor = descriptor with { MeshFamilyId = family };
                 var support = stage.Presenter.Present(descriptor, "idle");
                 if (!support.Supported) { GD.Print($"[coat-gallery] {classId}: refused {support.Summary}"); continue; }
+                if (FindBody(stage.Presenter.Model) is { } body && body.GetSurfaceOverrideMaterial(0) is ShaderMaterial coat)
+                {
+                    coat.SetShaderParameter("debug_view", debug);
+                    foreach (var o in overrides) coat.SetShaderParameter(o[0], float.Parse(o[1], System.Globalization.CultureInfo.InvariantCulture));
+                }
                 if (stage.Presenter.Animator is { } animator && animator.IsPlaying()) { animator.Seek(0.4, true); animator.Pause(); }
                 foreach (var view in views)
                 {
@@ -51,5 +63,13 @@ public partial class CoatGallery : Node3D
             GetTree().Quit(0);
         }
         catch (Exception ex) { GD.PushError("[coat-gallery] FAILED " + ex); GetTree().Quit(1); }
+    }
+
+    private static MeshInstance3D? FindBody(Node? node)
+    {
+        if (node == null) return null;
+        if (node is MeshInstance3D { Name: var name } mesh && name == "Body") return mesh;
+        foreach (var child in node.GetChildren()) if (FindBody(child) is { } found) return found;
+        return null;
     }
 }
