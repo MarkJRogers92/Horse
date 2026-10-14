@@ -45,6 +45,8 @@ public partial class StableDay
             s => s.Ledger.Any(l => l.Kind == ClubRace.PrizeLedgerKind && l.DeltaCoins == ClubRace.PrizeFor(1))),
         new("style", "Stable Style", "Dress a horse in a saddle pad and a bow.", "grooming",
             s => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId) && Tack.Worn(h, Tack.PadSlot) != null && Tack.Worn(h, Tack.BowSlot) != null)),
+        new("fashion", "Fashion Show", "Dress a horse in four different pieces at once.", "grooming",
+            s => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId) && Tack.Slots.Count(slot => Tack.Worn(h, slot) != null) >= 4)),
         new("friends", "Best Friends", "Reach a full five-heart bond with a horse.", "breeding",
             s => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId) && HorseBond.Hearts(h) >= 5)),
         new("gene_detective", "Gene Detective", "DNA-test three horses.", "breeding",

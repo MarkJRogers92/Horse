@@ -11,7 +11,7 @@ namespace Cloverbrook.Game.Visual;
 /// space from the rig's rest bones and the body's own surface, then parented to a bone so it follows every
 /// animation. Tack never changes the coat or shape; unknown items are ignored.
 /// </summary>
-public static class HorseTack
+public static partial class HorseTack
 {
     private static readonly Dictionary<string, string> Colours = new(StringComparer.Ordinal)
     {
@@ -19,10 +19,36 @@ public static class HorseTack
         ["buttercup"] = "#f7dc7a", ["cream"] = "#fbf1df", ["gold"] = "#f2c14e", ["daisy"] = "#fff6d8",
     };
 
+    // D-033: slot-specific palettes (turnout rugs, halters and braid ribbons use their own, truer colours).
+    private static readonly Dictionary<string, Dictionary<string, string>> Palettes = new(StringComparer.Ordinal)
+    {
+        ["blanket"] = new(StringComparer.Ordinal)
+        {
+            ["navy"] = "#2f4678", ["forest"] = "#2f6b4a", ["cranberry"] = "#9c2f4f", ["lavender"] = "#b9a2e0", ["cream"] = "#f6ecd6", ["snowflake"] = "#f4f8ff",
+        },
+        ["halter"] = new(StringComparer.Ordinal)
+        {
+            ["pink"] = "#f08fb4", ["sky"] = "#5aa8e8", ["mint"] = "#4fc995", ["red"] = "#d6403f", ["purple"] = "#8c62c9",
+        },
+        ["braids"] = new(StringComparer.Ordinal)
+        {
+            ["button"] = "#8a6a4a", ["pink"] = "#f27fab", ["white"] = "#ffffff", ["blue"] = "#6fb2ea",
+        },
+    };
+
+    private static readonly Dictionary<string, string> BlanketTrim = new(StringComparer.Ordinal)
+    {
+        ["navy"] = "#e9dfc8", ["forest"] = "#e9dfc8", ["cranberry"] = "#efe3d0", ["lavender"] = "#ffffff", ["cream"] = "#c9b186", ["snowflake"] = "#9fc6ee",
+    };
+
+    private static bool Known(string slot, string colour) =>
+        Palettes.TryGetValue(slot, out var palette) ? palette.ContainsKey(colour) : Colours.ContainsKey(colour);
+
     private sealed record BackSurface(float Top, float HalfWidth);
     private static readonly Dictionary<string, BackSurface> SurfaceCache = new(StringComparer.Ordinal);
+    private static readonly Dictionary<string, List<Vector3>> VertexCache = new(StringComparer.Ordinal);
 
-    public static void ReleaseCaches() => SurfaceCache.Clear();
+    public static void ReleaseCaches() { SurfaceCache.Clear(); VertexCache.Clear(); }
 
     /// <summary>Parse "slot=item;…" into slot → colour name (the part after the dot).</summary>
     public static Dictionary<string, string> Parse(string? layer)
@@ -34,7 +60,7 @@ public static class HorseTack
             var pair = part.Split('=');
             if (pair.Length != 2) continue;
             var colour = pair[1].Contains('.') ? pair[1][(pair[1].IndexOf('.') + 1)..] : pair[1];
-            if (Colours.ContainsKey(colour)) worn[pair[0]] = colour;
+            if (Known(pair[0], colour)) worn[pair[0]] = colour;
         }
         return worn;
     }
@@ -68,10 +94,13 @@ public static class HorseTack
         var up = (toSkeleton.Basis * Vector3.Up).Normalized();
         var forward = Rest(chest) - Rest(pelvis);
         forward = (forward - up * forward.Dot(up)).Normalized();
+        // D-033: the foal rig's "Chest" bone sits behind its pelvis, so face the way the head is.
+        if (Rest(head).Dot(forward) < Rest(pelvis).Dot(forward)) forward = -forward;
         var side = forward.Cross(up).Normalized();
         var frame = new Basis(forward, up, side);
 
-        if (worn.TryGetValue("pad", out var padColour) && body != null)
+        // A turnout rug covers the saddle pad, so the pad is only hidden (both stay stored).
+        if (worn.TryGetValue("pad", out var padColour) && body != null && !worn.ContainsKey("blanket"))
         {
             // The saddle sits just behind the withers, a little over halfway from the back bone to the chest.
             var length = Rest(chest).DistanceTo(Rest(pelvis)) * 0.6f;
@@ -100,11 +129,23 @@ public static class HorseTack
             Attach(skeleton, head, Global(head), Bow(Colour(bowColour), Mathf.Clamp(size * 1.7f, 0.14f, 0.42f), bowColour == "gold"),
                 new Transform3D(frame, at));
         }
+
+        if (worn.ContainsKey("blanket") || worn.ContainsKey("halter") || worn.ContainsKey("braids") || worn.ContainsKey("tail"))
+        {
+            var context = new TackContext(skeleton, Global, frame, forward, up, side, body == null ? new List<Vector3>() : BodyVertices(body, skeleton, cacheKey),
+                Rest(chest).DistanceTo(Rest(pelvis)), Bone, HairColour(model),
+                worn.ContainsKey("braids") ? ManeVertices(model, skeleton, cacheKey) : new List<Vector3>());
+            if (worn.TryGetValue("blanket", out var blanketColour)) AddBlanket(context, blanketColour, chest, pelvis, back, bodyWidth);
+            if (worn.TryGetValue("halter", out var halterColour)) AddHalter(context, halterColour, head, earL, earR);
+            if (worn.TryGetValue("braids", out var braidsColour)) AddBraids(context, braidsColour);
+            if (worn.TryGetValue("tail", out var tailColour)) AddTailBow(context, tailColour);
+        }
     }
 
     /// <summary>The swatch colour, a little deeper so pastel fabric still reads under bright yard light.</summary>
-    private static Color Colour(string name)
+    internal static Color Colour(string name, string? slot = null)
     {
+        if (slot != null && Palettes.TryGetValue(slot, out var palette) && palette.TryGetValue(name, out var exact)) return Color.FromHtml(exact);
         var c = Color.FromHtml(Colours.TryGetValue(name, out var hex) ? hex : "#ffffff");
         return name is "cream" or "daisy" ? c : Color.FromHsv(c.H, Mathf.Min(1f, c.S * 1.6f), c.V * 0.92f);
     }
@@ -122,7 +163,7 @@ public static class HorseTack
         return poses;
     }
 
-    private static void Attach(Skeleton3D skeleton, int index, Transform3D boneAtBind, Node3D piece, Transform3D skeletonSpace)
+    internal static void Attach(Skeleton3D skeleton, int index, Transform3D boneAtBind, Node3D piece, Transform3D skeletonSpace)
     {
         var attachment = new BoneAttachment3D { Name = "Tack_" + skeleton.GetBoneName(index), BoneName = skeleton.GetBoneName(index) };
         skeleton.AddChild(attachment);
@@ -189,7 +230,7 @@ public static class HorseTack
     }
 
     /// <summary>A soft ribbon bow: two loops, a knot and two tails, sized from the ear spacing.</summary>
-    private static Node3D Bow(Color colour, float size, bool shiny)
+    internal static Node3D Bow(Color colour, float size, bool shiny)
     {
         var material = new StandardMaterial3D { AlbedoColor = colour, Roughness = shiny ? 0.35f : 0.6f, Metallic = shiny ? 0.45f : 0f };
         var bow = new Node3D { Name = "TackBow" };
@@ -211,7 +252,7 @@ public static class HorseTack
         return bow;
     }
 
-    private static T? Find<T>(Node node, Func<T, bool>? match = null) where T : Node
+    internal static T? Find<T>(Node node, Func<T, bool>? match = null) where T : Node
     {
         if (node is T hit && (match == null || match(hit))) return hit;
         foreach (var child in node.GetChildren())

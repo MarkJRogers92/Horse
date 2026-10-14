@@ -66,5 +66,47 @@ namespace Cloverbrook.Domain.Tests
             Assert.Equal(plain.MarkingRealizationKey, worn.MarkingRealizationKey);
             Assert.Equal(dressed.Genome.GenomeHash, horse.Genome.GenomeHash);
         }
+
+        [Fact]
+        public void NewSlotsRoundTripAndKeepTheLayerCanonical()
+        {
+            var (store, state) = Starter();
+            var horse = state.Horses.First();
+            var pre = store.CommitTack(state.PlayerOwnerId, horse.HorseId, Tack.PadSlot, "pad.mint", state.Header.SaveRevision);
+            Assert.Equal("pad=pad.mint", Tack.Layer(pre.Horses.Single(h => h.HorseId.Equals(horse.HorseId))));
+            var s2 = pre;
+            foreach (var (slot, id) in new[] { (Tack.BlanketSlot, "blanket.navy"), (Tack.HalterSlot, "halter.pink"), (Tack.BraidsSlot, "braids.blue"), (Tack.TailSlot, "tail.rose") })
+                s2 = store.CommitTack(s2.PlayerOwnerId, horse.HorseId, slot, id, s2.Header.SaveRevision);
+            Assert.Equal(pre.Coins, s2.Coins);
+            var reloaded = new AtomicSaveStore(SavePath).Load().State.Horses.Single(h => h.HorseId.Equals(horse.HorseId));
+            Assert.Equal("blanket=blanket.navy;braids=braids.blue;halter=halter.pink;pad=pad.mint;tail=tail.rose", Tack.Layer(reloaded));
+            Assert.Equal("braids.blue", Tack.Worn(reloaded, Tack.BraidsSlot)!.Id);
+            Assert.Equal(6, Tack.Slots.Count);
+            Assert.Contains(Tack.Items, i => i.Id == "braids.button");
+        }
+
+        [Fact]
+        public void SnowflakeRugUnlocksOnlyInWinter()
+        {
+            var (store, state) = Starter();
+            var horse = state.Horses.First().HorseId;
+            Assert.Contains("winter", Tack.BlockReason(state, horse, Tack.BlanketSlot, "blanket.snowflake"));
+            Assert.Throws<StableCommandRejectedException>(() => store.CommitTack(state.PlayerOwnerId, horse, Tack.BlanketSlot, "blanket.snowflake", state.Header.SaveRevision));
+            Assert.Null(Tack.BlockReason(state, horse, Tack.BlanketSlot, "blanket.cream"));
+            Assert.False(Tack.Find("blanket.snowflake")!.IsUnlocked(state));
+            foreach (var (day, winter) in new[] { (0, false), (55, false), (56, false), (83, false), (84, true), (111, true), (112, false) })
+            {
+                var h = state.Header;
+                var header = new SaveHeader(h.SaveId, h.SaveMode, h.SchemaVersion, h.GameBuildVersion, h.SaveRevision, day, h.CalendarProfileVersion, h.CareMode,
+                    h.ActiveVariantCatalogVersion, h.ActiveInheritanceModelVersion, h.DefaultOffspringResolverVersion, h.RetainedResolverVersions, h.RngStreams,
+                    h.LastCommittedBreedingEventIndex, h.MigrationHistory, h.PayloadHash);
+                var dated = new StableSnapshot(header, state.PlayerOwnerId, state.Horses, state.Coins, state.CapacityRevision, state.Ledger,
+                    state.PendingCapacityPlans, state.Conceptions, state.DailyState, state.LegacyLifecycleBaselines);
+                Assert.Equal(winter, Tack.Find("blanket.snowflake")!.IsUnlocked(dated));
+                Assert.Equal(winter, Tack.BlockReason(dated, horse, Tack.BlanketSlot, "blanket.snowflake") == null);
+            }
+            Assert.NotNull(Tack.BlockReason(state, horse, "cape", "blanket.navy"));
+            Assert.NotNull(Tack.BlockReason(state, horse, Tack.HalterSlot, "blanket.navy"));
+        }
     }
 }
