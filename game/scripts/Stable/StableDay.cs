@@ -48,6 +48,7 @@ public partial class StableDay : Node
         Audio.GameAudio.Ensure(GetTree());
         Audio.GameAudio.Music("music_yard");
         var args = OS.GetCmdlineUserArgs();
+        var lifeCapture = args.FirstOrDefault(a => a.StartsWith("--stable-life-capture=", StringComparison.Ordinal))?["--stable-life-capture=".Length..];
         _foalingDemoMode = args.Contains("--foaling-demo") || args.Any(a => a.StartsWith("--stable-lifecycle-capture=", StringComparison.Ordinal));
         _store = new AtomicSaveStore(ResolveSavePath(args, _foalingDemoMode));
         LoadGuidePreference();
@@ -64,6 +65,8 @@ public partial class StableDay : Node
 
         try
         {
+            if (lifeCapture != null && (!HasExplicitSavePath(args) || File.Exists(_store.SavePath) || File.Exists(_store.BackupPath)))
+                throw new InvalidOperationException("Stable life capture requires a fresh explicit --save-path.");
             if (_lifecycleCaptureOutput != null)
             {
                 if (!HasExplicitSavePath(args))
@@ -85,7 +88,8 @@ public partial class StableDay : Node
             LoadOrCreate();
             Refresh();
             MaybeAskStableName();
-            if (_lifecycleCaptureOutput != null) _ = RunLifecycleCaptureAsync(_lifecycleCaptureOutput);
+            if (lifeCapture != null) _ = RunStableLifeCaptureAsync(lifeCapture);
+            else if (_lifecycleCaptureOutput != null) _ = RunLifecycleCaptureAsync(_lifecycleCaptureOutput);
             else if (_breedingCaptureOutput != null) _ = RunBreedingCaptureAsync(_breedingCaptureOutput);
             else if (_captureOutput != null) _ = RunCaptureAsync(_captureOutput);
             else if (args.FirstOrDefault(a => a.StartsWith("--hub-preview=", StringComparison.Ordinal)) is { } hubPreview)
@@ -96,7 +100,7 @@ public partial class StableDay : Node
             SetStatus("The stable could not be opened. " + PlainError(ex));
             SetControlsEnabled(false);
             // Automated runs must fail fast instead of waiting on an error screen until the CI timeout.
-            if (_captureOutput != null || _lifecycleCaptureOutput != null || _breedingCaptureOutput != null)
+            if (lifeCapture != null || _captureOutput != null || _lifecycleCaptureOutput != null || _breedingCaptureOutput != null)
             {
                 GD.PushError("[stable-capture] FAILED during setup: " + ex);
                 GetTree().Quit(1);
@@ -274,7 +278,12 @@ public partial class StableDay : Node
         Anchor(rosterPanel, 0, 0, 0, 1, 16, 76, 352, -76);
         root.AddChild(rosterPanel);
         var rosterBox = new VBoxContainer(); rosterBox.AddThemeConstantOverride("separation", 6); rosterPanel.AddChild(rosterBox);
-        rosterBox.AddChild(CozyTheme.Title("Your horses", 22));
+        var rosterHeader = new HBoxContainer();
+        var rosterTitle = CozyTheme.Title("Your horses", 22);
+        rosterTitle.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
+        rosterHeader.AddChild(rosterTitle);
+        rosterHeader.AddChild(PastureButton());
+        rosterBox.AddChild(rosterHeader);
         var rosterScroll = new ScrollContainer { SizeFlagsVertical = Control.SizeFlags.ExpandFill, HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled };
         rosterBox.AddChild(rosterScroll);
         _roster = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill };
@@ -350,6 +359,8 @@ public partial class StableDay : Node
         BuildPracticeOverlay(root);
         BuildSaleOverlay(root);
         BuildFairOverlay(root);
+        BuildPastureOverlay(root);
+        BuildGroomingOverlay(root);
         BuildShowOverlay(root);
         BuildTackOverlay(root);
         BuildShopOverlay(root);
@@ -454,8 +465,13 @@ public partial class StableDay : Node
             var cardSub = SmallText($"{StageName(horse.LifeState.Stage)}{cardHome}{traitLabel}");
             if (traitLabel.Length > 0) cardSub.TooltipText = Personality.For(_state, horse).Description;
             content.AddChild(cardSub);
-            content.AddChild(CareBar("Fed", care.Nutrition)); content.AddChild(CareBar("Bedding", care.Bedding));
-            content.AddChild(CareBar("Turnout", care.Turnout)); content.AddChild(CareBar("Grooming", care.Grooming));
+            if (horse.HomeAssignment == HomeKind.CooperativePasture)
+                content.AddChild(SmallText("Pasture care included · no stable upkeep"));
+            else
+            {
+                content.AddChild(CareBar("Fed", care.Nutrition)); content.AddChild(CareBar("Bedding", care.Bedding));
+                content.AddChild(CareBar("Turnout", care.Turnout)); content.AddChild(CareBar("Grooming", care.Grooming));
+            }
             var details = InspectButton(horse.HorseId); details.SizeFlagsHorizontal = Control.SizeFlags.ShrinkBegin; details.CustomMinimumSize = new Vector2(96, 34);
             content.AddChild(details);
             var parents = ParentNames(horse);
@@ -547,6 +563,7 @@ public partial class StableDay : Node
         _foalingDemoButton.TooltipText = _foalingDemoMode ? "Foaling demo (active)" : "Foaling demo: try a birth in a separate sandbox save";
         _foalingDemoButton.Disabled = _busy || _foalingDemoMode || _pendingRequest != null || _pendingBreedingRequest != null || _recoveryRequired;
         RefreshBreedingUi();
+        RefreshPastureControls();
         RefreshGuide();
     }
 

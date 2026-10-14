@@ -29,6 +29,7 @@ public partial class HorsePresenter : Node3D
         foreach (var scene in SceneCache.Values) scene?.Dispose();
         SceneCache.Clear();
         BodyMap.ReleaseCache();
+        HairCards.ReleaseCache();
     }
 
     public VisualDescriptor? Descriptor { get; private set; }
@@ -280,6 +281,24 @@ public partial class HorsePresenter : Node3D
             }
         }
 
+        // D-039: add correctly parameterised, skinned locks only after the original
+        // components receive their morph weights. Keep their opaque cores and crest
+        // vertices intact for coverage and for the existing tack placement contract.
+        if (family.HairGeometry == "solid_clumps")
+        {
+            var cardsMat = (ShaderMaterial)hairMat.Duplicate();
+            cardsMat.SetShaderParameter("solid_clumps", false);
+            foreach (var source in FindAll<MeshInstance3D>(Model)
+                .Where(m => m.Name == "Mane" || m.Name == "Tail").ToArray())
+            {
+                var cards = HairCards.Apply(source, BitConverter.SingleToInt32Bits(Markings.EdgeSeed), descriptor.IsFoal);
+                if (cards == null) continue; // unsupported source retains its existing core
+                for (int s = 0; s < cards.GetSurfaceOverrideMaterialCount(); s++)
+                    cards.SetSurfaceOverrideMaterial(s, cardsMat);
+                cards.CastShadow = GeometryInstance3D.ShadowCastingSetting.On;
+            }
+        }
+
         float Norm(string morph) => descriptor.MorphWeights.TryGetValue(morph, out var w) ? Mathf.Clamp(w / catalog.BodyBlendShapeNormalization, -1f, 1f) : 0f;
         HorseTack.Apply(Model, descriptor.CosmeticLayer, scenePath, Norm("chest_width") + Norm("muscle")); // D-020 cosmetic tack
         Animator = FindAll<AnimationPlayer>(Model).FirstOrDefault();
@@ -474,7 +493,7 @@ public partial class HorsePresenter : Node3D
         var clay = new StandardMaterial3D { AlbedoColor = new Color(0.62f, 0.62f, 0.62f), Roughness = 0.85f };
         foreach (var mesh in FindAll<MeshInstance3D>(Model))
         {
-            var m = mesh.Name == "Mane" || mesh.Name == "Tail" ? mesh.GetSurfaceOverrideMaterial(0) : clay;
+            var m = mesh.Name.ToString() is "Mane" or "Tail" or "ManeCards" or "TailCards" ? mesh.GetSurfaceOverrideMaterial(0) : clay;
             for (int s = 0; s < mesh.GetSurfaceOverrideMaterialCount(); s++) mesh.SetSurfaceOverrideMaterial(s, m);
         }
     }

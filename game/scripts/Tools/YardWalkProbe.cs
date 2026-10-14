@@ -153,7 +153,7 @@ public partial class YardWalkProbe : Node
             System.IO.Directory.CreateDirectory(_output);
             System.IO.File.WriteAllText(System.IO.Path.Combine(_output, "yard-walk-report.json"), JsonSerializer.Serialize(new
             {
-                checks = _checks, simulatedSeconds = SimulatedSeconds, walkFrames, walkStarts, bridgeSwaps,
+                checks = _checks, simulatedSeconds = elapsed, sunnyPhaseSeconds = SimulatedSeconds, walkFrames, walkStarts, bridgeSwaps,
                 foalMeanGapMeters = foalSum / Math.Max(1, foalSamples), foalMaxGapMeters = foalMax, grazeFrames, sunnyMeanZ = sunnyZ, rainMeanZ = rainZ,
                 maxPaceErrorMetersPerSecond = maxPaceError, maxHandoverFootSlipMeters = maxHandoverSlip, maxGroundSpeedMetersPerSecond = maxSpeed, maxSingleFrameStepMeters = maxJump,
             }, new JsonSerializerOptions { WriteIndented = true }));

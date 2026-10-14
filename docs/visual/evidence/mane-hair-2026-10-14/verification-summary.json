@@ -1,0 +1,51 @@
+{
+  "verified_utc": "2026-10-14T22:00:34.236134+00:00",
+  "baseline_commit": "40912902b4de3327de3807071f6264c065f6b319",
+  "implementation_commit": "4838a56efb83b6533e133d82c6c3b1ef2152a140",
+  "checks": {
+    "domain_tests": 319,
+    "game_build_warnings": 0,
+    "game_build_errors": 0,
+    "validator": "OK",
+    "hair_checks": 1465366,
+    "transition_checks": 3708,
+    "yard_checks": 95442,
+    "source_unchanged_since_final_capture": true
+  },
+  "performance_gate": "not cleared; measurable overhead and no target Mac measurement",
+  "performance_comparison": {
+    "mean": {
+      "baseline": 303.5019158333333,
+      "cards": 383.20903833333335,
+      "delta_percent": 26.262477546853713
+    },
+    "median": {
+      "baseline": 291.95940000000337,
+      "cards": 370.8090999999986,
+      "delta_percent": 27.007077011390734
+    },
+    "p95": {
+      "baseline": 385.60039999999935,
+      "cards": 510.1727999999998,
+      "delta_percent": 32.30608681941219
+    },
+    "draw_calls": {
+      "baseline": 70,
+      "cards": 102
+    },
+    "primitives": {
+      "baseline": 306230,
+      "cards": 417974
+    },
+    "startup_ms": {
+      "baseline": 737.1269,
+      "cards": 1893.7317
+    }
+  },
+  "known_visual_limits": [
+    "smoother far-side core",
+    "stepped locks in deep foal grazing",
+    "strand fringe aliasing"
+  ],
+  "publication": "local only; no push or merge"
+}

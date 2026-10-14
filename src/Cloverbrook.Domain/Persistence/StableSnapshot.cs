@@ -253,6 +253,11 @@ namespace Cloverbrook.Domain
             }
             foreach (var horse in Horses)
             {
+                if (horse.HomeAssignment == HomeKind.CooperativePasture)
+                {
+                    var pastureProblem = HorsePasture.BoardingProblem(this, horse);
+                    Require(pastureProblem == null, "Unsafe pasture assignment: " + pastureProblem);
+                }
                 Require(Header.RetainedResolverVersions.Contains(horse.ResolverVersion), "A horse's resolver version was dropped from the save.");
                 if (horse.OriginCommitId != null)
                     Require(receipts.TryGetValue(horse.OriginCommitId, out var origin) && origin.Commit.OffspringHorseId.Equals(horse.HorseId), "Orphan or incorrect conception origin.");

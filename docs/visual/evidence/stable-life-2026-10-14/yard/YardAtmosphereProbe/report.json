@@ -1,0 +1,31 @@
+{
+  "checks": 52,
+  "passed": true,
+  "vegetationInstances": 15600,
+  "atmosphereMaterials": 4,
+  "additionalDrawSurfaces": 0,
+  "additionalParticles": 0,
+  "seasons": [
+    {
+      "season": 0,
+      "wetness": 1,
+      "wind": 0.72
+    },
+    {
+      "season": 1,
+      "wetness": 1,
+      "wind": 0.72
+    },
+    {
+      "season": 2,
+      "wetness": 1,
+      "wind": 0.72
+    },
+    {
+      "season": 3,
+      "wetness": 0,
+      "wind": 0.72
+    }
+  ],
+  "screenshots": false
+}

@@ -1,8 +1,33 @@
 # Project status
 
-**Last updated:** 2026-10-13 by Claude (horse animation playback fixes in the stable yard and viewer, on top of the D-012 hub).
-**Working branch:** `claude/loving-dijkstra-82tjzx` (animation playback fixes, fast-forwarded from `claude/eloquent-davinci-o1hhr6` c223a2e, which contains `main`). D-012 work continues on `claude/eloquent-davinci-o1hhr6`. Previous: `claude/relaxed-ride-9c5tto`. It contains every other active branch: `codex/horse-production-library`, which itself contains `claude/godot-horse-visual-pilot` and `claude/great-euler-hq83x3`, plus a merge of `rea/horse-coat-preview`. The animation archive (`archive/horse-animation-experiments-2026-10-10`) is intentionally not merged.
+**Last updated:** 2026-10-14, D-039–D-043 publication approved; review branch and CI verification in progress.
+**Working branch:** `gpt/stable-life-upgrades` from the local hair checkpoint `4838a56`; owner approved push, merge to `main`, and a new Mac download on 2026-10-14. Remote `main` was verified at the original baseline `4091290` before publication. **Previous branch history:** `claude/loving-dijkstra-82tjzx` (animation playback fixes, fast-forwarded from `claude/eloquent-davinci-o1hhr6` c223a2e, which contains `main`). D-012 work continues on `claude/eloquent-davinci-o1hhr6`. Previous: `claude/relaxed-ride-9c5tto`. It contains every other active branch: `codex/horse-production-library`, which itself contains `claude/godot-horse-visual-pilot` and `claude/great-euler-hq83x3`, plus a merge of `rea/horse-coat-preview`. The animation archive (`archive/horse-animation-experiments-2026-10-10`) is intentionally not merged.
 **History:** the full checkpoint log up to 2026-10-12 is in [`docs/history/STATUS_LOG_to_2026-10-12.md`](docs/history/STATUS_LOG_to_2026-10-12.md). Search it with `grep -n '^#'`. Keep this page short: replace sections instead of stacking new ones on top.
+
+## D-040–D-043 local stable-life review (2026-10-14)
+
+Owner approved reversible pasture, visible personalities/social interactions, optional hands-on grooming with quick care retained, and weather/landscape atmosphere. The planner is excluded. This branch builds on D-039 at `4838a56`. The owner approved publishing and merging on 2026-10-14 after reviewing the delivery. No purchase, new generated asset or save-schema change.
+
+- **D-040 pasture:** the roster's Pasture dialog moves owned adults between the active stable and free cooperative pasture. Horses remain owned with their family, coat, bond, training, tack and care history. Returning needs a free active place; unborn foals and pending holds still reserve places. Pregnant/recovering mares and dependent young stay together. Atomic transfers are destination-idempotent, and generic saves cannot bypass eligibility. Pasture horses age without active upkeep or care changes and return to normal activity eligibility.
+- **D-041 yard life:** personality-shaped reactions, deterministic companion approaches/greetings and gentle yielding use the existing actors and animation constraints. No inherited genetics, bond reward, saved social graph or care mechanics change.
+- **D-042 grooming:** “Groom by hand” shows the horse's real coat with three removable dusty patches. Pointer/touch strokes and accessible buttons share progress. Cancel/Escape saves nothing. Finish uses the existing once-per-day brush bond; the original quick Brush and daily-care toggle remain. Save-response failures reload/reconcile instead of applying a second brush, and superseded sessions close safely.
+- **D-043 atmosphere:** layered landscape/path colour, bounded foliage wind and weather-driven puddles/ripples extend existing shaders and yard presentation without extra draw surfaces or particles.
+- **Verified:** full Release domain suite **342/342**, including 23 pasture cases; game warnings-as-errors build **0 warnings/errors**; validator OK; grooming-session probe and real StableLifeCapture checks for cancel/reopen, pointer input, accessible buttons, interrupted saves before/after atomic replacement, stale eligibility, exactly-once brush and quick care. Red/green evidence retained for Escape, uncertain-response reconciliation and stale-session closure.
+- **Yard verification:** atmosphere 62 checks, social rendered probe 166,524 checks, locomotion 71,379 checks over 390 simulated seconds. Rendered evidence uses fixed-clock captures with settled sky lighting.
+- **Evidence:** `docs/stable/evidence/stable-life-2026-10-14/` (pasture/grooming/screens and verification logs), `docs/visual/evidence/stable-life-2026-10-14/yard/` (weather, personalities, interaction and locomotion probes). Primary verification logs: `verification/domain-tests-fresh.log`, `verification/game-build.log`, `verification/stable-life-headless.log`. The older stable-day smoke passes its state assertions but emits the existing audio-shutdown warnings; the new stable-life probe explicitly tears down test audio and exits cleanly.
+- **Next:** publish the combined review branch, verify GitHub CI, merge to `main`, then verify the automatically generated Mac artifact and deliver its exact download link. No Mac installation is requested.
+
+## D-039 review branch — procedural mane and tail (2026-10-14)
+
+Owner authorized dot-cloud implementation and native Astra Extra High assistance, then approved push and merge after visual review on 2026-10-14. Baseline is `40912902b4de3327de3807071f6264c065f6b319`; other ongoing Horse work is out of scope.
+
+- Runtime-generated layered locks preserve original hair cores/tack landmarks, skinning (including eight-influence adult Walk), blend shapes, body UVs and every hair colour/pattern uniform.
+- The underlayer no longer interprets projected source UVs as strand coordinates. Foal hair is shorter and based on its actual crest/dock geometry. No speculative extra neck-bone rotations.
+- Local branch `gpt/mane-rework`; no domain, save or source asset changes. Meshy spend: 0 of the owner-approved 150-credit maximum.
+- Final-source revalidation: 319/319 domain tests, game build 0 warnings/errors, validator OK; 1,465,366 hair checks, 3,708 transition checks and 95,442 yard checks passed. Final rendered smoke and stable-day/lifecycle/breeding captures are retained.
+- Eight-horse 720p software-renderer comparison: median frame time +27.0%, p95 +32.3%, draw calls 70 to 102. **Performance gate is not cleared; no target Mac GPU measurement.** The live yard has six slots.
+- Review limitations: smoother opposite-side core and stepped foal locks during deep grazing. Full findings: `docs/visual/evidence/mane-hair-2026-10-14/REVIEW.md`. Source/review package excludes preexisting assets and is based on the original handoff commit. Publishing is now approved; the original review below retains its verification-time context.
+- Decision: `docs/decisions/D-039-mane-hair.md`. Review evidence: `docs/visual/evidence/mane-hair-2026-10-14/`.
 
 ## What the game does today (Godot 4.7.2 .NET, `game/`)
 - **Manage stable:** a saved stable with daily care, running costs and **50 coins/day of club support income** (D-004, D-008).

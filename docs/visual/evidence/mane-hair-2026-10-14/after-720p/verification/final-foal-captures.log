@@ -1,0 +1,28 @@
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.305 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 19.1.7, 256 bits)
+
+[tack-preview] OK /workspace/scratch/46c24ac297cd/horse-mane-rework/docs/visual/evidence/mane-hair-2026-10-14/after-720p/plain/silver_black
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.305 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 19.1.7, 256 bits)
+
+[tack-preview] OK /workspace/scratch/46c24ac297cd/horse-mane-rework/docs/visual/evidence/mane-hair-2026-10-14/after-720p/plain/bay
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.305 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 19.1.7, 256 bits)
+
+[idle-life] bones horse.compact.foal.v1: neck=[Neck_Base,Neck,Head_Base,Head] tail=[Tail_01,Tail_02,Tail_03] ears=[Ear_L,Ear_R]
+[graze-preview] horse.compact.foal.v1: muzzle tip height 0.047 m, forward 0.322 m (rest pose 1.067 m, 0.697 m); Front_L_Hoof_02 dy=-0.063 dx=0.207; Front_R_Hoof_02 dy=-0.077 dx=-0.218;
+[graze-preview] horse.standard.foal.v1: muzzle tip height 0.047 m, forward 0.322 m (rest pose 1.067 m, 0.697 m); Front_L_Hoof_02 dy=-0.063 dx=0.207; Front_R_Hoof_02 dy=-0.077 dx=-0.218;
+[graze-preview] OK /workspace/scratch/46c24ac297cd/horse-mane-rework/docs/visual/evidence/mane-hair-2026-10-14/after-720p/graze
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.305 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 19.1.7, 256 bits)
+
+[tack-preview] OK /workspace/scratch/46c24ac297cd/horse-mane-rework/docs/visual/evidence/mane-hair-2026-10-14/after-720p/tack
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.305 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 19.1.7, 256 bits)
+
+[idle-life] bones horse.compact.adult.v1: neck=[Neck_Base,Neck,Neck_Mid,Neck_Upper,Neck_Top,Head_Base,Head] tail=[Tail_01,Tail_02,Tail_03,Tail_04,Tail_05] ears=[Ear_L,Ear_R]
+[hair-cards] PASS 1465546 checks; report /workspace/scratch/46c24ac297cd/horse-mane-rework/docs/visual/evidence/mane-hair-2026-10-14/after-720p/contracts-foals/hair-cards-report.json
+
+FINAL_FOAL_IMAGES_COMPLETE 2026-10-14T16:39:07-05:00
+
+FINAL_FOAL_CAPTURE_EXIT=0

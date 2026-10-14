@@ -1,0 +1,18 @@
+{
+  "checks": 166500,
+  "seconds": 180,
+  "attentionFrames": 6478,
+  "walkFrames": 3732,
+  "GreetingCount": 12,
+  "CompanionVisitCount": 6,
+  "YieldCount": 3,
+  "worstClearanceLossMeters": 0,
+  "profiles": [
+    "hopeful sniff",
+    "playful nod",
+    "proud greeting",
+    "timid peek",
+    "unhurried glance",
+    "warm glance"
+  ]
+}

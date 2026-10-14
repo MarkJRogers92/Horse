@@ -1,0 +1,34 @@
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+
+[foal-transition] horse.standard.foal.v1 idle-to-walk 60 fps: swap 0.073560 mm; max frame 12.183 mm; stretch 1.282141x; floor -1.500 mm
+[foal-transition] horse.standard.foal.v1 walk-to-idle 60 fps: swap 0.073560 mm; max frame 15.010 mm; stretch 1.510325x; floor -1.500 mm
+[foal-transition] horse.standard.foal.v1 latest-reversal-to-idle 60 fps: swap 0.000000 mm; max frame 3.232 mm; stretch 1.028590x; floor 0.229 mm
+[foal-transition] horse.standard.foal.v1 idle-to-walk 120 fps: swap 0.073560 mm; max frame 6.102 mm; stretch 1.282141x; floor -1.500 mm
+[foal-transition] horse.standard.foal.v1 walk-to-idle 120 fps: swap 0.073560 mm; max frame 7.528 mm; stretch 1.510325x; floor -1.500 mm
+[foal-transition] horse.standard.foal.v1 latest-reversal-to-idle 120 fps: swap 0.000000 mm; max frame 1.617 mm; stretch 1.028631x; floor 0.229 mm
+[foal-transition] horse.compact.foal.v1 idle-to-walk 60 fps: swap 0.073560 mm; max frame 12.183 mm; stretch 1.282141x; floor -1.500 mm
+[foal-transition] horse.compact.foal.v1 walk-to-idle 60 fps: swap 0.073560 mm; max frame 15.010 mm; stretch 1.510325x; floor -1.500 mm
+[foal-transition] horse.compact.foal.v1 latest-reversal-to-idle 60 fps: swap 0.000000 mm; max frame 3.232 mm; stretch 1.028590x; floor 0.229 mm
+[foal-transition] horse.compact.foal.v1 idle-to-walk 120 fps: swap 0.073560 mm; max frame 6.102 mm; stretch 1.282141x; floor -1.500 mm
+[foal-transition] horse.compact.foal.v1 walk-to-idle 120 fps: swap 0.073560 mm; max frame 7.528 mm; stretch 1.510325x; floor -1.500 mm
+[foal-transition] horse.compact.foal.v1 latest-reversal-to-idle 120 fps: swap 0.000000 mm; max frame 1.617 mm; stretch 1.028631x; floor 0.229 mm
+[foal-transition] horse.standard.adult.v1 idle-to-walk 60 fps: swap 0.189842 mm; max frame 26.102 mm; stretch 1.501994x; floor -1.500 mm
+[foal-transition] horse.standard.adult.v1 walk-to-idle 60 fps: swap 0.189842 mm; max frame 27.266 mm; stretch 1.518591x; floor -1.500 mm
+[foal-transition] horse.standard.adult.v1 latest-reversal-to-idle 60 fps: swap 0.000000 mm; max frame 6.816 mm; stretch 1.127206x; floor -0.254 mm
+[foal-transition] horse.standard.adult.v1 idle-to-walk 120 fps: swap 0.189842 mm; max frame 13.095 mm; stretch 1.501994x; floor -1.500 mm
+[foal-transition] horse.standard.adult.v1 walk-to-idle 120 fps: swap 0.189842 mm; max frame 13.739 mm; stretch 1.518591x; floor -1.500 mm
+[foal-transition] horse.standard.adult.v1 latest-reversal-to-idle 120 fps: swap 0.000000 mm; max frame 3.410 mm; stretch 1.127206x; floor -0.254 mm
+[foal-transition] horse.compact.adult.v1 idle-to-walk 60 fps: swap 0.186283 mm; max frame 26.293 mm; stretch 1.419385x; floor -1.500 mm
+[foal-transition] horse.compact.adult.v1 walk-to-idle 60 fps: swap 0.186283 mm; max frame 27.441 mm; stretch 1.492778x; floor -1.500 mm
+[foal-transition] horse.compact.adult.v1 latest-reversal-to-idle 60 fps: swap 0.000000 mm; max frame 6.752 mm; stretch 1.135585x; floor -0.254 mm
+[foal-transition] horse.compact.adult.v1 idle-to-walk 120 fps: swap 0.186283 mm; max frame 13.190 mm; stretch 1.419385x; floor -1.500 mm
+[foal-transition] horse.compact.adult.v1 walk-to-idle 120 fps: swap 0.186283 mm; max frame 13.827 mm; stretch 1.492778x; floor -1.500 mm
+[foal-transition] horse.compact.adult.v1 latest-reversal-to-idle 120 fps: swap 0.000000 mm; max frame 3.378 mm; stretch 1.135585x; floor -0.254 mm
+[foal-transition] walk stop phase 0 60 fps: swap 0.073560 mm; max frame 12.193 mm; stretch 1.282141x; floor -1.500 mm
+[foal-transition] walk stop phase 0.125 60 fps: swap 0.073560 mm; max frame 16.808 mm; stretch 1.336423x; floor -1.500 mm
+[foal-transition] walk stop phase 0.25 60 fps: swap 0.073560 mm; max frame 20.657 mm; stretch 1.668427x; floor -1.500 mm
+[foal-transition] walk stop phase 0.5 60 fps: swap 0.073560 mm; max frame 12.190 mm; stretch 1.254103x; floor -1.500 mm
+[foal-transition] walk stop phase 0.625 60 fps: swap 0.073560 mm; max frame 16.816 mm; stretch 1.319035x; floor -1.500 mm
+[foal-transition] walk stop phase 0.75 60 fps: swap 0.073560 mm; max frame 20.657 mm; stretch 1.626769x; floor -1.500 mm
+[foal-transition] walk stop phase 0.875 60 fps: swap 0.073560 mm; max frame 15.338 mm; stretch 1.489263x; floor -1.500 mm
+[foal-transition] PASS 3708 checks; report /workspace/scratch/46c24ac297cd/horse-mane-rework/docs/visual/evidence/mane-hair-2026-10-14/revalidation/transition/transition-report.json

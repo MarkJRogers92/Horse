@@ -337,7 +337,8 @@ public partial class StableDay
     {
         if (_state == null) return;
         var shown = _state.Horses
-            .Where(h => !HorseMarket.IsSold(h) && h.OwnerId.Equals(_state.PlayerOwnerId) && h.LifeState.Stage != LifeStage.Unborn)
+            .Where(h => !HorseMarket.IsSold(h) && h.OwnerId.Equals(_state.PlayerOwnerId)
+                && h.HomeAssignment == HomeKind.ActiveStable && h.LifeState.Stage != LifeStage.Unborn)
             .OrderBy(h => h.Name, StringComparer.Ordinal)
             .ToList();
         _yard.SetHorses(shown.Select(h => (h.HorseId.ToString(), DescriptorFor(h))).ToList(),

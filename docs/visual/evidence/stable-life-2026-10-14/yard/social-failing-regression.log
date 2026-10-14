@@ -1,0 +1,14 @@
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+
+[idle-life] bones horse.standard.adult.v1: neck=[Neck_Base,Neck,Neck_Mid,Neck_Upper,Neck_Top,Head_Base,Head] tail=[Tail_01,Tail_02,Tail_03,Tail_04,Tail_05] ears=[Ear_L,Ear_R]
+ERROR: [yard-social] FAILED System.InvalidOperationException: horses 1/2 keep body clearance at frame 2786: -0.0001 -> -0.0004; scales 0.9949/0.9960 -> 0.9949/0.9964; bridges False/True
+   at Cloverbrook.Game.Tools.YardSocialProbe.Check(Boolean ok, String description) in /workspace/scratch/46c24ac297cd/horse-stable-life/game/scripts/Tools/YardSocialProbe.cs:line 144
+   at Cloverbrook.Game.Tools.YardSocialProbe.Run() in /workspace/scratch/46c24ac297cd/horse-stable-life/game/scripts/Tools/YardSocialProbe.cs:line 70
+   at: void Cloverbrook.Game.Tools.YardSocialProbe+<Run>d__2.MoveNext() (res://scripts/Tools/YardSocialProbe.cs:70)
+   C# backtrace (most recent call first):
+       [0] void Godot.GD.PushError(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:366)
+       [1] void Cloverbrook.Game.Tools.YardSocialProbe+<Run>d__2.MoveNext() (/workspace/scratch/46c24ac297cd/horse-stable-life/game/scripts/Tools/YardSocialProbe.cs:70)
+       [2] void System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start<TStateMachine>(TStateMachine&)
+       [3] void Cloverbrook.Game.Tools.YardSocialProbe.Run()
+       [4] bool Cloverbrook.Game.Tools.YardSocialProbe.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/workspace/scratch/46c24ac297cd/horse-stable-life/game/.godot/mono/temp/obj/Debug/Godot.SourceGenerators/Godot.SourceGenerators.ScriptMethodsGenerator/Cloverbrook.Game.Tools.YardSocialProbe_ScriptMethods.generated.cs:51)
+       [5] Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/CSharpInstanceBridge.cs:24)

@@ -1,0 +1,4 @@
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+
+[idle-life] bones horse.standard.adult.v1: neck=[Neck_Base,Neck,Neck_Mid,Neck_Upper,Neck_Top,Head_Base,Head] tail=[Tail_01,Tail_02,Tail_03,Tail_04,Tail_05] ears=[Ear_L,Ear_R]
+[yard-walk] PASS 71379 checks; 144 walks, 9182 walking frames, max pace error 8.67E-006 m/s

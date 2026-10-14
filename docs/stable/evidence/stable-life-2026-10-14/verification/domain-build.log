@@ -1,0 +1,12 @@
+Captured console output from the completed verification command on 2026-10-14.
+Working directory: /workspace/scratch/46c24ac297cd/horse-stable-life
+Command: source ../hair-toolchain/env.sh && dotnet build src/Cloverbrook.Domain/Cloverbrook.Domain.csproj -c Release --no-restore -m:1 /p:UseSharedCompilation=false -warnaserror
+Exit code: 0 (combined tests, build and diff-check command)
+
+  Cloverbrook.Domain -> /workspace/scratch/46c24ac297cd/horse-stable-life/src/Cloverbrook.Domain/bin/Release/netstandard2.1/Cloverbrook.Domain.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.60
