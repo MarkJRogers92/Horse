@@ -8,24 +8,39 @@ using Godot;
 namespace Cloverbrook.Game.Stable;
 
 /// <summary>
-/// Dress-up (D-020): pick a saddle pad and a mane bow. Each choice is one free save command; the portrait and the
-/// horse in the yard update straight away. Locked colours show how to earn them.
+/// Dress-up (D-020, D-033): pick a saddle pad, turnout rug, mane bow, halter, braids and tail bow. Each choice is one free
+/// save command; the portrait and the horse in the yard update straight away. Locked colours show how to earn them.
+/// The portrait stays on the left while the slot rows scroll on the right.
 /// </summary>
 public partial class StableDay
 {
     private Control _tackOverlay = null!;
     private Label _tackTitle = null!;
     private HBoxContainer _tackPreview = null!;
+    private static readonly (string Slot, string Heading)[] TackRows =
+    {
+        (Tack.PadSlot, "SADDLE PAD"), (Tack.BlanketSlot, "TURNOUT RUG"), (Tack.BowSlot, "MANE BOW"),
+        (Tack.HalterSlot, "HALTER"), (Tack.BraidsSlot, "BRAIDS"), (Tack.TailSlot, "TAIL BOW"),
+    };
     private VBoxContainer _tackRows = null!;
     private HorseId? _tackHorse;
 
     private void BuildTackOverlay(Control root)
     {
-        _tackOverlay = CozyTheme.Dialog(root, "Dress up", 620, out var body, out var buttons, out _tackTitle);
-        _tackPreview = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center };
-        body.AddChild(_tackPreview);
-        _tackRows = new VBoxContainer(); _tackRows.AddThemeConstantOverride("separation", 10);
-        body.AddChild(_tackRows);
+        _tackOverlay = CozyTheme.Dialog(root, "Dress up", 860, out var body, out var buttons, out _tackTitle);
+        var split = new HBoxContainer(); split.AddThemeConstantOverride("separation", 20);
+        body.AddChild(split);
+        _tackPreview = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center, SizeFlagsVertical = Control.SizeFlags.ShrinkCenter };
+        split.AddChild(_tackPreview);
+        // Six rows are taller than a small window, so the swatches scroll while the portrait stays put.
+        var scroll = new ScrollContainer
+        {
+            CustomMinimumSize = new Vector2(560, 440), SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
+            HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled,
+        };
+        split.AddChild(scroll);
+        _tackRows = new VBoxContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill }; _tackRows.AddThemeConstantOverride("separation", 10);
+        scroll.AddChild(_tackRows);
         var done = new Button { Text = "Done", CustomMinimumSize = new Vector2(140, 46) };
         done.Pressed += () => { _tackOverlay.Visible = false; if (_tackHorse != null) ShowInspection(_tackHorse); };
         buttons.AddChild(done);
@@ -40,11 +55,12 @@ public partial class StableDay
         _tackHorse = horseId;
         _tackTitle.Text = $"Dress up {horse.Name}";
         foreach (var child in _tackPreview.GetChildren()) child.QueueFree();
-        _tackPreview.AddChild(Portrait(horse, 230, CardTint(horse), fullBody: true));
+        _tackPreview.AddChild(Portrait(horse, 260, CardTint(horse), fullBody: true));
         foreach (var child in _tackRows.GetChildren()) child.QueueFree();
-        foreach (var (slot, heading) in new[] { (Tack.PadSlot, "SADDLE PAD"), (Tack.BowSlot, "MANE BOW") })
+        foreach (var (slot, heading) in TackRows)
         {
-            var title = CozyTheme.Title(heading, 12); title.AddThemeColorOverride("font_color", CozyTheme.AccentDeep);
+            var hidden = slot == Tack.PadSlot && Tack.Worn(horse, Tack.BlanketSlot) != null;
+            var title = CozyTheme.Title(hidden ? heading + "  (under the rug)" : heading, 12); title.AddThemeColorOverride("font_color", CozyTheme.AccentDeep);
             _tackRows.AddChild(title);
             var row = new HFlowContainer(); row.AddThemeConstantOverride("h_separation", 8); row.AddThemeConstantOverride("v_separation", 8);
             var worn = Tack.Worn(horse, slot)?.Id;

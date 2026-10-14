@@ -234,6 +234,10 @@ public partial class StableDay
                 _practiceOverlay.Visible = false;
                 await WearAsync(model.HorseId, Tack.PadSlot, "pad.lavender");
                 await WearAsync(model.HorseId, Tack.BowSlot, "bow.rose");
+                await WearAsync(model.HorseId, Tack.BlanketSlot, "blanket.navy");
+                await WearAsync(model.HorseId, Tack.HalterSlot, "halter.sky");
+                await WearAsync(model.HorseId, Tack.BraidsSlot, "braids.pink");
+                await WearAsync(model.HorseId, Tack.TailSlot, "tail.rose");
                 do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
                 await CaptureFrame(System.IO.Path.Combine(output, "19_dress_up.png"));
                 _tackOverlay.Visible = false; _uiLayer.Visible = false;

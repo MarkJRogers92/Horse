@@ -28,13 +28,34 @@ namespace Cloverbrook.Domain
         public const string Version = "tack.v1";
         public const string PadSlot = "pad";
         public const string BowSlot = "bow";
-        public static IReadOnlyList<string> Slots { get; } = Array.AsReadOnly(new[] { PadSlot, BowSlot });
+        public const string BlanketSlot = "blanket";
+        public const string HalterSlot = "halter";
+        public const string BraidsSlot = "braids";
+        public const string TailSlot = "tail";
+        /// <summary>Slots in dress-up order. D-033 added blanket, halter, braids and tail; the layer string stays canonical (sorted).</summary>
+        public static IReadOnlyList<string> Slots { get; } = Array.AsReadOnly(new[] { PadSlot, BlanketSlot, BowSlot, HalterSlot, BraidsSlot, TailSlot });
 
         private static bool WonCup(StableSnapshot s) => s.Ledger.Any(l => l.Kind == ClubRace.PrizeLedgerKind && l.DeltaCoins == ClubRace.PrizeFor(1));
+        private static bool IsWinter(StableSnapshot s) => new StableCalendar().SeasonIndex(s.Header.CalendarDay) == 3;
         private static bool BredFoal(StableSnapshot s) => s.Horses.Any(h => h.OriginCommitId != null && h.BirthDay.HasValue);
 
-        public static IReadOnlyList<TackItem> Items { get; } = Array.AsReadOnly(Colours(PadSlot, "pad").Concat(Colours(BowSlot, "bow")).Concat(new[]
+        public static IReadOnlyList<TackItem> Items { get; } = Array.AsReadOnly(Colours(PadSlot, "pad").Concat(Colours(BowSlot, "bow")).Concat(Colours(TailSlot, "tail")).Concat(new[]
         {
+            new TackItem(BlanketSlot, "blanket.navy", "Navy rug", "#2f4678"),
+            new TackItem(BlanketSlot, "blanket.forest", "Forest green rug", "#2f6b4a"),
+            new TackItem(BlanketSlot, "blanket.cranberry", "Cranberry rug", "#9c2f4f"),
+            new TackItem(BlanketSlot, "blanket.lavender", "Lavender rug", "#b9a2e0"),
+            new TackItem(BlanketSlot, "blanket.cream", "Cream rug", "#f6ecd6"),
+            new TackItem(BlanketSlot, "blanket.snowflake", "Snowflake rug", "#f4f8ff", IsWinter, "Reach winter in your stable"),
+            new TackItem(HalterSlot, "halter.pink", "Pink halter", "#f08fb4"),
+            new TackItem(HalterSlot, "halter.sky", "Sky halter", "#6fb2ea"),
+            new TackItem(HalterSlot, "halter.mint", "Mint halter", "#6fcfa0"),
+            new TackItem(HalterSlot, "halter.red", "Red halter", "#d6403f"),
+            new TackItem(HalterSlot, "halter.purple", "Purple halter", "#8c62c9"),
+            new TackItem(BraidsSlot, "braids.button", "Button braids", "#8a6a4a"),
+            new TackItem(BraidsSlot, "braids.pink", "Pink ribbon braids", "#f3a6c0"),
+            new TackItem(BraidsSlot, "braids.white", "White ribbon braids", "#ffffff"),
+            new TackItem(BraidsSlot, "braids.blue", "Blue ribbon braids", "#a8cdf0"),
             new TackItem(PadSlot, "pad.gold", "Champion gold pad", "#f2c14e", WonCup, "Win the Willowbrook Cup"),
             new TackItem(BowSlot, "bow.gold", "Champion gold bow", "#f2c14e", WonCup, "Win the Willowbrook Cup"),
             new TackItem(PadSlot, "pad.daisy", "Daisy chain pad", "#fff6d8", BredFoal, "Welcome a foal born in your stable"),
@@ -44,7 +65,7 @@ namespace Cloverbrook.Domain
         {
             foreach (var (id, label, hex) in new[] { ("rose", "Rose", "#f3a6c0"), ("mint", "Mint", "#a9dcc4"), ("sky", "Sky", "#a8cdf0"),
                          ("lavender", "Lavender", "#c9b3ec"), ("buttercup", "Buttercup", "#f7dc7a"), ("cream", "Cream", "#fbf1df") })
-                yield return new TackItem(slot, prefix + "." + id, label + (slot == PadSlot ? " pad" : " bow"), hex);
+                yield return new TackItem(slot, prefix + "." + id, label + (slot == PadSlot ? " pad" : slot == TailSlot ? " tail bow" : " bow"), hex);
         }
 
         public static TackItem? Find(string? id) => id == null ? null : Items.FirstOrDefault(i => i.Id == id);
