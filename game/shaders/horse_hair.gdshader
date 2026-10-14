@@ -22,13 +22,14 @@ void fragment() {
 	ALPHA_SCISSOR_THRESHOLD = 0.4;
 	// Thin strands run along the hair (v) and wander a little across the card, so a flaxen or silver mane reads as
 	// many fine hairs rather than chunky per-card patches. Dark strands are a share of these thin strands.
-	float strands = strand_count * 6.0;
-	float wander = sin(v * 9.0 + hash(lane + 5.0) * 6.2832) * 0.004;
+	// About two strands per lane: finer than that aliases into veins at phone and desktop sizes.
+	float strands = strand_count * 2.0;
+	float wander = sin(v * 4.0 + hash(lane + 5.0) * 6.2832) * 0.0015;
 	float sid = floor((u + wander) * strands);
-	float streak = (0.84 + 0.24 * hash(sid + 3.0)) * (0.94 + 0.06 * sin(u * 120.0 + v * 6.0));
+	float streak = (0.9 + 0.14 * hash(sid + 3.0)) * (0.97 + 0.03 * sin(u * 120.0 + v * 6.0));
 	vec3 col = mix(hair_color, tip_color, smoothstep(0.3, 1.0, v) * 0.5) * streak;
 	col = mix(col, vec3(0.86, 0.86, 0.84) * streak, smoothstep(0.3, 1.0, grey_amount) * 0.92);
-	if (hash(sid + 13.0) < dark_fraction) col = mix(col, dark_color, 0.8) * (0.9 + 0.2 * hash(sid + 29.0));
+	if (hash(sid + 13.0) < dark_fraction) col = mix(col, dark_color, 0.55) * (0.95 + 0.1 * hash(sid + 29.0));
 	if (hash(lane + 11.0) < white_fraction) col = vec3(0.93, 0.92, 0.9) * streak;
 	ALBEDO = col;
 	ROUGHNESS = solid_clumps ? 0.72 : 0.55;
