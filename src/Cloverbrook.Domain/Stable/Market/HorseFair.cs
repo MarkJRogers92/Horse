@@ -105,7 +105,7 @@ namespace Cloverbrook.Domain
             var coat = Coats[coatIndex]; coatClass = coat.Coat;
             string name; var attempts = 0;
             do name = Names[(int)rng.NextBelow(Names.Length)]; while (!usedNames.Add(name) && ++attempts < 64);
-            var pattern = Pattern(seed, purpose);
+            var pattern = Pattern(seed, purpose, coat.Mc1r == "e" ? "chestnut" : coat.Asip == "a" ? "black" : "bay", coat.CreamA == "N" && coat.CreamB == "N");
             var genome = new GenomeSnapshot(CoreGeneticsCatalog.Model.Blocks.Values.Select(block =>
             {
                 var a = new List<string>(); var b = new List<string>();
@@ -128,17 +128,23 @@ namespace Cloverbrook.Domain
                 homeAssignment: HomeKind.ActiveStable, originRecord: originRecord);
         }
 
-        /// <summary>D-026 white and pattern overlays, drawn from their own stream so each week's base coat, name, sex
-        /// and abilities are unchanged: about one horse in three carries tobiano, roan, grey or leopard complex.</summary>
-        private static Dictionary<string, (string, string)> Pattern(Seed128 seed, string purpose)
+        /// <summary>D-026 and D-037 white, pattern and rarer-dilution overlays, drawn from their own stream so each week's base coat,
+        /// name, sex and abilities are unchanged: about one horse in three carries tobiano, roan, grey, leopard complex, sabino,
+        /// splash, silver (black and bay bases only, where it shows), champagne or pearl.</summary>
+        private static Dictionary<string, (string, string)> Pattern(Seed128 seed, string purpose, string baseCoat, bool plainCream)
         {
-            var rng = new CounterRng(seed, purpose + "/pattern.v1");
+            var rng = new CounterRng(seed, purpose + "/pattern.v2");
             var calls = new Dictionary<string, (string, string)>(StringComparer.Ordinal);
             var roll = rng.NextBelow(100);
-            if (roll < 12) calls["pattern.eca3"] = rng.NextBelow(100) < 15 ? ("TO", "TO") : ("TO", "baseline");
-            else if (roll < 20) calls["pattern.eca3"] = ("Rn", "baseline");
-            else if (roll < 30) calls["stx17"] = ("G", "N");
-            else if (roll < 38) { calls["trpm1"] = ("LP", "N"); if (rng.NextBelow(2) == 0) calls["patn1"] = ("PATN1", "N"); }
+            if (roll < 8) calls["pattern.eca3"] = rng.NextBelow(100) < 15 ? ("TO", "TO") : ("TO", "baseline");
+            else if (roll < 13) calls["pattern.eca3"] = ("Rn", "baseline");
+            else if (roll < 19) calls["stx17"] = ("G", "N");
+            else if (roll < 24) { calls["trpm1"] = ("LP", "N"); if (rng.NextBelow(2) == 0) calls["patn1"] = ("PATN1", "N"); }
+            else if (roll < 26) { if (baseCoat != "chestnut") calls["pmel"] = ("Z", "N"); }
+            else if (roll < 29) calls["slc36a1"] = ("Ch", "N");
+            else if (roll < 31) { if (plainCream) calls["slc45a2"] = rng.NextBelow(2) == 0 ? ("Prl", "Prl") : ("Cr", "Prl"); } // pearl needs a coat without cream, so the offer keeps its base class
+            else if (roll < 34) calls["pattern.eca3"] = rng.NextBelow(100) < 12 ? ("SB1", "SB1") : ("SB1", "baseline");
+            else if (roll < 36) calls["pattern.mitf"] = rng.NextBelow(100) < 12 ? ("SW1", "SW1") : ("SW1", "baseline");
             return calls;
         }
 
@@ -174,7 +180,9 @@ namespace Cloverbrook.Domain
             };
             if (rarity != 0) reasons.Add($"Sought-after coat: +{rarity}");
             var layers = new PhenotypeResolver().ResolveGenetics(horse).Phenotype?.CoatLayers ?? Array.Empty<string>();
-            long pattern = layers.Contains("white_tobiano") || layers.Contains("leopard_complex") ? 90 : layers.Contains("roan") || layers.Contains("grey_age") ? 60 : 0;
+            long pattern = layers.Contains("white_tobiano") || layers.Contains("leopard_complex") ? 90
+                : layers.Contains("white_sabino1") || layers.Contains("white_splash") || layers.Contains("champagne") || layers.Contains("silver") || layers.Contains("pearl") ? 100
+                : layers.Contains("roan") || layers.Contains("grey_age") ? 60 : 0;
             if (pattern != 0) reasons.Add($"Eye-catching pattern: +{pattern}");
             return Math.Max(MinimumPrice, Math.Min(MaximumPrice, price + ability + rarity + pattern));
         }

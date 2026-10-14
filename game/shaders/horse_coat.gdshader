@@ -43,6 +43,14 @@ uniform float tobiano = 0.0;           // 1 = tobiano white pattern
 uniform float tobiano_extent = 0.5;    // individual amount of white, 0 minimal .. 1 mostly white
 uniform float leopard = 0.0;           // 1 = leopard complex (LP)
 uniform float leopard_coverage = 0.3;  // white coverage: low = hip blanket, high (PATN1) = full leopard
+// D-037 rarer families (also need the body map for the white patterns)
+uniform float champagne = 0.0;         // 1 = champagne: metallic sheen, freckled pink skin, darker foals
+uniform float champagne_foal = 0.0;    // 1 = born darker, lightening as it grows
+uniform float freckles = 0.0;          // skin recipe: freckled skin on the muzzle and around the eyes
+uniform float sabino = 0.0;            // 0 none, 1 SB1/N, 2 SB1/SB1 (sabino white)
+uniform float sabino_extent = 0.5;     // individual amount of white
+uniform float splash = 0.0;            // 0 none, 1 SW1/N, 2 SW1/SW1
+uniform float splash_extent = 0.5;
 uniform bool use_body_map = false;        // D-025: CUSTOM0 carries the rest-pose body coordinates
 uniform vec3 body_aspect = vec3(1.0, 0.5, 0.25); // body-length units per (u, h, s), for round spots
 uniform int debug_view = 0; // 1 = COLOR masks, 2 = canonical coords, 3 = body map, 4 = primitive markings, 5 = patterns
@@ -182,8 +190,16 @@ void fragment() {
 		col = mix(col, col * 0.5 + primitive_color * 0.5, clamp(dun_head * face * 1.3, 0.0, 1.0));
 	}
 	// soft-nose / eye skin shows through the fine hair
-	col = mix(col, skin_color, smoothstep(0.2, 0.9, m.g) * nose_amount);
+	vec3 skin_here = skin_color;
+	if (freckles > 0.0 && use_body_map) {
+		// Champagne: pink skin with dark freckles (mottling) round the muzzle, eyes and lips; the coat above stays clean.
+		float fk = smoothstep(0.62, 0.7, noise3(bp * 190.0 + vec3(edge_seed * 5.0))) * freckles;
+		skin_here = mix(skin_color, skin_color * 0.45 + vec3(0.16, 0.06, 0.04), fk);
+	}
+	col = mix(col, skin_here, smoothstep(0.2, 0.9, m.g) * nose_amount);
 	col *= 0.94 + 0.12 * hair_var;
+	// Champagne foals are born darker (a smoky taupe) and lighten into the adult coat.
+	col = mix(col, col * vec3(0.64, 0.58, 0.56) + vec3(0.01), champagne_foal);
 
 	float pattern_white = 0.0;
 	vec3 pattern_debug = vec3(0.0);
@@ -245,6 +261,63 @@ void fragment() {
 			pattern_white = max(pattern_white, tw * tobiano);
 			pattern_debug.g = max(pattern_debug.g, tw);
 		}
+		// Sabino-1 (KIT, SB1): irregular white that rises from below: high stockings with lacy, roaned edges, white on the
+		// belly and chin, and a broad irregular blaze. Edges are speckled (roaning) rather than crisp. SB1/SB1 is sabino
+		// white: nearly all white, with coloured patches left over the back, shoulder and ears.
+		if (sabino > 0.0) {
+			float e = clamp(sabino_extent, 0.0, 1.0);
+			float dbl = step(1.5, sabino);
+			float speck = noise3(bp * 260.0 + vec3(seed + 17.0));
+			// Lacy, spiky edges: blotchy low-frequency noise plus vertical streaks, so white reaches up the flanks in spikes.
+			float irregular = (fbm3(bp * 3.2 + vec3(seed + 21.0)) - 0.5) * mix(0.75, 0.9, dbl) + (fbm3(bp * 10.0 + vec3(seed + 4.0)) - 0.5) * 0.3
+				+ (noise3(vec3(bp.x * 11.0, bp.y * 1.6, bp.z * 11.0) + vec3(seed)) - 0.5) * 0.55;
+			float d = 0.0; // > 0 inside the white
+			if (is_head) {
+				float lat = abs(c.y) + (fbm3(bp * 7.0 + vec3(seed + 8.0)) - 0.5) * 0.45;
+				float blaze_w = mix(0.28, 0.8, e);
+				float face = (1.0 - smoothstep(blaze_w - 0.05, blaze_w + 0.05, lat)) * smoothstep(0.16, 0.34, c.x);
+				float chin = smoothstep(0.82, 0.9, c.x + (fbm3(bp * 9.0) - 0.5) * 0.12) * smoothstep(0.12, 0.3, e);
+				float wholeFace = dbl * smoothstep(0.16 + irregular * 0.2, 0.3 + irregular * 0.2, c.x);
+				d = (max(max(face, chin), wholeFace) - 0.5) * 0.4;
+			} else if (is_leg) {
+				// Stockings climb with the extent; once the belly is white the legs are white to the elbow, so no coloured patch is stranded.
+				float legthr = mix(0.5, 1.45, smoothstep(0.15, 0.6, e)) + irregular * 0.5;
+				d = (dbl > 0.5 ? 1.6 : legthr) - c.y;
+			} else {
+				float thr = mix(0.2, 0.66, e) + irregular * 0.55;
+				if (dbl > 0.5) thr = mix(0.78, 1.02, e) + irregular * 0.5;
+				d = thr - body.y;
+			}
+			float inside = smoothstep(0.1, 0.11, d);
+			float roaned = step(speck, smoothstep(-0.16, 0.1, d)) * (1.0 - inside);
+			float sabino_white = clamp(inside + roaned * 0.92, 0.0, 1.0);
+			pattern_white = max(pattern_white, sabino_white);
+			pattern_debug.g = max(pattern_debug.g, sabino_white);
+		}
+		// Splash white (MITF, SW1): "dipped in white" from below. Legs and belly are white up to a smooth, crisp, gently
+		// wavy line, the face carries a broad blaze with crisp edges, and the topline, ears and poll stay coloured.
+		// SW1/SW1 is far more extensive and usually has blue eyes.
+		if (splash > 0.0) {
+			float e = clamp(splash_extent, 0.0, 1.0);
+			float dbl = step(1.5, splash);
+			float wave = (fbm3(bp * 1.7 + vec3(seed + 31.0)) - 0.5) * 0.3 + (fbm3(bp * 5.0 + vec3(seed + 7.0)) - 0.5) * 0.06;
+			float sw = 0.0;
+			if (is_head) {
+				float blaze_w = mix(0.4, 1.05, e) + dbl * 0.8;
+				float lat = abs(c.y) + wave * 0.3;
+				float face = (1.0 - smoothstep(blaze_w - 0.04, blaze_w + 0.04, lat)) * smoothstep(0.17, 0.2, c.x + wave * 0.1);
+				float chin = smoothstep(0.84, 0.88, c.x);
+				sw = max(face, chin * smoothstep(0.1, 0.25, e));
+			} else if (is_leg) {
+				float legthr = mix(0.75, 1.4, smoothstep(0.0, 0.5, e)) + wave * 0.5 + dbl;
+				sw = 1.0 - smoothstep(legthr - 0.025, legthr + 0.025, c.y);
+			} else {
+				float line = mix(-0.02, 0.5, e) + dbl * 0.3 + wave;
+				sw = 1.0 - smoothstep(line - 0.02, line + 0.02, body.y);
+			}
+			pattern_white = max(pattern_white, sw);
+			pattern_debug.g = max(pattern_debug.g, sw);
+		}
 	}
 
 	// white markings
@@ -279,8 +352,15 @@ void fragment() {
 	if (debug_view == 3) col = use_body_map ? vec3(fract(body.x * 5.0), fract(body.y * 5.0), body.z * 0.5 + 0.5) : vec3(1, 0, 1);
 	if (debug_view == 2) col = is_head ? vec3(c.x, c.y * 0.5 + 0.5, m.b) : is_leg ? vec3(0.0, c.y, 0.0) : vec3(0.1);
 	ALBEDO = col;
+	// Champagne: a metallic sheen (lower roughness, a little metallic, warm grazing glints) over the coat; the hooves and
+	// white areas keep their own look.
+	float metal = champagne * (1.0 - clamp(white, 0.0, 1.0) * 0.8) * ((is_leg && c.y < 0.165) ? 0.0 : 1.0);
+	rough = mix(rough, 0.44, metal);
+	METALLIC = 0.1 * metal;
+	float rim = pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), 3.0);
+	EMISSION = vec3(1.0, 0.82, 0.58) * col * rim * 0.22 * metal;
 	ROUGHNESS = rough;
-	SPECULAR = 0.28;
+	SPECULAR = 0.28 + 0.12 * metal;
 	if (use_coat_normal) {
 		NORMAL_MAP = texture(coat_normal, UV).rgb;
 		NORMAL_MAP_DEPTH = (is_leg && c.y < 0.165) ? 0.0 : coat_normal_depth;

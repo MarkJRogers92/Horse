@@ -123,6 +123,25 @@ namespace Cloverbrook.Domain.Tests
             Assert.Contains("one tobiano copy", DnaTest.Describe("pattern.eca3", new AllelePair("TO", "baseline")));
             Assert.Contains("boosts leopard spotting", DnaTest.Describe("patn1", new AllelePair("PATN1", "N")));
             Assert.Equal("Agouti (A/a): carries black", DnaTest.Describe("asip", new AllelePair("A", "a")));
+            // D-037 loci.
+            Assert.Contains("only shows on black and bay", DnaTest.Describe("pmel", new AllelePair("Z", "N")));
+            Assert.Contains("one champagne copy", DnaTest.Describe("slc36a1", new AllelePair("Ch", "N")));
+            Assert.Contains("one splash copy", DnaTest.Describe("pattern.mitf", new AllelePair("SW1", "baseline")));
+            Assert.Contains("one sabino copy", DnaTest.Describe("pattern.eca3", new AllelePair("SB1", "baseline")));
+            Assert.Contains("does not show", DnaTest.Describe("slc45a2", new AllelePair("N", "Prl")));
+        }
+
+        [Fact]
+        public void NewTestsRevealTheD037LociAndHorsesTestedBeforeStillCount()
+        {
+            Assert.Contains("pmel", DnaTest.Loci); Assert.Contains("slc36a1", DnaTest.Loci); Assert.Contains("pattern.mitf", DnaTest.Loci);
+            var (_, state) = Starter();
+            var horse = Untested(state);
+            // A horse tested before D-037 revealed only the eight original loci; it must stay "tested" so old saves validate.
+            var legacy = WithKnowledge(horse, new[] { "mc1r", "asip", "slc45a2", "tbx3", "stx17", "trpm1", "patn1", "pattern.eca3" }
+                .Where(horse.Genome.HasLocus).Select(l => new KeyValuePair<string, AllelePair>(l, horse.Genome.GetAlleles(l))));
+            Assert.True(DnaTest.IsTested(legacy));
+            Assert.False(DnaTest.IsTested(horse));
         }
     }
 }

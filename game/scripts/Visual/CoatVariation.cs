@@ -41,6 +41,18 @@ public readonly record struct CoatLook(Color Body, Color Counter, Color Primitiv
         return (Mathf.Clamp(0.2f + (At(0) + At(2)) * 0.32f, 0f, 1f), 0.22f + At(4) * 0.3f);
     }
 
+    /// <summary>D-037 individual amounts for the rarer families, deterministic per horse like the D-026 amounts: how much white a
+    /// sabino and a splash carry (homozygotes sit near the top: sabino white is nearly all white), how strongly silver dilutes,
+    /// and an eye roll that lets some splash horses show blue eyes.</summary>
+    public static (float SabinoExtent, float SplashExtent, float SilverLevel, float EyeRoll) RareAmounts(string? realizationKey, int sabinoDose, int splashDose)
+    {
+        var hash = SHA256.HashData(Encoding.UTF8.GetBytes("coat-rare.v1|" + (realizationKey ?? "")));
+        float At(int i) => BitConverter.ToUInt16(hash, i) / 65535f;
+        float sabino = sabinoDose >= 2 ? 0.9f + At(0) * 0.1f : 0.2f + (At(0) + At(2)) * 0.32f;   // 0.2 .. 0.84, usually moderate
+        float splash = splashDose >= 2 ? 0.85f + At(4) * 0.15f : 0.25f + (At(4) + At(6)) * 0.3f; // 0.25 .. 0.85
+        return (Mathf.Clamp(sabino, 0f, 1f), Mathf.Clamp(splash, 0f, 1f), 0.65f + At(8) * 0.35f, At(10));
+    }
+
     private static (float A, float B, float C, float D) Rolls(string key)
     {
         var hash = SHA256.HashData(Encoding.UTF8.GetBytes("coat-look.v1|" + key));
