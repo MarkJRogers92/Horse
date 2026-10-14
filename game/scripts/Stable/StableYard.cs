@@ -294,6 +294,17 @@ public partial class StableYard : Node3D
     // D-035: a tiny emote above the name tag now and then (presentation only: one billboard label per horse, no animation rig).
     private readonly Dictionary<string, (Label3D Label, string Trait)> _emotes = new();
 
+    // Nunito's latin subset has no ♥ or ✦, so the emotes use the system symbol fonts (the cozy font stays the fallback).
+    private static Font? _emoteFont;
+    private static Font EmoteFont => _emoteFont ??= MakeEmoteFont();
+
+    private static Font MakeEmoteFont()
+    {
+        var font = new SystemFont { FontNames = new[] { "Apple Symbols", "Segoe UI Symbol", "Noto Sans Symbols2", "DejaVu Sans", "Arial Unicode MS" }, FontWeight = 700 };
+        if (UI.CozyTheme.BoldFont is { } cozy) font.Fallbacks = new Godot.Collections.Array<Font> { cozy };
+        return font;
+    }
+
     private static string EmoteGlyph(string trait) => trait switch
     {
         Cloverbrook.Domain.Personality.Cuddly => "♥", Cloverbrook.Domain.Personality.Dreamy => "✦", Cloverbrook.Domain.Personality.Brave => "!",
@@ -319,7 +330,7 @@ public partial class StableYard : Node3D
             var label = new Label3D
             {
                 Billboard = BaseMaterial3D.BillboardModeEnum.Enabled, FontSize = 64, PixelSize = 0.0046f, OutlineSize = 14, Text = EmoteGlyph(trait),
-                Modulate = Color.FromHtml("#e48aa9"), OutlineModulate = new Color(1, 1, 1, 0.92f), Font = UI.CozyTheme.BoldFont,
+                Modulate = Color.FromHtml("#e48aa9"), OutlineModulate = new Color(1, 1, 1, 0.92f), Font = EmoteFont,
                 NoDepthTest = true, RenderPriority = 11, Visible = false,
             };
             presenter.AddChild(label);
