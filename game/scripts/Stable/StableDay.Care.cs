@@ -118,13 +118,10 @@ public partial class StableDay
             var after = _state.Horses.Single(h => h.HorseId.Equals(horseId));
             _yard.Cheer(horseId.ToString());
             Audio.GameAudio.Play(treat || kind == "brush" ? "care_cheer" : kind == "carrot" ? "hoof_clop" : "ribbon", kind == "pat" ? -10 : -6);
-            var line = kind switch
-            {
-                "pat" => $"{after.Name} nuzzles your hand.",
-                "brush" => $"{after.Name}'s coat is shining.",
-                Festivals.TreatKind => $"{after.Name} loves the {festival?.TreatLower ?? "treat"}!",
-                _ => $"{after.Name} crunches the carrot happily.",
-            };
+            // D-035: the horse answers in its own way, picked deterministically by day.
+            var reactions = Personality.Reactions(Personality.TraitId(_state, after), kind);
+            var line = reactions[(_state.Header.CalendarDay + after.Name.Length) % reactions.Count].Replace("{name}", after.Name);
+            if (treat) line = line.Replace("carrot", festival?.TreatLower ?? "treat");
             if (HorseBond.Hearts(after) > HorseBond.Hearts(before)) line += $" Your bond grew to {HorseBond.Hearts(after)} hearts!";
             if (treat && festival != null && Festivals.RewardsUnlocked(_state) > unlockedBefore)
             {

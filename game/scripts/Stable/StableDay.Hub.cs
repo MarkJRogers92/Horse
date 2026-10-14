@@ -338,6 +338,7 @@ public partial class StableDay
         _yard.SetHorses(shown.Select(h => (h.HorseId.ToString(), DescriptorFor(h))).ToList(),
             shown.ToDictionary(h => h.HorseId.ToString(), h => h.Name),
             MothersOf(shown));
+        _yard.SetPersonalities(shown.ToDictionary(h => h.HorseId.ToString(), h => Personality.TraitId(_state, h)));
     }
 
     /// <summary>D-030: foal id to mare id for foals whose mare is also in the yard (presentation only).</summary>

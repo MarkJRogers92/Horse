@@ -115,6 +115,12 @@ public partial class StableDay
             if (care.Turnout < 4000 && !plan.Item1) return $"Tip: {h.Name} is longing for turnout in the paddock.";
         }
         if (!_foalingDemoMode && FestivalTip(home) is { } festivalTip) return festivalTip;
+        if (day % 4 == 2 && home.Count > 0)
+        {
+            // D-035: now and then Pip shares what a horse's personality means (deterministic by day).
+            var who = home[(day / 4) % home.Count]; var info = Personality.For(_state, who);
+            return "Tip: " + info.PipLines[(day / 4) % info.PipLines.Count].Replace("{name}", who.Name);
+        }
         if (home.FirstOrDefault(h => HorseBond.Interactions.All(k => !HorseBond.DoneToday(h, k, day))) is { } lonely)
             return $"Tip: click {lonely.Name} in the yard to give a pat, a brush or a carrot. It builds your bond!";
         var gallopReady = PracticeGallop.Eligibility(_state).Where(e => e.Eligible)

@@ -27,12 +27,18 @@ namespace Cloverbrook.Domain
 
         public static bool DoneToday(HorseRecord horse, string kind, int calendarDay) => horse.TrainingState.Get(DayKey(kind)) == DayMarker(calendarDay);
 
-        public static int GainToday(HorseRecord horse, string kind, int calendarDay)
+        public static int GainToday(HorseRecord horse, string kind, int calendarDay) => GainToday(horse, kind, calendarDay, 1000);
+
+        /// <summary>D-035: the gain including this horse's personality multiplier.</summary>
+        public static int GainToday(StableSnapshot state, HorseRecord horse, string kind, int calendarDay) =>
+            GainToday(horse, kind, calendarDay, Personality.BondPermille(state, horse, kind));
+
+        private static int GainToday(HorseRecord horse, string kind, int calendarDay, int permille)
         {
             if (BaseGain(kind) == 0 || DoneToday(horse, kind, calendarDay)) return 0;
             var bond = Bond(horse);
             if (bond >= MaxBond) return 0;
-            return Math.Max(1, BaseGain(kind) * (MaxBond - bond) / MaxBond);
+            return Math.Max(1, BaseGain(kind) * permille / 1000 * (MaxBond - bond) / MaxBond);
         }
 
         /// <summary>Why this horse cannot have this interaction today, or null.</summary>
@@ -66,10 +72,14 @@ namespace Cloverbrook.Domain
 
         internal static HorseRecord Apply(HorseRecord horse, string kind, int calendarDay) => Apply(horse, kind, calendarDay, DayKey(kind), null);
 
+        /// <summary>D-035: applies the gain with the horse's personality multiplier.</summary>
+        internal static HorseRecord Apply(StableSnapshot state, HorseRecord horse, string kind, int calendarDay) =>
+            Apply(horse, kind, calendarDay, DayKey(kind), null, Personality.BondPermille(state, horse, kind));
+
         /// <summary>Raises bond by the kind's gain and stamps its day marker; <paramref name="extra"/> replaces other keys in the same write.</summary>
-        internal static HorseRecord Apply(HorseRecord horse, string kind, int calendarDay, string dayKey, IEnumerable<KeyValuePair<string, int>>? extra)
+        internal static HorseRecord Apply(HorseRecord horse, string kind, int calendarDay, string dayKey, IEnumerable<KeyValuePair<string, int>>? extra, int permille = 1000)
         {
-            var gain = BaseGain(kind) == 0 || Bond(horse) >= MaxBond ? 0 : Math.Max(1, BaseGain(kind) * (MaxBond - Bond(horse)) / MaxBond);
+            var gain = BaseGain(kind) == 0 || Bond(horse) >= MaxBond ? 0 : Math.Max(1, BaseGain(kind) * permille / 1000 * (MaxBond - Bond(horse)) / MaxBond);
             var changed = new HashSet<string>(StringComparer.Ordinal) { BondKey, dayKey };
             var extras = extra?.ToList() ?? new List<KeyValuePair<string, int>>();
             foreach (var e in extras) changed.Add(e.Key);

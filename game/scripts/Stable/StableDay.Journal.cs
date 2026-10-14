@@ -49,6 +49,8 @@ public partial class StableDay
             s => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId) && Tack.Slots.Count(slot => Tack.Worn(h, slot) != null) >= 4)),
         new("friends", "Best Friends", "Reach a full five-heart bond with a horse.", "breeding",
             s => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId) && HorseBond.Hearts(h) >= 5)),
+        new("personalities", "Getting to Know You", "Meet all six personalities.", "breeding",
+            s => s.Horses.Where(h => h.OwnerId.Equals(s.PlayerOwnerId) && h.LifeState.Stage != LifeStage.Unborn).Select(h => Personality.TraitId(s, h)).Distinct().Count() >= Personality.Ids.Count),
         new("gene_detective", "Gene Detective", "DNA-test three horses.", "breeding",
             s => DnaTest.TestedCount(s) >= 3),
         new("best_in_show", "Best in Show", "Win the Coat & Turnout Show.", "grooming",
