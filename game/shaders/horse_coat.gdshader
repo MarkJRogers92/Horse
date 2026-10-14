@@ -312,7 +312,14 @@ void fragment() {
 				float legthr = mix(0.75, 1.4, smoothstep(0.0, 0.5, e)) + wave * 0.5 + dbl;
 				sw = 1.0 - smoothstep(legthr - 0.025, legthr + 0.025, c.y);
 			} else {
-				float line = mix(-0.02, 0.5, e) + dbl * 0.3 + wave;
+				// Barrel edge (h: 0 belly .. 1 topline). The double stays low: its line tops out near h 0.33, so it never
+				// reaches mid-barrel. Its wave is damped so the edge cannot climb. The extra ripple uses the raw body
+				// coordinates (along, height, side), so the edge meanders irregularly instead of running straight.
+				float ripple = (noise3(vec3(body.x * 6.0, body.y * 3.0, body.z * 5.0) + vec3(seed + 19.0)) - 0.5) * 0.11;
+				float scallop = sin(body.x * 9.0 + body.z * 3.5 + seed * 2.0) * 0.025;
+				float base = dbl > 0.5 ? mix(0.02, 0.22, e) : mix(-0.02, 0.5, e);
+				float amp = dbl > 0.5 ? 0.6 : 1.0;
+				float line = base + amp * (wave + ripple + scallop);
 				sw = 1.0 - smoothstep(line - 0.02, line + 0.02, body.y);
 			}
 			pattern_white = max(pattern_white, sw);

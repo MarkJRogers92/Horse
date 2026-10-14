@@ -18,8 +18,8 @@
   },
 
   "coatRecipes": {
-    "pheomelanin_full:none": {"label": "chestnut", "body": "#84432a", "points": "#6e3015", "pointsAmount": 0.35, "counter": "#9c5d3c", "sooty": 0.15, "dapple": 0.25, "sheen": 0.55, "bodyRange": ["#a5653d", "#4e2617"], "sootyRange": [0.0, 0.35], "dappleRange": [0.05, 0.35]},
-    "eumelanin_points_pheomelanin_body:none": {"label": "bay", "body": "#6e3721", "points": "#141011", "pointsAmount": 1.0, "counter": "#86502f", "sooty": 0.25, "dapple": 0.2, "sheen": 0.55, "bodyRange": ["#9a5b35", "#3a1f15"], "sootyRange": [0.1, 0.55], "dappleRange": [0.05, 0.3]},
+    "pheomelanin_full:none": {"label": "chestnut", "body": "#a0522d", "points": "#7a3a1c", "pointsAmount": 0.35, "counter": "#b86a36", "sooty": 0.15, "dapple": 0.25, "sheen": 0.55, "bodyRange": ["#b5642f", "#5a2e1c"], "sootyRange": [0.0, 0.35], "dappleRange": [0.05, 0.35]},
+    "eumelanin_points_pheomelanin_body:none": {"label": "bay", "body": "#7f4224", "points": "#141011", "pointsAmount": 1.0, "counter": "#94532c", "sooty": 0.25, "dapple": 0.2, "sheen": 0.55, "bodyRange": ["#94502b", "#4a2615"], "sootyRange": [0.1, 0.55], "dappleRange": [0.05, 0.3]},
     "eumelanin_full:none": {"label": "black", "body": "#17141a", "points": "#100d10", "pointsAmount": 0.6, "counter": "#2a2221", "sooty": 0.0, "dapple": 0.1, "sheen": 0.7, "bodyRange": ["#2a2120", "#121013"], "sootyRange": [0.0, 0.0], "dappleRange": [0.0, 0.15]},
     "pheomelanin_full:cream_single": {"label": "palomino", "body": "#d5a557", "points": "#c48f45", "pointsAmount": 0.3, "counter": "#e9c98f", "sooty": 0.1, "dapple": 0.35, "sheen": 0.65, "bodyRange": ["#e6c27a", "#b98638"], "sootyRange": [0.0, 0.25], "dappleRange": [0.15, 0.55]},
     "eumelanin_points_pheomelanin_body:cream_single": {"label": "buckskin", "body": "#c79957", "points": "#17120f", "pointsAmount": 1.0, "counter": "#ddb980", "sooty": 0.2, "dapple": 0.25, "sheen": 0.6, "bodyRange": ["#d9b274", "#a6763d"], "sootyRange": [0.05, 0.45], "dappleRange": [0.1, 0.4]},
@@ -59,7 +59,7 @@
     "base_black":            { "color": "#0f0c0e", "tip": "#231d1f" },
     "cream_pale_mane_tail":  { "color": "#efe2c4", "tip": "#fbf4e2" },
     "double_cream_pale":     { "color": "#f1e7d4", "tip": "#fbf6ea" },
-    "silver_lightened_mane_tail": {"color": "#bfb098", "tip": "#e2d7c3", "dark": "#2e2421", "darkFraction": 0.28},
+    "silver_lightened_mane_tail": {"color": "#d4c19d", "tip": "#e0d0b0", "dark": "#2e2421", "darkFraction": 0.28},
     "champagne_gold": {"color": "#cba670", "tip": "#e6cea4"},
     "champagne_amber": {"color": "#5b4334", "tip": "#8c6f5a"},
     "champagne_classic": {"color": "#4c3c34", "tip": "#7b6659"},

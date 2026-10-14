@@ -117,20 +117,20 @@
   "coatRecipes": {
     "pheomelanin_full:none": {
       "label": "chestnut",
-      "body": "#8a3b17",
-      "points": "#6b2a10",
+      "body": "#a0522d",
+      "points": "#7a3a1c",
       "pointsAmount": 0.35,
-      "counter": "#a65a2c",
+      "counter": "#b86a36",
       "sooty": 0.15,
       "dapple": 0.25,
       "sheen": 0.55
     },
     "eumelanin_points_pheomelanin_body:none": {
       "label": "bay",
-      "body": "#71341a",
+      "body": "#7f4224",
       "points": "#141011",
       "pointsAmount": 1.0,
-      "counter": "#8f4d26",
+      "counter": "#94532c",
       "sooty": 0.25,
       "dapple": 0.2,
       "sheen": 0.55
@@ -747,8 +747,8 @@
       "tip": "#fbf6ea"
     },
     "silver_lightened_mane_tail": {
-      "color": "#bfb098",
-      "tip": "#e2d7c3",
+      "color": "#d4c19d",
+      "tip": "#e0d0b0",
       "dark": "#2e2421",
       "darkFraction": 0.28
     },
