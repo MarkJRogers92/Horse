@@ -134,16 +134,16 @@ public static partial class HorseTack
                 new Transform3D(frame, at));
         }
 
-        // D-033 pieces; the D-032 festival rewards (halter.fairy, braids.harvest, tail.sunflower) are drawn by their own builders below.
+        // D-033 pieces (harvest braids included); the D-032 fairy halter, flower crown and sunflower tail bow have their own builders below.
         bool Ordinary(string slot, string festivalColour) => worn.TryGetValue(slot, out var c) && c != festivalColour;
-        if (worn.ContainsKey("blanket") || Ordinary("halter", "fairy") || Ordinary("braids", "harvest") || Ordinary("tail", "sunflower"))
+        if (worn.ContainsKey("blanket") || Ordinary("halter", "fairy") || worn.ContainsKey("braids") || Ordinary("tail", "sunflower"))
         {
             var context = new TackContext(skeleton, Global, frame, forward, up, side, body == null ? new List<Vector3>() : BodyVertices(body, skeleton, cacheKey),
                 Rest(chest).DistanceTo(Rest(pelvis)), Bone, HairColour(model),
-                Ordinary("braids", "harvest") ? ManeVertices(model, skeleton, cacheKey) : new List<Vector3>());
+                worn.ContainsKey("braids") ? ManeVertices(model, skeleton, cacheKey) : new List<Vector3>());
             if (worn.TryGetValue("blanket", out var blanketColour)) AddBlanket(context, blanketColour, chest, pelvis, back, bodyWidth);
             if (Ordinary("halter", "fairy") && worn.TryGetValue("halter", out var halterColour)) AddHalter(context, halterColour, head, earL, earR);
-            if (Ordinary("braids", "harvest") && worn.TryGetValue("braids", out var braidsColour)) AddBraids(context, braidsColour);
+            if (worn.TryGetValue("braids", out var braidsColour)) AddBraids(context, braidsColour); // includes the D-032 harvest ribbons
             if (Ordinary("tail", "sunflower") && worn.TryGetValue("tail", out var tailColour)) AddTailBow(context, tailColour);
         }
         // D-032 festival rewards. The head and neck ones are sized from the body's own vertices, so every family and shape fits.
@@ -154,17 +154,6 @@ public static partial class HorseTack
             var shape = MeasureHead(Vertices(body, skeleton, cacheKey), Rest(head), forward, up, side);
             if (crownOn) Attach(skeleton, head, Global(head), FlowerCrown(shape, up, side), new Transform3D(Basis.Identity, shape.Section(0.15f).Centre));
             if (fairyOn) Attach(skeleton, head, Global(head), FairyHalter(shape, side), new Transform3D(Basis.Identity, Vector3.Zero));
-        }
-
-        if (worn.TryGetValue("braids", out var harvestColour) && harvestColour == "harvest" && body != null)
-        {
-            var chain = new[] { "Neck_Top", "Neck_Upper", "Neck_Mid", "Neck", "Neck_Base" }.Select(n => skeleton.FindBone(n)).Where(i => i >= 0).ToArray();
-            if (chain.Length >= 2)
-            {
-                var carrier = chain[chain.Length / 2];
-                Attach(skeleton, carrier, Global(carrier), HarvestBraids(chain.Select(i => Rest(i)).ToArray(), Vertices(body, skeleton, cacheKey), frame),
-                    new Transform3D(Basis.Identity, Vector3.Zero));
-            }
         }
 
         if (worn.TryGetValue("tail", out var sunflowerColour) && sunflowerColour == "sunflower")
@@ -266,7 +255,8 @@ public static partial class HorseTack
     private static Node3D FlowerCrown(HeadShape shape, Vector3 up, Vector3 side)
     {
         var crown = new Node3D { Name = "TackFlowerCrown" };
-        var (_, radius) = shape.Section(0.15f);
+        var (_, measured) = shape.Section(0.15f);
+        var radius = Mathf.Min(measured, shape.Length * 0.2f); // a foal's smaller head keeps the crown from becoming a wreath
         var tilt = (up - shape.Axis * up.Dot(shape.Axis)).Normalized(); // the head's own "up", perpendicular to its axis
         var across = tilt.Cross(shape.Axis).Normalized();
         var petals = new[] { "#f7a8c4", "#fff3b0", "#ffffff" };
@@ -301,6 +291,7 @@ public static partial class HorseTack
         var halter = new Node3D { Name = "TackFairyHalter" };
         var webbing = Fabric("#f3e3c6", roughness: 0.8f); var glow = Fabric("#ffe7a0", glow: true, roughness: 0.4f);
         var (nose, noseRadius) = shape.Section(0.8f); var (cheek, cheekRadius) = shape.Section(0.2f);
+        cheekRadius = Mathf.Min(cheekRadius, shape.Length * 0.27f); noseRadius = Mathf.Min(noseRadius, shape.Length * 0.17f); // ears and jowls must not balloon the straps on a foal
         noseRadius *= 1.06f; cheekRadius *= 1.04f;
         var basis = BasisFromY(shape.Axis, side);
         foreach (var (centre, radius, beads) in new[] { (nose, noseRadius, 14), (cheek, cheekRadius, 20) })
@@ -324,39 +315,6 @@ public static partial class HorseTack
                 Piece(halter, Ball, glow, a.Lerp(b, i / 5f) + lateral * sign * 0.006f, Basis.Identity.Scaled(Vector3.One * 0.014f));
         }
         return halter;
-    }
-
-    /// <summary>Ribbon-tied braids along the crest of the neck, in autumn orange, red and gold.</summary>
-    private static Node3D HarvestBraids(Vector3[] neck, Vector3[] vertices, Basis frame)
-    {
-        var braids = new Node3D { Name = "TackHarvestBraids" };
-        var up = frame.Y; var forward = frame.X; var sideways = frame.Z;
-        var colours = new[] { "#e0762a", "#b8392b", "#f0b43c" };
-        var count = 5;
-        for (var i = 0; i < count; i++)
-        {
-            var f = (i + 0.5f) / count * (neck.Length - 1);
-            var a = neck[Mathf.FloorToInt(f)]; var b = neck[Mathf.Min(neck.Length - 1, Mathf.FloorToInt(f) + 1)];
-            var point = a.Lerp(b, f - Mathf.Floor(f));
-            // The crest: the highest body vertex straight above this spot on the neck.
-            var top = point.Dot(up) + 0.12f;
-            foreach (var v in vertices)
-            {
-                var d = v - point;
-                if (Mathf.Abs(d.Dot(forward)) < 0.05f && Mathf.Abs(d.Dot(sideways)) < 0.05f && d.Dot(up) > 0 && d.Dot(up) < 0.4f) top = Mathf.Max(top, v.Dot(up));
-            }
-            var at = point + up * (top - point.Dot(up) + 0.03f);
-            var knot = Fabric(colours[i % 3], roughness: 0.55f);
-            var bow = new Node3D { Position = at, Basis = frame };
-            Piece(bow, Ball, knot, Vector3.Zero, Basis.Identity.Scaled(new Vector3(0.09f, 0.09f, 0.09f)));
-            Piece(bow, Ball, knot, new Vector3(0, 0.035f, 0.08f), Basis.Identity.Scaled(new Vector3(0.06f, 0.09f, 0.14f)));
-            Piece(bow, Ball, knot, new Vector3(0, 0.035f, -0.08f), Basis.Identity.Scaled(new Vector3(0.06f, 0.09f, 0.14f)));
-            // The braid itself: a little hanging plait wrapped by the ribbon.
-            for (var k = 1; k <= 3; k++)
-                Piece(bow, Ball, Fabric(k % 2 == 0 ? colours[i % 3] : "#7b5a44", roughness: 0.8f), new Vector3(0.0f, -0.055f * k, 0.07f), Basis.Identity.Scaled(new Vector3(0.07f, 0.07f, 0.07f) * (1.1f - k * 0.12f)));
-            braids.AddChild(bow);
-        }
-        return braids;
     }
 
     /// <summary>A yellow ribbon bow with a sunflower on each side, hung on the tail a little below the dock.</summary>
