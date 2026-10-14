@@ -447,7 +447,12 @@ public partial class StableDay : Node
             hearts.TooltipText = "Bond: pat, brush and treat this horse in the yard";
             titleRow.AddChild(hearts);
             content.AddChild(titleRow);
-            content.AddChild(SmallText($"{StageName(horse.LifeState.Stage)} · {HomeName(horse.HomeAssignment)}"));
+            var traitLabel = horse.LifeState.Stage == LifeStage.Unborn ? "" : " · " + Personality.For(_state, horse).Label;
+            // The trait replaces the default "Active stable" wording so the card stays one line (other homes still show).
+            var cardHome = traitLabel.Length > 0 && horse.HomeAssignment == HomeKind.ActiveStable ? "" : " · " + HomeName(horse.HomeAssignment);
+            var cardSub = SmallText($"{StageName(horse.LifeState.Stage)}{cardHome}{traitLabel}");
+            if (traitLabel.Length > 0) cardSub.TooltipText = Personality.For(_state, horse).Description;
+            content.AddChild(cardSub);
             content.AddChild(CareBar("Fed", care.Nutrition)); content.AddChild(CareBar("Bedding", care.Bedding));
             content.AddChild(CareBar("Turnout", care.Turnout)); content.AddChild(CareBar("Grooming", care.Grooming));
             var details = InspectButton(horse.HorseId); details.SizeFlagsHorizontal = Control.SizeFlags.ShrinkBegin; details.CustomMinimumSize = new Vector2(96, 34);

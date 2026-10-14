@@ -123,7 +123,8 @@ namespace Cloverbrook.Domain
         {
             var coat = CoatScore(new PhenotypeResolver().ResolveGenetics(horse).Phenotype);
             var turnoutPoints = Scale(turnout, 9) + (pad ? 3 : 0) + (bow ? 3 : 0);
-            return new HorseShowScore(coat, Scale(grooming, 25), Math.Min(5, Math.Max(0, hearts)) * 3, Math.Min(15, turnoutPoints), Judge(state.Header.SaveId, Week(state), horse.HorseId));
+            return new HorseShowScore(coat, Scale(grooming, 25), Math.Min(5, Math.Max(0, hearts)) * 3, Math.Min(15, turnoutPoints),
+                Math.Min(5, Judge(state.Header.SaveId, Week(state), horse.HorseId) + Personality.ShowJudgeBonus(Personality.TraitId(state, horse))));  // D-035: Brave horses win the judge over a little
         }
 
         /// <summary>The judge's card for one of the player's horses today.</summary>

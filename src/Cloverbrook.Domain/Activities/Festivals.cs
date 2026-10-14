@@ -115,8 +115,9 @@ namespace Cloverbrook.Domain
             return null;
         }
 
-        internal static HorseRecord Apply(HorseRecord horse, FestivalInfo festival, int calendarDay) =>
+        internal static HorseRecord Apply(StableSnapshot state, HorseRecord horse, FestivalInfo festival, int calendarDay) =>
             HorseBond.Apply(horse, TreatKind, calendarDay, DayKey,
-                new[] { new KeyValuePair<string, int>(festival.CountKey, Math.Min(Length, TreatDays(horse, festival) + 1)) });
+                new[] { new KeyValuePair<string, int>(festival.CountKey, Math.Min(Length, TreatDays(horse, festival) + 1)) },
+                Personality.BondPermille(state, horse, TreatKind));
     }
 }

@@ -356,7 +356,7 @@ namespace Cloverbrook.Domain
             var block = HorseBond.BlockReason(current, horseId, kind);
             if (block != null) throw new StableCommandRejectedException("not_now", block);
             var day = current.Header.CalendarDay;
-            var replacement = current.WithHorses(current.Horses.Select(h => h.HorseId.Equals(horseId) ? HorseBond.Apply(h, kind, day) : h))
+            var replacement = current.WithHorses(current.Horses.Select(h => h.HorseId.Equals(horseId) ? HorseBond.Apply(current, h, kind, day) : h))
                 .WithHeader(SaveHeaders.Copy(current.Header, revision: checked(current.Header.SaveRevision + 1), schema: StableSnapshot.SchemaVersion, payloadHash: "unwritten"));
             return SaveSnapshotUnlocked(current, replacement, expectedSaveRevision);
         }
@@ -371,7 +371,7 @@ namespace Cloverbrook.Domain
             var block = Festivals.BlockReason(current, horseId);
             if (block != null) throw new StableCommandRejectedException("not_now", block);
             var day = current.Header.CalendarDay; var festival = Festivals.Current(day)!;
-            var replacement = current.WithHorses(current.Horses.Select(h => h.HorseId.Equals(horseId) ? Festivals.Apply(h, festival, day) : h))
+            var replacement = current.WithHorses(current.Horses.Select(h => h.HorseId.Equals(horseId) ? Festivals.Apply(current, h, festival, day) : h))
                 .WithHeader(SaveHeaders.Copy(current.Header, revision: checked(current.Header.SaveRevision + 1), schema: StableSnapshot.SchemaVersion, payloadHash: "unwritten"));
             return SaveSnapshotUnlocked(current, replacement, expectedSaveRevision);
         }

@@ -63,7 +63,7 @@ public partial class StableDay
             var horse = _state.Horses.Single(h => h.HorseId.Equals(horseId));
             _inspectedHorse = horseId;
             _inspectTitle.Text = profile.Name;
-            _inspectDetails.Text = string.Join("\n", InspectionLines(profile, PracticeTraining.Skill(horse)));
+            _inspectDetails.Text = string.Join("\n", InspectionLines(profile, PracticeTraining.Skill(horse), Personality.For(_state, horse).Description));
             foreach (var old in _inspectRow.GetChildren().Where(c => c != _inspectDetails)) old.QueueFree();
             var portrait = Portrait(horse, 200, CardTint(horse)); portrait.SizeFlagsVertical = Control.SizeFlags.ShrinkBegin;
             _inspectRow.AddChild(portrait); _inspectRow.MoveChild(portrait, 0);
@@ -131,7 +131,7 @@ public partial class StableDay
         if (skill == 0) _inspectAbilities.AddChild(SmallText("Take this horse for a practice gallop to discover its abilities. Each day's first gallop also trains it."));
     }
 
-    private static IEnumerable<string> InspectionLines(HorseProfile profile, int gallopSkill)
+    private static IEnumerable<string> InspectionLines(HorseProfile profile, int gallopSkill, string personality)
     {
         var role = profile.Role switch { ReproductiveRole.Mare => "Mare", ReproductiveRole.Stallion => "Stallion", _ => "Horse" };
         var age = profile.AgeDays switch
@@ -143,6 +143,7 @@ public partial class StableDay
         };
         yield return $"{role} · {StageName(profile.Stage)}{age} · {HomeName(profile.Home)}";
         yield return $"Coat: {profile.VisibleCoat}";
+        yield return $"Personality: {personality}";
         foreach (var note in CoatNotes(profile.VisibleCoat)) yield return note;
         yield return profile.IsFounder ? "Family: founding horse of this stable (parents not recorded)."
             : $"Parents: {profile.ParentAName ?? "unknown"} × {profile.ParentBName ?? "unknown"}";

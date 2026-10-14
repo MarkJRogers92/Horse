@@ -104,6 +104,7 @@ public partial class StableYard : Node3D
         _camera.Position = _camera.Position.Lerp(_cameraGoal + drift, k);
         _camera.LookAt(_lookTarget, Vector3.Up);
         if (Wandering) foreach (var (key, presenter) in _horses) Wander(key, presenter, delta);
+        if (Wandering && _emotes.Count > 0) UpdateEmotes();
     }
 
     private void Wander(string key, HorsePresenter presenter, double delta)
@@ -289,6 +290,61 @@ public partial class StableYard : Node3D
 
     private readonly Dictionary<HorsePresenter, Label3D> _tags = new();
     private string? _hoverKey;
+
+    // D-035: a tiny emote above the name tag now and then (presentation only: one billboard label per horse, no animation rig).
+    private readonly Dictionary<string, (Label3D Label, string Trait)> _emotes = new();
+
+    private static string EmoteGlyph(string trait) => trait switch
+    {
+        Cloverbrook.Domain.Personality.Cuddly => "♥", Cloverbrook.Domain.Personality.Dreamy => "✦", Cloverbrook.Domain.Personality.Brave => "!",
+        Cloverbrook.Domain.Personality.Cheeky => "~", Cloverbrook.Domain.Personality.Shy => "…", _ => "?",
+    };
+
+    /// <summary>Trait id per horse key (call after SetHorses). Horses then show their emote on a slow, per-horse cadence.</summary>
+    public void SetPersonalities(IReadOnlyDictionary<string, string> traits)
+    {
+        foreach (var stale in _emotes.Keys.Where(k => !traits.ContainsKey(k) || _horses.All(h => h.Key != k)).ToList())
+        {
+            if (GodotObject.IsInstanceValid(_emotes[stale].Label)) _emotes[stale].Label.QueueFree();
+            _emotes.Remove(stale);
+        }
+        foreach (var (key, presenter) in _horses)
+        {
+            if (!traits.TryGetValue(key, out var trait)) continue;
+            if (_emotes.TryGetValue(key, out var have) && GodotObject.IsInstanceValid(have.Label) && have.Label.GetParent() == presenter)
+            {
+                if (have.Trait != trait) { have.Label.Text = EmoteGlyph(trait); _emotes[key] = (have.Label, trait); }
+                continue;
+            }
+            var label = new Label3D
+            {
+                Billboard = BaseMaterial3D.BillboardModeEnum.Enabled, FontSize = 64, PixelSize = 0.0046f, OutlineSize = 14, Text = EmoteGlyph(trait),
+                Modulate = Color.FromHtml("#e48aa9"), OutlineModulate = new Color(1, 1, 1, 0.92f), Font = UI.CozyTheme.BoldFont,
+                NoDepthTest = true, RenderPriority = 11, Visible = false,
+            };
+            presenter.AddChild(label);
+            _emotes[key] = (label, trait);
+        }
+    }
+
+    private void UpdateEmotes()
+    {
+        foreach (var (key, presenter) in _horses)
+        {
+            if (!_emotes.TryGetValue(key, out var e) || !GodotObject.IsInstanceValid(e.Label)) continue;
+            if (PhotoMode || presenter.Descriptor == null) { e.Label.Visible = false; continue; }
+            var seed = (uint)StableSeed(key);
+            double period = 16.0 + seed % 9, phase = (_time + seed % 13) % period;
+            const double shown = 2.6;
+            bool lovesAttention = e.Trait == Cloverbrook.Domain.Personality.Cuddly && key == _focusedKey; // ♥ while you give them attention
+            if (phase >= shown && !lovesAttention) { e.Label.Visible = false; continue; }
+            var t = lovesAttention ? (float)((_time * 0.5) % 1.0) : (float)(phase / shown);
+            float s = presenter.Descriptor.IsFoal ? 0.66f : 1f, fade = Mathf.Clamp(Mathf.Sin(t * Mathf.Pi) * 2.5f, 0f, 1f);
+            e.Label.Visible = true;
+            e.Label.Modulate = new Color(1f, 1f, 1f, fade) * Color.FromHtml("#e48aa9");
+            e.Label.Position = new Vector3(0.3f * s, 1.95f * s + 0.38f + t * 0.14f, 0);
+        }
+    }
 
     /// <summary>A floating name plate that always faces the camera.</summary>
     private void NameTag(HorsePresenter presenter, string name)
