@@ -65,6 +65,7 @@ public partial class StableDay
             s => Festivals.SeasonIds.Any(id => Festivals.RewardUnlocked(s, id))),
         new("year_of_festivals", "Year of Festivals", "Unlock all four festival rewards.", "fair",
             s => Festivals.RewardsUnlocked(s) == Festivals.SeasonIds.Count),
+        new("generations", "Three Generations", "Raise a foal whose grandparents were born at your stable.", "foal", HasThreeGenerations),
         new("savings", "Nest Egg", "Save up 1,000 coins.", "coins", s => s.Coins >= 1000),
         new("season", "A Whole Season", "Reach the summer of your first year.", "day",
             s => s.Header.CalendarDay >= StableCalendar.DaysPerSeason),
@@ -75,6 +76,15 @@ public partial class StableDay
     private static bool HasHomebredLeopard(StableSnapshot s) => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId)
         && (h.Parentage.ParentAId != null || h.Parentage.ParentBId != null)
         && new PhenotypeResolver().ResolveGenetics(h).Phenotype is { } p && p.CoatLayers.Contains("leopard_complex") && p.Patn1Coverage > 0);
+
+    // A homebred horse whose sire or dam is itself homebred (born here from a recorded breeding), so a grandparent was born at the stable.
+    private static bool HasThreeGenerations(StableSnapshot s)
+    {
+        var bred = s.Horses.Where(h => h.OriginCommitId != null && h.BirthDay.HasValue).Select(h => h.HorseId).ToHashSet();
+        return s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId) && h.OriginCommitId != null
+            && s.Horses.Where(p => p.HorseId.Equals(h.Parentage.ParentAId) || p.HorseId.Equals(h.Parentage.ParentBId))
+                .Any(p => new[] { p.Parentage.ParentAId, p.Parentage.ParentBId }.Any(g => g != null && bred.Contains(g))));
+    }
 
     private static bool HasLightGrey(StableSnapshot s) => s.Horses.Any(h => h.OwnerId.Equals(s.PlayerOwnerId)
         && new PhenotypeResolver().ResolveGenetics(h).Phenotype is { } p && p.CoatLayers.Contains("grey_age") && p.GrayAmount >= 6000);

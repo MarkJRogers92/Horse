@@ -346,6 +346,7 @@ public partial class StableDay : Node
 
         BuildReviewOverlay(root);
         BuildInspectOverlay(root);
+        BuildFamilyOverlay(root);
         BuildPracticeOverlay(root);
         BuildSaleOverlay(root);
         BuildFairOverlay(root);

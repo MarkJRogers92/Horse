@@ -466,6 +466,11 @@ public partial class StableDay
             if (!_state.Horses.Any(h => h.HorseId.Equals(childId) && h.Name == "Clover"))
                 throw new InvalidOperationException("The newborn's chosen name did not survive an actual save reload.");
             await CaptureFrame(Path.Combine(directory, "06_named_reload.png"));
+            // D-034 family tree of the real foal: parents from the committed breeding, founders above them.
+            OpenFamily(childId);
+            if (_familyShown?.Equals(childId) != true || !_familyOverlay.Visible) throw new InvalidOperationException("The family tree did not open for the newborn.");
+            await CaptureFrame(Path.Combine(directory, "06b_family_tree.png"));
+            _familyOverlay.Visible = false;
             for (var i = 0; i < 6; i++)
             {
                 _reviewButton.EmitSignal(BaseButton.SignalName.Pressed);

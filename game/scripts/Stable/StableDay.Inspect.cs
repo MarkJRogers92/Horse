@@ -18,6 +18,7 @@ public partial class StableDay
     private Button _inspectSellButton = null!;
     private Button _inspectTackButton = null!;
     private Button _inspectDnaButton = null!;
+    private Button _inspectFamilyButton = null!;
     private HorseId? _inspectedHorse;
     private readonly Dictionary<HorseId, Button> _inspectButtons = new();
 
@@ -31,16 +32,19 @@ public partial class StableDay
         body.AddChild(_inspectRow);
         _inspectAbilities = new VBoxContainer(); _inspectAbilities.AddThemeConstantOverride("separation", 2);
         body.AddChild(_inspectAbilities);
-        _inspectSellButton = CozyTheme.WithIcon(new Button { Text = "Ask for an offer", CustomMinimumSize = new Vector2(190, 46) }, "sell", 28);
+        _inspectSellButton = CozyTheme.WithIcon(new Button { Text = "Ask for an offer", CustomMinimumSize = new Vector2(170, 46) }, "sell", 26);
         _inspectSellButton.Pressed += () => { if (_inspectedHorse != null) ShowSaleOffer(_inspectedHorse); };
         buttons.AddChild(_inspectSellButton);
-        _inspectTackButton = new Button { Text = "Dress up", CustomMinimumSize = new Vector2(140, 46) };
+        _inspectTackButton = new Button { Text = "Dress up", CustomMinimumSize = new Vector2(112, 46) };
         _inspectTackButton.Pressed += () => { if (_inspectedHorse != null) ShowTack(_inspectedHorse); };
         buttons.AddChild(_inspectTackButton);
-        _inspectDnaButton = CozyTheme.WithIcon(new Button { Text = $"DNA test · {DnaTest.Price}", CustomMinimumSize = new Vector2(190, 46) }, "breeding", 28);
+        _inspectDnaButton = CozyTheme.WithIcon(new Button { Text = $"DNA test · {DnaTest.Price}", CustomMinimumSize = new Vector2(170, 46) }, "breeding", 26);
         _inspectDnaButton.Pressed += () => { if (_inspectedHorse != null) _ = DnaTestAsync(_inspectedHorse); };
         buttons.AddChild(_inspectDnaButton);
-        var close = new Button { Text = "Close", CustomMinimumSize = new Vector2(130, 46) };
+        _inspectFamilyButton = new Button { Text = "Family", CustomMinimumSize = new Vector2(96, 46), TooltipText = "See this horse's parents and grandparents." };
+        _inspectFamilyButton.Pressed += () => { if (_inspectedHorse != null) OpenFamily(_inspectedHorse); };
+        buttons.AddChild(_inspectFamilyButton);
+        var close = new Button { Text = "Close", CustomMinimumSize = new Vector2(88, 46) };
         close.Pressed += () => { _inspectOverlay.Visible = false; _yard.Focus(null); };
         buttons.AddChild(close);
         CozyTheme.FinishDialog(body, buttons);

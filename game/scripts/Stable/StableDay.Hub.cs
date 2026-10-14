@@ -191,6 +191,11 @@ public partial class StableDay
                 await DnaTestAsync(tested.HorseId);
                 do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
                 await CaptureFrame(System.IO.Path.Combine(output, "25_details_dna_results.png"));
+                // D-034 family tree of the first adult (opened from Details, so the Family button is exercised).
+                _inspectFamilyButton.EmitSignal(BaseButton.SignalName.Pressed);
+                do await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame); while (_portraits.Busy);
+                await CaptureFrame(System.IO.Path.Combine(output, "24b_family_tree.png"));
+                _familyOverlay.Visible = false;
                 _inspectOverlay.Visible = false;
             }
             if (OS.GetCmdlineUserArgs().Contains("--hub-birth"))
