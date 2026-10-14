@@ -193,7 +193,7 @@ public static partial class HorseTack
         var axisVector = noseP - origin; float length = axisVector.Length();
         var axis = axisVector / length;
         var vertical = (c.Up - axis * c.Up.Dot(axis)).Normalized();
-        var cache = new Dictionary<int, HeadSlice>();
+        Dictionary<int, HeadSlice> cache = new(); // explicit type: a captured "var" local reads as maybe-null inside the local function
         HeadSlice Slice(float t)
         {
             int key = (int)MathF.Round(t * 1000f);

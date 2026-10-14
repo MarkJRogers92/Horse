@@ -73,6 +73,13 @@ namespace Cloverbrook.Domain
                 s => s.Horses.FirstOrDefault(h => h.HorseId.Equals(id)) is HorseRecord h && HorseBond.DoneToday(h, kind, s.Header.CalendarDay));
         }
 
+        private static DailyTask FestivalTreat(int slot, FestivalInfo festival, HorseRecord horse)
+        {
+            var id = horse.HorseId;
+            return new DailyTask(slot, Festivals.TreatKind + ":" + id, $"Give {horse.Name} a {festival.TreatLower}", RewardForSlot(slot),
+                s => s.Horses.FirstOrDefault(h => h.HorseId.Equals(id)) is HorseRecord h && Festivals.DoneToday(h, s.Header.CalendarDay));
+        }
+
         private static DailyTask LoveAll(int slot) => new DailyTask(slot, "love:all", "Show some love to every horse", RewardForSlot(slot),
             s => { var all = Horses(s); return all.Count > 0 && all.All(h => HorseBond.Interactions.Any(k => HorseBond.DoneToday(h, k, s.Header.CalendarDay))); });
 
@@ -92,6 +99,12 @@ namespace Cloverbrook.Domain
             var different = rest.FindIndex(c => !c.Horse.HorseId.Equals(first.Horse.HorseId) && c.Kind != first.Kind);
             var second = rest[different < 0 ? 0 : different];
             var tasks = new List<DailyTask> { Care(0, first.Kind, first.Horse), Care(1, second.Kind, second.Horse) };
+            // D-032: during a festival week the second task is the festival treat (its offer depends only on the day and the horse).
+            if (Festivals.Current(state.Header.CalendarDay) is { } festival)
+            {
+                var pick = horses.OrderBy(h => Score(state, "treat:" + h.HorseId), StringComparer.Ordinal).First();
+                tasks[1] = FestivalTreat(1, festival, pick);
+            }
             // Slot 2, the harder one. At most one coin-spending task, and only on the first day of a fair week.
             var hard = new List<(string Key, Func<DailyTask> Make)>();
             if (horses.Count >= 2) hard.Add(("love:all", () => LoveAll(2)));

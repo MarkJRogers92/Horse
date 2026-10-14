@@ -113,6 +113,7 @@ public partial class StableDay
             if (!result.Replayed)
             {
                 PlayDayTransition(_state.Header.CalendarDay, result.Receipt.LifecycleEvents.Select(item => LifecycleText(item, _state)).FirstOrDefault());
+                AnnounceFestival();
                 if (result.Receipt.LifecycleEvents.FirstOrDefault(e => e.Kind == LifecycleEventKind.Birth) is { } birth) CelebrateBirth(birth);
             }
         }

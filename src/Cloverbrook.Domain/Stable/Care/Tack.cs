@@ -59,7 +59,15 @@ namespace Cloverbrook.Domain
             new TackItem(PadSlot, "pad.gold", "Champion gold pad", "#f2c14e", WonCup, "Win the Willowbrook Cup"),
             new TackItem(BowSlot, "bow.gold", "Champion gold bow", "#f2c14e", WonCup, "Win the Willowbrook Cup"),
             new TackItem(PadSlot, "pad.daisy", "Daisy chain pad", "#fff6d8", BredFoal, "Welcome a foal born in your stable"),
+            FestivalReward(BowSlot, "spring", "Flower crown", "#f6b8cf"),
+            FestivalReward(TailSlot, "summer", "Sunflower tail bow", "#f5c518"),
+            FestivalReward(BraidsSlot, "autumn", "Harvest braids", "#e0762a"),
+            FestivalReward(HalterSlot, "winter", "Fairy-light halter", "#fff1c9"),
         }).ToArray());
+
+        private static TackItem FestivalReward(string slot, string season, string label, string hex) =>
+            new TackItem(slot, Festivals.RewardItemFor(season), label, hex, s => Festivals.RewardUnlocked(s, season),
+                "Give festival treats on " + Festivals.RewardThreshold + " days of the " + Festivals.NameOf(season));
 
         private static IEnumerable<TackItem> Colours(string slot, string prefix)
         {

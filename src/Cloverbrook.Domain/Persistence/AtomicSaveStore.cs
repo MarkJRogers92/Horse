@@ -361,6 +361,21 @@ namespace Cloverbrook.Domain
             return SaveSnapshotUnlocked(current, replacement, expectedSaveRevision);
         }
 
+        /// <summary>D-032: one festival treat (only during a festival week) that raises a horse's bond like a carrot. Free, once per horse per day.</summary>
+        public StableSnapshot CommitFestivalTreat(OwnerId requester, HorseId horseId, ulong expectedSaveRevision)
+        {
+            Check.NotNull(requester, nameof(requester)); Check.NotNull(horseId, nameof(horseId));
+            using var held = Lock(); var current = RequirePrimary();
+            if (!current.PlayerOwnerId.Equals(requester)) throw new StableCommandRejectedException("ownership", "Only the stable owner can care for these horses.");
+            if (current.Header.SaveRevision != expectedSaveRevision) throw new StableCommandRejectedException("stale_save", "The stable changed; reload first.");
+            var block = Festivals.BlockReason(current, horseId);
+            if (block != null) throw new StableCommandRejectedException("not_now", block);
+            var day = current.Header.CalendarDay; var festival = Festivals.Current(day)!;
+            var replacement = current.WithHorses(current.Horses.Select(h => h.HorseId.Equals(horseId) ? Festivals.Apply(h, festival, day) : h))
+                .WithHeader(SaveHeaders.Copy(current.Header, revision: checked(current.Header.SaveRevision + 1), schema: StableSnapshot.SchemaVersion, payloadHash: "unwritten"));
+            return SaveSnapshotUnlocked(current, replacement, expectedSaveRevision);
+        }
+
         /// <summary>D-022: builds the next stall. A retry of a purchase that already happened returns the current save.</summary>
         public StableSnapshot CommitStall(OwnerId requester, ulong expectedSaveRevision, long quotedPrice)
         {

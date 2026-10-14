@@ -62,10 +62,23 @@ public partial class StableDay
             actions.AddChild(button);
         }
         box.AddChild(actions);
+        // D-032: during a festival week there is a fourth, once-a-day interaction.
+        var festival = Festivals.Current(_state.Header.CalendarDay);
+        if (festival != null)
+        {
+            var block = Festivals.BlockReason(_state, horseId);
+            var treat = CozyTheme.WithIcon(new Button
+            {
+                Text = festival.TreatLabel, CustomMinimumSize = new Vector2(0, 44), Disabled = block != null || _busy || _recoveryRequired,
+                TooltipText = block ?? $"Give {horse.Name} a {festival.TreatLower} ({festival.Name})",
+            }, "feed", 24);
+            treat.Pressed += () => _ = InteractAsync(horseId, Festivals.TreatKind);
+            box.AddChild(treat);
+        }
         var details = new Button { Text = "Details", CustomMinimumSize = new Vector2(0, 38) };
         details.Pressed += () => { CloseCareBubble(); ShowInspection(horseId); };
         box.AddChild(details);
-        if (CareActions.All(a => HorseBond.BlockReason(_state, horseId, a.Kind) != null))
+        if (CareActions.All(a => HorseBond.BlockReason(_state, horseId, a.Kind) != null) && (festival == null || Festivals.BlockReason(_state, horseId) != null))
         {
             // A fixed wrap width: an unsized wrapping label measures one word per line and makes the bubble very tall.
             var done = SmallText($"{horse.Name} has had lots of love today. Come back tomorrow!");
@@ -97,17 +110,27 @@ public partial class StableDay
         try
         {
             var owner = _state.PlayerOwnerId; var revision = _state.Header.SaveRevision;
-            _state = await Task.Run(() => _store.CommitInteraction(owner, horseId, kind, revision));
+            var treat = kind == Festivals.TreatKind;
+            var festival = Festivals.Current(_state.Header.CalendarDay);
+            var unlockedBefore = Festivals.RewardsUnlocked(_state);
+            _state = treat ? await Task.Run(() => _store.CommitFestivalTreat(owner, horseId, revision))
+                : await Task.Run(() => _store.CommitInteraction(owner, horseId, kind, revision));
             var after = _state.Horses.Single(h => h.HorseId.Equals(horseId));
             _yard.Cheer(horseId.ToString());
-            Audio.GameAudio.Play(kind == "brush" ? "care_cheer" : kind == "carrot" ? "hoof_clop" : "ribbon", kind == "pat" ? -10 : -6);
+            Audio.GameAudio.Play(treat || kind == "brush" ? "care_cheer" : kind == "carrot" ? "hoof_clop" : "ribbon", kind == "pat" ? -10 : -6);
             var line = kind switch
             {
                 "pat" => $"{after.Name} nuzzles your hand.",
                 "brush" => $"{after.Name}'s coat is shining.",
+                Festivals.TreatKind => $"{after.Name} loves the {festival?.TreatLower ?? "treat"}!",
                 _ => $"{after.Name} crunches the carrot happily.",
             };
             if (HorseBond.Hearts(after) > HorseBond.Hearts(before)) line += $" Your bond grew to {HorseBond.Hearts(after)} hearts!";
+            if (treat && festival != null && Festivals.RewardsUnlocked(_state) > unlockedBefore)
+            {
+                line += $" You unlocked the {Tack.Find(festival.RewardItemId)?.Label ?? "festival reward"}! Find it under Dress up.";
+                Audio.GameAudio.Play("ribbon", -5);
+            }
             SetStatus(line);
         }
         catch (Exception ex)
