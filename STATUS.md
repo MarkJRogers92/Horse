@@ -71,6 +71,12 @@ Goal: stop the stable looking like a text game. (1) portraits of every horse, (2
 - [x] Owner-reported fixes: the care bubble that could not close once all three actions were used (inverted clamp threw before the bubble was tracked) and top-bar buttons cut off past the music toggle (Foaling demo is now an icon, so Menu fits). Verified in the hub preview (07d, plus an asserted close) and in a 1280x800 day capture; smoke OK.
 - [x] D-031: Pip's daily tasks. Three deterministic tasks a day (two care tasks at 10 coins, one harder at 15: love every horse, or the week's show or cup on a fair week's first day) with a streak bonus of 5 coins per consecutive day (max 35). Domain `DailyTasks`, `AtomicSaveStore.CommitDailyTaskReward`, ledger credits validated by `StableSnapshot`, no schema change. A checklist card under Pip's bubble and two journal ribbons. See `docs/decisions/D-031-daily-tasks.md`.
 - [x] D-033: more dress-up. Four new free cosmetic slots on every rig: turnout rug (navy, forest, cranberry, lavender, cream, plus a winter-only Snowflake rug; it hides the saddle pad), halter, braids (button or ribbon) and tail bow. The Dress up dialog scrolls six swatch rows beside the portrait, "Fashion Show" journal ribbon, `TackPreview` takes filters. No save schema change; pad/bow-only horses keep their layer string. See `docs/decisions/D-033-more-dress-up.md`, evidence `docs/visual/evidence/tack-2026-10-14/`.
+- [ ] **PAUSED (owner request): D-032 seasonal festivals.** The work is saved as `docs/wip/D-032-festivals-wip.patch` (diff from db7ec49, so before the D-033 merge; 268 tests passed there, build clean). To resume:
+  1. Apply it on a branch from db7ec49 and merge it into the current head.
+  2. Resolve the conflicts in `Tack.cs`, `HorseTack.cs`, `StableDay.Tack.cs`, `StableDay.Journal.cs` and `StableDay.Hub.cs`. The patch re-adds halter/braids/tail slots that D-033 already has: keep D-033's slots and add only the four festival reward items (Flower crown, Sunflower tail bow, Harvest braids, Fairy-light halter).
+  3. Rerun the smoke test, the validator and the hub preview (`04_festival_*` plus `--hub-festival`).
+  4. Render the festival tack on the compact and foal rigs.
+  5. Merge to main after CI.
 - [ ] Owner: bush/foliage via the Meshy web app's free retries (prompt in the hand-off); everything else in the D-012–D-015 list is done.
 
 ## Animation playback fixes (owner request 2026-10-13)
