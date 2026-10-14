@@ -13,30 +13,20 @@ namespace Cloverbrook.Game.Stable;
 /// </summary>
 public partial class StableDay
 {
-    private PanelContainer _festivalPill = null!;
     private bool _festivalPreviewing;
     private string? _announcedFestival;
 
-    /// <summary>A round "fair" icon beside the wallet pill, shown only during a festival week (the top bar is already full).</summary>
-    private Control BuildFestivalPill()
-    {
-        _festivalPill = new PanelContainer { Visible = false, MouseFilter = Control.MouseFilterEnum.Stop };
-        var style = CozyTheme.Box(Color.FromHtml("#fff4d6"), 22, 4); style.BorderColor = Color.FromHtml("#f5a8c4"); style.SetBorderWidthAll(3);
-        _festivalPill.AddThemeStyleboxOverride("panel", style);
-        _festivalPill.AddChild(new TextureRect { Texture = CozyTheme.Icon("fair"), CustomMinimumSize = new Vector2(40, 40), ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
-            StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered, MouseFilter = Control.MouseFilterEnum.Ignore });
-        return _festivalPill;
-    }
-
     private void RefreshFestival()
     {
-        if (_state == null || _festivalPill == null) return;
+        if (_state == null) return;
         var festival = Festivals.Current(_state.Header.CalendarDay);
-        _festivalPill.Visible = festival != null;
-        if (festival != null)
+        // The season card already names the festival; its tooltip carries the details (no extra top-bar pill, so Menu fits).
+        if (_season.GetParent()?.GetParent() is Control seasonCard)
         {
-            var left = festival.DaysRemaining == 1 ? "last day" : $"{festival.DaysRemaining} days left";
-            _festivalPill.TooltipText = $"{festival.Name} ({left}). Give your horses a {festival.TreatLower}: three treat days unlock the {Tack.Find(festival.RewardItemId)?.Label}.";
+            seasonCard.MouseFilter = Control.MouseFilterEnum.Stop;
+            var left = festival == null ? "" : festival.DaysRemaining == 1 ? "last day" : $"{festival.DaysRemaining} days left";
+            seasonCard.TooltipText = festival == null ? "" :
+                $"{festival.Name} ({left}). Give your horses a {festival.TreatLower}: three treat days unlock the {Tack.Find(festival.RewardItemId)?.Label}.";
         }
         if (!_festivalPreviewing && _yard.Festival != festival?.Id) _yard.SetFestival(festival?.Id);
     }

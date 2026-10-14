@@ -254,7 +254,6 @@ public partial class StableDay : Node
         _wallet = SummaryCard("500 coins");
         header.AddChild(HudPill(_season, "YEAR 1", "day", out _yearLabel));
         header.AddChild(HudPill(_wallet, "COINS", "coins", out _));
-        header.AddChild(BuildFestivalPill());
         header.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, MouseFilter = Control.MouseFilterEnum.Ignore });
         // Compact icon button (tooltip names it) so every top-bar button fits a 1280-wide window, Menu included.
         _foalingDemoButton = CozyTheme.WithIcon(new Button { Text = "", CustomMinimumSize = new Vector2(52, 44), Disabled = _foalingDemoMode,
