@@ -49,17 +49,6 @@ namespace Cloverbrook.Domain.Tests
         }
 
         [Fact]
-        public void SilverChampagneAndPearlStillRefuseEveryCombination()
-        {
-            foreach (var overlay in new[] { ("stx17", "G", "N"), ("pattern.eca3", "TO", "baseline"), ("pattern.eca3", "Rn", "baseline"), ("trpm1", "LP", "N") })
-            {
-                var horse = FrozenFixtureData.Horse(FrozenFixtureData.With(("pmel", "Z", "N"), overlay));
-                Assert.Equal(ResolutionStatus.Unsupported, Resolver.ResolveGenetics(horse).Status);
-            }
-            Assert.NotEmpty(PhenotypeTests.Matrix().ReleasedSupportProblems(new[] { "bay", "silver_overlay" }, new[] { "base_pigment", "silver" }));
-        }
-
-        [Fact]
         public void LabelsFollowHorsePeopleNaming()
         {
             Assert.Equal("Bay roan", PhenotypeResolver.VisibleLabel(Resolve(("pattern.eca3", "Rn", "baseline"))));

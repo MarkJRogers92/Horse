@@ -52,7 +52,11 @@ namespace Cloverbrook.Domain
                     return Array.Empty<FoalCoatChance>();
                 // PATN1 only shows on a foal that inherits LP, so hidden PATN1 is only worth exploring when a parent shows LP.
                 bool lp = new[] { mare, stallion }.Any(h => resolver.ResolveGenetics(h).Phenotype?.CoatLayers.Contains("leopard_complex") == true);
-                var a = Scenarios(mare, resolver, lp); var b = Scenarios(stallion, resolver, lp);
+                // D-037: hidden silver (on a chestnut) and hidden pearl carriers are only worth exploring when a parent shows the
+                // trait, for the same reason as PATN1: otherwise they would clutter every review with "up to 25%" rare coats.
+                bool silverFamily = new[] { mare, stallion }.Any(h => resolver.ResolveGenetics(h).Phenotype?.CoatLayers.Contains("silver") == true);
+                bool pearlFamily = new[] { mare, stallion }.Any(h => resolver.ResolveGenetics(h).Phenotype?.CoatLayers.Contains("pearl") == true);
+                var a = Scenarios(mare, resolver, lp, silverFamily, pearlFamily); var b = Scenarios(stallion, resolver, lp, silverFamily, pearlFamily);
                 if (a.Count == 0 || b.Count == 0 || (long)a.Count * b.Count > MaxPairs) return Array.Empty<FoalCoatChance>();
                 var labels = new Dictionary<string, string>(StringComparer.Ordinal); // foal genotype key -> label, shared by all pairs
                 var tables = new List<Dictionary<string, Rational>>();
@@ -118,8 +122,21 @@ namespace Cloverbrook.Domain
             CoreGeneticsCatalog.ResolverVersion, default, new OwnerId(new Guid("fa000000-0000-0000-0000-0000000000c3")),
             new LifeState(LifeStage.Adult, 12, VisualAge.Adult), new ReproductionState(ReproductiveRole.NonBreeding));
 
+        private static (string, string)[] KitOptions(bool tobiano, bool roan, int sabino)
+        {
+            var alleles = new[] { "baseline", "TO", "Rn", "SB1" }; var result = new List<(string, string)>();
+            for (var i = 0; i < alleles.Length; i++)
+                for (var j = i; j < alleles.Length; j++)
+                {
+                    var pair = new[] { alleles[i], alleles[j] };
+                    if (pair.Contains("TO") == tobiano && pair.Contains("Rn") == roan && pair.Count(x => x == "SB1") == sabino) result.Add((pair[0], pair[1]));
+                }
+            return result.ToArray();
+        }
+
         /// <summary>Every coat-only genome (neutral fictional markers) that looks exactly like this horse to the player.</summary>
-        internal static IReadOnlyList<GenomeSnapshot> Scenarios(HorseRecord horse, PhenotypeResolver resolver, bool exploreHiddenPatn1)
+        internal static IReadOnlyList<GenomeSnapshot> Scenarios(HorseRecord horse, PhenotypeResolver resolver, bool exploreHiddenPatn1,
+            bool exploreHiddenSilver = false, bool exploreHiddenPearl = false)
         {
             var phenotype = resolver.ResolveGenetics(horse).Phenotype;
             if (phenotype == null) return Array.Empty<GenomeSnapshot>();
@@ -129,13 +146,18 @@ namespace Cloverbrook.Domain
             {
                 ["mc1r"] = baseCoat == "chestnut" ? P("e/e") : P("E/E", "E/e"),
                 ["asip"] = baseCoat == "chestnut" ? P("A/A", "A/a", "a/a") : baseCoat == "black" ? P("a/a") : P("A/A", "A/a"),
-                ["slc45a2"] = layers.Contains("cream_double") ? P("Cr/Cr") : layers.Contains("cream_single") ? P("Cr/N") : P("N/N"),
+                ["slc45a2"] = layers.Contains("cream_double") ? P("Cr/Cr") : phenotype.CoatClassId == "cream_pearl" ? P("Cr/Prl") : phenotype.CoatClassId == "pearl" ? P("Prl/Prl")
+                    : layers.Contains("cream_single") ? P("Cr/N") : exploreHiddenPearl ? P("N/N", "N/Prl") : P("N/N"),
+                ["pmel"] = layers.Contains("silver") ? P("Z/Z", "Z/N") : baseCoat == "chestnut" && exploreHiddenSilver ? P("N/N", "Z/N", "Z/Z") : P("N/N"),
+                ["slc36a1"] = layers.Contains("champagne") ? P("Ch/Ch", "Ch/N") : P("N/N"),
                 ["tbx3"] = layers.Contains("dun_dilution") ? P("D/D", "D/nd1", "D/nd2") : layers.Contains("primitive_markings") ? P("nd1/nd1", "nd1/nd2") : P("nd2/nd2"),
                 ["stx17"] = layers.Contains("grey_age") ? P("G/G", "G/N") : P("N/N"),
                 ["trpm1"] = layers.Contains("leopard_complex") ? P("LP/LP", "LP/N") : P("N/N"),
                 ["patn1"] = !layers.Contains("leopard_complex") ? exploreHiddenPatn1 ? P("N/N", "PATN1/N", "PATN1/PATN1") : P("N/N") : phenotype.Patn1Coverage > 0 ? P("PATN1/PATN1", "PATN1/N") : P("N/N"),
-                ["pattern.eca3"] = layers.Contains("white_tobiano") && layers.Contains("roan") ? P("TO/Rn")
-                    : layers.Contains("white_tobiano") ? P("TO/TO", "TO/baseline") : layers.Contains("roan") ? P("Rn/Rn", "Rn/baseline") : P("baseline/baseline"),
+                ["pattern.mitf"] = layers.Contains("white_splash_double") ? P("SW1/SW1") : layers.Contains("white_splash") ? P("SW1/baseline") : P("baseline/baseline"),
+                // KIT region: every unordered pair of its haplotypes that shows exactly what the player sees (TO, Rn and SB1 are all
+                // dominant and visible; SB1/SB1 is the visibly "white" dosage).
+                ["pattern.eca3"] = KitOptions(layers.Contains("white_tobiano"), layers.Contains("roan"), layers.Contains("white_sabino1_double") ? 2 : layers.Contains("white_sabino1") ? 1 : 0),
             };
             // Revealed calls narrow the options (unordered match).
             foreach (var call in horse.PlayerKnowledge.RevealedCalls)

@@ -6,7 +6,8 @@
 
   "implementedLayers": [
     "base_pigment", "cream_single", "cream_double", "dun_dilution", "primitive_markings",
-    "individual_white_markings", "shading_modifiers", "white_tobiano", "roan", "grey_age", "leopard_complex"
+    "individual_white_markings", "shading_modifiers", "white_tobiano", "roan", "grey_age", "leopard_complex",
+    "silver", "champagne", "pearl", "white_sabino1", "white_sabino1_double", "white_splash", "white_splash_double"
   ],
 
   "meshFamilies": {
@@ -34,7 +35,22 @@
     "eumelanin_full:cream_single+dun": {"label": "smoky grullo", "body": "#7c7066", "points": "#1d1917", "pointsAmount": 1.0, "counter": "#938679", "primitive": "#28221f", "sooty": 0.1, "dapple": 0.0, "sheen": 0.35, "bodyRange": ["#93867a", "#62574f"], "dunHead": 0.5, "sootyRange": [0.0, 0.15], "dappleRange": [0.0, 0.0]},
     "pheomelanin_full:cream_double+dun": {"label": "cremello dun", "body": "#e2cba5", "points": "#d6b98f", "pointsAmount": 0.3, "counter": "#eedfc4", "primitive": "#c9a77a", "sooty": 0.0, "dapple": 0.05, "sheen": 0.45, "bodyRange": ["#ebd9ba", "#d4b88d"], "dunHead": 0.15, "sootyRange": [0.0, 0.0], "dappleRange": [0.0, 0.05]},
     "eumelanin_points_pheomelanin_body:cream_double+dun": {"label": "perlino dun", "body": "#dfc59e", "points": "#ae7a51", "pointsAmount": 0.9, "counter": "#ebdbbe", "primitive": "#b98e64", "sooty": 0.0, "dapple": 0.05, "sheen": 0.45, "bodyRange": ["#e8d4b2", "#cfb087"], "dunHead": 0.15, "sootyRange": [0.0, 0.0], "dappleRange": [0.0, 0.05]},
-    "eumelanin_full:cream_double+dun": {"label": "smoky cream dun", "body": "#d8c3a2", "points": "#988470", "pointsAmount": 0.8, "counter": "#e6d8c1", "primitive": "#a8927a", "sooty": 0.0, "dapple": 0.05, "sheen": 0.45, "bodyRange": ["#e2d0b3", "#c6ae8b"], "dunHead": 0.15, "sootyRange": [0.0, 0.0], "dappleRange": [0.0, 0.05]}
+    "eumelanin_full:cream_double+dun": {"label": "smoky cream dun", "body": "#d8c3a2", "points": "#988470", "pointsAmount": 0.8, "counter": "#e6d8c1", "primitive": "#a8927a", "sooty": 0.0, "dapple": 0.05, "sheen": 0.45, "bodyRange": ["#e2d0b3", "#c6ae8b"], "dunHead": 0.15, "sootyRange": [0.0, 0.0], "dappleRange": [0.0, 0.05]},
+    "pheomelanin_full:champagne": {"label": "gold champagne", "body": "#cba26c", "points": "#b98c59", "pointsAmount": 0.3, "counter": "#dfbf8f", "sooty": 0.05, "dapple": 0.25, "sheen": 0.9, "bodyRange": ["#dbb67f", "#bd8f5b"], "sootyRange": [0.0, 0.12], "dappleRange": [0.1, 0.4]},
+    "eumelanin_points_pheomelanin_body:champagne": {"label": "amber champagne", "body": "#a67a50", "points": "#5f4433", "pointsAmount": 0.85, "counter": "#be966a", "sooty": 0.1, "dapple": 0.2, "sheen": 0.9, "bodyRange": ["#bb9063", "#8e6542"], "sootyRange": [0.0, 0.2], "dappleRange": [0.05, 0.35]},
+    "eumelanin_full:champagne": {"label": "classic champagne", "body": "#6f584a", "points": "#4a3a31", "pointsAmount": 0.65, "counter": "#876c5c", "sooty": 0.0, "dapple": 0.2, "sheen": 0.92, "bodyRange": ["#816959", "#5b473c"], "sootyRange": [0.0, 0.05], "dappleRange": [0.05, 0.3]},
+    "pheomelanin_full:pearl": {"label": "pearl chestnut", "body": "#e6ab82", "points": "#d49c6b", "pointsAmount": 0.3, "counter": "#f0caa2", "sooty": 0.0, "dapple": 0.2, "sheen": 0.7, "bodyRange": ["#ebbe92", "#d29868"], "sootyRange": [0.0, 0.05], "dappleRange": [0.05, 0.3]},
+    "eumelanin_points_pheomelanin_body:pearl": {"label": "pearl bay", "body": "#c99c6f", "points": "#7d5a45", "pointsAmount": 0.9, "counter": "#e1bf9a", "sooty": 0.05, "dapple": 0.2, "sheen": 0.7, "bodyRange": ["#dcb68e", "#b98b62"], "sootyRange": [0.0, 0.1], "dappleRange": [0.05, 0.3]},
+    "eumelanin_full:pearl": {"label": "pearl black", "body": "#a9917e", "points": "#6f5b4e", "pointsAmount": 0.7, "counter": "#bea894", "sooty": 0.0, "dapple": 0.15, "sheen": 0.7, "bodyRange": ["#b9a390", "#8d7765"], "sootyRange": [0.0, 0.05], "dappleRange": [0.0, 0.2]},
+    "pheomelanin_full:cream_pearl": {"label": "cream pearl chestnut", "body": "#eed4b0", "points": "#e3c59d", "pointsAmount": 0.3, "counter": "#f6e4cb", "sooty": 0.0, "dapple": 0.1, "sheen": 0.55, "bodyRange": ["#f3dfc2", "#e3c49c"], "sootyRange": [0.0, 0.0], "dappleRange": [0.0, 0.12]},
+    "eumelanin_points_pheomelanin_body:cream_pearl": {"label": "cream pearl bay", "body": "#e6cba4", "points": "#b99575", "pointsAmount": 0.8, "counter": "#f0dcc0", "sooty": 0.0, "dapple": 0.1, "sheen": 0.55, "bodyRange": ["#eed8b8", "#d6b68c"], "sootyRange": [0.0, 0.0], "dappleRange": [0.0, 0.12]},
+    "eumelanin_full:cream_pearl": {"label": "cream pearl black", "body": "#dac9b1", "points": "#a49281", "pointsAmount": 0.7, "counter": "#e8dcc8", "sooty": 0.0, "dapple": 0.1, "sheen": 0.55, "bodyRange": ["#e4d6c0", "#c7b49a"], "sootyRange": [0.0, 0.0], "dappleRange": [0.0, 0.1]},
+    "pheomelanin_full:pearl+dun": {"label": "pearl chestnut dun", "body": "#daa374", "points": "#c68a5c", "pointsAmount": 0.3, "counter": "#e9bf96", "primitive": "#a86740", "sooty": 0.0, "dapple": 0.05, "sheen": 0.7, "bodyRange": ["#e6b689", "#c58a5c"], "dunHead": 0.28, "sootyRange": [0.0, 0.05], "dappleRange": [0.0, 0.05]},
+    "eumelanin_points_pheomelanin_body:pearl+dun": {"label": "pearl bay dun", "body": "#c99e72", "points": "#70513c", "pointsAmount": 0.85, "counter": "#dcb891", "primitive": "#523a2c", "sooty": 0.0, "dapple": 0.05, "sheen": 0.7, "bodyRange": ["#d8b186", "#b0835a"], "dunHead": 0.32, "sootyRange": [0.0, 0.05], "dappleRange": [0.0, 0.05]},
+    "eumelanin_full:pearl+dun": {"label": "pearl black dun", "body": "#9e8b7b", "points": "#5a4a40", "pointsAmount": 0.7, "counter": "#b4a291", "primitive": "#423831", "sooty": 0.0, "dapple": 0.05, "sheen": 0.7, "bodyRange": ["#b09e8e", "#837162"], "dunHead": 0.39, "sootyRange": [0.0, 0.05], "dappleRange": [0.0, 0.05]},
+    "pheomelanin_full:cream_pearl+dun": {"label": "cream pearl chestnut dun", "body": "#e1be96", "points": "#d1a982", "pointsAmount": 0.3, "counter": "#edd2b3", "primitive": "#ae7854", "sooty": 0.0, "dapple": 0.05, "sheen": 0.55, "bodyRange": ["#ebceab", "#d1a980"], "dunHead": 0.28, "sootyRange": [0.0, 0.05], "dappleRange": [0.0, 0.05]},
+    "eumelanin_points_pheomelanin_body:cream_pearl+dun": {"label": "cream pearl bay dun", "body": "#d8b88f", "points": "#91755c", "pointsAmount": 0.8, "counter": "#e6cdac", "primitive": "#634e3d", "sooty": 0.0, "dapple": 0.05, "sheen": 0.55, "bodyRange": ["#e4c9a4", "#c4a177"], "dunHead": 0.32, "sootyRange": [0.0, 0.05], "dappleRange": [0.0, 0.05]},
+    "eumelanin_full:cream_pearl+dun": {"label": "cream pearl black dun", "body": "#c0b29f", "points": "#827466", "pointsAmount": 0.7, "counter": "#d1c6b5", "primitive": "#574e46", "sooty": 0.0, "dapple": 0.05, "sheen": 0.55, "bodyRange": ["#cec2af", "#ac9c87"], "dunHead": 0.39, "sootyRange": [0.0, 0.05], "dappleRange": [0.0, 0.05]}
   },
 
   "hairRecipes": {
@@ -42,17 +58,34 @@
     "base_bay":              { "color": "#110d0e", "tip": "#2a1d18" },
     "base_black":            { "color": "#0f0c0e", "tip": "#231d1f" },
     "cream_pale_mane_tail":  { "color": "#efe2c4", "tip": "#fbf4e2" },
-    "double_cream_pale":     { "color": "#f1e7d4", "tip": "#fbf6ea" }
+    "double_cream_pale":     { "color": "#f1e7d4", "tip": "#fbf6ea" },
+    "silver_lightened_mane_tail": {"color": "#bfb098", "tip": "#e2d7c3", "dark": "#2e2421", "darkFraction": 0.28},
+    "champagne_gold": {"color": "#cba670", "tip": "#e6cea4"},
+    "champagne_amber": {"color": "#5b4334", "tip": "#8c6f5a"},
+    "champagne_classic": {"color": "#4c3c34", "tip": "#7b6659"},
+    "pearl_lightened": {"color": "#e9c69d", "tip": "#f4e0c4"},
+    "cream_pearl_lightened": {"color": "#f1e3ca", "tip": "#faf2e0"}
   },
 
   "skinRecipes": {
     "pigmented": { "color": "#2d2626", "noseAmount": 0.55 },
-    "pink":      { "color": "#d99a8f", "noseAmount": 0.85 }
+    "pink":      { "color": "#d99a8f", "noseAmount": 0.85 },
+    "champagne_mottled": {"color": "#c98f82", "noseAmount": 0.85, "freckles": 0.7},
+    "pearl_lightened": {"color": "#c3a094", "noseAmount": 0.6, "freckles": 0.0},
+    "cream_pearl_lightened": {"color": "#dcaa9d", "noseAmount": 0.8, "freckles": 0.0}
   },
 
   "eyeRecipes": {
     "brown": { "iris": "#3b2414", "ring": "#1a0f08" },
-    "blue":  { "iris": "#7fa6c9", "ring": "#3d5a78" }
+    "blue":  { "iris": "#7fa6c9", "ring": "#3d5a78" },
+    "champagne_amber": {"iris": "#b07f33", "ring": "#5e3e16"},
+    "pearl_lightened": {"iris": "#a08c48", "ring": "#4a3b1c"},
+    "cream_pearl_lightened": {"iris": "#88b3a6", "ring": "#3d6a62"}
+  },
+
+  "silverRecipes": {
+    "eumelanin_full": {"bodyMix": 0.9, "body": "#5e473a", "points": "#44332a", "pointsAmount": 0.75, "counter": "#7c6252", "dapple": 0.85, "sooty": 0.05},
+    "eumelanin_points_pheomelanin_body": {"bodyMix": 0.14, "body": "#84543c", "points": "#6b4b3b", "pointsAmount": 0.9, "counter": "#8f6a4b", "dapple": 0.4, "sooty": 0.1}
   },
 
   "primitiveMarkings": {

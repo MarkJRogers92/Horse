@@ -155,7 +155,8 @@ public partial class StableDay
         foreach (var ribbon in Ribbons) _journalGrid.AddChild(RibbonCard(ribbon, earned.Contains(ribbon.Id)));
     }
 
-    /// <summary>The 13 coats D-013 released and the 6 D-026 added (cream duns and the pattern overlays), in collecting order.</summary>
+    /// <summary>The 13 coats D-013 released, the 6 D-026 added (cream duns and the pattern overlays) and the 6 D-037 added
+    /// (silver, champagne, pearl, cream pearl, sabino, splash), in collecting order.</summary>
     private static readonly (string Id, string Label)[] CoatCollection =
     {
         ("chestnut", "Chestnut"), ("bay", "Bay"), ("black", "Black"), ("palomino", "Palomino"), ("buckskin", "Buckskin"),
@@ -163,9 +164,12 @@ public partial class StableDay
         ("red_dun", "Red dun"), ("bay_dun", "Bay dun"), ("grullo", "Grullo"), ("non_dun1_marked", "Primitive marked"),
         ("dunalino_family", "Dunalino & dunskin"), ("double_cream_dun", "Double cream dun"), ("tobiano_overlay", "Tobiano"),
         ("roan_overlay", "Roan"), ("grey_overlay", "Grey"), ("leopard_complex_overlay", "Appaloosa"),
+        ("silver_overlay", "Silver"), ("champagne_overlay", "Champagne"), ("pearl", "Pearl"), ("cream_pearl", "Cream pearl"),
+        ("sabino1_overlay", "Sabino"), ("splash_overlay", "Splash"),
     };
 
-    private static readonly string[] PatternCoats = { "tobiano_overlay", "roan_overlay", "grey_overlay", "leopard_complex_overlay" };
+    private static readonly string[] PatternCoats = { "tobiano_overlay", "roan_overlay", "grey_overlay", "leopard_complex_overlay",
+        "silver_overlay", "champagne_overlay", "sabino1_overlay", "splash_overlay" };
 
     /// <summary>Every horse that has lived at this stable (sold horses keep their records), first one per coat.</summary>
     private static Dictionary<string, HorseRecord> CollectedCoats(StableSnapshot state)

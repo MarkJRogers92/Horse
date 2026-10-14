@@ -17,8 +17,20 @@ public sealed record CoatRecipe(string Label, Color Body, Color Points, float Po
     /// <summary>D-024: how much darker a dun's undiluted head reads than its body (0 = not dun).</summary>
     public float DunHead { get; init; }
 }
-public sealed record HairRecipe(Color Color, Color Tip);
-public sealed record SkinRecipe(Color Color, float NoseAmount);
+public sealed record HairRecipe(Color Color, Color Tip)
+{
+    /// <summary>D-037: share of dark strands left in a lightened mane or tail (silver flaxen manes keep dark hairs).</summary>
+    public Color Dark { get; init; }
+    public float DarkFraction { get; init; }
+}
+public sealed record SkinRecipe(Color Color, float NoseAmount)
+{
+    /// <summary>D-037: champagne's freckled pink skin around the muzzle and eyes.</summary>
+    public float Freckles { get; init; }
+}
+/// <summary>D-037: how silver changes an eumelanin coat (chocolate body on black, lighter chocolate points on bay).
+/// The layer composes over any recipe, scaled by how dark the recipe's body is.</summary>
+public sealed record SilverRecipe(float BodyMix, Color Body, Color Points, float PointsAmount, Color Counter, float Dapple, float Sooty);
 public sealed record EyeRecipe(Color Iris, Color Ring);
 /// <summary>
 /// Optional Light Body-only RGB8 signed multiplier. Source bytes and accepted UV evidence
@@ -61,6 +73,7 @@ public sealed class VisualCatalog
     public HashSet<string> ImplementedLayers { get; } = new(StringComparer.Ordinal);
     public Dictionary<string, MeshFamily> MeshFamilies { get; } = new(StringComparer.Ordinal);
     public Dictionary<string, CoatRecipe> Coats { get; } = new(StringComparer.Ordinal);
+    public Dictionary<string, SilverRecipe> Silver { get; } = new(StringComparer.Ordinal);
     public Dictionary<string, HairRecipe> Hair { get; } = new(StringComparer.Ordinal);
     public Dictionary<string, SkinRecipe> Skin { get; } = new(StringComparer.Ordinal);
     public Dictionary<string, EyeRecipe> Eyes { get; } = new(StringComparer.Ordinal);
@@ -114,8 +127,19 @@ public sealed class VisualCatalog
                 DunHead = v.TryGetProperty("dunHead", out var dh) ? dh.GetSingle() : 0f,
             };
         }
-        foreach (var h in r.GetProperty("hairRecipes").EnumerateObject()) cat.Hair[h.Name] = new HairRecipe(Hex(h.Value, "color"), Hex(h.Value, "tip"));
-        foreach (var s in r.GetProperty("skinRecipes").EnumerateObject()) cat.Skin[s.Name] = new SkinRecipe(Hex(s.Value, "color"), s.Value.GetProperty("noseAmount").GetSingle());
+        foreach (var h in r.GetProperty("hairRecipes").EnumerateObject())
+            cat.Hair[h.Name] = new HairRecipe(Hex(h.Value, "color"), Hex(h.Value, "tip"))
+            {
+                Dark = h.Value.TryGetProperty("dark", out _) ? Hex(h.Value, "dark") : Colors.Black,
+                DarkFraction = h.Value.TryGetProperty("darkFraction", out var df) ? df.GetSingle() : 0f,
+            };
+        foreach (var s in r.GetProperty("skinRecipes").EnumerateObject())
+            cat.Skin[s.Name] = new SkinRecipe(Hex(s.Value, "color"), s.Value.GetProperty("noseAmount").GetSingle())
+            { Freckles = s.Value.TryGetProperty("freckles", out var fr) ? fr.GetSingle() : 0f };
+        if (r.TryGetProperty("silverRecipes", out var silverNode))
+            foreach (var sv in silverNode.EnumerateObject())
+                cat.Silver[sv.Name] = new SilverRecipe(sv.Value.GetProperty("bodyMix").GetSingle(), Hex(sv.Value, "body"), Hex(sv.Value, "points"),
+                    sv.Value.GetProperty("pointsAmount").GetSingle(), Hex(sv.Value, "counter"), sv.Value.GetProperty("dapple").GetSingle(), sv.Value.GetProperty("sooty").GetSingle());
         foreach (var e in r.GetProperty("eyeRecipes").EnumerateObject()) cat.Eyes[e.Name] = new EyeRecipe(Hex(e.Value, "iris"), Hex(e.Value, "ring"));
         var w = r.GetProperty("white");
         cat.White = Hex(w, "color"); cat.PinkSkin = Hex(w, "pinkSkin"); cat.HoofDark = Hex(w, "hoofDark"); cat.HoofPale = Hex(w, "hoofPale");

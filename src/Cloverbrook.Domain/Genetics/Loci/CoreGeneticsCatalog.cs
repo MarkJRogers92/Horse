@@ -37,10 +37,13 @@ namespace Cloverbrook.Domain
             // D-026: the ECA3 KIT-associated region carries the tobiano (TO) and roan (Rn) haplotypes. One haplotype holds
             // at most one of them (tobiano-roan haplotypes are real but rare and not modelled). "baseline" stays first:
             // SupportedAlleleIds[0] is the default call for starters and neutral analysis genomes.
-            defs.Add("pattern.eca3", Biological("pattern.eca3", "KIT-associated region", new[] { "baseline", "TO", "Rn" },
-                "https://vgl.ucdavis.edu/test/tobiano", "Tobiano (TO, ECA3 inversion near KIT) and roan (Rn, KIT-associated haplotype) are dominant white patterns; homozygotes are viable.",
+            defs.Add("pattern.eca3", Biological("pattern.eca3", "KIT-associated region", new[] { "baseline", "TO", "Rn", "SB1" },
+                "https://vgl.ucdavis.edu/test/tobiano", "Tobiano (TO, ECA3 inversion near KIT), roan (Rn, KIT-associated haplotype) and sabino-1 (SB1, KIT) are dominant white patterns; homozygotes are viable (SB1/SB1 is mostly white).",
                 EvidenceStatus.AssociatedBiological));
-            foreach (var name in new[] { "mitf", "pax3", "ednrb" })
+            // D-037: splash white (SW1, MITF) is added after "baseline"; PAX3 and EDNRB stay fixed.
+            defs.Add("pattern.mitf", Biological("pattern.mitf", "MITF", new[] { "baseline", "SW1" }, "https://vgl.ucdavis.edu/test/splashed-white",
+                "Splash white 1 (SW1, MITF) is a dominant white pattern: a broad blaze, white legs and sometimes a white belly; homozygotes are more extensively white.", EvidenceStatus.AssociatedBiological));
+            foreach (var name in new[] { "pax3", "ednrb" })
                 defs.Add("pattern." + name, Biological("pattern." + name, name.ToUpperInvariant(),
                     new[] { "baseline" }, "https://vgl.ucdavis.edu/resources/horse-coat-color", "Only the fixed absence-of-supported-pattern state is enabled here; other haplotypes remain deferred.", EvidenceStatus.AssociatedBiological));
             var rules = new List<LinkageBlockRule>();
@@ -49,7 +52,8 @@ namespace Cloverbrook.Domain
             // empirical horse recombination estimate, so a pattern travels with the extension allele it started on.
             rules.Add(new LinkageBlockRule("eca3.core", false, new[] { defs["mc1r"], defs["pattern.eca3"] }, new[] { Rational.Zero }, "eca3.fixed-pattern.v1",
                 "Pattern region is linked to MC1R with zero recombination; a slice restriction, NOT an empirical horse recombination estimate.",
-                new[] { new[] { "E", "baseline" }, new[] { "e", "baseline" }, new[] { "E", "TO" }, new[] { "e", "TO" }, new[] { "E", "Rn" }, new[] { "e", "Rn" } }));
+                new[] { new[] { "E", "baseline" }, new[] { "e", "baseline" }, new[] { "E", "TO" }, new[] { "e", "TO" }, new[] { "E", "Rn" }, new[] { "e", "Rn" },
+                    new[] { "E", "SB1" }, new[] { "e", "SB1" } }));
             foreach (var pair in defs.Where(p => p.Key != "mc1r" && p.Key != "pattern.eca3").OrderBy(p => p.Key, StringComparer.Ordinal))
                 rules.Add(new LinkageBlockRule(pair.Key, false, new[] { pair.Value }, Array.Empty<Rational>(), "single-locus.v1",
                     "Single supported locus block. MC1R/ASIP independence follows the frozen cross fixture. No physical map distance is claimed by this logical ID."));

@@ -131,6 +131,12 @@ public partial class HorsePresenter : Node3D
         var hair = catalog.Hair[descriptor.HairRecipe];
         var skin = catalog.Skin[descriptor.SkinRecipe];
         var eye = catalog.Eyes[descriptor.EyeRecipe];
+        // D-037 dosage layers (see the matrix): SB1/SB1 and SW1/SW1 carry a second layer.
+        int sabinoDose = descriptor.CoatLayers.Contains("white_sabino1_double") ? 2 : descriptor.CoatLayers.Contains("white_sabino1") ? 1 : 0;
+        int splashDose = descriptor.CoatLayers.Contains("white_splash_double") ? 2 : descriptor.CoatLayers.Contains("white_splash") ? 1 : 0;
+        var (sabinoExtent, splashExtent, silverLevel, eyeRoll) = CoatLook.RareAmounts(descriptor.MarkingRealizationKey, sabinoDose, splashDose);
+        // Splash horses sometimes have blue eyes even with one copy (an artistic per-horse realisation, like face markings).
+        if (splashDose == 1 && descriptor.EyeRecipe == "brown" && eyeRoll < 0.3f && splashExtent > 0.5f && catalog.Eyes.TryGetValue("blue", out var blueEye)) eye = blueEye;
         Markings = Markings.FromKey(descriptor.MarkingRealizationKey);
         var signedDetailMetadata = useWalkVariant ? family.WalkVariant!.BodySignedDetail : family.BodySignedDetail;
         Texture2D? bodySignedDetail = signedDetailMetadata is { } detail
@@ -144,10 +150,24 @@ public partial class HorsePresenter : Node3D
 
         var coatMat = new ShaderMaterial { Shader = CoatShader };
         var look = CoatLook.For(coat, descriptor.MarkingRealizationKey); // D-024 individual shade
-        coatMat.SetShaderParameter("body_color", look.Body);
-        coatMat.SetShaderParameter("points_color", coat.Points);
-        coatMat.SetShaderParameter("points_amount", coat.PointsAmount);
-        coatMat.SetShaderParameter("counter_color", look.Counter);
+        var bodyColor = look.Body; var counterColor = look.Counter; var pointsColor = coat.Points; var pointsAmount = coat.PointsAmount;
+        float sootyAmount = look.Sooty, dappleAmount = look.Dapple;
+        // D-037 silver: on eumelanin the body goes chocolate and dappled (black) or keeps its colour while the points lighten (bay).
+        // Scaled by how dark the recipe is, so it fades away on creams and pearls and never touches pheomelanin (chestnut).
+        if (descriptor.CoatLayers.Contains("silver") && catalog.Silver.TryGetValue(descriptor.CoatRecipe.Split(':')[0], out var silver))
+        {
+            float Lum(Color c) => 0.3f * c.R + 0.59f * c.G + 0.11f * c.B;
+            float k = silver.BodyMix * Mathf.Clamp(1f - Lum(look.Body) * 1.6f, 0f, 1f) * (0.75f + 0.25f * silverLevel);
+            float pm = Mathf.Clamp(1f - Lum(coat.Points) * 3.2f, 0f, 1f) * 0.95f;
+            bodyColor = look.Body.Lerp(silver.Body, k); counterColor = look.Counter.Lerp(silver.Counter, k);
+            pointsColor = coat.Points.Lerp(silver.Points, pm); pointsAmount = Mathf.Lerp(coat.PointsAmount, silver.PointsAmount, pm);
+            dappleAmount = Mathf.Max(look.Dapple, silver.Dapple * (0.4f + 0.6f * Mathf.Max(k / Mathf.Max(silver.BodyMix, 0.01f), 0.4f)) * silverLevel);
+            sootyAmount = Mathf.Lerp(look.Sooty, silver.Sooty, k);
+        }
+        coatMat.SetShaderParameter("body_color", bodyColor);
+        coatMat.SetShaderParameter("points_color", pointsColor);
+        coatMat.SetShaderParameter("points_amount", pointsAmount);
+        coatMat.SetShaderParameter("counter_color", counterColor);
         coatMat.SetShaderParameter("primitive_color", look.Primitive);
         coatMat.SetShaderParameter("dun_head", descriptor.CoatLayers.Contains("dun_dilution") ? coat.DunHead : 0f);
         coatMat.SetShaderParameter("primitive_strength", descriptor.CoatLayers.Contains("primitive_markings") ? descriptor.PrimitiveMarkingStrength / 10000f : 0f);
@@ -158,8 +178,8 @@ public partial class HorsePresenter : Node3D
         coatMat.SetShaderParameter("hoof_dark", catalog.HoofDark);
         coatMat.SetShaderParameter("hoof_pale", catalog.HoofPale);
         var artistic = descriptor.CoatLayers.Contains("shading_modifiers");
-        coatMat.SetShaderParameter("sooty", artistic ? look.Sooty : coat.Sooty);
-        coatMat.SetShaderParameter("dapple", artistic ? look.Dapple : 0f);
+        coatMat.SetShaderParameter("sooty", artistic ? sootyAmount : coat.Sooty);
+        coatMat.SetShaderParameter("dapple", artistic ? dappleAmount : 0f);
         coatMat.SetShaderParameter("sheen", coat.Sheen);
         // Data atlas is intentionally opt-in per family and remains off when its
         // metadata is absent, invalid, stale, or fails Godot's texture import.
@@ -189,6 +209,16 @@ public partial class HorsePresenter : Node3D
         coatMat.SetShaderParameter("leopard", leopard ? 1f : 0f);
         coatMat.SetShaderParameter("leopard_coverage", descriptor.Patn1Coverage > 0 ? 0.6f + descriptor.Patn1Coverage / 10000f * 0.35f : blanket);
 
+        // D-037 champagne and the sabino and splash whites.
+        bool champagne = descriptor.CoatLayers.Contains("champagne");
+        coatMat.SetShaderParameter("champagne", champagne ? 1f : 0f);
+        coatMat.SetShaderParameter("champagne_foal", champagne && descriptor.IsFoal ? 1f : 0f);
+        coatMat.SetShaderParameter("freckles", skin.Freckles);
+        coatMat.SetShaderParameter("sabino", (float)sabinoDose);
+        coatMat.SetShaderParameter("sabino_extent", sabinoExtent);
+        coatMat.SetShaderParameter("splash", (float)splashDose);
+        coatMat.SetShaderParameter("splash_extent", splashExtent);
+
         var eyeMat = new ShaderMaterial { Shader = EyeShader };
         eyeMat.SetShaderParameter("iris", eye.Iris);
         eyeMat.SetShaderParameter("ring", eye.Ring);
@@ -199,7 +229,10 @@ public partial class HorsePresenter : Node3D
         hairMat.SetShaderParameter("seed", Markings.EdgeSeed);
         hairMat.SetShaderParameter("solid_clumps", family.HairGeometry == "solid_clumps");
         hairMat.SetShaderParameter("grey_amount", grey);
-        hairMat.SetShaderParameter("white_fraction", (tobiano ? tobianoExtent * 0.45f : 0f) + (leopard ? 0.12f : 0f));
+        hairMat.SetShaderParameter("white_fraction", (tobiano ? tobianoExtent * 0.45f : 0f) + (leopard ? 0.12f : 0f)
+            + (sabinoDose == 2 ? 0.25f : sabinoDose == 1 ? sabinoExtent * 0.1f : 0f) + (splashDose == 2 ? 0.25f : 0f));
+        hairMat.SetShaderParameter("dark_color", hair.Dark);
+        hairMat.SetShaderParameter("dark_fraction", hair.DarkFraction);
 
         foreach (var mesh in FindAll<MeshInstance3D>(Model))
         {

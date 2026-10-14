@@ -60,15 +60,15 @@ namespace Cloverbrook.Domain.Tests
         public void SomeOffersCarryEachD026PatternAndTheBaseOfferStaysTheSame()
         {
             var (_, state) = Starter(); var resolver = new PhenotypeResolver(); var patterns = new System.Collections.Generic.HashSet<string>(); var patterned = 0; var total = 0;
-            for (var day = 0; day < 7 * 60; day += 7)
+            for (var day = 0; day < 7 * 400; day += 7)
                 foreach (var offer in HorseFair.Offers(state.WithHeader(OnDay(state.Header, day))))
                 {
                     var layers = resolver.ResolveGenetics(offer.Horse).Phenotype!.CoatLayers; total++;
-                    var found = new[] { "white_tobiano", "roan", "grey_age", "leopard_complex" }.Where(layers.Contains).ToArray();
+                    var found = new[] { "white_tobiano", "roan", "grey_age", "leopard_complex", "silver", "champagne", "pearl", "white_sabino1", "white_splash" }.Where(layers.Contains).ToArray();
                     if (found.Length > 0) { patterned++; foreach (var f in found) patterns.Add(f); Assert.Contains(offer.Reasons, r => r.StartsWith("Eye-catching pattern")); }
                 }
-            Assert.Equal(4, patterns.Count);
-            Assert.InRange(patterned * 100 / total, 20, 55);
+            Assert.Equal(9, patterns.Count);
+            Assert.InRange(patterned * 100 / total, 25, 45);
         }
 
         [Fact]

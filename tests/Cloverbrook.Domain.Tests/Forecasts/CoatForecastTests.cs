@@ -114,7 +114,7 @@ namespace Cloverbrook.Domain.Tests
             var observed = new PublicCoatKnowledge(a.HorseId, a.Knowledge, "Chestnut");
             var result = new CoatForecastService(ForecastTestData.Unreleased()).ForKnownParents(observed, ForecastTestData.Known(2, mate), PublicCoatScope.AllSupported());
             Assert.Equal(ForecastMethod.ConditionalRanges, result.Method);
-            Assert.Contains(result.Outcomes, x => x.Label == "Pearl" && x.UpperProbability > 0);
+            Assert.Contains(result.Outcomes, x => x.Label.StartsWith("Pearl") && x.UpperProbability > 0);
         }
     }
 }

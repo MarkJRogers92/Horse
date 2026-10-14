@@ -5,7 +5,7 @@
   "notForLiveStock": true,
   "resolverVersion": "phenotype.v1",
   "traitModelVersion": "game.traits.v1",
-  "note": "13 phase-1 and 6 D-026 class references at adult and foal ages. Matrix promotion exists only in test memory. Asset IDs are requirements, not available meshes. Use for neutral/stable/portrait contact-sheet implementation; no visuals approved.",
+  "note": "13 phase-1, 6 D-026 and 17 D-037 class references at adult and foal ages. Matrix promotion exists only in test memory. Asset IDs are requirements, not available meshes. Use for neutral/stable/portrait contact-sheet implementation; no visuals approved.",
   "fixtures": [
     {
       "fixtureId": "chestnut.adult",
@@ -2475,6 +2475,2278 @@
         "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
         "cosmeticLayer": null,
         "cacheKey": "af927578d0af405f7f5385b89978945076eb133267e9ec778aed2f666470b946"
+      }
+    },
+    {
+      "fixtureId": "silver_black.adult",
+      "matrixClassId": "silver_overlay",
+      "visualAge": "Adult",
+      "displayLabel": "Silver black",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "a",
+          "a"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pmel": [
+          "Z",
+          "N"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "af4509497288e95ddd203184db429967f6873ca42c5f25ae0bced654446f1326",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "black",
+        "requiredCoatClasses": [
+          "black",
+          "silver_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "silver",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_full:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "silver_lightened_mane_tail",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "9bc52e03fdfd5e97eb41ee728f2ca10c378cdec71b50ad669646a11cc69f50dd"
+      }
+    },
+    {
+      "fixtureId": "silver_black.foal",
+      "matrixClassId": "silver_overlay",
+      "visualAge": "Foal",
+      "displayLabel": "Silver black",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "a",
+          "a"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pmel": [
+          "Z",
+          "N"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "007426cf53fb6001bd0e4cd1f809c30f2f62f09a3bb3abb9b917e48d5a771ac1",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "black",
+        "requiredCoatClasses": [
+          "black",
+          "silver_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "silver",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_full:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "silver_lightened_mane_tail",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "a00bdaa82c3ccba67a366a922ea7758cd265ff8f092c60189041bf1bd1b6ceec"
+      }
+    },
+    {
+      "fixtureId": "silver_bay.adult",
+      "matrixClassId": "silver_overlay",
+      "visualAge": "Adult",
+      "displayLabel": "Silver bay",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pmel": [
+          "Z",
+          "N"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "6c19d85e36ef78bedc43ab8dc1da234ac49f69543160ffbaa7c3b81d0ea4505b",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "silver_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "silver",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "silver_lightened_mane_tail",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "85caec48a48b1948ee0adf2b27b39df68a89a71a5302c5b8bcf173f6f59ad624"
+      }
+    },
+    {
+      "fixtureId": "silver_bay.foal",
+      "matrixClassId": "silver_overlay",
+      "visualAge": "Foal",
+      "displayLabel": "Silver bay",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pmel": [
+          "Z",
+          "N"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "a12be5ec95c48ce1069fe6275998358bf91f88392405b50b2deb2972b9ec3727",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "silver_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "silver",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "silver_lightened_mane_tail",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "a3c68383e4ae63cba5a16c9913f45363e0265314bdae180b6ce15a55553bef79"
+      }
+    },
+    {
+      "fixtureId": "gold_champagne.adult",
+      "matrixClassId": "champagne_overlay",
+      "visualAge": "Adult",
+      "displayLabel": "Gold champagne",
+      "genotypeOverrides": {
+        "mc1r": [
+          "e",
+          "e"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "slc36a1": [
+          "Ch",
+          "N"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "6726478fe7654cf7beeb61bb5f7c82fda6ac11cbca68d19e6ebbc95b85d791d5",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "chestnut",
+        "requiredCoatClasses": [
+          "champagne_overlay",
+          "chestnut"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "champagne",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:champagne",
+        "skinRecipe": "champagne_mottled",
+        "eyeRecipe": "champagne_amber",
+        "hairRecipe": "champagne_gold",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "2e5d37390538931c2161b20dfd3af4322a4b59506d986807923516302994dc59"
+      }
+    },
+    {
+      "fixtureId": "gold_champagne.foal",
+      "matrixClassId": "champagne_overlay",
+      "visualAge": "Foal",
+      "displayLabel": "Gold champagne",
+      "genotypeOverrides": {
+        "mc1r": [
+          "e",
+          "e"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "slc36a1": [
+          "Ch",
+          "N"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "687e901d1d564b40aa665f40d10b9c2624c6fe090ea96b1163064ff3e3c7dc68",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "chestnut",
+        "requiredCoatClasses": [
+          "champagne_overlay",
+          "chestnut"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "champagne",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:champagne",
+        "skinRecipe": "champagne_mottled",
+        "eyeRecipe": "champagne_amber",
+        "hairRecipe": "champagne_gold",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "7c542f49fc3b55c652411253fd64d91c0951ec9c7fe73f4e8c3d49c2e8249a31"
+      }
+    },
+    {
+      "fixtureId": "amber_champagne.adult",
+      "matrixClassId": "champagne_overlay",
+      "visualAge": "Adult",
+      "displayLabel": "Amber champagne",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "slc36a1": [
+          "Ch",
+          "N"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "d24ecb321ca76bdc3694d4ca2a6a9a9fde394d1a1af29b884abb7989fe619b5d",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "champagne_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "champagne",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:champagne",
+        "skinRecipe": "champagne_mottled",
+        "eyeRecipe": "champagne_amber",
+        "hairRecipe": "champagne_amber",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "377aa889c5a4d6fa6e5c94888a039679e8d156221befe1b05f5e7ff33d2b0d5b"
+      }
+    },
+    {
+      "fixtureId": "amber_champagne.foal",
+      "matrixClassId": "champagne_overlay",
+      "visualAge": "Foal",
+      "displayLabel": "Amber champagne",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "slc36a1": [
+          "Ch",
+          "N"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "eda9a55ef0cfb2cf778510b83edb312a8b103d9bf1eb0510ab4bd96020a26ec6",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "champagne_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "champagne",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:champagne",
+        "skinRecipe": "champagne_mottled",
+        "eyeRecipe": "champagne_amber",
+        "hairRecipe": "champagne_amber",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "053639db02ee046b5c938f48ce28cd6c72c7be4ea9051d23ec282e1425376652"
+      }
+    },
+    {
+      "fixtureId": "classic_champagne.adult",
+      "matrixClassId": "champagne_overlay",
+      "visualAge": "Adult",
+      "displayLabel": "Classic champagne",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "a",
+          "a"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "slc36a1": [
+          "Ch",
+          "N"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "d100588061994ba249d0e82d3f30001a5061f2fff01fad320d891b908f05aac7",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "black",
+        "requiredCoatClasses": [
+          "black",
+          "champagne_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "champagne",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_full:champagne",
+        "skinRecipe": "champagne_mottled",
+        "eyeRecipe": "champagne_amber",
+        "hairRecipe": "champagne_classic",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "c48d262c27117afd34ee50e6c45e18c6b1b2c6ef7ba8c1df63f19768204855a6"
+      }
+    },
+    {
+      "fixtureId": "classic_champagne.foal",
+      "matrixClassId": "champagne_overlay",
+      "visualAge": "Foal",
+      "displayLabel": "Classic champagne",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "a",
+          "a"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "slc36a1": [
+          "Ch",
+          "N"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "9c6c3c6abfb15c07e0771a1cd9c9efa175a9a433fad9c1e072644246cd5283b6",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "black",
+        "requiredCoatClasses": [
+          "black",
+          "champagne_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "champagne",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_full:champagne",
+        "skinRecipe": "champagne_mottled",
+        "eyeRecipe": "champagne_amber",
+        "hairRecipe": "champagne_classic",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "0448109ada9c951581e125606b0de242ab8ee15dff10094bf78d6642f1a7cf2c"
+      }
+    },
+    {
+      "fixtureId": "pearl_chestnut.adult",
+      "matrixClassId": "pearl",
+      "visualAge": "Adult",
+      "displayLabel": "Pearl chestnut",
+      "genotypeOverrides": {
+        "mc1r": [
+          "e",
+          "e"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "Prl",
+          "Prl"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "b3edfa0f71534576c02bbc5ab21ccce1fcfd880bf24613ea16d5371cb29d7b24",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "pearl",
+        "requiredCoatClasses": [
+          "chestnut",
+          "pearl"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "pearl",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:pearl",
+        "skinRecipe": "pearl_lightened",
+        "eyeRecipe": "pearl_lightened",
+        "hairRecipe": "pearl_lightened",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "916bcfb3ad0fd0b15135bf6f13ff920c17f398ea38a2acbb92ed5c5a128b94f6"
+      }
+    },
+    {
+      "fixtureId": "pearl_chestnut.foal",
+      "matrixClassId": "pearl",
+      "visualAge": "Foal",
+      "displayLabel": "Pearl chestnut",
+      "genotypeOverrides": {
+        "mc1r": [
+          "e",
+          "e"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "Prl",
+          "Prl"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "c4789f89c4446759b6873d33b13cad730616839427baaf83e1de5f973c6f7e7d",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "pearl",
+        "requiredCoatClasses": [
+          "chestnut",
+          "pearl"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "pearl",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:pearl",
+        "skinRecipe": "pearl_lightened",
+        "eyeRecipe": "pearl_lightened",
+        "hairRecipe": "pearl_lightened",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "3a808afcf1036a508b8725f49afb5527651856eea2664664285bd7ec4e3a96c9"
+      }
+    },
+    {
+      "fixtureId": "pearl_bay.adult",
+      "matrixClassId": "pearl",
+      "visualAge": "Adult",
+      "displayLabel": "Pearl bay",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "Prl",
+          "Prl"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "57043e8237cd4403dfe9ee2a4405781ebf009f5e25b6260291a111f904a25c29",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "pearl",
+        "requiredCoatClasses": [
+          "bay",
+          "pearl"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "pearl",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:pearl",
+        "skinRecipe": "pearl_lightened",
+        "eyeRecipe": "pearl_lightened",
+        "hairRecipe": "pearl_lightened",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "cd10a0ffe050bcdfb0a41762625a899fc54284b9cf29f323fc845ee17f9fdb43"
+      }
+    },
+    {
+      "fixtureId": "pearl_bay.foal",
+      "matrixClassId": "pearl",
+      "visualAge": "Foal",
+      "displayLabel": "Pearl bay",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "Prl",
+          "Prl"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "e65a62272561bad22b03544ed4fca3a264c47128a81a7d40bcca8cadac54c140",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "pearl",
+        "requiredCoatClasses": [
+          "bay",
+          "pearl"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "pearl",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:pearl",
+        "skinRecipe": "pearl_lightened",
+        "eyeRecipe": "pearl_lightened",
+        "hairRecipe": "pearl_lightened",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "1c0c4e22a39133c0ac19f56e89376a97e4882c985922bdbe206d010f34cc3724"
+      }
+    },
+    {
+      "fixtureId": "pearl_black.adult",
+      "matrixClassId": "pearl",
+      "visualAge": "Adult",
+      "displayLabel": "Pearl black",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "a",
+          "a"
+        ],
+        "slc45a2": [
+          "Prl",
+          "Prl"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "926d3d4cd9eea4aadc9273e1a6fe94fe26ef167d47fe8df136fc3e0e19e363cf",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "pearl",
+        "requiredCoatClasses": [
+          "black",
+          "pearl"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "pearl",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_full:pearl",
+        "skinRecipe": "pearl_lightened",
+        "eyeRecipe": "pearl_lightened",
+        "hairRecipe": "pearl_lightened",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "1cfec56558572771f55e87cb0d608ed4c856e0a2556f4f1f2f3b9ac042ef1dd6"
+      }
+    },
+    {
+      "fixtureId": "pearl_black.foal",
+      "matrixClassId": "pearl",
+      "visualAge": "Foal",
+      "displayLabel": "Pearl black",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "a",
+          "a"
+        ],
+        "slc45a2": [
+          "Prl",
+          "Prl"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "d1c6f98320ecfe4b589c41673303420772ac8b896efe84b7f0a56751627bed53",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "pearl",
+        "requiredCoatClasses": [
+          "black",
+          "pearl"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "pearl",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_full:pearl",
+        "skinRecipe": "pearl_lightened",
+        "eyeRecipe": "pearl_lightened",
+        "hairRecipe": "pearl_lightened",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "44e7d99ddd647f4c3af303350f3a60ee51a809c6222d9e055aca41e6cf89e10c"
+      }
+    },
+    {
+      "fixtureId": "cream_pearl_chestnut.adult",
+      "matrixClassId": "cream_pearl",
+      "visualAge": "Adult",
+      "displayLabel": "Cream pearl chestnut",
+      "genotypeOverrides": {
+        "mc1r": [
+          "e",
+          "e"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "Cr",
+          "Prl"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "56af67f1623bd7ebb3bfbec6917424baa517a12418004f534a39052dcd30eafe",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "cream_pearl",
+        "requiredCoatClasses": [
+          "chestnut",
+          "cream_pearl"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "pearl",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:cream_pearl",
+        "skinRecipe": "cream_pearl_lightened",
+        "eyeRecipe": "cream_pearl_lightened",
+        "hairRecipe": "cream_pearl_lightened",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "b10fb902a674cb287901b031f692e0d55bbc7ec2fec3e13cb260aa88818da30e"
+      }
+    },
+    {
+      "fixtureId": "cream_pearl_chestnut.foal",
+      "matrixClassId": "cream_pearl",
+      "visualAge": "Foal",
+      "displayLabel": "Cream pearl chestnut",
+      "genotypeOverrides": {
+        "mc1r": [
+          "e",
+          "e"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "Cr",
+          "Prl"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "8e9a191229e884b451d6e6e3ace96967d6b014107c9c18bbd1221f569ca73e6b",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "cream_pearl",
+        "requiredCoatClasses": [
+          "chestnut",
+          "cream_pearl"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "pearl",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:cream_pearl",
+        "skinRecipe": "cream_pearl_lightened",
+        "eyeRecipe": "cream_pearl_lightened",
+        "hairRecipe": "cream_pearl_lightened",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "df33875d2baa86e79380d3db2b8906ae16ac21394437e02f403d59ba47a95af1"
+      }
+    },
+    {
+      "fixtureId": "cream_pearl_bay.adult",
+      "matrixClassId": "cream_pearl",
+      "visualAge": "Adult",
+      "displayLabel": "Cream pearl bay",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "Cr",
+          "Prl"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "deb6031ff69cd0a50c7d5233bf633ae03cacd75d53a71c9b214c6b38a04ff35b",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "cream_pearl",
+        "requiredCoatClasses": [
+          "bay",
+          "cream_pearl"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "pearl",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:cream_pearl",
+        "skinRecipe": "cream_pearl_lightened",
+        "eyeRecipe": "cream_pearl_lightened",
+        "hairRecipe": "cream_pearl_lightened",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "abd0de09d623b4720018fc2d9d3c4f3425539a413bb4cfcef5287c604d1be599"
+      }
+    },
+    {
+      "fixtureId": "cream_pearl_bay.foal",
+      "matrixClassId": "cream_pearl",
+      "visualAge": "Foal",
+      "displayLabel": "Cream pearl bay",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "Cr",
+          "Prl"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "ee2bbc50b8e884559e93afa6e68f76ab52bf1e5336d5b703475d4e7ef2b66241",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "cream_pearl",
+        "requiredCoatClasses": [
+          "bay",
+          "cream_pearl"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "pearl",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:cream_pearl",
+        "skinRecipe": "cream_pearl_lightened",
+        "eyeRecipe": "cream_pearl_lightened",
+        "hairRecipe": "cream_pearl_lightened",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "43f65e0a80238ac49ef4d39e05cb37831c9699e47c8ba35b4e02bbd912777592"
+      }
+    },
+    {
+      "fixtureId": "cream_pearl_black.adult",
+      "matrixClassId": "cream_pearl",
+      "visualAge": "Adult",
+      "displayLabel": "Cream pearl black",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "a",
+          "a"
+        ],
+        "slc45a2": [
+          "Cr",
+          "Prl"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "10cc88529d0481e610b138368731fab24a5c321a61d281ae6fe1b83ccf4486f6",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "cream_pearl",
+        "requiredCoatClasses": [
+          "black",
+          "cream_pearl"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "pearl",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_full:cream_pearl",
+        "skinRecipe": "cream_pearl_lightened",
+        "eyeRecipe": "cream_pearl_lightened",
+        "hairRecipe": "cream_pearl_lightened",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "db958ad9d96f66c8d9652f0f99dd806fc32fb2dd1e80e38117ae75241e723488"
+      }
+    },
+    {
+      "fixtureId": "cream_pearl_black.foal",
+      "matrixClassId": "cream_pearl",
+      "visualAge": "Foal",
+      "displayLabel": "Cream pearl black",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "a",
+          "a"
+        ],
+        "slc45a2": [
+          "Cr",
+          "Prl"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "832b8cc6c6c9cc8b33949291cda0bca35c89fae418a69d38244d1e95cbafc83e",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "cream_pearl",
+        "requiredCoatClasses": [
+          "black",
+          "cream_pearl"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "pearl",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_full:cream_pearl",
+        "skinRecipe": "cream_pearl_lightened",
+        "eyeRecipe": "cream_pearl_lightened",
+        "hairRecipe": "cream_pearl_lightened",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "3761350ac28f1a35f67685c265c5387a47225058aadb9b8685b26b393944feec"
+      }
+    },
+    {
+      "fixtureId": "sabino1_overlay.adult",
+      "matrixClassId": "sabino1_overlay",
+      "visualAge": "Adult",
+      "displayLabel": "Bay sabino",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.eca3": [
+          "SB1",
+          "baseline"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "5c478dbac2a5e6614776a99224ff5e9a06a68e01992ebe7c9505cbf45cb963f0",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "sabino1_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "white_sabino1",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "f56203c77973ccb5fba4598c63c29e54b9dde29320ed3615b6fd086e8bb4f9c9"
+      }
+    },
+    {
+      "fixtureId": "sabino1_overlay.foal",
+      "matrixClassId": "sabino1_overlay",
+      "visualAge": "Foal",
+      "displayLabel": "Bay sabino",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.eca3": [
+          "SB1",
+          "baseline"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "f1747a22a3874c60bca75c40a04109fcf296a9b08393bcc545789aac35fef699",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "sabino1_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "white_sabino1",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "cdb167c02e31cd9d9bf6eb4784ae4aa795d76b4cb560854be9261570618fd20b"
+      }
+    },
+    {
+      "fixtureId": "sabino_chestnut.adult",
+      "matrixClassId": "sabino1_overlay",
+      "visualAge": "Adult",
+      "displayLabel": "Chestnut sabino",
+      "genotypeOverrides": {
+        "mc1r": [
+          "e",
+          "e"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.eca3": [
+          "SB1",
+          "baseline"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "8c65af529442afc7f4afa74fa16dd2381656ca708667bda9d4d3fb92feaaa083",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "chestnut",
+        "requiredCoatClasses": [
+          "chestnut",
+          "sabino1_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "white_sabino1",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_chestnut",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "c42f30ec99495df40a31f8a394b4562761a97a2fb5ed32097f0ced8af2a0109e"
+      }
+    },
+    {
+      "fixtureId": "sabino_chestnut.foal",
+      "matrixClassId": "sabino1_overlay",
+      "visualAge": "Foal",
+      "displayLabel": "Chestnut sabino",
+      "genotypeOverrides": {
+        "mc1r": [
+          "e",
+          "e"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.eca3": [
+          "SB1",
+          "baseline"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "0947a796f94edcdef4d9ddd526a87993792007c07afa391fe90f51624f6bb99e",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "chestnut",
+        "requiredCoatClasses": [
+          "chestnut",
+          "sabino1_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "white_sabino1",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_chestnut",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "925f7334c39dbbd86c4c93db24f564ca4db51420cfc2256a9ac10d76966ec11f"
+      }
+    },
+    {
+      "fixtureId": "sabino1_double.adult",
+      "matrixClassId": "sabino1_double",
+      "visualAge": "Adult",
+      "displayLabel": "Bay sabino white",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.eca3": [
+          "SB1",
+          "SB1"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "77af0981d02daa28a400bb642097a3a7226b8a3acb5500a8737d278fe3742ecf",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "sabino1_double",
+          "sabino1_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "white_sabino1",
+          "white_sabino1_double",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "d1ee1a81209c99cb709fbc26486add83f89d82b9cd575ff8751b6f3853b54505"
+      }
+    },
+    {
+      "fixtureId": "sabino1_double.foal",
+      "matrixClassId": "sabino1_double",
+      "visualAge": "Foal",
+      "displayLabel": "Bay sabino white",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.eca3": [
+          "SB1",
+          "SB1"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "7ed5346e00a698e9c347525329ed3e2d843dcd3e8c660f0b791591e5e8def1b7",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "sabino1_double",
+          "sabino1_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "white_sabino1",
+          "white_sabino1_double",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "3efc0da85b42b58127d3fed9282fda2525a01f63a865a7b69d29cfea1f7d01cf"
+      }
+    },
+    {
+      "fixtureId": "splash_overlay.adult",
+      "matrixClassId": "splash_overlay",
+      "visualAge": "Adult",
+      "displayLabel": "Bay splash",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.mitf": [
+          "SW1",
+          "baseline"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "edee31aa30d80e4667ad9240c77d261a6f74f419c1604c99870b316e54e7434f",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "splash_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "white_splash",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "08b06dfe9a4f415528c462754aac425025626a543b215749af18b1a2f8585aa0"
+      }
+    },
+    {
+      "fixtureId": "splash_overlay.foal",
+      "matrixClassId": "splash_overlay",
+      "visualAge": "Foal",
+      "displayLabel": "Bay splash",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.mitf": [
+          "SW1",
+          "baseline"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "54d6305554e083720811d45812463e2c64a442208d6109565047aeff4b5c7eb1",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "splash_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "white_splash",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "9f6adfca9e797d63fa4225e8942a2b7ab1da31b81c5e6ab6d023dc6033001df4"
+      }
+    },
+    {
+      "fixtureId": "splash_chestnut.adult",
+      "matrixClassId": "splash_overlay",
+      "visualAge": "Adult",
+      "displayLabel": "Chestnut splash",
+      "genotypeOverrides": {
+        "mc1r": [
+          "e",
+          "e"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.mitf": [
+          "SW1",
+          "baseline"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "647937397a4fa0fd91fd88a8e93a61c87cfcaf2e38efa7464bf534f5a86e504a",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "chestnut",
+        "requiredCoatClasses": [
+          "chestnut",
+          "splash_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "white_splash",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_chestnut",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "76c3e12c5b6dfa4c58886b45ac275d1e11a1826a47e471e69e142097b211725d"
+      }
+    },
+    {
+      "fixtureId": "splash_chestnut.foal",
+      "matrixClassId": "splash_overlay",
+      "visualAge": "Foal",
+      "displayLabel": "Chestnut splash",
+      "genotypeOverrides": {
+        "mc1r": [
+          "e",
+          "e"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.mitf": [
+          "SW1",
+          "baseline"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "dffb9903e7ec78eac488feb067d8d75499fe63b021c95da3ab908e26127520f8",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "chestnut",
+        "requiredCoatClasses": [
+          "chestnut",
+          "splash_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "white_splash",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "pheomelanin_full:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "brown",
+        "hairRecipe": "base_chestnut",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "9202b6b74dd95599fadf3a8d3e683b2a362752045a7827d9d728a823588985c9"
+      }
+    },
+    {
+      "fixtureId": "splash_double.adult",
+      "matrixClassId": "splash_double",
+      "visualAge": "Adult",
+      "displayLabel": "Bay splash white",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.mitf": [
+          "SW1",
+          "SW1"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "382936bf8bacea8605316555b675c5a38f616d18c598f6b6cf625ea46107d9ca",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "splash_double",
+          "splash_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.adult.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "white_splash",
+          "white_splash_double",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "blue",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "74bb57e466791d632ba579be18174efd33ab06c4cc298e420d71dff3a2304dea"
+      }
+    },
+    {
+      "fixtureId": "splash_double.foal",
+      "matrixClassId": "splash_double",
+      "visualAge": "Foal",
+      "displayLabel": "Bay splash white",
+      "genotypeOverrides": {
+        "mc1r": [
+          "E",
+          "E"
+        ],
+        "asip": [
+          "A",
+          "A"
+        ],
+        "slc45a2": [
+          "N",
+          "N"
+        ],
+        "tbx3": [
+          "nd2",
+          "nd2"
+        ],
+        "pattern.mitf": [
+          "SW1",
+          "SW1"
+        ]
+      },
+      "descriptor": {
+        "horseId": "00000000-0000-0000-0000-000000000064",
+        "phenotypeInputHash": "cbf08ee542a6c83ab5796435d2aefa587f9bba5e40c1606e4a833b0b23e4a5c0",
+        "resolverVersion": "phenotype.v1",
+        "coatClassId": "bay",
+        "requiredCoatClasses": [
+          "bay",
+          "splash_double",
+          "splash_overlay"
+        ],
+        "visualCapabilityVersion": "0.1.test-only",
+        "visualAssetCatalogVersion": "reference-assets.v1",
+        "meshFamilyId": "horse.standard.foal.v1",
+        "anatomicalMaskSetId": "canonical-anatomy.v1",
+        "morphWeights": {
+          "body_length": -850,
+          "chest_width": -850,
+          "height": -850,
+          "mane_density": -850,
+          "muscle": -850,
+          "neck_length": -850,
+          "tail_density": -850
+        },
+        "coatLayers": [
+          "base_pigment",
+          "white_splash",
+          "white_splash_double",
+          "individual_white_markings",
+          "shading_modifiers"
+        ],
+        "coatRecipe": "eumelanin_points_pheomelanin_body:none",
+        "skinRecipe": "pigmented",
+        "eyeRecipe": "blue",
+        "hairRecipe": "base_bay",
+        "grayAmount": 0,
+        "primitiveMarkingStrength": 0,
+        "lpPatternPresent": false,
+        "patn1Coverage": 0,
+        "markingRealizationKey": "d2780b2dc9cac1702590175554296314708a18c2af10f21181863d7ae91ca479",
+        "cosmeticLayer": null,
+        "cacheKey": "e26e371ff3d366dbfd39fd0d98d596b1b50714583191e822b7ce3c9b867d028b"
       }
     }
   ]

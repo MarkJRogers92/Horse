@@ -50,12 +50,11 @@ namespace Cloverbrook.Domain
                 bool champagne = g.GetAlleles("slc36a1").Contains("Ch"), grey = g.GetAlleles("stx17").Contains("G"), lp = g.GetAlleles("trpm1").Contains("LP");
                 bool pearlExpression = pearl == 2 || (pearl == 1 && cream == 1);
                 var kit = g.GetAlleles("pattern.eca3"); bool tobiano = kit.Contains("TO"), roan = kit.Contains("Rn");
-                // D-026: grey, leopard complex, tobiano and roan are overlays with versioned rules that compose over every
-                // phase-1 base, dilution and each other. Silver, champagne and pearl still have no rule for any combination,
-                // and unimplemented interactions are never approximated by dropping a layer.
-                var advanced = (silver ? 1 : 0) + (champagne ? 1 : 0) + (pearlExpression ? 1 : 0);
-                if (advanced > 1 || (advanced > 0 && (dun || nd1 || (cream > 0 && !pearlExpression) || grey || lp || tobiano || roan)))
-                    return PhenotypeResolution.Unsupported("This advanced modifier interaction has no versioned expression rule yet.");
+                int sabino = kit.Count("SB1"), splash = g.GetAlleles("pattern.mitf").Count("SW1");
+                // D-026 and D-037: grey, leopard complex, tobiano, roan, sabino-1, splash, silver, champagne and pearl are
+                // versioned rules that compose over every phase-1 base, dilution and each other. Colour-changing layers
+                // (silver, champagne) add to the base recipe rather than multiplying recipes; unimplemented interactions are
+                // never approximated by dropping a layer.
                 if (cream == 1 && pearl == 1)
                 {
                     coatClass = "cream_pearl"; diagnostic = "creamPearlOn" + Title(baseCoat); dilution = "cream_pearl";
@@ -83,17 +82,32 @@ namespace Cloverbrook.Domain
                 if (dun)
                 {
                     layers.Add("dun_dilution"); layers.Add("primitive_markings");
-                    coatClass = cream == 0 ? (baseCoat == "chestnut" ? "red_dun" : baseCoat == "bay" ? "bay_dun" : "grullo")
-                        : cream == 1 ? "dunalino_family" : "double_cream_dun";
-                    diagnostic = coatClass; dilution += "+dun"; required.Add(coatClass);
+                    var dunClass = baseCoat == "chestnut" ? "red_dun" : baseCoat == "bay" ? "bay_dun" : "grullo";
+                    if (pearlExpression) required.Add(dunClass); // the pearl class stays the coat class; the dun layers need their released class too
+                    else
+                    {
+                        coatClass = cream == 0 ? dunClass : cream == 1 ? "dunalino_family" : "double_cream_dun";
+                        diagnostic = coatClass; required.Add(coatClass);
+                    }
+                    dilution += "+dun";
                 }
                 else if (nd1) { layers.Add("primitive_markings"); required.Add("non_dun1_marked"); }
                 if (g.GetAlleles("pmel").Contains("Z")) notes.Add("silver_association_codex; no medical events simulated");
-                if (silver) { layers.Add("silver"); required.Add("silver_overlay"); hair = "silver_lightened_mane_tail"; diagnostic = "silverOn" + Title(baseCoat); }
                 if (champagne)
                 {
-                    layers.Add("champagne"); required.Add("champagne_overlay"); dilution = "champagne";
-                    skin = "champagne_mottled"; eyes = "champagne_amber"; hair = "champagne_lightened"; diagnostic = "champagneOn" + Title(baseCoat);
+                    // Champagne alone has its own three recipes (gold, amber, classic). Over cream, pearl or dun it is a layer on
+                    // that dilution's recipe, so the recipe table does not multiply. Skin and eyes keep any stronger dilution's look.
+                    layers.Add("champagne"); required.Add("champagne_overlay");
+                    if (cream == 0 && !pearlExpression && !dun) dilution = "champagne";
+                    if (skin == "pigmented") skin = "champagne_mottled";
+                    if (eyes == "brown") eyes = "champagne_amber";
+                    if (hair.StartsWith("base_", StringComparison.Ordinal)) hair = "champagne_" + (baseCoat == "chestnut" ? "gold" : baseCoat == "bay" ? "amber" : "classic");
+                    diagnostic = "champagneOn" + Title(baseCoat);
+                }
+                if (silver)
+                {
+                    layers.Add("silver"); required.Add("silver_overlay"); diagnostic = "silverOn" + Title(baseCoat);
+                    if (hair.StartsWith("base_", StringComparison.Ordinal)) hair = "silver_lightened_mane_tail";
                 }
                 // These are explicit artistic age/coverage parameters, not inferred clinical measurements.
                 var grayAmount = grey ? GrayAmount(horse.LifeState) : 0;
@@ -102,6 +116,16 @@ namespace Cloverbrook.Domain
                 if (lp) { layers.Add("leopard_complex"); required.Add("leopard_complex_overlay"); notes.Add("LP/PATN1 coverage is artistic; LP dosage-specific art remains unreleased"); }
                 if (roan) { layers.Add("roan"); required.Add("roan_overlay"); notes.Add("roan: white hairs through the body; solid head and lower legs"); }
                 if (tobiano) { layers.Add("white_tobiano"); required.Add("tobiano_overlay"); notes.Add("tobiano white extent is an artistic per-horse realisation"); }
+                if (sabino > 0)
+                {
+                    layers.Add("white_sabino1"); required.Add("sabino1_overlay"); notes.Add("sabino-1: irregular white from below with roaned edges; extent is an artistic per-horse realisation");
+                    if (sabino == 2) { layers.Add("white_sabino1_double"); required.Add("sabino1_double"); notes.Add("SB1/SB1: mostly white (sabino white)"); }
+                }
+                if (splash > 0)
+                {
+                    layers.Add("white_splash"); required.Add("splash_overlay"); notes.Add("splash white 1: dipped in white from below with a broad blaze; extent is an artistic per-horse realisation");
+                    if (splash == 2) { layers.Add("white_splash_double"); required.Add("splash_double"); notes.Add("SW1/SW1: extensive white, blue eyes"); if (eyes == "brown") eyes = "blue"; }
+                }
                 layers.Add("individual_white_markings"); layers.Add("shading_modifiers");
                 var phenotype = new Phenotype(horse.HorseId, g.GenomeHash, Version, horse.AppearanceSeed, horse.LifeState.VisualAge, baseCoat, coatClass, diagnostic,
                     pigment, dilution, layers, skin, eyes, hair, lp, patnCoverage, grayAmount, primitive, traits.Morphology, notes,
@@ -131,20 +155,29 @@ namespace Cloverbrook.Domain
             var descriptor = new HorseVisualDescriptor(phenotype, result.RequiredCoatClasses, matrix.Version, visualAssetCatalogVersion, mesh, anatomicalMaskSetId, cosmeticLayer);
             return new PresentationResolution(descriptor, VisibleLabel(phenotype), Array.Empty<string>());
         }
+        private static string Low(string text) => char.ToLowerInvariant(text[0]) + text.Substring(1);
         public static string VisibleLabel(Phenotype p)
         {
             Check.NotNull(p, nameof(p));
+            var layers = p.CoatLayers; var champagne = layers.Contains("champagne");
             var label = p.CoatClassId == "dunalino_family" ? p.BaseCoatClass == "chestnut" ? "Dunalino" : p.BaseCoatClass == "bay" ? "Dunskin" : "Smoky grullo"
                 : p.CoatClassId == "double_cream_dun" ? p.BaseCoatClass == "chestnut" ? "Cremello dun" : p.BaseCoatClass == "bay" ? "Perlino dun" : "Smoky cream dun"
+                // Pearl and cream-pearl name the colour underneath ("pearl bay"); cream-pearl is the pseudo-double-dilute.
+                : p.CoatClassId == "pearl" ? "Pearl " + p.BaseCoatClass + (layers.Contains("dun_dilution") ? " dun" : "")
+                : p.CoatClassId == "cream_pearl" ? "Cream pearl " + p.BaseCoatClass + (layers.Contains("dun_dilution") ? " dun" : "")
+                : champagne && p.DilutionExpression == "champagne" ? (p.BaseCoatClass == "chestnut" ? "Gold" : p.BaseCoatClass == "bay" ? "Amber" : "Classic") + " champagne"
                 : Title(p.CoatClassId.Replace('_', ' '));
+            // Champagne over another dilution is named for that dilution ("champagne buckskin").
+            if (champagne && p.DilutionExpression != "champagne") label = "Champagne " + Low(label);
             // Roan and grey name the colour underneath, the way horse people do ("bay roan", "blue roan").
-            if (p.CoatLayers.Contains("roan")) label = p.CoatClassId == "black" ? "Blue roan" : p.CoatClassId == "chestnut" ? "Red roan" : label + " roan";
-            if (p.PrimitiveMarkingStrength > 0 && !p.CoatLayers.Contains("dun_dilution")) label += " with primitive markings";
-            if (p.CoatLayers.Contains("silver")) label = "Silver " + label;
-            if (p.CoatLayers.Contains("champagne")) label = "Champagne " + label;
-            if (p.CoatLayers.Contains("white_tobiano")) label += " tobiano";
-            if (p.CoatLayers.Contains("leopard_complex")) label += p.Patn1Coverage > 0 ? " leopard appaloosa" : " blanket appaloosa";
-            if (p.CoatLayers.Contains("grey_age")) label += " (progressive grey)";
+            if (layers.Contains("roan")) label = label == "Black" ? "Blue roan" : label == "Chestnut" ? "Red roan" : label + " roan";
+            if (p.PrimitiveMarkingStrength > 0 && !layers.Contains("dun_dilution")) label += " with primitive markings";
+            if (layers.Contains("silver")) label = "Silver " + Low(label);
+            if (layers.Contains("white_tobiano")) label += " tobiano";
+            if (layers.Contains("white_sabino1")) label += layers.Contains("white_sabino1_double") ? " sabino white" : " sabino";
+            if (layers.Contains("white_splash")) label += layers.Contains("white_splash_double") ? " splash white" : " splash";
+            if (layers.Contains("leopard_complex")) label += p.Patn1Coverage > 0 ? " leopard appaloosa" : " blanket appaloosa";
+            if (layers.Contains("grey_age")) label += " (progressive grey)";
             return label;
         }
     }

@@ -23,6 +23,14 @@ namespace Cloverbrook.Domain.Tests
             return new CoatSupportMatrix(root.GetProperty("formatVersion").GetString()! + (testReleasePhase1 ? ".test-only" : ""),
                 root.GetProperty("layers").EnumerateArray().Select(v => v.GetProperty("id").GetString()!), rows);
         }
+        /// <summary>The real matrix with the named classes held back at "specified": proves the unreleased-class guard now that every
+        /// class in the game is released.</summary>
+        internal static CoatSupportMatrix MatrixHolding(params string[] held)
+        {
+            var real = Matrix();
+            return new CoatSupportMatrix(real.Version + ".held", real.LayerIds, real.Classes.Values.Select(c => held.Contains(c.Id)
+                ? new CoatClassSupport(c.Id, c.LayerIds, SupportLevel.Specified, SupportLevel.Specified, SupportLevel.Specified) : c));
+        }
         [Fact]
         public void DunThreeToOneAndNd1PrimitiveMarksMatchTheSliceRules()
         {
@@ -62,26 +70,27 @@ namespace Cloverbrook.Domain.Tests
             Assert.NotEqual(foal.InputHash, adult.InputHash);
         }
         [Fact]
-        public void UnsupportedVersionsAllelesAndAdvancedInteractionsHaveNoFallback()
+        public void UnsupportedVersionsAndAllelesHaveNoFallback()
         {
             var resolver = new PhenotypeResolver(); var original = FrozenFixtureData.Horse(FrozenFixtureData.Genome());
             var unknownVersion = new HorseRecord(original.HorseId, original.Name, original.Parentage, original.Genome, "unknown-resolver", original.AppearanceSeed,
                 original.OwnerId, original.LifeState, original.ReproductionState);
             Assert.Equal(ResolutionStatus.Unsupported, resolver.ResolveGenetics(unknownVersion).Status);
             Assert.Equal(ResolutionStatus.Unsupported, resolver.ResolveGenetics(FrozenFixtureData.Horse(FrozenFixtureData.With(("pattern.eca3", "tobiano", "baseline")))).Status);
-            Assert.Equal(ResolutionStatus.Unsupported, resolver.ResolveGenetics(FrozenFixtureData.Horse(FrozenFixtureData.With(("pmel", "Z", "N"), ("stx17", "G", "N")))).Status);
+            // D-037 released silver, so silver with grey is now a supported (composed) coat rather than a refusal.
+            Assert.Equal(ResolutionStatus.Supported, resolver.ResolveGenetics(FrozenFixtureData.Horse(FrozenFixtureData.With(("pmel", "Z", "N"), ("stx17", "G", "N")))).Status);
         }
         [Fact]
         public void RealMatrixReleasesThePhase1ClassesAndTheD026Overlays()
         {
             // D-013 released the 13 phase-1 classes; D-026 released cream-dun stacking and the tobiano, roan, grey and
-            // leopard-complex overlays. Everything else stays unreleased.
+            // leopard-complex overlays; D-037 released silver, champagne, pearl, cream-pearl, sabino-1 and splash.
             var matrix = Matrix();
             using var file = FixtureFiles.Load("COAT_SUPPORT_MATRIX.json");
             foreach (var row in file.RootElement.GetProperty("coatClasses").EnumerateArray())
             {
                 var by = row.TryGetProperty("releasedBy", out var value) ? value.GetString() : null;
-                Assert.Equal(row.GetProperty("phase").GetInt32() == 1 || by == "D-026", matrix.Classes[row.GetProperty("id").GetString()!].Release == SupportLevel.Released);
+                Assert.Equal(row.GetProperty("phase").GetInt32() == 1 || by == "D-026" || by == "D-037", matrix.Classes[row.GetProperty("id").GetString()!].Release == SupportLevel.Released);
             }
             Assert.Equal(new[] { "dunalino_family", "double_cream_dun", "grey_overlay", "leopard_complex_overlay", "roan_overlay", "tobiano_overlay" }.OrderBy(x => x, StringComparer.Ordinal),
                 file.RootElement.GetProperty("coatClasses").EnumerateArray().Where(r => r.TryGetProperty("releasedBy", out var v) && v.GetString() == "D-026")
@@ -89,7 +98,11 @@ namespace Cloverbrook.Domain.Tests
             var bay = new PhenotypeResolver().ResolveForPresentation(FrozenFixtureData.Horse(FrozenFixtureData.Genome()), matrix, "assets.v1", "anatomy.v1");
             Assert.Equal(ResolutionStatus.Supported, bay.Status); Assert.Equal("Bay", bay.DisplayLabel);
             Assert.Empty(matrix.ReleasedSupportProblems(new[] { "buckskin", "dunalino_family" }, new[] { "base_pigment", "cream_single", "dun_dilution", "primitive_markings" }));
-            Assert.NotEmpty(matrix.ReleasedSupportProblems(new[] { "bay" }, new[] { "base_pigment", "silver" }));
+            Assert.Empty(matrix.ReleasedSupportProblems(new[] { "bay", "silver_overlay" }, new[] { "base_pigment", "silver" }));
+            Assert.NotEmpty(matrix.ReleasedSupportProblems(new[] { "bay" }, new[] { "base_pigment", "silver" })); // the layer needs its class
+            Assert.Equal(new[] { "champagne_overlay", "cream_pearl", "pearl", "sabino1_double", "sabino1_overlay", "silver_overlay", "splash_double", "splash_overlay" },
+                file.RootElement.GetProperty("coatClasses").EnumerateArray().Where(r => r.TryGetProperty("releasedBy", out var v) && v.GetString() == "D-037")
+                    .Select(r => r.GetProperty("id").GetString()!).OrderBy(x => x, StringComparer.Ordinal));
         }
         [Fact]
         public void TestOnlyReleaseFixtureMakesStableDescriptorsWithoutReleasingRealArt()
@@ -108,19 +121,20 @@ namespace Cloverbrook.Domain.Tests
         {
             Assert.Throws<ArgumentException>(() => new CoatClassSupport("bay", new[] { "base_pigment" }, SupportLevel.Approved, SupportLevel.None, SupportLevel.Released));
             Assert.NotEmpty(Matrix(true).ReleasedSupportProblems(new[] { "bay" }, new[] { "base_pigment", "silver" }));
-            // Silver resolves genetically but has no released class, so it never reaches a descriptor (D-026 kept it unreleased).
+            // A class held back at "specified" never reaches a descriptor, however the genetics resolve (silver here, as a stand-in).
             var horse = FrozenFixtureData.Horse(FrozenFixtureData.With(("pmel", "Z", "N")));
-            var result = new PhenotypeResolver().ResolveForPresentation(horse, Matrix(true), "test", "test");
+            var result = new PhenotypeResolver().ResolveForPresentation(horse, MatrixHolding("silver_overlay"), "test", "test");
             Assert.Equal(ResolutionStatus.Unsupported, result.Status); Assert.Contains(result.Reasons, r => r.Contains("silver_overlay"));
         }
         [Fact]
         public void ReachabilityGuardCatchesUnreleasedCombinationsBeforeAnyRoll()
         {
-            // D-026 released cream x dun stacking, so the guard is exercised with silver, which stays unreleased.
+            // Every class is released now, so the guard is exercised with silver held back in a test-only matrix.
             var a = FrozenFixtureData.Horse(FrozenFixtureData.With(("pmel", "Z", "N")), 1);
             var b = FrozenFixtureData.Horse(FrozenFixtureData.With(("tbx3", "D", "nd2")), 2, ReproductiveRole.Stallion);
-            var check = LiveCoatGuard.CheckPair(a, b, Matrix(true));
-            Assert.True(check.EvaluatedAll); Assert.False(check.IsSupported); Assert.Contains(check.Reasons, r => r.Contains("silver") || r.Contains("advanced modifier"));
+            var check = LiveCoatGuard.CheckPair(a, b, MatrixHolding("silver_overlay"));
+            Assert.True(check.EvaluatedAll); Assert.False(check.IsSupported); Assert.Contains(check.Reasons, r => r.Contains("silver_overlay"));
+            Assert.True(LiveCoatGuard.CheckPair(a, b, Matrix()).IsSupported);
             var creamDun = LiveCoatGuard.CheckPair(FrozenFixtureData.Horse(FrozenFixtureData.With(("mc1r", "e", "e"), ("slc45a2", "Cr", "N")), 1), b, Matrix());
             Assert.True(creamDun.IsSupported, string.Join("; ", creamDun.Reasons));
             var safe = FrozenFixtureData.Parents(FrozenFixtureData.Find("palominoPair"));

@@ -14,14 +14,17 @@ namespace Cloverbrook.Domain
         public const string Version = "dna-test.v1";
         public const string LedgerKind = "dna-test";
         public const long Price = 60;
+        /// <summary>Every locus a new test reveals (D-037 adds silver, champagne and splash white).</summary>
         public static IReadOnlyList<string> Loci { get; } = Array.AsReadOnly(new[]
-            { "mc1r", "asip", "slc45a2", "tbx3", "stx17", "trpm1", "patn1", "pattern.eca3" });
+            { "mc1r", "asip", "slc45a2", "tbx3", "stx17", "trpm1", "patn1", "pattern.eca3", "pmel", "slc36a1", "pattern.mitf" });
+        // Horses tested before D-037 revealed only these eight; they still count as tested so saves validate unchanged.
+        private static readonly string[] LegacyLoci = { "mc1r", "asip", "slc45a2", "tbx3", "stx17", "trpm1", "patn1", "pattern.eca3" };
 
         public static TransactionId TestId(HorseId horseId) => new TransactionId(Guid.ParseExact(
             Canonical.Hash("vet.dna-test.v1", Check.NotNull(horseId, nameof(horseId)).ToString()).Substring(0, 32), "N"));
 
         /// <summary>True when every test locus the horse's genome has carries a revealed call.</summary>
-        public static bool IsTested(HorseRecord horse) => Loci.Where(Check.NotNull(horse, nameof(horse)).Genome.HasLocus)
+        public static bool IsTested(HorseRecord horse) => LegacyLoci.Where(Check.NotNull(horse, nameof(horse)).Genome.HasLocus)
             .All(l => horse.PlayerKnowledge.RevealedCalls.ContainsKey(l)) && horse.PlayerKnowledge.RevealedCalls.Count > 0;
 
         /// <summary>How many of the player's own horses have been tested.</summary>
@@ -97,6 +100,9 @@ namespace Cloverbrook.Domain
                 case "asip":
                     return call.Count("a") == 2 ? $"Agouti ({pair}): black-based" : call.Count("a") == 1 ? $"Agouti ({pair}): carries black" : $"Agouti ({pair})";
                 case "slc45a2":
+                    if (call.Count("Prl") == 2) return $"Pearl ({pair}): two pearl copies — pale apricot, every foal carries pearl";
+                    if (call.Count("Prl") == 1 && call.Count("Cr") == 1) return $"Cream and pearl ({pair}): the pale pseudo-double-dilute";
+                    if (call.Count("Prl") == 1) return $"Pearl ({pair}): carries one pearl copy — it does not show";
                     return call.Count("Cr") == 2 ? $"Cream ({pair}): two cream copies — every foal gets cream"
                         : call.Count("Cr") == 1 ? $"Cream ({pair}): one cream copy" : $"Cream ({pair}): no cream";
                 case "tbx3":
@@ -110,7 +116,18 @@ namespace Cloverbrook.Domain
                         : call.Count("LP") == 1 ? $"Leopard complex ({pair}): one copy" : $"Leopard complex ({pair})";
                 case "patn1":
                     return call.Contains("PATN1") ? $"PATN1 ({pair}): boosts leopard spotting" : $"PATN1 ({pair})";
+                case "pmel":
+                    return call.Count("Z") == 2 ? $"Silver ({pair}): two silver copies — every foal is silver (it shows on black and bay)"
+                        : call.Count("Z") == 1 ? $"Silver ({pair}): one silver copy (it only shows on black and bay)" : $"Silver ({pair}): no silver";
+                case "slc36a1":
+                    return call.Count("Ch") == 2 ? $"Champagne ({pair}): two champagne copies — every foal is champagne"
+                        : call.Count("Ch") == 1 ? $"Champagne ({pair}): one champagne copy" : $"Champagne ({pair}): no champagne";
+                case "pattern.mitf":
+                    return call.Count("SW1") == 2 ? $"Splash white ({pair}): two splash copies — every foal is splashed"
+                        : call.Count("SW1") == 1 ? $"Splash white ({pair}): one splash copy" : $"Splash white ({pair}): no splash";
                 case "pattern.eca3":
+                    if (call.Count("SB1") == 2) return $"KIT region ({pair}): two sabino copies — mostly white, every foal is sabino";
+                    if (call.Count("SB1") == 1) return $"KIT region ({pair}): one sabino copy";
                     if (call.Count("TO") == 2) return $"KIT region ({pair}): two tobiano copies — every foal is tobiano";
                     if (call.Count("TO") == 1 && call.Count("Rn") == 1) return $"KIT region ({pair}): one tobiano and one roan copy";
                     if (call.Count("TO") == 1) return $"KIT region ({pair}): one tobiano copy";
