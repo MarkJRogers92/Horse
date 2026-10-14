@@ -59,7 +59,7 @@
     "base_black":            { "color": "#0f0c0e", "tip": "#231d1f" },
     "cream_pale_mane_tail":  { "color": "#efe2c4", "tip": "#fbf4e2" },
     "double_cream_pale":     { "color": "#f1e7d4", "tip": "#fbf6ea" },
-    "silver_lightened_mane_tail": {"color": "#bfb098", "tip": "#e2d7c3", "dark": "#2e2421", "darkFraction": 0.28},
+    "silver_lightened_mane_tail": {"color": "#d4c19d", "tip": "#e0d0b0", "dark": "#2e2421", "darkFraction": 0.28},
     "champagne_gold": {"color": "#cba670", "tip": "#e6cea4"},
     "champagne_amber": {"color": "#5b4334", "tip": "#8c6f5a"},
     "champagne_classic": {"color": "#4c3c34", "tip": "#7b6659"},
