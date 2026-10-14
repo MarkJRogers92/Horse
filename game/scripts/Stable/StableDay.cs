@@ -254,6 +254,7 @@ public partial class StableDay : Node
         _wallet = SummaryCard("500 coins");
         header.AddChild(HudPill(_season, "YEAR 1", "day", out _yearLabel));
         header.AddChild(HudPill(_wallet, "COINS", "coins", out _));
+        header.AddChild(BuildFestivalPill());
         header.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill, MouseFilter = Control.MouseFilterEnum.Ignore });
         // Compact icon button (tooltip names it) so every top-bar button fits a 1280-wide window, Menu included.
         _foalingDemoButton = CozyTheme.WithIcon(new Button { Text = "", CustomMinimumSize = new Vector2(52, 44), Disabled = _foalingDemoMode,
@@ -417,7 +418,8 @@ public partial class StableDay : Node
         var weather = WeatherFor(_state, day);
         if (_yard.Weather != weather) _yard.SetWeather(weather);
         Audio.GameAudio.Ambience(weather == YardWeather.Rain && _shownSeason != 3 ? "ambience_rain" : "ambience_yard");
-        _yearLabel.Text = $"YEAR {(seasonNumber - 1) / 4 + 1} · {WeatherName(weather, _shownSeason)}";
+        _yearLabel.Text = Festivals.Current(day) is { } festivalNow ? festivalNow.Name.ToUpperInvariant() : $"YEAR {(seasonNumber - 1) / 4 + 1} · {WeatherName(weather, _shownSeason)}";
+        RefreshFestival();
         _wallet.Text = $"{_state.Coins:N0} coins";
 
         _roster.QueueFreeChildren();

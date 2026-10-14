@@ -800,10 +800,10 @@ public partial class StableYard : Node3D
         Place("barn", 7.5f, new Vector3(-3.5f, 0, -17f), 10f, () => FallbackBarn());
 
         // Paddock fence around the sand ellipse, open toward the camera.
-        const int segments = 13; const float rx = 7.4f, rz = 5.4f;
+        const int segments = FenceSegments; const float rx = FenceRx, rz = FenceRz;
         for (var i = 0; i < segments; i++)
         {
-            float a0 = Mathf.DegToRad(160 + i * (220f / segments)), a1 = Mathf.DegToRad(160 + (i + 1) * (220f / segments));
+            float a0 = Mathf.DegToRad(FenceStartDeg + i * (FenceSpanDeg / segments)), a1 = Mathf.DegToRad(FenceStartDeg + (i + 1) * (FenceSpanDeg / segments));
             var p0 = new Vector3(Mathf.Cos(a0) * rx, 0, Mathf.Sin(a0) * rz - 0.5f);
             var p1 = new Vector3(Mathf.Cos(a1) * rx, 0, Mathf.Sin(a1) * rz - 0.5f);
             var mid = (p0 + p1) / 2; float yaw = Mathf.RadToDeg(Mathf.Atan2(-(p1.Z - p0.Z), p1.X - p0.X));

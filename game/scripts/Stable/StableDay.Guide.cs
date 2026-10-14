@@ -114,6 +114,7 @@ public partial class StableDay
             if (care.Grooming < 4000 && !plan.Item2) return $"Tip: {h.Name} would love some grooming today.";
             if (care.Turnout < 4000 && !plan.Item1) return $"Tip: {h.Name} is longing for turnout in the paddock.";
         }
+        if (!_foalingDemoMode && FestivalTip(home) is { } festivalTip) return festivalTip;
         if (home.FirstOrDefault(h => HorseBond.Interactions.All(k => !HorseBond.DoneToday(h, k, day))) is { } lonely)
             return $"Tip: click {lonely.Name} in the yard to give a pat, a brush or a carrot. It builds your bond!";
         var gallopReady = PracticeGallop.Eligibility(_state).Where(e => e.Eligible)
@@ -137,6 +138,7 @@ public partial class StableDay
             return $"Tip: it's fair week! {offer.Name} and friends are waiting at the Horse fair.";
         if (!_foalingDemoMode && _state.Coins >= 300 && StableShop.OwnedDecor(_state).Count == 0)
             return "Tip: the Shop sells flower carts, benches and more to decorate your yard.";
-        return "Everyone is fed and happy. End the day whenever you're ready!";
+        return _foalingDemoMode ? "Everyone is fed and happy. End the day whenever you're ready!"
+            : "Everyone is fed and happy. " + NextFestivalLine() + " End the day whenever you're ready!";
     }
 }

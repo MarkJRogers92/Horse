@@ -85,6 +85,13 @@ public partial class StableDay
         {
             System.IO.Directory.CreateDirectory(output);
             _hubPreviewRunning = true; _nameStableOverlay.Visible = false; // a fresh preview save would otherwise ask for a stable name
+            if (OS.GetCmdlineUserArgs().Contains("--hub-festival")) // D-032: only the festival UI (days to the Blossom Fair, treats, reward)
+            {
+                await RunFestivalUiPreviewAsync(output);
+                GD.Print("[hub-preview] OK festival " + output);
+                GetTree().Quit(0);
+                return;
+            }
             foreach (var (seconds, name) in new[] { (3.0, "01_hub_live"), (14.0, "02_hub_live"), (24.0, "03_hub_live") })
             {
                 while (_yard.ElapsedSeconds < seconds) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
@@ -107,6 +114,18 @@ public partial class StableDay
                 while (_yard.ElapsedSeconds - before < 2.5) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
                 await CaptureFrame(System.IO.Path.Combine(output, $"04_season_{s}_{StableYard.SeasonName(s).ToLowerInvariant()}.png"));
             }
+            // D-032: each season's festival decorations, forced on for the capture (presentation only; the real festival is restored below).
+            _festivalPreviewing = true;
+            for (var s = 0; s < 4; s++)
+            {
+                var festivalId = Festivals.SeasonIds[s];
+                _yard.SetSeason(s); _yard.SetFestival(festivalId);
+                var before = _yard.ElapsedSeconds;
+                while (_yard.ElapsedSeconds - before < 2.5) await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                await CaptureFrame(System.IO.Path.Combine(output, $"04_festival_{festivalId}.png"));
+            }
+            _festivalPreviewing = false;
+            _yard.SetFestival(Festivals.Current(_state?.Header.CalendarDay ?? 0)?.Id);
             foreach (var (season, weather, name) in new[] { (0, YardWeather.Rain, "04_weather_spring_rain"), (2, YardWeather.Cloudy, "04_weather_autumn_cloudy"), (3, YardWeather.Rain, "04_weather_winter_snowy") })
             {
                 _yard.SetSeason(season); _yard.SetWeather(weather);

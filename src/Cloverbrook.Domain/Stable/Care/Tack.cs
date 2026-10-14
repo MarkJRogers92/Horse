@@ -28,7 +28,11 @@ namespace Cloverbrook.Domain
         public const string Version = "tack.v1";
         public const string PadSlot = "pad";
         public const string BowSlot = "bow";
-        public static IReadOnlyList<string> Slots { get; } = Array.AsReadOnly(new[] { PadSlot, BowSlot });
+        /// <summary>D-032 festival reward slots.</summary>
+        public const string HalterSlot = "halter";
+        public const string BraidsSlot = "braids";
+        public const string TailSlot = "tail";
+        public static IReadOnlyList<string> Slots { get; } = Array.AsReadOnly(new[] { PadSlot, BowSlot, HalterSlot, BraidsSlot, TailSlot });
 
         private static bool WonCup(StableSnapshot s) => s.Ledger.Any(l => l.Kind == ClubRace.PrizeLedgerKind && l.DeltaCoins == ClubRace.PrizeFor(1));
         private static bool BredFoal(StableSnapshot s) => s.Horses.Any(h => h.OriginCommitId != null && h.BirthDay.HasValue);
@@ -38,7 +42,15 @@ namespace Cloverbrook.Domain
             new TackItem(PadSlot, "pad.gold", "Champion gold pad", "#f2c14e", WonCup, "Win the Willowbrook Cup"),
             new TackItem(BowSlot, "bow.gold", "Champion gold bow", "#f2c14e", WonCup, "Win the Willowbrook Cup"),
             new TackItem(PadSlot, "pad.daisy", "Daisy chain pad", "#fff6d8", BredFoal, "Welcome a foal born in your stable"),
+            FestivalReward(BowSlot, "spring", "Flower crown", "#f6b8cf"),
+            FestivalReward(TailSlot, "summer", "Sunflower tail bow", "#f5c518"),
+            FestivalReward(BraidsSlot, "autumn", "Harvest braids", "#e0762a"),
+            FestivalReward(HalterSlot, "winter", "Fairy-light halter", "#fff1c9"),
         }).ToArray());
+
+        private static TackItem FestivalReward(string slot, string season, string label, string hex) =>
+            new TackItem(slot, Festivals.RewardItemFor(season), label, hex, s => Festivals.RewardUnlocked(s, season),
+                "Give festival treats on " + Festivals.RewardThreshold + " days of the " + Festivals.NameOf(season));
 
         private static IEnumerable<TackItem> Colours(string slot, string prefix)
         {

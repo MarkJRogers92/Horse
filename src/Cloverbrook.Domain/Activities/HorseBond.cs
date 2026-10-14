@@ -16,7 +16,7 @@ namespace Cloverbrook.Domain
         public const int MaxBond = 10000;
         public static IReadOnlyList<string> Interactions { get; } = Array.AsReadOnly(new[] { "pat", "brush", "carrot" });
 
-        private static int BaseGain(string kind) => kind switch { "pat" => 250, "brush" => 350, "carrot" => 400, _ => 0 };
+        private static int BaseGain(string kind) => kind switch { "pat" => 250, "brush" => 350, "carrot" => 400, "treat" => 450, _ => 0 };
         private static string DayKey(string kind) => kind + "_day";
         private static int DayMarker(int calendarDay) => calendarDay % 10000 + 1;
 
@@ -40,9 +40,10 @@ namespace Cloverbrook.Domain
         {
             Check.NotNull(state, nameof(state)); Check.NotNull(horseId, nameof(horseId));
             if (!Interactions.Contains(kind)) return "that is not something you can do with a horse.";
-            var horse = state.Horses.SingleOrDefault(h => h.HorseId.Equals(horseId));
-            if (horse == null || !horse.OwnerId.Equals(state.PlayerOwnerId) || HorseMarket.IsSold(horse)) return "that horse is not in your stable.";
-            if (horse.LifeState.Stage == LifeStage.Unborn) return "the foal has not been born yet.";
+            var found = state.Horses.SingleOrDefault(h => h.HorseId.Equals(horseId));
+            var problem = HorseProblem(state, found);
+            if (problem != null || found == null) return problem;
+            var horse = found;
             if (DoneToday(horse, kind, state.Header.CalendarDay)) return kind switch
             {
                 "pat" => horse.Name + " has had lots of pats today.",
@@ -52,11 +53,29 @@ namespace Cloverbrook.Domain
             return null;
         }
 
-        internal static HorseRecord Apply(HorseRecord horse, string kind, int calendarDay)
+        /// <summary>Why a horse cannot be cared for at all (not owned, sold or unborn), or null. Shared with the festival treat.</summary>
+        internal static string? HorseProblem(StableSnapshot state, HorseRecord? horse)
         {
-            var gain = GainToday(horse, kind, calendarDay);
-            var values = horse.TrainingState.Values.Where(p => p.Key != BondKey && p.Key != DayKey(kind))
-                .Concat(new[] { new KeyValuePair<string, int>(BondKey, Math.Min(MaxBond, Bond(horse) + gain)), new KeyValuePair<string, int>(DayKey(kind), DayMarker(calendarDay)) });
+            if (horse == null || !horse.OwnerId.Equals(state.PlayerOwnerId) || HorseMarket.IsSold(horse)) return "that horse is not in your stable.";
+            if (horse.LifeState.Stage == LifeStage.Unborn) return "the foal has not been born yet.";
+            return null;
+        }
+
+        internal static string DayKeyFor(string kind) => DayKey(kind);
+        internal static int MarkerFor(int calendarDay) => DayMarker(calendarDay);
+
+        internal static HorseRecord Apply(HorseRecord horse, string kind, int calendarDay) => Apply(horse, kind, calendarDay, DayKey(kind), null);
+
+        /// <summary>Raises bond by the kind's gain and stamps its day marker; <paramref name="extra"/> replaces other keys in the same write.</summary>
+        internal static HorseRecord Apply(HorseRecord horse, string kind, int calendarDay, string dayKey, IEnumerable<KeyValuePair<string, int>>? extra)
+        {
+            var gain = BaseGain(kind) == 0 || Bond(horse) >= MaxBond ? 0 : Math.Max(1, BaseGain(kind) * (MaxBond - Bond(horse)) / MaxBond);
+            var changed = new HashSet<string>(StringComparer.Ordinal) { BondKey, dayKey };
+            var extras = extra?.ToList() ?? new List<KeyValuePair<string, int>>();
+            foreach (var e in extras) changed.Add(e.Key);
+            var values = horse.TrainingState.Values.Where(p => !changed.Contains(p.Key))
+                .Concat(new[] { new KeyValuePair<string, int>(BondKey, Math.Min(MaxBond, Bond(horse) + gain)), new KeyValuePair<string, int>(dayKey, DayMarker(calendarDay)) })
+                .Concat(extras);
             return new HorseRecord(horse.HorseId, horse.Name, horse.Parentage, horse.Genome, horse.ResolverVersion, horse.AppearanceSeed, horse.OwnerId,
                 horse.LifeState, horse.ReproductionState, horse.DevelopmentalFactors, horse.InheritedGamePotential, new QuantizedVector(values),
                 horse.PlayerKnowledge, horse.CosmeticState, horse.HomeAssignment, horse.OriginRecord, horse.OriginCommitId, horse.BirthDay, checked(horse.Revision + 1));

@@ -24,7 +24,7 @@ public partial class StableDay
         _tackOverlay = CozyTheme.Dialog(root, "Dress up", 620, out var body, out var buttons, out _tackTitle);
         _tackPreview = new HBoxContainer { Alignment = BoxContainer.AlignmentMode.Center };
         body.AddChild(_tackPreview);
-        _tackRows = new VBoxContainer(); _tackRows.AddThemeConstantOverride("separation", 10);
+        _tackRows = new VBoxContainer(); _tackRows.AddThemeConstantOverride("separation", 6);
         body.AddChild(_tackRows);
         var done = new Button { Text = "Done", CustomMinimumSize = new Vector2(140, 46) };
         done.Pressed += () => { _tackOverlay.Visible = false; if (_tackHorse != null) ShowInspection(_tackHorse); };
@@ -40,22 +40,38 @@ public partial class StableDay
         _tackHorse = horseId;
         _tackTitle.Text = $"Dress up {horse.Name}";
         foreach (var child in _tackPreview.GetChildren()) child.QueueFree();
-        _tackPreview.AddChild(Portrait(horse, 230, CardTint(horse), fullBody: true));
+        _tackPreview.AddChild(Portrait(horse, 140, CardTint(horse), fullBody: true));
         foreach (var child in _tackRows.GetChildren()) child.QueueFree();
-        foreach (var (slot, heading) in new[] { (Tack.PadSlot, "SADDLE PAD"), (Tack.BowSlot, "MANE BOW") })
+        foreach (var (slot, heading) in new[] { (Tack.PadSlot, "SADDLE PAD"), (Tack.BowSlot, "MANE BOW OR CROWN") })
         {
             var title = CozyTheme.Title(heading, 12); title.AddThemeColorOverride("font_color", CozyTheme.AccentDeep);
             _tackRows.AddChild(title);
-            var row = new HFlowContainer(); row.AddThemeConstantOverride("h_separation", 8); row.AddThemeConstantOverride("v_separation", 8);
-            var worn = Tack.Worn(horse, slot)?.Id;
-            row.AddChild(Swatch(horseId, slot, null, "None", CozyTheme.Cream, worn == null, null));
-            foreach (var item in Tack.Items.Where(i => i.Slot == slot))
-                row.AddChild(Swatch(horseId, slot, item.Id, item.Label, Color.FromHtml(item.ColourHex), worn == item.Id,
-                    item.IsUnlocked(_state) ? null : item.UnlockHint));
-            _tackRows.AddChild(row);
+            _tackRows.AddChild(SwatchRow(horse, slot));
+        }
+        // D-032 festival rewards: one compact row each (heading beside the swatches) so the dialog stays on screen.
+        var festival = CozyTheme.Title("FESTIVAL REWARDS", 12); festival.AddThemeColorOverride("font_color", CozyTheme.AccentDeep);
+        _tackRows.AddChild(festival);
+        foreach (var (slot, heading) in new[] { (Tack.HalterSlot, "Halter"), (Tack.BraidsSlot, "Braids"), (Tack.TailSlot, "Tail bow") })
+        {
+            var line = new HBoxContainer(); line.AddThemeConstantOverride("separation", 10);
+            var name = new Label { Text = heading, CustomMinimumSize = new Vector2(84, 0), VerticalAlignment = VerticalAlignment.Center };
+            name.AddThemeFontSizeOverride("font_size", 15);
+            line.AddChild(name); line.AddChild(SwatchRow(horse, slot));
+            _tackRows.AddChild(line);
         }
         _inspectOverlay.Visible = false;
         _tackOverlay.Visible = true;
+    }
+
+    private HFlowContainer SwatchRow(HorseRecord horse, string slot)
+    {
+        var row = new HFlowContainer { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill }; row.AddThemeConstantOverride("h_separation", 8); row.AddThemeConstantOverride("v_separation", 8);
+        var worn = Tack.Worn(horse, slot)?.Id;
+        row.AddChild(Swatch(horse.HorseId, slot, null, "None", CozyTheme.Cream, worn == null, null));
+        foreach (var item in Tack.Items.Where(i => i.Slot == slot))
+            row.AddChild(Swatch(horse.HorseId, slot, item.Id, item.Label, Color.FromHtml(item.ColourHex), worn == item.Id,
+                item.IsUnlocked(_state!) ? null : item.UnlockHint));
+        return row;
     }
 
     private Button Swatch(HorseId horseId, string slot, string? itemId, string label, Color colour, bool selected, string? lockedHint)
