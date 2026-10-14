@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace Cloverbrook.Game.Visual;
@@ -15,7 +16,7 @@ namespace Cloverbrook.Game.Visual;
 /// </summary>
 public partial class HorseIdleLife : SkeletonModifier3D
 {
-    // Neck and head chain, base to tip, with each bone's share of the total pitch. Bones a rig lacks
+    // Neck and head chain, base to tip. Share: how much of a head lift (the small "look up") each bone takes. Bones a rig lacks
     // (the foal has fewer) are dropped and the shares renormalised.
     private static readonly (string Bone, float Share)[] NeckChain =
     {
@@ -25,7 +26,6 @@ public partial class HorseIdleLife : SkeletonModifier3D
     private static readonly string[] TailChain = { "Tail", "Tail_01", "Tail_02", "Tail_03", "Tail_04", "Tail_05" };
     private static readonly string[] EarBones = { "Ear_L", "Ear_R" };
 
-    private const float GrazePitchDegrees = 82f, FoalGrazePitchDegrees = 88f;
     private const float LiftPitchDegrees = 7f;
     private const float TailSwayDegrees = 4.5f;
     private const float EarFlickDegrees = 16f;
@@ -34,6 +34,7 @@ public partial class HorseIdleLife : SkeletonModifier3D
     {
         public int Bone;
         public float Share;
+        public float GrazeDegrees;   // pitch at the bottom of a graze (neck chain) or the full dip/splay angle (body)
         public Vector3 Axis;       // rotation axis in the parent bone's frame
         public Quaternion Base, Last;
         public bool Has;
@@ -43,7 +44,23 @@ public partial class HorseIdleLife : SkeletonModifier3D
     private Skeleton3D? _skeleton;
     private readonly List<Target> _neck = new(), _tail = new(), _ears = new();
     private RandomNumberGenerator _rng = new();
-    private float _pitchSign = 1, _pitchDegrees = GrazePitchDegrees;
+    private float _pitchSign = 1;
+    private readonly List<Target> _dip = new(), _legs = new();   // D-036: shoulder dip and front-leg stance while grazing
+    private bool _foal;
+    /// <summary>D-036 graze pose for one mesh family: pitch per neck-chain bone, shoulder dip, and the foreleg stance (one forward, one back).</summary>
+    private sealed record Tune(float[] Neck, float Dip, float LegForward, float LegBack, float Counter);
+    // D-036: pitch (degrees, positive = down) each neck-chain bone takes at the bottom of a graze. The bend sits mostly in the lower
+    // neck and the head bones extend back (negative) so the face points down and forward instead of tucking under the chest. The
+    // foal rig has only Neck_Base, Neck, Head_Base and Head (the zeros are bones it lacks). Dip is the shoulder tip in degrees and the
+    // forelegs stand one forward and one back; both were tuned against GrazePreview's muzzle and hoof height readout per family.
+    private static readonly Tune StandardAdult = new(new[] { 42f, 32f, 18f, 8f, 4f, -25f, -25f }, 13f, 16f, 20f, 1f);
+    private static readonly Tune CompactAdult = new(new[] { 46f, 34f, 18f, 8f, 4f, -36f, -34f }, 18f, 20f, 26f, 1f);
+    private static readonly Tune Foal = new(new[] { 40f, 40f, 0f, 0f, 0f, -20f, -15f }, 12f, 18f, 14f, 1f);
+    private static Tune TuneFor(string family, bool foal) =>
+        foal ? Foal : family.Contains("compact", StringComparison.Ordinal) ? CompactAdult : StandardAdult;
+    private Tune _tune = StandardAdult;
+    private static readonly (string Bone, float Weight)[] AdultDipBones = { ("Spine_Mid", 0.3f), ("Spine_Upper", 0.4f), ("Chest", 0.3f) };
+    private static readonly (string Bone, float Weight)[] FoalDipBones = { ("Spine_Base", 0.5f), ("Chest", 0.5f) };
 
     private float _master;        // 0..1 fade for everything, follows Calm
     private float _grazeT;        // 0..1 linear progress in or out of a graze
@@ -68,12 +85,74 @@ public partial class HorseIdleLife : SkeletonModifier3D
     public double NextGraze { get => _nextGraze; set => _nextGraze = value; }
     public float GrazeWeight => Smooth(_grazeT);
 
-    public void Setup(HorsePresenter owner, Skeleton3D skeleton, int seed, bool foal)
+    /// <summary>Preview and test hook: hold the graze pose at a fixed weight (0..1) until <see cref="Clear"/>.</summary>
+    public void HoldGraze(float weight)
+    {
+        Calm = true; _master = 1; _grazeT = weight; _grazeLeft = 1e9;
+    }
+
+    /// <summary>
+    /// Preview and test hook: where the muzzle tip is (owner space: Y above the ground, X forward) with the current pose, found as the
+    /// rest-pose vertex furthest forward near the Head bone, carried by that bone.
+    /// </summary>
+    private Transform3D ComposedPose(int bone)
+    {
+        var chain = new List<int>();
+        for (int b = bone; b >= 0; b = _skeleton!.GetBoneParent(b)) chain.Add(b);
+        var global = Transform3D.Identity;
+        for (int i = chain.Count - 1; i >= 0; i--) global *= _skeleton!.GetBonePose(chain[i]);
+        return global;
+    }
+
+    /// <summary>Set to have the modifier measure the muzzle after writing its pose (the skeleton restores poses after each update).</summary>
+    public bool MeasureEveryFrame { get; set; }
+    private string _muzzle = "not measured";
+    public string MeasureMuzzle() => _muzzle;
+
+    private string ComputeMuzzle()
+    {
+        if (_skeleton == null || _owner == null) return "n/a";
+        int head = _skeleton.FindBone("Head");
+        if (head < 0) return "no head";
+        var toOwner = _owner.GlobalTransform.AffineInverse();
+        var restHead = _skeleton.GetBoneGlobalRest(head);
+        var headOrigin = toOwner * (_skeleton.GlobalTransform * restHead.Origin);
+        Vector3 best = Vector3.Zero; float bestX = float.MinValue;
+        var pending = new Stack<Node>(); pending.Push(_owner);
+        while (pending.Count > 0)
+        {
+            var node = pending.Pop();
+            foreach (var child in node.GetChildren()) pending.Push(child);
+            if (node is not MeshInstance3D { Mesh: { } mesh } mi || mi.Name == "Mane") continue;
+            var toSkeleton = _skeleton.GlobalTransform.AffineInverse() * mi.GlobalTransform;
+            for (int s = 0; s < mesh.GetSurfaceCount(); s++)
+                foreach (var v in mesh.SurfaceGetArrays(s)[(int)Mesh.ArrayType.Vertex].AsVector3Array())
+                {
+                    var w = toSkeleton * v;
+                    var o = toOwner * (_skeleton.GlobalTransform * w);
+                    if ((o - headOrigin).Length() < 0.55f && o.X > bestX) { bestX = o.X; best = w; }
+                }
+        }
+        var local = restHead.AffineInverse() * best;
+        var now = toOwner * (_skeleton.GlobalTransform * (ComposedPose(head) * local));
+        var rest = toOwner * (_skeleton.GlobalTransform * best);
+        string hooves = "";
+        foreach (var name in new[] { "Front_L_Hoof_02", "Front_R_Hoof_02" })
+        {
+            int h = _skeleton.FindBone(name);
+            if (h < 0) continue;
+            var atRest = toOwner * (_skeleton.GlobalTransform * _skeleton.GetBoneGlobalRest(h).Origin);
+            var posed = toOwner * (_skeleton.GlobalTransform * ComposedPose(h).Origin);
+            hooves += $" {name} dy={posed.Y - atRest.Y:0.000} dx={posed.X - atRest.X:0.000};";
+        }
+        return $"muzzle tip height {now.Y:0.000} m, forward {now.X:0.000} m (rest pose {rest.Y:0.000} m, {rest.X:0.000} m);{hooves}";
+    }
+
+    public void Setup(HorsePresenter owner, Skeleton3D skeleton, int seed, bool foal, string family = "")
     {
         _owner = owner;
         _skeleton = skeleton;
         _rng = new RandomNumberGenerator { Seed = (ulong)(uint)seed };
-        _pitchDegrees = foal ? FoalGrazePitchDegrees : GrazePitchDegrees;
         _nextGraze = _rng.RandfRange(8f, 20f);
         _nextLift = _rng.RandfRange(10f, 24f);
         _nextEar = _rng.RandfRange(3f, 9f);
@@ -96,12 +175,16 @@ public partial class HorseIdleLife : SkeletonModifier3D
             return (basis.Inverse() * axis).Normalized();
         }
 
+        _foal = foal;
+        _tune = TuneFor(family, foal);
         float total = 0;
-        foreach (var (name, share) in NeckChain)
+        var degrees = _tune.Neck;
+        for (int i = 0; i < NeckChain.Length; i++)
         {
+            var (name, share) = NeckChain[i];
             int bone = skeleton.FindBone(name);
             if (bone < 0) continue;
-            _neck.Add(new Target { Bone = bone, Share = share, Axis = InParent(bone, lateral) });
+            _neck.Add(new Target { Bone = bone, Share = share, GrazeDegrees = degrees[i], Axis = InParent(bone, lateral) });
             total += share;
         }
         foreach (var t in _neck) t.Share /= Math.Max(total, 0.0001f);
@@ -114,6 +197,18 @@ public partial class HorseIdleLife : SkeletonModifier3D
         {
             int bone = skeleton.FindBone(name);
             if (bone >= 0) _ears.Add(new Target { Bone = bone, Axis = InParent(bone, lateral) });
+        }
+
+        // Shoulder dip: the spine in front of the withers tips nose-down a few degrees, and the forelegs spread to take the lost height.
+        foreach (var (name, weight) in foal ? FoalDipBones : AdultDipBones)
+        {
+            int bone = skeleton.FindBone(name);
+            if (bone >= 0) _dip.Add(new Target { Bone = bone, Share = weight, Axis = InParent(bone, lateral) });
+        }
+        foreach (var (name, side) in new[] { ("Front_L_Upper", 1f), ("Front_R_Upper", -1f) })
+        {
+            int bone = skeleton.FindBone(name);
+            if (bone >= 0) _legs.Add(new Target { Bone = bone, Share = side, Axis = InParent(bone, lateral) });
         }
 
         // Which way is "down"? Rotating the neck about the lateral axis must carry the head toward the ground.
@@ -197,12 +292,24 @@ public partial class HorseIdleLife : SkeletonModifier3D
         }
         // Head angle in degrees, positive = down. While grazing the jaw works a little.
         float chew = graze > 0.5f ? Mathf.Sin((float)_grazeClock * 7.5f) * 1.6f * graze : 0f;
-        float sway = Mathf.Sin((float)_grazeClock * 0.9f) * 2.2f * graze;
-        float pitch = (graze * (_pitchDegrees + sway) - lift * LiftPitchDegrees * master) * _pitchSign;
+        float swayK = 1f + Mathf.Sin((float)_grazeClock * 0.9f) * 0.03f * graze;
         foreach (var t in _neck)
         {
-            bool headBone = t.Share > 0 && _skeleton.GetBoneName(t.Bone).ToString().StartsWith("Head", StringComparison.Ordinal);
-            Apply(t, Mathf.DegToRad(pitch * t.Share + (headBone ? chew * _pitchSign : 0f)));
+            bool headBone = _skeleton.GetBoneName(t.Bone).ToString().StartsWith("Head", StringComparison.Ordinal);
+            float degrees = graze * t.GrazeDegrees * swayK - lift * LiftPitchDegrees * master * t.Share + (headBone ? chew : 0f);
+            Apply(t, Mathf.DegToRad(degrees * _pitchSign));
+        }
+
+        // Shoulder dip and foreleg stance (one foot forward, one back), so the muzzle can reach the grass without tucking the head.
+        {
+            float dip = _tune.Dip * graze;
+            foreach (var t in _dip) Apply(t, Mathf.DegToRad(dip * t.Share * _pitchSign));
+            var tune = _tune;
+            foreach (var t in _legs)
+            {
+                float stance = t.Share > 0 ? -tune.LegForward : tune.LegBack; // positive = pitched down/back
+                Apply(t, Mathf.DegToRad((-dip * tune.Counter + stance * graze) * _pitchSign));
+            }
         }
 
         float amp = TailSwayDegrees * (0.5f + 1.5f * _gustAmount) * master;
@@ -214,6 +321,7 @@ public partial class HorseIdleLife : SkeletonModifier3D
             float flick = _earLeft > 0 && i == _earSide ? Mathf.Sin(Mathf.Pi * Mathf.Clamp((float)(_earClock / 0.3), 0f, 1f)) : 0f;
             Apply(_ears[i], Mathf.DegToRad(EarFlickDegrees * flick * master * (i == 0 ? 1 : -1) * 0.8f));
         }
+        if (MeasureEveryFrame) _muzzle = ComputeMuzzle();
     }
 
     // The pose a bone has when our offset is not on it: the clip's value, or the value we saved when the
@@ -230,7 +338,7 @@ public partial class HorseIdleLife : SkeletonModifier3D
 
     private void Release()
     {
-        foreach (var list in new[] { _neck, _tail, _ears })
+        foreach (var list in new[] { _neck, _tail, _ears, _dip, _legs })
             foreach (var t in list)
                 if (t.Has && _skeleton!.GetBonePoseRotation(t.Bone) == t.Last)
                 {

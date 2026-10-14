@@ -94,6 +94,17 @@ public partial class StableDay
             if (_guideStep != 4)
                 throw new InvalidOperationException("Ending the first day did not advance the guide to breeding.");
             await CaptureFrame(Path.Combine(directory, "03_day_2.png"));
+            if (_tasksPanel.Visible)
+            {
+                // D-036: the task card folds to its header row and opens again.
+                _tasksToggle.EmitSignal(BaseButton.SignalName.Pressed);
+                await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                if (!_tasksCollapsed || _tasksRows.Visible) throw new InvalidOperationException("The task card did not fold away.");
+                await CaptureFrame(Path.Combine(directory, "03b_tasks_collapsed.png"));
+                _tasksToggle.EmitSignal(BaseButton.SignalName.Pressed);
+                await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+                if (_tasksCollapsed || !_tasksRows.Visible) throw new InvalidOperationException("The task card did not open again.");
+            }
             var coinsBeforePractice = _state.Coins; var hashBeforePractice = _state.Header.PayloadHash;
             _practiceButton.EmitSignal(BaseButton.SignalName.Pressed);
             if (!_practiceOverlay.Visible || _practiceStart.Disabled || _practiceChoices.Count != 2)

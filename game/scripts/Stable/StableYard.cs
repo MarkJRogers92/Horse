@@ -47,6 +47,7 @@ public partial class StableYard : Node3D
         public float TurnGoal;
         public bool Walking;
         public bool? CanWalk; // learned once from the descriptor's shape; not every body shape has a checked Walk
+        public int SeenGrazes;   // D-036: grazes already counted, so the chew sound plays once per graze
         public double Pace = MinWalkPace; // fraction of the clip's ground speed; eased so horses accelerate and brake
     }
 
@@ -104,7 +105,36 @@ public partial class StableYard : Node3D
         _camera.Position = _camera.Position.Lerp(_cameraGoal + drift, k);
         _camera.LookAt(_lookTarget, Vector3.Up);
         if (Wandering) foreach (var (key, presenter) in _horses) Wander(key, presenter, delta);
+        if (Wandering && !PhotoMode) AmbientHorseVoices(delta);
     }
+
+    // D-036: gentle horse sounds from the yard. Every 20 to 60 s one resting horse nickers or stamps, a graze sometimes comes with a
+    // soft chew, and a click on a resting horse is sometimes answered with a nicker. All go through GameAudio, so the SFX bus
+    // volume and the mute toggle apply, and they are kept well below the care sounds.
+    private double _voiceClock = 30;
+
+    private bool IsResting(HorsePresenter presenter) =>
+        _wander.TryGetValue(presenter, out var w) && !w.Walking && w.Target == null && !presenter.IsTransitioning;
+
+    private void AmbientHorseVoices(double delta)
+    {
+        foreach (var (_, presenter) in _horses)
+            if (_wander.TryGetValue(presenter, out var w) && presenter.IdleLife is { } life && life.GrazeCount != w.SeenGrazes)
+            {
+                w.SeenGrazes = life.GrazeCount;
+                if (_rng.Randf() < 0.4f) GetTree().CreateTimer(1.3).Timeout += () => Audio.GameAudio.Play("horse_chew", -24);
+            }
+        _voiceClock -= delta;
+        if (_voiceClock > 0) return;
+        _voiceClock = _rng.RandfRange(20f, 60f);
+        var resting = _horses.Where(h => h.Key != _focusedKey && IsResting(h.Presenter)).ToList();
+        if (resting.Count == 0) return;
+        var pick = resting[(int)(_rng.Randi() % (uint)resting.Count)];
+        bool foal = pick.Presenter.Descriptor?.IsFoal == true;
+        if (_rng.Randf() < 0.65f) Audio.GameAudio.Play("horse_nicker", foal ? -17 : -20);
+        else Audio.GameAudio.Play("horse_stamp", -21);
+    }
+
 
     private void Wander(string key, HorsePresenter presenter, double delta)
     {
@@ -464,8 +494,12 @@ public partial class StableYard : Node3D
     /// <summary>Glide the camera toward a horse, or back to the overview when key is null.</summary>
     public void Focus(string? key)
     {
+        var previous = _focusedKey;
         _focusedKey = key;
         var presenter = _horses.FirstOrDefault(h => h.Key == key).Presenter;
+        // D-036: a resting horse sometimes answers a click with a soft nicker.
+        if (presenter != null && key != previous && Wandering && IsResting(presenter) && _rng.Randf() < 0.45f)
+            GetTree().CreateTimer(0.45).Timeout += () => Audio.GameAudio.Play("horse_nicker", -15);
         if (presenter == null) { _cameraGoal = _cameraHome; _targetGoal = _homeTarget; return; }
         var p = presenter.GlobalPosition;
         _targetGoal = p + new Vector3(0, 0.95f, 0);

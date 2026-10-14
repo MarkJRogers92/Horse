@@ -32,7 +32,7 @@ public partial class HorsePresenter
         if (skeleton == null) return;
         var life = new HorseIdleLife { Name = "IdleLife" };
         skeleton.AddChild(life);
-        life.Setup(this, skeleton, unchecked(seed * 31 + _idleLifeGeneration++), Descriptor.IsFoal);
+        life.Setup(this, skeleton, unchecked(seed * 31 + _idleLifeGeneration++), Descriptor.IsFoal, Descriptor.MeshFamilyId ?? "");
         if (!life.HasNeck) { life.QueueFree(); return; }
         if (_idleLifeCarry is { } carry) life.NextGraze = carry;
         IdleLife = life;

@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Cloverbrook.Domain;
@@ -17,6 +18,37 @@ public partial class StableDay
     private PanelContainer _tasksPanel = null!;
     private VBoxContainer _tasksRows = null!;
     private Label _tasksStreak = null!;
+    private Label _tasksTitle = null!;
+    private Button _tasksToggle = null!;
+    private TextureRect _tasksHeart = null!;
+    private bool _tasksCollapsed, _tasksPrefLoaded, _tasksWasClaimable;
+    private ImageTexture? _chevronDown, _chevronRight;
+
+    // D-036: the card can be folded to its header row. The choice is a display preference kept in tasks.cfg beside the save
+    // (like decor.cfg and guide.cfg), not saved in the foaling demo. A newly claimable task opens the card again.
+    private string TasksPrefPath => Path.Combine(Path.GetDirectoryName(_store.SavePath) ?? ".", "tasks.cfg");
+
+    private void LoadTasksPref()
+    {
+        _tasksPrefLoaded = true;
+        var config = new ConfigFile();
+        if (File.Exists(TasksPrefPath) && config.Load(TasksPrefPath) == Error.Ok) _tasksCollapsed = (bool)config.GetValue("card", "collapsed", false);
+    }
+
+    private void SaveTasksPref()
+    {
+        if (_foalingDemoMode) return;
+        var config = new ConfigFile();
+        config.SetValue("card", "collapsed", _tasksCollapsed);
+        config.Save(TasksPrefPath);
+    }
+
+    private void SetTasksCollapsed(bool collapsed, bool remember)
+    {
+        _tasksCollapsed = collapsed;
+        if (remember) SaveTasksPref();
+        RefreshDailyTasks();
+    }
 
     private void BuildTasksPanel(Control root)
     {
@@ -28,12 +60,22 @@ public partial class StableDay
         root.MoveChild(_tasksPanel, 1); // stay beneath every dialog overlay
         var stack = new VBoxContainer(); stack.AddThemeConstantOverride("separation", 2); _tasksPanel.AddChild(stack);
         var header = new HBoxContainer(); header.AddThemeConstantOverride("separation", 6); stack.AddChild(header);
-        header.AddChild(CozyTheme.Title("Pip's tasks today", 17));
+        _chevronDown = CozyTheme.Icons.Arrow();
+        var turned = _chevronDown.GetImage(); turned.Rotate90(ClockDirection.Counterclockwise);
+        _chevronRight = ImageTexture.CreateFromImage(turned);
+        _tasksToggle = new Button { Flat = true, CustomMinimumSize = new Vector2(30, 26), Icon = _chevronDown, IconAlignment = HorizontalAlignment.Center,
+            ExpandIcon = false, SizeFlagsVertical = Control.SizeFlags.ShrinkCenter, FocusMode = Control.FocusModeEnum.None };
+        _tasksToggle.Pressed += () => SetTasksCollapsed(!_tasksCollapsed, true);
+        header.AddChild(_tasksToggle);
+        _tasksTitle = CozyTheme.Title("Pip's tasks today", 17);
+        header.AddChild(_tasksTitle);
         header.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill });
-        header.AddChild(new TextureRect { Texture = CozyTheme.Icons.HeartOn, CustomMinimumSize = new Vector2(16, 16), ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
-            StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered, SizeFlagsVertical = Control.SizeFlags.ShrinkCenter });
+        _tasksHeart = new TextureRect { Texture = CozyTheme.Icons.HeartOn, CustomMinimumSize = new Vector2(16, 16), ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+            StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered, SizeFlagsVertical = Control.SizeFlags.ShrinkCenter };
+        header.AddChild(_tasksHeart);
         _tasksStreak = new Label(); _tasksStreak.AddThemeFontSizeOverride("font_size", 13); _tasksStreak.AddThemeColorOverride("font_color", CozyTheme.SoftText);
         header.AddChild(_tasksStreak);
+        header.AddChild(new Control { CustomMinimumSize = new Vector2(2, 0) }); // keeps the streak off the card edge
         _tasksRows = new VBoxContainer(); _tasksRows.AddThemeConstantOverride("separation", 2); stack.AddChild(_tasksRows);
     }
 
@@ -46,6 +88,24 @@ public partial class StableDay
         _tasksPanel.Visible = _state != null && tasks.Count > 0;
         foreach (var child in _tasksRows.GetChildren()) { _tasksRows.RemoveChild(child); child.QueueFree(); }
         if (_state == null || tasks.Count == 0) return;
+        if (!_tasksPrefLoaded) LoadTasksPref();
+        var claimable = tasks.Any(t => t.IsDone(_state) && !DailyTasks.IsClaimedToday(_state, t));
+        if (claimable && !_tasksWasClaimable) _tasksCollapsed = false; // something to collect: open the card
+        _tasksWasClaimable = claimable;
+        _tasksToggle.Icon = _tasksCollapsed ? _chevronRight : _chevronDown;
+        _tasksToggle.TooltipText = _tasksCollapsed ? "Show Pip's tasks" : "Fold the task card away";
+        _tasksRows.Visible = !_tasksCollapsed;
+        _tasksHeart.Visible = !_tasksCollapsed;
+        _tasksStreak.Visible = !_tasksCollapsed;
+        if (_tasksCollapsed)
+        {
+            var finished = tasks.Count(t => t.IsDone(_state) || DailyTasks.IsClaimedToday(_state, t));
+            _tasksTitle.Text = $"Pip's tasks · {finished} of {tasks.Count} done" + (claimable ? " · Claim!" : "");
+            _tasksTitle.AddThemeColorOverride("font_color", claimable ? CozyTheme.AccentDeep : CozyTheme.Text);
+            return;
+        }
+        _tasksTitle.Text = "Pip's tasks today";
+        _tasksTitle.AddThemeColorOverride("font_color", CozyTheme.Text);
         var streak = DailyTasks.CurrentStreak(_state);
         _tasksStreak.Text = streak <= 0 ? "Streak: none yet" : $"Streak: {streak} {(streak == 1 ? "day" : "days")}";
         _tasksStreak.TooltipText = "Finish and collect all three tasks on consecutive days: 5 bonus coins per day of streak, up to 35.";
