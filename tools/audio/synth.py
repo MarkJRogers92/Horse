@@ -250,8 +250,84 @@ def shutter():
     write("shutter", reverb(snap, 0.4, 0.15))
 
 
+def resonate(x, freq, bandwidth):
+    """A two-pole resonator (one vocal-tract formant) applied to x."""
+    r = np.exp(-np.pi * bandwidth / SR)
+    a1 = -2 * r * np.cos(2 * np.pi * freq / SR); a2 = r * r
+    y = np.zeros_like(x); y1 = y2 = 0.0
+    for i, v in enumerate(x):
+        out = (1 - r) * v - a1 * y1 - a2 * y2
+        y[i] = out; y2 = y1; y1 = out
+    return y
+
+
+def voice(f0, seconds, formants, breath=0.15, vibrato=0.0, jitter=0.01, r=None):
+    """A pulse-train voice at pitch contour f0(x in 0..1) shaped by formants: the heart of the horse calls."""
+    r = r or np.random.default_rng(36)
+    n = int(seconds * SR); x = np.arange(n) / n
+    freq = np.vectorize(f0)(x) * (1 + vibrato * np.sin(2 * np.pi * 6.0 * x * seconds)) * (1 + jitter * r.standard_normal(n).cumsum() / np.sqrt(n))
+    phase = np.cumsum(freq) / SR
+    source = (phase % 1.0) * 2 - 1                 # sawtooth: rich in harmonics
+    source = source - 0.5 * np.roll(source, 1)     # a touch of glottal tilt
+    source += breath * r.standard_normal(n)
+    return sum(gain * resonate(source, f, bw) for f, bw, gain in formants)
+
+
+def horse():
+    """Original horse sounds (D-036): a soft nicker, a happy whinny, a hoof stamp and a contented chew. Pure synthesis, no samples."""
+    r = np.random.default_rng(36)
+    # Nicker: a low, throaty "hu-hu-hu-hrrr", pulsed by amplitude and drifting up then down a little.
+    dur = 1.05; n = int(dur * SR); x = np.arange(n) / n
+    v = voice(lambda u: 150 + 38 * np.sin(np.pi * u) - 18 * u, dur, [(560, 140, 1.0), (1150, 220, 0.55), (2300, 400, 0.18)], breath=0.22, jitter=0.02, r=r)
+    pulses = 0.55 + 0.45 * np.clip(np.sin(2 * np.pi * (6.5 * x * dur) - 1.2) * 1.8, 0, 1) ** 1.2
+    body = v * pulses * np.sin(np.pi * x) ** 0.7
+    puff = lowpass(r.standard_normal(n), 2600) * 0.05 * np.sin(np.pi * x)
+    write("horse_nicker", reverb(body + puff * np.max(np.abs(body)), 0.7, 0.16), stereo_width=0.4)
+
+    # Whinny: a short rising squeal that arcs over and falls away in two or three gentle huffs.
+    dur = 1.9; n = int(dur * SR); x = np.arange(n) / n
+    def arc(u):
+        if u < 0.18: return 520 + (1250 - 520) * (u / 0.18) ** 0.8
+        if u < 0.42: return 1250 - 120 * np.sin((u - 0.18) / 0.24 * np.pi) - 260 * ((u - 0.18) / 0.24)
+        return 990 * (1 - 0.55 * ((u - 0.42) / 0.58) ** 0.9) + 40
+    v = voice(arc, dur, [(900, 180, 1.0), (1800, 300, 0.6), (3100, 500, 0.22)], breath=0.14, vibrato=0.025, jitter=0.012, r=r)
+    shape = np.clip(x / 0.04, 0, 1) * np.where(x < 0.45, 1.0, 0.0) + np.where(x >= 0.45, np.exp(-(x - 0.45) / 0.22), 0.0)
+    shape *= 0.8 + 0.2 * np.sin(2 * np.pi * 9 * x * dur * 0.2)
+    huffs = np.zeros(n)
+    for at in (1.12, 1.38, 1.62):  # soft descending "hu-hu" at the end
+        m = int(0.18 * SR); f = 190 - 28 * (at - 1.12)
+        h = voice(lambda u, f=f: f - 20 * u, 0.18, [(540, 140, 1.0), (1100, 220, 0.5)], breath=0.3, r=r) * np.sin(np.pi * np.arange(m) / m) ** 1.5
+        place(huffs, h * (0.5 - 0.1 * (at - 1.12) * 2), at)
+    top = np.max(np.abs(v * shape)) + 1e-9
+    mix = v * shape + huffs / (np.max(np.abs(huffs)) + 1e-9) * top * 0.5
+    write("horse_whinny", reverb(mix, 1.2, 0.22), stereo_width=0.6)
+
+    # Stamp: a weighty hoof on turf, with a little rebound.
+    st = np.zeros(int(0.5 * SR))
+    for at, gain in [(0.0, 1.0), (0.17, 0.35)]:
+        m = int(0.22 * SR)
+        thud = lowpass(r.standard_normal(m), 420) * env(m, 0.0008, 0.035) * 6
+        thud += 0.9 * tone(68 - 12 * at, 0.22, ((1, 1), (2, 0.25)), attack=0.001, decay=0.05)
+        thud += 0.15 * lowpass(r.standard_normal(m), 2200) * env(m, 0.0004, 0.006) * 3
+        place(st, thud * gain, at)
+    write("horse_stamp", reverb(st, 0.45, 0.14))
+
+    # Chew: relaxed munching, soft wet crunches in a slow rhythm.
+    ch = np.zeros(int(1.9 * SR))
+    for k, at in enumerate([0.05, 0.37, 0.7, 1.05, 1.36]):
+        m = int(0.14 * SR)
+        crunch = (lowpass(r.standard_normal(m), 3000) - lowpass(r.standard_normal(m), 700)) * env(m, 0.002, 0.03) * 4
+        crunch += 0.3 * lowpass(r.standard_normal(m), 400) * env(m, 0.003, 0.05) * 3
+        for j in range(3):  # a few tiny stalks snapping inside each bite
+            place(crunch, 0.5 * tone(r.uniform(1400, 2600), 0.02, ((1, 1),), decay=0.004), r.uniform(0.01, 0.1))
+        place(ch, crunch * (0.8 + 0.25 * r.random()) * (0.9 if k % 2 else 1.0), at + 0.015 * r.standard_normal())
+    write("horse_chew", reverb(ch, 0.5, 0.12))
+
+
 if __name__ == "__main__":
     import sys
+    if sys.argv[1:] == ["horse"]:
+        horse(); sys.exit(0)
     if sys.argv[1:] == ["shutter"]:
         shutter(); sys.exit(0)
     if sys.argv[1:] == ["rain"]:

@@ -68,15 +68,16 @@ public static partial class HorseTack
     /// A turnout rug: for each slice behind the withers, the body's own half-width is read at several depths below
     /// the topline, so the rug hugs the back and ribs and stops at about mid-barrel.
     /// </summary>
+    internal static float FrontK = 1.0f, RearK = 0.5f, DrapeK = 0.98f;
     private static void AddBlanket(TackContext c, string colourName, int chest, int pelvis, int back, float bodyWidth)
     {
         if (c.Verts.Count == 0) return;
-        const int slices = 16, depths = 8;
+        const int slices = 22, depths = 10;
         // The foal rig labels its bones the other way round, so order the two barrel anchors by where they really are.
         var chestP = c.Rest(chest); var pelvisP = c.Rest(pelvis);
         if (c.F(chestP) < c.F(pelvisP)) (chestP, pelvisP) = (pelvisP, chestP);
         float fChest = c.F(chestP), fPelvis = c.F(pelvisP), span = fChest - fPelvis;
-        float fFront = fPelvis + span * 0.92f, fRear = fPelvis - span * 0.22f;
+        float fFront = fPelvis + span * FrontK, fRear = fPelvis - span * RearK;
         float sCentre = c.S(chestP);
         // The body morphs are not in the rest vertices: wide and muscular shapes swell out past them, lean ones sit inside.
         float grow = bodyWidth > 0f ? bodyWidth * 0.03f : bodyWidth * 0.008f;
@@ -88,17 +89,23 @@ public static partial class HorseTack
                 if (Mathf.Abs(c.F(v) - f) < 0.035f && Mathf.Abs(c.S(v) - sCentre) < 0.07f) top = Mathf.Max(top, c.U(v));
             return top;
         }
+        // Never run past the croup: the rearmost body point near the topline (the tail head) ends the rug.
+        float topRef = TopAt((fFront + fRear) / 2f), fButt = float.MaxValue;
+        foreach (var v in c.Verts)
+            if (Mathf.Abs(c.S(v) - sCentre) < 0.12f && c.U(v) > topRef - 0.22f) fButt = Mathf.Min(fButt, c.F(v));
+        if (fButt < float.MaxValue) fRear = Mathf.Max(fRear, fButt + 0.025f);
         // Barrel height from the middle of the rug: topline to the belly line.
         float fMid = (fFront + fRear) / 2f, topMid = TopAt(fMid), belly = topMid;
         foreach (var v in c.Verts)
             if (Mathf.Abs(c.F(v) - fMid) < 0.05f && Mathf.Abs(c.S(v) - sCentre) < 0.05f) belly = Mathf.Min(belly, c.U(v));
-        float drape = Mathf.Clamp((topMid - belly) * 0.68f, 0.18f, 0.7f);
+        float drape = Mathf.Clamp((topMid - belly) * DrapeK, 0.2f, 0.95f);
 
         var tops = new float[slices + 1]; var width = new float[slices + 1, depths + 1];
         for (var i = 0; i <= slices; i++)
         {
             float f = Mathf.Lerp(fFront, fRear, i / (float)slices);
             tops[i] = TopAt(f);
+            if (tops[i] < -1e6f) tops[i] = i > 0 ? tops[i - 1] - 0.03f : topMid;
             var near = c.Verts.Where(v => Mathf.Abs(c.F(v) - f) < 0.035f).ToList();
             for (var k = 0; k <= depths; k++)
             {
@@ -154,6 +161,79 @@ public static partial class HorseTack
         material.VertexColorUseAsAlbedo = true; material.VertexColorIsSrgb = true;
         var rug = new Node3D { Name = "TackBlanket" };
         rug.AddChild(new MeshInstance3D { Mesh = st.Commit(), MaterialOverride = material, CastShadow = GeometryInstance3D.ShadowCastingSetting.On });
+
+        // Edge binding: a thin piping along the whole hem (front, lower edge, rear) gives the rug a little thickness.
+        var strapMaterial = Fabric(Darker(trim, 0.8f), 0.6f);
+        var bindingMaterial = Fabric(trim, 0.7f);
+        var edge = new List<Vector3>();
+        for (var j = 0; j < columns; j++) edge.Add(Point(0, j));                   // front edge, left hem up over the withers to right hem
+        for (var i = 1; i <= slices; i++) edge.Add(Point(i, columns - 1));          // right hem toward the croup
+        for (var j = columns - 2; j >= 0; j--) edge.Add(Point(slices, j));          // rear edge back across
+        for (var i = slices - 1; i >= 1; i--) edge.Add(Point(i, 0));                // left hem toward the withers
+        rug.AddChild(Tube(edge, 0.0065f, bindingMaterial, true, c.Side));
+
+        // Surcingle: a belly strap from hem to hem under the barrel, at the lowest point of the rug's middle.
+        {
+            int iS = (int)(slices * 0.46f);
+            float fS = Mathf.Lerp(fFront, fRear, iS / (float)slices);
+            var path = new List<Vector3>();
+            var left = Point(iS, 0); var right = Point(iS, columns - 1);
+            float hemU = c.U(left); float bellyU = float.MaxValue;
+            foreach (var v in c.Verts)
+                if (Mathf.Abs(c.F(v) - fS) < 0.04f && Mathf.Abs(c.S(v) - sCentre) < 0.06f) bellyU = Mathf.Min(bellyU, c.U(v));
+            if (bellyU > hemU) bellyU = hemU - 0.12f;
+            float pad = 0.014f + Mathf.Max(0f, grow);
+            const int steps = 9;
+            for (var side = -1; side <= 1; side += 2)
+            {
+                var list = new List<Vector3>();
+                for (var k = 0; k <= steps; k++)
+                {
+                    float u = Mathf.Lerp(hemU, bellyU, k / (float)steps), w = 0.03f; float round = k / (float)steps;
+                    foreach (var v in c.Verts)
+                        if (Mathf.Abs(c.F(v) - fS) < 0.04f && Mathf.Abs(c.U(v) - u) < 0.02f) w = Mathf.Max(w, Mathf.Abs(c.S(v) - sCentre));
+                    // Closing toward the belly the strap must stay on the body: blend toward the centre line at the very bottom.
+                    w *= 1f - 0.35f * round * round;
+                    list.Add(c.At(fS, u, sCentre + side * (w + pad)));
+                }
+                if (side < 0) { list.Reverse(); path.AddRange(list); } else path.AddRange(list);
+            }
+            rug.AddChild(Tube(path, 0.011f, strapMaterial, false, c.Forward));
+        }
+
+        // Neck-front closure: a strap across the chest between the two front corners of the rug.
+        {
+            var left = Point(0, 0); var right = Point(0, columns - 1);
+            float strapU = c.U(left) + drape * 0.04f;
+            float tipF = float.MinValue;
+            foreach (var v in c.Verts)
+                if (Mathf.Abs(c.S(v) - sCentre) < 0.04f && Mathf.Abs(c.U(v) - strapU) < 0.04f && c.F(v) > c.F(left) - 0.3f && c.F(v) < c.F(left) + 0.6f) tipF = Mathf.Max(tipF, c.F(v));
+            float halfWidth = 0.05f;
+            foreach (var v in c.Verts)
+                if (c.F(v) > tipF - 0.1f && Mathf.Abs(c.U(v) - strapU) < 0.04f) halfWidth = Mathf.Max(halfWidth, Mathf.Abs(c.S(v) - sCentre));
+            halfWidth = Mathf.Min(halfWidth, Mathf.Abs(c.S(left) - sCentre));
+            var path = new List<Vector3> { left };
+            const int steps = 16;
+            float lastF = c.F(left);
+            for (var k = 1; k < steps; k++)
+            {
+                // The chest surface itself: the frontmost body point at this offset from the midline.
+                float s = Mathf.Lerp(-halfWidth, halfWidth, k / (float)steps), front = float.MinValue;
+                foreach (var v in c.Verts)
+                    if (Mathf.Abs(c.S(v) - sCentre - s) < 0.025f && Mathf.Abs(c.U(v) - strapU) < 0.04f && c.F(v) > c.F(left) - 0.3f && c.F(v) < c.F(left) + 0.45f) front = Mathf.Max(front, c.F(v));
+                if (front < -1e6f) front = lastF; else lastF = front;
+                path.Add(c.At(front + 0.012f + Mathf.Max(0f, grow), strapU, sCentre + s));
+            }
+            path.Add(right);
+            // Light smoothing so the strap does not zigzag with the mesh.
+            for (var pass = 0; pass < 2; pass++)
+                for (var k = 1; k < path.Count - 1; k++) path[k] = (path[k - 1] + path[k] * 2f + path[k + 1]) / 4f;
+            int steps2 = path.Count - 1;
+            var middle = path[steps2 / 2];
+            rug.AddChild(Tube(path, 0.011f, strapMaterial, false, c.Up));
+            var buckle = Fabric(new Color(0.95f, 0.8f, 0.45f), 0.3f, 0.7f);
+            rug.AddChild(new MeshInstance3D { Mesh = new BoxMesh { Size = new Vector3(0.02f, 0.03f, 0.04f) }, MaterialOverride = buckle, Transform = new Transform3D(new Basis(c.Forward, c.Up, c.Side), middle + c.Forward * 0.004f) });
+        }
 
         if (colourName == "snowflake")
         {

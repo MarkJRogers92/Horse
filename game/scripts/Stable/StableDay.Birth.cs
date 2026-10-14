@@ -145,6 +145,7 @@ public partial class StableDay
             _birthOverlay.Visible = true;
             _confetti.Restart();
             Audio.GameAudio.Play("birth_fanfare", -3);
+            GetTree().CreateTimer(1.1).Timeout += () => Audio.GameAudio.Play("horse_whinny", -12); // D-036: the newborn's first call
             _birthName.GrabFocus();
         };
     }
