@@ -31,7 +31,7 @@ public static class HairCards
         if ((!tail && source.Name != "Mane") || source.Mesh is not ArrayMesh mesh || source.GetParent() is not { } parent)
             return null;
         string name = tail ? "TailCards" : "ManeCards";
-        var bodyNode = isFoal && !tail ? parent.GetNodeOrNull<MeshInstance3D>("Body") : null;
+        var bodyNode = !tail ? parent.GetNodeOrNull<MeshInstance3D>("Body") : null;
         var bodyMesh = bodyNode?.Mesh as ArrayMesh;
         var bodyToSource = bodyNode != null ? source.Transform.AffineInverse() * bodyNode.Transform : Transform3D.Identity;
         var key = new Key(mesh, seed, isFoal, tail, bodyMesh, bodyToSource, source.Skin, bodyNode?.Skin);
@@ -39,8 +39,8 @@ public static class HairCards
         {
             var data = Source.Read(mesh);
             if (data == null) return null;
-            // On foals the original crest is almost a line. The skin surface keeps its small new locks
-            // on the outside of the neck, rather than burying them in it. No body resource is changed.
+            // Read-only body donors keep the short crest wrap outside the neck and attached to
+            // its root. Foals also need these donors for their original near-side locks.
             Source? body = bodyNode != null ? Source.ReadRootDonor(bodyNode, source, bodyToSource) : null;
             var builder = new Builder(data, seed);
             if (tail) builder.Tail(isFoal); else builder.Mane(isFoal, body);
@@ -131,9 +131,9 @@ public static class HairCards
             return (low, high, side);
         }
 
-        public bool Outward(float x, float y, out float z)
+        public bool Outward(float x, float y, out float z, bool opposite = false)
         {
-            z = float.MinValue;
+            z = opposite ? float.MaxValue : float.MinValue;
             if (x < Min.X || x > Max.X || y < Min.Y || y > Max.Y) return false;
             foreach (int i in _bins[Bin(x)])
             {
@@ -143,9 +143,10 @@ public static class HairCards
                 float u = ((b.Y - c.Y) * (x - c.X) + (c.X - b.X) * (y - c.Y)) / det;
                 float v = ((c.Y - a.Y) * (x - c.X) + (a.X - c.X) * (y - c.Y)) / det;
                 if (u >= -0.0001f && v >= -0.0001f && u + v <= 1.0001f)
-                    z = Math.Max(z, u * a.Z + v * b.Z + (1 - u - v) * c.Z);
+                    z = opposite ? Math.Min(z, u * a.Z + v * b.Z + (1 - u - v) * c.Z)
+                        : Math.Max(z, u * a.Z + v * b.Z + (1 - u - v) * c.Z);
             }
-            return z != float.MinValue;
+            return z != (opposite ? float.MaxValue : float.MinValue);
         }
 
         // The juvenile's old Mane is below the visible dorsal ridge. The body also has a narrow
@@ -317,8 +318,11 @@ public static class HairCards
         { _state += 0x6d2b79f5u; uint z = _state; z = (z ^ (z >> 15)) * (z | 1); z ^= z + ((z ^ (z >> 7)) * (z | 61)); return ((z ^ (z >> 14)) >> 8) / 16777216f; }
         private float Range(float lo, float hi) => Mathf.Lerp(lo, hi, Random());
 
-        public void Mane(bool foal, Source? body)
+        public void Mane(bool foal, Source? rootBody)
         {
+            // Keep the approved long locks and forelock unchanged; only the wrap needs
+            // adult body donors. Appending it also preserves their seeded variation.
+            var body = foal ? rootBody : null;
             var surface = _source.Surface;
             // The poll is the highest part of the hair; vertices beyond it belong to the forelock.
             float peak = surface.Max.Y;
@@ -385,6 +389,40 @@ public static class HairCards
                     across[row] = Vector3.Back;
                 }
                 Strip(path, across, foal ? Range(0.012f, 0.018f) : Range(0.018f, 0.027f), Random(), true);
+            }
+
+            // A single light layer crosses the crest and falls a short way down the far
+            // side. It shares this mesh/material rather than doubling the long curtain.
+            int wrapCount = foal ? 20 : 24;
+            for (int card = 0; card < wrapCount; card++)
+            {
+                float t = (card + 0.5f + Range(-0.16f, 0.16f)) / wrapCount;
+                float x = begin + span * t;
+                var profile = surface.AtX(x);
+                var crest = rootBody?.Surface.Crest(x);
+                float top = Math.Max(profile.High, Math.Min(crest?.Y ?? profile.High, peak + 0.002f));
+                float rootZ = crest?.Z ?? 0.012f;
+                float depth = foal ? Range(0.035f, 0.052f) : Range(0.065f, 0.095f);
+                float drift = Range(-0.009f, 0.009f);
+                float dx = span * 0.025f;
+                float before = Math.Max(surface.AtX(Math.Max(begin, x - dx)).High, rootBody?.Surface.Crest(Math.Max(begin, x - dx))?.Y ?? float.MinValue);
+                float after = Math.Max(surface.AtX(Math.Min(poll, x + dx)).High, rootBody?.Surface.Crest(Math.Min(poll, x + dx))?.Y ?? float.MinValue);
+                float slope = (after - before) / (2f * dx);
+                float lastSide = -Math.Max(Math.Abs(rootZ), 0.02f);
+                var path = new Vector3[Rows]; var across = new Vector3[Rows];
+                for (int row = 0; row < Rows; row++)
+                {
+                    float v = row / (float)(Rows - 1);
+                    float px = x + drift * v;
+                    float py = top + 0.005f + 0.005f * Mathf.Sin(v * Mathf.Pi)
+                        - depth * Mathf.SmoothStep(0.18f, 1f, v);
+                    if (surface.Outward(px, py, out var side, true)) lastSide = side;
+                    if (rootBody != null && rootBody.Surface.Outward(px, py, out var skin, true)) lastSide = Math.Min(lastSide, skin);
+                    float z = Mathf.Lerp(rootZ, lastSide - 0.004f, Mathf.SmoothStep(0, 0.35f, v));
+                    path[row] = new Vector3(px, py, z);
+                    across[row] = new Vector3(1, slope * (1 - v * 0.65f), 0).Normalized();
+                }
+                Strip(path, across, span / wrapCount * Range(1.8f, 2.15f), Random(), true, rootBody);
             }
         }
 

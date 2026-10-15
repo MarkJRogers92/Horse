@@ -81,8 +81,10 @@ void fragment() {
 		col = hair_palette(v, dark_lock, white_lock) * streak * card_tone;
 		// Slight root depth makes overlapping locks readable without painting stripes.
 		col *= mix(0.93, 1.0, smoothstep(0.0, 0.4, v));
-		ROUGHNESS = 0.56 + 0.05 * hash(card + 43.0);
-		SPECULAR = 0.3;
+		// Broad, soft highlights avoid a silver-looking panel at grazing angles,
+		// including Compatibility where directional anisotropy is unavailable.
+		ROUGHNESS = 0.78 + 0.04 * hash(card + 43.0);
+		SPECULAR = 0.22;
 		ANISOTROPY = 0.65;
 		BACKLIGHT = col * 0.2;
 	}

@@ -93,6 +93,7 @@ public partial class HairCardsProbe : Node3D
                     "cards inherit exact mesh-space transform, Skin and skeleton path");
                 Check(source.Mesh == originalMesh && Fingerprint(source.Mesh) == original, "source hair mesh and UVs remain unchanged");
                 CheckGeometry(cards, source);
+                if (component == "Mane") CheckWrapCoverage(cards, source, foal);
                 for (int i = 0; i < source.GetBlendShapeCount(); i++)
                     Check(Math.Abs(cards.GetBlendShapeValue(i) - source.GetBlendShapeValue(i)) < 1e-6, "Apply copies current source morph values");
                 Check(HairCards.Apply(source, 1701, foal) == cards, "repeated Apply is idempotent for the same source node and seed");
@@ -113,6 +114,35 @@ public partial class HairCardsProbe : Node3D
             }
         }
         finally { root.Free(); }
+    }
+
+    private void CheckWrapCoverage(MeshInstance3D cards, MeshInstance3D source, bool foal)
+    {
+        // Each strip has ten three-vertex rows. Inspect the actual generated mesh, not a
+        // builder counter: long near-side locks must coexist with short far-side coverage.
+        var points = cards.Mesh.SurfaceGetArrays(0)[(int)Mesh.ArrayType.Vertex].AsVector3Array();
+        var imported = Enumerable.Range(0, source.Mesh.GetSurfaceCount())
+            .SelectMany(s => source.Mesh.SurfaceGetArrays(s)[(int)Mesh.ArrayType.Vertex].AsVector3Array()).ToArray();
+        float peak = imported.Max(p => p.Y);
+        float poll = imported.Where(p => p.Y > peak - 0.004f).Average(p => p.X);
+        float begin = imported.Min(p => p.X);
+        int originalCards = foal ? 110 : 174;
+        var far = Enumerable.Range(originalCards, Math.Max(0, points.Length / 30 - originalCards))
+            .Where(i => points[i * 30 + 28].Z < -0.015f && points[i * 30 + 28].Z < points[i * 30 + 1].Z - 0.025f && points[i * 30 + 1].X < poll - 0.015f)
+            .ToArray();
+        Check(far.Length >= (foal ? 12 : 20), "short far-side locks cover the crest, rather than only the forelock");
+        float covered = far.Max(i => points[i * 30 + 1].X) - far.Min(i => points[i * 30 + 1].X);
+        Check(covered > (poll - begin) * 0.75f, "far-side lock roots span at least three quarters of the crest");
+        foreach (int i in far)
+        {
+            var root = points[i * 30 + 1]; var tip = points[i * 30 + 28];
+            Check(root.Z > tip.Z && root.Y > tip.Y, "far-side locks wrap down from their crest roots");
+            Check(root.Y - tip.Y < (foal ? 0.065f : 0.12f), $"opposite-side locks remain short instead of duplicating the long mane: card {i}, root {root}, tip {tip}, source {source.Mesh.ResourcePath}");
+        }
+        Check(cards.Mesh.GetSurfaceCount() == 1, "wrap coverage shares the existing mane draw surface");
+        Check(points.Length <= originalCards * 30 * 1.2f, "wrap coverage adds at most twenty percent mane geometry");
+        _measurements.Add(new { kind = "wrap-coverage", source = source.Mesh.ResourcePath, foal,
+            farSideLocks = far.Length, crestCoverage = covered / (poll - begin), vertices = points.Length });
     }
 
     private void CheckGeometry(MeshInstance3D cards, MeshInstance3D source)
@@ -210,6 +240,7 @@ public partial class HairCardsProbe : Node3D
             var source = MeshNamed(p.Model!, component); var cards = MeshNamed(p.Model!, component + "Cards");
             CheckMaterials(source, cards);
             CheckGeometry(cards, source);
+            if (component == "Mane") CheckWrapCoverage(cards, source, descriptor.IsFoal);
         }
         Check(All<MeshInstance3D>(p.Model!).Count(m => m.Name == "ManeCards" || m.Name == "TailCards") == 2, "presenter creates exactly one mane and one tail card node");
         p.Pose(animation, 0);

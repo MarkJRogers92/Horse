@@ -31,3 +31,10 @@ Known visual limits: the opposite side still shows the smooth original core; ext
 The attachment reference images are preserved in `docs/visual/evidence/mane-hair-2026-10-14/`. New evidence is separated from the supplied reference images. The final capture sets cover all four families, Idle/Walk/grazing, body-shape changes, pale and dark hair, and dress-up placement. The owner must see the visual results before publication.
 
 Meshy is optional with an owner-approved maximum of 150 credits for this task; no Meshy spending has been needed.
+
+
+## Approved crest-wrap correction — 2026-10-14
+
+After reviewing the opposite side, the owner approved keeping the longer mane mainly on one side, adding shorter crest/opposite-side strands, softening the gray highlight and checking both sides in the Mac renderer before another build.
+
+The correction appends a single short root-anchored layer (24 adult / 20 foal strips) to the same generated mane surface. Body sampling is read-only and uses the existing bind-name/morph mapping. Original long locks and forelock keep their seeded geometry. Card roughness is 0.78–0.82 and specular 0.22; palette parameters are unchanged. Assets, rigs, body UVs, domain and saves remain out of scope. Compact evidence and actual verification results: [`../visual/evidence/mane-wrap-2026-10-14/REVIEW.md`](../visual/evidence/mane-wrap-2026-10-14/REVIEW.md).

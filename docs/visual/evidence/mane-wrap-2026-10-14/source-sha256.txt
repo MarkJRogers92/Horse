@@ -1,0 +1,4 @@
+68ac7360b5967853770b8f12e8489c96881a1223ebecf6bed68693c072c14945  game/scripts/Visual/HairCards.cs
+e453de0733cdffa66450ac5bd76db0d01ce72cf3febf33f42a21ff88216b11d9  game/shaders/horse_hair.gdshader
+04be2ded9257d1b71d39a8e3d3721210f32c697e074b5924f7d8ca386d846b32  game/scripts/Tools/HairCardsProbe.cs
+cb67693aa6e693de2b0f829fe99bfa993601ef007d4dd4778e6a936b076d6eb7  game/.godot/mono/temp/bin/Debug/Cloverbrook.Game.dll

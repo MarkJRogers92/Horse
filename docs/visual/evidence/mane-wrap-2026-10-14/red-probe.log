@@ -1,0 +1,15 @@
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+
+ERROR: [hair-cards] FAILED System.InvalidOperationException: short far-side locks cover the crest, rather than only the forelock
+   at Cloverbrook.Game.Tools.HairCardsProbe.Check(Boolean condition, String message) in /workspace/scratch/46c24ac297cd/horse-stable-life/game/scripts/Tools/HairCardsProbe.cs:line 588
+   at Cloverbrook.Game.Tools.HairCardsProbe.CheckWrapCoverage(MeshInstance3D cards, MeshInstance3D source, Boolean foal) in /workspace/scratch/46c24ac297cd/horse-stable-life/game/scripts/Tools/HairCardsProbe.cs:line 132
+   at Cloverbrook.Game.Tools.HairCardsProbe.CheckImportedSource(String path, Boolean foal) in /workspace/scratch/46c24ac297cd/horse-stable-life/game/scripts/Tools/HairCardsProbe.cs:line 96
+   at Cloverbrook.Game.Tools.HairCardsProbe.Run() in /workspace/scratch/46c24ac297cd/horse-stable-life/game/scripts/Tools/HairCardsProbe.cs:line 54
+   at: void Cloverbrook.Game.Tools.HairCardsProbe+<Run>d__7.MoveNext() (res://scripts/Tools/HairCardsProbe.cs:54)
+   C# backtrace (most recent call first):
+       [0] void Godot.GD.PushError(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:366)
+       [1] void Cloverbrook.Game.Tools.HairCardsProbe+<Run>d__7.MoveNext() (/workspace/scratch/46c24ac297cd/horse-stable-life/game/scripts/Tools/HairCardsProbe.cs:54)
+       [2] void System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start<TStateMachine>(TStateMachine&)
+       [3] void Cloverbrook.Game.Tools.HairCardsProbe.Run()
+       [4] bool Cloverbrook.Game.Tools.HairCardsProbe.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/workspace/scratch/46c24ac297cd/horse-stable-life/game/.godot/mono/temp/obj/Debug/Godot.SourceGenerators/Godot.SourceGenerators.ScriptMethodsGenerator/Cloverbrook.Game.Tools.HairCardsProbe_ScriptMethods.generated.cs:126)
+       [5] Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/CSharpInstanceBridge.cs:24)
