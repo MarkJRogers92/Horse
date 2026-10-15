@@ -1,0 +1,235 @@
+{
+  "created_utc": "2026-10-14T22:00:34.194410+00:00",
+  "baseline_commit": "40912902b4de3327de3807071f6264c065f6b319",
+  "runtime": "Godot 4.7.2 stable mono ed1daf0bf; Vulkan Forward+; Mesa llvmpipe LLVM 19.1.7; .NET SDK 8.0.426",
+  "execution": "Dot cloud Linux desktop launched local scripts; private Xvfb 1280x720 display. No user computer used.",
+  "resume_note": "Earlier final-remaining wrapper stopped before performance; adult/foal captures and smoke/stable completed. Performance pair resumed directly on 2026-10-14. Empty wrapper log is not treated as successful evidence.",
+  "dimensions_note": "All final scene viewports are 1280x720. Existing TackPreview/GrazePreview intentionally crop to 760x480; CoatGallery crops to 880x600. HairCardsProbe and HairPerformanceProbe save the full viewport. Stable captures may use their established cropped screenshots.",
+  "performance_note": "Single paired sequential sample, eight unique seeds across all four families and idle/walk; 60 warmup frames and 120 measured frames. Software-renderer timing is comparative only, not expected Mac FPS. Final CPU-heavy structural tests finished before both performance samples.",
+  "render_snapshot_sha256": {
+    "game/scripts/Visual/HairCards.cs": "e178c2e6e97d568209b2756197083349f5afb8f4e7846b0dbfce7a37c739ebcd",
+    "game/shaders/horse_hair.gdshader": "722af0334627b1a3a176423f9588925f281efb328938c4d12dbf35574eb6c4d6",
+    "game/scripts/Visual/HorsePresenter.cs": "53f336b8d714c5515adfb72af3823bd98d09dafa5b97e26484f4f4105e89f2ef",
+    "game/.godot/mono/temp/bin/Debug/Cloverbrook.Game.dll": "cc604c58802bc9ce724cf77c9655cca1ab275ac7332f8c43fb116b76be0c7c6d"
+  },
+  "fresh_build_dll_sha256": "1894a0cd333b7998506959a62b67f025482595f099f6464542dd3b5d04213818",
+  "binary_note": "Capture and performance used the pinned render snapshot DLL. A later rebuild changed the binary hash; application source hashes remain identical. Fresh headless verification uses the rebuilt DLL.",
+  "source_sha256": {
+    "game/scripts/Visual/HairCards.cs": "e178c2e6e97d568209b2756197083349f5afb8f4e7846b0dbfce7a37c739ebcd",
+    "game/shaders/horse_hair.gdshader": "722af0334627b1a3a176423f9588925f281efb328938c4d12dbf35574eb6c4d6",
+    "game/scripts/Visual/HorsePresenter.cs": "53f336b8d714c5515adfb72af3823bd98d09dafa5b97e26484f4f4105e89f2ef"
+  },
+  "checks": {
+    "adult_captures": {
+      "log": "/workspace/scratch/46c24ac297cd/hair-toolchain/logs/final-adult-captures.log",
+      "completed_successfully": true
+    },
+    "foal_captures": {
+      "log": "/workspace/scratch/46c24ac297cd/hair-toolchain/logs/final-foal-captures.log",
+      "completed_successfully": true
+    },
+    "smoke_stable": {
+      "log": "/workspace/scratch/46c24ac297cd/hair-toolchain/logs/final-smoke-stable.log",
+      "completed_successfully": true
+    },
+    "paired_performance": {
+      "log": "/workspace/scratch/46c24ac297cd/hair-toolchain/logs/final-performance-pair.log",
+      "completed_successfully": true
+    }
+  },
+  "evidence": {
+    "before-720p": {
+      "png_count": 53,
+      "png_dimensions": {
+        "760x480": 40,
+        "1280x720": 1,
+        "880x600": 12
+      },
+      "png_groups": {
+        "graze": 8,
+        "performance": 1,
+        "tack": 16,
+        "horse.standard.adult.v1": 12,
+        "plain": 16
+      },
+      "performance": {
+        "label": "baseline",
+        "horseCount": 8,
+        "uniqueSeeds": 8,
+        "generatedHairNodes": 0,
+        "viewport": "(1280, 720)",
+        "engine": "4.7.2-stable (official)",
+        "startupMilliseconds": 737.1269,
+        "startupRows": [
+          {
+            "family": "horse.standard.adult.v1",
+            "animation": "idle",
+            "presentMilliseconds": 555.5883
+          },
+          {
+            "family": "horse.compact.adult.v1",
+            "animation": "idle",
+            "presentMilliseconds": 22.7125
+          },
+          {
+            "family": "horse.standard.foal.v1",
+            "animation": "idle",
+            "presentMilliseconds": 11.8281
+          },
+          {
+            "family": "horse.compact.foal.v1",
+            "animation": "idle",
+            "presentMilliseconds": 0.9311
+          },
+          {
+            "family": "horse.standard.adult.v1",
+            "animation": "walk",
+            "presentMilliseconds": 25.6409
+          },
+          {
+            "family": "horse.compact.adult.v1",
+            "animation": "walk",
+            "presentMilliseconds": 25.0781
+          },
+          {
+            "family": "horse.standard.foal.v1",
+            "animation": "walk",
+            "presentMilliseconds": 14.9982
+          },
+          {
+            "family": "horse.compact.foal.v1",
+            "animation": "walk",
+            "presentMilliseconds": 0.789
+          }
+        ],
+        "warmupFrames": 60,
+        "measuredFrames": 120,
+        "frameMilliseconds": {
+          "mean": 303.5019158333333,
+          "median": 291.95940000000337,
+          "p95": 385.60039999999935,
+          "maximum": 697.4993000000004
+        },
+        "averageDrawCalls": 70,
+        "averagePrimitives": 306230,
+        "comparison": "Run baseline and changed checkout sequentially on the same hardware/backend/resolution. Startup includes first resource loads and eight presentations, but asynchronous shader compilation is absorbed by warmup. Software-renderer timings are comparative only and are not Mac FPS."
+      }
+    },
+    "after-720p": {
+      "png_count": 338,
+      "png_dimensions": {
+        "1280x720": 286,
+        "760x480": 40,
+        "880x600": 12
+      },
+      "png_groups": {
+        "stable-day": 8,
+        "graze": 8,
+        "contracts-adults": 130,
+        "performance": 1,
+        "contracts-foals": 130,
+        "stable-breeding": 10,
+        "tack": 16,
+        "horse.standard.adult.v1": 12,
+        "stable-lifecycle": 7,
+        "plain": 16
+      },
+      "performance": {
+        "label": "cards",
+        "horseCount": 8,
+        "uniqueSeeds": 8,
+        "generatedHairNodes": 16,
+        "viewport": "(1280, 720)",
+        "engine": "4.7.2-stable (official)",
+        "startupMilliseconds": 1893.7317,
+        "startupRows": [
+          {
+            "family": "horse.standard.adult.v1",
+            "animation": "idle",
+            "presentMilliseconds": 773.0141
+          },
+          {
+            "family": "horse.compact.adult.v1",
+            "animation": "idle",
+            "presentMilliseconds": 207.438
+          },
+          {
+            "family": "horse.standard.foal.v1",
+            "animation": "idle",
+            "presentMilliseconds": 113.3413
+          },
+          {
+            "family": "horse.compact.foal.v1",
+            "animation": "idle",
+            "presentMilliseconds": 97.7618
+          },
+          {
+            "family": "horse.standard.adult.v1",
+            "animation": "walk",
+            "presentMilliseconds": 221.1587
+          },
+          {
+            "family": "horse.compact.adult.v1",
+            "animation": "walk",
+            "presentMilliseconds": 204.3202
+          },
+          {
+            "family": "horse.standard.foal.v1",
+            "animation": "walk",
+            "presentMilliseconds": 101.6868
+          },
+          {
+            "family": "horse.compact.foal.v1",
+            "animation": "walk",
+            "presentMilliseconds": 91.5533
+          }
+        ],
+        "warmupFrames": 60,
+        "measuredFrames": 120,
+        "frameMilliseconds": {
+          "mean": 383.20903833333335,
+          "median": 370.8090999999986,
+          "p95": 510.1727999999998,
+          "maximum": 858.1551000000004
+        },
+        "averageDrawCalls": 102,
+        "averagePrimitives": 417974,
+        "comparison": "Run baseline and changed checkout sequentially on the same hardware/backend/resolution. Startup includes first resource loads and eight presentations, but asynchronous shader compilation is absorbed by warmup. Software-renderer timings are comparative only and are not Mac FPS."
+      }
+    }
+  },
+  "performance_comparison": {
+    "mean": {
+      "baseline": 303.5019158333333,
+      "cards": 383.20903833333335,
+      "delta_percent": 26.262477546853713
+    },
+    "median": {
+      "baseline": 291.95940000000337,
+      "cards": 370.8090999999986,
+      "delta_percent": 27.007077011390734
+    },
+    "p95": {
+      "baseline": 385.60039999999935,
+      "cards": 510.1727999999998,
+      "delta_percent": 32.30608681941219
+    },
+    "draw_calls": {
+      "baseline": 70,
+      "cards": 102
+    },
+    "primitives": {
+      "baseline": 306230,
+      "cards": 417974
+    },
+    "startup_ms": {
+      "baseline": 737.1269,
+      "cards": 1893.7317
+    }
+  },
+  "known_notes": [
+    "The far side of the mane retains its opaque underlayer; the fuller directional locks are primarily on the hanging side.",
+    "Extreme grazing shows stepped locks along the strongly rotated neck; tested geometry/bind/morph/stretch checks pass, but precise root attachment and self-intersection are not formally proven.",
+    "Original smoke test emits shutdown resource-leak diagnostics in both baseline and changed runs; see logs."
+  ]
+}

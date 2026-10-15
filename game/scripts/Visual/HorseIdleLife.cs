@@ -36,6 +36,7 @@ public partial class HorseIdleLife : SkeletonModifier3D
         public float Share;
         public float GrazeDegrees;   // pitch at the bottom of a graze (neck chain) or the full dip/splay angle (body)
         public Vector3 Axis;       // rotation axis in the parent bone's frame
+        public Vector3 YawAxis;
         public Quaternion Base, Last;
         public bool Has;
     }
@@ -76,11 +77,11 @@ public partial class HorseIdleLife : SkeletonModifier3D
     public bool Calm { get; set; }
 
     /// <summary>Largest current offset weight (0 = pose is exactly the clip). The yard waits for this to fall before moving.</summary>
-    public float Offset => Math.Max(Smooth(_master), Smooth(_grazeT) * _master);
+    public float Offset => Math.Max(AttentionWeight, Math.Max(Smooth(_master), Smooth(_grazeT) * _master));
     public bool Grazing => _grazeT > 0.5f;
     public int GrazeCount { get; private set; }
     /// <summary>True while a graze is under way (the yard lets it finish before the horse moves on).</summary>
-    public bool Busy => _grazeLeft > 0;
+    public bool Busy => _grazeLeft > 0 || _attentionLeft > 0 || _attentionWeight > 0.001f;
     /// <summary>Seconds of standing rest left before the next graze; carried across Idle/Walk swaps by the presenter.</summary>
     public double NextGraze { get => _nextGraze; set => _nextGraze = value; }
     public float GrazeWeight => Smooth(_grazeT);
@@ -123,7 +124,7 @@ public partial class HorseIdleLife : SkeletonModifier3D
         {
             var node = pending.Pop();
             foreach (var child in node.GetChildren()) pending.Push(child);
-            if (node is not MeshInstance3D { Mesh: { } mesh } mi || mi.Name == "Mane") continue;
+            if (node is not MeshInstance3D { Mesh: { } mesh } mi || mi.Name.ToString() is "Mane" or "ManeCards" or "TailCards") continue;
             var toSkeleton = _skeleton.GlobalTransform.AffineInverse() * mi.GlobalTransform;
             for (int s = 0; s < mesh.GetSurfaceCount(); s++)
                 foreach (var v in mesh.SurfaceGetArrays(s)[(int)Mesh.ArrayType.Vertex].AsVector3Array())
@@ -184,7 +185,7 @@ public partial class HorseIdleLife : SkeletonModifier3D
             var (name, share) = NeckChain[i];
             int bone = skeleton.FindBone(name);
             if (bone < 0) continue;
-            _neck.Add(new Target { Bone = bone, Share = share, GrazeDegrees = degrees[i], Axis = InParent(bone, lateral) });
+            _neck.Add(new Target { Bone = bone, Share = share, GrazeDegrees = degrees[i], Axis = InParent(bone, lateral), YawAxis = InParent(bone, up) });
             total += share;
         }
         foreach (var t in _neck) t.Share /= Math.Max(total, 0.0001f);
@@ -232,7 +233,8 @@ public partial class HorseIdleLife : SkeletonModifier3D
         if (!double.IsFinite(delta) || delta <= 0) return;
         float d = (float)delta;
         _master = Mathf.MoveToward(_master, Calm ? 1f : 0f, d * 1.6f);
-        bool settled = Calm && _master > 0.95f;
+        TickAttention(delta);
+        bool settled = Calm && _master > 0.95f && _attentionLeft <= 0 && _attentionWeight <= 0.001f;
 
         // Graze: every 8 to 20 s, 4 to 8 s with the head down.
         if (_grazeLeft > 0 && settled) _grazeLeft -= delta;
@@ -281,7 +283,7 @@ public partial class HorseIdleLife : SkeletonModifier3D
     {
         if (_skeleton == null || _owner == null || _owner.IsTransitioning || _neck.Count == 0) return;
         float master = Smooth(_master);
-        if (master <= 0.0005f && _grazeT <= 0.0005f) { Release(); return; }
+        if (master <= 0.0005f && _grazeT <= 0.0005f && AttentionWeight <= 0.0005f) { Release(); return; }
 
         float graze = Smooth(_grazeT) * master;
         float lift = 0;
@@ -297,7 +299,8 @@ public partial class HorseIdleLife : SkeletonModifier3D
         {
             bool headBone = _skeleton.GetBoneName(t.Bone).ToString().StartsWith("Head", StringComparison.Ordinal);
             float degrees = graze * t.GrazeDegrees * swayK - lift * LiftPitchDegrees * master * t.Share + (headBone ? chew : 0f);
-            Apply(t, Mathf.DegToRad(degrees * _pitchSign));
+            degrees += AttentionPitch * t.Share;
+            Apply(t, Mathf.DegToRad(degrees * _pitchSign), Mathf.DegToRad(_attentionYaw * AttentionWeight * t.Share));
         }
 
         // Shoulder dip and foreleg stance (one foot forward, one back), so the muzzle can reach the grass without tucking the head.
@@ -326,12 +329,14 @@ public partial class HorseIdleLife : SkeletonModifier3D
 
     // The pose a bone has when our offset is not on it: the clip's value, or the value we saved when the
     // clip has no track for the bone (so a bone the clip never writes does not accumulate our rotation).
-    private void Apply(Target t, float radians)
+    private void Apply(Target t, float radians, float yaw = 0)
     {
         var skeleton = _skeleton!;
         var current = skeleton.GetBonePoseRotation(t.Bone);
         var baseRotation = t.Has && current == t.Last ? t.Base : current;
-        var next = new Quaternion(t.Axis, radians) * baseRotation;
+        var offset = new Quaternion(t.Axis, radians);
+        if (Mathf.Abs(yaw) > 0.00001f) offset = new Quaternion(t.YawAxis, yaw) * offset;
+        var next = offset * baseRotation;
         skeleton.SetBonePoseRotation(t.Bone, next);
         t.Base = baseRotation; t.Last = next; t.Has = true;
     }
@@ -351,6 +356,7 @@ public partial class HorseIdleLife : SkeletonModifier3D
     public void Clear()
     {
         Calm = false;
+        _attentionWeight = 0; _attentionLeft = 0; _attentionDelay = 0;
         _master = 0; _grazeT = 0; _grazeLeft = 0; _liftLeft = 0; _earLeft = 0; _gustLeft = 0;
         if (_skeleton != null) Release();
     }

@@ -1,0 +1,8 @@
+test_paddock_wetness_defaults_to_dry_and_uses_explicit_clock (test_yard_atmosphere_contract.YardAtmosphereContractTests.test_paddock_wetness_defaults_to_dry_and_uses_explicit_clock) ... ok
+test_path_stays_opaque_and_shares_weather_inputs (test_yard_atmosphere_contract.YardAtmosphereContractTests.test_path_stays_opaque_and_shares_weather_inputs) ... ok
+test_wind_is_rooted_and_does_not_use_global_shader_state (test_yard_atmosphere_contract.YardAtmosphereContractTests.test_wind_is_rooted_and_does_not_use_global_shader_state) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK

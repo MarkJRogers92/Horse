@@ -107,8 +107,9 @@ namespace Cloverbrook.Domain
                 var childId = new HorseId(Guid.ParseExact(Canonical.Hash("conception/horse", scope).Substring(0, 32), "N"));
                 Reject(state.Horses.Any(h => h.HorseId.Equals(childId)), "identity_collision", "The next offspring identity already exists; investigate save integrity.");
             }
-            Reject(state.Horses.Any(h => HorseMarket.IsSold(h) ? false : !h.OwnerId.Equals(state.PlayerOwnerId) || h.HomeAssignment != HomeKind.ActiveStable),
-                "unsupported_population", "This prototype supports only owner-owned horses in the active stable.");
+            Reject(state.Horses.Any(h => HorseMarket.IsSold(h) ? false : !h.OwnerId.Equals(state.PlayerOwnerId)
+                || (h.HomeAssignment != HomeKind.ActiveStable && h.HomeAssignment != HomeKind.CooperativePasture)),
+                "unsupported_population", "This prototype supports owner-owned horses at the active stable or cooperative pasture.");
             Reject(state.PendingCapacityPlans.Any(p => p.BreedingId.Equals(eventId) || p.ReservationId.Equals(reservationId)),
                 "reservation_conflict", "This event or reservation is already held by another pending pairing.");
             Reject(state.Conceptions.Any(c => c.Capacity.ReservationId.Equals(reservationId)),
@@ -173,7 +174,7 @@ namespace Cloverbrook.Domain
                 { issues.Add(new EligibilityIssue("pending_capacity", "An existing confirmed capacity hold exceeds the supported calendar range.")); }
             }
             var slots = StableShop.Stalls(state); // D-022: built stalls add home places
-            var atHome = state.Horses.Count(h => !HorseMarket.IsSold(h)); // sold horses no longer use a home place
+            var atHome = HorsePasture.ActivePlacesUsed(state) - state.PendingCapacityPlans.Count;
             currentUsed = atHome + state.PendingCapacityPlans.Count;
             futureUsed = currentUsed + 1;
             var windowsProjected = false;
@@ -195,7 +196,7 @@ namespace Cloverbrook.Domain
                 issues.Add(new EligibilityIssue("capacity_overflow", "The projected capacity window exceeds the supported calendar range."));
             }
             if (currentUsed > slots) issues.Add(new EligibilityIssue("capacity_current", $"The current stable already exceeds its {slots} home places."));
-            if (futureUsed > slots) issues.Add(new EligibilityIssue("capacity_future", $"The pairing would exceed {slots} occupied or reserved stable places; build a stall or sell a horse."));
+            if (futureUsed > slots) issues.Add(new EligibilityIssue("capacity_future", $"The pairing would exceed {slots} occupied or reserved stable places; build a stall, board an adult in pasture or sell a horse."));
             var plan = new BreedingCapacityPlan(eventId, reservationId, state.CapacityRevision, rows);
             if (windowsProjected && plan.Validate(current, policy).Count != 0)
                 issues.AddRange(plan.Validate(current, policy));

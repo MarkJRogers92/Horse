@@ -63,6 +63,7 @@ namespace Cloverbrook.Domain
         internal static string? HorseProblem(StableSnapshot state, HorseRecord? horse)
         {
             if (horse == null || !horse.OwnerId.Equals(state.PlayerOwnerId) || HorseMarket.IsSold(horse)) return "that horse is not in your stable.";
+            if (horse.HomeAssignment != HomeKind.ActiveStable) return "return this horse to the active stable for hands-on care.";
             if (horse.LifeState.Stage == LifeStage.Unborn) return "the foal has not been born yet.";
             return null;
         }

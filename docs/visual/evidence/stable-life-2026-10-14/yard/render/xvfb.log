@@ -1,0 +1,92 @@
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for local
+_XSERVTransOpen: transport open failed for local/957b39afea71:99
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for local
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for unix
+_XSERVTransOpen: transport open failed for unix/957b39afea71:99
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for unix
+(EE) 
+Fatal server error:
+(EE) Cannot establish any listening sockets - Make sure an X server isn't already running(EE) 
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for local
+_XSERVTransOpen: transport open failed for local/957b39afea71:100
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for local
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for unix
+_XSERVTransOpen: transport open failed for unix/957b39afea71:100
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for unix
+(EE) 
+Fatal server error:
+(EE) Cannot establish any listening sockets - Make sure an X server isn't already running(EE) 
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for local
+_XSERVTransOpen: transport open failed for local/957b39afea71:101
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for local
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for unix
+_XSERVTransOpen: transport open failed for unix/957b39afea71:101
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for unix
+(EE) 
+Fatal server error:
+(EE) Cannot establish any listening sockets - Make sure an X server isn't already running(EE) 
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for local
+_XSERVTransOpen: transport open failed for local/957b39afea71:102
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for local
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for unix
+_XSERVTransOpen: transport open failed for unix/957b39afea71:102
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for unix
+(EE) 
+Fatal server error:
+(EE) Cannot establish any listening sockets - Make sure an X server isn't already running(EE) 
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for local
+_XSERVTransOpen: transport open failed for local/957b39afea71:103
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for local
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for unix
+_XSERVTransOpen: transport open failed for unix/957b39afea71:103
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for unix
+(EE) 
+Fatal server error:
+(EE) Cannot establish any listening sockets - Make sure an X server isn't already running(EE) 
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for local
+_XSERVTransOpen: transport open failed for local/957b39afea71:104
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for local
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for unix
+_XSERVTransOpen: transport open failed for unix/957b39afea71:104
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for unix
+(EE) 
+Fatal server error:
+(EE) Cannot establish any listening sockets - Make sure an X server isn't already running(EE) 
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for local
+_XSERVTransOpen: transport open failed for local/957b39afea71:105
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for local
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for unix
+_XSERVTransOpen: transport open failed for unix/957b39afea71:105
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for unix
+(EE) 
+Fatal server error:
+(EE) Cannot establish any listening sockets - Make sure an X server isn't already running(EE) 
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for local
+_XSERVTransOpen: transport open failed for local/957b39afea71:106
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for local
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for unix
+_XSERVTransOpen: transport open failed for unix/957b39afea71:106
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for unix
+(EE) 
+Fatal server error:
+(EE) Cannot establish any listening sockets - Make sure an X server isn't already running(EE) 
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for local
+_XSERVTransOpen: transport open failed for local/957b39afea71:107
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for local
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for unix
+_XSERVTransOpen: transport open failed for unix/957b39afea71:107
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for unix
+(EE) 
+Fatal server error:
+(EE) Cannot establish any listening sockets - Make sure an X server isn't already running(EE) 
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for local
+_XSERVTransOpen: transport open failed for local/957b39afea71:108
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for local
+_XSERVTransSocketOpenCOTSServer: Unable to open socket for unix
+_XSERVTransOpen: transport open failed for unix/957b39afea71:108
+_XSERVTransMakeAllCOTSServerListeners: failed to open listener for unix
+(EE) 
+Fatal server error:
+(EE) Cannot establish any listening sockets - Make sure an X server isn't already running(EE) 
+/workspace/scratch/46c24ac297cd/hair-toolchain/sysroot/usr/bin/xvfb-run: 91: kill: No such process
+

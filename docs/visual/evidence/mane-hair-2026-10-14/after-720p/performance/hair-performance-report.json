@@ -1,0 +1,62 @@
+{
+  "label": "cards",
+  "horseCount": 8,
+  "uniqueSeeds": 8,
+  "generatedHairNodes": 16,
+  "viewport": "(1280, 720)",
+  "engine": "4.7.2-stable (official)",
+  "startupMilliseconds": 1893.7317,
+  "startupRows": [
+    {
+      "family": "horse.standard.adult.v1",
+      "animation": "idle",
+      "presentMilliseconds": 773.0141
+    },
+    {
+      "family": "horse.compact.adult.v1",
+      "animation": "idle",
+      "presentMilliseconds": 207.438
+    },
+    {
+      "family": "horse.standard.foal.v1",
+      "animation": "idle",
+      "presentMilliseconds": 113.3413
+    },
+    {
+      "family": "horse.compact.foal.v1",
+      "animation": "idle",
+      "presentMilliseconds": 97.7618
+    },
+    {
+      "family": "horse.standard.adult.v1",
+      "animation": "walk",
+      "presentMilliseconds": 221.1587
+    },
+    {
+      "family": "horse.compact.adult.v1",
+      "animation": "walk",
+      "presentMilliseconds": 204.3202
+    },
+    {
+      "family": "horse.standard.foal.v1",
+      "animation": "walk",
+      "presentMilliseconds": 101.6868
+    },
+    {
+      "family": "horse.compact.foal.v1",
+      "animation": "walk",
+      "presentMilliseconds": 91.5533
+    }
+  ],
+  "warmupFrames": 60,
+  "measuredFrames": 120,
+  "frameMilliseconds": {
+    "mean": 383.20903833333335,
+    "median": 370.8090999999986,
+    "p95": 510.1727999999998,
+    "maximum": 858.1551000000004
+  },
+  "averageDrawCalls": 102,
+  "averagePrimitives": 417974,
+  "comparison": "Run baseline and changed checkout sequentially on the same hardware/backend/resolution. Startup includes first resource loads and eight presentations, but asynchronous shader compilation is absorbed by warmup. Software-renderer timings are comparative only and are not Mac FPS."
+}

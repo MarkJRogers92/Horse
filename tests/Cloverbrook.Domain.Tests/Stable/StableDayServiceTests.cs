@@ -337,8 +337,8 @@ namespace Cloverbrook.Domain.Tests
                 h.MigrationHistory, "unwritten");
             var movedSnapshot = new StableSnapshot(movedHeader, committed.PlayerOwnerId, moved, committed.OpeningCoinBalance, committed.CapacityRevision,
                 committed.Ledger, committed.PendingCapacityPlans, committed.Conceptions, committed.DailyState);
-            store.SaveSnapshot(movedSnapshot, committed.Header.SaveRevision);
-            Assert.Equal(HomeKind.CooperativePasture, store.Load().State.Horses.Single(horse => horse.HorseId.Equals(activeHorse.HorseId)).HomeAssignment);
+            Assert.Throws<SaveIntegrityException>(() => store.SaveSnapshot(movedSnapshot, committed.Header.SaveRevision));
+            Assert.Equal(HomeKind.ActiveStable, store.Load().State.Horses.Single(horse => horse.HorseId.Equals(activeHorse.HorseId)).HomeAssignment);
         }
 
         [Theory]

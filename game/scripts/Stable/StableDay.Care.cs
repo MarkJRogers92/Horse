@@ -62,6 +62,15 @@ public partial class StableDay
             actions.AddChild(button);
         }
         box.AddChild(actions);
+        var groomBlock = HorseBond.BlockReason(_state, horseId, "brush");
+        var groom = CozyTheme.WithIcon(new Button
+        {
+            Text = "Groom by hand", CustomMinimumSize = new Vector2(0, 40),
+            Disabled = groomBlock != null || _busy || _recoveryRequired,
+            TooltipText = groomBlock ?? "Brush dusty patches yourself for today's usual brush bond.",
+        }, "grooming", 24);
+        groom.Pressed += () => ShowGrooming(horseId);
+        box.AddChild(groom);
         // D-032: during a festival week there is a fourth, once-a-day interaction.
         var festival = Festivals.Current(_state.Header.CalendarDay);
         if (festival != null)

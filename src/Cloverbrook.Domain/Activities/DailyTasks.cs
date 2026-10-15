@@ -54,7 +54,7 @@ namespace Cloverbrook.Domain
         public static TransactionId StreakCreditId(SaveId saveId, int day) => Id("daily-tasks.streak.v1", saveId, day);
 
         private static IReadOnlyList<HorseRecord> Horses(StableSnapshot state) => state.Horses
-            .Where(h => h.OwnerId.Equals(state.PlayerOwnerId) && !HorseMarket.IsSold(h) && h.LifeState.Stage != LifeStage.Unborn)
+            .Where(h => h.OwnerId.Equals(state.PlayerOwnerId) && !HorseMarket.IsSold(h) && h.HomeAssignment == HomeKind.ActiveStable && h.LifeState.Stage != LifeStage.Unborn)
             .OrderBy(h => h.HorseId.ToString(), StringComparer.Ordinal).ToArray();
 
         private static string Score(StableSnapshot state, string candidate) => Canonical.Hash(Version, state.Header.SaveId.ToString(),

@@ -169,7 +169,7 @@ namespace Cloverbrook.Domain
 
         /// <summary>The player's adult horses that may be shown, whatever the week's state.</summary>
         public static bool IsEligibleHorse(StableSnapshot state, HorseRecord horse) =>
-            horse.OwnerId.Equals(state.PlayerOwnerId) && !HorseMarket.IsSold(horse) && horse.LifeState.Stage == LifeStage.Adult;
+            horse.OwnerId.Equals(state.PlayerOwnerId) && !HorseMarket.IsSold(horse) && horse.HomeAssignment == HomeKind.ActiveStable && horse.LifeState.Stage == LifeStage.Adult;
 
         /// <summary>Why this horse cannot enter, or null.</summary>
         public static string? BlockReason(StableSnapshot state, HorseId horseId)
@@ -179,6 +179,7 @@ namespace Cloverbrook.Domain
             var horse = state.Horses.SingleOrDefault(h => h.HorseId.Equals(horseId));
             if (horse == null || !horse.OwnerId.Equals(state.PlayerOwnerId)) return "that horse is not in your stable.";
             if (HorseMarket.IsSold(horse)) return "it lives at " + HorseMarket.BuyerName + " now.";
+            if (horse.HomeAssignment != HomeKind.ActiveStable) return "return this horse to the active stable before entering a show.";
             if (horse.LifeState.Stage != LifeStage.Adult) return "only adult horses can be shown.";
             if (state.Coins < EntryFee) return $"the entry fee is {EntryFee} coins.";
             return null;

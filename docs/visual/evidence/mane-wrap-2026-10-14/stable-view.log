@@ -1,0 +1,14 @@
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1435)
+DIAG adult Mane count=1963 z=-0.09146108478308/0.16368839144707 material=ShaderMaterial solid=true color=(0.0667, 0.051, 0.0549, 1.0) tip=(0.1647, 0.1137, 0.0941, 1.0) grey=0.0
+DIAG adult ManeCards count=5940 z=-0.1101071536541/0.17603480815887 material=ShaderMaterial solid=false color=(0.0667, 0.051, 0.0549, 1.0) tip=(0.1647, 0.1137, 0.0941, 1.0) grey=0.0
+TRANSFORM adult determinant=0.98477786779404
+DIAG foal Mane count=364 z=-0.01799999922514/0.01799999922514 material=ShaderMaterial solid=true color=(0.0667, 0.051, 0.0549, 1.0) tip=(0.1647, 0.1137, 0.0941, 1.0) grey=0.0
+DIAG foal ManeCards count=3900 z=-0.08442430198193/0.1027120500803 material=ShaderMaterial solid=false color=(0.0667, 0.051, 0.0549, 1.0) tip=(0.1647, 0.1137, 0.0941, 1.0) grey=0.0
+TRANSFORM foal determinant=0.98477786779404
+STABLE_PAIR_DONE

@@ -88,6 +88,7 @@ public partial class StableYard : Node3D
     public override void _Process(double delta)
     {
         _time += delta;
+        UpdateAtmosphere(delta);
         // Slow cinematic drift plus easing toward a selected horse.
         var drift = new Vector3(Mathf.Sin((float)_time * 0.08f) * 0.6f, Mathf.Sin((float)_time * 0.11f) * 0.12f, 0);
         float k = 1f - Mathf.Exp(-2.5f * (float)delta);
@@ -104,7 +105,11 @@ public partial class StableYard : Node3D
         _lookTarget = _lookTarget.Lerp(_targetGoal, k);
         _camera.Position = _camera.Position.Lerp(_cameraGoal + drift, k);
         _camera.LookAt(_lookTarget, Vector3.Up);
-        if (Wandering) foreach (var (key, presenter) in _horses) Wander(key, presenter, delta);
+        if (Wandering)
+        {
+            UpdateSocial(delta);
+            foreach (var (key, presenter) in _horses) Wander(key, presenter, delta);
+        }
         if (Wandering && _emotes.Count > 0) UpdateEmotes();
         if (Wandering && !PhotoMode) AmbientHorseVoices(delta);
     }
@@ -147,14 +152,23 @@ public partial class StableYard : Node3D
         if (key == _focusedKey)
         {
             if (w.Walking) StopWalking(presenter, w);
+            w.Target = null;
             return;
         }
 
         if (w.Target is { } target)
         {
             var to = target - presenter.Position; to.Y = 0;
-            float yawGoal = Mathf.RadToDeg(Mathf.Atan2(-to.Z, to.X));
+            var direction = SteerAroundHorses(presenter, to.Normalized());
+            float yawGoal = Mathf.RadToDeg(Mathf.Atan2(-direction.Z, direction.X));
             float yaw = Mathf.RadToDeg(Mathf.LerpAngle(Mathf.DegToRad(presenter.RotationDegrees.Y), Mathf.DegToRad(yawGoal), 1f - Mathf.Exp(-1.8f * (float)delta)));
+            float oldYaw = presenter.Rotation.Y;
+            float nextYaw = Mathf.DegToRad(yaw);
+            if (!ClearStep(presenter, presenter.Position, nextYaw))
+            {
+                Yield(presenter, w, key);
+                return;
+            }
             presenter.RotationDegrees = new Vector3(0, yaw, 0);
             float facing = Mathf.Abs(Mathf.AngleDifference(Mathf.DegToRad(yaw), Mathf.DegToRad(yawGoal)));
             if (w.Walking)
@@ -167,8 +181,15 @@ public partial class StableYard : Node3D
                     Mathf.Clamp(distance / ArrivalSlowMeters, MinWalkPace, 1f));
                 w.Pace = Mathf.MoveToward(w.Pace, wanted, PaceChangePerSecond * delta);
                 presenter.SetPace(w.Pace);
-                presenter.Position += presenter.Basis.X.Normalized() * (float)(presenter.EffectiveSpeedMetersPerSecond * delta);
-                if (distance < ArrivalStopMeters) { StopWalking(presenter, w); w.Target = null; w.RestLeft = _rng.RandfRange(5, 12); }
+                var nextPosition = presenter.Position + presenter.Basis.X.Normalized() * (float)(presenter.EffectiveSpeedMetersPerSecond * delta);
+                if (!ClearStep(presenter, nextPosition, nextYaw))
+                {
+                    presenter.Rotation = new Vector3(0, oldYaw, 0);
+                    Yield(presenter, w, key);
+                    return;
+                }
+                presenter.Position = nextPosition;
+                if (distance < ArrivalStopMeters) { StopWalking(presenter, w); w.Target = null; w.RestLeft = RestDuration(key, 5, 12); OnSocialArrival(key, presenter); }
             }
             else if (facing < 0.05f)
             {
@@ -187,6 +208,7 @@ public partial class StableYard : Node3D
         // Let the head come up (and the tail settle) before any walk or turn starts.
         if (presenter.IdleLife is { } resting && resting.Offset > 0.02f) { resting.Calm = false; return; }
         var next = PickSpot(presenter, key);
+        if (next.DistanceTo(presenter.Position) < ArrivalStopMeters) { w.RestLeft = RestDuration(key, 3, 6); return; }
         w.Target = next;
         w.Walking = false;
         // Decide from the descriptor so a body shape without a checked Walk never loads (and
@@ -237,6 +259,8 @@ public partial class StableYard : Node3D
             return ClampToPaddock(anchor + new Vector3(1.2f, 0, 0.6f));
         }
 
+        if (_weather != YardWeather.Rain && TryCompanionSpot(self, key) is { } company) return company;
+
         // D-030: on rain (or snow) days horses drift toward the barn side of the paddock, the back edge under the stable block.
         bool shelter = _weather == YardWeather.Rain;
         float clearance = shelter ? 2.0f : 2.6f;
@@ -281,6 +305,7 @@ public partial class StableYard : Node3D
         {
             stale.Presenter.QueueFree();
             _wander.Remove(stale.Presenter);
+            _social.Remove(stale.Key);
             _tags.Remove(stale.Presenter);
             _horses.Remove(stale);
         }
@@ -425,6 +450,7 @@ public partial class StableYard : Node3D
     /// <summary>Light up one horse's name tag (from the yard pointer or its roster card); null clears it.</summary>
     public void Highlight(string? key)
     {
+        if (_hoverKey != key && key != null) ReactToApproach(key);
         _hoverKey = key;
         foreach (var (k, presenter) in _horses)
             if (_tags.TryGetValue(presenter, out var tag))
@@ -563,6 +589,7 @@ public partial class StableYard : Node3D
     {
         var previous = _focusedKey;
         _focusedKey = key;
+        if (key != null && key != previous) ReactToApproach(key);
         var presenter = _horses.FirstOrDefault(h => h.Key == key).Presenter;
         // D-036: a resting horse sometimes answers a click with a soft nicker.
         if (presenter != null && key != previous && Wandering && IsResting(presenter) && _rng.Randf() < 0.45f)
@@ -783,6 +810,7 @@ public partial class StableYard : Node3D
         if (s == 3) _petals.Amount = raining ? 480 : 220; // a winter "rain" day is a snowy one
         else if (s != 1) _petals.Emitting = !raining; // no blossom or leaves drifting through the rain
         else _petals.Emitting = false;
+        ApplyAtmosphereWeather();
     }
 
     private static CpuParticles3D Rain()
@@ -821,6 +849,7 @@ public partial class StableYard : Node3D
 
         var rng = new RandomNumberGenerator { Seed = 11 };
         AddChild(GrassAndFlowers(rng));
+        InitializeAtmosphere(path);
         var hill = Sets.Mat(Color.FromHtml("#b3d39c"), 1f);
         _hillMat = hill;
         for (var i = 0; i < 9; i++)

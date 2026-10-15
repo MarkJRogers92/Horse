@@ -1,0 +1,26 @@
+[
+  {
+    "first": "07_puddles_close.png",
+    "second": "08_puddles_motion.png",
+    "changedPixelsOver3RGB": 20192,
+    "totalPixels": 921600,
+    "differenceBounds": [
+      0,
+      2,
+      1280,
+      720
+    ]
+  },
+  {
+    "first": "09_wind_a.png",
+    "second": "10_wind_b.png",
+    "changedPixelsOver3RGB": 99238,
+    "totalPixels": 921600,
+    "differenceBounds": [
+      0,
+      150,
+      1280,
+      720
+    ]
+  }
+]

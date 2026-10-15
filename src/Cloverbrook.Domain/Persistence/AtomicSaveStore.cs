@@ -265,6 +265,39 @@ namespace Cloverbrook.Domain
             return SaveSnapshotUnlocked(current, replacement, expectedSaveRevision);
         }
 
+        /// <summary>D-040: sets an owned horse's home atomically. Repeating an achieved destination does not write again.</summary>
+        public StableSnapshot CommitPastureTransfer(OwnerId requester, HorseId horseId, ulong expectedSaveRevision,
+            ulong expectedHorseRevision, HomeKind destination)
+        {
+            Check.NotNull(requester, nameof(requester)); Check.NotNull(horseId, nameof(horseId));
+            using var held = Lock(); var current = RequirePrimary();
+            if (!current.PlayerOwnerId.Equals(requester))
+                throw new StableCommandRejectedException("ownership", "Only the stable owner can move these horses.");
+            var horse = current.Horses.SingleOrDefault(h => h.HorseId.Equals(horseId));
+            if (horse == null) throw new StableCommandRejectedException("horse_missing", "This horse is no longer in the saved stable.");
+            if (!horse.OwnerId.Equals(requester)) throw new StableCommandRejectedException("ownership", "Only the horse's owner can move it.");
+            if (destination != HomeKind.ActiveStable && destination != HomeKind.CooperativePasture)
+                throw new StableCommandRejectedException("home_unavailable", "Choose the active stable or cooperative pasture.");
+            if (horse.HomeAssignment == destination) return current;
+            if (current.Header.SaveRevision != expectedSaveRevision)
+                throw new StableCommandRejectedException("stale_save", "The stable changed; reload before moving this horse.");
+            if (horse.Revision != expectedHorseRevision)
+                throw new StableCommandRejectedException("stale_horse", "This horse changed; reload before moving it.");
+            var block = HorsePasture.BlockReason(current, horseId, destination);
+            if (block != null) throw new StableCommandRejectedException("pasture_unavailable", block);
+            var moved = new HorseRecord(horse.HorseId, horse.Name, horse.Parentage, horse.Genome, horse.ResolverVersion,
+                horse.AppearanceSeed, horse.OwnerId, horse.LifeState, horse.ReproductionState, horse.DevelopmentalFactors,
+                horse.InheritedGamePotential, horse.TrainingState, horse.PlayerKnowledge, horse.CosmeticState, destination,
+                horse.OriginRecord, horse.OriginCommitId, horse.BirthDay, checked(horse.Revision + 1));
+            var header = SaveHeaders.Copy(current.Header, revision: checked(current.Header.SaveRevision + 1),
+                schema: StableSnapshot.SchemaVersion, payloadHash: "unwritten");
+            var replacement = new StableSnapshot(header, current.PlayerOwnerId,
+                current.Horses.Select(h => h.HorseId.Equals(horseId) ? moved : h), current.OpeningCoinBalance,
+                checked(current.CapacityRevision + 1), current.Ledger, current.PendingCapacityPlans, current.Conceptions,
+                current.DailyState, current.LegacyLifecycleBaselines);
+            return Publish(replacement, preserveCurrentAsBackup: true);
+        }
+
         /// <summary>D-010: sells a bred adult to the club buyer for its current quote. An exact repeat returns the saved sale.</summary>
         public StableSnapshot CommitSale(OwnerId requester, HorseId horseId, ulong expectedSaveRevision, long quotedPrice)
         {
@@ -447,8 +480,9 @@ namespace Cloverbrook.Domain
                 throw new SaveIntegrityException("Generic saves cannot advance or reseed breeding randomness.");
             var oldHorses = current.Horses.ToDictionary(h => h.HorseId);
             if (oldHorses.Count != replacement.Horses.Count || replacement.Horses.Any(h => !oldHorses.TryGetValue(h.HorseId, out var old)
-                    || !StableSnapshot.SameInheritedIdentity(old, h) || h.Revision < old.Revision || !StableSnapshot.SameLifecycleState(old, h)))
-                throw new SaveIntegrityException("Generic saves cannot add/remove horses, rewrite inheritance or rewind horse revisions.");
+                    || !StableSnapshot.SameInheritedIdentity(old, h) || h.Revision < old.Revision || !StableSnapshot.SameLifecycleState(old, h)
+                    || old.HomeAssignment != h.HomeAssignment))
+                throw new SaveIntegrityException("Generic saves cannot add/remove horses, change homes, rewrite inheritance or rewind horse revisions.");
             return Publish(replacement, preserveCurrentAsBackup: true);
         }
         private static string LedgerKey(StableSnapshot state) => Canonical.Hash(state.Ledger.Select(l => Canonical.Hash(l.Id.ToString(), l.Kind,

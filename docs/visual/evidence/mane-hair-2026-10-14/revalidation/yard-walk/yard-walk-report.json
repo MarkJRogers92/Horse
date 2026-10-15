@@ -1,0 +1,16 @@
+{
+  "checks": 95442,
+  "simulatedSeconds": 240,
+  "walkFrames": 23590,
+  "walkStarts": 109,
+  "bridgeSwaps": 217,
+  "foalMeanGapMeters": 1.789883801614086,
+  "foalMaxGapMeters": 4.796546936035156,
+  "grazeFrames": 15740,
+  "sunnyMeanZ": 0.01861557400585097,
+  "rainMeanZ": -0.7461509639189162,
+  "maxPaceErrorMetersPerSecond": 9.392499907778795E-06,
+  "maxHandoverFootSlipMeters": 0.004999982272584968,
+  "maxGroundSpeedMetersPerSecond": 0.7497868314385414,
+  "maxSingleFrameStepMeters": 0.012496447190642357
+}

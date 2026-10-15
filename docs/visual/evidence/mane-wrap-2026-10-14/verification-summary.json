@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-14",
+  "sourceBase": "085c14a",
+  "sourceFrozen": true,
+  "renderer": "Godot 4.7.2 GL Compatibility / OpenGL3, Linux Mesa llvmpipe",
+  "checks": {
+    "domainPassed": 342,
+    "gameBuildWarnings": 0,
+    "gameBuildErrors": 0,
+    "handoffValidator": "OK",
+    "headlessHairChecks": 1633918,
+    "renderedHairChecks": 1634086,
+    "renderedHairImages": 116,
+    "transitions": 3708,
+    "yard": 71379,
+    "mainSmoke": "PASS",
+    "stableDay": "PASS",
+    "lifecycle": "PASS",
+    "breeding": "PASS",
+    "wrapperExit": 0
+  },
+  "knownWarnings": [
+    "Compatibility renderer V-Sync / screen-space AA unavailable",
+    "Deliberate unsupported-fixture warnings",
+    "Lifecycle/breeding shutdown: 8 objects / 4 resources, same as prior D-039 logs"
+  ],
+  "limits": [
+    "No physical-Mac or target-GPU measurement",
+    "Small pale-foal crest seams and existing deep-graze steps remain"
+  ],
+  "sourceFiles": [
+    "game/scripts/Visual/HairCards.cs",
+    "game/shaders/horse_hair.gdshader",
+    "game/scripts/Tools/HairCardsProbe.cs"
+  ]
+}
