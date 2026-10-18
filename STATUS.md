@@ -167,3 +167,15 @@ Fixes how the existing Idle/Walk clips are played; no new clip, mesh or rig, and
 - **Tools:** `tools/meshy/meshy.py` (generate / image / balance; ledger `art/scenery/meshy/ledger.json`; refuses below the owner's 350-credit reserve), `tools/audio/synth.py`, `tools/horse/author_gallop.py` (bpy 5.2.2), `scenes/tools/WalkShapeAudit.tscn`, stable flags `--hub-preview=DIR [--foaling-demo --hub-birth]`, menu `--menu-preview=FILE`.
 - **Cloud session setup:** `apt-get install dotnet-sdk-8.0 mesa-vulkan-drivers xvfb libgl1 libegl1 libegl-mesa0`; Godot 4.7.2 mono from GitHub releases; `pip install bpy==5.2.2`; Meshy key is a network secret on `api.meshy.ai` (downloads from `assets.meshy.ai`).
 - **Known limits:** gallop is stylised and not IK-planted; foals have no gallop; Meshy foliage fails (bush/topiary) — use the web app's free retries; audio is synthesized (a licensed score can replace the files by name).
+
+## D-045 feed trough checkpoint (2026-10-18)
+
+D-044 gallery merged to main as 4449bd9 after domain and visual CI passed; rendered
+gallery screenshots inspected. Current branch feat/feed-trough-scenery adds one
+Blender-authored decorative trough through the existing scenery loader, with
+original source and reproducible builder. No care/save/domain behavior changes.
+Validation: two binary/registration integrity tests pass; game build has zero
+warnings/errors; Godot 4.7.2 runtime yard check passes (new textured prop and
+existing water trough both present). Initial runtime check raced asset import;
+a rerun after import completed passed. Next: review actual
+yard placement and publish the isolated branch for review.
