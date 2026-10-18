@@ -179,3 +179,7 @@ warnings/errors; Godot 4.7.2 runtime yard check passes (new textured prop and
 existing water trough both present). Initial runtime check raced asset import;
 a rerun after import completed passed. Next: review actual
 yard placement and publish the isolated branch for review.
+
+D-045 additional asset: prepared wooden bucket placed beside supplies using the same loader. Height0.60m, 5,007triangles (seven above requested target), source norms retained. Existing care and water trough unchanged. Local game build passes with zero warnings/errors; final combined yard and integrity checks recorded below after execution.
+Final combined validation: game build 0 warnings/errors, two integrity tests pass,
+and FEED_TROUGH_AND_BUCKET_YARD_OK from Godot 4.7.2 after complete asset import.

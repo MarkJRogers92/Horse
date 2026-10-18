@@ -947,6 +947,7 @@ public partial class StableYard : Node3D
         Place("water_trough", 0.85f, new Vector3(4.4f, 0, -3.8f), 75f, () => FallbackTrough());
         // D-045: decorative feed trough; existing care and water-trough behavior are unchanged.
         Place("feed_trough", 0.85f, new Vector3(-1.8f, 0, -13.1f), 10f, () => new Node3D());
+        Place("stable_bucket", 0.60f, new Vector3(-0.8f, 0, -12.5f), -15f, () => new Node3D());
         Place("stable_block", 5.2f, new Vector3(8.6f, 0, -15.5f), -18f, () => new Node3D());
         Place("planter_box", 0.75f, new Vector3(-8.2f, 0, -13.0f), 10f, () => new Node3D());
         Place("planter_box", 0.75f, new Vector3(1.3f, 0, -13.2f), 10f, () => new Node3D());

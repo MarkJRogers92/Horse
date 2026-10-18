@@ -5,6 +5,7 @@ class TroughTests(unittest.TestCase):
   source=(ROOT/'game/scripts/Stable/StableYard.cs').read_text()
   self.assertIn('Place("feed_trough", 0.85f, new Vector3(-1.8f, 0, -13.1f)',source)
   self.assertIn('Place("water_trough"',source)
+  self.assertIn('Place("stable_bucket", 0.60f',source)
  def test_mesh_budget_and_embedded_texture(self):
   p=ROOT/'game/assets/scenery/feed_trough/feed_trough.glb'
   self.assertTrue(p.exists())

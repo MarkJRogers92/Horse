@@ -16,3 +16,7 @@ owner's asset archive. Provider/reference commercial rights remain unverified.
 Budget: 4,428 triangles, two materials, one embedded 256px texture, roughly
 383 KiB GLB. Source Blender file and deterministic builder are retained. No
 Meshy credits or new purchases were used. Placement needs visual review in-yard.
+
+## Bucket addition
+
+Add the prepared Meshy bucket as separate decorative scenery beside supplies. It is 0.60m tall including handle and has 5,007triangles, seven over the requested target. Source/render/Godot import checks completed; rear band has small irregularities. Uses15credits from the original60credit budget; no additional purchases. No behavior, collision, economy or saves change.

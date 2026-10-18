@@ -1,0 +1,29 @@
+{
+  "asset": "wooden stable bucket",
+  "pipeline": [
+    "Higgsfield Soul2.0",
+    "Meshy T2.5 Smart Topology",
+    "Blender scale and pivot preparation"
+  ],
+  "source_original_preserved": true,
+  "mesh_triangles": 5007,
+  "requested_triangle_target": 5000,
+  "triangle_target_excess": 7,
+  "mesh_materials": 1,
+  "textures": "3 embedded 2048px PBR textures",
+  "height_m_including_handle": 0.6,
+  "pivot": "bottom center",
+  "credits_spent": 15,
+  "total_approved_meshy_spend_now": 60,
+  "generation_budget_remaining": 0,
+  "new_purchase": false,
+  "model_sha256": "36202631a7100d3977ac44a2738d975750b4c2a002d6efbdb196ea116292185a",
+  "godot_4_6_3_import": "passed textured mesh and triangle checks",
+  "rights": "unverified",
+  "production_ready": false,
+  "notes": [
+    "Original normals retained after recomputation introduced visible metal-band faceting.",
+    "Some irregularities on rear metal band remain; not a watertight or physics-certified object.",
+    "No collision, rig, animation or gameplay interaction."
+  ]
+}

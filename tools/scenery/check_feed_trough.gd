@@ -11,7 +11,10 @@ func run():
  assert(holders[0].find_children('*','MeshInstance3D',true,false).size() > 0)
  assert(is_equal_approx(holders[0].position.y,0.0))
  assert(get_nodes_in_group('scenery_water_trough').size() == 1)
- print('FEED_TROUGH_YARD_OK')
+ var buckets = get_nodes_in_group('scenery_stable_bucket')
+ assert(buckets.size() == 1)
+ assert(buckets[0].find_children('*','MeshInstance3D',true,false).size() > 0)
+ print('FEED_TROUGH_AND_BUCKET_YARD_OK')
  yard.queue_free()
  await process_frame
  script.ReleaseCaches()
