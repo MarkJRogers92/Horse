@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "created_on": "2026-10-18",
+  "usage": "illustration_gallery_only",
+  "commercial_release_cleared": false,
+  "license_status": "unverified; generation-service terms and account entitlement must be checked before commercial release",
+  "provider": "Higgsfield",
+  "model": "Soul 2.0",
+  "quality": "1.5k",
+  "enhance": false,
+  "provenance_note": "Original user-authorized generated downloads. Black and foal prompts were observed in the generation UI; palomino prompt comes from the generation manifest. No image editing or new generation was performed for this integration.",
+  "assets": [
+    {
+      "file": "horse-02-palomino-card.png",
+      "title": "Golden palomino study",
+      "description": "A warm golden portrait with a cream mane and white blaze.",
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "sha256": "81752bd095b4a16eb207b9820145c66f5887713ee5046f6b45727781870395a0",
+      "paid_credits": 0,
+      "genotype_verified": false,
+      "quality_notes": "Baked white rounded corners. Original pixels retained.",
+      "prompt": "Square breeding-card portrait for a cozy 3D horse breeding and stable-management game. One adult palomino horse with a clean white blaze, golden coat, cream-white mane. Centered head, neck and upper chest, calm three-quarter view looking gently toward the viewer, both ears fully within frame with generous safe margins, anatomically plausible expressive face. Soft neutral daylight from upper left, muted sage meadow bokeh background with very low detail. High-quality realistic 3D render with approachable warmth and gentle natural colors. Readable face at small card size. No rider, no tack, no saddle, no text, no logo, no UI, no border, no frame. Opaque quiet background."
+    },
+    {
+      "file": "horse-04-black-card.png",
+      "title": "Black horse study",
+      "description": "A dark-coated adult portrait with a small white forehead marking.",
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "sha256": "b616f72cb7c2a0f7406cb169ee66efee0671cb84d8e0bbb868d844f998854c4e",
+      "paid_credits": 0,
+      "genotype_verified": false,
+      "quality_notes": "Baked dark rounded corners; forehead star was not requested. Coat and markings are illustrative only.",
+      "prompt": "Square full-bleed realistic horse portrait for a cozy horse breeding game. One elegant black adult horse, centered head neck and upper chest, calm three-quarter view, both ears completely visible with generous margins. Soft neutral daylight from upper left, muted sage meadow bokeh background. Natural anatomy, glossy black coat, warm brown eyes, no tack. Consistent polished realistic game illustration, face readable at small size. Continuous opaque background to every straight edge and corner. No text, logos, border, frame, rounded corners, card mockup, rider or saddle."
+    },
+    {
+      "file": "horse-03-foal-variation.png",
+      "title": "Spotted foal study",
+      "description": "A young spotted-horse illustration with warm brown markings.",
+      "dimensions": [
+        1536,
+        1536
+      ],
+      "sha256": "6cbd342f291b221ad24b2c7f9c2e73fa84d7421638f3faf2bd173f1b80d4231c",
+      "paid_credits": 0,
+      "genotype_verified": false,
+      "quality_notes": "Baked light frame and dark corners; frontal pose differs from requested three-quarter view. Pattern is not a validated Appaloosa genotype.",
+      "prompt": "Square full-bleed horse portrait illustration, continuous background extends to all four straight image edges and corners. One young spotted Appaloosa foal, white coat with warm brown spots and short soft mane. Centered head, neck and upper chest, calm three-quarter view looking gently toward the viewer, both ears fully within frame with generous safe margins, anatomically plausible youthful equine face. Soft neutral daylight from upper left, muted sage meadow bokeh background with very low detail. High-quality realistic 3D render with approachable warmth and gentle natural colors, for a cozy horse-breeding game. Readable face at small size. No rider, no tack, no saddle, no text, no logo, no UI, no border, no frame, no rounded corners, no card mockup. Opaque full-bleed background."
+    }
+  ],
+  "background": {
+    "file": "horse-05-stable-background.png",
+    "dimensions": [
+      1696,
+      960
+    ],
+    "sha256": "52888c06bca21960dc789513f101ea8d7b93056ddc23a8580c26b06a9e3a93ea",
+    "paid_credits": 0,
+    "display_region": [
+      0,
+      0,
+      1696,
+      730
+    ],
+    "quality_notes": "Original contains baked fake menu text below the retained region and distant horses despite the prompt. The game displays only the clean upper region through an AtlasTexture; the original is unedited.",
+    "prompt": "Cozy horse game environment background: sunlit timber stable courtyard, warm wooden stalls, flower boxes, neatly stacked hay bales, clean stone path, rolling green pasture beyond. Inviting realistic stylized game illustration, gentle morning light, warm natural colors. Clear quiet central foreground with ample negative space for menu buttons, no horses or people, no text, no signs, no logos, no border or frame. Beautiful polished rural environment."
+  }
+}

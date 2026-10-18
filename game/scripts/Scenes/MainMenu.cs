@@ -89,6 +89,9 @@ public partial class MainMenu : Node
         settings.Pressed += () => _settings.Visible = true;
         extras.AddChild(settings);
         box.AddChild(extras);
+        var art = new HBoxContainer();
+        AddSmallButton(art, "Concept portraits", "res://scenes/concept_portraits.tscn");
+        box.AddChild(art);
         var quit = new Button { Text = "Quit", CustomMinimumSize = new Vector2(320, 40) }; quit.Pressed += () => GetTree().Quit(); box.AddChild(quit);
         BuildSettings(root);
 

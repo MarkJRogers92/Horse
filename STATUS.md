@@ -4,6 +4,14 @@
 **Working branch:** `gpt/stable-life-upgrades` from the local hair checkpoint `4838a56`; owner approved push, merge to `main`, and a new Mac download on 2026-10-14. Remote `main` was verified at the original baseline `4091290` before publication. **Previous branch history:** `claude/loving-dijkstra-82tjzx` (animation playback fixes, fast-forwarded from `claude/eloquent-davinci-o1hhr6` c223a2e, which contains `main`). D-012 work continues on `claude/eloquent-davinci-o1hhr6`. Previous: `claude/relaxed-ride-9c5tto`. It contains every other active branch: `codex/horse-production-library`, which itself contains `claude/godot-horse-visual-pilot` and `claude/great-euler-hq83x3`, plus a merge of `rea/horse-coat-preview`. The animation archive (`archive/horse-animation-experiments-2026-10-10`) is intentionally not merged.
 **History:** the full checkpoint log up to 2026-10-12 is in [`docs/history/STATUS_LOG_to_2026-10-12.md`](docs/history/STATUS_LOG_to_2026-10-12.md). Search it with `grep -n '^#'`. Keep this page short: replace sections instead of stacking new ones on top.
 
+## D-044 generated concept artwork checkpoint (2026-10-18)
+
+Owner authorized saving generated assets and integrating them into the games. Review branch `codex/higgsfield-portrait-gallery`, based on playable `main` at `93f569b`. Adds Extras concept-art gallery with three preserved originals and a cropped stable backdrop; owned-horse genetic portraits remain unchanged. Source hashes, defects and unverified release rights are recorded. No save schema or domain changes.
+
+Verified on cloud: 342/342 domain tests (single-node run), game warnings-as-errors build 0 warnings/errors, frozen-spec validator, 3 original-integrity tests and 31 headless gallery navigation/layout checks. Final headless run exited cleanly after explicit audio teardown. Native rendered verification remains unavailable in this cloud display environment; CI includes rendered gallery captures. Initial solution-wide parallel test invocation hit a sandbox pipe error; targeted single-node domain run passed.
+
+Next: publish this review branch and verify visual CI before merge or distribution. No release build or merge is claimed.
+
 ## D-040–D-043 local stable-life review (2026-10-14)
 
 Owner approved reversible pasture, visible personalities/social interactions, optional hands-on grooming with quick care retained, and weather/landscape atmosphere. The planner is excluded. This branch builds on D-039 at `4838a56`. The owner approved publishing and merging on 2026-10-14 after reviewing the delivery. No purchase, new generated asset or save-schema change.
