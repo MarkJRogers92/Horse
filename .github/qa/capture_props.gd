@@ -10,7 +10,7 @@ func run():
  var camera = Camera3D.new()
  root.add_child(camera)
  camera.position = Vector3(0.2, 2.3, -8.8)
- camera.look_at(Vector3(-1.3, 0.45, -12.8))
+ camera.look_at(Vector3(-1.9, 0.60, -12.8))
  camera.current = true
  camera.fov = 42
  root.size = Vector2i(1280, 720)

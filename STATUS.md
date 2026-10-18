@@ -183,3 +183,12 @@ yard placement and publish the isolated branch for review.
 D-045 additional asset: prepared wooden bucket placed beside supplies using the same loader. Height0.60m, 5,007triangles (seven above requested target), source norms retained. Existing care and water trough unchanged. Local game build passes with zero warnings/errors; final combined yard and integrity checks recorded below after execution.
 Final combined validation: game build 0 warnings/errors, two integrity tests pass,
 and FEED_TROUGH_AND_BUCKET_YARD_OK from Godot 4.7.2 after complete asset import.
+
+## D-045 porch placement correction (2026-10-18)
+
+Both asset PRs merged after CI passed. A dedicated real-renderer close-up found
+these new props intersecting the barn porch at y=0. Ray/triangle checks measured
+porch surfaces at y=0.3058 and 0.3095. Raise both to y=0.31 and move the bucket
+left of the trough to avoid the saddle rack. Updated integrity test failed before
+the fix, passed after; game build 0 warnings/errors and combined yard check pass.
+Focused rendered recheck and CI are pending on qa/scenery-closeup.
