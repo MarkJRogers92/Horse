@@ -204,3 +204,12 @@ Focused rendered recheck and CI are pending on qa/scenery-closeup.
 - Published draft PR #5: https://github.com/MarkJRogers92/Horse/pull/5. Remote `75e9544` exactly matches local `9375f94` tree. Focused evidence: https://github.com/MarkJRogers92/Horse/actions/runs/39186048636/artifacts/12158740172. Independent review found no blocking issues; local locomotion also passed 71,379 checks.
 - Broad visual CI twice timed out after the unchanged concept-gallery probe passed 33 checks. The bounded follow-up changes only the test harness: unload the final menu, drain frames, release scenery/horse caches, then quit. New teardown assertions failed before the fix and pass afterward (33 headless checks, clean exit). Timeout enforcement is unchanged. The short training workflow now checks rendered gallery shutdown too.
 - Handoff: implementation and focused rendered review complete; final CI verification of the teardown follow-up pending. Leave PR #5 in draft for owner review; do not merge or deploy.
+
+### D-046 rendered-exit isolation
+
+The narrow cleanup did not solve rendered exit: final-head training placement
+still passes, and gallery passes all 35 assertions (including freed scene), then
+hits the unchanged 180s timeout. Do not claim full CI is green. One targeted
+baseline-yard versus training-yard diagnostic uses the same gallery harness and
+renderer, preserving exit failures and collecting a native backtrace if still
+alive 15s after successful checks. No production changes are being guessed.

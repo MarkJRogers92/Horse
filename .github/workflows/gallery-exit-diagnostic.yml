@@ -1,0 +1,50 @@
+name: Gallery exit isolation
+on:
+  push:
+    branches: ['codex/practice-training-props']
+    paths: ['.github/workflows/gallery-exit-diagnostic.yml', '.github/qa/diagnose_gallery_exit.sh']
+permissions:
+  contents: read
+jobs:
+  compare-yard:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        yard: [baseline, training]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Select baseline yard control
+        if: matrix.yard == 'baseline'
+        run: |
+          # Same probe, dependencies and renderer; only yard presentation differs.
+          git show 0fbc0fc4c8304297a9a90e274c9f9f3f4c0b9674:game/scripts/Stable/StableYard.cs > game/scripts/Stable/StableYard.cs
+          rm game/scripts/Stable/StableYard.Training.cs
+      - run: sudo apt-get update -q && sudo apt-get install -y -q mesa-vulkan-drivers xvfb libgl1 gdb
+      - uses: actions/cache@v4
+        id: godot-cache
+        with:
+          path: ~/godot
+          key: godot-4.7.2-stable-mono-linux
+      - if: steps.godot-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/godot && cd ~/godot
+          curl -fsSL -o g.zip https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_mono_linux_x86_64.zip
+          unzip -q g.zip && rm g.zip
+      - name: Run identical rendered gallery and diagnose exit
+        env:
+          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+          VARIANT: ${{ matrix.yard }}
+        run: bash .github/qa/diagnose_gallery_exit.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gallery-exit-${{ matrix.yard }}
+          path: evidence/gallery-exit/
+          retention-days: 14
