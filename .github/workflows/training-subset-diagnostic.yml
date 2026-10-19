@@ -1,4 +1,4 @@
-name: Training material culling isolation
+name: Gallery renderer isolation
 on:
   push:
     branches: ['codex/practice-training-props']
@@ -12,39 +12,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        culling: [original, backface]
+        renderer: [vulkan, compatibility]
         repeat: [1, 2]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
-      - name: Select barrel material contrast in ephemeral checkout
-        env:
-          CULLING: ${{ matrix.culling }}
-        run: |
-          python3 - <<'PY'
-          import json, os, struct
-          p = 'game/scripts/Stable/StableYard.Training.cs'
-          s = open(p).read()
-          lines = [line for line in s.splitlines(True) if 'PlaceTrainingProp("' not in line or '"training_barrel"' in line]
-          open(p, 'w').writelines(lines)
-          # Change only material culling in this disposable checkout. Geometry,
-          # vertex attributes, materials, importer and scene lifecycle stay fixed.
-          p = 'game/assets/scenery/training_barrel/training_barrel.glb'
-          data = open(p, 'rb').read()
-          length = struct.unpack_from('<I', data, 12)[0]
-          doc = json.loads(data[20:20 + length])
-          if os.environ['CULLING'] == 'backface':
-              for material in doc['materials']:
-                  material['doubleSided'] = False
-              payload = json.dumps(doc, separators=(',', ':')).encode()
-              payload += b' ' * (-len(payload) % 4)
-              tail = data[20 + length:]
-              result = struct.pack('<4sII', b'glTF', 2, 20 + len(payload) + len(tail)) + struct.pack('<I4s', len(payload), b'JSON') + payload + tail
-              open(p, 'wb').write(result)
-          print('Barrel material culling:', os.environ['CULLING'])
-          PY
       - run: sudo apt-get update -q && sudo apt-get install -y -q mesa-vulkan-drivers xvfb libgl1
       - uses: actions/cache@v4
         id: godot-cache
@@ -59,13 +33,19 @@ jobs:
       - name: Run ordinary cold gallery and preserve exit status
         env:
           VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          RENDERER: ${{ matrix.renderer }}
         run: |
           G=$(ls ~/godot/Godot_*/Godot_*.x86_64)
           mkdir -p evidence/subset
           dotnet build game/Cloverbrook.Game.csproj -warnaserror
           "$G" --headless --import --path game > evidence/subset/import.log 2>&1
+          args=(--rendering-driver vulkan)
+          if [ "$RENDERER" = compatibility ]; then
+            args=(--rendering-method gl_compatibility --rendering-driver opengl3)
+          fi
           set +e
-          timeout 180 xvfb-run -a -s '-screen 0 1280x720x24' "$G" --path game --rendering-driver vulkan --resolution 1280x720 --script "$PWD/tools/portraits/check_gallery.gd" -- --out="$PWD/evidence/subset" > evidence/subset/gallery.log 2>&1
+          timeout 180 xvfb-run -a -s '-screen 0 1280x720x24' "$G" --path game "${args[@]}" --resolution 1280x720 --script "$PWD/tools/portraits/check_gallery.gd" -- --out="$PWD/evidence/subset" > evidence/subset/gallery.log 2>&1
           code=$?
           cat evidence/subset/gallery.log
           printf 'GALLERY_PROCESS_EXIT=%s\n' "$code" | tee evidence/subset/exit.txt
@@ -73,6 +53,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: training-culling-${{ matrix.culling }}-${{ matrix.repeat }}
+          name: gallery-renderer-${{ matrix.renderer }}-${{ matrix.repeat }}
           path: evidence/subset/
           retention-days: 14

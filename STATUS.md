@@ -246,3 +246,11 @@ small-props-only each pass35 assertions then timeout124. No single asset explain
 it. The next disposable-checkout contrast holds barrel geometry/load path fixed
 and toggles only material double-sidedness, two fresh original and two backface-
 culling runners. This is a specific shared shader-feature hypothesis, not a fix.
+
+Culling contrast run39191890226 rejected: original and backface variants each
+passed once and timed out once after OK35. No asset changes adopted. CI uses
+Mesa lavapipe software Vulkan/Forward+ under Xvfb; the project already supports
+Compatibility on macOS. Next controlled test holds all full-yard assets and
+assertions fixed and compares ordinary software Vulkan against software OpenGL
+Compatibility twice each, retaining the 180s timeout. This diagnoses environment
+sensitivity; a compatibility pass alone cannot prove Vulkan shutdown fixed.
