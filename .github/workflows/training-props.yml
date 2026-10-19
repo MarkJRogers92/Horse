@@ -1,0 +1,59 @@
+name: Training prop placement
+on:
+  push:
+    branches: ['codex/practice-training-props']
+  pull_request:
+    paths: ['game/assets/scenery/**', 'game/scripts/Stable/StableYard*', 'tools/scenery/**', 'tools/portraits/check_gallery.gd', '.github/workflows/training-props.yml']
+permissions:
+  contents: read
+jobs:
+  placement:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - run: sudo apt-get update -q && sudo apt-get install -y -q mesa-vulkan-drivers xvfb libgl1
+      - uses: actions/cache@v4
+        id: godot-cache
+        with:
+          path: ~/godot
+          key: godot-4.7.2-stable-mono-linux
+      - if: steps.godot-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/godot && cd ~/godot
+          curl -fsSL -o g.zip https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_mono_linux_x86_64.zip
+          unzip -q g.zip && rm g.zip
+      - run: |
+          python3 -m unittest discover -s tools/scenery -v
+          python3 tools/validate_handoff.py
+          dotnet build game/Cloverbrook.Game.csproj -warnaserror
+      - name: Verify cold gallery navigation and clean rendered shutdown
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          G=$(ls ~/godot/Godot_*/Godot_*.x86_64)
+          "$G" --headless --import --path game
+          mkdir -p evidence/training-props/gallery
+          set -o pipefail
+          timeout 180 xvfb-run -a -s "-screen 0 1280x720x24" "$G" --path game --rendering-method gl_compatibility --rendering-driver opengl3 --resolution 1280x720 --script "$PWD/tools/portraits/check_gallery.gd" -- --out="$PWD/evidence/training-props/gallery" 2>&1 | tee evidence/training-props/gallery/check.log
+          grep -q "\[portrait-gallery\] OK" evidence/training-props/gallery/check.log
+      - name: Check real yard placement and capture focused evidence
+        env:
+          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+        run: |
+          G=$(ls ~/godot/Godot_*/Godot_*.x86_64)
+          mkdir -p evidence/training-props
+          set -o pipefail
+          timeout 180 xvfb-run -a -s "-screen 0 1280x720x24" "$G" --path game --rendering-driver vulkan --resolution 1280x720 --script "$PWD/tools/scenery/check_training_props.gd" -- --out="$PWD/evidence/training-props" 2>&1 | tee evidence/training-props/check.log
+          grep -q TRAINING_PROPS_OK evidence/training-props/check.log
+          test -f evidence/training-props/training-closeup.png
+          test -f evidence/training-props/training-yard-context.png
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: training-prop-placement
+          path: evidence/training-props/
+          retention-days: 30

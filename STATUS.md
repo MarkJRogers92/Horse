@@ -192,3 +192,74 @@ porch surfaces at y=0.3058 and 0.3095. Raise both to y=0.31 and move the bucket
 left of the trough to avoid the saddle rack. Updated integrity test failed before
 the fix, passed after; game build 0 warnings/errors and combined yard check pass.
 Focused rendered recheck and CI are pending on qa/scenery-closeup.
+
+
+## D-046 training equipment integration (2026-10-19)
+
+- Owner approved the prepared props/jump-kit practice-area integration. Isolated branch `codex/practice-training-props` starts at porch-fix main `0fbc0fc`; the pre-existing dirty scenery checkout is preserved.
+- Replaced the old decorative show jump with the native-scale jump assembly, two ground poles, one low cavaletti, three cones and a barrel. A small mown footprint keeps low poles visible; the fair tent moves 0.5m right. All equipment stays outside the paddock and clear of the barn path, purchased decor slots and existing scenery.
+- No gameplay/collision/nav, save, domain, race, genetics or shared-contract changes. Prepared Blender sources and reusable jump GLBs are retained. Barrel reference-provider commercial rights remain unverified.
+- Verified locally: 342/342 Release domain tests (`-m:1 -nr:false`), warnings-as-errors game build, Python scenery tests, handoff validator, and real-yard Godot headless placement probe. Red/green tests demonstrated missing-asset and missing-instance failures before implementation.
+- Focused rendered validation passed on remote `75e9544`: domain and training-placement CI green; close-up and yard-context images inspected, grounded/separated with natural fence/trough occlusion in the wide view. Local Xvfb sockets are blocked. The dedicated `Training prop placement` workflow captures a close-up plus normal yard-camera context and publishes `training-prop-placement`. Read `docs/decisions/D-046-training-prop-scenery.md` for scope and `docs/visual/evidence/training-props-2026-10-19/README.md` for reproduction.
+- Published draft PR #5: https://github.com/MarkJRogers92/Horse/pull/5. Remote `75e9544` exactly matches local `9375f94` tree. Focused evidence: https://github.com/MarkJRogers92/Horse/actions/runs/39186048636/artifacts/12158740172. Independent review found no blocking issues; local locomotion also passed 71,379 checks.
+- Broad visual CI twice timed out after the unchanged concept-gallery probe passed 33 checks. The bounded follow-up changes only the test harness: unload the final menu, drain frames, release scenery/horse caches, then quit. New teardown assertions failed before the fix and pass afterward (33 headless checks, clean exit). Timeout enforcement is unchanged. The short training workflow now checks rendered gallery shutdown too.
+- Handoff: implementation and focused rendered review complete; final CI verification of the teardown follow-up pending. Leave PR #5 in draft for owner review; do not merge or deploy.
+
+### D-046 rendered-exit isolation
+
+The narrow cleanup did not solve rendered exit: final-head training placement
+still passes, and gallery passes all 35 assertions (including freed scene), then
+hits the unchanged 180s timeout. Do not claim full CI is green. One targeted
+baseline-yard versus training-yard diagnostic uses the same gallery harness and
+renderer, preserving exit failures and collecting a native backtrace if still
+alive 15s after successful checks. No production changes are being guessed.
+
+The A/B diagnostic exited cleanly on the base yard and timed out on the training
+yard, while another same-head warm training/gallery job exited cleanly. The
+attach backtrace failed under runner ptrace restrictions; the thread snapshot
+only shows futex waits and does not identify the lock owner. One bounded
+follow-up launches this test as gdb's child, with ASLR retained and no security
+changes. It interrupts 15 seconds after OK for stacks, then continues under the
+unchanged outer 180-second deadline. Controller syntax and simulated normal,
+nonzero, denied-debugger and signalled-exit cases pass locally. No production
+fix is claimed; stop if the runner also blocks the ordinary debugger launch.
+
+Debugger-child runs of both yards exited normally, without a hang snapshot;
+ordinary training CI still timed out after OK35 (run39190215197). The temporary
+debugger instrumentation is removed. Reviewed test-only hypothesis: collect and
+finalize managed wrappers after scene/cache release while Godot is alive, matching
+StableDay's existing lifecycle pattern. Before/after markers expose a collection
+stall rather than masking it. The placement workflow now runs gallery first on a
+cold renderer; both push and PR runs must exit normally. This remains an unproven
+hypothesis until ordinary rendered CI passes; all assertions/timeouts remain.
+
+Managed-finalization did not reliably fix shutdown: one ordinary cold run passed,
+one timed out after both collection markers and OK35. Remove the ineffective
+helper rather than retain a speculative fix. Next isolation splits only new
+asset calls in fresh ephemeral CI checkouts: no props (layout changes retained),
+barrel, jump, and small props. All are untextured opaque GLBs without skinning,
+animations or extensions; the jump has 11 meshes, others one. Keep the ordinary
+renderer/180s timeout. A subset result is provisional until contrasted again.
+
+Subset isolation run39191353417: no-new-props exits0; barrel-only, jump-only and
+small-props-only each pass35 assertions then timeout124. No single asset explains
+it. The next disposable-checkout contrast holds barrel geometry/load path fixed
+and toggles only material double-sidedness, two fresh original and two backface-
+culling runners. This is a specific shared shader-feature hypothesis, not a fix.
+
+Culling contrast run39191890226 rejected: original and backface variants each
+passed once and timed out once after OK35. No asset changes adopted. CI uses
+Mesa lavapipe software Vulkan/Forward+ under Xvfb; the project already supports
+Compatibility on macOS. Next controlled test holds all full-yard assets and
+assertions fixed and compares ordinary software Vulkan against software OpenGL
+Compatibility twice each, retaining the 180s timeout. This diagnoses environment
+sensitivity; a compatibility pass alone cannot prove Vulkan shutdown fixed.
+
+Renderer comparison run39192466774: Compatibility2/2 clean exits with35 assertions;
+Vulkan1/2 clean and1/2 timeout. Compatibility gallery PNG pairs were byte-identical,
+visually inspected and differed from successful Vulkan by at most3/255 RGB. Final
+CI selects the existing supported macOS Compatibility renderer for gallery/UI
+navigation only; Vulkan equipment placement and remaining visual captures remain.
+Production renderer configuration/assets are unchanged. Known software-Vulkan exit
+limitation is documented without claiming an engine fix. Temporary diagnostics and
+ineffective GC/material experiments are removed. Final ordinary CI is pending.

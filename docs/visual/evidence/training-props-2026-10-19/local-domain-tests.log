@@ -1,0 +1,12 @@
+  Determining projects to restore...
+  Restored /workspace/scratch/46c24ac297cd/horse-training-integration/tests/Cloverbrook.Domain.Tests/Cloverbrook.Domain.Tests.csproj (in 225 ms).
+  1 of 2 projects are up-to-date for restore.
+  Cloverbrook.Domain -> /workspace/scratch/46c24ac297cd/horse-training-integration/src/Cloverbrook.Domain/bin/Release/netstandard2.1/Cloverbrook.Domain.dll
+  Cloverbrook.Domain.Tests -> /workspace/scratch/46c24ac297cd/horse-training-integration/tests/Cloverbrook.Domain.Tests/bin/Release/net8.0/Cloverbrook.Domain.Tests.dll
+Test run for /workspace/scratch/46c24ac297cd/horse-training-integration/tests/Cloverbrook.Domain.Tests/bin/Release/net8.0/Cloverbrook.Domain.Tests.dll (.NETCoreApp,Version=v8.0)
+VSTest version 17.11.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:   342, Skipped:     0, Total:   342, Duration: 22 s - Cloverbrook.Domain.Tests.dll (net8.0)

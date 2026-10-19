@@ -894,7 +894,7 @@ public partial class StableYard : Node3D
         for (var i = 0; i < tufts; i++)
         {
             Vector3 p;
-            do p = new Vector3(rng.RandfRange(-22, 22), 0, rng.RandfRange(-24, 3.5f)); while (InPaddock(p) || OnPath(p));
+            do p = new Vector3(rng.RandfRange(-22, 22), 0, rng.RandfRange(-24, 3.5f)); while (InPaddock(p) || OnPath(p) || InTrainingArea(p));
             var basis = Basis.Identity.Rotated(Vector3.Up, rng.RandfRange(0, Mathf.Tau)).Rotated(Vector3.Right, rng.RandfRange(-0.3f, 0.3f)).Scaled(Vector3.One * rng.RandfRange(0.6f, 1.5f));
             blades.SetInstanceTransform(i, new Transform3D(basis, p + new Vector3(0, 0.11f, 0)));
             blades.SetInstanceColor(i, Color.FromHtml("#5f9a4d").Lerp(Color.FromHtml("#94c070"), rng.Randf()));
@@ -913,8 +913,8 @@ public partial class StableYard : Node3D
             var centre = new Vector3(rng.RandfRange(-16, 16), 0, rng.RandfRange(-20, 2.5f));
             Vector3 p;
             int guard = 0;
-            do p = centre + new Vector3(rng.RandfRange(-1.4f, 1.4f), 0, rng.RandfRange(-1.4f, 1.4f)); while ((InPaddock(p) || OnPath(p)) && ++guard < 20);
-            if (InPaddock(p)) p = new Vector3(p.X > 0 ? 9 : -9, 0, p.Z);
+            do p = centre + new Vector3(rng.RandfRange(-1.4f, 1.4f), 0, rng.RandfRange(-1.4f, 1.4f)); while ((InPaddock(p) || OnPath(p) || InTrainingArea(p)) && ++guard < 20);
+            if (InPaddock(p) || InTrainingArea(p)) p = new Vector3(p.X > 0 ? 9 : -9, 0, p.Z);
             heads.SetInstanceTransform(i, new Transform3D(Basis.Identity.Scaled(Vector3.One * rng.RandfRange(0.7f, 1.3f)), p + new Vector3(0, rng.RandfRange(0.1f, 0.22f), 0)));
             heads.SetInstanceColor(i, Color.FromHtml(petals[(i / 40) % petals.Length]));
         }
@@ -954,9 +954,9 @@ public partial class StableYard : Node3D
         Place("bench", 1.0f, new Vector3(-8.6f, 0, -6.4f), 50f, () => new Node3D());
         Place("saddle_rack", 1.25f, new Vector3(-0.2f, 0, -12.2f), 15f, () => new Node3D());
         Place("wheelbarrow", 0.85f, new Vector3(4.6f, 0, -11.6f), -60f, () => new Node3D());
-        Place("show_jump", 1.3f, new Vector3(7.2f, 0, -7.5f), -25f, () => new Node3D());
+        BuildTrainingScenery();
         // Clickable landmarks (D-019): the fair tent opens the Horse Fair; the trophy stand appears once a cup is won.
-        _fairTent = Place("fair_tent", 3.1f, new Vector3(10.0f, 0, -8.6f), -30f, () => new Node3D());
+        _fairTent = Place("fair_tent", 3.1f, new Vector3(10.5f, 0, -8.6f), -30f, () => new Node3D());
         _fairTag = PropTag("Horse Fair", 3.2f);
         _fairTent.AddChild(_fairTag);
         _trophy = Place("trophy_stand", 1.5f, new Vector3(-3.2f, 0, -9.2f), 15f, () => new Node3D());

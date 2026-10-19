@@ -89,6 +89,17 @@ func run() -> void:
         audio.queue_free()
         # Headless process frames can finish before the audio mixer releases playback.
         await create_timer(0.2).timeout
+    # The rendered probe ends in the 3D menu. Release it while the renderer is
+    # still pumping frames. These assertions verify explicit test teardown;
+    # they do not claim to fix the separate Mesa Vulkan shutdown limitation.
+    var final_menu: WeakRef = weakref(current_scene)
+    unload_current_scene()
+    await settle()
+    check(current_scene == null, "final menu scene released before shutdown")
+    check(final_menu.get_ref() == null, "final menu nodes freed before cache release")
+    load("res://scripts/Stable/StableYard.cs").ReleaseCaches()
+    load("res://scripts/Visual/HorsePresenter.cs").ReleaseCaches()
+    await settle()
     finish()
 
 func finish() -> void:
