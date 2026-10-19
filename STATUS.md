@@ -223,3 +223,12 @@ changes. It interrupts 15 seconds after OK for stacks, then continues under the
 unchanged outer 180-second deadline. Controller syntax and simulated normal,
 nonzero, denied-debugger and signalled-exit cases pass locally. No production
 fix is claimed; stop if the runner also blocks the ordinary debugger launch.
+
+Debugger-child runs of both yards exited normally, without a hang snapshot;
+ordinary training CI still timed out after OK35 (run39190215197). The temporary
+debugger instrumentation is removed. Reviewed test-only hypothesis: collect and
+finalize managed wrappers after scene/cache release while Godot is alive, matching
+StableDay's existing lifecycle pattern. Before/after markers expose a collection
+stall rather than masking it. The placement workflow now runs gallery first on a
+cold renderer; both push and PR runs must exit normally. This remains an unproven
+hypothesis until ordinary rendered CI passes; all assertions/timeouts remain.
