@@ -81,12 +81,12 @@ jobs:
 
       - name: Verify concept portrait originals and gallery navigation
         env:
-          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+          LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           set -o pipefail
           python3 -m unittest discover -s tools/portraits -v
           mkdir -p evidence/concept-portraits
-          timeout 180 xvfb-run -a -s "-screen 0 1280x720x24" "$G" --path game --rendering-driver vulkan --resolution 1280x720 --script "$PWD/tools/portraits/check_gallery.gd" -- --out="$PWD/evidence/concept-portraits" 2>&1 | tee evidence/concept-portraits/probe.log
+          timeout 180 xvfb-run -a -s "-screen 0 1280x720x24" "$G" --path game --rendering-method gl_compatibility --rendering-driver opengl3 --resolution 1280x720 --script "$PWD/tools/portraits/check_gallery.gd" -- --out="$PWD/evidence/concept-portraits" 2>&1 | tee evidence/concept-portraits/probe.log
           grep -q "\[portrait-gallery\] OK" evidence/concept-portraits/probe.log
 
       - name: Verify pinned Stock and foal import proofs

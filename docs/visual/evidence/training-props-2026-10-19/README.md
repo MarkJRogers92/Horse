@@ -32,5 +32,27 @@ Broad visual run 39186048587 timed out twice after the unchanged gallery probe
 reported 33 successful checks. Later broad checks were skipped. A narrow harness
 follow-up explicitly unloads its final 3D menu and releases caches before quitting;
 the new final-scene assertion failed before that change and passes afterward.
-Headless follow-up exits 0 with 33 checks; rendered follow-up is pending CI.
-No test or exit-124 handling has been relaxed.
+Headless follow-up exits 0 with 33 checks, but explicit scene/cache cleanup did
+not reliably solve software Vulkan shutdown. A managed-GC experiment and material
+culling contrast also failed to provide a reliable correction; both were removed.
+
+### Supported-renderer comparison
+
+Run https://github.com/MarkJRogers92/Horse/actions/runs/39192466774 compared the
+same full yard and 35 gallery checks on two fresh software Vulkan runners and two
+fresh OpenGL Compatibility runners. Compatibility exited 0 twice; Vulkan passed
+once and timed out once. Both Compatibility gallery image pairs were inspected,
+were byte-identical between attempts, and matched the successful Vulkan view
+(maximum RGB difference 3/255). No blank portraits or missing UI were observed.
+
+Gallery/navigation CI now explicitly uses Compatibility, the renderer already
+selected for macOS by project.godot. Production renderer configuration is unchanged.
+The dedicated equipment-placement test and the remaining visual/material captures
+retain Vulkan. All assertions and the 180-second timeout remain enforced.
+
+Known limitation: Mesa lavapipe software Vulkan can intermittently stall at process
+exit after the gallery has passed, especially with the new scenery. This change
+does not claim to fix Vulkan engine/driver shutdown or establish hardware-Vulkan
+behavior. No erroneous asset ownership or geometry was found. Temporary diagnostic
+workflows/debugger code are removed; the linked runs retain the investigation.
+Final ordinary workflow results are recorded in the PR and STATUS.md.

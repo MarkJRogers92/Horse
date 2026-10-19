@@ -32,13 +32,13 @@ jobs:
           dotnet build game/Cloverbrook.Game.csproj -warnaserror
       - name: Verify cold gallery navigation and clean rendered shutdown
         env:
-          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+          LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
           G=$(ls ~/godot/Godot_*/Godot_*.x86_64)
           "$G" --headless --import --path game
           mkdir -p evidence/training-props/gallery
           set -o pipefail
-          timeout 180 xvfb-run -a -s "-screen 0 1280x720x24" "$G" --path game --rendering-driver vulkan --resolution 1280x720 --script "$PWD/tools/portraits/check_gallery.gd" -- --out="$PWD/evidence/training-props/gallery" 2>&1 | tee evidence/training-props/gallery/check.log
+          timeout 180 xvfb-run -a -s "-screen 0 1280x720x24" "$G" --path game --rendering-method gl_compatibility --rendering-driver opengl3 --resolution 1280x720 --script "$PWD/tools/portraits/check_gallery.gd" -- --out="$PWD/evidence/training-props/gallery" 2>&1 | tee evidence/training-props/gallery/check.log
           grep -q "\[portrait-gallery\] OK" evidence/training-props/gallery/check.log
       - name: Check real yard placement and capture focused evidence
         env:

@@ -254,3 +254,12 @@ Compatibility on macOS. Next controlled test holds all full-yard assets and
 assertions fixed and compares ordinary software Vulkan against software OpenGL
 Compatibility twice each, retaining the 180s timeout. This diagnoses environment
 sensitivity; a compatibility pass alone cannot prove Vulkan shutdown fixed.
+
+Renderer comparison run39192466774: Compatibility2/2 clean exits with35 assertions;
+Vulkan1/2 clean and1/2 timeout. Compatibility gallery PNG pairs were byte-identical,
+visually inspected and differed from successful Vulkan by at most3/255 RGB. Final
+CI selects the existing supported macOS Compatibility renderer for gallery/UI
+navigation only; Vulkan equipment placement and remaining visual captures remain.
+Production renderer configuration/assets are unchanged. Known software-Vulkan exit
+limitation is documented without claiming an engine fix. Temporary diagnostics and
+ineffective GC/material experiments are removed. Final ordinary CI is pending.

@@ -90,8 +90,8 @@ func run() -> void:
         # Headless process frames can finish before the audio mixer releases playback.
         await create_timer(0.2).timeout
     # The rendered probe ends in the 3D menu. Release it while the renderer is
-    # still pumping frames, rather than leaving its yard/horse resources for
-    # engine shutdown (which can stall under Mesa Vulkan after checks pass).
+    # still pumping frames. These assertions verify explicit test teardown;
+    # they do not claim to fix the separate Mesa Vulkan shutdown limitation.
     var final_menu: WeakRef = weakref(current_scene)
     unload_current_scene()
     await settle()
