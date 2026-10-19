@@ -192,3 +192,13 @@ porch surfaces at y=0.3058 and 0.3095. Raise both to y=0.31 and move the bucket
 left of the trough to avoid the saddle rack. Updated integrity test failed before
 the fix, passed after; game build 0 warnings/errors and combined yard check pass.
 Focused rendered recheck and CI are pending on qa/scenery-closeup.
+
+
+## D-046 training equipment integration (2026-10-19)
+
+- Owner approved the prepared props/jump-kit practice-area integration. Isolated branch `codex/practice-training-props` starts at porch-fix main `0fbc0fc`; the pre-existing dirty scenery checkout is preserved.
+- Replaced the old decorative show jump with the native-scale jump assembly, two ground poles, one low cavaletti, three cones and a barrel. A small mown footprint keeps low poles visible; the fair tent moves 0.5m right. All equipment stays outside the paddock and clear of the barn path, purchased decor slots and existing scenery.
+- No gameplay/collision/nav, save, domain, race, genetics or shared-contract changes. Prepared Blender sources and reusable jump GLBs are retained. Barrel reference-provider commercial rights remain unverified.
+- Verified locally: 342/342 Release domain tests (`-m:1 -nr:false`), warnings-as-errors game build, Python scenery tests, handoff validator, and real-yard Godot headless placement probe. Red/green tests demonstrated missing-asset and missing-instance failures before implementation.
+- Rendered validation is pending CI: local Xvfb sockets are blocked. The dedicated `Training prop placement` workflow captures a close-up plus normal yard-camera context and publishes `training-prop-placement`. Read `docs/decisions/D-046-training-prop-scenery.md` for scope and `docs/visual/evidence/training-props-2026-10-19/README.md` for reproduction.
+- Handoff: implementation complete, review evidence/CI pending. Next: inspect CI screenshots, adjust any visual placement issues, verify terminal CI, and leave a draft PR for owner review. Do not merge or deploy.
