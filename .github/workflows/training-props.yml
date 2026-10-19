@@ -3,7 +3,7 @@ on:
   push:
     branches: ['codex/practice-training-props']
   pull_request:
-    paths: ['game/assets/scenery/**', 'game/scripts/Stable/StableYard*', 'tools/scenery/**', '.github/workflows/training-props.yml']
+    paths: ['game/assets/scenery/**', 'game/scripts/Stable/StableYard*', 'tools/scenery/**', 'tools/portraits/check_gallery.gd', '.github/workflows/training-props.yml']
 permissions:
   contents: read
 jobs:
@@ -42,6 +42,15 @@ jobs:
           grep -q TRAINING_PROPS_OK evidence/training-props/check.log
           test -f evidence/training-props/training-closeup.png
           test -f evidence/training-props/training-yard-context.png
+      - name: Verify gallery navigation and clean rendered shutdown
+        env:
+          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+        run: |
+          G=$(ls ~/godot/Godot_*/Godot_*.x86_64)
+          mkdir -p evidence/training-props/gallery
+          set -o pipefail
+          timeout 180 xvfb-run -a -s "-screen 0 1280x720x24" "$G" --path game --rendering-driver vulkan --resolution 1280x720 --script "$PWD/tools/portraits/check_gallery.gd" -- --out="$PWD/evidence/training-props/gallery" 2>&1 | tee evidence/training-props/gallery/check.log
+          grep -q "\[portrait-gallery\] OK" evidence/training-props/gallery/check.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
