@@ -2,7 +2,7 @@ name: Gallery exit isolation
 on:
   push:
     branches: ['codex/practice-training-props']
-    paths: ['.github/workflows/gallery-exit-diagnostic.yml', '.github/qa/diagnose_gallery_exit.sh']
+    paths: ['.github/workflows/gallery-exit-diagnostic.yml', '.github/qa/diagnose_gallery_exit.sh', '.github/qa/launch_gallery_debugger.py']
 permissions:
   contents: read
 jobs:

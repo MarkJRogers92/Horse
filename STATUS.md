@@ -213,3 +213,13 @@ hits the unchanged 180s timeout. Do not claim full CI is green. One targeted
 baseline-yard versus training-yard diagnostic uses the same gallery harness and
 renderer, preserving exit failures and collecting a native backtrace if still
 alive 15s after successful checks. No production changes are being guessed.
+
+The A/B diagnostic exited cleanly on the base yard and timed out on the training
+yard, while another same-head warm training/gallery job exited cleanly. The
+attach backtrace failed under runner ptrace restrictions; the thread snapshot
+only shows futex waits and does not identify the lock owner. One bounded
+follow-up launches this test as gdb's child, with ASLR retained and no security
+changes. It interrupts 15 seconds after OK for stacks, then continues under the
+unchanged outer 180-second deadline. Controller syntax and simulated normal,
+nonzero, denied-debugger and signalled-exit cases pass locally. No production
+fix is claimed; stop if the runner also blocks the ordinary debugger launch.
