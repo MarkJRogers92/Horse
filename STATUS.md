@@ -240,3 +240,9 @@ asset calls in fresh ephemeral CI checkouts: no props (layout changes retained),
 barrel, jump, and small props. All are untextured opaque GLBs without skinning,
 animations or extensions; the jump has 11 meshes, others one. Keep the ordinary
 renderer/180s timeout. A subset result is provisional until contrasted again.
+
+Subset isolation run39191353417: no-new-props exits0; barrel-only, jump-only and
+small-props-only each pass35 assertions then timeout124. No single asset explains
+it. The next disposable-checkout contrast holds barrel geometry/load path fixed
+and toggles only material double-sidedness, two fresh original and two backface-
+culling runners. This is a specific shared shader-feature hypothesis, not a fix.
