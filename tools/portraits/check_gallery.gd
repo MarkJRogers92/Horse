@@ -99,7 +99,6 @@ func run() -> void:
     check(final_menu.get_ref() == null, "final menu nodes freed before cache release")
     load("res://scripts/Stable/StableYard.cs").ReleaseCaches()
     load("res://scripts/Visual/HorsePresenter.cs").ReleaseCaches()
-    load("res://scripts/Tools/ProbeResources.cs").CollectForShutdown()
     await settle()
     finish()
 

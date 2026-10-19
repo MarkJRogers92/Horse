@@ -1,0 +1,66 @@
+name: Training asset subset isolation
+on:
+  push:
+    branches: ['codex/practice-training-props']
+    paths: ['.github/workflows/training-subset-diagnostic.yml']
+permissions:
+  contents: read
+jobs:
+  subset:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        props: [none, barrel, jump, small]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Select training asset subset in ephemeral checkout
+        env:
+          SUBSET: ${{ matrix.props }}
+        run: |
+          python3 - <<'PY'
+          import os
+          p = 'game/scripts/Stable/StableYard.Training.cs'
+          allowed = {'none': [], 'barrel': ['training_barrel'], 'jump': ['training_jump'], 'small': ['ground_pole', 'low_cavaletti', 'course_cone']}[os.environ['SUBSET']]
+          s = open(p).read()
+          # Keep the same layout, loader, scene transitions and cleanup. Only
+          # remove selected prop calls; no diagnostic switches ship in the game.
+          lines = [line for line in s.splitlines(True) if 'PlaceTrainingProp("' not in line or any('"' + name + '"' in line for name in allowed)]
+          open(p, 'w').writelines(lines)
+          print('Loaded subset:', allowed)
+          PY
+      - run: sudo apt-get update -q && sudo apt-get install -y -q mesa-vulkan-drivers xvfb libgl1
+      - uses: actions/cache@v4
+        id: godot-cache
+        with:
+          path: ~/godot
+          key: godot-4.7.2-stable-mono-linux
+      - if: steps.godot-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/godot && cd ~/godot
+          curl -fsSL -o g.zip https://github.com/godotengine/godot/releases/download/4.7.2-stable/Godot_v4.7.2-stable_mono_linux_x86_64.zip
+          unzip -q g.zip && rm g.zip
+      - name: Run ordinary cold gallery and preserve exit status
+        env:
+          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.json
+        run: |
+          G=$(ls ~/godot/Godot_*/Godot_*.x86_64)
+          mkdir -p evidence/subset
+          dotnet build game/Cloverbrook.Game.csproj -warnaserror
+          "$G" --headless --import --path game > evidence/subset/import.log 2>&1
+          set +e
+          timeout 180 xvfb-run -a -s '-screen 0 1280x720x24' "$G" --path game --rendering-driver vulkan --resolution 1280x720 --script "$PWD/tools/portraits/check_gallery.gd" -- --out="$PWD/evidence/subset" > evidence/subset/gallery.log 2>&1
+          code=$?
+          cat evidence/subset/gallery.log
+          printf 'GALLERY_PROCESS_EXIT=%s\n' "$code" | tee evidence/subset/exit.txt
+          exit "$code"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: training-subset-${{ matrix.props }}
+          path: evidence/subset/
+          retention-days: 14

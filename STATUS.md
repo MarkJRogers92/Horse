@@ -232,3 +232,11 @@ StableDay's existing lifecycle pattern. Before/after markers expose a collection
 stall rather than masking it. The placement workflow now runs gallery first on a
 cold renderer; both push and PR runs must exit normally. This remains an unproven
 hypothesis until ordinary rendered CI passes; all assertions/timeouts remain.
+
+Managed-finalization did not reliably fix shutdown: one ordinary cold run passed,
+one timed out after both collection markers and OK35. Remove the ineffective
+helper rather than retain a speculative fix. Next isolation splits only new
+asset calls in fresh ephemeral CI checkouts: no props (layout changes retained),
+barrel, jump, and small props. All are untextured opaque GLBs without skinning,
+animations or extensions; the jump has 11 meshes, others one. Keep the ordinary
+renderer/180s timeout. A subset result is provisional until contrasted again.
