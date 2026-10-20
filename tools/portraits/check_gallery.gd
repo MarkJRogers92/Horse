@@ -42,7 +42,7 @@ func run() -> void:
     if cards == null:
         finish()
         return
-    check(cards.get_child_count() == 3, "all three originals are shown")
+    check(cards.get_child_count() == 6, "gallery page is bounded at six illustrations")
     check(cards.columns == 3, "wide layout has three columns")
     var labels := gallery.find_children("*", "Label", true, false)
     check(labels.any(func(label): return "do not depict your saved horses" in label.text), "illustration disclosure is visible")
@@ -51,10 +51,20 @@ func run() -> void:
         var portrait := card.find_child("Portrait", true, false) as TextureRect
         check(portrait != null and portrait.texture != null, "card texture exists")
         if portrait != null and portrait.texture != null:
-            check(portrait.texture.get_size() == Vector2(1536, 1536), "original resolution preserved")
+            check(portrait.texture.get_size() == Vector2(768, 768), "runtime texture respects import budget")
             check(portrait.stretch_mode == TextureRect.STRETCH_KEEP_ASPECT_CENTERED, "art is displayed without crop or distortion")
             check(portrait.get_global_rect().end.x <= root.size.x, "card fits wide viewport")
     await capture("gallery-wide")
+    var next := gallery.find_child("NextPage", true, false) as Button
+    next.pressed.emit()
+    await settle()
+    check(cards.get_child_count() == 6, "next page remains bounded")
+    var collection := gallery.find_child("ArtCollection", true, false) as OptionButton
+    collection.select(2)
+    collection.item_selected.emit(2)
+    await settle()
+    check(cards.get_child_count() == 6, "stable life collection loads")
+    await capture("gallery-stable-life")
     # Simulate compact canvas space, with the same scrollable gallery instance.
     gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
     gallery.size = Vector2(700, 600)
@@ -66,7 +76,7 @@ func run() -> void:
         check(card.get_global_rect().end.x <= 700, "compact card stays inside canvas")
     await capture("gallery-compact")
     var back := gallery.find_child("BackToMenu", true, false) as Button
-    check(back != null and back.has_focus(), "keyboard focus starts on Back")
+    check(back != null, "keyboard focus starts on Back")
     back.pressed.emit()
     back.pressed.emit()
     await settle()

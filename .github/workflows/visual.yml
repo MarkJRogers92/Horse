@@ -88,6 +88,8 @@ jobs:
           mkdir -p evidence/concept-portraits
           timeout 180 xvfb-run -a -s "-screen 0 1280x720x24" "$G" --path game --rendering-method gl_compatibility --rendering-driver opengl3 --resolution 1280x720 --script "$PWD/tools/portraits/check_gallery.gd" -- --out="$PWD/evidence/concept-portraits" 2>&1 | tee evidence/concept-portraits/probe.log
           grep -q "\[portrait-gallery\] OK" evidence/concept-portraits/probe.log
+          timeout 180 xvfb-run -a -s "-screen 0 1280x720x24" "$G" --path game --rendering-method gl_compatibility --rendering-driver opengl3 --resolution 1280x720 --script "$PWD/tools/portraits/check_context_art.gd" -- --save-path="$RUNNER_TEMP/art-context.clvr" --out="$PWD/evidence/concept-portraits/context" 2>&1 | tee evidence/concept-portraits/context.log
+          grep -q "\[context-art\] OK" evidence/concept-portraits/context.log
 
       - name: Verify pinned Stock and foal import proofs
         run: |

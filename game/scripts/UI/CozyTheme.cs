@@ -214,6 +214,7 @@ public static class CozyTheme
         var ribbon = Ribbon(title); header.AddChild(ribbon);
         titleLabel = (Label)ribbon.GetChild(0);
         header.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill });
+        IllustrationArt.AddDialogAccent(header, title);
         header.AddChild(new Bunny { CustomMinimumSize = new Vector2(54, 54), Peeking = true });
         buttons = new HBoxContainer(); buttons.AddThemeConstantOverride("separation", 10);
         buttons.AddChild(new Control { SizeFlagsHorizontal = Control.SizeFlags.ExpandFill });
@@ -225,8 +226,10 @@ public static class CozyTheme
     private static Shader? _roundedImage;
 
     /// <summary>Insert a wide illustration (res://assets/ui/headers/header_NAME.jpg) under a dialog's ribbon.</summary>
-    public static TextureRect? DialogHeader(VBoxContainer body, string name, int width, int height)
+    public static Control? DialogHeader(VBoxContainer body, string name, int width, int height)
     {
+        var illustration = IllustrationArt.Header(body, name, height);
+        if (illustration != null) return illustration;
         var path = $"res://assets/ui/headers/header_{name}.jpg";
         if (!ResourceLoader.Exists(path)) return null;
         _roundedImage ??= GD.Load<Shader>("res://shaders/rounded_image.gdshader");
