@@ -1,5 +1,7 @@
 using System;
 using System.Text.Json;
+using System.Collections.Generic;
+using System.Linq;
 using Cloverbrook.Game.UI;
 using Godot;
 
@@ -11,6 +13,13 @@ public partial class ConceptPortraitGallery : Control
     private GridContainer _cards = null!;
     private Button _back = null!;
     private bool _leaving;
+    private const int PageSize = 6;
+    private List<JsonElement> _assets = new();
+    private OptionButton _collection = null!;
+    private Button _previous = null!, _next = null!;
+    private Label _pageLabel = null!;
+    private ScrollContainer _scroll = null!;
+    private int _page;
 
     public override void _Ready()
     {
@@ -37,24 +46,38 @@ public partial class ConceptPortraitGallery : Control
         _back.Pressed += ReturnToMenu;
         header.AddChild(_back);
         content.AddChild(Wrapped("AI-generated illustration studies. These do not depict your saved horses or predict a foal's appearance.", 18));
+        var navigation = new HBoxContainer();
+        navigation.AddThemeConstantOverride("separation", 12);
+        content.AddChild(navigation);
+        _collection = new OptionButton { Name = "ArtCollection", SizeFlagsHorizontal = SizeFlags.ExpandFill };
+        foreach (var group in new[] { "Breeds", "Young horses", "Stable life", "Coat studies" }) _collection.AddItem(group);
+        navigation.AddChild(_collection);
+        _previous = new Button { Name = "PreviousPage", Text = "Previous" };
+        _next = new Button { Name = "NextPage", Text = "Next" };
+        _pageLabel = Wrapped("", 14);
+        navigation.AddChild(_previous); navigation.AddChild(_pageLabel); navigation.AddChild(_next);
+        _previous.Pressed += () => { _page--; ShowPage(); };
+        _next.Pressed += () => { _page++; ShowPage(); };
+        _collection.ItemSelected += _ => { _page = 0; ShowPage(); };
         var scroll = new ScrollContainer { Name = "PortraitScroll", SizeFlagsVertical = SizeFlags.ExpandFill,
             HorizontalScrollMode = ScrollContainer.ScrollMode.Disabled };
         content.AddChild(scroll);
+        _scroll = scroll;
         _cards = new GridContainer { Name = "PortraitCards", SizeFlagsHorizontal = SizeFlags.ExpandFill };
         _cards.AddThemeConstantOverride("h_separation", 18);
         _cards.AddThemeConstantOverride("v_separation", 18);
         scroll.AddChild(_cards);
         try
         {
-            using var catalog = JsonDocument.Parse(FileAccess.GetFileAsString("res://assets/ui/concept_portraits/catalog.json"));
-            foreach (var asset in catalog.RootElement.GetProperty("assets").EnumerateArray()) AddPortrait(asset);
+            _assets = IllustrationArt.ReadCatalog();
+            ShowPage();
         }
         catch (Exception ex)
         {
             GD.PushWarning("[concept-portraits] Could not load gallery: " + ex.Message);
             _cards.AddChild(Wrapped("The concept portraits could not be loaded. You can return to the menu safely.", 18));
         }
-        content.AddChild(Wrapped("Higgsfield Soul 2.0 · Original downloads · Commercial-release rights not yet verified", 14));
+        content.AddChild(Wrapped("Curated illustrations · Some corrected derivatives · Commercial-release rights not yet verified", 14));
         Resized += UpdateColumns;
         UpdateColumns();
         _back.GrabFocus();
@@ -82,6 +105,19 @@ public partial class ConceptPortraitGallery : Control
 
     private void UpdateColumns() => _cards.Columns = Size.X >= 1000 ? 3 : 1;
 
+    private void ShowPage()
+    {
+        foreach (var card in _cards.GetChildren()) { _cards.RemoveChild(card); card.QueueFree(); }
+        var group = _collection.GetItemText(_collection.Selected);
+        var selected = _assets.Where(a => a.GetProperty("group").GetString() == group).ToList();
+        var pages = Math.Max(1, (selected.Count + PageSize - 1) / PageSize);
+        _page = Math.Clamp(_page, 0, pages - 1);
+        foreach (var asset in selected.Skip(_page * PageSize).Take(PageSize)) AddPortrait(asset);
+        _previous.Disabled = _page == 0; _next.Disabled = _page == pages - 1;
+        _pageLabel.Text = $"{_page + 1} / {pages}";
+        _scroll.ScrollVertical = 0;
+    }
+
     private void AddPortrait(JsonElement asset)
     {
         var card = new PanelContainer { SizeFlagsHorizontal = SizeFlags.ExpandFill };
@@ -89,16 +125,22 @@ public partial class ConceptPortraitGallery : Control
         body.AddThemeConstantOverride("separation", 10);
         card.AddChild(body);
         var file = asset.GetProperty("file").GetString()!;
-        var texture = GD.Load<Texture2D>("res://assets/ui/concept_portraits/" + file);
+        var texture = GD.Load<Texture2D>(IllustrationArt.Root + file);
         if (texture == null) throw new InvalidOperationException("Missing portrait " + file);
         body.AddChild(new TextureRect { Name = "Portrait", Texture = texture, CustomMinimumSize = new Vector2(240, 300),
             ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize, StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
             MouseFilter = MouseFilterEnum.Ignore });
         body.AddChild(Wrapped(asset.GetProperty("title").GetString()!, 22));
-        body.AddChild(Wrapped(asset.GetProperty("description").GetString()!, 16));
-        var note = Wrapped(asset.GetProperty("quality_notes").GetString()!, 14);
-        note.AddThemeColorOverride("font_color", CozyTheme.SoftText);
-        body.AddChild(note);
+        var description = asset.GetProperty("group").GetString() switch
+        {
+            "Breeds" => "Breed-inspired portrait · artistic interpretation",
+            "Young horses" => "Young-horse illustration · a little inspiration",
+            "Stable life" => "Stable-life illustration · quiet everyday moments",
+            _ => "Decorative coat study · not a genetic reference"
+        };
+        var caption = Wrapped(description, 14);
+        caption.AddThemeColorOverride("font_color", CozyTheme.SoftText);
+        body.AddChild(caption);
         _cards.AddChild(card);
     }
 

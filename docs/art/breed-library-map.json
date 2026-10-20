@@ -1,0 +1,181 @@
+{
+  "approved": 21,
+  "held": 4,
+  "breeds": [
+    {
+      "breed_id": "akhal-teke",
+      "file": "20-akhal-teke.png",
+      "disposition": "use as-is",
+      "notes": "Lean golden horse with pale long mane; black frame. Metallic illustration, not a guarantee of coat genetics.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "andalusian",
+      "file": "05-andalusian.png",
+      "disposition": "use as-is",
+      "notes": "Grey/tan baroque-style horse with long mane; black frame. Illustration only, not coat evidence.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "appaloosa",
+      "file": "06-appaloosa.png",
+      "disposition": "use as-is",
+      "notes": "Pale horse with dense leopard-like dark spots. Black frame. Suitable breed illustration; not genotype evidence.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "arabian",
+      "file": "01-arabian.png",
+      "disposition": "use as-is",
+      "notes": "Grey horse, left-facing full-body pose; tail already reaches/cuts right source edge. Heavy black frame. Keep square; no further horizontal crop.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "clydesdale",
+      "file": "11-clydesdale.png",
+      "disposition": "use as-is",
+      "notes": "Bay draft-style horse, blaze and white feathering; black frame. Feet close to frame; avoid cover crop.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "connemara",
+      "file": null,
+      "disposition": "needs correction",
+      "notes": "Grey pony with abrupt neck/body shade transition and small dotted neck patch; black frame. Hold until coat artifact corrected.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "dutch-warmblood",
+      "file": "23-dutch-warmblood.png",
+      "disposition": "use as-is",
+      "notes": "Chestnut sporthorse, blaze and socks; broad black frame. Tail raised, full legs.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "fjord",
+      "file": "fixed-17-fjord.png",
+      "disposition": "use as-is",
+      "notes": "Upright two-tone mane, sturdy body and frame-free presentation. Preferred Fjord illustration.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "friesian",
+      "file": "fixed-04-friesian-a.png",
+      "disposition": "use as-is",
+      "notes": "Black legs corrected, frame removed; four legs and full tail retained. Preferred Friesian illustration.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "gypsy-cob",
+      "file": "19-gypsy-cob.png",
+      "disposition": "use as-is",
+      "notes": "Black-and-white cob with heavy leg feathering and long pale mane; black frame. Suitable illustrative portrait.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "haflinger",
+      "file": null,
+      "disposition": "needs correction",
+      "notes": "Flaxen chestnut horse, lean conformation, black frame; visible cursive fake signature bottom-right. Hold until signature corrected.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "hanoverian",
+      "file": "fixed-21-hanoverian.png",
+      "disposition": "use as-is",
+      "notes": "Arrow/UI and black frame removed; bay horse retained.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "icelandic",
+      "file": null,
+      "disposition": "needs correction",
+      "notes": "Long-maned pony with metallic gold/grey patchy coat; black frame. Coat rendering is visually ambiguous; hold breed/genetic reference.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "lipizzaner",
+      "file": "25-lipizzaner.png",
+      "disposition": "use as-is",
+      "notes": "Pale grey horse, braided mane; black frame. Full limbs, cool blue-grey tint versus warm set.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "lusitano",
+      "file": "24-lusitano.png",
+      "disposition": "use as-is",
+      "notes": "Pale tan horse, dark mane/tail; large rounded black frame. Keep full body.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "morgan",
+      "file": "08-morgan.png",
+      "disposition": "use as-is",
+      "notes": "Dark bay upright horse in pasture; black frame. Grass obscures hoof detail slightly.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "mustang",
+      "file": "09-mustang.png",
+      "disposition": "use as-is",
+      "notes": "Grey/tan dark-point horse with striped/mottled flank; black frame. Do not identify precise dilution from this image.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "paint-horse",
+      "file": "07-paint-horse.png",
+      "disposition": "use as-is",
+      "notes": "Bay-and-white pinto with white legs; rounded black frame. Suitable illustrative breed portrait.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "percheron",
+      "file": null,
+      "disposition": "needs correction",
+      "notes": "Slim non-draft-looking horse with strongly spotted/dappled dark flank. Poor match to intended heavy draft portrait; hold.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "quarter-horse",
+      "file": "03-quarter-horse.png",
+      "disposition": "use as-is",
+      "notes": "Bay muscular horse with white lower-leg markings; warm pasture. Black frame; full body retained.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "shetland",
+      "file": "16-shetland.png",
+      "disposition": "use as-is",
+      "notes": "Small stocky chestnut pony with shaggy mane; black frame. Full body; good pony silhouette.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "shire",
+      "file": "12-shire.png",
+      "disposition": "use as-is",
+      "notes": "Black draft-style horse, blaze and white feathering; rounded black frame. Full body visible.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "thoroughbred",
+      "file": "02-thoroughbred.png",
+      "disposition": "use as-is",
+      "notes": "Dark bay athletic horse; pale stable background, complete legs. Heavy black frame.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "trakehner",
+      "file": "22-trakehner.png",
+      "disposition": "use as-is",
+      "notes": "Black/dark horse standing left-facing; broad black frame. Complete body.",
+      "illustration_only": true
+    },
+    {
+      "breed_id": "welsh-pony",
+      "file": "fixed-15-welsh-pony.png",
+      "disposition": "use as-is",
+      "notes": "Top text, right UI, rump star and frame removed; warm chestnut portrait preserved.",
+      "illustration_only": true
+    }
+  ]
+}
