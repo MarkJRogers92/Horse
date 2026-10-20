@@ -13,6 +13,9 @@ class ArtTests(unittest.TestCase):
    self.assertFalse(a['genetics_reference_approved'])
    self.assertEqual(hashlib.sha256((base/a['file']).read_bytes()).hexdigest(),a['sha256'])
    self.assertTrue(a['quality_notes'])
+   if a['group']=='Coat studies':
+    for unsupported in ['grullo','silver dapple','palomino','appaloosa']:
+     self.assertNotIn(unsupported,a['title'].lower())
    self.assertIn('process/size_limit=768', (base/(a['file']+'.import')).read_text())
  def test_breed_mapping_points_to_curated_files(self):
   mapping=json.loads((ROOT/'docs/art/breed-library-map.json').read_text())

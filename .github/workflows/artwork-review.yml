@@ -1,0 +1,54 @@
+name: Artwork review
+on:
+  pull_request:
+    paths: ['game/**', 'tools/portraits/**', '.github/workflows/artwork-review.yml']
+  workflow_dispatch:
+env:
+  GODOT_VERSION: 4.7.2-stable
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  LIBGL_ALWAYS_SOFTWARE: '1'
+jobs:
+  artwork:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Install renderer
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q xvfb libgl1 mesa-vulkan-drivers
+      - uses: actions/cache@v4
+        id: godot
+        with:
+          path: ~/godot
+          key: godot-${{ env.GODOT_VERSION }}-mono-linux
+      - name: Download pinned Godot
+        if: steps.godot.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/godot
+          curl -fsSL "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_mono_linux_x86_64.zip" -o /tmp/godot.zip
+          unzip -q /tmp/godot.zip -d ~/godot
+      - name: Build and import committed assets
+        run: |
+          G=$(find "$HOME/godot" -name 'Godot*mono_linux.x86_64' -type f | head -1)
+          echo "G=$G" >> "$GITHUB_ENV"
+          dotnet build game/Cloverbrook.Game.csproj -warnaserror
+          "$G" --headless --path game --editor --import
+          python3 -m unittest discover -s tools/portraits -v
+      - name: Render gallery and contextual dialogs
+        run: |
+          set -o pipefail
+          mkdir -p evidence/artwork
+          timeout 180 xvfb-run -a -s '-screen 0 1280x720x24' "$G" --path game --rendering-method gl_compatibility --rendering-driver opengl3 --resolution 1280x720 --script "$PWD/tools/portraits/check_gallery.gd" -- --out="$PWD/evidence/artwork" 2>&1 | tee evidence/artwork/gallery.log
+          grep -q '\[portrait-gallery\] OK' evidence/artwork/gallery.log
+          timeout 180 xvfb-run -a -s '-screen 0 1280x720x24' "$G" --path game --rendering-method gl_compatibility --rendering-driver opengl3 --resolution 1280x720 --script "$PWD/tools/portraits/check_context_art.gd" -- --save-path="$RUNNER_TEMP/artwork-review.clvr" --out="$PWD/evidence/artwork/context" 2>&1 | tee evidence/artwork/context.log
+          grep -q '\[context-art\] OK' evidence/artwork/context.log
+      - name: Upload artwork review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: artwork-review
+          path: evidence/artwork

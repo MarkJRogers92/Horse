@@ -332,7 +332,7 @@
     {
       "id": "32-palomino-quarter-horse",
       "file": "32-palomino-quarter-horse.png",
-      "title": "Palomino Quarter Horse",
+      "title": "Golden coat study",
       "group": "Coat studies",
       "sha256": "b7cc89b8cafa7f9f9fd04c08cd838ca8eb5ee5eee7028a8e4aad845069d700e7",
       "width": 1536,
@@ -345,7 +345,7 @@
     {
       "id": "34-grullo-mustang",
       "file": "34-grullo-mustang.png",
-      "title": "Grullo Mustang",
+      "title": "Grey coat study",
       "group": "Coat studies",
       "sha256": "d6729e4f2e08411ce0151b3cd2dd261b820cc26e8d4a43ed58cbf2ad1c160dc1",
       "width": 1536,
@@ -358,7 +358,7 @@
     {
       "id": "38-silver-dapple",
       "file": "38-silver-dapple.png",
-      "title": "Silver Dapple",
+      "title": "Dark coat, pale mane",
       "group": "Coat studies",
       "sha256": "9d634fc7bdb0cf697c163d41125e7d4825a961390c95462b2a6a09cf724fb7da",
       "width": 1536,
@@ -579,7 +579,7 @@
     {
       "id": "63-blanket-appaloosa",
       "file": "63-blanket-appaloosa.png",
-      "title": "Blanket Appaloosa",
+      "title": "Spotted blanket study",
       "group": "Coat studies",
       "sha256": "84945a1d2ba6af776af68526dc9d83f3e650f2136517ebf97105a94660907c2f",
       "width": 1536,

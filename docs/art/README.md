@@ -16,7 +16,7 @@ See D-047 for the implementation boundary. The original source archives remain i
 | Cooperative pasture | 52 turnout | Small accent beside title |
 | Extras → Concept portraits | All 45 selected | Breeds, young horses, stable life, coat studies; six per page |
 
-The 21 adult breed illustrations are labeled as studies. Haflinger, Icelandic, Connemara and Percheron adult studies are held for correction, not silently filled with another breed. No illustration is a genetic reference or a portrait of a saved horse.
+The 21 adult breed illustrations are labeled as studies. Haflinger, Icelandic, Connemara and Percheron adult studies are held for correction, not silently filled with another breed. No illustration is a genetic reference or a portrait of a saved horse. Decorative coat studies use observable colour descriptions, rather than the unverified intended genetic labels. Detailed QA instructions remain in provenance, not the player-facing cards.
 
 ## Texture budget
 

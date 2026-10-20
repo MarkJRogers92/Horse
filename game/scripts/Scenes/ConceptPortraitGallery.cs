@@ -131,10 +131,16 @@ public partial class ConceptPortraitGallery : Control
             ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize, StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
             MouseFilter = MouseFilterEnum.Ignore });
         body.AddChild(Wrapped(asset.GetProperty("title").GetString()!, 22));
-        body.AddChild(Wrapped("Illustration study · not a breed standard or genetic reference", 14));
-        var note = Wrapped(asset.GetProperty("quality_notes").GetString()!, 14);
-        note.AddThemeColorOverride("font_color", CozyTheme.SoftText);
-        body.AddChild(note);
+        var description = asset.GetProperty("group").GetString() switch
+        {
+            "Breeds" => "Breed-inspired portrait · artistic interpretation",
+            "Young horses" => "Young-horse illustration · a little inspiration",
+            "Stable life" => "Stable-life illustration · quiet everyday moments",
+            _ => "Decorative coat study · not a genetic reference"
+        };
+        var caption = Wrapped(description, 14);
+        caption.AddThemeColorOverride("font_color", CozyTheme.SoftText);
+        body.AddChild(caption);
         _cards.AddChild(card);
     }
 
