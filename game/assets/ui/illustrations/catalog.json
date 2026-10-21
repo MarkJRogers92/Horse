@@ -15,7 +15,8 @@
       "quality_notes": "Grey horse, left-facing full-body pose; tail already reaches/cuts right source edge. Heavy black frame. Keep square; no further horizontal crop.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "01-arabian.png"
+      "source_file": "01-arabian.png",
+      "frame_inset": [51, 52, 51, 52]
     },
     {
       "id": "02-thoroughbred",
@@ -28,7 +29,8 @@
       "quality_notes": "Dark bay athletic horse; pale stable background, complete legs. Heavy black frame.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "02-thoroughbred.png"
+      "source_file": "02-thoroughbred.png",
+      "frame_inset": [71, 70, 71, 69]
     },
     {
       "id": "03-quarter-horse",
@@ -41,7 +43,8 @@
       "quality_notes": "Bay muscular horse with white lower-leg markings; warm pasture. Black frame; full body retained.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "03-quarter-horse.png"
+      "source_file": "03-quarter-horse.png",
+      "frame_inset": [40, 49, 40, 40]
     },
     {
       "id": "05-andalusian",
@@ -54,7 +57,8 @@
       "quality_notes": "Grey/tan baroque-style horse with long mane; black frame. Illustration only, not coat evidence.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "05-andalusian.png"
+      "source_file": "05-andalusian.png",
+      "frame_inset": [34, 47, 33, 36]
     },
     {
       "id": "06-appaloosa",
@@ -67,7 +71,8 @@
       "quality_notes": "Pale horse with dense leopard-like dark spots. Black frame. Suitable breed illustration; not genotype evidence.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "06-appaloosa.png"
+      "source_file": "06-appaloosa.png",
+      "frame_inset": [21, 21, 22, 22]
     },
     {
       "id": "07-paint-horse",
@@ -80,7 +85,8 @@
       "quality_notes": "Bay-and-white pinto with white legs; rounded black frame. Suitable illustrative breed portrait.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "07-paint-horse.png"
+      "source_file": "07-paint-horse.png",
+      "frame_inset": [25, 25, 25, 25]
     },
     {
       "id": "08-morgan",
@@ -93,7 +99,8 @@
       "quality_notes": "Dark bay upright horse in pasture; black frame. Grass obscures hoof detail slightly.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "08-morgan.png"
+      "source_file": "08-morgan.png",
+      "frame_inset": [20, 33, 25, 22]
     },
     {
       "id": "09-mustang",
@@ -106,7 +113,8 @@
       "quality_notes": "Grey/tan dark-point horse with striped/mottled flank; black frame. Do not identify precise dilution from this image.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "09-mustang.png"
+      "source_file": "09-mustang.png",
+      "frame_inset": [46, 43, 46, 42]
     },
     {
       "id": "11-clydesdale",
@@ -119,7 +127,8 @@
       "quality_notes": "Bay draft-style horse, blaze and white feathering; black frame. Feet close to frame; avoid cover crop.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "11-clydesdale.png"
+      "source_file": "11-clydesdale.png",
+      "frame_inset": [14, 25, 22, 25]
     },
     {
       "id": "12-shire",
@@ -132,7 +141,8 @@
       "quality_notes": "Black draft-style horse, blaze and white feathering; rounded black frame. Full body visible.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "12-shire.png"
+      "source_file": "12-shire.png",
+      "frame_inset": [58, 58, 58, 58]
     },
     {
       "id": "16-shetland",
@@ -145,7 +155,8 @@
       "quality_notes": "Small stocky chestnut pony with shaggy mane; black frame. Full body; good pony silhouette.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "16-shetland.png"
+      "source_file": "16-shetland.png",
+      "frame_inset": [21, 21, 22, 21]
     },
     {
       "id": "19-gypsy-cob",
@@ -158,7 +169,8 @@
       "quality_notes": "Black-and-white cob with heavy leg feathering and long pale mane; black frame. Suitable illustrative portrait.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "19-gypsy-cob.png"
+      "source_file": "19-gypsy-cob.png",
+      "frame_inset": [26, 25, 26, 25]
     },
     {
       "id": "20-akhal-teke",
@@ -171,7 +183,8 @@
       "quality_notes": "Lean golden horse with pale long mane; black frame. Metallic illustration, not a guarantee of coat genetics.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "20-akhal-teke.png"
+      "source_file": "20-akhal-teke.png",
+      "frame_inset": [19, 24, 19, 24]
     },
     {
       "id": "22-trakehner",
@@ -184,7 +197,8 @@
       "quality_notes": "Black/dark horse standing left-facing; broad black frame. Complete body.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "22-trakehner.png"
+      "source_file": "22-trakehner.png",
+      "frame_inset": [105, 107, 105, 77]
     },
     {
       "id": "23-dutch-warmblood",
@@ -197,7 +211,8 @@
       "quality_notes": "Chestnut sporthorse, blaze and socks; broad black frame. Tail raised, full legs.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "23-dutch-warmblood.png"
+      "source_file": "23-dutch-warmblood.png",
+      "frame_inset": [71, 71, 73, 70]
     },
     {
       "id": "24-lusitano",
@@ -210,7 +225,8 @@
       "quality_notes": "Pale tan horse, dark mane/tail; large rounded black frame. Keep full body.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "24-lusitano.png"
+      "source_file": "24-lusitano.png",
+      "frame_inset": [92, 87, 104, 87]
     },
     {
       "id": "25-lipizzaner",
@@ -223,7 +239,8 @@
       "quality_notes": "Pale grey horse, braided mane; black frame. Full limbs, cool blue-grey tint versus warm set.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "25-lipizzaner.png"
+      "source_file": "25-lipizzaner.png",
+      "frame_inset": [81, 65, 81, 71]
     },
     {
       "id": "fixed-04-friesian-a",
@@ -418,7 +435,8 @@
       "quality_notes": "Elevated unfinished cream/sage stable wing with roof framing and tools; black frame. Good expansion concept illustration after consistent non-destructive framing.",
       "genetics_reference_approved": false,
       "source_kind": "generation_output",
-      "source_file": "45-farm-expansion.png"
+      "source_file": "45-farm-expansion.png",
+      "frame_inset": [75, 71, 75, 70]
     },
     {
       "id": "46-wellness",

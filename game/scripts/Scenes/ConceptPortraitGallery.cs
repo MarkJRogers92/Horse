@@ -49,12 +49,16 @@ public partial class ConceptPortraitGallery : Control
         var navigation = new HBoxContainer();
         navigation.AddThemeConstantOverride("separation", 12);
         content.AddChild(navigation);
-        _collection = new OptionButton { Name = "ArtCollection", SizeFlagsHorizontal = SizeFlags.ExpandFill };
+        _collection = new OptionButton { Name = "ArtCollection", CustomMinimumSize = new Vector2(260, 0) };
         foreach (var group in new[] { "Breeds", "Young horses", "Stable life", "Coat studies" }) _collection.AddItem(group);
         navigation.AddChild(_collection);
+        // Keep the pager together on the right: [Previous] 1 / 4 [Next].
+        navigation.AddChild(new Control { SizeFlagsHorizontal = SizeFlags.ExpandFill });
         _previous = new Button { Name = "PreviousPage", Text = "Previous" };
         _next = new Button { Name = "NextPage", Text = "Next" };
-        _pageLabel = Wrapped("", 14);
+        _pageLabel = CozyTheme.Title("", 16);
+        _pageLabel.CustomMinimumSize = new Vector2(56, 0);
+        _pageLabel.HorizontalAlignment = HorizontalAlignment.Center;
         navigation.AddChild(_previous); navigation.AddChild(_pageLabel); navigation.AddChild(_next);
         _previous.Pressed += () => { _page--; ShowPage(); };
         _next.Pressed += () => { _page++; ShowPage(); };
@@ -114,6 +118,9 @@ public partial class ConceptPortraitGallery : Control
         _page = Math.Clamp(_page, 0, pages - 1);
         foreach (var asset in selected.Skip(_page * PageSize).Take(PageSize)) AddPortrait(asset);
         _previous.Disabled = _page == 0; _next.Disabled = _page == pages - 1;
+        // Keyboard/gamepad users must not be stranded on a button that just became disabled.
+        if (_previous.Disabled && _previous.HasFocus()) (_next.Disabled ? _back : _next).GrabFocus();
+        if (_next.Disabled && _next.HasFocus()) (_previous.Disabled ? _back : _previous).GrabFocus();
         _pageLabel.Text = $"{_page + 1} / {pages}";
         _scroll.ScrollVertical = 0;
     }
@@ -127,9 +134,7 @@ public partial class ConceptPortraitGallery : Control
         var file = asset.GetProperty("file").GetString()!;
         var texture = GD.Load<Texture2D>(IllustrationArt.Root + file);
         if (texture == null) throw new InvalidOperationException("Missing portrait " + file);
-        body.AddChild(new TextureRect { Name = "Portrait", Texture = texture, CustomMinimumSize = new Vector2(240, 300),
-            ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize, StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
-            MouseFilter = MouseFilterEnum.Ignore });
+        body.AddChild(IllustrationArt.Portrait(asset, texture, 300));
         body.AddChild(Wrapped(asset.GetProperty("title").GetString()!, 22));
         var description = asset.GetProperty("group").GetString() switch
         {

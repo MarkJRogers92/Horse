@@ -4,6 +4,12 @@
 **Working branch:** `gpt/stable-life-upgrades` from the local hair checkpoint `4838a56`; owner approved push, merge to `main`, and a new Mac download on 2026-10-14. Remote `main` was verified at the original baseline `4091290` before publication. **Previous branch history:** `claude/loving-dijkstra-82tjzx` (animation playback fixes, fast-forwarded from `claude/eloquent-davinci-o1hhr6` c223a2e, which contains `main`). D-012 work continues on `claude/eloquent-davinci-o1hhr6`. Previous: `claude/relaxed-ride-9c5tto`. It contains every other active branch: `codex/horse-production-library`, which itself contains `claude/godot-horse-visual-pilot` and `claude/great-euler-hq83x3`, plus a merge of `rea/horse-coat-preview`. The animation archive (`archive/horse-animation-experiments-2026-10-10`) is intentionally not merged.
 **History:** the full checkpoint log up to 2026-10-12 is in [`docs/history/STATUS_LOG_to_2026-10-12.md`](docs/history/STATUS_LOG_to_2026-10-12.md). Search it with `grep -n '^#'`. Keep this page short: replace sections instead of stacking new ones on top.
 
+## D-047 follow-up: gallery polish (2026-10-20)
+
+Local branch `fix/art-gallery-polish` from merged `main` `70a7e0d` (PR #6). Gallery trims only the baked black frame bands (new per-asset `frame_inset`, source px, 18 assets; source bytes unchanged) and rounds every picture's corners; pager is grouped as Previous · n/N · Next; focus no longer strands on a disabled pager button; the weakened "focus starts on Back" probe is restored.
+
+Verified locally (macOS, Godot 4.7.2 mono, rendered): game build 0 warnings/errors, 7 Python art tests, frozen-spec validator, gallery probe 61 checks (new focus check red without the fix, green with it), context-art probe 35 checks. Not yet pushed; repo-size decision (142 MiB of full-size PNGs, no LFS) is pending with the owner.
+
 ## D-044 generated concept artwork checkpoint (2026-10-18)
 
 Owner authorized saving generated assets and integrating them into the games. Review branch `codex/higgsfield-portrait-gallery`, based on playable `main` at `93f569b`. Adds Extras concept-art gallery with three preserved originals and a cropped stable backdrop; owned-horse genetic portraits remain unchanged. Source hashes, defects and unverified release rights are recorded. No save schema or domain changes.
