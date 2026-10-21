@@ -8,7 +8,11 @@
 
 Local branch `fix/art-gallery-polish` from merged `main` `70a7e0d` (PR #6). Gallery trims only the baked black frame bands (new per-asset `frame_inset`, source px, 18 assets; source bytes unchanged) and rounds every picture's corners; pager is grouped as Previous · n/N · Next; focus no longer strands on a disabled pager button; the weakened "focus starts on Back" probe is restored.
 
-Verified locally (macOS, Godot 4.7.2 mono, rendered): game build 0 warnings/errors, 7 Python art tests, frozen-spec validator, gallery probe 61 checks (new focus check red without the fix, green with it), context-art probe 35 checks. Not yet pushed; repo-size decision (142 MiB of full-size PNGs, no LFS) is pending with the owner.
+Verified locally (macOS, Godot 4.7.2 mono, rendered): game build 0 warnings/errors, 7 Python art tests, frozen-spec validator, gallery probe 61 checks (new focus check red without the fix, green with it), context-art probe 35 checks. Published as PR #7.
+
+## D-048 runtime-size illustrations (2026-10-20)
+
+Owner approved option A. Branch `art/runtime-size-pngs`, stacked on PR #7. The 45 shipped illustrations become 768 px lossless copies: 141.5 → 40.4 MiB. The catalog keeps `source_sha256`/`source_width`/`source_height`, and `frame_inset` values are rescaled. No LFS and no history rewrite. Verified locally: clean reimport (`.import` files unchanged), build 0/0, 7 Python art tests, validator, gallery 61 and context-art 35 checks. Rendered gallery is near pixel-identical to the full-size art: mean difference 0.55/255. Next: CI, owner review, then merge #7 first.
 
 ## D-044 generated concept artwork checkpoint (2026-10-18)
 

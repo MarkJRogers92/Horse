@@ -12,6 +12,10 @@ class ArtTests(unittest.TestCase):
   for a in cat['assets']:
    self.assertFalse(a['genetics_reference_approved'])
    self.assertEqual(hashlib.sha256((base/a['file']).read_bytes()).hexdigest(),a['sha256'])
+   # D-048: shipped files are 768 px runtime copies; source_sha256 keeps provenance to the archived original.
+   self.assertEqual((a['width'],a['height']),(768,768))
+   self.assertRegex(a['source_sha256'],'^[0-9a-f]{64}$')
+   self.assertNotEqual(a['source_sha256'],a['sha256'])
    self.assertTrue(a['quality_notes'])
    if a['group']=='Coat studies':
     for unsupported in ['grullo','silver dapple','palomino','appaloosa']:
