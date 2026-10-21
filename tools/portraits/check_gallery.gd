@@ -51,9 +51,19 @@ func run() -> void:
         var portrait := card.find_child("Portrait", true, false) as TextureRect
         check(portrait != null and portrait.texture != null, "card texture exists")
         if portrait != null and portrait.texture != null:
-            check(portrait.texture.get_size() == Vector2(768, 768), "runtime texture respects import budget")
+            var base: Texture2D = portrait.texture.atlas if portrait.texture is AtlasTexture else portrait.texture
+            check(base.get_size() == Vector2(768, 768), "runtime texture respects import budget")
+            check(portrait.material is ShaderMaterial, "art corners are rounded like the cards")
             check(portrait.stretch_mode == TextureRect.STRETCH_KEEP_ASPECT_CENTERED, "art is displayed without crop or distortion")
             check(portrait.get_global_rect().end.x <= root.size.x, "card fits wide viewport")
+    # The first Breeds card (Arabian) has a baked black frame that must be trimmed, not shown.
+    var first := cards.get_child(0).find_child("Portrait", true, false) as TextureRect
+    check(first.texture is AtlasTexture, "baked black frame is trimmed")
+    var back_at_start := gallery.find_child("BackToMenu", true, false) as Button
+    check(back_at_start != null and back_at_start.has_focus(), "keyboard focus starts on Back")
+    var prev := gallery.find_child("PreviousPage", true, false) as Button
+    var pager_next := gallery.find_child("NextPage", true, false) as Button
+    check(pager_next.get_global_rect().position.x - prev.get_global_rect().end.x < 120, "pager controls stay together")
     await capture("gallery-wide")
     var next := gallery.find_child("NextPage", true, false) as Button
     next.pressed.emit()
@@ -64,6 +74,12 @@ func run() -> void:
     collection.item_selected.emit(2)
     await settle()
     check(cards.get_child_count() == 6, "stable life collection loads")
+    # Reaching the last page must not strand keyboard focus on the now-disabled Next button.
+    next.grab_focus()
+    while not next.disabled:
+        next.pressed.emit()
+        await settle()
+    check(not next.has_focus() and gallery.get_viewport().gui_get_focus_owner() != null, "focus leaves disabled Next")
     await capture("gallery-stable-life")
     # Simulate compact canvas space, with the same scrollable gallery instance.
     gallery.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
@@ -76,7 +92,7 @@ func run() -> void:
         check(card.get_global_rect().end.x <= 700, "compact card stays inside canvas")
     await capture("gallery-compact")
     var back := gallery.find_child("BackToMenu", true, false) as Button
-    check(back != null, "keyboard focus starts on Back")
+    check(back != null, "Back button exists")
     back.pressed.emit()
     back.pressed.emit()
     await settle()

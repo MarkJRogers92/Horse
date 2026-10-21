@@ -25,6 +25,35 @@ public static class IllustrationArt
             TooltipText = "Illustration study · not a saved horse or genetic prediction" };
     }
 
+    private static Shader? _rounded;
+
+    /// <summary>Gallery art: trims only the baked black frame bands (catalog frame_inset, source pixels),
+    /// keeps the remaining picture uncropped, and rounds its corners to match the cozy cards.</summary>
+    public static TextureRect Portrait(JsonElement asset, Texture2D texture, float height)
+    {
+        Texture2D shown = texture;
+        float aspect = texture.GetWidth() / (float)texture.GetHeight();
+        if (asset.TryGetProperty("frame_inset", out var inset))
+        {
+            // Runtime textures are import-capped (768), so scale source-pixel insets to the loaded size.
+            float scale = texture.GetWidth() / (float)asset.GetProperty("width").GetInt32();
+            float l = inset[0].GetInt32() * scale, t = inset[1].GetInt32() * scale;
+            float w = texture.GetWidth() - l - inset[2].GetInt32() * scale, h = texture.GetHeight() - t - inset[3].GetInt32() * scale;
+            shown = new AtlasTexture { Atlas = texture, Region = new Rect2(l, t, w, h), FilterClip = true };
+            aspect = w / h;
+        }
+        _rounded ??= GD.Load<Shader>("res://shaders/rounded_image.gdshader");
+        var size = new Vector2(Mathf.Round(height * aspect), height);
+        var material = new ShaderMaterial { Shader = _rounded };
+        material.SetShaderParameter("size", size);
+        material.SetShaderParameter("radius", 16f);
+        var rect = new TextureRect { Name = "Portrait", Texture = shown, CustomMinimumSize = size, Material = material,
+            ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize, StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
+            SizeFlagsHorizontal = Control.SizeFlags.ShrinkCenter, MouseFilter = Control.MouseFilterEnum.Ignore };
+        rect.Resized += () => material.SetShaderParameter("size", rect.Size);
+        return rect;
+    }
+
     // Existing header heights are retained, so actions and gameplay previews do not get pushed offscreen.
     public static Control? Header(VBoxContainer body, string name, int height)
     {

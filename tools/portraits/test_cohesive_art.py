@@ -17,6 +17,9 @@ class ArtTests(unittest.TestCase):
     for unsupported in ['grullo','silver dapple','palomino','appaloosa']:
      self.assertNotIn(unsupported,a['title'].lower())
    self.assertIn('process/size_limit=768', (base/(a['file']+'.import')).read_text())
+   # frame_inset trims only baked black bands: [left, top, right, bottom] source px, under 10% per edge.
+   for edge in a.get('frame_inset', []):
+    self.assertTrue(0 <= edge < a['width'] * 0.1)
  def test_breed_mapping_points_to_curated_files(self):
   mapping=json.loads((ROOT/'docs/art/breed-library-map.json').read_text())
   self.assertEqual(mapping['approved'],21)
