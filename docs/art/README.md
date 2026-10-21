@@ -20,7 +20,7 @@ The 21 adult breed illustrations are labeled as studies. Haflinger, Icelandic, C
 
 ## Texture budget
 
-Original PNG bytes remain untouched, totaling about 142 MiB in source control. Godot's committed import settings cap runtime dimensions at 768 square and retain lossless compression. This is a reversible engine build setting, not a new source derivative. Only six gallery cards are instantiated at a time; old page nodes are detached and freed. Eight contextual illustrations are mounted in existing dialogs. No eager texture catalog/static texture cache is introduced. This budget does not include the existing game assets, which are unchanged. Measured imported texture payload is 31.39 MiB (down from 101.76 MiB before the cap). Final export package impact requires a real export and is not claimed from source size alone.
+Per D-048, the shipped PNGs are 768 px lossless copies (40.4 MiB, down from 141.5 MiB of full-size originals). The originals stay in the owner's Library archive and git history; each catalog entry keeps `source_sha256`/`source_width`/`source_height`. Godot's committed import settings still cap runtime dimensions at 768 square as a guard for future additions. Only six gallery cards are instantiated at a time; old page nodes are detached and freed. Eight contextual illustrations are mounted in existing dialogs. No eager texture catalog/static texture cache is introduced. This budget does not include the existing game assets, which are unchanged. Measured imported texture payload is 31.39 MiB (down from 101.76 MiB before the cap). Final export package impact requires a real export and is not claimed from source size alone.
 
 ## Validation status
 
