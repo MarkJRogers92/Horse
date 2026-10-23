@@ -4,6 +4,10 @@ on:
     branches: ['codex/practice-training-props']
   pull_request:
     paths: ['game/assets/scenery/**', 'game/scripts/Stable/StableYard*', 'tools/scenery/**', 'tools/portraits/check_gallery.gd', '.github/workflows/training-props.yml']
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name != 'workflow_dispatch' }}
+
 permissions:
   contents: read
 jobs:

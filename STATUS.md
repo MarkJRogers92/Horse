@@ -273,3 +273,10 @@ navigation only; Vulkan equipment placement and remaining visual captures remain
 Production renderer configuration/assets are unchanged. Known software-Vulkan exit
 limitation is documented without claiming an engine fix. Temporary diagnostics and
 ineffective GC/material experiments are removed. Final ordinary CI is pending.
+
+
+## Actions maintenance — 2026-10-23
+
+Owner-authorized CI-only maintenance: cancel superseded automatic runs independently per workflow, event, and branch/PR in domain, visual, macos-build, and training-props. Manual dispatches are not interrupted. All existing triggers, runner labels, test/build commands, timeout failures, artifact settings, and renderer coverage are preserved. The Mac exporter already runs on standard Ubuntu; this public repository's standard runner execution does not consume the private-repository minute allowance.
+
+Validation: all four workflow YAML files parse, and their jobs, environment, permissions, and triggers compare equal to the prior versions. No game/domain code or frozen handoff changes. This checkpoint records configuration validation only; post-push Actions results must be inspected separately.
