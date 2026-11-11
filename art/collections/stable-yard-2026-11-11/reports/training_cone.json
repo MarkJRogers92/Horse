@@ -1,0 +1,24 @@
+{
+  "id": "training_cone",
+  "name": "Training cone",
+  "triangles": 2544,
+  "requested_triangles": 2500,
+  "dimensions_godot_xyz_m": [
+    0.3408461166833105,
+    0.45,
+    0.3431538945847237
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "63cbaeb9cdb0e14a5d5ad9976a64e7a442975d663e642f04f37a819c176cfec0",
+  "model_sha256": "e0558971537abc7f929c1fc38a384fcd283aa3e566dcb3788976a53191d11f4d",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "push_broom",
+  "name": "Stable push broom",
+  "triangles": 1839,
+  "requested_triangles": 3000,
+  "dimensions_godot_xyz_m": [
+    1.236227014485677,
+    1.35,
+    0.22754315529010544
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "5717dbd7ffd909d4a90b61aac82304654c8ad4d9bdbe76b5877fd621889fcf35",
+  "model_sha256": "bc2fd0af8003c3dfe24b8f97aec5fd1c35334e9867d013fc17c6fcdf9987c634",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

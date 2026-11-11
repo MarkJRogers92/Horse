@@ -1,0 +1,24 @@
+{
+  "id": "muck_tub",
+  "name": "Flexible muck tub",
+  "triangles": 3121,
+  "requested_triangles": 3000,
+  "dimensions_godot_xyz_m": [
+    0.7935188271682818,
+    0.45,
+    0.7176334462622562
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "092f08e9391688391620f555651ace43ea700d9d811eca3bd9016294729f7ec3",
+  "model_sha256": "52982ee983ca2f593b83454f318cb9bd74a7555258307fc9523cd06e67222f27",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

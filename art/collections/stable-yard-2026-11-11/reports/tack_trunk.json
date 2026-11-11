@@ -1,0 +1,24 @@
+{
+  "id": "tack_trunk",
+  "name": "Tack trunk",
+  "triangles": 3848,
+  "requested_triangles": 4000,
+  "dimensions_godot_xyz_m": [
+    0.9254941526159394,
+    0.55,
+    0.5310836329243314
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "61597f98abdd8761f480301957a258fc356a985448754555ff5b82ac4c471bf7",
+  "model_sha256": "76cb57809dc60377a3a55f6f1a9594c238332fd1bbeda69884c3b68203059e2f",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

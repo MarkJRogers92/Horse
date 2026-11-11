@@ -1,0 +1,24 @@
+{
+  "id": "weather_vane",
+  "name": "Horse weather vane",
+  "triangles": 4204,
+  "requested_triangles": 4000,
+  "dimensions_godot_xyz_m": [
+    0.6569238783258894,
+    0.75,
+    0.35423171021996613
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "f289757f42f3c2501795b04d51dd01c0af11e4e4af05117311ac1ca0d462977b",
+  "model_sha256": "7dfbf77c583c7ea4558c7d4e520db09ba2eccfb8c03b6433c49e7cdf3831e35f",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

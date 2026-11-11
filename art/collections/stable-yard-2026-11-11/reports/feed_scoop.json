@@ -1,0 +1,24 @@
+{
+  "id": "feed_scoop",
+  "name": "Feed scoop",
+  "triangles": 2596,
+  "requested_triangles": 2500,
+  "dimensions_godot_xyz_m": [
+    0.4234156170684669,
+    0.16,
+    0.2523583980082328
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "e0321d87ed4d88278e1ca6b5a0d28c7f55a0a03993d1d09d39af2ea49991b35c",
+  "model_sha256": "5ba673844ebc4cc4359e4fcfdd96b01856991e09c635fd30ad5323484f8b4446",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

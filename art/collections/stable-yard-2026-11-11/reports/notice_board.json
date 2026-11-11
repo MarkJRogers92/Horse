@@ -1,0 +1,24 @@
+{
+  "id": "notice_board",
+  "name": "Stable notice board",
+  "triangles": 4825,
+  "requested_triangles": 5000,
+  "dimensions_godot_xyz_m": [
+    1.2470739254711956,
+    1.7000000000000002,
+    0.8744355549041241
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "28ba778a4d63f7066c20e918eadae98081a825bb835aa1e51a165a27bd743c89",
+  "model_sha256": "34d5e7bda6b76e43e33c59802b2ce74f5b4f5a8e096878609c36fd0f1194ba19",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

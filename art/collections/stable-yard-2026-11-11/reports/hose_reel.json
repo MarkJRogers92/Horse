@@ -1,0 +1,24 @@
+{
+  "id": "hose_reel",
+  "name": "Freestanding hose reel",
+  "triangles": 6196,
+  "requested_triangles": 6000,
+  "dimensions_godot_xyz_m": [
+    0.6520036406534873,
+    0.6499999999999999,
+    0.34904914132598686
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "f9eb02c6ae0a376a7963cddc562a95080caea3bb86487c57d011e472fe61b739",
+  "model_sha256": "fdff9e87fe0b674be3fa4edde6ec170e2c0fcaaf5a5f709086828f5fff6b840f",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

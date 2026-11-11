@@ -1,0 +1,24 @@
+{
+  "id": "feed_bin",
+  "name": "Lidded feed barrel",
+  "triangles": 3007,
+  "requested_triangles": 3000,
+  "dimensions_godot_xyz_m": [
+    0.9084432232335478,
+    0.8500000000000001,
+    0.8116612375684887
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "7f0313bd28962da50943d266d79bb969014959f9b1c1e9a7f8a30a0afa933d12",
+  "model_sha256": "a98371c16c2ea530d9e214fa0614abbaa2bd1bde132d2c5ec140d971d966eaa0",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

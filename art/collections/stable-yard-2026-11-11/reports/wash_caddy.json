@@ -1,0 +1,24 @@
+{
+  "id": "wash_caddy",
+  "name": "Horse wash caddy",
+  "triangles": 4707,
+  "requested_triangles": 4500,
+  "dimensions_godot_xyz_m": [
+    0.5757299583412873,
+    0.38,
+    0.3488475511651808
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "a3ffa7a5efedf953e238d009dd6f1c47a82816d51aeeaf4da124a457fba69055",
+  "model_sha256": "22f1ab90c818396a82f417923c190f9235f0732fa7f24a4b316c588e0b494732",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

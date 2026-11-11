@@ -1,0 +1,24 @@
+{
+  "id": "stable_lantern",
+  "name": "Stable lantern",
+  "triangles": 4151,
+  "requested_triangles": 4500,
+  "dimensions_godot_xyz_m": [
+    0.27539553748018514,
+    0.42,
+    0.27992794783047303
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "94ced7fea30f35a3f025913bfeddcd67463c90ce1b8b8499e8e520f6fd689c6e",
+  "model_sha256": "87725bbfdc3c8381eed40f13f590543914adf0f238cc4ec75bfe9e7e20834bdd",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

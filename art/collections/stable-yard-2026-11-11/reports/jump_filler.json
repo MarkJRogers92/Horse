@@ -1,0 +1,24 @@
+{
+  "id": "jump_filler",
+  "name": "Show-jump filler",
+  "triangles": 3604,
+  "requested_triangles": 4000,
+  "dimensions_godot_xyz_m": [
+    0.9038855740781248,
+    0.65,
+    0.3734147344215785
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "483a37c089251c51aa62305939c58dce25d4ae85c21673b4df86d1f1f67ce6e6",
+  "model_sha256": "84fad9d97a908145889e9250e579c968d042722df010d5df55b555b182d6b1e0",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "boot_scraper",
+  "name": "Boot cleaning station",
+  "triangles": 3042,
+  "requested_triangles": 3000,
+  "dimensions_godot_xyz_m": [
+    0.3536880592036974,
+    0.18,
+    0.17909834921375994
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "76904a8a3851946928bd9a294d5e6a1f490072d9edbf76be04e062558c61ea5f",
+  "model_sha256": "2938c47e2ebb5b593cbf15c6f88871a45eccd57ecba23ea1932ebf9a7977e7a6",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}
