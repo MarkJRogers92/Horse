@@ -1,0 +1,103 @@
+{
+  "format": "cloverbrook.capture-report.v1",
+  "godot": "4.7.2-stable (official)",
+  "renderer": "llvmpipe (LLVM 19.1.7, 256 bits) / 4.5 (Core Profile) Mesa 25.0.7-2\u002Bdeb13u1",
+  "catalog": "reference-assets.v1",
+  "warning": "Stills prove materials, markings and composition only - not animation quality, not art approval.",
+  "failures": 0,
+  "meshFamilies": {
+    "horse.standard.adult.v1": {
+      "scene": "res://assets/horse/production/horse_light.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.compact.adult.v1": {
+      "scene": "res://assets/horse/production/horse_stock.glb",
+      "placeholder": false,
+      "age": "adult"
+    },
+    "horse.standard.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    },
+    "horse.compact.foal.v1": {
+      "scene": "res://assets/horse/production/horse_foal.glb",
+      "placeholder": false,
+      "age": "foal"
+    }
+  },
+  "unavailableAnimations": [],
+  "animationTrackEvidence": [],
+  "foalIdleEvidence": [],
+  "adultIdleImportEvidence": [],
+  "foalRigEvidence": [],
+  "viewerPathEvidence": [],
+  "appearancePerformance": null,
+  "meshLodEvidence": [],
+  "signedDetailEvidence": [],
+  "signedDetailFallbackEvidence": [],
+  "candidateWalkEvidence": [],
+  "images": [
+    {
+      "file": "stable/establishing.png",
+      "set": "stable",
+      "view": "establishing",
+      "lighting": "Stable",
+      "note": "",
+      "fixtureId": "chestnut.adult",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "3a08026d0dd04866c9817c7776591098605a54439ee6569f758bddc931836fe2",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "stable/barn.png",
+      "set": "stable",
+      "view": "barn",
+      "lighting": "Stable",
+      "note": "",
+      "fixtureId": "chestnut.adult",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "3a08026d0dd04866c9817c7776591098605a54439ee6569f758bddc931836fe2",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "stable/paddock_low.png",
+      "set": "stable",
+      "view": "paddock_low",
+      "lighting": "Stable",
+      "note": "",
+      "fixtureId": "chestnut.adult",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "3a08026d0dd04866c9817c7776591098605a54439ee6569f758bddc931836fe2",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    },
+    {
+      "file": "stable/overview.png",
+      "set": "stable",
+      "view": "overview",
+      "lighting": "Stable",
+      "note": "",
+      "fixtureId": "chestnut.adult",
+      "coatClassId": "chestnut",
+      "label": "Chestnut",
+      "cacheKey": "3a08026d0dd04866c9817c7776591098605a54439ee6569f758bddc931836fe2",
+      "support": "Supported with limitations: Light Body signed detail UV scope: 21253 retained triangles plus 453 recovered historical skin faces kept neutral; whole-body UV compatibility is not claimed; morphs not applied: mane_density,tail_density; test-only descriptor",
+      "markings": "face: None",
+      "testOnly": true,
+      "meshFamilyId": "horse.standard.adult.v1"
+    }
+  ]
+}
