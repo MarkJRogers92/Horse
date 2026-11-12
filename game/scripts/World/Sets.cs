@@ -6,7 +6,7 @@ namespace Cloverbrook.Game.World;
 /// <summary>
 /// Procedural, reusable environment sets. The horse stands at the origin facing +X;
 /// presentation cameras look from the +X/+Z quadrant, so scenery sits toward -X/-Z.
-/// Everything is built from primitives so CI needs no extra art assets.
+/// The stable combines procedural scenery with the approved textured yard props.
 /// </summary>
 public static class Sets
 {
@@ -59,7 +59,12 @@ public static class Sets
         foreach (var p in new[] { new Vector3(-13, 0, -9), new Vector3(-9.5f, 0, -14), new Vector3(-16, 0, -3), new Vector3(2, 0, -16), new Vector3(-4, 0, -18), new Vector3(9, 0, -14) })
             root.AddChild(Tree(p, rng));
 
+        // A clear work surface keeps the yard props out of the grass and flowers.
+        var apron = new Node3D { Name = "BarnApron", Position = new Vector3(-6.2f, 0, -7f), RotationDegrees = new Vector3(0, 35, 0) };
+        apron.AddChild(Mesh(new PlaneMesh { Size = new Vector2(14.2f, 5.8f) }, sand, new Vector3(0, 0.024f, 4.3f)));
+        root.AddChild(apron);
         root.AddChild(Barn(new Vector3(-6.2f, 0, -7.0f), 35));
+        root.AddChild(GD.Load<PackedScene>("res://scenes/world/StableYard.tscn").Instantiate<Node3D>());
         root.AddChild(Fence(rng));
         root.AddChild(Flowers(rng));
         root.AddChild(Grass(rng));
@@ -169,6 +174,7 @@ public static class Sets
             Vector3 p;
             if (i < 500) { float a = rng.RandfRange(Mathf.DegToRad(105), Mathf.DegToRad(325)); float r = rng.RandfRange(6.3f, 7.4f); p = new Vector3(Mathf.Cos(a) * r * 1.0f + 0.5f, 0, Mathf.Sin(a) * r * 0.83f); }
             else { p = new Vector3(rng.RandfRange(-14, 10), 0, rng.RandfRange(-16, -7.5f)); }
+            if (OnBarnApron(p)) { i--; continue; }
             float hgt = rng.RandfRange(0.18f, 0.36f);
             stems.SetInstanceTransform(i, new Transform3D(Basis.Identity.Scaled(new Vector3(1, hgt / 0.3f, 1)), p + new Vector3(0, hgt / 2, 0)));
             mm.SetInstanceTransform(i, new Transform3D(Basis.Identity.Scaled(Vector3.One * rng.RandfRange(0.7f, 1.3f)), p + new Vector3(0, hgt, 0)));
@@ -189,13 +195,19 @@ public static class Sets
         {
             Vector3 p;
             do { p = new Vector3(rng.RandfRange(-18, 14), 0, rng.RandfRange(-18, 12)); }
-            while (new Vector2((p.X - 0.3f), p.Z).Length() < 4.6f);
+            while (new Vector2((p.X - 0.3f), p.Z).Length() < 4.6f || OnBarnApron(p));
             var basis = Basis.Identity.Rotated(Vector3.Up, rng.RandfRange(0, Mathf.Tau)).Rotated(Vector3.Right, rng.RandfRange(-0.25f, 0.25f)).Scaled(Vector3.One * rng.RandfRange(0.6f, 1.4f));
             mm.SetInstanceTransform(i, new Transform3D(basis, p + new Vector3(0, 0.1f, 0)));
             mm.SetInstanceColor(i, Color.FromHtml("#7fb36a").Lerp(Color.FromHtml("#b7d88f"), rng.Randf()));
         }
         var m = Mat(Colors.White, 0.85f); m.VertexColorUseAsAlbedo = true; m.CullMode = BaseMaterial3D.CullModeEnum.Disabled;
         return new MultiMeshInstance3D { Name = "GrassTufts", Multimesh = mm, MaterialOverride = m, CastShadow = GeometryInstance3D.ShadowCastingSetting.Off };
+    }
+
+    private static bool OnBarnApron(Vector3 point)
+    {
+        var local = new Basis(Vector3.Up, Mathf.DegToRad(35)).Inverse() * (point - new Vector3(-6.2f, 0, -7f));
+        return Mathf.Abs(local.X) < 7.1f && local.Z > 1.4f && local.Z < 7.2f;
     }
 
     private static Node3D Tree(Vector3 pos, RandomNumberGenerator rng)

@@ -1,0 +1,7 @@
+# Godot extracts these from the unchanged embedded GLB maps during import.
+*_0.jpg
+*_1.jpg
+*_2.jpg
+*_0.jpg.import
+*_1.jpg.import
+*_2.jpg.import

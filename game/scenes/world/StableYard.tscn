@@ -1,0 +1,70 @@
+[gd_scene load_steps=13 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/stable-yard/wheelbarrow.glb" id="1_wheelbarrow"]
+[ext_resource type="PackedScene" path="res://assets/stable-yard/grooming_tote.glb" id="2_grooming_tote"]
+[ext_resource type="PackedScene" path="res://assets/stable-yard/feed_bin.glb" id="3_feed_bin"]
+[ext_resource type="PackedScene" path="res://assets/stable-yard/mounting_block.glb" id="4_mounting_block"]
+[ext_resource type="PackedScene" path="res://assets/stable-yard/tack_trunk.glb" id="5_tack_trunk"]
+[ext_resource type="PackedScene" path="res://assets/stable-yard/hitching_post.glb" id="6_hitching_post"]
+[ext_resource type="PackedScene" path="res://assets/stable-yard/stable_bench.glb" id="7_stable_bench"]
+[ext_resource type="PackedScene" path="res://assets/stable-yard/hose_reel.glb" id="8_hose_reel"]
+[ext_resource type="PackedScene" path="res://assets/stable-yard/notice_board.glb" id="9_notice_board"]
+[ext_resource type="PackedScene" path="res://assets/stable-yard/flower_planter.glb" id="10_flower_planter"]
+[ext_resource type="PackedScene" path="res://assets/stable-yard/water_bucket.glb" id="11_water_bucket"]
+[ext_resource type="PackedScene" path="res://assets/stable-yard/feed_sacks.glb" id="12_feed_sacks"]
+
+[node name="StableYard" type="Node3D"]
+position = Vector3(-6.2, 0.025, -7)
+rotation = Vector3(0, 0.61086524, 0)
+
+[node name="FeedBarrel" parent="." instance=ExtResource("3_feed_bin")]
+position = Vector3(-2.45, 0, 3.15)
+rotation = Vector3(0, 0.00000000, 0)
+
+[node name="FeedSacks" parent="." instance=ExtResource("12_feed_sacks")]
+position = Vector3(-3.7, 0, 3.25)
+rotation = Vector3(0, 0.00000000, 0)
+
+[node name="Wheelbarrow" parent="." instance=ExtResource("1_wheelbarrow")]
+position = Vector3(-5.65, 0, 2.2)
+rotation = Vector3(0, -0.61086524, 0)
+
+[node name="TackTrunk" parent="." instance=ExtResource("5_tack_trunk")]
+position = Vector3(2.35, 0, 3.1)
+rotation = Vector3(0, 0.00000000, 0)
+
+[node name="GroomingCase" parent="." instance=ExtResource("2_grooming_tote")]
+position = Vector3(2.35, 0.55, 3.1)
+rotation = Vector3(0, 0.00000000, 0)
+
+[node name="HoseReel" parent="." instance=ExtResource("8_hose_reel")]
+position = Vector3(3.35, 0, 3.05)
+rotation = Vector3(0, -1.57079633, 0)
+
+[node name="WaterBucket" parent="." instance=ExtResource("11_water_bucket")]
+position = Vector3(2.95, 0, 3.65)
+rotation = Vector3(0, 0.00000000, 0)
+
+[node name="HitchingRail" parent="." instance=ExtResource("6_hitching_post")]
+position = Vector3(5.5, 0, 4.05)
+rotation = Vector3(0, 0.00000000, 0)
+
+[node name="MountingBlock" parent="." instance=ExtResource("4_mounting_block")]
+position = Vector3(5.55, 0, 5.15)
+rotation = Vector3(0, 0.00000000, 0)
+
+[node name="Bench" parent="." instance=ExtResource("7_stable_bench")]
+position = Vector3(-4.2, 0, 4.25)
+rotation = Vector3(0, 3.14159265, 0)
+
+[node name="NoticeBoard" parent="." instance=ExtResource("9_notice_board")]
+position = Vector3(-5.5, 0, 5.7)
+rotation = Vector3(0, 0.00000000, 0)
+
+[node name="PlanterLeft" parent="." instance=ExtResource("10_flower_planter")]
+position = Vector3(-1.85, 0, 4.0)
+rotation = Vector3(0, 0.00000000, 0)
+
+[node name="PlanterRight" parent="." instance=ExtResource("10_flower_planter")]
+position = Vector3(1.85, 0, 4.0)
+rotation = Vector3(0, 0.00000000, 0)

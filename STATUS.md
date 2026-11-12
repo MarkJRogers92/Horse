@@ -601,3 +601,11 @@ The isolated collection is at `art/collections/stable-yard-2026-11-11/` on
 - The gallery passed syntax and headless startup checks; interactive controls and populated-game performance were not tested. This upload does not integrate props into gameplay scenes or add collisions, interactions or animation.
 - The uploaded collection's 142 files were verified against local Git blob hashes. Existing production files are preserved except for this appended status entry. The frozen handoff validator passed in the existing local project; no JSON specification or domain contract was changed.
 - Next: select placements in the stable/yard and add only the collision or interaction behavior needed by the game. No default-branch change, main merge, deployment or additional generation is included.
+
+## Stable yard scenery integration — 2026-11-11 (D-008)
+
+The owner asked to finish merging/publishing the approved collection, then integrate it into the game. Twelve byte-identical GLBs now form thirteen static instances in `game/scenes/world/StableYard.tscn`, shared by `Sets.Stable()` across the menu, stable visit and stable-mode viewer. Feeding, grooming and seating groups sit on a clear sandy work apron; grass and flowers exclude that area. The doorway and checked horse route remain clear. The remaining source models stay available for future areas.
+
+Strict Godot 4.7.2 .NET C# build passes with zero warnings/errors; all 190 domain tests and frozen-spec validator pass. Four actual Compatibility/llvmpipe stable captures have zero failures. All thirteen imported instances have nonempty finite bounds, correct ground/support heights, clear route volume and no pairwise barn-coordinate bounds overlaps above 5 mm. Twelve runtime models match source bytes exactly. Evidence: `docs/visual/evidence/stable-yard-2026-11-11/`.
+
+This is scenery integration into an early viewer/stable-management prototype. No free roaming, riding/jumping, care/inventory interactions, collisions, save/domain, horse/coats/animation or release-matrix changes are included. The existing downloadable Mac application is unchanged; no new native Mac build or launch validation is claimed. Publication is the checked source integration; any new native app package remains separate.
