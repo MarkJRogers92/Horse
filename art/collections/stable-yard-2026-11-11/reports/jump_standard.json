@@ -1,0 +1,24 @@
+{
+  "id": "jump_standard",
+  "name": "Training jump",
+  "triangles": 3783,
+  "requested_triangles": 4000,
+  "dimensions_godot_xyz_m": [
+    1.1483606057088882,
+    1.6,
+    0.6278697779921234
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "38046bac42a8b17ccf9102baa4a99d841934f5eb03bd57fb96d4b201d7cd25c6",
+  "model_sha256": "f677760e40ec748fa0cc759dadff1c19f5105dc7a30308258cf05b382f78d89d",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

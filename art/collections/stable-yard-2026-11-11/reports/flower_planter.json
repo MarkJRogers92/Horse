@@ -1,0 +1,24 @@
+{
+  "id": "flower_planter",
+  "name": "Stable flower planter",
+  "triangles": 4887,
+  "requested_triangles": 6000,
+  "dimensions_godot_xyz_m": [
+    0.9629915509905135,
+    0.55,
+    0.47977701050894606
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "96ba2c560025a45d11e9f5a72dc3000e8a3bd31da528fc9ded27b0c74d56af81",
+  "model_sha256": "777b8a7d0124a060c0ccaa3881d1fddbd605447024b217e51ef8aa52a0d40a5c",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

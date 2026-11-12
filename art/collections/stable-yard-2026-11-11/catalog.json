@@ -1,0 +1,482 @@
+[
+  {
+    "id": "wheelbarrow",
+    "name": "Stable wheelbarrow",
+    "height_m": 0.75,
+    "triangles": 5179,
+    "dimensions_godot_xyz_m": [
+      1.573384418179153,
+      0.75,
+      0.876612561239779
+    ],
+    "notes": "Small stray surface fragments near handles remain; suitable at normal gameplay distance.",
+    "preview_task_id": "01a1cbe7-d0f4-7253-acda-b64dfc2cb615",
+    "texture_task_id": "01a1cbea-5800-7576-a995-37a021458fe2",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "grooming_tote",
+    "name": "Grooming case",
+    "height_m": 0.32,
+    "triangles": 3905,
+    "dimensions_godot_xyz_m": [
+      0.3458549639778053,
+      0.32000000000000006,
+      0.17956847945988091
+    ],
+    "notes": "Upright grooming case rather than open tote; suitable for a tack room.",
+    "preview_task_id": "01a1cbe8-0d9d-718a-a752-aa1aa0d93658",
+    "texture_task_id": "01a1cbeb-1797-7495-abb7-3a9f3fc3eef5",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "feed_bin",
+    "name": "Lidded feed barrel",
+    "height_m": 0.85,
+    "triangles": 3007,
+    "dimensions_godot_xyz_m": [
+      0.9084432232335478,
+      0.8500000000000001,
+      0.8116612375684887
+    ],
+    "notes": "Timber barrel with metal fittings rather than galvanized bin.",
+    "preview_task_id": "01a1cbe8-1b37-7127-84fa-32151b9ca3af",
+    "texture_task_id": "01a1cbeb-27d0-761b-ad31-ee49fbf7f96f",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "mounting_block",
+    "name": "Two-step mounting block",
+    "height_m": 0.65,
+    "triangles": 3004,
+    "dimensions_godot_xyz_m": [
+      1.3719907874864123,
+      0.65,
+      0.9190874235197365
+    ],
+    "notes": "Generated with two steps; catalog renamed to match.",
+    "preview_task_id": "01a1cbe8-3568-73cb-afe9-88d548f80be5",
+    "texture_task_id": "01a1cbeb-2f80-714e-9407-5446b8ec545c",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "tack_trunk",
+    "name": "Tack trunk",
+    "height_m": 0.55,
+    "triangles": 3848,
+    "dimensions_godot_xyz_m": [
+      0.9254941526159394,
+      0.55,
+      0.5310836329243314
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbe8-3c9d-7011-b4f6-c24e05d462b1",
+    "texture_task_id": "01a1cbeb-3723-77b5-abf1-c64f5a2f830f",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "hitching_post",
+    "name": "Hitching rail",
+    "height_m": 1.15,
+    "triangles": 4158,
+    "dimensions_godot_xyz_m": [
+      1.703284697795826,
+      1.15,
+      0.1980358367526894
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbea-61bf-7045-b74d-29a4b53ccb1b",
+    "texture_task_id": "01a1cbeb-44ce-72f3-a94c-f1a1f5ad4a46",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "stable_bench",
+    "name": "Stable bench",
+    "height_m": 0.95,
+    "triangles": 5213,
+    "dimensions_godot_xyz_m": [
+      1.4750987767032284,
+      0.95,
+      0.7028950395339143
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbea-6a99-7236-ac61-d71479c1c1d3",
+    "texture_task_id": "01a1cbeb-4d8f-7342-8344-5f1e69e4fe5e",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "boot_scraper",
+    "name": "Boot cleaning station",
+    "height_m": 0.18,
+    "triangles": 3042,
+    "dimensions_godot_xyz_m": [
+      0.3536880592036974,
+      0.18,
+      0.17909834921375994
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbea-75d4-7193-a642-3343e650adb5",
+    "texture_task_id": "01a1cbeb-558d-75b9-8c97-d9418924bcbf",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "feed_scoop",
+    "name": "Feed scoop",
+    "height_m": 0.16,
+    "triangles": 2596,
+    "dimensions_godot_xyz_m": [
+      0.4234156170684669,
+      0.16,
+      0.2523583980082328
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbea-83e5-73b4-b05a-d7eb806ac450",
+    "texture_task_id": "01a1cbeb-5e9f-7541-9663-49432e115a11",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "pitchfork",
+    "name": "Stable pitchfork",
+    "height_m": 1.25,
+    "triangles": 3611,
+    "dimensions_godot_xyz_m": [
+      0.20844104782570436,
+      1.25,
+      0.07760387487195611
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbea-8b5f-7613-b20a-20ebc59b656f",
+    "texture_task_id": "01a1cbeb-6fd0-7292-9c36-9b4e975077c2",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "push_broom",
+    "name": "Stable push broom",
+    "height_m": 1.35,
+    "triangles": 1839,
+    "dimensions_godot_xyz_m": [
+      1.236227014485677,
+      1.35,
+      0.22754315529010544
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbeb-9e23-7115-b791-73bf656fb05c",
+    "texture_task_id": "01a1cbef-9e0d-73eb-8ec2-fe3967381366",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "muck_tub",
+    "name": "Flexible muck tub",
+    "height_m": 0.45,
+    "triangles": 3121,
+    "dimensions_godot_xyz_m": [
+      0.7935188271682818,
+      0.45,
+      0.7176334462622562
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbeb-ad6e-71f7-af51-22ddbe06e15a",
+    "texture_task_id": "01a1cbef-a6f4-735f-9fe7-76b51e4f4f65",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "wash_caddy",
+    "name": "Horse wash caddy",
+    "height_m": 0.38,
+    "triangles": 4707,
+    "dimensions_godot_xyz_m": [
+      0.5757299583412873,
+      0.38,
+      0.3488475511651808
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbeb-ba4a-7566-84ea-8f982bcfe318",
+    "texture_task_id": "01a1cbef-b2a1-71b7-8dc2-93f8bbdae496",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "hose_reel",
+    "name": "Freestanding hose reel",
+    "height_m": 0.65,
+    "triangles": 6196,
+    "dimensions_godot_xyz_m": [
+      0.6520036406534873,
+      0.6499999999999999,
+      0.34904914132598686
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbeb-c5d9-71d1-ad85-be92ea5a67cc",
+    "texture_task_id": "01a1cbef-c200-77f0-b26d-8898c208a69f",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "stable_lantern",
+    "name": "Stable lantern",
+    "height_m": 0.42,
+    "triangles": 4151,
+    "dimensions_godot_xyz_m": [
+      0.27539553748018514,
+      0.42,
+      0.27992794783047303
+    ],
+    "notes": "Decorative lantern. Some thin side rods are irregular; use as a background prop. No actual light source included.",
+    "preview_task_id": "01a1cbeb-d0a4-77c8-8c9a-d06e8dd4bdf6",
+    "texture_task_id": "01a1cbef-cad2-7652-92fd-e3396c9635a9",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "notice_board",
+    "name": "Stable notice board",
+    "height_m": 1.7,
+    "triangles": 4825,
+    "dimensions_godot_xyz_m": [
+      1.2470739254711956,
+      1.7000000000000002,
+      0.8744355549041241
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbeb-d8a8-75d8-9e85-dbf10fe57f2a",
+    "texture_task_id": "01a1cbef-d33d-7168-84eb-1ed5299f4b8f",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "weather_vane",
+    "name": "Horse weather vane",
+    "height_m": 0.75,
+    "triangles": 4204,
+    "dimensions_godot_xyz_m": [
+      0.6569238783258894,
+      0.75,
+      0.35423171021996613
+    ],
+    "notes": "Decorative horse vane, with imperfect compass-letter layout; not a functional compass.",
+    "preview_task_id": "01a1cbeb-dfb4-76ec-98e4-94aa345adfb3",
+    "texture_task_id": "01a1cbef-e0fa-7389-99bd-f66a7e75d2b2",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "flower_planter",
+    "name": "Stable flower planter",
+    "height_m": 0.55,
+    "triangles": 4887,
+    "dimensions_godot_xyz_m": [
+      0.9629915509905135,
+      0.55,
+      0.47977701050894606
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbeb-e704-74d7-8738-6e730a672011",
+    "texture_task_id": "01a1cbef-f03e-74ac-a92e-6d64a41ceced",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "birdhouse",
+    "name": "Barn birdhouse",
+    "height_m": 0.38,
+    "triangles": 3440,
+    "dimensions_godot_xyz_m": [
+      0.28222461100109736,
+      0.38,
+      0.29352124793990764
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbeb-efad-7432-a2e1-bb5f9c2426d4",
+    "texture_task_id": "01a1cbef-fa62-76d5-ab48-5158f8f6f558",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "water_bucket",
+    "name": "Stable water bucket",
+    "height_m": 0.38,
+    "triangles": 3597,
+    "dimensions_godot_xyz_m": [
+      0.315917110512622,
+      0.38,
+      0.319043667613605
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbeb-f8e9-7757-ae1a-c1cb82defa15",
+    "texture_task_id": "01a1cbf0-096f-748a-923d-b1ac9cc1b373",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "feed_sacks",
+    "name": "Feed sack stack",
+    "height_m": 0.85,
+    "triangles": 5262,
+    "dimensions_godot_xyz_m": [
+      1.1470014381752884,
+      0.8500000000000001,
+      0.7345973109192796
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbec-e4bc-7704-8ebc-45c81e9bd81e",
+    "texture_task_id": "01a1cbf0-5082-759c-9e93-011f7f6188bd",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "log_jump",
+    "name": "Cross-country log jump",
+    "height_m": 0.7,
+    "triangles": 6313,
+    "dimensions_godot_xyz_m": [
+      1.2993054410001024,
+      0.7,
+      0.568847220426488
+    ],
+    "notes": "Floating log and detached supports repaired locally by moving parts into contact; inspected after repair.",
+    "preview_task_id": "01a1cbec-f0de-7746-ad8f-0a788c140139",
+    "texture_task_id": "01a1cbf0-5b6e-75fb-877b-2258592e86e8",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "jump_standard",
+    "name": "Training jump",
+    "height_m": 1.6,
+    "triangles": 3783,
+    "dimensions_godot_xyz_m": [
+      1.1483606057088882,
+      1.6,
+      0.6278697779921234
+    ],
+    "notes": "Complete decorative jump with integrated rails rather than a separate adjustable standard.",
+    "preview_task_id": "01a1cbec-fe4d-760b-9537-af8037840aa1",
+    "texture_task_id": "01a1cbf0-6543-76f3-a5cb-f32bd8d4e740",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "cavaletti",
+    "name": "Cavaletti obstacle",
+    "height_m": 0.4,
+    "triangles": 4645,
+    "dimensions_godot_xyz_m": [
+      1.0397877077118176,
+      0.4,
+      0.173474861525455
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbed-0a13-7567-8be7-808f41cd0ae6",
+    "texture_task_id": "01a1cbf0-7171-774f-a47a-c2ecb44146f1",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "jump_filler",
+    "name": "Show-jump filler",
+    "height_m": 0.65,
+    "triangles": 3604,
+    "dimensions_godot_xyz_m": [
+      0.9038855740781248,
+      0.65,
+      0.3734147344215785
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbed-116d-7790-886b-b8aadc62aac1",
+    "texture_task_id": "01a1cbf0-79d2-723f-b9ac-315548c63462",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "training_cone",
+    "name": "Training cone",
+    "height_m": 0.45,
+    "triangles": 2544,
+    "dimensions_godot_xyz_m": [
+      0.3408461166833105,
+      0.45,
+      0.3431538945847237
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbed-1ed9-725f-9124-a3aac45b8599",
+    "texture_task_id": "01a1cbf0-8291-74e7-889a-37a4d406f6f3",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "arena_marker",
+    "name": "Wooden arena marker",
+    "height_m": 0.55,
+    "triangles": 2575,
+    "dimensions_godot_xyz_m": [
+      0.6662938390456893,
+      0.55,
+      0.6662938390456893
+    ],
+    "notes": "Blank timber marker rather than white plastic; add signage in-engine if desired.",
+    "preview_task_id": "01a1cbed-28dc-7225-a131-76e07c8c9d4d",
+    "texture_task_id": "01a1cbf0-89d7-7615-a874-c561655b7d68",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "pasture_gate",
+    "name": "Pasture gate",
+    "height_m": 1.25,
+    "triangles": 6225,
+    "dimensions_godot_xyz_m": [
+      1.904715414256163,
+      1.25,
+      0.212394153920447
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbed-3301-74d0-9b1f-bef8ab613b6a",
+    "texture_task_id": "01a1cbf0-92a1-71fb-8cff-3d1886b35faa",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "feed_cart",
+    "name": "Stable feed wagon",
+    "height_m": 1,
+    "triangles": 6621,
+    "dimensions_godot_xyz_m": [
+      1.3487909076232998,
+      1.0,
+      0.7245686416979087
+    ],
+    "notes": "Four-wheeled decorative feed wagon; wheels are not rigged.",
+    "preview_task_id": "01a1cbed-3a55-72a1-a087-a960b181e2cf",
+    "texture_task_id": "01a1cbf0-9ae4-75c2-9d9a-e799f041d1c5",
+    "resource": "text-to-3d",
+    "credits": 15
+  },
+  {
+    "id": "blanket_rack",
+    "name": "Horse blanket rack",
+    "height_m": 1.1,
+    "triangles": 5216,
+    "dimensions_godot_xyz_m": [
+      1.400195843698921,
+      1.1,
+      0.7839652786765282
+    ],
+    "notes": "Reviewed front and rear; decorative static prop.",
+    "preview_task_id": "01a1cbed-4642-76c4-9070-95840473c4d1",
+    "texture_task_id": "01a1cbf0-a36b-72b7-8a1d-09438e04a5b7",
+    "resource": "text-to-3d",
+    "credits": 15
+  }
+]

@@ -1,0 +1,396 @@
+{
+  "budget": 450,
+  "actual_credits": 450,
+  "tasks": [
+    {
+      "id": "wheelbarrow",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbe7-d0f4-7253-acda-b64dfc2cb615",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbea-5800-7576-a995-37a021458fe2",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "grooming_tote",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbe8-0d9d-718a-a752-aa1aa0d93658",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-1797-7495-abb7-3a9f3fc3eef5",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "feed_bin",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbe8-1b37-7127-84fa-32151b9ca3af",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-27d0-761b-ad31-ee49fbf7f96f",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "mounting_block",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbe8-3568-73cb-afe9-88d548f80be5",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-2f80-714e-9407-5446b8ec545c",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "tack_trunk",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbe8-3c9d-7011-b4f6-c24e05d462b1",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-3723-77b5-abf1-c64f5a2f830f",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "hitching_post",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbea-61bf-7045-b74d-29a4b53ccb1b",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-44ce-72f3-a94c-f1a1f5ad4a46",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "stable_bench",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbea-6a99-7236-ac61-d71479c1c1d3",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-4d8f-7342-8344-5f1e69e4fe5e",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "boot_scraper",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbea-75d4-7193-a642-3343e650adb5",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-558d-75b9-8c97-d9418924bcbf",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "feed_scoop",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbea-83e5-73b4-b05a-d7eb806ac450",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-5e9f-7541-9663-49432e115a11",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "pitchfork",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbea-8b5f-7613-b20a-20ebc59b656f",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-6fd0-7292-9c36-9b4e975077c2",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "push_broom",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-9e23-7115-b791-73bf656fb05c",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbef-9e0d-73eb-8ec2-fe3967381366",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "muck_tub",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-ad6e-71f7-af51-22ddbe06e15a",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbef-a6f4-735f-9fe7-76b51e4f4f65",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "wash_caddy",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-ba4a-7566-84ea-8f982bcfe318",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbef-b2a1-71b7-8dc2-93f8bbdae496",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "hose_reel",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-c5d9-71d1-ad85-be92ea5a67cc",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbef-c200-77f0-b26d-8898c208a69f",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "stable_lantern",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-d0a4-77c8-8c9a-d06e8dd4bdf6",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbef-cad2-7652-92fd-e3396c9635a9",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "notice_board",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-d8a8-75d8-9e85-dbf10fe57f2a",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbef-d33d-7168-84eb-1ed5299f4b8f",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "weather_vane",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-dfb4-76ec-98e4-94aa345adfb3",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbef-e0fa-7389-99bd-f66a7e75d2b2",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "flower_planter",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-e704-74d7-8738-6e730a672011",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbef-f03e-74ac-a92e-6d64a41ceced",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "birdhouse",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-efad-7432-a2e1-bb5f9c2426d4",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbef-fa62-76d5-ab48-5158f8f6f558",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "water_bucket",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbeb-f8e9-7757-ae1a-c1cb82defa15",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbf0-096f-748a-923d-b1ac9cc1b373",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "feed_sacks",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbec-e4bc-7704-8ebc-45c81e9bd81e",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbf0-5082-759c-9e93-011f7f6188bd",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "log_jump",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbec-f0de-7746-ad8f-0a788c140139",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbf0-5b6e-75fb-877b-2258592e86e8",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "jump_standard",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbec-fe4d-760b-9537-af8037840aa1",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbf0-6543-76f3-a5cb-f32bd8d4e740",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "cavaletti",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbed-0a13-7567-8be7-808f41cd0ae6",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbf0-7171-774f-a47a-c2ecb44146f1",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "jump_filler",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbed-116d-7790-886b-b8aadc62aac1",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbf0-79d2-723f-b9ac-315548c63462",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "training_cone",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbed-1ed9-725f-9124-a3aac45b8599",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbf0-8291-74e7-889a-37a4d406f6f3",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "arena_marker",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbed-28dc-7225-a131-76e07c8c9d4d",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbf0-89d7-7615-a874-c561655b7d68",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "pasture_gate",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbed-3301-74d0-9b1f-bef8ab613b6a",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbf0-92a1-71fb-8cff-3d1886b35faa",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "feed_cart",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbed-3a55-72a1-a087-a960b181e2cf",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbf0-9ae4-75c2-9d9a-e799f041d1c5",
+        "consumed_credits": 10
+      }
+    },
+    {
+      "id": "blanket_rack",
+      "geometry": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbed-4642-76c4-9070-95840473c4d1",
+        "consumed_credits": 5
+      },
+      "texture": {
+        "resource": "text-to-3d",
+        "task_id": "01a1cbf0-a36b-72b7-8a1d-09438e04a5b7",
+        "consumed_credits": 10
+      }
+    }
+  ]
+}

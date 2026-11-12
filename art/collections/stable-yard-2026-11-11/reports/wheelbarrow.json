@@ -1,0 +1,24 @@
+{
+  "id": "wheelbarrow",
+  "name": "Stable wheelbarrow",
+  "triangles": 5179,
+  "requested_triangles": 5000,
+  "dimensions_godot_xyz_m": [
+    1.573384418179153,
+    0.75,
+    0.876612561239779
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "055da49d757379e3ce9a50d5c7434da169a939c9440bb195af1e5c5278a136c2",
+  "model_sha256": "4ada81dea2da8acde5e55496746d2408083bcc5c2483421d1c21d3f8f6860fa4",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

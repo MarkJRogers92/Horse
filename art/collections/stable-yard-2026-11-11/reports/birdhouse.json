@@ -1,0 +1,24 @@
+{
+  "id": "birdhouse",
+  "name": "Barn birdhouse",
+  "triangles": 3440,
+  "requested_triangles": 3500,
+  "dimensions_godot_xyz_m": [
+    0.28222461100109736,
+    0.38,
+    0.29352124793990764
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "598d752d62270fbeb750ea07e77950346ccc352dd74fc90ae8e293cb03dbc0ed",
+  "model_sha256": "eac819c40b72ca5c3f2bf6f3d385537357eff93726293c3a9bb133d82ad29546",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

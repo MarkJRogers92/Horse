@@ -1,0 +1,24 @@
+{
+  "id": "blanket_rack",
+  "name": "Horse blanket rack",
+  "triangles": 5216,
+  "requested_triangles": 5000,
+  "dimensions_godot_xyz_m": [
+    1.400195843698921,
+    1.1,
+    0.7839652786765282
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "4eb4ca214f4dca2eada05add91d757c7a88d864d5dcc40b7e4b2110ed1c63a1e",
+  "model_sha256": "f02805f4b5c82a2b1e341a623f897c8589212e32a8c9f34fef28e521e86408ea",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

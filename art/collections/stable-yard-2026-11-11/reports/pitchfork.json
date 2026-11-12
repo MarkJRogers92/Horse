@@ -1,0 +1,24 @@
+{
+  "id": "pitchfork",
+  "name": "Stable pitchfork",
+  "triangles": 3611,
+  "requested_triangles": 3500,
+  "dimensions_godot_xyz_m": [
+    0.20844104782570436,
+    1.25,
+    0.07760387487195611
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "cbf14642541fff0e58d0dc61fcbec84acb79bba6826d4a4433731096da0ffb54",
+  "model_sha256": "cb3f1129997fc65b64a546eef67163ed4d264fa0dbb79f6296f9a4a469b74659",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

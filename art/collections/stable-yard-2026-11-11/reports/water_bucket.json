@@ -1,0 +1,24 @@
+{
+  "id": "water_bucket",
+  "name": "Stable water bucket",
+  "triangles": 3597,
+  "requested_triangles": 3500,
+  "dimensions_godot_xyz_m": [
+    0.315917110512622,
+    0.38,
+    0.319043667613605
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "c5469af2e12a21712786737c6f2c3ed43d71909160b4d278e9a07707b1a804a6",
+  "model_sha256": "27192958d8c1275836af694961f705b09315e15150bf66a2386f1d2014cc59e8",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

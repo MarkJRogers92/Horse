@@ -1,0 +1,216 @@
+{
+  "assets": [
+    {
+      "ground_y": 0.0,
+      "height_m": 0.75,
+      "id": "wheelbarrow",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.319999992847443,
+      "id": "grooming_tote",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.849999964237213,
+      "id": "feed_bin",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0000000298023223876953,
+      "height_m": 0.649999976158142,
+      "id": "mounting_block",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.549999952316284,
+      "id": "tack_trunk",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 1.14999985694885,
+      "id": "hitching_post",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0000000298023223876953,
+      "height_m": 0.949999928474426,
+      "id": "stable_bench",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.179999992251396,
+      "id": "boot_scraper",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.159999996423721,
+      "id": "feed_scoop",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 1.25,
+      "id": "pitchfork",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 1.35000014305115,
+      "id": "push_broom",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": -0.0000000149011611938477,
+      "height_m": 0.449999988079071,
+      "id": "muck_tub",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.379999995231628,
+      "id": "wash_caddy",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.649999976158142,
+      "id": "hose_reel",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.420000016689301,
+      "id": "stable_lantern",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 1.70000004768372,
+      "id": "notice_board",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.75,
+      "id": "weather_vane",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.549999952316284,
+      "id": "flower_planter",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.379999995231628,
+      "id": "birdhouse",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.379999995231628,
+      "id": "water_bucket",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.850000023841858,
+      "id": "feed_sacks",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.699999988079071,
+      "id": "log_jump",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 1.60000002384186,
+      "id": "jump_standard",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0000000149011611938477,
+      "height_m": 0.399999976158142,
+      "id": "cavaletti",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.649999976158142,
+      "id": "jump_filler",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.449999988079071,
+      "id": "training_cone",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 0.550000011920929,
+      "id": "arena_marker",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 1.25,
+      "id": "pasture_gate",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 1.0,
+      "id": "feed_cart",
+      "meshes": 1,
+      "pass": true
+    },
+    {
+      "ground_y": 0.0,
+      "height_m": 1.10000002384186,
+      "id": "blanket_rack",
+      "meshes": 1,
+      "pass": true
+    }
+  ],
+  "engine": "4.7.2-stable (official)",
+  "failures": 0
+}

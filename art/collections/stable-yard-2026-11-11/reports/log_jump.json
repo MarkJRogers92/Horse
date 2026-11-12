@@ -1,0 +1,24 @@
+{
+  "id": "log_jump",
+  "name": "Cross-country log jump",
+  "triangles": 6313,
+  "requested_triangles": 6000,
+  "dimensions_godot_xyz_m": [
+    1.2993054410001024,
+    0.7,
+    0.568847220426488
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": false,
+  "source_sha256": "dc8da6f62db64cd7edef65571bfae178ab01d72521aa2764a463fd5893c00620",
+  "model_sha256": "09efa4b916deef0ed8fe2710aad3accb90bc80f5a0b0feef91128e40f2fac3a4",
+  "geometry_change": "log lowered and supports moved inward; root uniform scale and translation",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

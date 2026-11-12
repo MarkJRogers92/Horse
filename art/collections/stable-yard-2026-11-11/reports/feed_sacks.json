@@ -1,0 +1,24 @@
+{
+  "id": "feed_sacks",
+  "name": "Feed sack stack",
+  "triangles": 5262,
+  "requested_triangles": 5000,
+  "dimensions_godot_xyz_m": [
+    1.1470014381752884,
+    0.8500000000000001,
+    0.7345973109192796
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "40e909af49e20dce87aaa0c8f74dd807c961154bd23564651a1fb19c19e7962a",
+  "model_sha256": "3add6a7e70a7ae58f2984bf7d1e808c69edc9cc491b1c554198b0c6c426cbd8b",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

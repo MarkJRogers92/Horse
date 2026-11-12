@@ -588,3 +588,16 @@ Latest verified descriptor artifact: 11685376690 (run 38094410593). Initial P1-0
 - A shared test-only wait now uses three simulation seconds plus a separate 30-second wall watchdog. Actual completion must precede both bounds; endpoint checks are unchanged. Runtime bridge timing/geometry/UV/morphs/adult assets are untouched.
 - Clean strict 4.7.2 build passes with zero warnings/errors. Exact Vulkan smoke reaches final all-four-family success with 24 captures. Expanded transition probe passes 2,122 checks: both mapped foals restore chestnut Idle at real 1 FPS after 5.990–6.985 wall seconds / 0.800–0.809 simulation seconds; a disabled presenter fails the three-second simulation limit, and an independent watchdog also rejects it. Existing 19 physical bridge cases remain enforced. All 56 Python tests, validator and whitespace pass.
 - Evidence: `docs/visual/evidence/foal-transition-clock-cloud-2026-10-12/`, including original failures, successful exact smoke/build, low-FPS and deliberately stuck-state reports, plus viewer images. No push or Mac operation; parent publishes the pinned patch.
+
+
+## Completion handoff — stable and yard asset collection (2026-11-11)
+
+Owner authorized creating a 450-credit Meshy collection and uploading it to GitHub.
+The isolated collection is at `art/collections/stable-yard-2026-11-11/` on
+`codex/stable-yard-assets-2026-11-11`, based on production commit `f51dfee64a8e00452b881626614c2ef692abfba7`.
+
+- 30 static textured GLBs, a separate Godot browsing project, front/rear previews, measured catalog, task/cost ledger and validation records are included. Total geometry: 125,318 triangles. Actual generation spend: exactly 450 credits.
+- All 30 models passed Godot 4.7.2 loading, nonempty mesh, finite bounds, expected scale and ground-origin checks. All 90 embedded 2K maps decoded. Front/rear visuals were inspected; the floating log obstacle was locally repaired and rechecked. Minor decorative defects are documented in the catalog.
+- The gallery passed syntax and headless startup checks; interactive controls and populated-game performance were not tested. This upload does not integrate props into gameplay scenes or add collisions, interactions or animation.
+- The uploaded collection's 142 files were verified against local Git blob hashes. Existing production files are preserved except for this appended status entry. The frozen handoff validator passed in the existing local project; no JSON specification or domain contract was changed.
+- Next: select placements in the stable/yard and add only the collision or interaction behavior needed by the game. No default-branch change, main merge, deployment or additional generation is included.

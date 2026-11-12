@@ -1,0 +1,24 @@
+{
+  "id": "feed_cart",
+  "name": "Stable feed wagon",
+  "triangles": 6621,
+  "requested_triangles": 6500,
+  "dimensions_godot_xyz_m": [
+    1.3487909076232998,
+    1.0,
+    0.7245686416979087
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "557e8f1a68290d76def5bdb8e451316229f9e43c7e028c8eec39898b34c3cf06",
+  "model_sha256": "711158b1d22081d4d27e0216b1a6f6858a4c959f6da994ceee4a9f0ba23591ec",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

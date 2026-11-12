@@ -1,0 +1,545 @@
+{
+  "assets": [
+    {
+      "id": "arena_marker",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "birdhouse",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "blanket_rack",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "boot_scraper",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "cavaletti",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "feed_bin",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "feed_cart",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "feed_sacks",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "feed_scoop",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "flower_planter",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "grooming_tote",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "hitching_post",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "hose_reel",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "jump_filler",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "jump_standard",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "log_jump",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "mounting_block",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "muck_tub",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "notice_board",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "pasture_gate",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "pitchfork",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "push_broom",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "stable_bench",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "stable_lantern",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "tack_trunk",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "training_cone",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "wash_caddy",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "water_bucket",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "weather_vane",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    },
+    {
+      "id": "wheelbarrow",
+      "embedded_texture_sizes": [
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ],
+        [
+          2048,
+          2048
+        ]
+      ],
+      "all_textures_decode": true
+    }
+  ],
+  "failures": 0
+}

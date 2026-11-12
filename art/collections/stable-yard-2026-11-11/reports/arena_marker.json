@@ -1,0 +1,24 @@
+{
+  "id": "arena_marker",
+  "name": "Wooden arena marker",
+  "triangles": 2575,
+  "requested_triangles": 2500,
+  "dimensions_godot_xyz_m": [
+    0.6662938390456893,
+    0.55,
+    0.6662938390456893
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "5f1ff3acdb53d1816c39408d9ab4e6fbba36dc99b5380865d88ff3595ec2d822",
+  "model_sha256": "7dda3e2971b27dc86e77909e54147c4399fb4873e2399d642c7d618083dfa50b",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

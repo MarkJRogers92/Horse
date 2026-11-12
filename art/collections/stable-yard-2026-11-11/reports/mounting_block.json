@@ -1,0 +1,24 @@
+{
+  "id": "mounting_block",
+  "name": "Two-step mounting block",
+  "triangles": 3004,
+  "requested_triangles": 3000,
+  "dimensions_godot_xyz_m": [
+    1.3719907874864123,
+    0.65,
+    0.9190874235197365
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "c47421731915297c6bd740dd607c4af7979a5981d02c9a039bcc11bb67c84acd",
+  "model_sha256": "2b4965f12e974726d373cd0833f069ae0262e15cd3eeb52209342c58ac364c63",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

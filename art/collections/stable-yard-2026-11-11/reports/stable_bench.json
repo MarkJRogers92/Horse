@@ -1,0 +1,24 @@
+{
+  "id": "stable_bench",
+  "name": "Stable bench",
+  "triangles": 5213,
+  "requested_triangles": 5000,
+  "dimensions_godot_xyz_m": [
+    1.4750987767032284,
+    0.95,
+    0.7028950395339143
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "6aaf9da8638dd0978f75a6c1089edea19c328696f3b4018f234a73fbe1aeb699",
+  "model_sha256": "c1577eed86e99b5d95f4a56620bcf4e1efcf8048889ad92e06d01aa31759f699",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

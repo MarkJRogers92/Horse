@@ -1,0 +1,24 @@
+{
+  "id": "grooming_tote",
+  "name": "Grooming case",
+  "triangles": 3905,
+  "requested_triangles": 4000,
+  "dimensions_godot_xyz_m": [
+    0.3458549639778053,
+    0.32000000000000006,
+    0.17956847945988091
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "5ea8acb727aea5e9085f753310f6a122b8e28e738f5d488a9607994c5cb66caa",
+  "model_sha256": "5885ae0719fd2a5fac331fa5b69a1989f67f581e4a69bc543f2dcb03b51f6005",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

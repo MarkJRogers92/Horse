@@ -1,0 +1,24 @@
+{
+  "id": "hitching_post",
+  "name": "Hitching rail",
+  "triangles": 4158,
+  "requested_triangles": 4000,
+  "dimensions_godot_xyz_m": [
+    1.703284697795826,
+    1.15,
+    0.1980358367526894
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "519e07f727dd30d08a5994d889434b5f4a546eda2500fcbb27efaacf73b03764",
+  "model_sha256": "3ffb7d402440fdb1710f315ca6c8831e9cfc603484ad3c113bd4dff6f564fb02",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}

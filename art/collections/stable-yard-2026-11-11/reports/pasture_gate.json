@@ -1,0 +1,24 @@
+{
+  "id": "pasture_gate",
+  "name": "Pasture gate",
+  "triangles": 6225,
+  "requested_triangles": 6000,
+  "dimensions_godot_xyz_m": [
+    1.904715414256163,
+    1.25,
+    0.212394153920447
+  ],
+  "ground_error_m": 0.0,
+  "has_uv": true,
+  "embedded_base_color_sizes": [
+    [
+      2048,
+      2048
+    ]
+  ],
+  "binary_payload_preserved": true,
+  "source_sha256": "998931ea1bd8b8fe88c0e68c6fa5a1332ebce232a90e195942b367780447e3b1",
+  "model_sha256": "499d45c7fb667f0723efd02049b4292b7a68a0462118a8ce55b616bf94d4df81",
+  "geometry_change": "root uniform scale and translation only",
+  "preview_method": "CPU base-color rasterization with smooth directional lighting; normal/roughness maps not rendered"
+}
